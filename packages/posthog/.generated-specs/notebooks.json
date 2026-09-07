@@ -1,0 +1,2336 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.notebooks#NotebooksListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "contains": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "contains",
+            "smithy.api#documentation": "Filter for notebooks that match a provided filter.\n                Each match pair is separated by a colon,\n                multiple match pairs can be sent separated by a space or a comma"
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "The UUID of the Notebook's creator"
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Filter for notebooks created after this date & time"
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "Filter for notebooks created before this date & time"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "If any value is provided for this parameter, return notebooks created by the logged in user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#PaginatedNotebookMinimalListOutput": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.notebooks#PaginatedNotebookMinimalListOutputResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebookMinimalOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the notebook."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short alphanumeric identifier used in URLs and API lookups."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.notebooks#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_modified_at": {
+          "target": "smithy.api#String"
+        },
+        "last_modified_by": {
+          "target": "com.posthog.notebooks#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective access level the user has for this object",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.notebooks#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.notebooks#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.notebooks#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.notebooks#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.notebooks#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#PaginatedNotebookMinimalListOutputResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.notebooks#NotebookMinimalOutput"
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebooksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksListRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#PaginatedNotebookMinimalListOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebookOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the notebook."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short alphanumeric identifier used in URLs and API lookups."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.notebooks#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_modified_at": {
+          "target": "smithy.api#String"
+        },
+        "last_modified_by": {
+          "target": "com.posthog.notebooks#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective access level the user has for this object",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parent_resource": {
+          "target": "com.posthog.notebooks#NotebookOutputParentResource",
+          "traits": {
+            "smithy.api#documentation": "Parent resource this notebook is attached to, or `null`. Returns `{type: 'account', id: <uuid>}` for account-linked notebooks; used by the frontend to route breadcrumbs back to the resource's list.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebookOutputParentResourceType": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebookOutputParentResource": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.notebooks#NotebookOutputParentResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parent resource this notebook is attached to, or `null`. Returns `{type: 'account', id: <uuid>}` for account-linked notebooks; used by the frontend to route breadcrumbs back to the resource's list."
+      }
+    },
+    "com.posthog.notebooks#NotebooksCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#NotebookOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "notebook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#SharingConfiguration": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "settings": {
+          "target": "smithy.api#Document"
+        },
+        "password_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "share_passwords": {
+          "target": "com.posthog.notebooks#SharingConfigurationSharePasswordsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#SharePassword": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by_email": {
+          "target": "smithy.api#String"
+        },
+        "is_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#SharingConfigurationSharePasswordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.notebooks#SharePassword"
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebooksSharingListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.notebooks#SharingConfiguration"
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebooksSharingListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.notebooks#NotebooksSharingListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksSharingListRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#NotebooksSharingListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/{notebook_id}/sharing/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingPasswordsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "notebook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "settings": {
+          "target": "smithy.api#Document"
+        },
+        "password_required": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingPasswordsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksSharingPasswordsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#SharingConfiguration"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{notebook_id}/sharing/passwords/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new password for the sharing configuration."
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingPasswordsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "notebook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "password_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingPasswordsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksSharingPasswordsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/notebooks/{notebook_id}/sharing/passwords/{password_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a password from the sharing configuration."
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingRefreshCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "notebook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "settings": {
+          "target": "smithy.api#Document"
+        },
+        "password_required": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksSharingRefreshCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksSharingRefreshCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#SharingConfiguration"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{notebook_id}/sharing/refresh/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.notebooks#NotebooksRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#NotebookOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#NotebookOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.notebooks#NotebookOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.notebooks#NotebooksActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebookCollabCursor": {
+      "type": "structure",
+      "members": {
+        "head": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ProseMirror selection head position (rich v1 notebooks)."
+          }
+        },
+        "node_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Index of the caret's block node in the markdown notebook document (markdown notebooks)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Caret offset in the plain text of the focused editable element, in UTF-16 code units."
+          }
+        },
+        "list_item_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Index of the focused list item when the caret is inside a list block."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.notebooks#NotebooksCollabMarkdownSaveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the client session, used to skip self-echo on the update stream.",
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The notebook version the submitted content is based on (optimistic concurrency baseline).",
+            "smithy.api#required": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The full markdown notebook document: a ProseMirror doc wrapping a single markdown node.",
+            "smithy.api#required": {}
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text for search indexing."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Updated notebook title."
+          }
+        },
+        "cursor": {
+          "target": "com.posthog.notebooks#NotebookCollabCursor",
+          "traits": {
+            "smithy.api#documentation": "The author's caret in the saved markdown, broadcast with the update so other clients can move the author's remote caret together with the text change."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabMarkdownSaveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksCollabMarkdownSaveCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/collab/markdown_save/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabPresenceCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the client session, used to skip self-echo on the update stream.",
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The notebook version the cursor position is relative to.",
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "com.posthog.notebooks#NotebookCollabCursor",
+          "traits": {
+            "smithy.api#documentation": "The caller's caret position, broadcast to other clients on this notebook's collab stream.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabPresenceCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksCollabPresenceCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/collab/presence/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabSaveCreateRequestStepsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of ProseMirror step JSON objects to apply."
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabSaveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the client session."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The collab version the client's steps are based on."
+          }
+        },
+        "steps": {
+          "target": "com.posthog.notebooks#NotebooksCollabSaveCreateRequestStepsList",
+          "traits": {
+            "smithy.api#documentation": "List of ProseMirror step JSON objects to apply."
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The resulting ProseMirror document after applying the steps locally."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text for search indexing."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Updated notebook title."
+          }
+        },
+        "cursor_head": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ProseMirror cursor head position after applying steps.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabSaveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksCollabSaveCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/collab/save/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabStreamRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksCollabStreamRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksCollabStreamRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/collab/stream/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksHogqlExecuteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksHogqlExecuteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksHogqlExecuteCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/hogql/execute/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelConfigCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelConfigCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelConfigCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelDataframeRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelDataframeRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelDataframeRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/dataframe/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelExecuteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelExecuteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelExecuteCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/execute/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelExecuteStreamCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelExecuteStreamCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelExecuteStreamCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/execute/stream/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelRestartCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelRestartCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelRestartCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/restart/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelStartCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelStartCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelStartCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/start/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelStatusRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelStatusRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelStatusRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/status/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelStopCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number for optimistic concurrency control. Must match the current version when updating content."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the notebook has been soft-deleted."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksKernelStopCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksKernelStopCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#BadRequest"
+        },
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/notebooks/{short_id}/kernel/stop/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksAllActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksAllActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksAllActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#NotebooksRecordingCommentsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.notebooks#NotebooksRecordingCommentsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.notebooks#NotebooksRecordingCommentsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.notebooks#Forbidden"
+        },
+        {
+          "target": "com.posthog.notebooks#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/notebooks/recording_comments/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The API for interacting with Notebooks. This feature is in early access and the API can have breaking changes without announcement."
+      }
+    },
+    "com.posthog.notebooks#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.notebooks#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.notebooks#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.notebooks#Notebooks": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.notebooks#NotebooksList"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksSharingList"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksSharingPasswordsCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksSharingPasswordsDestroy"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksSharingRefreshCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksRetrieve"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksUpdate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksPartialUpdate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksDestroy"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksCollabMarkdownSaveCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksCollabPresenceCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksCollabSaveCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksCollabStreamRetrieve"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksHogqlExecuteCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelConfigCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelDataframeRetrieve"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelExecuteCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelExecuteStreamCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelRestartCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelStartCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelStatusRetrieve"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksKernelStopCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksAllActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksRecordingCommentsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

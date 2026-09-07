@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#Create with distilled cloudflare/ai-gateway createAiGateway",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#Create",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGateway"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CreateRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGatewayRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGateway/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateAiGatewayRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CreateResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGatewayResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGateway/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateAiGatewayResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGateway/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#GatewayAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

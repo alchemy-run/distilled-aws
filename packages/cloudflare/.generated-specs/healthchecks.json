@@ -1,0 +1,4125 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.healthchecks#CreateRequestCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#CreateRequestCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#CreateRequestHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#CreateRequestHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#CreateRequestHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#CreateRequestHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequestTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#CreateRequestTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#CreateRequestCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#CreateRequestHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#CreateRequestTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#CreateResponseCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#CreateResponseHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#CreateResponseHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#CreateResponseHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#CreateResponseHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponseTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#CreateResponseTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#CreateResponseCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#CreateResponseHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#CreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#CreateResponseTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/healthchecks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new health check."
+      }
+    },
+    "com.cloudflare.healthchecks#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "healthcheck_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#DeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/healthchecks/{healthcheck_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a health check.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#EditRequestCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#EditRequestHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#EditRequestHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#EditRequestHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#EditRequestHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequestTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#EditRequestTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "healthcheck_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#EditRequestCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#EditRequestHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#EditRequestTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#EditResponseCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#EditResponseHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#EditResponseHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#EditResponseHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#EditResponseHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponseTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#EditResponseTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#EditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#EditResponseCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#EditResponseHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#EditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#EditResponseTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#Edit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#EditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#EditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/healthchecks/{healthcheck_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Patch a configured health check."
+      }
+    },
+    "com.cloudflare.healthchecks#GetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "healthcheck_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#GetResponseCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#GetResponseHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#GetResponseHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#GetResponseHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#GetResponseHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponseTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#GetResponseTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#GetResponseCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#GetResponseHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#GetResponseTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/healthchecks/{healthcheck_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch a single configured health check.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.healthchecks#ListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results per page. Must be a multiple of 5.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#ListResultItemCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#ListResultItemHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#ListResultItemHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#ListResultItemHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#ListResultItemHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItemTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#ListResultItemTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#ListResultItemCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#ListResultItemHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#ListResultItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#ListResultItemTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#ListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#ListResultItem"
+      }
+    },
+    "com.cloudflare.healthchecks#ListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.healthchecks#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.healthchecks#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/healthchecks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List configured health checks.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#UpdateRequestCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#UpdateRequestHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequestTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "healthcheck_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#UpdateRequestTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#UpdateResponseCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#UpdateResponseHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponseTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#UpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#UpdateResponseTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#Update": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#UpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#UpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/healthchecks/{healthcheck_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a configured health check.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#PreviewsCreateRequestCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequestTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateRequestTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#PreviewsCreateResponseCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponseTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#PreviewsCreateResponseTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#PreviewsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#PreviewsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/healthchecks/preview",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new preview health check."
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "healthcheck_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#PreviewsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#PreviewsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a health check.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "healthcheck_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseCheckRegionsItem": {
+      "type": "enum",
+      "members": {
+        "WNAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WNAM"
+          }
+        },
+        "ENAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENAM"
+          }
+        },
+        "WEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEU"
+          }
+        },
+        "EEU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEU"
+          }
+        },
+        "NSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NSAM"
+          }
+        },
+        "SSAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSAM"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "NAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAF"
+          }
+        },
+        "SAF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAF"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "SEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEAS"
+          }
+        },
+        "NEAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEAS"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseCheckRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.healthchecks#PreviewsGetResponseCheckRegionsItem"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigExpectedCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigHeaderMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigHeaderValueList"
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfig": {
+      "type": "structure",
+      "members": {
+        "allow_insecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not validate the certificate when the health check uses HTTPS."
+          }
+        },
+        "expected_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy."
+          }
+        },
+        "expected_codes": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigExpectedCodesList",
+          "traits": {
+            "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
+          }
+        },
+        "follow_redirects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Follow redirects if the origin returns a 3xx status code."
+          }
+        },
+        "header": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigHeaderMap",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
+          }
+        },
+        "method": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method to use for the health check."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint path to health check against."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80 if type is HTTP or 443 if type is HTTPS."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseTcpConfigMethod": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_ESTABLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connection_established"
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponseTcpConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseTcpConfigMethod",
+          "traits": {
+            "smithy.api#documentation": "The TCP connection method to use for the health check."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Port number to connect to for the health check. Defaults to 80."
+          }
+        }
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname or IP address of the origin server to run health checks on."
+          }
+        },
+        "check_regions": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseCheckRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
+          }
+        },
+        "consecutive_fails": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive fails required from a health check before changing the health to unhealthy."
+          }
+        },
+        "consecutive_successes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive successes required from a health check before changing the health to healthy."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the health check."
+          }
+        },
+        "failure_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current failure reason if status is unhealthy."
+          }
+        },
+        "http_config": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseHttpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the origin server according to the health check."
+          }
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If suspended, no health checks are sent to the origin."
+          }
+        },
+        "tcp_config": {
+          "target": "com.cloudflare.healthchecks#PreviewsGetResponseTcpConfig",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to TCP health check."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timeout (in seconds) before marking the health check as failed."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol to use for the health check. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.healthchecks#PreviewsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.healthchecks#PreviewsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.healthchecks#PreviewsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch a single configured health check preview.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.healthchecks#Healthchecks": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.healthchecks#Create"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#Delete"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#Edit"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#Get"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#List"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#Update"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#PreviewsCreate"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#PreviewsDelete"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#PreviewsGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Healthchecks",
+        "smithy.api#documentation": "Cloudflare API — healthchecks resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

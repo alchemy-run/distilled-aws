@@ -1,0 +1,30 @@
+{
+  "description": "Align network_interconnects#CnisGet with distilled cloudflare/network-interconnects getCni",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#CnisGet",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetCni"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#CnisGetRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetCniRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetCni/input/target",
+      "value": "com.cloudflare.network_interconnects#GetCniRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#CnisGetResponse",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetCniResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetCni/output/target",
+      "value": "com.cloudflare.network_interconnects#GetCniResponse"
+    }
+  ]
+}

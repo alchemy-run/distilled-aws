@@ -1,0 +1,113 @@
+{
+  "operations": {
+    "updateComputeEnvironment": {
+      "syntheticErrors": [
+        {
+          "name": "ComputeEnvironmentNotFound",
+          "from": "ClientException",
+          "message": {
+            "matches": "compute-environment/.* does not exist"
+          }
+        },
+        {
+          "name": "ComputeEnvironmentBeingModified",
+          "from": "ClientException",
+          "message": {
+            "includes": "is being modified"
+          }
+        }
+      ]
+    },
+    "deleteComputeEnvironment": {
+      "syntheticErrors": [
+        {
+          "name": "ComputeEnvironmentNotFound",
+          "from": "ClientException",
+          "message": {
+            "matches": "compute-environment/.* does not exist"
+          }
+        },
+        {
+          "name": "ComputeEnvironmentInUse",
+          "from": "ClientException",
+          "message": {
+            "includes": "found existing JobQueue relationship"
+          }
+        },
+        {
+          "name": "ComputeEnvironmentBeingModified",
+          "from": "ClientException",
+          "message": {
+            "includes": "is being modified"
+          }
+        }
+      ]
+    },
+    "createJobQueue": {
+      "syntheticErrors": [
+        {
+          "name": "ComputeEnvironmentNotValid",
+          "from": "ClientException",
+          "message": {
+            "matches": "must be (created and )?valid before attaching"
+          }
+        },
+        {
+          "name": "JobQueueAlreadyExists",
+          "from": "ClientException",
+          "message": {
+            "includes": "already exists"
+          }
+        }
+      ]
+    },
+    "updateJobQueue": {
+      "syntheticErrors": [
+        {
+          "name": "JobQueueNotFound",
+          "from": "ClientException",
+          "message": {
+            "matches": "job-queue/.* does not exist"
+          }
+        },
+        {
+          "name": "JobQueueBeingModified",
+          "from": "ClientException",
+          "message": {
+            "includes": "is being modified"
+          }
+        }
+      ]
+    },
+    "deleteJobQueue": {
+      "syntheticErrors": [
+        {
+          "name": "JobQueueNotFound",
+          "from": "ClientException",
+          "message": {
+            "matches": "job-queue/.* does not exist"
+          }
+        },
+        {
+          "name": "JobQueueBeingModified",
+          "from": "ClientException",
+          "message": {
+            "includes": "is being modified"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "ComputeEnvironmentNotFound": ["NotFoundError"],
+    "ComputeEnvironmentBeingModified": ["ConflictError", "RetryableError"],
+    "ComputeEnvironmentInUse": ["DependencyViolationError", "RetryableError"],
+    "ComputeEnvironmentNotValid": [
+      "DependencyViolationError",
+      "RetryableError"
+    ],
+    "JobQueueNotFound": ["NotFoundError"],
+    "JobQueueAlreadyExists": ["AlreadyExistsError", "ConflictError"],
+    "JobQueueBeingModified": ["ConflictError", "RetryableError"]
+  }
+}

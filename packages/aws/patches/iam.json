@@ -1,0 +1,18 @@
+{
+  "errorCategories": {
+    "ConcurrentModificationException": ["ConflictError", "RetryableError"],
+    "EntityTemporarilyUnmodifiableException": [
+      "ConflictError",
+      "RetryableError"
+    ],
+    "LimitExceededException": ["QuotaError"],
+    "NoSuchEntityException": ["NotFoundError"],
+    "ServiceFailureException": ["ServerError", "RetryableError"],
+    "RequestLimitExceeded": ["ThrottlingError", "RetryableError"]
+  },
+  "operations": {
+    "listServiceSpecificCredentials": {
+      "errors": ["RequestLimitExceeded", "InvalidInput"]
+    }
+  }
+}

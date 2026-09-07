@@ -1,0 +1,49 @@
+{
+  "description": "these responses always carry the resource id (consumer-proven)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmarkResponse/members/id/traits/smithy.api#required",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessBookmarkResponse/members/id/traits/smithy.api#required",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessBookmarkResponse/members/id/traits/smithy.api#required",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateTunnelWarpConnectorResponse/members/id/traits/smithy.api#required",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchTunnelWarpConnectorResponse/members/id/traits/smithy.api#required",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorResponse/members/id/traits/smithy.api#required",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccountResponse/members/id/traits",
+      "value": {
+        "smithy.api#required": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForZoneResponse/members/id/traits",
+      "value": {
+        "smithy.api#required": {}
+      }
+    }
+  ]
+}

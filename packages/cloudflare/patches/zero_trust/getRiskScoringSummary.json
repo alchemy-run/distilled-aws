@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#RiskScoringSummaryGet with distilled cloudflare/zero-trust getRiskScoringSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringSummaryGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringSummaryGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringSummary/input/target",
+      "value": "com.cloudflare.zero_trust#GetRiskScoringSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringSummaryGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringSummary/output/target",
+      "value": "com.cloudflare.zero_trust#GetRiskScoringSummaryResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpDataTagCategoriesDelete with distilled cloudflare/zero-trust deleteDlpDataTagCategory",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataTagCategory"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataTagCategoryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataTagCategory/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpDataTagCategoryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataTagCategoryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataTagCategory/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpDataTagCategoryResponse"
+    }
+  ]
+}

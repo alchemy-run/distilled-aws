@@ -1,0 +1,29 @@
+{
+  "description": "Allow clearing Product.shippable on update with Stripe's empty-string form value.",
+  "patches": [
+    {
+      "op": "test",
+      "path": "/paths/~1v1~1products~1{id}/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/shippable",
+      "value": {
+        "type": "boolean",
+        "description": "Whether this product is shipped (i.e., physical goods)."
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1v1~1products~1{id}/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/shippable",
+      "value": {
+        "description": "Whether this product is shipped (i.e., physical goods).",
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string",
+            "enum": [""]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align pipelines#StreamsGet with distilled cloudflare/pipelines getStream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsGet",
+      "path": "/shapes/com.cloudflare.pipelines#GetStream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsGetRequest",
+      "path": "/shapes/com.cloudflare.pipelines#GetStreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#GetStream/input/target",
+      "value": "com.cloudflare.pipelines#GetStreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsGetResponse",
+      "path": "/shapes/com.cloudflare.pipelines#GetStreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#GetStream/output/target",
+      "value": "com.cloudflare.pipelines#GetStreamResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#GetStream/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#StreamNotFound"
+        },
+        {
+          "target": "com.cloudflare.pipelines#InvalidStreamId"
+        }
+      ]
+    }
+  ]
+}

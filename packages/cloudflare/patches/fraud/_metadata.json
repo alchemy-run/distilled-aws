@@ -1,0 +1,17 @@
+{
+  "description": "Key dictionary / op aliases for fraud (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "authenticationSettings": "authentication_settings",
+        "failureCriteria": "failure_criteria",
+        "statusCodes": "status_codes",
+        "successCriteria": "success_criteria",
+        "userProfiles": "user_profiles",
+        "usernameExpressions": "username_expressions"
+      }
+    }
+  ]
+}

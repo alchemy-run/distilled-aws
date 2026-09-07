@@ -1,0 +1,52 @@
+{
+  "operations": {
+    "createDBInstance": {
+      "errors": ["InvalidParameterCombination", "InvalidParameterValue"]
+    },
+    "modifyDBInstance": {
+      "errors": ["InvalidParameterCombination", "InvalidParameterValue"]
+    },
+    "createDBCluster": {
+      "errors": ["InvalidParameterCombination", "InvalidParameterValue"]
+    },
+    "modifyDBCluster": {
+      "errors": ["InvalidParameterCombination", "InvalidParameterValue"]
+    }
+  },
+  "errors": {
+    "InvalidParameterCombination": {
+      "message": { "type": "string" }
+    },
+    "InvalidParameterValue": {
+      "message": { "type": "string" }
+    }
+  },
+  "errorCategories": {
+    "InvalidParameterCombination": ["BadRequestError"],
+    "InvalidParameterValue": ["BadRequestError"],
+    "InvalidDBInstanceState": ["ConflictError", "RetryableError"],
+    "InvalidDBClusterStateFault": ["ConflictError", "RetryableError"],
+    "DBInstanceAlreadyExists": ["ConflictError", "AlreadyExistsError"],
+    "DBClusterAlreadyExistsFault": ["ConflictError", "AlreadyExistsError"],
+    "DBInstanceNotFound": ["NotFoundError"],
+    "DBClusterNotFoundFault": ["NotFoundError"],
+    "DBSnapshotNotFound": ["NotFoundError"],
+    "DBSubnetGroupNotFoundFault": ["NotFoundError"],
+    "DBParameterGroupNotFoundFault": ["NotFoundError"],
+    "DBSecurityGroupNotFoundFault": ["NotFoundError"],
+    "Throttling": ["ThrottlingError", "RetryableError"],
+    "ThrottlingException": ["ThrottlingError", "RetryableError"],
+    "RequestLimitExceeded": ["ThrottlingError", "RetryableError"],
+    "InsufficientDBInstanceCapacity": ["QuotaError"],
+    "InsufficientDBClusterCapacityFault": ["QuotaError"],
+    "InsufficientStorageClusterCapacity": ["QuotaError"],
+    "ProvisionedIopsNotAvailableInAZFault": ["QuotaError"],
+    "DBInstanceQuotaExceeded": ["QuotaError"],
+    "DBClusterQuotaExceededFault": ["QuotaError"],
+    "StorageQuotaExceeded": ["QuotaError"],
+    "InstanceQuotaExceeded": ["QuotaError"],
+    "DBSubnetGroupQuotaExceededFault": ["QuotaError"],
+    "DBParameterGroupQuotaExceeded": ["QuotaError"],
+    "SnapshotQuotaExceeded": ["QuotaError"]
+  }
+}

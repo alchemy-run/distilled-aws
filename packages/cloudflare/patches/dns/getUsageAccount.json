@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#UsageAccountGet with distilled cloudflare/dns getUsageAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#UsageAccountGet",
+      "path": "/shapes/com.cloudflare.dns#GetUsageAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#UsageAccountGetRequest",
+      "path": "/shapes/com.cloudflare.dns#GetUsageAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetUsageAccount/input/target",
+      "value": "com.cloudflare.dns#GetUsageAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#UsageAccountGetResponse",
+      "path": "/shapes/com.cloudflare.dns#GetUsageAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetUsageAccount/output/target",
+      "value": "com.cloudflare.dns#GetUsageAccountResponse"
+    }
+  ]
+}

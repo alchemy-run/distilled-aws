@@ -1,0 +1,9 @@
+{
+  "description": "Docs bug: user-group UPDATE policy items mark `id` required, but Cloudflare rejects re-used policy ids on update ('Cannot re-use policy IDs') — the id must be omissible.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.iam#UserGroupsUpdateRequestPoliciesItem/members/id/traits/smithy.api#required"
+    }
+  ]
+}

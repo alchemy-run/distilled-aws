@@ -1,0 +1,1588 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Deletes the specified private endpoint connection associated with the given policy.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The PrivateEndpointConnection name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Creates specified private endpoint connection associated with the given policy.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "properties": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Properties of the private endpoint object."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Approval state of the private link connection."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the private endpoint connection."
+          }
+        },
+        "privateLinkConnectionTags": {
+          "target": "com.azure.azureactivedirectory#TagsResource",
+          "traits": {
+            "smithy.api#documentation": "Updated tag information to set into the PrivateLinkConnection instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private endpoint connection resource."
+      }
+    },
+    "com.azure.azureactivedirectory#TagsResource": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.azure.azureactivedirectory#TagsResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A container holding only the Tags for a resource, allowing the user to update the tags on a PrivateLinkConnection instance."
+      }
+    },
+    "com.azure.azureactivedirectory#TagsResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been approved, rejected or removed by the given policy owner."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval or rejection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents the approval state of the private link connection."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointServiceConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection status."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full identifier of the private endpoint resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint object properties."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The PrivateEndpointConnection name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Properties of the private endpoint object."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Approval state of the private link connection."
+          }
+        },
+        "privateLinkConnectionTags": {
+          "target": "com.azure.azureactivedirectory#TagsResource",
+          "traits": {
+            "smithy.api#documentation": "Updated tag information to set into the PrivateLinkConnection instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private endpoint connection resource."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Gets the specified private endpoint connection associated with the given policy.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "properties": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The PrivateEndpointConnection name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsListByPolicyName": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsListByPolicyNameRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Lists all Private Endpoint Connections for the given policy.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of private link resources"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to next page of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of private link resources"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azureactivedirectory#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of private link resources"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "properties": {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection resource."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateEndpointConnectionsListByPolicyNameRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdListRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkPolicyListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Operation to return the list of Private Link Policies For AzureAD scoped to the resourceGroup.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkPolicyListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkPolicyListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of private link policies"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of private link policies"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkPolicyListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkPolicy"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of private link policies"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String Id used to locate any resource on Azure."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of this resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of this resource."
+          }
+        },
+        "ownerTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Guid of the owner tenant"
+          }
+        },
+        "allTenants": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating whether all tenants are allowed"
+          }
+        },
+        "tenants": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkPolicyTenantsList",
+          "traits": {
+            "smithy.api#documentation": "The list of tenantIds."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the private link policy resource"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription Identifier"
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource group"
+          }
+        },
+        "tags": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkPolicyTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PrivateLink Policy configuration object."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkPolicyTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkPolicyTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of tenantIds."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkPolicyListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/microsoft.aadiam/privateLinkForAzureAd",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Lists all  Private Link Policies For AzureAD in the given subscription.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Deletes a private link policy. When operation completes, status code 200 returned without content.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Updates private link policy tags with specified values.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String Id used to locate any resource on Azure."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of this resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of this resource."
+          }
+        },
+        "ownerTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Guid of the owner tenant"
+          }
+        },
+        "allTenants": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating whether all tenants are allowed"
+          }
+        },
+        "tenants": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTenantsList",
+          "traits": {
+            "smithy.api#documentation": "The list of tenantIds."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the private link policy resource"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription Identifier"
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource group"
+          }
+        },
+        "tags": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateResponseTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of tenantIds."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags to be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags to be updated."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Creates a private link policy.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String Id used to locate any resource on Azure."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of this resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of this resource."
+          }
+        },
+        "ownerTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Guid of the owner tenant"
+          }
+        },
+        "allTenants": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating whether all tenants are allowed"
+          }
+        },
+        "tenants": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTenantsList",
+          "traits": {
+            "smithy.api#documentation": "The list of tenantIds."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the private link policy resource"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription Identifier"
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource group"
+          }
+        },
+        "tags": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateResponseTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of tenantIds."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of this resource."
+          }
+        },
+        "ownerTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Guid of the owner tenant"
+          }
+        },
+        "allTenants": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating whether all tenants are allowed"
+          }
+        },
+        "tenants": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTenantsList",
+          "traits": {
+            "smithy.api#documentation": "The list of tenantIds."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the private link policy resource"
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource group"
+          }
+        },
+        "tags": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreateRequestTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of tenantIds."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Gets a private link policy with a given name.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String Id used to locate any resource on Azure."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of this resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of this resource."
+          }
+        },
+        "ownerTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Guid of the owner tenant"
+          }
+        },
+        "allTenants": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating whether all tenants are allowed"
+          }
+        },
+        "tenants": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTenantsList",
+          "traits": {
+            "smithy.api#documentation": "The list of tenantIds."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the private link policy resource"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription Identifier"
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource group"
+          }
+        },
+        "tags": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetResponseTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of tenantIds."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkForAzureAdGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}/privateLinkResources/{groupName}",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Gets the private link resources that need to be created for a policy of AzureAD.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique resource identifier of the Azure AD PrivateLink Policy."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure AD PrivateLink Policy."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of Azure resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group id."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource required member names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a private link resource."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource required member names."
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourcesListByPrivateLinkPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkResourcesListByPrivateLinkPolicyRequest"
+      },
+      "output": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.aadiam/privateLinkForAzureAd/{policyName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2020-03-01"
+        },
+        "smithy.api#documentation": "Gets the private link resources that need to be created for a policy of AzureAD.",
+        "com.distilled.openapi#apiVersion": "2020-03-01"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of private link resources"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of private link resources"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azureactivedirectory#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of private link resources"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique resource identifier of the Azure AD PrivateLink Policy."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure AD PrivateLink Policy."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of Azure resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azureactivedirectory#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private link resource"
+      }
+    },
+    "com.azure.azureactivedirectory#PrivateLinkResourcesListByPrivateLinkPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure resource group."
+          }
+        },
+        "policyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link policy in Azure AD."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azureactivedirectory#Azureactivedirectory": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsCreate"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateEndpointConnectionsListByPolicyName"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdList"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdListBySubscription"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdDelete"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdUpdate"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdCreate"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkForAzureAdGet"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#PrivateLinkResourcesListByPrivateLinkPolicy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Azureactivedirectory",
+        "smithy.api#documentation": "Azure Azureactivedirectory API — merged from the azureactivedirectory resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

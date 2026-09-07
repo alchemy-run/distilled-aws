@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#AudioTracksDelete with distilled cloudflare/stream deleteAudioTrack",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksDelete",
+      "path": "/shapes/com.cloudflare.stream#DeleteAudioTrack"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksDeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteAudioTrackRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteAudioTrack/input/target",
+      "value": "com.cloudflare.stream#DeleteAudioTrackRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksDeleteResponse",
+      "path": "/shapes/com.cloudflare.stream#DeleteAudioTrackResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteAudioTrack/output/target",
+      "value": "com.cloudflare.stream#DeleteAudioTrackResponse"
+    }
+  ]
+}

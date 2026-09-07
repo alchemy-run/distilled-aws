@@ -1,0 +1,50 @@
+{
+  "description": "Align origin_ca_certificates#List with distilled cloudflare/origin-ca-certificates listOriginCaCertificates",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_ca_certificates#List",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificates"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_ca_certificates#ListRequest",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificates/input/target",
+      "value": "com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_ca_certificates#ListResponse",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificates/output/target",
+      "value": "com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificates/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListOriginCaCertificates/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

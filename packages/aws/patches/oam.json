@@ -1,0 +1,22 @@
+{
+  "errorCategories": {
+    "TooManyRequestsException": ["ThrottlingError", "RetryableError"]
+  },
+  "operations": {
+    "createLink": { "errors": ["TooManyRequestsException"] },
+    "createSink": { "errors": ["TooManyRequestsException"] },
+    "deleteLink": { "errors": ["TooManyRequestsException"] },
+    "deleteSink": { "errors": ["TooManyRequestsException"] },
+    "getLink": { "errors": ["TooManyRequestsException"] },
+    "getSink": { "errors": ["TooManyRequestsException"] },
+    "getSinkPolicy": { "errors": ["TooManyRequestsException"] },
+    "listAttachedLinks": { "errors": ["TooManyRequestsException"] },
+    "listLinks": { "errors": ["TooManyRequestsException"] },
+    "listSinks": { "errors": ["TooManyRequestsException"] },
+    "listTagsForResource": { "errors": ["TooManyRequestsException"] },
+    "putSinkPolicy": { "errors": ["TooManyRequestsException"] },
+    "tagResource": { "errors": ["TooManyRequestsException"] },
+    "untagResource": { "errors": ["TooManyRequestsException"] },
+    "updateLink": { "errors": ["TooManyRequestsException"] }
+  }
+}

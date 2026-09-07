@@ -1,0 +1,38 @@
+{
+  "description": "Align calls#TurnList with distilled cloudflare/calls listTurns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnList",
+      "path": "/shapes/com.cloudflare.calls#ListTurns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnListRequest",
+      "path": "/shapes/com.cloudflare.calls#ListTurnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#ListTurns/input/target",
+      "value": "com.cloudflare.calls#ListTurnsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnListResponse",
+      "path": "/shapes/com.cloudflare.calls#ListTurnsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#ListTurns/output/target",
+      "value": "com.cloudflare.calls#ListTurnsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.calls#ListTurns/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

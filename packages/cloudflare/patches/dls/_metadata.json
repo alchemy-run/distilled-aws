@@ -1,0 +1,19 @@
+{
+  "description": "Key dictionary / op aliases for dls (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdOn": "created_on",
+        "documentationUrl": "documentation_url",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "prefixId": "prefix_id",
+        "regionKey": "region_key",
+        "resultInfo": "result_info",
+        "versionCreatedOn": "version_created_on"
+      }
+    }
+  ]
+}

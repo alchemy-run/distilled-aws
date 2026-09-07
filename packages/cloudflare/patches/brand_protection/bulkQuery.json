@@ -1,0 +1,20 @@
+{
+  "description": "Align brand_protection#QueriesBulk with distilled cloudflare/brand-protection bulkQuery",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#QueriesBulk",
+      "path": "/shapes/com.cloudflare.brand_protection#BulkQuery"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#QueriesBulkRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#BulkQueryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#BulkQuery/input/target",
+      "value": "com.cloudflare.brand_protection#BulkQueryRequest"
+    }
+  ]
+}

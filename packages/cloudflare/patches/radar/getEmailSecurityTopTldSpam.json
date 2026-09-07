@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecurityTopTldsSpamGet with distilled cloudflare/radar getEmailSecurityTopTldSpam",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTopTldsSpamGet",
+      "path": "/shapes/com.cloudflare.radar#GetEmailSecurityTopTldSpam"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTopTldsSpamGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetEmailSecurityTopTldSpamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetEmailSecurityTopTldSpam/input/target",
+      "value": "com.cloudflare.radar#GetEmailSecurityTopTldSpamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTopTldsSpamGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetEmailSecurityTopTldSpamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetEmailSecurityTopTldSpam/output/target",
+      "value": "com.cloudflare.radar#GetEmailSecurityTopTldSpamResponse"
+    }
+  ]
+}

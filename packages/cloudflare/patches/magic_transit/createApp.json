@@ -1,0 +1,42 @@
+{
+  "description": "Align magic_transit#AppsCreate with distilled cloudflare/magic-transit createApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsCreate",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsCreateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateApp/input/target",
+      "value": "com.cloudflare.magic_transit#CreateAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsCreateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateApp/output/target",
+      "value": "com.cloudflare.magic_transit#CreateAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#MagicWanUnauthorized"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

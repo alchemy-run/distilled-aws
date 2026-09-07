@@ -1,0 +1,36 @@
+{
+  "description": "Key dictionary / op aliases for kv (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "expirationTtl": "expiration_ttl",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "successfulKeyCount": "successful_key_count",
+        "supportsUrlEncoding": "supports_url_encoding",
+        "totalCount": "total_count",
+        "unsuccessfulKeys": "unsuccessful_keys"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "bulkDeleteNamespaceKeys",
+          "target": "bulkDeleteNamespaces"
+        },
+        {
+          "alias": "bulkGetNamespaceKeys",
+          "target": "bulkGetNamespaces"
+        },
+        {
+          "alias": "bulkPutNamespaceKeys",
+          "target": "bulkPutNamespaces"
+        }
+      ]
+    }
+  ]
+}

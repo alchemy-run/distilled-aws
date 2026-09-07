@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#EnvironmentsRollback with distilled cloudflare/zones rollbackEnvironment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsRollback",
+      "path": "/shapes/com.cloudflare.zones#RollbackEnvironment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsRollbackRequest",
+      "path": "/shapes/com.cloudflare.zones#RollbackEnvironmentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#RollbackEnvironment/input/target",
+      "value": "com.cloudflare.zones#RollbackEnvironmentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsRollbackResponse",
+      "path": "/shapes/com.cloudflare.zones#RollbackEnvironmentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#RollbackEnvironment/output/target",
+      "value": "com.cloudflare.zones#RollbackEnvironmentResponse"
+    }
+  ]
+}

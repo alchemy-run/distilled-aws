@@ -1,0 +1,3851 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "composer",
+    "version": "v1beta1",
+    "title": "Cloud Composer API",
+    "baseUrl": "https://composer.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.composer_v1beta1#PrivateClusterConfig": {
+      "type": "structure",
+      "members": {
+        "enablePrivateEndpoint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If `true`, access to the public endpoint of the GKE cluster is denied."
+          }
+        },
+        "masterIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CIDR block from which IPv4 range for GKE master will be reserved. If left blank, the default value of '172.16.0.0/23' is used."
+          }
+        },
+        "masterIpv4ReservedRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The IP range in CIDR notation to use for the hosted master network. This range is used for assigning internal IP addresses to the cluster master or set of masters and to the internal load balancer virtual IP. This range must not overlap with any other ranges in use within the cluster's network."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options for the private GKE cluster in a Cloud Composer environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#ExitInfo": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message. Empty if there was no error."
+          }
+        },
+        "exitCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The exit code from the command execution."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about how a command ended."
+      }
+    },
+    "com.gcp.composer_v1beta1#TriggererResource": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of triggerers."
+          }
+        },
+        "cpu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. CPU request and limit for a single Airflow triggerer replica."
+          }
+        },
+        "memoryGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Memory (GB) request and limit for a single Airflow triggerer replica."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for resources used by Airflow triggerers."
+      }
+    },
+    "com.gcp.composer_v1beta1#MaintenanceWindow": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Start time of the first recurrence of the maintenance window."
+          }
+        },
+        "recurrence": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Maintenance window recurrence. Format is a subset of [RFC-5545](https://tools.ietf.org/html/rfc5545) `RRULE`. The only allowed values for `FREQ` field are `FREQ=DAILY` and `FREQ=WEEKLY;BYDAY=...` Example values: `FREQ=WEEKLY;BYDAY=TU,WE`, `FREQ=DAILY`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Maintenance window end time. It is used only to calculate the duration of the maintenance window. The value for end_time must be in the future, relative to `start_time`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration settings for Cloud Composer maintenance window. The following example: ``` { \"startTime\":\"2019-08-01T01:00:00Z\" \"endTime\":\"2019-08-01T07:00:00Z\" \"recurrence\":\"FREQ=WEEKLY;BYDAY=TU,WE\" } ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday."
+      }
+    },
+    "com.gcp.composer_v1beta1#StorageConfig": {
+      "type": "structure",
+      "members": {
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the Cloud Storage bucket used by the environment. No `gs://` prefix."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration for data storage in the environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListWorkloadsResponse": {
+      "type": "structure",
+      "members": {
+        "workloads": {
+          "target": "com.gcp.composer_v1beta1#ComposerWorkloadList",
+          "traits": {
+            "smithy.api#documentation": "The list of environment workloads."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to query for the next page if one exists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to ListWorkloadsRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#ComposerWorkloadList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#ComposerWorkload"
+      }
+    },
+    "com.gcp.composer_v1beta1#EncryptionConfig": {
+      "type": "structure",
+      "members": {
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Customer-managed Encryption Key available through Google's Key Management Service. Cannot be updated. If not specified, Google-managed key will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The encryption options for the Cloud Composer environment and its dependencies. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+      }
+    },
+    "com.gcp.composer_v1beta1#RecoveryConfig": {
+      "type": "structure",
+      "members": {
+        "scheduledSnapshotsConfig": {
+          "target": "com.gcp.composer_v1beta1#ScheduledSnapshotsConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration for scheduled snapshot creation mechanism."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Recovery settings of an environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#AirflowMetadataRetentionPolicyConfig": {
+      "type": "structure",
+      "members": {
+        "retentionMode": {
+          "target": "com.gcp.composer_v1beta1#AirflowMetadataRetentionPolicyConfigRetentionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Retention can be either enabled or disabled."
+          }
+        },
+        "retentionDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many days data should be retained for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy for airflow metadata database retention."
+      }
+    },
+    "com.gcp.composer_v1beta1#AirflowMetadataRetentionPolicyConfigRetentionModeEnum": {
+      "type": "enum",
+      "members": {
+        "RETENTION_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETENTION_MODE_UNSPECIFIED"
+          }
+        },
+        "RETENTION_MODE_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETENTION_MODE_ENABLED"
+          }
+        },
+        "RETENTION_MODE_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETENTION_MODE_DISABLED"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#Line": {
+      "type": "structure",
+      "members": {
+        "lineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of the line."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text content of the log line."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about a single line from logs."
+      }
+    },
+    "com.gcp.composer_v1beta1#ConfigConflict": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Conflict message."
+          }
+        },
+        "type": {
+          "target": "com.gcp.composer_v1beta1#ConfigConflictTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Conflict type. It can be blocking or non-blocking."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Environment configuration conflict."
+      }
+    },
+    "com.gcp.composer_v1beta1#ConfigConflictTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CONFLICT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFLICT_TYPE_UNSPECIFIED"
+          }
+        },
+        "BLOCKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKING"
+          }
+        },
+        "NON_BLOCKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_BLOCKING"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#PrivateEnvironmentConfig": {
+      "type": "structure",
+      "members": {
+        "webServerIpv4ReservedRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The IP range reserved for the tenant project's App Engine VMs. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "cloudSqlIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from web_server_ipv4_cidr_block"
+          }
+        },
+        "enablePrivatelyUsedPublicIps": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. When enabled, IPs from public (non-RFC1918) ranges can be used for `IPAllocationPolicy.cluster_ipv4_cidr_block` and `IPAllocationPolicy.service_ipv4_cidr_block`."
+          }
+        },
+        "networkingConfig": {
+          "target": "com.gcp.composer_v1beta1#NetworkingConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for the network connections configuration in the environment."
+          }
+        },
+        "webServerIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from private_cluster_config.master_ipv4_cidr_block and cloud_sql_ipv4_cidr_block. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "enablePrivateEnvironment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. This field is going to be deprecated. Use `networking_type` instead."
+          }
+        },
+        "cloudComposerNetworkIpv4ReservedRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The IP range reserved for the tenant project's Cloud Composer network. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+          }
+        },
+        "cloudComposerConnectionSubnetwork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. When specified, the environment will use Private Service Connect instead of VPC peerings to connect to Cloud SQL in the Tenant Project, and the PSC endpoint in the Customer Project will use an IP address from this subnetwork."
+          }
+        },
+        "cloudComposerNetworkIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CIDR block from which IP range for Cloud Composer Network in tenant project will be reserved. Needs to be disjoint from private_cluster_config.master_ipv4_cidr_block and cloud_sql_ipv4_cidr_block. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+          }
+        },
+        "enablePrivateBuildsOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If `true`, builds performed during operations that install Python packages have only private connectivity to Google services (including Artifact Registry) and VPC network (if either `NodeConfig.network` and `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment` field are specified). If `false`, the builds also have access to the internet. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+          }
+        },
+        "privateClusterConfig": {
+          "target": "com.gcp.composer_v1beta1#PrivateClusterConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment."
+          }
+        },
+        "networkingType": {
+          "target": "com.gcp.composer_v1beta1#PrivateEnvironmentConfigNetworkingTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Networking type for the environment, either private or public."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration information for configuring a Private IP Cloud Composer environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#PrivateEnvironmentConfigNetworkingTypeEnum": {
+      "type": "enum",
+      "members": {
+        "NETWORKING_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORKING_TYPE_UNSPECIFIED"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVATE"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ImageVersion": {
+      "type": "structure",
+      "members": {
+        "isDefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this is the default ImageVersion used by Composer during environment creation if no input ImageVersion is specified."
+          }
+        },
+        "releaseDate": {
+          "target": "com.gcp.composer_v1beta1#Composer_Date",
+          "traits": {
+            "smithy.api#documentation": "The date of the version release."
+          }
+        },
+        "creationDisabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether it is impossible to create an environment with the image version."
+          }
+        },
+        "upgradeDisabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether it is impossible to upgrade an environment running with the image version."
+          }
+        },
+        "imageVersionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The string identifier of the ImageVersion, in the form: \"composer-x.y.z-airflow-a.b.c\""
+          }
+        },
+        "supportedPythonVersions": {
+          "target": "com.gcp.composer_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "supported python versions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Image Version information"
+      }
+    },
+    "com.gcp.composer_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.composer_v1beta1#TrafficRoutingConfig": {
+      "type": "structure",
+      "members": {
+        "cloudRunFunctionsRouting": {
+          "target": "com.gcp.composer_v1beta1#TrafficRoutingConfigCloudRunFunctionsRoutingEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Controls how network traffic to Cloud Run functions is routed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for network traffic routing from the Cloud Composer environment to other services."
+      }
+    },
+    "com.gcp.composer_v1beta1#TrafficRoutingConfigCloudRunFunctionsRoutingEnum": {
+      "type": "enum",
+      "members": {
+        "ROUTING_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROUTING_MODE_UNSPECIFIED"
+          }
+        },
+        "DIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT"
+          }
+        },
+        "VIA_NETWORK_ATTACHMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIA_NETWORK_ATTACHMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#WorkerResource": {
+      "type": "structure",
+      "members": {
+        "cpu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. CPU request and limit for a single Airflow worker replica."
+          }
+        },
+        "maxCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of workers for autoscaling."
+          }
+        },
+        "memoryGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Memory (GB) request and limit for a single Airflow worker replica."
+          }
+        },
+        "storageGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Storage (GB) request and limit for a single Airflow worker replica."
+          }
+        },
+        "minCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minimum number of workers for autoscaling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for resources used by Airflow workers."
+      }
+    },
+    "com.gcp.composer_v1beta1#AllowedIpRange": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address or range, defined using CIDR notation, of requests that this rule applies to. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`. IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User-provided description. It must contain at most 300 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed IP range with user-provided description."
+      }
+    },
+    "com.gcp.composer_v1beta1#NodeConfig": {
+      "type": "structure",
+      "members": {
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Google Cloud Platform Service Account to be used by the workloads. If a service account is not specified, the \"default\" Compute Engine service account is used. Cannot be updated."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine [zone](/compute/docs/regions-zones) in which to deploy the VMs used to run the Apache Airflow software, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: \"projects/{projectId}/zones/{zoneId}\". This `location` must belong to the enclosing environment's project and location. If both this field and `nodeConfig.machineType` are specified, `nodeConfig.machineType` must belong to this `location`; if both are unspecified, the service will pick a zone in the Compute Engine region corresponding to the Cloud Composer location, and propagate that choice to both fields. If only one field (`location` or `nodeConfig.machineType`) is specified, the location information from the specified field will be propagated to the unspecified field. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "trafficRoutingConfig": {
+          "target": "com.gcp.composer_v1beta1#TrafficRoutingConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configures how the environment routes traffic to other services. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+          }
+        },
+        "ipAllocationPolicy": {
+          "target": "com.gcp.composer_v1beta1#IPAllocationPolicy",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IPAllocationPolicy fields for the GKE cluster."
+          }
+        },
+        "maxPodsPerNode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of pods per node in the Cloud Composer GKE cluster. The value must be between 8 and 110 and it can be set only if the environment is VPC-native. The default value is 32. Values of this field will be propagated both to the `default-pool` node pool of the newly created GKE cluster, and to the default \"Maximum Pods per Node\" value which is used for newly created node pools if their value is not explicitly set during node pool creation. For more information, see [Optimizing IP address allocation] (https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr). Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "composerInternalIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IP range in CIDR notation to use internally by Cloud Composer. IP addresses are not reserved - and the same range can be used by multiple Cloud Composer environments. In case of overlap, IPs from this range will not be accessible in the user's VPC network. Cannot be updated. If not specified, the default value of '100.64.128.0/20' is used. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+          }
+        },
+        "enableIpMasqAgent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Deploys 'ip-masq-agent' daemon set in the GKE cluster and defines nonMasqueradeCIDRs equals to pod IP range so IP masquerading is used for all destination addresses, except between pods traffic. See: https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent"
+          }
+        },
+        "diskSizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The disk size in GB used for node VMs. Minimum size is 30GB. If unspecified, defaults to 100GB. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine [machine type](/compute/docs/machine-types) used for cluster instances, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: \"projects/{projectId}/zones/{zoneId}/machineTypes/{machineTypeId}\". The `machineType` must belong to the enclosing environment's project and location. If both this field and `nodeConfig.location` are specified, this `machineType` must belong to the `nodeConfig.location`; if both are unspecified, the service will pick a zone in the Compute Engine region corresponding to the Cloud Composer location, and propagate that choice to both fields. If exactly one of this field and `nodeConfig.location` is specified, the location information from the specified field will be propagated to the unspecified field. The `machineTypeId` must not be a [shared-core machine type](/compute/docs/machine-types#sharedcore). If this field is unspecified, the `machineTypeId` defaults to \"n1-standard-1\". This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.composer_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of instance tags applied to all node VMs. Tags are used to identify valid sources or targets for network firewalls. Each tag within the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Cannot be updated."
+          }
+        },
+        "oauthScopes": {
+          "target": "com.gcp.composer_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The set of Google API scopes to be made available on all node VMs. If `oauth_scopes` is empty, defaults to [\"https://www.googleapis.com/auth/cloud-platform\"]. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "composerNetworkAttachment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Network Attachment that Cloud Composer environment is connected to, which provides connectivity with a user's VPC network. Takes precedence over network and subnetwork settings. If not provided, but network and subnetwork are defined during environment, it will be provisioned. If not provided and network and subnetwork are also empty, then connectivity to user's VPC network is disabled. Network attachment must be provided in format projects/{project}/regions/{region}/networkAttachments/{networkAttachment}. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+          }
+        },
+        "subnetwork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine subnetwork to be used for machine communications, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: \"projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}\" If a subnetwork is provided, `nodeConfig.network` must also be provided, and the subnetwork must belong to the enclosing environment's project and location."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine network to be used for machine communications, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: \"projects/{projectId}/global/networks/{networkId}\". If unspecified, the default network in the environment's project is used. If a [Custom Subnet Network](/vpc/docs/vpc#vpc_networks_and_subnets) is provided, `nodeConfig.subnetwork` must also be provided. For [Shared VPC](/vpc/docs/shared-vpc) subnetwork requirements, see `nodeConfig.subnetwork`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration information for the Kubernetes Engine nodes running the Apache Airflow software."
+      }
+    },
+    "com.gcp.composer_v1beta1#ComposerWorkloadStatus": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.composer_v1beta1#ComposerWorkloadStatusStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Workload state."
+          }
+        },
+        "detailedStatusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Detailed message of the status."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Text to provide more descriptive status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workload status."
+      }
+    },
+    "com.gcp.composer_v1beta1#ComposerWorkloadStatusStateEnum": {
+      "type": "enum",
+      "members": {
+        "COMPOSER_WORKLOAD_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPOSER_WORKLOAD_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OK"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#SchedulerResource": {
+      "type": "structure",
+      "members": {
+        "cpu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. CPU request and limit for a single Airflow scheduler replica."
+          }
+        },
+        "storageGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Storage (GB) request and limit for a single Airflow scheduler replica."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of schedulers."
+          }
+        },
+        "memoryGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Memory (GB) request and limit for a single Airflow scheduler replica."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for resources used by Airflow schedulers."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListUserWorkloadsConfigMapsResponse": {
+      "type": "structure",
+      "members": {
+        "userWorkloadsConfigMaps": {
+          "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMapList",
+          "traits": {
+            "smithy.api#documentation": "The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to query for the next page if one exists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The user workloads ConfigMaps for a given environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#UserWorkloadsConfigMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMap"
+      }
+    },
+    "com.gcp.composer_v1beta1#CheckUpgradeResponse": {
+      "type": "structure",
+      "members": {
+        "imageVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Composer image for which the build was happening."
+          }
+        },
+        "buildLogUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Url for a docker build log of an upgraded image."
+          }
+        },
+        "pypiDependencies": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Pypi dependencies specified in the environment configuration, at the time when the build was triggered."
+          }
+        },
+        "configConflicts": {
+          "target": "com.gcp.composer_v1beta1#ConfigConflictList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains information about environment configuration that is incompatible with the new image version, except for pypi modules conflicts."
+          }
+        },
+        "containsPypiModulesConflict": {
+          "target": "com.gcp.composer_v1beta1#CheckUpgradeResponseContainsPypiModulesConflictEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether build has succeeded or failed on modules conflicts."
+          }
+        },
+        "pypiConflictBuildLogExtract": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Extract from a docker image build log containing information about pypi modules conflicts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing information about the result of an upgrade check operation."
+      }
+    },
+    "com.gcp.composer_v1beta1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.composer_v1beta1#ConfigConflictList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#ConfigConflict"
+      }
+    },
+    "com.gcp.composer_v1beta1#CheckUpgradeResponseContainsPypiModulesConflictEnum": {
+      "type": "enum",
+      "members": {
+        "CONFLICT_RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFLICT_RESULT_UNSPECIFIED"
+          }
+        },
+        "CONFLICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFLICT"
+          }
+        },
+        "NO_CONFLICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_CONFLICT"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListUserWorkloadsSecretsResponse": {
+      "type": "structure",
+      "members": {
+        "userWorkloadsSecrets": {
+          "target": "com.gcp.composer_v1beta1#UserWorkloadsSecretList",
+          "traits": {
+            "smithy.api#documentation": "The list of Secrets returned by a ListUserWorkloadsSecretsRequest."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to query for the next page if one exists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The user workloads Secrets for a given environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#UserWorkloadsSecretList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsSecret"
+      }
+    },
+    "com.gcp.composer_v1beta1#SaveSnapshotResponse": {
+      "type": "structure",
+      "members": {
+        "snapshotPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully-resolved Cloud Storage path of the created snapshot, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\". This field is populated only if the snapshot creation was successful."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to SaveSnapshotRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#SaveSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "snapshotLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location in a Cloud Storage where the snapshot is going to be stored, e.g.: \"gs://my-bucket/snapshots\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create a snapshot of a Cloud Composer environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#WebServerNetworkAccessControl": {
+      "type": "structure",
+      "members": {
+        "allowedIpRanges": {
+          "target": "com.gcp.composer_v1beta1#AllowedIpRangeList",
+          "traits": {
+            "smithy.api#documentation": "A collection of allowed IP ranges with descriptions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network-level access control policy for the Airflow web server."
+      }
+    },
+    "com.gcp.composer_v1beta1#AllowedIpRangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#AllowedIpRange"
+      }
+    },
+    "com.gcp.composer_v1beta1#Composer_Date": {
+      "type": "structure",
+      "members": {
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.composer_v1beta1#ComposerWorkload": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.composer_v1beta1#ComposerWorkloadTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of a workload."
+          }
+        },
+        "status": {
+          "target": "com.gcp.composer_v1beta1#ComposerWorkloadStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. Status of a workload."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a workload."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a single workload."
+      }
+    },
+    "com.gcp.composer_v1beta1#ComposerWorkloadTypeEnum": {
+      "type": "enum",
+      "members": {
+        "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED"
+          }
+        },
+        "CELERY_WORKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CELERY_WORKER"
+          }
+        },
+        "KUBERNETES_WORKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KUBERNETES_WORKER"
+          }
+        },
+        "KUBERNETES_OPERATOR_POD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KUBERNETES_OPERATOR_POD"
+          }
+        },
+        "SCHEDULER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULER"
+          }
+        },
+        "DAG_PROCESSOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAG_PROCESSOR"
+          }
+        },
+        "TRIGGERER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIGGERER"
+          }
+        },
+        "WEB_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB_SERVER"
+          }
+        },
+        "REDIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDIS"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#Environment": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.composer_v1beta1#EnvironmentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current state of the environment."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which this environment was created."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. User-defined labels for this environment. The labels map can contain no more than 64 entries. Entries of the labels map are UTF8 strings that comply with the following restrictions: * Keys must conform to regexp: \\p{Ll}\\p{Lo}{0,62} * Values must conform to regexp: [\\p{Ll}\\p{Lo}\\p{N}_-]{0,63} * Both keys and values are additionally constrained to be <= 128 bytes in size."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen."
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The UUID (Universally Unique IDentifier) associated with this environment. This value is generated when the environment is created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which this environment was last modified."
+          }
+        },
+        "config": {
+          "target": "com.gcp.composer_v1beta1#EnvironmentConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration parameters for this environment."
+          }
+        },
+        "storageConfig": {
+          "target": "com.gcp.composer_v1beta1#StorageConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Storage configuration for this environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An environment for running orchestration tasks."
+      }
+    },
+    "com.gcp.composer_v1beta1#EnvironmentStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.composer_v1beta1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.composer_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.composer_v1beta1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      }
+    },
+    "com.gcp.composer_v1beta1#EnvironmentConfig": {
+      "type": "structure",
+      "members": {
+        "nodeConfig": {
+          "target": "com.gcp.composer_v1beta1#NodeConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration used for the Kubernetes Engine cluster."
+          }
+        },
+        "environmentSize": {
+          "target": "com.gcp.composer_v1beta1#EnvironmentConfigEnvironmentSizeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The size of the Cloud Composer environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+          }
+        },
+        "dataRetentionConfig": {
+          "target": "com.gcp.composer_v1beta1#DataRetentionConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration setting for Airflow database data retention mechanism."
+          }
+        },
+        "airflowUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URI of the Apache Airflow Web UI hosted within this environment (see [Airflow web interface](/composer/docs/how-to/accessing/airflow-web-interface))."
+          }
+        },
+        "encryptionConfig": {
+          "target": "com.gcp.composer_v1beta1#EncryptionConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated."
+          }
+        },
+        "webServerNetworkAccessControl": {
+          "target": "com.gcp.composer_v1beta1#WebServerNetworkAccessControl",
+          "traits": {
+            "smithy.api#documentation": "Optional. The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied."
+          }
+        },
+        "maintenanceWindow": {
+          "target": "com.gcp.composer_v1beta1#MaintenanceWindow",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, the default value for maintenance window is applied. By default, maintenance windows are from 00:00:00 to 04:00:00 (GMT) on Friday, Saturday, and Sunday every week."
+          }
+        },
+        "workloadsConfig": {
+          "target": "com.gcp.composer_v1beta1#WorkloadsConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+          }
+        },
+        "masterAuthorizedNetworksConfig": {
+          "target": "com.gcp.composer_v1beta1#MasterAuthorizedNetworksConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration options for GKE cluster master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled."
+          }
+        },
+        "nodeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of nodes in the Kubernetes Engine cluster that will be used to run this environment. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "privateEnvironmentConfig": {
+          "target": "com.gcp.composer_v1beta1#PrivateEnvironmentConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration used for the Private IP Cloud Composer environment."
+          }
+        },
+        "webServerConfig": {
+          "target": "com.gcp.composer_v1beta1#WebServerConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration settings for the Airflow web server App Engine instance. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        },
+        "recoveryConfig": {
+          "target": "com.gcp.composer_v1beta1#RecoveryConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Recovery settings configuration of an environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+          }
+        },
+        "dagGcsPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud Storage objects reside in a flat namespace, a hierarchical file tree can be simulated using \"/\"-delimited object name prefixes. DAG objects for this environment reside in a simulated directory with the given prefix."
+          }
+        },
+        "databaseConfig": {
+          "target": "com.gcp.composer_v1beta1#DatabaseConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration settings for Cloud SQL instance used internally by Apache Airflow software."
+          }
+        },
+        "resilienceMode": {
+          "target": "com.gcp.composer_v1beta1#EnvironmentConfigResilienceModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resilience mode of the Cloud Composer Environment. This field is supported for Cloud Composer environments in versions composer-2.2.0-airflow-*.*.* and newer."
+          }
+        },
+        "softwareConfig": {
+          "target": "com.gcp.composer_v1beta1#SoftwareConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration settings for software inside the environment."
+          }
+        },
+        "airflowByoidUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The 'bring your own identity' variant of the URI of the Apache Airflow Web UI hosted within this environment, to be accessed with external identities using workforce identity federation (see [Access environments with workforce identity federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation))."
+          }
+        },
+        "gkeCluster": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Kubernetes Engine cluster used to run this environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration information for an environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#EnvironmentConfigEnvironmentSizeEnum": {
+      "type": "enum",
+      "members": {
+        "ENVIRONMENT_SIZE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIRONMENT_SIZE_UNSPECIFIED"
+          }
+        },
+        "ENVIRONMENT_SIZE_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIRONMENT_SIZE_SMALL"
+          }
+        },
+        "ENVIRONMENT_SIZE_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIRONMENT_SIZE_MEDIUM"
+          }
+        },
+        "ENVIRONMENT_SIZE_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIRONMENT_SIZE_LARGE"
+          }
+        },
+        "ENVIRONMENT_SIZE_EXTRA_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENVIRONMENT_SIZE_EXTRA_LARGE"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#EnvironmentConfigResilienceModeEnum": {
+      "type": "enum",
+      "members": {
+        "RESILIENCE_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESILIENCE_MODE_UNSPECIFIED"
+          }
+        },
+        "HIGH_RESILIENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH_RESILIENCE"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#MasterAuthorizedNetworksConfig": {
+      "type": "structure",
+      "members": {
+        "cidrBlocks": {
+          "target": "com.gcp.composer_v1beta1#CidrBlockList",
+          "traits": {
+            "smithy.api#documentation": "Up to 50 external networks that could access Kubernetes master through HTTPS."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether or not master authorized networks feature is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options for the master authorized networks feature. Enabled master authorized networks will disallow all external traffic to access Kubernetes master through HTTPS except traffic from the given CIDR blocks, Google Compute Engine Public IPs and Google Prod IPs."
+      }
+    },
+    "com.gcp.composer_v1beta1#CidrBlockList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#CidrBlock"
+      }
+    },
+    "com.gcp.composer_v1beta1#StopAirflowCommandRequest": {
+      "type": "structure",
+      "members": {
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the execution is terminated forcefully (SIGKILL). If false, the execution is stopped gracefully, giving it time for cleanup."
+          }
+        },
+        "executionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the command execution."
+          }
+        },
+        "pod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the pod where the command is executed."
+          }
+        },
+        "podNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace of the pod where the command is executed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Stop Airflow Command request."
+      }
+    },
+    "com.gcp.composer_v1beta1#DatabaseFailoverRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request to trigger database failover (only for highly resilient environments)."
+      }
+    },
+    "com.gcp.composer_v1beta1#ExecuteAirflowCommandRequest": {
+      "type": "structure",
+      "members": {
+        "parameters": {
+          "target": "com.gcp.composer_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Parameters for the Airflow command/subcommand as an array of arguments. It may contain positional arguments like `[\"my-dag-id\"]`, key-value parameters like `[\"--foo=bar\"]` or `[\"--foo\",\"bar\"]`, or other flags like `[\"-f\"]`."
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Airflow command."
+          }
+        },
+        "subcommand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Airflow subcommand."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Execute Airflow Command request."
+      }
+    },
+    "com.gcp.composer_v1beta1#ScheduledSnapshotsConfig": {
+      "type": "structure",
+      "members": {
+        "snapshotLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Cloud Storage location for storing automatically created snapshots."
+          }
+        },
+        "snapshotCreationSchedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The cron expression representing the time when snapshots creation mechanism runs. This field is subject to additional validation around frequency of execution."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether scheduled snapshots creation is enabled."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Time zone that sets the context to interpret snapshot_creation_schedule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration for scheduled snapshot creation mechanism."
+      }
+    },
+    "com.gcp.composer_v1beta1#DatabaseFailoverResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for DatabaseFailoverRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#Operation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.composer_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.composer_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.composer_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.composer_v1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.composer_v1beta1#IPAllocationPolicy": {
+      "type": "structure",
+      "members": {
+        "clusterIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IP address range used to allocate IP addresses to pods in the cluster. For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*, this field is applicable only when `use_ip_aliases` is true. Set to blank to have GKE choose a range with the default size. Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. Specify `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both."
+          }
+        },
+        "servicesIpv4CidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IP address range of the services IP addresses in this cluster. For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*, this field is applicable only when `use_ip_aliases` is true. Set to blank to have GKE choose a range with the default size. Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. Specify `services_secondary_range_name` or `services_ipv4_cidr_block` but not both."
+          }
+        },
+        "clusterSecondaryRangeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the cluster's secondary range used to allocate IP addresses to pods. Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both. For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*, this field is applicable only when `use_ip_aliases` is true."
+          }
+        },
+        "useIpAliases": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether or not to enable Alias IPs in the GKE cluster. If `true`, a VPC-native cluster is created. This field is only supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. Environments in newer versions always use VPC-native GKE clusters."
+          }
+        },
+        "servicesSecondaryRangeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the services' secondary range used to allocate IP addresses to the cluster. Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both. For Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*, this field is applicable only when `use_ip_aliases` is true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for controlling how IPs are allocated in the GKE cluster."
+      }
+    },
+    "com.gcp.composer_v1beta1#WebServerConfig": {
+      "type": "structure",
+      "members": {
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8. If not specified, composer-n1-webserver-2 will be used. Value custom is returned only in response, if Airflow web server parameters were manually changed to a non-standard values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+      }
+    },
+    "com.gcp.composer_v1beta1#StopAirflowCommandResponse": {
+      "type": "structure",
+      "members": {
+        "output": {
+          "target": "com.gcp.composer_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output message from stopping execution request."
+          }
+        },
+        "isDone": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the execution is still running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to StopAirflowCommandRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#LoadSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "skipEnvironmentVariablesSetting": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to skip setting environment variables when loading the environment's state."
+          }
+        },
+        "skipGcsDataCopying": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to skip copying Cloud Storage data when loading the environment's state."
+          }
+        },
+        "snapshotPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloud Storage path to a snapshot to load, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\"."
+          }
+        },
+        "skipPypiPackagesInstallation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to skip installing Pypi packages when loading the environment's state."
+          }
+        },
+        "skipAirflowOverridesSetting": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to skip setting Airflow overrides when loading the environment's state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to load a snapshot into a Cloud Composer environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#DataRetentionConfig": {
+      "type": "structure",
+      "members": {
+        "airflowDatabaseRetentionDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of days describing for how long to store event-based records in airflow database. If the retention mechanism is enabled this value must be a positive integer otherwise, value should be set to 0."
+          }
+        },
+        "taskLogsRetentionConfig": {
+          "target": "com.gcp.composer_v1beta1#TaskLogsRetentionConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration settings for task logs retention"
+          }
+        },
+        "airflowMetadataRetentionConfig": {
+          "target": "com.gcp.composer_v1beta1#AirflowMetadataRetentionPolicyConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The retention policy for airflow metadata database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration setting for Airflow database data retention mechanism."
+      }
+    },
+    "com.gcp.composer_v1beta1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "resourceUuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The UUID of the resource being operated on."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource being operated on, as a [relative resource name]( /apis/design/resource_names#relative_resource_name)."
+          }
+        },
+        "operationType": {
+          "target": "com.gcp.composer_v1beta1#OperationMetadataOperationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of operation being performed."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the operation terminated, regardless of its success. This field is unset if the operation is still ongoing."
+          }
+        },
+        "state": {
+          "target": "com.gcp.composer_v1beta1#OperationMetadataStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current operation state."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was submitted to the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata describing an operation."
+      }
+    },
+    "com.gcp.composer_v1beta1#OperationMetadataOperationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE"
+          }
+        },
+        "CHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK"
+          }
+        },
+        "SAVE_SNAPSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAVE_SNAPSHOT"
+          }
+        },
+        "LOAD_SNAPSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOAD_SNAPSHOT"
+          }
+        },
+        "DATABASE_FAILOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATABASE_FAILOVER"
+          }
+        },
+        "MIGRATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATE"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#OperationMetadataStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#DagProcessorResource": {
+      "type": "structure",
+      "members": {
+        "memoryGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Memory (GB) request and limit for a single Airflow DAG processor replica."
+          }
+        },
+        "cpu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. CPU request and limit for a single Airflow DAG processor replica."
+          }
+        },
+        "storageGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Storage (GB) request and limit for a single Airflow DAG processor replica."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of DAG processors. If not provided or set to 0, a single DAG processor instance will be created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#CidrBlock": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-defined name that identifies the CIDR block."
+          }
+        },
+        "cidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CIDR block that must be specified in CIDR notation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CIDR block with an optional name."
+      }
+    },
+    "com.gcp.composer_v1beta1#PollAirflowCommandRequest": {
+      "type": "structure",
+      "members": {
+        "nextLineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Line number from which new logs should be fetched."
+          }
+        },
+        "pod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the pod where the command is executed."
+          }
+        },
+        "podNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace of the pod where the command is executed."
+          }
+        },
+        "executionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the command execution."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Poll Airflow Command request."
+      }
+    },
+    "com.gcp.composer_v1beta1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.composer_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.composer_v1beta1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#DocumentMap"
+      }
+    },
+    "com.gcp.composer_v1beta1#CheckUpgradeRequest": {
+      "type": "structure",
+      "members": {
+        "imageVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+(\\.[0-9]+(\\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to check whether image upgrade will succeed."
+      }
+    },
+    "com.gcp.composer_v1beta1#RestartWebServerRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Restart Airflow web server."
+      }
+    },
+    "com.gcp.composer_v1beta1#TaskLogsRetentionConfig": {
+      "type": "structure",
+      "members": {
+        "storageMode": {
+          "target": "com.gcp.composer_v1beta1#TaskLogsRetentionConfigStorageModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The mode of storage for Airflow workers task logs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration setting for Task Logs."
+      }
+    },
+    "com.gcp.composer_v1beta1#TaskLogsRetentionConfigStorageModeEnum": {
+      "type": "enum",
+      "members": {
+        "TASK_LOGS_STORAGE_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TASK_LOGS_STORAGE_MODE_UNSPECIFIED"
+          }
+        },
+        "CLOUD_LOGGING_AND_CLOUD_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_LOGGING_AND_CLOUD_STORAGE"
+          }
+        },
+        "CLOUD_LOGGING_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_LOGGING_ONLY"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#LoadSnapshotResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response to LoadSnapshotRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#WorkloadsConfig": {
+      "type": "structure",
+      "members": {
+        "triggerer": {
+          "target": "com.gcp.composer_v1beta1#TriggererResource",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resources used by Airflow triggerers."
+          }
+        },
+        "scheduler": {
+          "target": "com.gcp.composer_v1beta1#SchedulerResource",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resources used by Airflow schedulers."
+          }
+        },
+        "worker": {
+          "target": "com.gcp.composer_v1beta1#WorkerResource",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resources used by Airflow workers."
+          }
+        },
+        "dagProcessor": {
+          "target": "com.gcp.composer_v1beta1#DagProcessorResource",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resources used by Airflow DAG processors. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+          }
+        },
+        "webServer": {
+          "target": "com.gcp.composer_v1beta1#WebServerResource",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resources used by Airflow web server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Kubernetes workloads configuration for GKE cluster associated with the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#WebServerResource": {
+      "type": "structure",
+      "members": {
+        "cpu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. CPU request and limit for Airflow web server."
+          }
+        },
+        "storageGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Storage (GB) request and limit for Airflow web server."
+          }
+        },
+        "memoryGb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Memory (GB) request and limit for Airflow web server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for resources used by Airflow web server."
+      }
+    },
+    "com.gcp.composer_v1beta1#DatabaseConfig": {
+      "type": "structure",
+      "members": {
+        "zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine zone where the Airflow database is created. If zone is provided, it must be in the region selected for the environment. If zone is not provided, a zone is automatically selected. The zone can only be set during environment creation. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.*."
+          }
+        },
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16. If not specified, db-n1-standard-2 will be used. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration of Cloud SQL instance that is used by the Apache Airflow software."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListImageVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "imageVersions": {
+          "target": "com.gcp.composer_v1beta1#ImageVersionList",
+          "traits": {
+            "smithy.api#documentation": "The list of supported ImageVersions in a location."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to query for the next page if one exists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ImageVersions in a project and location."
+      }
+    },
+    "com.gcp.composer_v1beta1#ImageVersionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#ImageVersion"
+      }
+    },
+    "com.gcp.composer_v1beta1#PollAirflowCommandResponse": {
+      "type": "structure",
+      "members": {
+        "output": {
+          "target": "com.gcp.composer_v1beta1#LineList",
+          "traits": {
+            "smithy.api#documentation": "Output from the command execution. It may not contain the full output and the caller may need to poll for more lines."
+          }
+        },
+        "exitInfo": {
+          "target": "com.gcp.composer_v1beta1#ExitInfo",
+          "traits": {
+            "smithy.api#documentation": "The result exit status of the command."
+          }
+        },
+        "outputEnd": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the command execution has finished and there is no more output."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to PollAirflowCommandRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#LineList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#Line"
+      }
+    },
+    "com.gcp.composer_v1beta1#NetworkingConfig": {
+      "type": "structure",
+      "members": {
+        "connectionType": {
+          "target": "com.gcp.composer_v1beta1#NetworkingConfigConnectionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates the user requested specific connection type between Tenant and Customer projects. You cannot set networking connection type in public IP environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options for networking connections in the Composer 2 environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#NetworkingConfigConnectionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "VPC_PEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VPC_PEERING"
+          }
+        },
+        "PRIVATE_SERVICE_CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVATE_SERVICE_CONNECT"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ExecuteAirflowCommandResponse": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message. Empty if there was no error."
+          }
+        },
+        "pod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the pod where the command is executed."
+          }
+        },
+        "podNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace of the pod where the command is executed."
+          }
+        },
+        "executionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the command execution for polling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to ExecuteAirflowCommandRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#FetchDatabasePropertiesResponse": {
+      "type": "structure",
+      "members": {
+        "isFailoverReplicaAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The availability status of the failover replica. A false status indicates that the failover replica is out of sync. The primary instance can only fail over to the failover replica when the status is true."
+          }
+        },
+        "primaryGceZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine zone that the instance is currently serving from."
+          }
+        },
+        "secondaryGceZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine zone that the failover instance is currently serving from for a regional Cloud SQL instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for FetchDatabasePropertiesRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#CloudDataLineageIntegration": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether or not Cloud Data Lineage integration is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for Cloud Data Lineage integration."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListEnvironmentsResponse": {
+      "type": "structure",
+      "members": {
+        "environments": {
+          "target": "com.gcp.composer_v1beta1#EnvironmentList",
+          "traits": {
+            "smithy.api#documentation": "The list of environments returned by a ListEnvironmentsRequest."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to query for the next page if one exists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The environments in a project and location."
+      }
+    },
+    "com.gcp.composer_v1beta1#EnvironmentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.composer_v1beta1#Environment"
+      }
+    },
+    "com.gcp.composer_v1beta1#UserWorkloadsConfigMap": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the ConfigMap, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\""
+          }
+        },
+        "data": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The \"data\" field of Kubernetes ConfigMap, organized in key-value pairs. For details see: https://kubernetes.io/docs/concepts/configuration/configmap/ Example: { \"example_key\": \"example_value\", \"another_key\": \"another_value\" }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User workloads ConfigMap used by Airflow tasks that run with Kubernetes executor or KubernetesPodOperator."
+      }
+    },
+    "com.gcp.composer_v1beta1#UserWorkloadsSecret": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the Secret, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\""
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The \"type\" field of Kubernetes Secret. For details see: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types"
+          }
+        },
+        "data": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The \"data\" field of Kubernetes Secret, organized in key-value pairs, which can contain sensitive values such as a password, a token, or a key. The values for all keys have to be base64-encoded strings. For details see: https://kubernetes.io/docs/concepts/configuration/secret/ Example: { \"example\": \"ZXhhbXBsZV92YWx1ZQ==\", \"another-example\": \"YW5vdGhlcl9leGFtcGxlX3ZhbHVl\" }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User workloads Secret used by Airflow tasks that run with Kubernetes executor or KubernetesPodOperator."
+      }
+    },
+    "com.gcp.composer_v1beta1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.composer_v1beta1#SoftwareConfig": {
+      "type": "structure",
+      "members": {
+        "pypiPackages": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Custom Python Package Index (PyPI) packages to be installed in the environment. Keys refer to the lowercase package name such as \"numpy\" and values are the lowercase extras and version specifier such as \"==1.12.0\", \"[devel,gcp_api]\", or \"[devel]>=1.8.2, <1.9.2\". To specify a package without pinning it to a version specifier, use the empty string as the value."
+          }
+        },
+        "pythonVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes. Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be updated. This field is only supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. Environments in newer versions always use Python major version 3."
+          }
+        },
+        "cloudDataLineageIntegration": {
+          "target": "com.gcp.composer_v1beta1#CloudDataLineageIntegration",
+          "traits": {
+            "smithy.api#documentation": "Optional. The configuration for Cloud Data Lineage integration."
+          }
+        },
+        "schedulerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of schedulers for Airflow. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-2.*.*."
+          }
+        },
+        "airflowConfigOverrides": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Apache Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example \"core-dags_are_paused_at_creation\". Section names must not contain hyphens (\"-\"), opening square brackets (\"[\"), or closing square brackets (\"]\"). The property name must not be empty and must not contain an equals sign (\"=\") or semicolon (\";\"). Section and property names must not contain a period (\".\"). Apache Airflow configuration property names must be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can contain any character, and can be written in any lower/upper case format. Certain Apache Airflow configuration property values are [blocked](/composer/docs/concepts/airflow-configurations), and cannot be overridden."
+          }
+        },
+        "webServerPluginsMode": {
+          "target": "com.gcp.composer_v1beta1#SoftwareConfigWebServerPluginsModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether or not the web server uses custom plugins. If unspecified, the field defaults to `PLUGINS_ENABLED`. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+          }
+        },
+        "imageVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+(\\.[0-9]+\\.[0-9]+(-preview\\.[0-9]+)?)?|latest)-airflow-([0-9]+(\\.[0-9]+(\\.[0-9]+)?)?)`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the image version is a full [semantic version](https://semver.org), or an alias in the form of major version number or `latest`. When an alias is provided, the server replaces it with the current Cloud Composer version that satisfies the alias. The Apache Airflow portion of the image version is a full semantic version that points to one of the supported Apache Airflow versions, or an alias in the form of only major or major.minor versions specified. When an alias is provided, the server replaces it with the latest Apache Airflow version that satisfies the alias and is supported in the given Cloud Composer version. In all cases, the resolved image version is stored in the same field. See also [version list](/composer/docs/concepts/versioning/composer-versions) and [versioning overview](/composer/docs/concepts/versioning/composer-versioning-overview)."
+          }
+        },
+        "envVariables": {
+          "target": "com.gcp.composer_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes. Environment variable names must match the regular expression `a-zA-Z_*`. They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names: * `AIRFLOW_HOME` * `C_FORCE_ROOT` * `CONTAINER_NAME` * `DAGS_FOLDER` * `GCP_PROJECT` * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the selection and configuration of software inside the environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#SoftwareConfigWebServerPluginsModeEnum": {
+      "type": "enum",
+      "members": {
+        "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED"
+          }
+        },
+        "PLUGINS_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLUGINS_DISABLED"
+          }
+        },
+        "PLUGINS_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLUGINS_ENABLED"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsImageVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "includePastReleases": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not image versions from old releases should be included.",
+            "smithy.api#httpQuery": "includePastReleases"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of image_versions to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List ImageVersions in the given project and location, in the form: \"projects/{projectId}/locations/{locationId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.composer_v1beta1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsImageVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ListProjectsLocationsImageVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ListImageVersionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/imageVersions"
+        },
+        "smithy.api#documentation": "List ImageVersions for provided location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#PatchProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relative resource name of the environment to update, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: \"config.softwareConfig.pypiPackages.scikit-learn\" and \"config.softwareConfig.pypiPackages.argparse\". The included patch environment would specify the scikit-learn version as follows: { \"config\":{ \"softwareConfig\":{ \"pypiPackages\":{ \"scikit-learn\":\"==0.19.0\" } } } } Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels \"label1\" and \"label2\" while clearing \"label3\" (assuming it already exists), one can provide the paths \"labels.label1\", \"labels.label2\", and \"labels.label3\" and populate the patch environment as follows: { \"labels\":{ \"label1\":\"new-label1-value\" \"label2\":\"new-label2-value\" } } Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path \"config.softwareConfig.pypiPackages\", and the patch environment would be the following: { \"config\":{ \"softwareConfig\":{ \"pypiPackages\":{ \"botocore\":\"==1.7.14\" } } } } **Note:** Only the following fields can be updated: * `config.softwareConfig.pypiPackages` * Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. * `config.softwareConfig.pypiPackages.`packagename * Update the custom PyPI package *packagename*, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the `config.softwareConfig.pypiPackages` mask. * `labels` * Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. * `labels.`labelName * Set the label named *labelName*, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the `labels` mask. * `config.nodeCount` * Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. * `config.webServerNetworkAccessControl` * Replace the environment's current WebServerNetworkAccessControl. * `config.softwareConfig.airflowConfigOverrides` * Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. * `config.softwareConfig.airflowConfigOverrides.`section-name * Override the Apache Airflow config property *name* in the section named *section*, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the `config.softwareConfig.airflowConfigOverrides` mask. * `config.softwareConfig.envVariables` * Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. * `config.softwareConfig.imageVersion` * Upgrade the version of the environment in-place. Refer to `SoftwareConfig.image_version` for information on how to format the new image version. Additionally, the new image version cannot effect a version downgrade, and must match the current image version's Composer and Airflow major versions. Consult the [Cloud Composer version list](/composer/docs/concepts/versioning/composer-versions) for valid values. * `config.softwareConfig.schedulerCount` * Horizontally scale the number of schedulers in Airflow. A positive integer not greater than the number of nodes must be provided in the `config.softwareConfig.schedulerCount` field. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-2.*.*. * `config.softwareConfig.cloudDataLineageIntegration` * Configuration for Cloud Data Lineage integration. * `config.databaseConfig.machineType` * Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. * `config.webServerConfig.machineType` * Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. * `config.maintenanceWindow` * Maintenance window during which Cloud Composer components may be under maintenance. * `config.workloadsConfig` * The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer. * `config.environmentSize` * The size of the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#Environment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.composer_v1beta1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.composer_v1beta1#PatchProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#PatchProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Update an environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The environment to delete, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Delete an environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#LoadSnapshotProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the target environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#LoadSnapshotRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#LoadSnapshotProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#LoadSnapshotProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:loadSnapshot"
+        },
+        "smithy.api#documentation": "Loads a snapshot of a Cloud Composer environment. As a result of this operation, a snapshot of environment's specified in LoadSnapshotRequest is loaded into the environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#StopAirflowCommandProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#StopAirflowCommandRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#StopAirflowCommandProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#StopAirflowCommandProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#StopAirflowCommandResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:stopAirflowCommand"
+        },
+        "smithy.api#documentation": "Stops Airflow CLI command execution."
+      }
+    },
+    "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The parent must be of the form \"projects/{projectId}/locations/{locationId}\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#Environment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/environments"
+        },
+        "smithy.api#documentation": "Create a new environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#DatabaseFailoverProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target environment: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#DatabaseFailoverRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#DatabaseFailoverProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#DatabaseFailoverProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:databaseFailover"
+        },
+        "smithy.api#documentation": "Triggers database failover (only for highly resilient environments)."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List environments in the given project and location, in the form: \"projects/{projectId}/locations/{locationId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of environments to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ListEnvironmentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/environments"
+        },
+        "smithy.api#documentation": "List environments.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#FetchDatabasePropertiesProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#FetchDatabasePropertiesProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#FetchDatabasePropertiesProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#FetchDatabasePropertiesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+environment}:fetchDatabaseProperties"
+        },
+        "smithy.api#documentation": "Fetches database properties."
+      }
+    },
+    "com.gcp.composer_v1beta1#SaveSnapshotProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the source environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#SaveSnapshotRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#SaveSnapshotProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#SaveSnapshotProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:saveSnapshot"
+        },
+        "smithy.api#documentation": "Creates a snapshots of a Cloud Composer environment. As a result of this operation, snapshot of environment's state is stored in a location specified in the SaveSnapshotRequest."
+      }
+    },
+    "com.gcp.composer_v1beta1#RestartWebServerProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the environment to restart the web server for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#RestartWebServerRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#RestartWebServerProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#RestartWebServerProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:restartWebServer"
+        },
+        "smithy.api#documentation": "Restart Airflow web server."
+      }
+    },
+    "com.gcp.composer_v1beta1#PollAirflowCommandProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#PollAirflowCommandRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#PollAirflowCommandProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#PollAirflowCommandProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#PollAirflowCommandResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:pollAirflowCommand"
+        },
+        "smithy.api#documentation": "Polls Airflow CLI command execution and fetches logs."
+      }
+    },
+    "com.gcp.composer_v1beta1#ExecuteAirflowCommandProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the environment in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#ExecuteAirflowCommandRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ExecuteAirflowCommandProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ExecuteAirflowCommandProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ExecuteAirflowCommandResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:executeAirflowCommand"
+        },
+        "smithy.api#documentation": "Executes Airflow CLI command."
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the environment to get, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Environment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Get an existing environment."
+      }
+    },
+    "com.gcp.composer_v1beta1#CheckUpgradeProjectsLocationsEnvironmentsRequest": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the environment to check upgrade for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#CheckUpgradeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#CheckUpgradeProjectsLocationsEnvironments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#CheckUpgradeProjectsLocationsEnvironmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+environment}:checkUpgrade"
+        },
+        "smithy.api#documentation": "Check if an upgrade operation on the environment will succeed. In case of problems detailed info can be found in the returned Operation."
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Secret to get, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsUserWorkloadsSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsSecret"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets an existing user workloads Secret. Values of the \"data\" field in the response are cleared. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#UpdateProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the Secret, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#UserWorkloadsSecret",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#UpdateProjectsLocationsEnvironmentsUserWorkloadsSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#UpdateProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsSecret"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Secret to delete, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsUserWorkloadsSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of Secrets to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. List Secrets in the given environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsUserWorkloadsSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ListUserWorkloadsSecretsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/userWorkloadsSecrets"
+        },
+        "smithy.api#documentation": "Lists user workloads Secrets. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The environment name to create a Secret for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#UserWorkloadsSecret",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsUserWorkloadsSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsUserWorkloadsSecretsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsSecret"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/userWorkloadsSecrets"
+        },
+        "smithy.api#documentation": "Creates a user workloads Secret. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ConfigMap to delete, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsUserWorkloadsConfigMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#DeleteProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The environment name to create a ConfigMap for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsUserWorkloadsConfigMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#CreateProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMap"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/userWorkloadsConfigMaps"
+        },
+        "smithy.api#documentation": "Creates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. List ConfigMaps in the given environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of ConfigMaps to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsUserWorkloadsConfigMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ListUserWorkloadsConfigMapsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/userWorkloadsConfigMaps"
+        },
+        "smithy.api#documentation": "Lists user workloads ConfigMaps. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the ConfigMap to get, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsUserWorkloadsConfigMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#GetProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMap"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets an existing user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#UpdateProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the ConfigMap, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#UpdateProjectsLocationsEnvironmentsUserWorkloadsConfigMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#UpdateProjectsLocationsEnvironmentsUserWorkloadsConfigMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#UserWorkloadsConfigMap"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a user workloads ConfigMap. This method is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer."
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of environments to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list filter. Currently only supports equality on the type field. The value of a field specified in the filter expression must be one ComposerWorkloadType enum option. It's possible to get multiple types using \"OR\" operator, e.g.: \"type=SCHEDULER OR type=CELERY_WORKER\". If not specified, all items are returned.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The environment name to get workloads for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ListProjectsLocationsEnvironmentsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ListWorkloadsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/workloads"
+        },
+        "smithy.api#documentation": "Lists workloads in a Cloud Composer environment. Workload is a unit that runs a single Composer component. This method is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.composer_v1beta1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.composer_v1beta1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.composer_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.composer_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.composer_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    }
+  }
+}

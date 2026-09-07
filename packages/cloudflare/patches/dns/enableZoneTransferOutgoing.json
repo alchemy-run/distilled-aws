@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#ZoneTransfersOutgoingEnable with distilled cloudflare/dns enableZoneTransferOutgoing",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingEnable",
+      "path": "/shapes/com.cloudflare.dns#EnableZoneTransferOutgoing"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingEnableRequest",
+      "path": "/shapes/com.cloudflare.dns#EnableZoneTransferOutgoingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#EnableZoneTransferOutgoing/input/target",
+      "value": "com.cloudflare.dns#EnableZoneTransferOutgoingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingEnableResponse",
+      "path": "/shapes/com.cloudflare.dns#EnableZoneTransferOutgoingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#EnableZoneTransferOutgoing/output/target",
+      "value": "com.cloudflare.dns#EnableZoneTransferOutgoingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#EnableZoneTransferOutgoing/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#OutgoingZoneTransfersNotAllowed"
+        }
+      ]
+    }
+  ]
+}

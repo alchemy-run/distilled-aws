@@ -1,0 +1,29 @@
+{
+  "operations": {
+    "startEventsDetectionJob": {
+      "errors": ["NotAuthorizedException"]
+    },
+    "stopEventsDetectionJob": {
+      "errors": ["NotAuthorizedException"]
+    },
+    "describeEventsDetectionJob": {
+      "errors": ["NotAuthorizedException"]
+    },
+    "listEventsDetectionJobs": {
+      "errors": ["NotAuthorizedException"]
+    },
+    "classifyDocument": {
+      "errors": ["NotAuthorizedException"]
+    }
+  },
+  "errors": {
+    "NotAuthorizedException": {
+      "message": {
+        "type": "string"
+      }
+    }
+  },
+  "errorCategories": {
+    "NotAuthorizedException": ["AuthError"]
+  }
+}

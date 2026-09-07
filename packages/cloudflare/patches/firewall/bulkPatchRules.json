@@ -1,0 +1,38 @@
+{
+  "description": "Align firewall#RulesBulkEdit with distilled cloudflare/firewall bulkPatchRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesBulkEdit",
+      "path": "/shapes/com.cloudflare.firewall#BulkPatchRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesBulkEditRequest",
+      "path": "/shapes/com.cloudflare.firewall#BulkPatchRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#BulkPatchRules/input/target",
+      "value": "com.cloudflare.firewall#BulkPatchRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesBulkEditResponse",
+      "path": "/shapes/com.cloudflare.firewall#BulkPatchRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#BulkPatchRules/output/target",
+      "value": "com.cloudflare.firewall#BulkPatchRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#BulkPatchRules/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

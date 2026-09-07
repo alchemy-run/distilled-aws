@@ -1,0 +1,847 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestActivitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestClientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestIpAddressesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestItemIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestTeamIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "activities": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestActivitiesList",
+          "traits": {
+            "smithy.api#httpQuery": "activities",
+            "smithy.api#documentation": "Filter by activity types (e.g. \"created\", \"updated\", \"deleted\")."
+          }
+        },
+        "clients": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestClientsList",
+          "traits": {
+            "smithy.api#httpQuery": "clients",
+            "smithy.api#documentation": "Filter by API clients that generated the activity (from x-posthog-client header)."
+          }
+        },
+        "detail_filters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "detail_filters",
+            "smithy.api#documentation": "JSON-encoded map of `detail` field paths to {operation, value} filters. Allowed operations: exact, contains, in."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "end_date",
+            "smithy.api#documentation": "Upper bound on `created_at` (inclusive), ISO-8601."
+          }
+        },
+        "hogql_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "hogql_filter",
+            "smithy.api#documentation": "Reserved for future HogQL-based filtering."
+          }
+        },
+        "ip_addresses": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestIpAddressesList",
+          "traits": {
+            "smithy.api#httpQuery": "ip_addresses",
+            "smithy.api#documentation": "Filter by client IP addresses. Accepts exact IPv4/IPv6 values or wildcard patterns using `*` (e.g. `203.0.113.*`). Multiple entries are OR-combined."
+          }
+        },
+        "is_system": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "is_system",
+            "smithy.api#documentation": "When set, filters rows authored by the system (no user)."
+          }
+        },
+        "item_ids": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestItemIdsList",
+          "traits": {
+            "smithy.api#httpQuery": "item_ids",
+            "smithy.api#documentation": "Filter by the `item_id` of the affected resource(s)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number for pagination. When provided, uses page-based pagination ordered by most recent first."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "Number of results per page (default: 100, max: 1000). Only used with page-based pagination."
+          }
+        },
+        "scopes": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestScopesList",
+          "traits": {
+            "smithy.api#httpQuery": "scopes",
+            "smithy.api#documentation": "Filter by activity scopes (e.g. \"FeatureFlag\", \"Insight\")."
+          }
+        },
+        "search_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search_text",
+            "smithy.api#documentation": "Free-text search across the `detail` JSON column."
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start_date",
+            "smithy.api#documentation": "Lower bound on `created_at` (inclusive), ISO-8601."
+          }
+        },
+        "team_ids": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestTeamIdsList",
+          "traits": {
+            "smithy.api#httpQuery": "team_ids",
+            "smithy.api#documentation": "Filter by project (team) IDs. Only honored on the organization-scoped endpoint; ignored on the project-scoped endpoint."
+          }
+        },
+        "users": {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequestUsersList",
+          "traits": {
+            "smithy.api#httpQuery": "users",
+            "smithy.api#documentation": "Filter by users who performed the activity (user UUIDs)."
+          }
+        },
+        "was_impersonated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "was_impersonated",
+            "smithy.api#documentation": "When set, filters rows where the actor was impersonating another user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.advanced_activity_logs#PaginatedActivityLogList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.advanced_activity_logs#PaginatedActivityLogListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#ActivityLog": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.posthog.advanced_activity_logs#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "unread": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "is the date of this log item newer than the user's bookmark"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "was_impersonated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_system": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "client": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "activity": {
+          "target": "smithy.api#String"
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "detail": {
+          "target": "smithy.api#Document"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.advanced_activity_logs#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.advanced_activity_logs#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.advanced_activity_logs#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.advanced_activity_logs#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.advanced_activity_logs#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#PaginatedActivityLogListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.advanced_activity_logs#ActivityLog"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.advanced_activity_logs#PaginatedActivityLogList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.advanced_activity_logs#BadRequest"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#Forbidden"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/advanced_activity_logs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsAvailableFiltersRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.advanced_activity_logs#AvailableFiltersResponse": {
+      "type": "structure",
+      "members": {
+        "static_filters": {
+          "target": "com.posthog.advanced_activity_logs#StaticFilters",
+          "traits": {
+            "smithy.api#documentation": "Pre-computed filter options for scopes, activities, and users."
+          }
+        },
+        "detail_fields": {
+          "target": "com.posthog.advanced_activity_logs#AvailableFiltersResponseDetailFieldsMap",
+          "traits": {
+            "smithy.api#documentation": "Discovered detail fields and their value distributions."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#StaticFilters": {
+      "type": "structure",
+      "members": {
+        "users": {
+          "target": "com.posthog.advanced_activity_logs#StaticFiltersUsersList",
+          "traits": {
+            "smithy.api#documentation": "Users who have logged activity."
+          }
+        },
+        "scopes": {
+          "target": "com.posthog.advanced_activity_logs#StaticFiltersScopesList",
+          "traits": {
+            "smithy.api#documentation": "Available activity scopes."
+          }
+        },
+        "activities": {
+          "target": "com.posthog.advanced_activity_logs#StaticFiltersActivitiesList",
+          "traits": {
+            "smithy.api#documentation": "Available activity types."
+          }
+        },
+        "clients": {
+          "target": "com.posthog.advanced_activity_logs#StaticFiltersClientsList",
+          "traits": {
+            "smithy.api#documentation": "API clients that have generated activity (from x-posthog-client header)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersUsersItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.advanced_activity_logs#StaticFiltersUsersItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Users who have logged activity."
+      }
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersScopesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.advanced_activity_logs#StaticFiltersScopesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available activity scopes."
+      }
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersActivitiesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersActivitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.advanced_activity_logs#StaticFiltersActivitiesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available activity types."
+      }
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersClientsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#StaticFiltersClientsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.advanced_activity_logs#StaticFiltersClientsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "API clients that have generated activity (from x-posthog-client header)."
+      }
+    },
+    "com.posthog.advanced_activity_logs#AvailableFiltersResponseDetailFieldsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Discovered detail fields and their value distributions."
+      }
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsAvailableFiltersRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsAvailableFiltersRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.advanced_activity_logs#AvailableFiltersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.advanced_activity_logs#Forbidden"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/advanced_activity_logs/available_filters/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.advanced_activity_logs#UserBasicInput": {
+      "type": "structure",
+      "members": {
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.advanced_activity_logs#UserBasicInputRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#UserBasicInputRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.advanced_activity_logs#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.advanced_activity_logs#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsExportCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "user": {
+          "target": "com.posthog.advanced_activity_logs#UserBasicInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "was_impersonated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_system": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "client": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "activity": {
+          "target": "smithy.api#String"
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "detail": {
+          "target": "smithy.api#Document"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogsExportCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsExportCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.advanced_activity_logs#ActivityLog"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.advanced_activity_logs#BadRequest"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#Forbidden"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/advanced_activity_logs/export/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.advanced_activity_logs#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.advanced_activity_logs#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.advanced_activity_logs#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.advanced_activity_logs#AdvancedActivityLogs": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsList"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsAvailableFiltersRetrieve"
+        },
+        {
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsExportCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Align stream#EmbedGet with distilled cloudflare/stream getEmbed",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#EmbedGet",
+      "path": "/shapes/com.cloudflare.stream#GetEmbed"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#EmbedGetRequest",
+      "path": "/shapes/com.cloudflare.stream#GetEmbedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetEmbed/input/target",
+      "value": "com.cloudflare.stream#GetEmbedRequest"
+    }
+  ]
+}

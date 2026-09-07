@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EntitiesAsnsRel with distilled cloudflare/radar relEntityAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsRel",
+      "path": "/shapes/com.cloudflare.radar#RelEntityAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsRelRequest",
+      "path": "/shapes/com.cloudflare.radar#RelEntityAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#RelEntityAsn/input/target",
+      "value": "com.cloudflare.radar#RelEntityAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsRelResponse",
+      "path": "/shapes/com.cloudflare.radar#RelEntityAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#RelEntityAsn/output/target",
+      "value": "com.cloudflare.radar#RelEntityAsnResponse"
+    }
+  ]
+}

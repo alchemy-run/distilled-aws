@@ -1,0 +1,42 @@
+{
+  "description": "Align origin_tls_client_auth#HostnameCertificatesGet with distilled cloudflare/origin-tls-client-auth getHostnameCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesGet",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameCertificate/input/target",
+      "value": "com.cloudflare.origin_tls_client_auth#GetHostnameCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameCertificate/output/target",
+      "value": "com.cloudflare.origin_tls_client_auth#GetHostnameCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

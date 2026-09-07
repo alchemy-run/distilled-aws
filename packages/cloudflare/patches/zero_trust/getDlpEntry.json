@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEntriesGet with distilled cloudflare/zero-trust getDlpEntry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpEntry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpEntryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpEntry/input/target",
+      "value": "com.cloudflare.zero_trust#GetDlpEntryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpEntryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpEntry/output/target",
+      "value": "com.cloudflare.zero_trust#GetDlpEntryResponse"
+    }
+  ]
+}

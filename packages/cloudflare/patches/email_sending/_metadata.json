@@ -1,0 +1,19 @@
+{
+  "description": "Key dictionary / op aliases for email_sending (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "contentId": "content_id",
+        "dkimSelector": "dkim_selector",
+        "documentationUrl": "documentation_url",
+        "messageId": "message_id",
+        "mimeMessage": "mime_message",
+        "permanentBounces": "permanent_bounces",
+        "replyTo": "reply_to",
+        "returnPathDomain": "return_path_domain"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align registrar#DomainsGet with distilled cloudflare/registrar getDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#DomainsGet",
+      "path": "/shapes/com.cloudflare.registrar#GetDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#DomainsGetRequest",
+      "path": "/shapes/com.cloudflare.registrar#GetDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#GetDomain/input/target",
+      "value": "com.cloudflare.registrar#GetDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#DomainsGetResponse",
+      "path": "/shapes/com.cloudflare.registrar#GetDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#GetDomain/output/target",
+      "value": "com.cloudflare.registrar#GetDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.registrar#GetDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.registrar#Forbidden"
+        }
+      ]
+    }
+  ]
+}

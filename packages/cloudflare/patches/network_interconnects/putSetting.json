@@ -1,0 +1,39 @@
+{
+  "description": "Align network_interconnects#SettingsUpdate with distilled cloudflare/network-interconnects putSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SettingsUpdate",
+      "path": "/shapes/com.cloudflare.network_interconnects#PutSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SettingsUpdateRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#PutSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#PutSetting/input/target",
+      "value": "com.cloudflare.network_interconnects#PutSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SettingsUpdateResponse",
+      "path": "/shapes/com.cloudflare.network_interconnects#PutSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#PutSetting/output/target",
+      "value": "com.cloudflare.network_interconnects#PutSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.network_interconnects#PutSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.network_interconnects#Forbidden"
+        }
+      ]
+    }
+  ]
+}

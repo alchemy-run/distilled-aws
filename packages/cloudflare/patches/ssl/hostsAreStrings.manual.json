@@ -1,0 +1,30 @@
+{
+  "description": "certificate-pack hosts are hostname strings",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CertificatePacksCreateRequestHostsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CertificatePacksCreateResponseHostsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CertificatePacksEditResponseHostsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CertificatePacksGetResponseHostsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CertificatePacksListResultItemHostsList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "description": "otel destination headers and spend-limit rule metadata are freeform maps (Record<string, unknown> in alchemy props); dynamic-routing percentage outputs are numeric-keyed edge maps (Record<string, unknown> in alchemy props)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#UntypedMetadataMap",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateResponseOtelItemHeadersMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteResponseOtelItemHeadersMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetResponseOtelItemHeadersMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListResultItemOtelItemHeadersMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateRequestOtelItemHeadersMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateResponseOtelItemHeadersMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateResponseSpendLimitsRulesItem/members/metadata/target",
+      "value": "com.cloudflare.ai_gateway#UntypedMetadataMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteResponseSpendLimitsRulesItem/members/metadata/target",
+      "value": "com.cloudflare.ai_gateway#UntypedMetadataMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetResponseSpendLimitsRulesItem/members/metadata/target",
+      "value": "com.cloudflare.ai_gateway#UntypedMetadataMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListResultItemSpendLimitsRulesItem/members/metadata/target",
+      "value": "com.cloudflare.ai_gateway#UntypedMetadataMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateRequestSpendLimitsRulesItem/members/metadata/target",
+      "value": "com.cloudflare.ai_gateway#UntypedMetadataMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateResponseSpendLimitsRulesItem/members/metadata/target",
+      "value": "com.cloudflare.ai_gateway#UntypedMetadataMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateRequestElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateRequestElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateResponseElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateResponseElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateDeploymentResponseElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateDeploymentResponseElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersionRequestElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersionRequestElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersionResponseElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersionResponseElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingDeleteResponseElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingDeleteResponseElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingGetResponseElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingGetResponseElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingGetVersionResponseElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingGetVersionResponseElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListResponseDataRoutesItemElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListResponseDataRoutesItemElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingUpdateResponseRouteElementsItemCase2OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingUpdateResponseRouteElementsItemCase5OutputsMap/value/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

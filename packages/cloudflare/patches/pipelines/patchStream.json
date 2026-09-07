@@ -1,0 +1,39 @@
+{
+  "description": "Align pipelines#StreamsUpdate with distilled cloudflare/pipelines patchStream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsUpdate",
+      "path": "/shapes/com.cloudflare.pipelines#PatchStream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsUpdateRequest",
+      "path": "/shapes/com.cloudflare.pipelines#PatchStreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#PatchStream/input/target",
+      "value": "com.cloudflare.pipelines#PatchStreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsUpdateResponse",
+      "path": "/shapes/com.cloudflare.pipelines#PatchStreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#PatchStream/output/target",
+      "value": "com.cloudflare.pipelines#PatchStreamResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#PatchStream/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#StreamNotFound"
+        }
+      ]
+    }
+  ]
+}

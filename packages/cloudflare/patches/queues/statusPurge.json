@@ -1,0 +1,42 @@
+{
+  "description": "Align queues#PurgeStatus with distilled cloudflare/queues statusPurge",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#PurgeStatus",
+      "path": "/shapes/com.cloudflare.queues#StatusPurge"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#PurgeStatusRequest",
+      "path": "/shapes/com.cloudflare.queues#StatusPurgeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#StatusPurge/input/target",
+      "value": "com.cloudflare.queues#StatusPurgeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#PurgeStatusResponse",
+      "path": "/shapes/com.cloudflare.queues#StatusPurgeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#StatusPurge/output/target",
+      "value": "com.cloudflare.queues#StatusPurgeResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#StatusPurge/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#InvalidQueueId"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

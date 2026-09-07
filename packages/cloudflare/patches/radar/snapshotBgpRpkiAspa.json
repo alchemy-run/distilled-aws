@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#BgpRpkiAspaSnapshot with distilled cloudflare/radar snapshotBgpRpkiAspa",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRpkiAspaSnapshot",
+      "path": "/shapes/com.cloudflare.radar#SnapshotBgpRpkiAspa"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRpkiAspaSnapshotRequest",
+      "path": "/shapes/com.cloudflare.radar#SnapshotBgpRpkiAspaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SnapshotBgpRpkiAspa/input/target",
+      "value": "com.cloudflare.radar#SnapshotBgpRpkiAspaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRpkiAspaSnapshotResponse",
+      "path": "/shapes/com.cloudflare.radar#SnapshotBgpRpkiAspaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SnapshotBgpRpkiAspa/output/target",
+      "value": "com.cloudflare.radar#SnapshotBgpRpkiAspaResponse"
+    }
+  ]
+}

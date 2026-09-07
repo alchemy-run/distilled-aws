@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#SmartTieredCacheDelete with distilled cloudflare/cache deleteSmartTieredCache",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#SmartTieredCacheDelete",
+      "path": "/shapes/com.cloudflare.cache#DeleteSmartTieredCache"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#SmartTieredCacheDeleteRequest",
+      "path": "/shapes/com.cloudflare.cache#DeleteSmartTieredCacheRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteSmartTieredCache/input/target",
+      "value": "com.cloudflare.cache#DeleteSmartTieredCacheRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#SmartTieredCacheDeleteResponse",
+      "path": "/shapes/com.cloudflare.cache#DeleteSmartTieredCacheResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteSmartTieredCache/output/target",
+      "value": "com.cloudflare.cache#DeleteSmartTieredCacheResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#LivestreamsGetLivestreamSessionForLivestreamId with distilled cloudflare/realtime-kit getLivestreamSessionForLivestreamIdLivestream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetLivestreamSessionForLivestreamId",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetLivestreamSessionForLivestreamIdRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestream/input/target",
+      "value": "com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetLivestreamSessionForLivestreamIdResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestream/output/target",
+      "value": "com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestreamResponse"
+    }
+  ]
+}

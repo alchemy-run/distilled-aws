@@ -1,0 +1,35 @@
+{
+  "description": "Docs gap: the zone-lockdown UPDATE body omits `description`, `paused` and `priority`, although CREATE accepts them and GET returns them — PUT without them silently resets the fields. Mirror the create-body members.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownRequest/members/description",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownRequest/members/paused",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "When true, indicates that the rule is currently paused."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownRequest/members/priority",
+      "value": {
+        "target": "smithy.api#Double",
+        "traits": {
+          "smithy.api#documentation": "The priority of the rule to control the processing order. A lower number indicates higher priority. If not provided, any rules with a configured priority will be processed before rules without a priority."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesIpProfilesCreate with distilled cloudflare/zero-trust createDeviceIpProfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesIpProfilesCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceIpProfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesIpProfilesCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceIpProfileRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceIpProfile/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceIpProfileRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesIpProfilesCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceIpProfileResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceIpProfile/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceIpProfileResponse"
+    }
+  ]
+}

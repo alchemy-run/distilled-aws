@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#NetflowsSummary with distilled cloudflare/radar summaryNetflow",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryNetflow"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryNetflowRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryNetflow/input/target",
+      "value": "com.cloudflare.radar#SummaryNetflowRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryNetflowResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryNetflow/output/target",
+      "value": "com.cloudflare.radar#SummaryNetflowResponse"
+    }
+  ]
+}

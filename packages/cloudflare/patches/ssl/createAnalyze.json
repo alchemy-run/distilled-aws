@@ -1,0 +1,30 @@
+{
+  "description": "Align ssl#AnalyzeCreate with distilled cloudflare/ssl createAnalyze",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#AnalyzeCreate",
+      "path": "/shapes/com.cloudflare.ssl#CreateAnalyze"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#AnalyzeCreateRequest",
+      "path": "/shapes/com.cloudflare.ssl#CreateAnalyzeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CreateAnalyze/input/target",
+      "value": "com.cloudflare.ssl#CreateAnalyzeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#AnalyzeCreateResponse",
+      "path": "/shapes/com.cloudflare.ssl#CreateAnalyzeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#CreateAnalyze/output/target",
+      "value": "com.cloudflare.ssl#CreateAnalyzeResponse"
+    }
+  ]
+}

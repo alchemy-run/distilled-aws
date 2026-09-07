@@ -1,0 +1,45 @@
+{
+  "description": "Align firewall#UaRulesUpdate with distilled cloudflare/firewall updateUaRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesUpdate",
+      "path": "/shapes/com.cloudflare.firewall#UpdateUaRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesUpdateRequest",
+      "path": "/shapes/com.cloudflare.firewall#UpdateUaRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateUaRule/input/target",
+      "value": "com.cloudflare.firewall#UpdateUaRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesUpdateResponse",
+      "path": "/shapes/com.cloudflare.firewall#UpdateUaRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateUaRule/output/target",
+      "value": "com.cloudflare.firewall#UpdateUaRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#UpdateUaRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#UaRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.firewall#DuplicateUaRule"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

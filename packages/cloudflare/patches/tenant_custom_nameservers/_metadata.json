@@ -1,0 +1,15 @@
+{
+  "description": "Key dictionary / op aliases for tenant_custom_nameservers (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "dnsRecords": "dns_records",
+        "nsName": "ns_name",
+        "nsSet": "ns_set",
+        "zoneTag": "zone_tag"
+      }
+    }
+  ]
+}

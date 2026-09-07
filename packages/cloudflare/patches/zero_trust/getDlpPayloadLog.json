@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpPayloadLogsGet with distilled cloudflare/zero-trust getDlpPayloadLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpPayloadLogsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpPayloadLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpPayloadLogsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpPayloadLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpPayloadLog/input/target",
+      "value": "com.cloudflare.zero_trust#GetDlpPayloadLogRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpPayloadLogsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpPayloadLogResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpPayloadLog/output/target",
+      "value": "com.cloudflare.zero_trust#GetDlpPayloadLogResponse"
+    }
+  ]
+}

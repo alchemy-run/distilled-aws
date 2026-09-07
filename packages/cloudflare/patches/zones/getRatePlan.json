@@ -1,0 +1,38 @@
+{
+  "description": "Align zones#RatePlansGet with distilled cloudflare/zones getRatePlan",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#RatePlansGet",
+      "path": "/shapes/com.cloudflare.zones#GetRatePlan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#RatePlansGetRequest",
+      "path": "/shapes/com.cloudflare.zones#GetRatePlanRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetRatePlan/input/target",
+      "value": "com.cloudflare.zones#GetRatePlanRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#RatePlansGetResponse",
+      "path": "/shapes/com.cloudflare.zones#GetRatePlanResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetRatePlan/output/target",
+      "value": "com.cloudflare.zones#GetRatePlanResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#GetRatePlan/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

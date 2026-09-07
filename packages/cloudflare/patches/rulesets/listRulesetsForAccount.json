@@ -1,0 +1,41 @@
+{
+  "description": "Align rulesets#ListForAccount with distilled cloudflare/rulesets listRulesetsForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#ListForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#ListRulesetsForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#ListForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#ListRulesetsForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListRulesetsForAccount/input/target",
+      "value": "com.cloudflare.rulesets#ListRulesetsForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#ListForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#ListRulesetsForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListRulesetsForAccount/output/target",
+      "value": "com.cloudflare.rulesets#ListRulesetsForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#ListRulesetsForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

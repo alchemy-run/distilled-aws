@@ -1,0 +1,39 @@
+{
+  "description": "Align abuse_reports#Create with distilled cloudflare/abuse-reports createAbuseReport",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#Create",
+      "path": "/shapes/com.cloudflare.abuse_reports#CreateAbuseReport"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#CreateRequest",
+      "path": "/shapes/com.cloudflare.abuse_reports#CreateAbuseReportRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.abuse_reports#CreateAbuseReport/input/target",
+      "value": "com.cloudflare.abuse_reports#CreateAbuseReportRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#CreateResponse",
+      "path": "/shapes/com.cloudflare.abuse_reports#CreateAbuseReportResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.abuse_reports#CreateAbuseReport/output/target",
+      "value": "com.cloudflare.abuse_reports#CreateAbuseReportResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.abuse_reports#CreateAbuseReport/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.abuse_reports#InvalidRequest"
+        }
+      ]
+    }
+  ]
+}

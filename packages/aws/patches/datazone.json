@@ -1,0 +1,34 @@
+{
+  "operations": {
+    "listEnvironments": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "listProjects": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "deleteEnvironmentBlueprintConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  },
+  "structures": {
+    "GetEnvironmentCredentialsOutput": {
+      "members": {
+        "secretAccessKey": { "sensitive": true },
+        "sessionToken": { "sensitive": true }
+      }
+    },
+    "ConnectionCredentials": {
+      "members": {
+        "secretAccessKey": { "sensitive": true },
+        "sessionToken": { "sensitive": true }
+      }
+    }
+  },
+  "unions": {
+    "ProvisioningProperties": {
+      "add": {
+        "manual": "smithy.api#Unit"
+      }
+    }
+  }
+}

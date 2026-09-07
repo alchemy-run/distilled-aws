@@ -1,0 +1,45 @@
+{
+  "description": "Align load_balancers#MonitorsUpdate with distilled cloudflare/load-balancers updateMonitor",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsUpdate",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateMonitor"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsUpdateRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateMonitorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateMonitor/input/target",
+      "value": "com.cloudflare.load_balancers#UpdateMonitorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsUpdateResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateMonitorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateMonitor/output/target",
+      "value": "com.cloudflare.load_balancers#UpdateMonitorResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateMonitor/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#MonitorNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#MonitorIntervalOutOfRange"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

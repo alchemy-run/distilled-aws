@@ -1,0 +1,26 @@
+{
+  "description": "Align acm#TotalTlsUpdate with distilled cloudflare/acm updateTotalTl (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.acm#TotalTlsUpdate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#NoStateChange"
+        },
+        {
+          "target": "com.cloudflare.acm#PreviousJobInProgress"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    }
+  ]
+}

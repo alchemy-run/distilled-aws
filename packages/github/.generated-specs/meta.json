@@ -1,0 +1,689 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.meta#Root": {
+      "type": "structure",
+      "members": {
+        "current_user_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "current_user_authorizations_html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authorizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "code_search_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commit_search_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emojis_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "feeds_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hub_url": {
+          "target": "smithy.api#String"
+        },
+        "issue_search_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "label_search_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization_repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization_teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository_search_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "current_user_repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "topic_search_url": {
+          "target": "smithy.api#String"
+        },
+        "user_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_search_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.meta#Root2": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.meta#Root"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/",
+          "code": 200
+        },
+        "smithy.api#documentation": "GitHub API Root\n\nGet Hypermedia links to resources accessible in GitHub's REST API"
+      }
+    },
+    "com.github.meta#ApiOverview": {
+      "type": "structure",
+      "members": {
+        "verifiable_password_authentication": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_key_fingerprints": {
+          "target": "com.github.meta#ApiOverviewSshKeyFingerprints"
+        },
+        "ssh_keys": {
+          "target": "com.github.meta#ApiOverviewSshKeysList"
+        },
+        "hooks": {
+          "target": "com.github.meta#ApiOverviewHooksList"
+        },
+        "github_enterprise_importer": {
+          "target": "com.github.meta#ApiOverviewGithubEnterpriseImporterList"
+        },
+        "web": {
+          "target": "com.github.meta#ApiOverviewWebList"
+        },
+        "api": {
+          "target": "com.github.meta#ApiOverviewApiList"
+        },
+        "git": {
+          "target": "com.github.meta#ApiOverviewGitList"
+        },
+        "packages": {
+          "target": "com.github.meta#ApiOverviewPackagesList"
+        },
+        "pages": {
+          "target": "com.github.meta#ApiOverviewPagesList"
+        },
+        "importer": {
+          "target": "com.github.meta#ApiOverviewImporterList"
+        },
+        "actions": {
+          "target": "com.github.meta#ApiOverviewActionsList"
+        },
+        "actions_macos": {
+          "target": "com.github.meta#ApiOverviewActionsMacosList"
+        },
+        "codespaces": {
+          "target": "com.github.meta#ApiOverviewCodespacesList"
+        },
+        "dependabot": {
+          "target": "com.github.meta#ApiOverviewDependabotList"
+        },
+        "copilot": {
+          "target": "com.github.meta#ApiOverviewCopilotList"
+        },
+        "commit_signing_keys": {
+          "target": "com.github.meta#ApiOverviewCommitSigningKeysList"
+        },
+        "domains": {
+          "target": "com.github.meta#ApiOverviewDomains"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Api Overview"
+      }
+    },
+    "com.github.meta#ApiOverviewSshKeyFingerprints": {
+      "type": "structure",
+      "members": {
+        "SHA256_RSA": {
+          "target": "smithy.api#String"
+        },
+        "SHA256_DSA": {
+          "target": "smithy.api#String"
+        },
+        "SHA256_ECDSA": {
+          "target": "smithy.api#String"
+        },
+        "SHA256_ED25519": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewSshKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewHooksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewGithubEnterpriseImporterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewWebList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewApiList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewGitList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewPackagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewPagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewImporterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewActionsMacosList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewCodespacesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDependabotList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewCopilotList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewCommitSigningKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsWebsiteList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsCodespacesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsCopilotList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsPackagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsStorageList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsActionsInboundFullDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsActionsInboundWildcardDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsActionsInbound": {
+      "type": "structure",
+      "members": {
+        "full_domains": {
+          "target": "com.github.meta#ApiOverviewDomainsActionsInboundFullDomainsList"
+        },
+        "wildcard_domains": {
+          "target": "com.github.meta#ApiOverviewDomainsActionsInboundWildcardDomainsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsArtifactAttestationsServicesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomainsArtifactAttestations": {
+      "type": "structure",
+      "members": {
+        "trust_domain": {
+          "target": "smithy.api#String"
+        },
+        "services": {
+          "target": "com.github.meta#ApiOverviewDomainsArtifactAttestationsServicesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.meta#ApiOverviewDomains": {
+      "type": "structure",
+      "members": {
+        "website": {
+          "target": "com.github.meta#ApiOverviewDomainsWebsiteList"
+        },
+        "codespaces": {
+          "target": "com.github.meta#ApiOverviewDomainsCodespacesList"
+        },
+        "copilot": {
+          "target": "com.github.meta#ApiOverviewDomainsCopilotList"
+        },
+        "packages": {
+          "target": "com.github.meta#ApiOverviewDomainsPackagesList"
+        },
+        "storage": {
+          "target": "com.github.meta#ApiOverviewDomainsStorageList"
+        },
+        "actions": {
+          "target": "com.github.meta#ApiOverviewDomainsActionsList"
+        },
+        "actions_inbound": {
+          "target": "com.github.meta#ApiOverviewDomainsActionsInbound"
+        },
+        "artifact_attestations": {
+          "target": "com.github.meta#ApiOverviewDomainsArtifactAttestations"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.meta#Get": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.meta#ApiOverview"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/meta",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get GitHub meta information\n\nReturns meta information about GitHub, including a list of GitHub's IP addresses. For more information, see \"[About GitHub's IP addresses](https://docs.github.com/articles/about-github-s-ip-addresses/).\"\n\nThe API's response also includes a list of GitHub's domain names, and the public keys used by GitHub to sign commits made through the web UI.\n\nThe values shown in the documentation's response are example values. You must always query the API directly to get the latest values.\n\n> [!NOTE]\n> This endpoint returns both IPv4 and IPv6 addresses. However, not all features support IPv6. You should refer to the specific documentation for each feature to determine if IPv6 is supported."
+      }
+    },
+    "com.github.meta#GetOctocatRequest": {
+      "type": "structure",
+      "members": {
+        "s": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "s",
+            "smithy.api#documentation": "The words to show in Octocat's speech bubble"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.meta#GetOctocat": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.meta#GetOctocatRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/octocat",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Octocat\n\nGet the octocat as ASCII art"
+      }
+    },
+    "com.github.meta#GetAllVersionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.meta#GetAllVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.meta#GetAllVersionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.meta#GetAllVersions": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.meta#GetAllVersionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.meta#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/versions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all API versions\n\nGet all supported GitHub API versions."
+      }
+    },
+    "com.github.meta#GetZen": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zen",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the Zen of GitHub\n\nGet a random sentence from the Zen of GitHub"
+      }
+    },
+    "com.github.meta#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.meta#Meta": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.meta#Root2"
+        },
+        {
+          "target": "com.github.meta#Get"
+        },
+        {
+          "target": "com.github.meta#GetOctocat"
+        },
+        {
+          "target": "com.github.meta#GetAllVersions"
+        },
+        {
+          "target": "com.github.meta#GetZen"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

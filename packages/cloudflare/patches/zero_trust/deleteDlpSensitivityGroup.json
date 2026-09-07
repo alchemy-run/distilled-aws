@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpSensitivityGroupsDelete with distilled cloudflare/zero-trust deleteDlpSensitivityGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSensitivityGroupsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSensitivityGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSensitivityGroupsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSensitivityGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSensitivityGroup/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpSensitivityGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSensitivityGroupsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSensitivityGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSensitivityGroup/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpSensitivityGroupResponse"
+    }
+  ]
+}

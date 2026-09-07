@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#ClipCreate with distilled cloudflare/stream createClip",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#ClipCreate",
+      "path": "/shapes/com.cloudflare.stream#CreateClip"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#ClipCreateRequest",
+      "path": "/shapes/com.cloudflare.stream#CreateClipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateClip/input/target",
+      "value": "com.cloudflare.stream#CreateClipRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#ClipCreateResponse",
+      "path": "/shapes/com.cloudflare.stream#CreateClipResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateClip/output/target",
+      "value": "com.cloudflare.stream#CreateClipResponse"
+    }
+  ]
+}

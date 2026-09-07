@@ -1,0 +1,35 @@
+{
+  "description": "Align workers#SubdomainsDelete with distilled cloudflare/workers deleteSubdomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#SubdomainsDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteSubdomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#SubdomainsDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteSubdomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteSubdomain/input/target",
+      "value": "com.cloudflare.workers#DeleteSubdomainRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteSubdomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#SubdomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

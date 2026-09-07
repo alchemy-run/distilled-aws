@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailRoutingTimeseriesGroupsSpf with distilled cloudflare/radar spfEmailRoutingTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsSpf",
+      "path": "/shapes/com.cloudflare.radar#SpfEmailRoutingTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsSpfRequest",
+      "path": "/shapes/com.cloudflare.radar#SpfEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpfEmailRoutingTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#SpfEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsSpfResponse",
+      "path": "/shapes/com.cloudflare.radar#SpfEmailRoutingTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpfEmailRoutingTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#SpfEmailRoutingTimeseriesGroupResponse"
+    }
+  ]
+}

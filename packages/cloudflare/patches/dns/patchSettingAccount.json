@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#SettingsAccountEdit with distilled cloudflare/dns patchSettingAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountEdit",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountEditRequest",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccount/input/target",
+      "value": "com.cloudflare.dns#PatchSettingAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountEditResponse",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccount/output/target",
+      "value": "com.cloudflare.dns#PatchSettingAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#DnsSettingNotAvailable"
+        }
+      ]
+    }
+  ]
+}

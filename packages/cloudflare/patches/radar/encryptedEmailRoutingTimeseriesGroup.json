@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailRoutingTimeseriesGroupsEncrypted with distilled cloudflare/radar encryptedEmailRoutingTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsEncrypted",
+      "path": "/shapes/com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsEncryptedRequest",
+      "path": "/shapes/com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsEncryptedResponse",
+      "path": "/shapes/com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#EncryptedEmailRoutingTimeseriesGroupResponse"
+    }
+  ]
+}

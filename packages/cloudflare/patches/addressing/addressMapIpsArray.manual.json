@@ -1,0 +1,35 @@
+{
+  "description": "Docs bug: the address-map `ips` field inlines the {ip, created_at} item fields with no array marker, so it converts to a SINGLE object — but Cloudflare returns an ARRAY of them. Wrap the item struct in a list on both the get and create responses (a decode bug, not just a typing one).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#AddressMapsGetResponseIpsList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.cloudflare.addressing#AddressMapsGetResponseIps"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#GetAddressMapResponse/members/ips/target",
+      "value": "com.cloudflare.addressing#AddressMapsGetResponseIpsList"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#AddressMapsCreateResponseIpsList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.cloudflare.addressing#AddressMapsCreateResponseIps"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMapResponse/members/ips/target",
+      "value": "com.cloudflare.addressing#AddressMapsCreateResponseIpsList"
+    }
+  ]
+}

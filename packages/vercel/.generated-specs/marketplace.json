@@ -1,0 +1,4407 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.marketplace#UpdateInstallationRequestStatus": {
+      "type": "enum",
+      "members": {
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onboarding"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "RESUMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resumed"
+          }
+        },
+        "UNINSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uninstalled"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestBillingPlanType": {
+      "type": "enum",
+      "members": {
+        "PREPAYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepayment"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subscription"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestBillingPlanDetailsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestBillingPlanDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateInstallationRequestBillingPlanDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestBillingPlanHighlightedDetailsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestBillingPlanHighlightedDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateInstallationRequestBillingPlanHighlightedDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestBillingPlan": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestBillingPlanType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "paymentMethodRequired": {
+          "target": "smithy.api#Boolean"
+        },
+        "cost": {
+          "target": "smithy.api#String"
+        },
+        "details": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestBillingPlanDetailsList"
+        },
+        "highlightedDetails": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestBillingPlanHighlightedDetailsList"
+        },
+        "effectiveDate": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestNotificationCase0Level": {
+      "type": "enum",
+      "members": {
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "info"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warn"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestNotificationCase0": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestNotificationCase0Level",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "href": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationRequestNotification": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestNotificationCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A notification to display to your customer. Send `null` to clear the current notification."
+      }
+    },
+    "com.vercel.marketplace#UpdateInstallationRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestStatus"
+        },
+        "externalId": {
+          "target": "smithy.api#String"
+        },
+        "billingPlan": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestBillingPlan"
+        },
+        "notification": {
+          "target": "com.vercel.marketplace#UpdateInstallationRequestNotification",
+          "traits": {
+            "smithy.api#documentation": "A notification to display to your customer. Send `null` to clear the current notification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#UpdateInstallation": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#UpdateInstallationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/installations/{integrationConfigurationId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Installation\n\nThis endpoint updates an integration installation."
+      }
+    },
+    "com.vercel.marketplace#GetAccountInfoRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#GetAccountInfoResponseContact": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The best contact for the integration, which can change as team members and their roles change."
+      }
+    },
+    "com.vercel.marketplace#GetAccountInfoResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the team the installation is tied to."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL linking to the installation in the Vercel Dashboard.",
+            "smithy.api#required": {}
+          }
+        },
+        "contact": {
+          "target": "com.vercel.marketplace#GetAccountInfoResponseContact",
+          "traits": {
+            "smithy.api#documentation": "The best contact for the integration, which can change as team members and their roles change.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#GetAccountInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#GetAccountInfoRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#GetAccountInfoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/installations/{integrationConfigurationId}/account",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Account Information\n\nFetches the best account or user’s contact info"
+      }
+    },
+    "com.vercel.marketplace#GetMemberRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "memberId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#GetMemberResponseRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "\"The `ADMIN` role, by default, is provided to users capable of installing integrations, while the `USER` role can be granted to Vercel users with the Vercel `Billing` or Vercel `Viewer` role, which are considered to be Read-Only roles.\""
+      }
+    },
+    "com.vercel.marketplace#GetMemberResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.marketplace#GetMemberResponseRole",
+          "traits": {
+            "smithy.api#documentation": "\"The `ADMIN` role, by default, is provided to users capable of installing integrations, while the `USER` role can be granted to Vercel users with the Vercel `Billing` or Vercel `Viewer` role, which are considered to be Read-Only roles.\"",
+            "smithy.api#required": {}
+          }
+        },
+        "globalUserId": {
+          "target": "smithy.api#String"
+        },
+        "userEmail": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#GetMember": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#GetMemberRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#GetMemberResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/installations/{integrationConfigurationId}/member/{memberId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Member Information\n\nReturns the member role and other information for a given member ID (\"user_id\" claim in the SSO OIDC token)."
+      }
+    },
+    "com.vercel.marketplace#CreateEventRequestEventCase0Type": {
+      "type": "enum",
+      "members": {
+        "INSTALLATION_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "installation.updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateEventRequestEventCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.marketplace#CreateEventRequestEventCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The installation-level billing plan ID"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateEventRequestEventCase1Type": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource.updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateEventRequestEventCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.marketplace#CreateEventRequestEventCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner-provided product slug or id"
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner provided resource ID",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateEventRequestEvent": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.marketplace#CreateEventRequestEventCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.marketplace#CreateEventRequestEventCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateEventRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "event": {
+          "target": "com.vercel.marketplace#CreateEventRequestEvent",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#CreateEvent": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#CreateEventRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/events",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create Event\n\nPartner notifies Vercel of any changes made to an Installation or a Resource. Vercel is expected to use `list-resources` and other read APIs to get the new state.<br/> <br/> `resource.updated` event should be dispatched when any state of a resource linked to Vercel is modified by the partner.<br/> `installation.updated` event should be dispatched when an installation's billing plan is changed via the provider instead of Vercel.<br/> <br/> Resource update use cases: <br/> <br/> - The user renames a database in the partner’s application. The partner should dispatch a `resource.updated` event to notify Vercel to update the resource in Vercel’s datastores.<br/> - A resource has been suspended due to a lack of use. The partner should dispatch a `resource.updated` event to notify Vercel to update the resource's status in Vercel's datastores.<br/>"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemStatus": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onboarding"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "RESUMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resumed"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "UNINSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uninstalled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current status of the resource"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemProtocolSettingsExperimentation": {
+      "type": "structure",
+      "members": {
+        "edgeConfigSyncingEnabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "edgeConfigId": {
+          "target": "smithy.api#String"
+        },
+        "globalConfigId": {
+          "target": "smithy.api#String"
+        },
+        "globalConfigSyncingEnabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "edgeConfigTokenId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemProtocolSettings": {
+      "type": "structure",
+      "members": {
+        "experimentation": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemProtocolSettingsExperimentation"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Any settings provided for the resource to support its product's protocols"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemNotificationLevel": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "info"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warn"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemNotification": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemNotificationLevel",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "href": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The notification, if set, displayed to the user when viewing the resource in Vercel"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataValueCase2List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataValueCase3List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataValueCase2List"
+        },
+        "Case3": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataValueCase3List"
+        },
+        "Case4": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItem": {
+      "type": "structure",
+      "members": {
+        "partnerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID provided by the partner for the given resource",
+            "smithy.api#required": {}
+          }
+        },
+        "internalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID assigned by Vercel for the given resource",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource as it is recorded in Vercel",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the resource"
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the product the resource is derived from",
+            "smithy.api#required": {}
+          }
+        },
+        "protocolSettings": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemProtocolSettings",
+          "traits": {
+            "smithy.api#documentation": "Any settings provided for the resource to support its product's protocols"
+          }
+        },
+        "notification": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemNotification",
+          "traits": {
+            "smithy.api#documentation": "The notification, if set, displayed to the user when viewing the resource in Vercel"
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the billing plan the resource is subscribed to, if applicable"
+          }
+        },
+        "metadata": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItemMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourcesResponse": {
+      "type": "structure",
+      "members": {
+        "resources": {
+          "target": "com.vercel.marketplace#GetIntegrationResourcesResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#GetIntegrationResourcesRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#GetIntegrationResourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Integration Resources\n\nGet all resources for a given installation ID."
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the integration configuration (installation) the resource belongs to"
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID provided by the 3rd party provider for the given resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseStatus": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onboarding"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "RESUMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resumed"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "UNINSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uninstalled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current status of the resource"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseProtocolSettingsExperimentation": {
+      "type": "structure",
+      "members": {
+        "edgeConfigId": {
+          "target": "smithy.api#String"
+        },
+        "globalConfigId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseProtocolSettings": {
+      "type": "structure",
+      "members": {
+        "experimentation": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseProtocolSettingsExperimentation"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Any settings provided for the resource to support its product's protocols"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseNotificationLevel": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "info"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warn"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseNotification": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseNotificationLevel",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "href": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The notification, if set, displayed to the user when viewing the resource in Vercel"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseMetadataValueCase2List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseMetadataValueCase3List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseMetadataValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseMetadataValueCase2List"
+        },
+        "Case3": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseMetadataValueCase3List"
+        },
+        "Case4": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponseMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.marketplace#GetIntegrationResourceResponseMetadataValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResourceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID provided by the 3rd party provider for the given resource",
+            "smithy.api#required": {}
+          }
+        },
+        "internalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID assigned by Vercel for the given resource",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource as it is recorded in Vercel",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the resource"
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the product the resource is derived from",
+            "smithy.api#required": {}
+          }
+        },
+        "protocolSettings": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseProtocolSettings",
+          "traits": {
+            "smithy.api#documentation": "Any settings provided for the resource to support its product's protocols"
+          }
+        },
+        "notification": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseNotification",
+          "traits": {
+            "smithy.api#documentation": "The notification, if set, displayed to the user when viewing the resource in Vercel"
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the billing plan the resource is subscribed to, if applicable"
+          }
+        },
+        "metadata": {
+          "target": "com.vercel.marketplace#GetIntegrationResourceResponseMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "The configured metadata for the resource as defined by its product's Metadata Schema"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#GetIntegrationResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#GetIntegrationResourceRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#GetIntegrationResourceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Integration Resource\n\nGet a resource by its partner ID."
+      }
+    },
+    "com.vercel.marketplace#ImportResourceRequestOwnership": {
+      "type": "enum",
+      "members": {
+        "OWNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owned"
+          }
+        },
+        "LINKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linked"
+          }
+        },
+        "SANDBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sandbox"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestStatus": {
+      "type": "enum",
+      "members": {
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onboarding"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "RESUMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resumed"
+          }
+        },
+        "UNINSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uninstalled"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestBillingPlanType": {
+      "type": "enum",
+      "members": {
+        "PREPAYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepayment"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subscription"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestBillingPlanDetailsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestBillingPlanDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#ImportResourceRequestBillingPlanDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestBillingPlanHighlightedDetailsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestBillingPlanHighlightedDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#ImportResourceRequestBillingPlanHighlightedDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestBillingPlan": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.marketplace#ImportResourceRequestBillingPlanType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "paymentMethodRequired": {
+          "target": "smithy.api#Boolean"
+        },
+        "cost": {
+          "target": "smithy.api#String"
+        },
+        "details": {
+          "target": "com.vercel.marketplace#ImportResourceRequestBillingPlanDetailsList"
+        },
+        "highlightedDetails": {
+          "target": "com.vercel.marketplace#ImportResourceRequestBillingPlanHighlightedDetailsList"
+        },
+        "effectiveDate": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestNotificationLevel": {
+      "type": "enum",
+      "members": {
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "info"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warn"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestNotification": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.vercel.marketplace#ImportResourceRequestNotificationLevel",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "href": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestSecretsItemEnvironmentOverrides": {
+      "type": "structure",
+      "members": {
+        "development": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for development environment."
+          }
+        },
+        "preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for preview environment."
+          }
+        },
+        "production": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for production environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+      }
+    },
+    "com.vercel.marketplace#ImportResourceRequestSecretsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String"
+        },
+        "environmentOverrides": {
+          "target": "com.vercel.marketplace#ImportResourceRequestSecretsItemEnvironmentOverrides",
+          "traits": {
+            "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequestSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#ImportResourceRequestSecretsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ImportResourceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ownership": {
+          "target": "com.vercel.marketplace#ImportResourceRequestOwnership"
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.marketplace#ImportResourceRequestStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.vercel.marketplace#ImportResourceRequestMetadataMap"
+        },
+        "billingPlan": {
+          "target": "com.vercel.marketplace#ImportResourceRequestBillingPlan"
+        },
+        "notification": {
+          "target": "com.vercel.marketplace#ImportResourceRequestNotification"
+        },
+        "extras": {
+          "target": "com.vercel.marketplace#ImportResourceRequestExtrasMap"
+        },
+        "secrets": {
+          "target": "com.vercel.marketplace#ImportResourceRequestSecretsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#ImportResourceResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#ImportResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#ImportResourceRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#ImportResourceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        },
+        {
+          "target": "com.vercel.marketplace#Conflict"
+        },
+        {
+          "target": "com.vercel.marketplace#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Import Resource\n\nThis endpoint imports (upserts) a resource to Vercel's installation. This may be needed if resources can be independently created on the partner's side and need to be synchronized to Vercel. When importing as part of the user-initiated import flow, call this endpoint before redirecting the user back to Vercel. See the [Import existing resources flow](https://vercel.com/docs/integrations/create-integration/marketplace-flows#import-existing-resources-flow) for the full contract."
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceRequestOwnership": {
+      "type": "enum",
+      "members": {
+        "OWNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owned"
+          }
+        },
+        "LINKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linked"
+          }
+        },
+        "SANDBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sandbox"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestStatus": {
+      "type": "enum",
+      "members": {
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onboarding"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "RESUMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resumed"
+          }
+        },
+        "UNINSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uninstalled"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestBillingPlanType": {
+      "type": "enum",
+      "members": {
+        "PREPAYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepayment"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subscription"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestBillingPlanDetailsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestBillingPlanDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateResourceRequestBillingPlanDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestBillingPlanHighlightedDetailsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestBillingPlanHighlightedDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateResourceRequestBillingPlanHighlightedDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestBillingPlan": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestBillingPlanType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "paymentMethodRequired": {
+          "target": "smithy.api#Boolean"
+        },
+        "cost": {
+          "target": "smithy.api#String"
+        },
+        "details": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestBillingPlanDetailsList"
+        },
+        "highlightedDetails": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestBillingPlanHighlightedDetailsList"
+        },
+        "effectiveDate": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestNotificationCase0Level": {
+      "type": "enum",
+      "members": {
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "info"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warn"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestNotificationCase0": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestNotificationCase0Level",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "href": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestNotification": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestNotificationCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase0ItemEnvironmentOverrides": {
+      "type": "structure",
+      "members": {
+        "development": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for development environment."
+          }
+        },
+        "preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for preview environment."
+          }
+        },
+        "production": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for production environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase0Item": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String"
+        },
+        "environmentOverrides": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase0ItemEnvironmentOverrides",
+          "traits": {
+            "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase0Item"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase1SecretsItemEnvironmentOverrides": {
+      "type": "structure",
+      "members": {
+        "development": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for development environment."
+          }
+        },
+        "preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for preview environment."
+          }
+        },
+        "production": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for production environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase1SecretsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String"
+        },
+        "environmentOverrides": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase1SecretsItemEnvironmentOverrides",
+          "traits": {
+            "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase1SecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase1SecretsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecretsCase1": {
+      "type": "structure",
+      "members": {
+        "secrets": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase1SecretsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "partial": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, will only overwrite the provided secrets instead of replacing all secrets."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequestSecrets": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase0List"
+        },
+        "Case1": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestSecretsCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ownership": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestOwnership"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestStatus"
+        },
+        "metadata": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestMetadataMap"
+        },
+        "billingPlan": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestBillingPlan"
+        },
+        "notification": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestNotification"
+        },
+        "extras": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestExtrasMap"
+        },
+        "secrets": {
+          "target": "com.vercel.marketplace#UpdateResourceRequestSecrets"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#UpdateResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#UpdateResourceRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#UpdateResourceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        },
+        {
+          "target": "com.vercel.marketplace#Conflict"
+        },
+        {
+          "target": "com.vercel.marketplace#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Resource\n\nThis endpoint updates an existing resource in the installation. All parameters are optional, allowing partial updates."
+      }
+    },
+    "com.vercel.marketplace#DeleteIntegrationResourceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#DeleteIntegrationResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#DeleteIntegrationResourceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Integration Resource\n\nDelete a resource owned by the selected installation ID."
+      }
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestPeriod": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Period for the billing cycle. The period end date cannot be older than 24 hours earlier than our current server's time."
+      }
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase0Item": {
+      "type": "structure",
+      "members": {
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Line item name.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Line item details."
+          }
+        },
+        "price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price per unit.",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantity of units.",
+            "smithy.api#required": {}
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Units of the quantity.",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total amount.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase0Item"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1ItemsItem": {
+      "type": "structure",
+      "members": {
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Line item name.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Line item details."
+          }
+        },
+        "price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price per unit.",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantity of units.",
+            "smithy.api#required": {}
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Units of the quantity.",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total amount.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1ItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1ItemsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1DiscountsItem": {
+      "type": "structure",
+      "members": {
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discount name.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discount details."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discount amount.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1DiscountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1DiscountsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1ItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discounts": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1DiscountsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestBilling": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase0List"
+        },
+        "Case1": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestBillingCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Billing data (interim invoicing data)."
+      }
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestUsageItemType": {
+      "type": "enum",
+      "members": {
+        "TOTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total"
+          }
+        },
+        "INTERVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interval"
+          }
+        },
+        "RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "\n              Type of the metric.\n              - total: measured total value, such as Database size\n              - interval: usage during the period, such as i/o or number of queries.\n              - rate: rate of usage, such as queries per second.\n            "
+      }
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestUsageItem": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric name.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestUsageItemType",
+          "traits": {
+            "smithy.api#documentation": "\n              Type of the metric.\n              - total: measured total value, such as Database size\n              - interval: usage during the period, such as i/o or number of queries.\n              - rate: rate of usage, such as queries per second.\n            ",
+            "smithy.api#required": {}
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric units. Example: \"GB\"",
+            "smithy.api#required": {}
+          }
+        },
+        "dayValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Metric value for the day. Could be a final or an interim value for the day.",
+            "smithy.api#required": {}
+          }
+        },
+        "periodValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Metric value for the billing period. Could be a final or an interim value for the period.",
+            "smithy.api#required": {}
+          }
+        },
+        "planValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The limit value of the metric for a billing period, if a limit is defined by the plan."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequestUsageList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitBillingDataRequestUsageItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitBillingDataRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server time of your integration, used to determine the most recent data for race conditions & updates. Only the latest usage data for a given day, week, and month will be kept.",
+            "smithy.api#required": {}
+          }
+        },
+        "eod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of Day, the UTC datetime for when the end of the billing/usage day is in UTC time. This tells us which day the usage data is for, and also allows for your \"end of day\" to be different from UTC 00:00:00. eod must be within the period dates, and cannot be older than 24h earlier from our server's current time.",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestPeriod",
+          "traits": {
+            "smithy.api#documentation": "Period for the billing cycle. The period end date cannot be older than 24 hours earlier than our current server's time.",
+            "smithy.api#required": {}
+          }
+        },
+        "billing": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestBilling",
+          "traits": {
+            "smithy.api#documentation": "Billing data (interim invoicing data).",
+            "smithy.api#required": {}
+          }
+        },
+        "usage": {
+          "target": "com.vercel.marketplace#SubmitBillingDataRequestUsageList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#SubmitBillingData": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#SubmitBillingDataRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/billing",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit Billing Data\n\nSends the billing and usage data. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request."
+      }
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestPeriod": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription period for this billing cycle."
+      }
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestItemsItem": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID."
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency amount as a decimal string.",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency amount as a decimal string.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitInvoiceRequestItemsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestDiscountsItem": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID."
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "amount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Currency amount as a decimal string.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestDiscountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitInvoiceRequestDiscountsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestTestResult": {
+      "type": "enum",
+      "members": {
+        "PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paid"
+          }
+        },
+        "NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notpaid"
+          }
+        },
+        "OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "overdue"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequestTest": {
+      "type": "structure",
+      "members": {
+        "validate": {
+          "target": "smithy.api#Boolean"
+        },
+        "result": {
+          "target": "com.vercel.marketplace#SubmitInvoiceRequestTestResult"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Test mode"
+      }
+    },
+    "com.vercel.marketplace#SubmitInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner-provided invoice identifier. If provided, it must be unique for this installation."
+          }
+        },
+        "invoiceDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invoice date. Must be within the period's start and end.",
+            "smithy.api#required": {}
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional memo for the invoice."
+          }
+        },
+        "period": {
+          "target": "com.vercel.marketplace#SubmitInvoiceRequestPeriod",
+          "traits": {
+            "smithy.api#documentation": "Subscription period for this billing cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.vercel.marketplace#SubmitInvoiceRequestItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discounts": {
+          "target": "com.vercel.marketplace#SubmitInvoiceRequestDiscountsList"
+        },
+        "final": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set this to `true` if this is the final invoice for the installation. Can only be set when the installation is pending deletion."
+          }
+        },
+        "test": {
+          "target": "com.vercel.marketplace#SubmitInvoiceRequestTest",
+          "traits": {
+            "smithy.api#documentation": "Test mode"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#SubmitInvoiceResponseValidationErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitInvoiceResponse": {
+      "type": "structure",
+      "members": {
+        "invoiceId": {
+          "target": "smithy.api#String"
+        },
+        "test": {
+          "target": "smithy.api#Boolean"
+        },
+        "validationErrors": {
+          "target": "com.vercel.marketplace#SubmitInvoiceResponseValidationErrorsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#SubmitInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#SubmitInvoiceRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#SubmitInvoiceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        },
+        {
+          "target": "com.vercel.marketplace#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/billing/invoices",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit Invoice\n\nThis endpoint allows the partner to submit an invoice to Vercel. The invoice is created in Vercel's billing system and sent to the customer. Depending on the type of billing plan, the invoice can be sent at a time of signup, at the start of the billing period, or at the end of the billing period.<br/> <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request. <br/> There are several limitations to the invoice submission:<br/> <br/> 1. A resource can only be billed once per the billing period and the billing plan.<br/> 2. The billing plan used to bill the resource must have been active for this resource during the billing period.<br/> 3. The billing plan used must be a subscription plan.<br/> 4. The interim usage data must be sent hourly for all types of subscriptions. See [Send subscription billing and usage data](#send-subscription-billing-and-usage-data) API on how to send interim billing and usage data.<br/> 5. If provided, `externalId` must be unique for the installation.<br/>"
+      }
+    },
+    "com.vercel.marketplace#FinalizeInstallationRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#FinalizeInstallation": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#FinalizeInstallationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/billing/finalize",
+          "code": 200
+        },
+        "smithy.api#documentation": "Finalize Installation\n\nThis endpoint allows the partner to mark an installation as finalized. This means you will not send any more invoices for the installation. Use this after a customer has requested uninstall and you have sent any remaining invoices. This will allow the uninstall process to proceed immediately after all invoices have been paid. <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "invoiceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponseState": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "INVOICED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invoiced"
+          }
+        },
+        "NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notpaid"
+          }
+        },
+        "OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "overdue"
+          }
+        },
+        "PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paid"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "REFUND_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refund_requested"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refunded"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Invoice state."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponsePeriod": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription period for this billing cycle. ISO 8601 timestamps."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponseItemsItem": {
+      "type": "structure",
+      "members": {
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID. If not specified, indicates installation-wide item."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end. ISO 8601 timestamp."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end. ISO 8601 timestamp."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invoice item name.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional item details."
+          }
+        },
+        "price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Item price. A dollar-based decimal string.",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Item quantity.",
+            "smithy.api#required": {}
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Units for item's quantity.",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Item total. A dollar-based decimal string.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Invoice items."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#GetInvoiceResponseItemsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Invoice items."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponseDiscountsItem": {
+      "type": "structure",
+      "members": {
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's billing plan ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID. If not specified, indicates installation-wide discount."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end. ISO 8601 timestamp."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start and end are only needed if different from the period's start/end. ISO 8601 timestamp."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discount name.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional discount details."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discount amount. A dollar-based decimal string.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Invoice discounts."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponseDiscountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#GetInvoiceResponseDiscountsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Invoice discounts."
+      }
+    },
+    "com.vercel.marketplace#GetInvoiceResponse": {
+      "type": "structure",
+      "members": {
+        "test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the invoice is in the testmode (no real transaction created)."
+          }
+        },
+        "invoiceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Vercel Marketplace Invoice ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner-supplied Invoice ID, if applicable."
+          }
+        },
+        "state": {
+          "target": "com.vercel.marketplace#GetInvoiceResponseState",
+          "traits": {
+            "smithy.api#documentation": "Invoice state.",
+            "smithy.api#required": {}
+          }
+        },
+        "invoiceNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-readable invoice number."
+          }
+        },
+        "invoiceDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invoice date. ISO 8601 timestamp.",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "com.vercel.marketplace#GetInvoiceResponsePeriod",
+          "traits": {
+            "smithy.api#documentation": "Subscription period for this billing cycle. ISO 8601 timestamps.",
+            "smithy.api#required": {}
+          }
+        },
+        "paidAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Moment the invoice was paid. ISO 8601 timestamp."
+          }
+        },
+        "refundedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Most recent moment the invoice was refunded. ISO 8601 timestamp."
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional memo for the invoice."
+          }
+        },
+        "items": {
+          "target": "com.vercel.marketplace#GetInvoiceResponseItemsList",
+          "traits": {
+            "smithy.api#documentation": "Invoice items.",
+            "smithy.api#required": {}
+          }
+        },
+        "discounts": {
+          "target": "com.vercel.marketplace#GetInvoiceResponseDiscountsList",
+          "traits": {
+            "smithy.api#documentation": "Invoice discounts."
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invoice total amount. A dollar-based decimal string.",
+            "smithy.api#required": {}
+          }
+        },
+        "refundReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for refund. Only applicable for states \"refunded\" or \"refund_request\"."
+          }
+        },
+        "refundTotal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refund amount. Only applicable for states \"refunded\" or \"refund_request\". A dollar-based decimal string."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System creation date. ISO 8601 timestamp.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System update date. ISO 8601 timestamp.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#GetInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#GetInvoiceRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#GetInvoiceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Invoice\n\nGet Invoice details and status for a given invoice ID.<br/> <br/> See [Billing Events with Webhooks documentation](https://vercel.com/docs/integrations/create-integration/marketplace-api#working-with-billing-events-through-webhooks) on how to receive invoice events. This endpoint is used to retrieve the invoice details."
+      }
+    },
+    "com.vercel.marketplace#UpdateInvoiceRequestBodyAction": {
+      "type": "enum",
+      "members": {
+        "REFUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refund"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInvoiceRequestBody": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.vercel.marketplace#UpdateInvoiceRequestBodyAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refund reason.",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The total amount to be refunded. Must be less than or equal to the total amount of the invoice.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "invoiceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.vercel.marketplace#UpdateInvoiceRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#UpdateInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#UpdateInvoiceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        },
+        {
+          "target": "com.vercel.marketplace#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invoice Actions\n\nThis endpoint allows the partner to request a refund for an invoice to Vercel. The invoice is created using the [Submit Invoice API](#submit-invoice-api)."
+      }
+    },
+    "com.vercel.marketplace#SubmitPrepaymentBalancesRequestBalancesItem": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partner's resource ID, exclude if credits are tied to the installation and not an individual resource."
+          }
+        },
+        "credit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the credits the user currently has, e.g. \"2,000 Tokens\""
+          }
+        },
+        "nameLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the credits, for display purposes, e.g. \"Tokens\""
+          }
+        },
+        "currencyValueInCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The dollar value of the credit balance, in USD and provided in cents, which is used to trigger automatic purchase thresholds.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A credit balance for a particular token type"
+      }
+    },
+    "com.vercel.marketplace#SubmitPrepaymentBalancesRequestBalancesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#SubmitPrepaymentBalancesRequestBalancesItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#SubmitPrepaymentBalancesRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server time of your integration, used to determine the most recent data for race conditions & updates. Only the latest usage data for a given day, week, and month will be kept.",
+            "smithy.api#required": {}
+          }
+        },
+        "balances": {
+          "target": "com.vercel.marketplace#SubmitPrepaymentBalancesRequestBalancesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#SubmitPrepaymentBalances": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#SubmitPrepaymentBalancesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/billing/balance",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit Prepayment Balances\n\nSends the prepayment balances. The partner should do this at least once a day and ideally once per hour. <br/> Use the `credentials.access_token` we provided in the [Upsert Installation](#upsert-installation) body to authorize this request."
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceSecretsByIdRequestSecretsItemEnvironmentOverrides": {
+      "type": "structure",
+      "members": {
+        "development": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for development environment."
+          }
+        },
+        "preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for preview environment."
+          }
+        },
+        "production": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value used for production environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceSecretsByIdRequestSecretsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String"
+        },
+        "environmentOverrides": {
+          "target": "com.vercel.marketplace#UpdateResourceSecretsByIdRequestSecretsItemEnvironmentOverrides",
+          "traits": {
+            "smithy.api#documentation": "A map of environments to override values for the secret, used for setting different values across deployments in production, preview, and development environments. Note: the same value will be used for all deployments in the given environment."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceSecretsByIdRequestSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#UpdateResourceSecretsByIdRequestSecretsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateResourceSecretsByIdRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "secrets": {
+          "target": "com.vercel.marketplace#UpdateResourceSecretsByIdRequestSecretsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "partial": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, will only overwrite the provided secrets instead of replacing all secrets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#UpdateResourceSecretsById": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#UpdateResourceSecretsByIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        },
+        {
+          "target": "com.vercel.marketplace#Conflict"
+        },
+        {
+          "target": "com.vercel.marketplace#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Resource Secrets\n\nThis endpoint updates the secrets of a resource. If a resource has projects connected, the connected secrets are updated with the new secrets. The old secrets may still be used by existing connected projects because they are not automatically redeployed. Redeployment is a manual action and must be completed by the user. All new project connections will use the new secrets.<br/> <br/> Use cases for this endpoint:<br/> <br/> - Resetting the credentials of a database in the partner. If the user requests the credentials to be updated in the partner’s application, the partner post the new set of secrets to Vercel, the user should redeploy their application and the expire the old credentials.<br/>"
+      }
+    },
+    "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsItemCategory": {
+      "type": "enum",
+      "members": {
+        "EXPERIMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "experiment"
+          }
+        },
+        "FLAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsItemCategory"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "isArchived": {
+          "target": "smithy.api#Boolean"
+        },
+        "createdAt": {
+          "target": "smithy.api#Double"
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItems": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create one or multiple experimentation items\n\nCreate one or multiple experimentation items"
+      }
+    },
+    "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequestCategory": {
+      "type": "enum",
+      "members": {
+        "EXPERIMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "experiment"
+          }
+        },
+        "FLAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "itemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "category": {
+          "target": "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequestCategory"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "isArchived": {
+          "target": "smithy.api#Boolean"
+        },
+        "createdAt": {
+          "target": "smithy.api#Double"
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Patch an existing experimentation item\n\nPatch an existing experimentation item"
+      }
+    },
+    "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "itemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an existing experimentation item\n\nDelete an existing experimentation item"
+      }
+    },
+    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#EdgeConfigItemValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "com.vercel.marketplace#EdgeConfigItemValueCase2Map"
+        },
+        "Case3": {
+          "target": "com.vercel.marketplace#EdgeConfigItemValueCase3List"
+        },
+        "Case4": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#EdgeConfigItemValueCase2Map": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.marketplace#EdgeConfigItemValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#EdgeConfigItemValueCase3List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.marketplace#EdgeConfigItemValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.marketplace#EdgeConfigItemValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose": {
+      "type": "enum",
+      "members": {
+        "EXPERIMENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "experimentation"
+          }
+        },
+        "FLAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flags"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the data of a user-provided Global Config\n\nWhen the user enabled Global Config syncing, then this endpoint can be used by the partner to fetch the contents of the Global Config."
+      }
+    },
+    "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequestDataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequestDataMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.marketplace#EdgeConfigItemValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose": {
+      "type": "enum",
+      "members": {
+        "EXPERIMENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "experimentation"
+          }
+        },
+        "FLAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flags"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest"
+      },
+      "output": {
+        "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        },
+        {
+          "target": "com.vercel.marketplace#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Push data into a user-provided Global Config\n\nWhen the user enabled Global Config syncing, then this endpoint can be used by the partner to push their configuration data into the relevant Global Config."
+      }
+    },
+    "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest": {
+      "type": "structure",
+      "members": {
+        "integrationConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.marketplace#BadRequest"
+        },
+        {
+          "target": "com.vercel.marketplace#Forbidden"
+        },
+        {
+          "target": "com.vercel.marketplace#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "HEAD",
+          "uri": "/v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/global-config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the data of a user-provided Global Config\n\nWhen the user enabled Global Config syncing, then this endpoint can be used by the partner to fetch the contents of the Global Config."
+      }
+    },
+    "com.vercel.marketplace#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.marketplace#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.marketplace#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.marketplace#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.marketplace#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.vercel.marketplace#Marketplace": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.marketplace#UpdateInstallation"
+        },
+        {
+          "target": "com.vercel.marketplace#GetAccountInfo"
+        },
+        {
+          "target": "com.vercel.marketplace#GetMember"
+        },
+        {
+          "target": "com.vercel.marketplace#CreateEvent"
+        },
+        {
+          "target": "com.vercel.marketplace#GetIntegrationResources"
+        },
+        {
+          "target": "com.vercel.marketplace#GetIntegrationResource"
+        },
+        {
+          "target": "com.vercel.marketplace#ImportResource"
+        },
+        {
+          "target": "com.vercel.marketplace#UpdateResource"
+        },
+        {
+          "target": "com.vercel.marketplace#DeleteIntegrationResource"
+        },
+        {
+          "target": "com.vercel.marketplace#SubmitBillingData"
+        },
+        {
+          "target": "com.vercel.marketplace#SubmitInvoice"
+        },
+        {
+          "target": "com.vercel.marketplace#FinalizeInstallation"
+        },
+        {
+          "target": "com.vercel.marketplace#GetInvoice"
+        },
+        {
+          "target": "com.vercel.marketplace#UpdateInvoice"
+        },
+        {
+          "target": "com.vercel.marketplace#SubmitPrepaymentBalances"
+        },
+        {
+          "target": "com.vercel.marketplace#UpdateResourceSecretsById"
+        },
+        {
+          "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItems"
+        },
+        {
+          "target": "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
+        },
+        {
+          "target": "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
+        },
+        {
+          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+        },
+        {
+          "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+        },
+        {
+          "target": "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

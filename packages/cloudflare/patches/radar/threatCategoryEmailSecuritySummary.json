@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummaryThreatCategory with distilled cloudflare/radar threatCategoryEmailSecuritySummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryThreatCategory",
+      "path": "/shapes/com.cloudflare.radar#ThreatCategoryEmailSecuritySummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryThreatCategoryRequest",
+      "path": "/shapes/com.cloudflare.radar#ThreatCategoryEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ThreatCategoryEmailSecuritySummary/input/target",
+      "value": "com.cloudflare.radar#ThreatCategoryEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryThreatCategoryResponse",
+      "path": "/shapes/com.cloudflare.radar#ThreatCategoryEmailSecuritySummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ThreatCategoryEmailSecuritySummary/output/target",
+      "value": "com.cloudflare.radar#ThreatCategoryEmailSecuritySummaryResponse"
+    }
+  ]
+}

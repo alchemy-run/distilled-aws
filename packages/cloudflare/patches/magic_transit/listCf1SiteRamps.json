@@ -1,0 +1,38 @@
+{
+  "description": "Align magic_transit#Cf1SitesRampsList with distilled cloudflare/magic-transit listCf1SiteRamps",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesRampsList",
+      "path": "/shapes/com.cloudflare.magic_transit#ListCf1SiteRamps"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesRampsListRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ListCf1SiteRampsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListCf1SiteRamps/input/target",
+      "value": "com.cloudflare.magic_transit#ListCf1SiteRampsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesRampsListResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ListCf1SiteRampsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListCf1SiteRamps/output/target",
+      "value": "com.cloudflare.magic_transit#ListCf1SiteRampsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#ListCf1SiteRamps/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

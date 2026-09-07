@@ -1,0 +1,30 @@
+{
+  "description": "Align rate_limits#Create with distilled cloudflare/rate-limits createRateLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#Create",
+      "path": "/shapes/com.cloudflare.rate_limits#CreateRateLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#CreateRequest",
+      "path": "/shapes/com.cloudflare.rate_limits#CreateRateLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#CreateRateLimit/input/target",
+      "value": "com.cloudflare.rate_limits#CreateRateLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#CreateResponse",
+      "path": "/shapes/com.cloudflare.rate_limits#CreateRateLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#CreateRateLimit/output/target",
+      "value": "com.cloudflare.rate_limits#CreateRateLimitResponse"
+    }
+  ]
+}

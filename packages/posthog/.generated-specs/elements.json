@@ -1,0 +1,741 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.elements#ElementsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#PaginatedElementList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.elements#PaginatedElementListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#Element": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tag_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_class": {
+          "target": "com.posthog.elements#ElementAttrClassList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_child": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_of_type": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attributes": {
+          "target": "smithy.api#Document"
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#ElementAttrClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#PaginatedElementListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.elements#Element"
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#ElementsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.elements#PaginatedElementList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#BadRequest"
+        },
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/elements/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#ElementsCreateRequestAttrClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#ElementsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tag_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_class": {
+          "target": "com.posthog.elements#ElementsCreateRequestAttrClassList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_child": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_of_type": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attributes": {
+          "target": "smithy.api#Document"
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.elements#Element"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#BadRequest"
+        },
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/elements/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#ElementsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this element."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.elements#Element"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/elements/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#ElementsUpdateRequestAttrClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#ElementsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this element."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tag_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_class": {
+          "target": "com.posthog.elements#ElementsUpdateRequestAttrClassList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_child": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_of_type": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attributes": {
+          "target": "smithy.api#Document"
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.elements#Element"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#BadRequest"
+        },
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/elements/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#ElementsPartialUpdateRequestAttrClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.elements#ElementsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this element."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tag_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_class": {
+          "target": "com.posthog.elements#ElementsPartialUpdateRequestAttrClassList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_child": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_of_type": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attributes": {
+          "target": "smithy.api#Document"
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.elements#Element"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#BadRequest"
+        },
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/elements/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#ElementsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this element."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/elements/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#ElementsStatsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsStatsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsStatsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/elements/stats/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The original version of this API always and only returned $autocapture elements\nIf no include query parameter is sent this remains true.\nNow, you can pass a combination of include query parameters to get different types of elements\nCurrently only $autocapture and $rageclick and $dead_click are supported"
+      }
+    },
+    "com.posthog.elements#ElementsValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.elements#ElementsValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.elements#ElementsValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.elements#Forbidden"
+        },
+        {
+          "target": "com.posthog.elements#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/elements/values/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.elements#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.elements#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.elements#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.elements#Elements": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.elements#ElementsList"
+        },
+        {
+          "target": "com.posthog.elements#ElementsCreate"
+        },
+        {
+          "target": "com.posthog.elements#ElementsRetrieve"
+        },
+        {
+          "target": "com.posthog.elements#ElementsUpdate"
+        },
+        {
+          "target": "com.posthog.elements#ElementsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.elements#ElementsDestroy"
+        },
+        {
+          "target": "com.posthog.elements#ElementsStatsRetrieve"
+        },
+        {
+          "target": "com.posthog.elements#ElementsValuesRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

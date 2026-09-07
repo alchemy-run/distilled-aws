@@ -1,0 +1,30 @@
+{
+  "description": "Align ips#List with distilled cloudflare/ips listIps",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ips#List",
+      "path": "/shapes/com.cloudflare.ips#ListIps"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ips#ListRequest",
+      "path": "/shapes/com.cloudflare.ips#ListIpsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ips#ListIps/input/target",
+      "value": "com.cloudflare.ips#ListIpsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ips#ListResponse",
+      "path": "/shapes/com.cloudflare.ips#ListIpsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ips#ListIps/output/target",
+      "value": "com.cloudflare.ips#ListIpsResponse"
+    }
+  ]
+}

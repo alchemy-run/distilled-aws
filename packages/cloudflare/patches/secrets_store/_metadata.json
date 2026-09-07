@@ -1,0 +1,16 @@
+{
+  "description": "Key dictionary / op aliases for secrets_store (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "accountId": "account_id",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "storeId": "store_id",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

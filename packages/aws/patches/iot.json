@@ -1,0 +1,29 @@
+{
+  "operations": {
+    "getTopicRule": {
+      "syntheticErrors": [
+        {
+          "name": "TopicRuleNotFound",
+          "from": "UnauthorizedException",
+          "message": {
+            "includes": "Access to topic rule"
+          }
+        }
+      ]
+    },
+    "deleteTopicRule": {
+      "syntheticErrors": [
+        {
+          "name": "TopicRuleNotFound",
+          "from": "UnauthorizedException",
+          "message": {
+            "includes": "Access to topic rule"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "TopicRuleNotFound": ["NotFoundError"]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "description": "Docs gap: DLP entry get/delete return a typed 404 when the entry does not exist, but the docs list no errors so the ops fell back to the generic union. Attach DlpEntryNotFound (defined in updateDlpEntryCustom.json, matcher: status 404) to both ops.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpEntry/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DlpEntryNotFound"
+        }
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntry/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DlpEntryNotFound"
+        }
+      ]
+    }
+  ]
+}

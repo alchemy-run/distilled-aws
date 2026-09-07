@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailRoutingTimeseriesGroupsDmarc with distilled cloudflare/radar dmarcEmailRoutingTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsDmarc",
+      "path": "/shapes/com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsDmarcRequest",
+      "path": "/shapes/com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsDmarcResponse",
+      "path": "/shapes/com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#DmarcEmailRoutingTimeseriesGroupResponse"
+    }
+  ]
+}

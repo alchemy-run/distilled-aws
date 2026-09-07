@@ -1,0 +1,20 @@
+{
+  "description": "Align brand_protection#QueriesCreate with distilled cloudflare/brand-protection createQuery",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#QueriesCreate",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateQuery"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#QueriesCreateRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateQueryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateQuery/input/target",
+      "value": "com.cloudflare.brand_protection#CreateQueryRequest"
+    }
+  ]
+}

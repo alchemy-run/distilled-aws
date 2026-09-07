@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7TimeseriesGroupsManagedRules with distilled cloudflare/radar managedRulesAttackLayer7TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsManagedRules",
+      "path": "/shapes/com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsManagedRulesRequest",
+      "path": "/shapes/com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsManagedRulesResponse",
+      "path": "/shapes/com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#ManagedRulesAttackLayer7TimeseriesGroupResponse"
+    }
+  ]
+}

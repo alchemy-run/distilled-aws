@@ -1,0 +1,66 @@
+{
+  "description": "Slim project({id}) to identity scalars plus services/buckets/groups. The default maxDepth-2 selection (workspace/team/members/baseEnvironment) is why nuke's 16 parallel list()s stampede GraphQL. Alchemy only reads workspaceId, environment ids, and those three connections.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ProjectRequest/traits/com.railway.graphql#operation/query",
+      "value": "query project($id: String!) {\n  project(id: $id) {\n    baseEnvironmentId\n    createdAt\n    deletedAt\n    description\n    id\n    name\n    primaryEnvironmentId\n    updatedAt\n    workspaceId\n    services(first: 50) {\n      edges {\n        node {\n          createdAt\n          deletedAt\n          groupId\n          id\n          name\n          projectId\n        }\n      }\n    }\n    buckets(first: 50) {\n      edges {\n        node {\n          createdAt\n          groupId\n          id\n          name\n          projectId\n          updatedAt\n        }\n      }\n    }\n    groups(first: 50) {\n      edges {\n        node {\n          color\n          groupId\n          icon\n          id\n          isCollapsed\n          name\n          projectId\n        }\n      }\n    }\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/baseEnvironment"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/botPrEnvironments"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/expiredAt"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/featureFlags"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/focusedPrEnvironments"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/isPublic"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/isTempProject"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/members"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/prDeploys"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/subscriptionPlanLimit"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/subscriptionType"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/team"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/teamId"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/workspace"
+    }
+  ]
+}

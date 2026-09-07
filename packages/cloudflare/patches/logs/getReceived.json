@@ -1,0 +1,30 @@
+{
+  "description": "Align logs#ReceivedGet with distilled cloudflare/logs getReceived",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ReceivedGet",
+      "path": "/shapes/com.cloudflare.logs#GetReceived"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ReceivedGetRequest",
+      "path": "/shapes/com.cloudflare.logs#GetReceivedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#GetReceived/input/target",
+      "value": "com.cloudflare.logs#GetReceivedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ReceivedGetResponse",
+      "path": "/shapes/com.cloudflare.logs#GetReceivedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#GetReceived/output/target",
+      "value": "com.cloudflare.logs#GetReceivedResponse"
+    }
+  ]
+}

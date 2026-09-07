@@ -1,0 +1,1278 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.cloudshell#KeepAlive": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#KeepAliveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Portal/consoles/{consoleName}/keepAlive",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Keep alive\n\nKeep console alive",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#KeepAliveRequest": {
+      "type": "structure",
+      "members": {
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#DeleteConsole": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#DeleteConsoleRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Portal/consoles/{consoleName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Delete console\n\nDeletes the console",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#DeleteConsoleRequest": {
+      "type": "structure",
+      "members": {
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#PutConsole": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#PutConsoleRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#PutConsoleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Portal/consoles/{consoleName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Put console\n\nPuts a request for a console",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#PutConsoleResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#ConsoleProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#ConsoleProperties": {
+      "type": "structure",
+      "members": {
+        "osType": {
+          "target": "com.azure.cloudshell#ConsolePropertiesOsType",
+          "traits": {
+            "smithy.api#documentation": "The operating system type of the cloud shell.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.cloudshell#ConsolePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the console.",
+            "smithy.api#required": {}
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri of the console.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud shell console properties."
+      }
+    },
+    "com.azure.cloudshell#ConsolePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "REPAIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Repairing"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the console."
+      }
+    },
+    "com.azure.cloudshell#ConsolePropertiesOsType": {
+      "type": "enum",
+      "members": {
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Linux"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Windows"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operating system type of the cloud shell."
+      }
+    },
+    "com.azure.cloudshell#PutConsoleRequest": {
+      "type": "structure",
+      "members": {
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        },
+        "properties": {
+          "target": "com.azure.cloudshell#ConsoleCreateProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#ConsoleCreateProperties": {
+      "type": "structure",
+      "members": {
+        "osType": {
+          "target": "com.azure.cloudshell#ConsoleCreatePropertiesOsType",
+          "traits": {
+            "smithy.api#documentation": "The operating system type of the cloud shell.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.cloudshell#ConsoleCreatePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the console."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri of the console."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud shell properties for creating a console."
+      }
+    },
+    "com.azure.cloudshell#ConsoleCreatePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "REPAIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Repairing"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the console."
+      }
+    },
+    "com.azure.cloudshell#ConsoleCreatePropertiesOsType": {
+      "type": "enum",
+      "members": {
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Linux"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Windows"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operating system type of the cloud shell."
+      }
+    },
+    "com.azure.cloudshell#GetConsole": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#GetConsoleRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#GetConsoleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Portal/consoles/{consoleName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Get console\n\nGets the console for the user.",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#GetConsoleResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#ConsoleProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#GetConsoleRequest": {
+      "type": "structure",
+      "members": {
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#DeleteUserSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#DeleteUserSettingsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Portal/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "delete user settings.\n\nDelete cloud shell settings for current signed in user",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#DeleteUserSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#PatchUserSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#PatchUserSettingsRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#PatchUserSettingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Portal/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "patch user settings.\n\nPatch cloud shell settings for current signed in user",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#PatchUserSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#UserProperties": {
+      "type": "structure",
+      "members": {
+        "preferredOsType": {
+          "target": "com.azure.cloudshell#UserPropertiesPreferredOsType",
+          "traits": {
+            "smithy.api#documentation": "The operating system type of the cloud shell. Deprecated, use preferredShellType.",
+            "smithy.api#required": {}
+          }
+        },
+        "preferredLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred location of the cloud shell.",
+            "smithy.api#required": {}
+          }
+        },
+        "storageProfile": {
+          "target": "com.azure.cloudshell#StorageProfile",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "terminalSettings": {
+          "target": "com.azure.cloudshell#TerminalSettings",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "preferredShellType": {
+          "target": "com.azure.cloudshell#UserPropertiesPreferredShellType",
+          "traits": {
+            "smithy.api#documentation": "The shell type of the cloud shell.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The cloud shell user settings properties."
+      }
+    },
+    "com.azure.cloudshell#UserPropertiesPreferredShellType": {
+      "type": "enum",
+      "members": {
+        "BASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bash"
+          }
+        },
+        "PWSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pwsh"
+          }
+        },
+        "POWERSHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "powershell"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shell type of the cloud shell."
+      }
+    },
+    "com.azure.cloudshell#TerminalSettings": {
+      "type": "structure",
+      "members": {
+        "fontSize": {
+          "target": "com.azure.cloudshell#TerminalSettingsFontSize",
+          "traits": {
+            "smithy.api#documentation": "Size of terminal font."
+          }
+        },
+        "fontStyle": {
+          "target": "com.azure.cloudshell#TerminalSettingsFontStyle",
+          "traits": {
+            "smithy.api#documentation": "Style of terminal font."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for terminal appearance."
+      }
+    },
+    "com.azure.cloudshell#TerminalSettingsFontStyle": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "MONOSPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Monospace"
+          }
+        },
+        "COURIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Courier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Style of terminal font."
+      }
+    },
+    "com.azure.cloudshell#TerminalSettingsFontSize": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Small"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Medium"
+          }
+        },
+        "LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Large"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Size of terminal font."
+      }
+    },
+    "com.azure.cloudshell#StorageProfile": {
+      "type": "structure",
+      "members": {
+        "storageAccountResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full resource ID of storage account."
+          }
+        },
+        "fileShareName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the mounted file share. 63 characters or less, lowercase alphabet, numbers, and -"
+          }
+        },
+        "diskSizeInGB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of file share"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The storage profile of the user settings."
+      }
+    },
+    "com.azure.cloudshell#UserPropertiesPreferredOsType": {
+      "type": "enum",
+      "members": {
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Windows"
+          }
+        },
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Linux"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operating system type of the cloud shell. Deprecated, use preferredShellType."
+      }
+    },
+    "com.azure.cloudshell#PatchUserSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        },
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#PutUserSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#PutUserSettingsRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#PutUserSettingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Portal/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "put user settings.\n\nCreate or update cloud shell settings for current signed in user",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#PutUserSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#PutUserSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        },
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#GetUserSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#GetUserSettingsRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#GetUserSettingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Portal/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Get user settings.\n\nGet current user settings for current signed in user. This operation returns settings for the user's cloud shell preferences including preferred location, storage profile, shell type, font and size settings.",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#GetUserSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#GetUserSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#KeepAliveWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#KeepAliveWithLocationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/consoles/{consoleName}/keepAlive",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Keep alive\n\nKeep console alive",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#KeepAliveWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#DeleteConsoleWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#DeleteConsoleWithLocationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/consoles/{consoleName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Delete console\n\nDeletes the console",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#DeleteConsoleWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#PutConsoleWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#PutConsoleWithLocationRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#PutConsoleWithLocationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/consoles/{consoleName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Put console\n\nPuts a request for a console",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#PutConsoleWithLocationResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#ConsoleProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#PutConsoleWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#GetConsoleWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#GetConsoleWithLocationRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#GetConsoleWithLocationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/consoles/{consoleName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Get console\n\nGets the console for the user.",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#GetConsoleWithLocationResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#ConsoleProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#GetConsoleWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "consoleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#DeleteUserSettingsWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#DeleteUserSettingsWithLocationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "delete user settings.\n\nDelete cloud shell settings for current signed in user",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#DeleteUserSettingsWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#PatchUserSettingsWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#PatchUserSettingsWithLocationRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#PatchUserSettingsWithLocationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "patch user settings.\n\nPatch cloud shell settings for current signed in user",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#PatchUserSettingsWithLocationResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#PatchUserSettingsWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        },
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#PutUserSettingsWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#PutUserSettingsWithLocationRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#PutUserSettingsWithLocationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "put user settings.\n\nCreate or update cloud shell settings for current signed in user",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#PutUserSettingsWithLocationResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#PutUserSettingsWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        },
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#GetUserSettingsWithLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.cloudshell#GetUserSettingsWithLocationRequest"
+      },
+      "output": {
+        "target": "com.azure.cloudshell#GetUserSettingsWithLocationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Portal/locations/{location}/userSettings/{userSettingsName}",
+          "code": 200,
+          "apiVersion": "2018-10-01"
+        },
+        "smithy.api#documentation": "Get user settings.\n\nGet current user settings for current signed in user. This operation returns settings for the user's cloud shell preferences including preferred location, storage profile, shell type, font and size settings.",
+        "com.distilled.openapi#apiVersion": "2018-10-01"
+      }
+    },
+    "com.azure.cloudshell#GetUserSettingsWithLocationResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.cloudshell#UserProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.cloudshell#GetUserSettingsWithLocationRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The provider location"
+          }
+        },
+        "userSettingsName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the user settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.cloudshell#Cloudshell": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.cloudshell#KeepAlive"
+        },
+        {
+          "target": "com.azure.cloudshell#DeleteConsole"
+        },
+        {
+          "target": "com.azure.cloudshell#PutConsole"
+        },
+        {
+          "target": "com.azure.cloudshell#GetConsole"
+        },
+        {
+          "target": "com.azure.cloudshell#DeleteUserSettings"
+        },
+        {
+          "target": "com.azure.cloudshell#PatchUserSettings"
+        },
+        {
+          "target": "com.azure.cloudshell#PutUserSettings"
+        },
+        {
+          "target": "com.azure.cloudshell#GetUserSettings"
+        },
+        {
+          "target": "com.azure.cloudshell#KeepAliveWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#DeleteConsoleWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#PutConsoleWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#GetConsoleWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#DeleteUserSettingsWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#PatchUserSettingsWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#PutUserSettingsWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#GetUserSettingsWithLocation"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Cloudshell",
+        "smithy.api#documentation": "Azure Cloudshell API — merged from the cloudshell resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

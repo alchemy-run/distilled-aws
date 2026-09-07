@@ -1,0 +1,20 @@
+{
+  "description": "Align url_scanner#ScansDom with distilled cloudflare/url-scanner domScan",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansDom",
+      "path": "/shapes/com.cloudflare.url_scanner#DomScan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansDomRequest",
+      "path": "/shapes/com.cloudflare.url_scanner#DomScanRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#DomScan/input/target",
+      "value": "com.cloudflare.url_scanner#DomScanRequest"
+    }
+  ]
+}

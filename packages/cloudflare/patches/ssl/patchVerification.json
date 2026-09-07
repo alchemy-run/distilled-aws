@@ -1,0 +1,30 @@
+{
+  "description": "Align ssl#VerificationEdit with distilled cloudflare/ssl patchVerification",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#VerificationEdit",
+      "path": "/shapes/com.cloudflare.ssl#PatchVerification"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#VerificationEditRequest",
+      "path": "/shapes/com.cloudflare.ssl#PatchVerificationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchVerification/input/target",
+      "value": "com.cloudflare.ssl#PatchVerificationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#VerificationEditResponse",
+      "path": "/shapes/com.cloudflare.ssl#PatchVerificationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchVerification/output/target",
+      "value": "com.cloudflare.ssl#PatchVerificationResponse"
+    }
+  ]
+}

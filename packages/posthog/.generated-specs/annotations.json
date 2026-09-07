@@ -1,0 +1,902 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.annotations#AnnotationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "A search term."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.annotations#PaginatedAnnotationList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.annotations#PaginatedAnnotationListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#Annotation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Annotation text shown on charts to describe the change, release, or incident.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_marker": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this annotation happened (ISO 8601 timestamp). Used to position it on charts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creation_type": {
+          "target": "com.posthog.annotations#CreationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
+          }
+        },
+        "dashboard_item": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight_short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight_derived_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.annotations#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Soft-delete flag. Set to true to hide the annotation, or false to restore it."
+          }
+        },
+        "scope": {
+          "target": "com.posthog.annotations#AnnotationScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected.\n\n* `dashboard_item` - insight\n* `dashboard` - dashboard\n* `project` - project\n* `organization` - organization\n* `recording` - recording"
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional emoji shown in place of the default badge when this annotation is surfaced on a chart.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hidden_in_user_interface": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#CreationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "USR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USR"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GIT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `USR` - user\n* `GIT` - GitHub"
+      }
+    },
+    "com.posthog.annotations#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.annotations#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.annotations#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.annotations#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.annotations#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.annotations#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#AnnotationScopeEnum": {
+      "type": "enum",
+      "members": {
+        "DASHBOARD_ITEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dashboard_item"
+          }
+        },
+        "DASHBOARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dashboard"
+          }
+        },
+        "PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "RECORDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `dashboard_item` - insight\n* `dashboard` - dashboard\n* `project` - project\n* `organization` - organization\n* `recording` - recording"
+      }
+    },
+    "com.posthog.annotations#PaginatedAnnotationListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.annotations#Annotation"
+      },
+      "traits": {}
+    },
+    "com.posthog.annotations#AnnotationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.annotations#AnnotationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.annotations#PaginatedAnnotationList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.annotations#BadRequest"
+        },
+        {
+          "target": "com.posthog.annotations#Forbidden"
+        },
+        {
+          "target": "com.posthog.annotations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/annotations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
+      }
+    },
+    "com.posthog.annotations#AnnotationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Annotation text shown on charts to describe the change, release, or incident.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_marker": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this annotation happened (ISO 8601 timestamp). Used to position it on charts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creation_type": {
+          "target": "com.posthog.annotations#CreationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
+          }
+        },
+        "dashboard_item": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Soft-delete flag. Set to true to hide the annotation, or false to restore it."
+          }
+        },
+        "scope": {
+          "target": "com.posthog.annotations#AnnotationScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected.\n\n* `dashboard_item` - insight\n* `dashboard` - dashboard\n* `project` - project\n* `organization` - organization\n* `recording` - recording"
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional emoji shown in place of the default badge when this annotation is surfaced on a chart.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hidden_in_user_interface": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.annotations#AnnotationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.annotations#AnnotationsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.annotations#Annotation"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.annotations#BadRequest"
+        },
+        {
+          "target": "com.posthog.annotations#Forbidden"
+        },
+        {
+          "target": "com.posthog.annotations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/annotations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
+      }
+    },
+    "com.posthog.annotations#AnnotationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this annotation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.annotations#AnnotationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.annotations#AnnotationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.annotations#Annotation"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.annotations#Forbidden"
+        },
+        {
+          "target": "com.posthog.annotations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/annotations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
+      }
+    },
+    "com.posthog.annotations#AnnotationsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this annotation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Annotation text shown on charts to describe the change, release, or incident.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_marker": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this annotation happened (ISO 8601 timestamp). Used to position it on charts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creation_type": {
+          "target": "com.posthog.annotations#CreationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
+          }
+        },
+        "dashboard_item": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Soft-delete flag. Set to true to hide the annotation, or false to restore it."
+          }
+        },
+        "scope": {
+          "target": "com.posthog.annotations#AnnotationScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected.\n\n* `dashboard_item` - insight\n* `dashboard` - dashboard\n* `project` - project\n* `organization` - organization\n* `recording` - recording"
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional emoji shown in place of the default badge when this annotation is surfaced on a chart.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hidden_in_user_interface": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.annotations#AnnotationsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.annotations#AnnotationsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.annotations#Annotation"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.annotations#BadRequest"
+        },
+        {
+          "target": "com.posthog.annotations#Forbidden"
+        },
+        {
+          "target": "com.posthog.annotations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/annotations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
+      }
+    },
+    "com.posthog.annotations#AnnotationsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this annotation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Annotation text shown on charts to describe the change, release, or incident.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_marker": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this annotation happened (ISO 8601 timestamp). Used to position it on charts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creation_type": {
+          "target": "com.posthog.annotations#CreationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
+          }
+        },
+        "dashboard_item": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Soft-delete flag. Set to true to hide the annotation, or false to restore it."
+          }
+        },
+        "scope": {
+          "target": "com.posthog.annotations#AnnotationScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected.\n\n* `dashboard_item` - insight\n* `dashboard` - dashboard\n* `project` - project\n* `organization` - organization\n* `recording` - recording"
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional emoji shown in place of the default badge when this annotation is surfaced on a chart.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hidden_in_user_interface": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.annotations#AnnotationsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.annotations#AnnotationsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.annotations#Annotation"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.annotations#BadRequest"
+        },
+        {
+          "target": "com.posthog.annotations#Forbidden"
+        },
+        {
+          "target": "com.posthog.annotations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/annotations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
+      }
+    },
+    "com.posthog.annotations#AnnotationsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this annotation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.annotations#AnnotationsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.annotations#AnnotationsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.annotations#Forbidden"
+        },
+        {
+          "target": "com.posthog.annotations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/annotations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.annotations#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.annotations#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.annotations#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.annotations#Annotations": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.annotations#AnnotationsList"
+        },
+        {
+          "target": "com.posthog.annotations#AnnotationsCreate"
+        },
+        {
+          "target": "com.posthog.annotations#AnnotationsRetrieve"
+        },
+        {
+          "target": "com.posthog.annotations#AnnotationsUpdate"
+        },
+        {
+          "target": "com.posthog.annotations#AnnotationsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.annotations#AnnotationsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

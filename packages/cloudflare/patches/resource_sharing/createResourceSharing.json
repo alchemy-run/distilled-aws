@@ -1,0 +1,39 @@
+{
+  "description": "Align resource_sharing#Create with distilled cloudflare/resource-sharing createResourceSharing",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#Create",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceSharing"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#CreateRequest",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceSharingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceSharing/input/target",
+      "value": "com.cloudflare.resource_sharing#CreateResourceSharingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#CreateResponse",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceSharingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceSharing/output/target",
+      "value": "com.cloudflare.resource_sharing#CreateResourceSharingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceSharing/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    }
+  ]
+}

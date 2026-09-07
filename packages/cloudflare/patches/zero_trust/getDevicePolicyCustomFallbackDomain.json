@@ -1,0 +1,50 @@
+{
+  "description": "Align zero_trust#DevicesPoliciesCustomFallbackDomainsGet with distilled cloudflare/zero-trust getDevicePolicyCustomFallbackDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesCustomFallbackDomainsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesCustomFallbackDomainsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomain/input/target",
+      "value": "com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesCustomFallbackDomainsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomain/output/target",
+      "value": "com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomain/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyCustomFallbackDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DevicePolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

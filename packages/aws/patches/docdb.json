@@ -1,0 +1,19 @@
+{
+  "structures": {
+    "CreateDBClusterMessage": {
+      "members": {
+        "MasterUserPassword": { "sensitive": true }
+      }
+    },
+    "ModifyDBClusterMessage": {
+      "members": {
+        "MasterUserPassword": { "sensitive": true }
+      }
+    },
+    "PendingModifiedValues": {
+      "members": {
+        "MasterUserPassword": { "sensitive": true }
+      }
+    }
+  }
+}

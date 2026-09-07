@@ -1,0 +1,45 @@
+{
+  "description": "Align rum#RulesCreate with distilled cloudflare/rum createRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesCreate",
+      "path": "/shapes/com.cloudflare.rum#CreateRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesCreateRequest",
+      "path": "/shapes/com.cloudflare.rum#CreateRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#CreateRule/input/target",
+      "value": "com.cloudflare.rum#CreateRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesCreateResponse",
+      "path": "/shapes/com.cloudflare.rum#CreateRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#CreateRule/output/target",
+      "value": "com.cloudflare.rum#CreateRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#CreateRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rum#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.rum#RulesetNotFound"
+        },
+        {
+          "target": "com.cloudflare.rum#MaxRulesExceeded"
+        }
+      ]
+    }
+  ]
+}

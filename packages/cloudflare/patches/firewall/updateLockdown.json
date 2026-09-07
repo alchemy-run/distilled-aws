@@ -1,0 +1,45 @@
+{
+  "description": "Align firewall#LockdownsUpdate with distilled cloudflare/firewall updateLockdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsUpdate",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsUpdateRequest",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdown/input/target",
+      "value": "com.cloudflare.firewall#UpdateLockdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsUpdateResponse",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdown/output/target",
+      "value": "com.cloudflare.firewall#UpdateLockdownResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdown/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#LockdownNotFound"
+        },
+        {
+          "target": "com.cloudflare.firewall#DuplicateLockdown"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

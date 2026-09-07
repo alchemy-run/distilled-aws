@@ -1,0 +1,1433 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.graphservicesprod#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.graphservicesprod#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.GraphServices/operations",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Returns list of operations.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.graphservicesprod#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.graphservicesprod#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.graphservicesprod#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.graphservicesprod#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.graphservicesprod#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.graphservicesprod#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.graphservicesprod#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.graphservicesprod#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.graphservicesprod#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.graphservicesprod#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.graphservicesprod#AccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts/{resourceName}",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Deletes a account resource.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.graphservicesprod#AccountsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.graphservicesprod#AccountsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts/{resourceName}",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Update account details.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "resource tags."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag from billing account",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer owned application ID",
+            "smithy.api#required": {}
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing Plan Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property bag from billing account"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdByType": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "resource tags."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.graphservicesprod#AccountsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts/{resourceName}",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Create or update account resource.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "resource tags."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag from billing account",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer owned application ID",
+            "smithy.api#required": {}
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing Plan Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property bag from billing account"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdByType": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "resource tags."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdateRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag from billing account",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateRequestProperties": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer owned application ID",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property bag from billing account"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsCreateAndUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "resource tags."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.graphservicesprod#AccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.graphservicesprod#AccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts/{resourceName}",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Returns account resource for a given name.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.graphservicesprod#AccountsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "resource tags."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.graphservicesprod#AccountsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.graphservicesprod#AccountsGetResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag from billing account",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.graphservicesprod#AccountsGetResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer owned application ID",
+            "smithy.api#required": {}
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing Plan Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property bag from billing account"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdByType": {
+          "target": "com.azure.graphservicesprod#AccountsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.graphservicesprod#AccountsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "resource tags."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.graphservicesprod#AccountsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.graphservicesprod#AccountResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.GraphServices/accounts",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Returns list of accounts belonging to a subscription.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        },
+        "value": {
+          "target": "com.azure.graphservicesprod#AccountResourceListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of recommendations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of accounts."
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.graphservicesprod#AccountResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of recommendations."
+      }
+    },
+    "com.azure.graphservicesprod#AccountResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.graphservicesprod#AccountResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "resource tags."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.graphservicesprod#AccountResourceSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.graphservicesprod#AccountResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag from billing account",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account details"
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.graphservicesprod#AccountResourcePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer owned application ID",
+            "smithy.api#required": {}
+          }
+        },
+        "billingPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing Plan Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property bag from billing account"
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourcePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceSystemData": {
+      "type": "structure",
+      "members": {
+        "createdByType": {
+          "target": "com.azure.graphservicesprod#AccountResourceSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.graphservicesprod#AccountResourceSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.graphservicesprod#AccountResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "resource tags."
+      }
+    },
+    "com.azure.graphservicesprod#AccountsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.graphservicesprod#AccountsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.graphservicesprod#AccountsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.graphservicesprod#AccountResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts",
+          "code": 200,
+          "apiVersion": "2023-04-13"
+        },
+        "smithy.api#documentation": "Returns list of accounts apps.",
+        "com.distilled.openapi#apiVersion": "2023-04-13"
+      }
+    },
+    "com.azure.graphservicesprod#AccountsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.graphservicesprod#Graphservicesprod": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.graphservicesprod#OperationsList"
+        },
+        {
+          "target": "com.azure.graphservicesprod#AccountsDelete"
+        },
+        {
+          "target": "com.azure.graphservicesprod#AccountsUpdate"
+        },
+        {
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdate"
+        },
+        {
+          "target": "com.azure.graphservicesprod#AccountsGet"
+        },
+        {
+          "target": "com.azure.graphservicesprod#AccountsListBySubscription"
+        },
+        {
+          "target": "com.azure.graphservicesprod#AccountsListByResourceGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Graphservicesprod",
+        "smithy.api#documentation": "Azure Graphservicesprod API — merged from the graphservicesprod resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

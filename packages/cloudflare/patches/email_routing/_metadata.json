@@ -1,0 +1,18 @@
+{
+  "description": "Key dictionary / op aliases for email_routing (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "documentationUrl": "documentation_url",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "skipWizard": "skip_wizard",
+        "supportSubaddress": "support_subaddress",
+        "totalCount": "total_count",
+        "totalPages": "total_pages"
+      }
+    }
+  ]
+}

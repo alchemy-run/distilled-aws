@@ -1,0 +1,4159 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.hybridconnectivity#SolutionTypesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionTypesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionTypesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/solutionTypes/{solutionType}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Get a SolutionTypeResource",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeProperties": {
+      "type": "structure",
+      "members": {
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the solution type."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of solution type."
+          }
+        },
+        "supportedAzureRegions": {
+          "target": "com.azure.hybridconnectivity#SolutionTypePropertiesSupportedAzureRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The locations this solution is supported in."
+          }
+        },
+        "solutionSettings": {
+          "target": "com.azure.hybridconnectivity#SolutionTypePropertiesSolutionSettingsList",
+          "traits": {
+            "smithy.api#documentation": "Array of solution settings and its description."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of Solution type resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypePropertiesSolutionSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#SolutionTypeSettingsProperties"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of solution settings and its description."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeSettingsProperties": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the solution setting property.",
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UI friendly name of the solution setting property.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the solution setting property, represented as a string.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of solution setting property.",
+            "smithy.api#required": {}
+          }
+        },
+        "allowedValues": {
+          "target": "com.azure.hybridconnectivity#SolutionTypeSettingsPropertiesAllowedValuesList",
+          "traits": {
+            "smithy.api#documentation": "Array of allowed values for this solution settings property.",
+            "smithy.api#required": {}
+          }
+        },
+        "defaultValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default value for this solution settings property.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent Solution settings properties description array."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeSettingsPropertiesAllowedValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of allowed values for this solution settings property."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypePropertiesSupportedAzureRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The locations this solution is supported in."
+      }
+    },
+    "com.azure.hybridconnectivity#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.hybridconnectivity#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.hybridconnectivity#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Solution Type resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionTypesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionTypeResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/solutionTypes",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List SolutionTypeResource resources by resource group",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#SolutionTypeResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SolutionTypeResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SolutionTypeResource list operation."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#SolutionTypeResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SolutionTypeResource items on this page"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissionsRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}/testPermissions",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "A long-running resource action.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissionsResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.hybridconnectivity#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.hybridconnectivity#ErrorDetailDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.hybridconnectivity#ErrorDetailAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.hybridconnectivity#ErrorDetailAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.hybridconnectivity#ErrorAdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.hybridconnectivity#ErrorDetailDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissionsResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.hybridconnectivity#OperationStatusResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.hybridconnectivity#OperationStatusResultOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.hybridconnectivity#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current status of an async operation."
+      }
+    },
+    "com.azure.hybridconnectivity#OperationStatusResultOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "publicCloudConnector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent public cloud connectors resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Delete a PublicCloudConnector",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "publicCloudConnector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent public cloud connectors resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Update a PublicCloudConnector",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorProperties": {
+      "type": "structure",
+      "members": {
+        "awsCloudProfile": {
+          "target": "com.azure.hybridconnectivity#AwsCloudProfile",
+          "traits": {
+            "smithy.api#documentation": "Cloud profile for AWS.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostType": {
+          "target": "com.azure.hybridconnectivity#HostType",
+          "traits": {
+            "smithy.api#documentation": "Host cloud the public cloud connector.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hybridconnectivity#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state."
+          }
+        },
+        "connectorPrimaryIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connector primary identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of public cloud connectors."
+      }
+    },
+    "com.azure.hybridconnectivity#AzureResourceManagerResourceProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of a resource type."
+      }
+    },
+    "com.azure.hybridconnectivity#HostType": {
+      "type": "enum",
+      "members": {
+        "AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AWS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of host cloud the public cloud connector is referencing."
+      }
+    },
+    "com.azure.hybridconnectivity#AwsCloudProfile": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account id for the AWS account.",
+            "smithy.api#required": {}
+          }
+        },
+        "excludedAccounts": {
+          "target": "com.azure.hybridconnectivity#AwsCloudProfileExcludedAccountsList",
+          "traits": {
+            "smithy.api#documentation": "List of AWS accounts which need to be excluded."
+          }
+        },
+        "isOrganizationalAccount": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean value that indicates whether the account is organizational or not. True represents organization account, whereas false represents a single account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "cloud profile for AWS."
+      }
+    },
+    "com.azure.hybridconnectivity#AwsCloudProfileExcludedAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of AWS accounts which need to be excluded."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "publicCloudConnector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent public cloud connectors resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorPropertiesUpdate",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorPropertiesUpdate": {
+      "type": "structure",
+      "members": {
+        "awsCloudProfile": {
+          "target": "com.azure.hybridconnectivity#AwsCloudProfileUpdate",
+          "traits": {
+            "smithy.api#documentation": "Cloud profile for AWS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of public cloud connectors."
+      }
+    },
+    "com.azure.hybridconnectivity#AwsCloudProfileUpdate": {
+      "type": "structure",
+      "members": {
+        "excludedAccounts": {
+          "target": "com.azure.hybridconnectivity#AwsCloudProfileUpdateExcludedAccountsList",
+          "traits": {
+            "smithy.api#documentation": "List of AWS accounts which need to be excluded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "cloud profile for AWS."
+      }
+    },
+    "com.azure.hybridconnectivity#AwsCloudProfileUpdateExcludedAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of AWS accounts which need to be excluded."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Create a PublicCloudConnector",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "publicCloudConnector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent public cloud connectors resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "awsCloudProfile": {
+          "target": "com.azure.hybridconnectivity#AwsCloudProfile",
+          "traits": {
+            "smithy.api#documentation": "Cloud profile for AWS.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostType": {
+          "target": "com.azure.hybridconnectivity#HostType",
+          "traits": {
+            "smithy.api#documentation": "Host cloud the public cloud connector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of public cloud connectors."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Get a PublicCloudConnector",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "publicCloudConnector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent public cloud connectors resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List PublicCloudConnector resources by resource group",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The PublicCloudConnector items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a PublicCloudConnector list operation."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnector"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PublicCloudConnector items on this page"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public Cloud Connector"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionTypesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionTypeResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/solutionTypes",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List SolutionTypeResource resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#PublicCloudConnectorListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/publicCloudConnectors",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List PublicCloudConnector resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#PublicCloudConnectorsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#GenerateAwsTemplatePost": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#GenerateAwsTemplatePostRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#GenerateAwsTemplatePostResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/generateAwsTemplate",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Retrieve AWS Cloud Formation template",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#GenerateAwsTemplatePostResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#GenerateAwsTemplatePostRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "connectorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of public cloud connector",
+            "smithy.api#required": {}
+          }
+        },
+        "solutionTypes": {
+          "target": "com.azure.hybridconnectivity#GenerateAwsTemplatePostRequestSolutionTypesList",
+          "traits": {
+            "smithy.api#documentation": "The list of solution types and their settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#GenerateAwsTemplatePostRequestSolutionTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#SolutionTypeSettings"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of solution types and their settings"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionTypeSettings": {
+      "type": "structure",
+      "members": {
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the solution",
+            "smithy.api#required": {}
+          }
+        },
+        "solutionSettings": {
+          "target": "com.azure.hybridconnectivity#SolutionSettings",
+          "traits": {
+            "smithy.api#documentation": "Solution settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of Solution Type"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionSettings": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution settings"
+      }
+    },
+    "com.azure.hybridconnectivity#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.HybridConnectivity/operations",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.hybridconnectivity#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.hybridconnectivity#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.hybridconnectivity#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.hybridconnectivity#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.hybridconnectivity#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.hybridconnectivity#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.hybridconnectivity#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsSyncNow": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsSyncNowRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsSyncNowResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/syncNow",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Trigger immediate sync with source cloud",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsSyncNowResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsSyncNowResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.hybridconnectivity#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsSyncNowResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsSyncNowRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#InventoryGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#InventoryGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/inventory/{inventoryId}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Get a InventoryResource",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#InventoryProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryProperties": {
+      "type": "structure",
+      "members": {
+        "cloudNativeType": {
+          "target": "com.azure.hybridconnectivity#CloudNativeType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the cloud native resource type."
+          }
+        },
+        "cloudNativeResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the cloud native resource name."
+          }
+        },
+        "azureResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the mapped azure resource id."
+          }
+        },
+        "status": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationStatus",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the status of the inventory."
+          }
+        },
+        "statusDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the status details."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hybridconnectivity#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of inventory."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationStatus": {
+      "type": "enum",
+      "members": {
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "New"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution Configuration Status."
+      }
+    },
+    "com.azure.hybridconnectivity#CloudNativeType": {
+      "type": "enum",
+      "members": {
+        "EC2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ec2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud Native Type enum."
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        },
+        "inventoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Inventory resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryListBySolutionConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#InventoryListBySolutionConfigurationRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#InventoryResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/inventory",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List InventoryResource resources by SolutionConfiguration",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#InventoryResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The InventoryResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a InventoryResource list operation."
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#InventoryResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The InventoryResource items on this page"
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#InventoryProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.hybridconnectivity#InventoryListBySolutionConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Delete a SolutionConfiguration",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Update a SolutionConfiguration",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.hybridconnectivity#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state."
+          }
+        },
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the solution",
+            "smithy.api#required": {}
+          }
+        },
+        "solutionSettings": {
+          "target": "com.azure.hybridconnectivity#SolutionSettings",
+          "traits": {
+            "smithy.api#documentation": "Solution settings"
+          }
+        },
+        "status": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of solution configurations"
+          }
+        },
+        "statusDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed message of status details"
+          }
+        },
+        "lastSyncTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time resources were inventoried"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution configuration resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationPropertiesUpdate",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationPropertiesUpdate": {
+      "type": "structure",
+      "members": {
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the solution"
+          }
+        },
+        "solutionSettings": {
+          "target": "com.azure.hybridconnectivity#SolutionSettings",
+          "traits": {
+            "smithy.api#documentation": "Solution settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution configuration resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Create a SolutionConfiguration",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the solution",
+            "smithy.api#required": {}
+          }
+        },
+        "solutionSettings": {
+          "target": "com.azure.hybridconnectivity#SolutionSettings",
+          "traits": {
+            "smithy.api#documentation": "Solution settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution configuration resource."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Get a SolutionConfiguration",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "solutionConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Represent Solution Configuration Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationsListRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#SolutionConfigurationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List SolutionConfiguration resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SolutionConfiguration items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SolutionConfiguration list operation."
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#SolutionConfiguration"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SolutionConfiguration items on this page"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfiguration": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution Configuration"
+      }
+    },
+    "com.azure.hybridconnectivity#SolutionConfigurationsListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Deletes the service details to the target resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "serviceConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The service name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Update the service details in the service configurations of the target resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The service configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationProperties": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "com.azure.hybridconnectivity#ServiceName",
+          "traits": {
+            "smithy.api#documentation": "Name of the service.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the connectivity endpoint (optional)."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port on which service is enabled."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hybridconnectivity#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service configuration details"
+      }
+    },
+    "com.azure.hybridconnectivity#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource provisioning state."
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceName": {
+      "type": "enum",
+      "members": {
+        "SSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSH"
+          }
+        },
+        "WAC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the service."
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "serviceConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The service name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationPropertiesPatch",
+          "traits": {
+            "smithy.api#documentation": "The service configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationPropertiesPatch": {
+      "type": "structure",
+      "members": {
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port on which service is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service configuration details"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsCreateOrupdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsCreateOrupdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsCreateOrupdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Create or update a service in serviceConfiguration for the endpoint resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsCreateOrupdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The service configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsCreateOrupdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "serviceConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The service name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The service configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "com.azure.hybridconnectivity#ServiceName",
+          "traits": {
+            "smithy.api#documentation": "Name of the service.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the connectivity endpoint (optional)."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port on which service is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service configuration details"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Gets the details about the service to the resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The service configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "serviceConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The service name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsListByEndpointResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationsListByEndpointResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Lists of all the services associated with endpoint resource.\n\nAPI to enumerate registered services in service configurations under a Endpoint Resource",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of service configuration",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to fetch the next page of connected cluster"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The paginated list of serviceConfigurations"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#ServiceConfigurationResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of service configuration"
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The service configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The service configuration details associated with the target resource."
+      }
+    },
+    "com.azure.hybridconnectivity#ServiceConfigurationsListByEndpointResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListManagedProxyDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsListManagedProxyDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#ManagedProxyResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listManagedProxyDetails",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Fetches the managed proxy details",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#ManagedProxyResource": {
+      "type": "structure",
+      "members": {
+        "proxy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short lived proxy name.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiresOn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The expiration time of short lived proxy name in unix epoch.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed Proxy"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListManagedProxyDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the service.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target host name."
+          }
+        },
+        "serviceName": {
+          "target": "com.azure.hybridconnectivity#ServiceName",
+          "traits": {
+            "smithy.api#documentation": "The name of the service. It is an optional property, if not provided, service configuration tokens issue code would be by passed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListIngressGatewayCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsListIngressGatewayCredentialsRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#IngressGatewayResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listIngressGatewayCredentials",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Gets the ingress gateway endpoint credentials",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#IngressGatewayResource": {
+      "type": "structure",
+      "members": {
+        "relay": {
+          "target": "com.azure.hybridconnectivity#RelayNamespaceAccessProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure relay hybrid connection access properties"
+          }
+        },
+        "ingress": {
+          "target": "com.azure.hybridconnectivity#IngressProfileProperties",
+          "traits": {
+            "smithy.api#documentation": "Ingress gateway profile"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ingress gateway access credentials"
+      }
+    },
+    "com.azure.hybridconnectivity#IngressProfileProperties": {
+      "type": "structure",
+      "members": {
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ingress hostname.",
+            "smithy.api#required": {}
+          }
+        },
+        "aadProfile": {
+          "target": "com.azure.hybridconnectivity#AADProfileProperties",
+          "traits": {
+            "smithy.api#documentation": "The AAD Profile",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingress gateway profile"
+      }
+    },
+    "com.azure.hybridconnectivity#AADProfileProperties": {
+      "type": "structure",
+      "members": {
+        "serverId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The arc ingress gateway server app id.",
+            "smithy.api#required": {}
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target resource home tenant id.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AAD Profile"
+      }
+    },
+    "com.azure.hybridconnectivity#RelayNamespaceAccessProperties": {
+      "type": "structure",
+      "members": {
+        "namespaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace name.",
+            "smithy.api#required": {}
+          }
+        },
+        "namespaceNameSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The suffix domain name of relay namespace.",
+            "smithy.api#required": {}
+          }
+        },
+        "hybridConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Relay hybrid connection name for the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "accessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access key for hybrid connection."
+          }
+        },
+        "expiresOn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The expiration of access key in unix time."
+          }
+        },
+        "serviceConfigurationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to access the enabled service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure relay hybrid connection access properties"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListIngressGatewayCredentialsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "expiresin": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "expiresin",
+            "smithy.api#documentation": "The is how long the endpoint access token is valid (in seconds)."
+          }
+        },
+        "serviceName": {
+          "target": "com.azure.hybridconnectivity#ServiceName",
+          "traits": {
+            "smithy.api#documentation": "The name of the service. If not provided, the request will by pass the generation of service configuration token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsListCredentialsRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#EndpointAccessResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listCredentials",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Gets the endpoint access credentials to the resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointAccessResource": {
+      "type": "structure",
+      "members": {
+        "relay": {
+          "target": "com.azure.hybridconnectivity#RelayNamespaceAccessProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure relay hybrid connection access properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The endpoint access for the target resource."
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListCredentialsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "expiresin": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "expiresin",
+            "smithy.api#documentation": "The is how long the endpoint access token is valid (in seconds)."
+          }
+        },
+        "serviceName": {
+          "target": "com.azure.hybridconnectivity#ServiceName",
+          "traits": {
+            "smithy.api#documentation": "The name of the service. If not provided, the request will by pass the generation of service configuration token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Deletes the endpoint access to the target resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#EndpointsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Update the endpoint to the target resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#EndpointProperties",
+          "traits": {
+            "smithy.api#documentation": "The endpoint properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointProperties": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.hybridconnectivity#Type",
+          "traits": {
+            "smithy.api#documentation": "The type of endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the connectivity endpoint (optional)."
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Endpoint details"
+      }
+    },
+    "com.azure.hybridconnectivity#Type": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of endpoint."
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#EndpointPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The endpoint properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.hybridconnectivity#Type",
+          "traits": {
+            "smithy.api#documentation": "The type of endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the connectivity endpoint (optional)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Endpoint details"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#EndpointsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Create or update the endpoint to the target resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#EndpointProperties",
+          "traits": {
+            "smithy.api#documentation": "The endpoint properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#EndpointPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The endpoint properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#EndpointsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "Gets the endpoint to the resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#EndpointProperties",
+          "traits": {
+            "smithy.api#documentation": "The endpoint properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "endpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The endpoint name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsList2": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridconnectivity#EndpointsListRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridconnectivity#EndpointsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints",
+          "code": 200,
+          "apiVersion": "2024-12-01"
+        },
+        "smithy.api#documentation": "List of endpoints to the target resource.",
+        "com.distilled.openapi#apiVersion": "2024-12-01"
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridconnectivity#EndpointsListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of endpoints list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of endpoints."
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridconnectivity#EndpointResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of endpoint."
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridconnectivity#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridconnectivity#EndpointProperties",
+          "traits": {
+            "smithy.api#documentation": "The endpoint properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The endpoint for the target resource."
+      }
+    },
+    "com.azure.hybridconnectivity#EndpointsListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridconnectivity#Hybridconnectivity": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.hybridconnectivity#SolutionTypesGet"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionTypesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsTestPermissions"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsDelete"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsGet"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionTypesListBySubscription"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsListBySubscription"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#GenerateAwsTemplatePost"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#OperationsList"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsSyncNow"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#InventoryGet"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#InventoryListBySolutionConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsDelete"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsGet"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsList"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationsDelete"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationsUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationsCreateOrupdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationsGet"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ServiceConfigurationsListByEndpointResource"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsListManagedProxyDetails"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsListIngressGatewayCredentials"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsListCredentials"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsDelete"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsGet"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#EndpointsList2"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Hybridconnectivity",
+        "smithy.api#documentation": "Azure Hybridconnectivity API — merged from the hybridconnectivity resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

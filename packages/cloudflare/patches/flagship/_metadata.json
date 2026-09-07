@@ -1,0 +1,19 @@
+{
+  "description": "Key dictionary / op aliases for flagship (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdAt": "created_at",
+        "defaultVariation": "default_variation",
+        "flagKey": "flag_key",
+        "logicalOperator": "logical_operator",
+        "resultInfo": "result_info",
+        "serveVariation": "serve_variation",
+        "updatedAt": "updated_at",
+        "updatedBy": "updated_by"
+      }
+    }
+  ]
+}

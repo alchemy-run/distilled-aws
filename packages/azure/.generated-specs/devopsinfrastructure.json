@@ -1,0 +1,2689 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.devopsinfrastructure#PoolsDeleteResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsDeleteResourcesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}/resources",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "A synchronous resource action.",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsDeleteResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the pool. It needs to be globally unique."
+          }
+        },
+        "resourceIds": {
+          "target": "com.azure.devopsinfrastructure#PoolsDeleteResourcesRequestResourceIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of resource IDs to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsDeleteResourcesRequestResourceIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of resource IDs to delete."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceDetailsListByPool": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#ResourceDetailsListByPoolRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#ResourceDetailsObjectListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}/resources",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List ResourceDetailsObject resources by Pool",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceDetailsObjectListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devopsinfrastructure#ResourceDetailsObjectListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ResourceDetailsObject items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ResourceDetailsObject list operation."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceDetailsObjectListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceDetailsObject"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ResourceDetailsObject items on this page"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceDetailsObject": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#ResourceDetailsObjectProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ResourceDetailsObject"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceDetailsObjectProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.devopsinfrastructure#ResourceStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image name of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "imageVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the image running on the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the ResourceDetailsObject."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceStatus": {
+      "type": "enum",
+      "members": {
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Ready"
+          }
+        },
+        "NOTREADY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotReady"
+          }
+        },
+        "ALLOCATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Allocated"
+          }
+        },
+        "PENDINGRETURN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingReturn"
+          }
+        },
+        "RETURNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Returned"
+          }
+        },
+        "LEASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Leased"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Starting"
+          }
+        },
+        "PENDINGREIMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingReimage"
+          }
+        },
+        "REIMAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reimaging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the machine resource."
+      }
+    },
+    "com.azure.devopsinfrastructure#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.devopsinfrastructure#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.devopsinfrastructure#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.devopsinfrastructure#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.devopsinfrastructure#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceDetailsListByPoolRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the pool. It needs to be globally unique."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "Delete a Pool",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the pool. It needs to be globally unique."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#PoolsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "Update a Pool",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#PoolProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateResponseIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.devopsinfrastructure#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.devopsinfrastructure#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.devopsinfrastructure#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.devopsinfrastructure#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the current operation."
+          }
+        },
+        "maximumConcurrency": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Defines how many resources can there be created at any given time.",
+            "smithy.api#required": {}
+          }
+        },
+        "organizationProfile": {
+          "target": "com.azure.devopsinfrastructure#OrganizationProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines the organization in which the pool will be used.",
+            "smithy.api#required": {}
+          }
+        },
+        "agentProfile": {
+          "target": "com.azure.devopsinfrastructure#AgentProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines how the machine will be handled once it executed a job.",
+            "smithy.api#required": {}
+          }
+        },
+        "fabricProfile": {
+          "target": "com.azure.devopsinfrastructure#FabricProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines the type of fabric the agent will run on.",
+            "smithy.api#required": {}
+          }
+        },
+        "devCenterProjectResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource id of the DevCenter Project the pool belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "runtimeConfiguration": {
+          "target": "com.azure.devopsinfrastructure#RuntimeConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The runtime configuration of the pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pool properties"
+      }
+    },
+    "com.azure.devopsinfrastructure#RuntimeConfiguration": {
+      "type": "structure",
+      "members": {
+        "workFolder": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target work folder of the task agent on the machine."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The runtime configuration of the pool."
+      }
+    },
+    "com.azure.devopsinfrastructure#FabricProfile": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discriminator property for FabricProfile.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the type of fabric the agent will run on."
+      }
+    },
+    "com.azure.devopsinfrastructure#AgentProfile": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discriminator property for AgentProfile.",
+            "smithy.api#required": {}
+          }
+        },
+        "resourcePredictions": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Defines pool buffer/stand-by agents."
+          }
+        },
+        "resourcePredictionsProfile": {
+          "target": "com.azure.devopsinfrastructure#ResourcePredictionsProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines how the pool buffer/stand-by agents is provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The agent profile of the machines in the pool."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourcePredictionsProfile": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.azure.devopsinfrastructure#ResourcePredictionsProfileType",
+          "traits": {
+            "smithy.api#documentation": "Determines how the stand-by scheme should be provided.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Determines how the stand-by scheme should be provided."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourcePredictionsProfileType": {
+      "type": "enum",
+      "members": {
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Manual"
+          }
+        },
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Automatic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Determines how the stand-by scheme should be provided."
+      }
+    },
+    "com.azure.devopsinfrastructure#OrganizationProfile": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discriminator property for OrganizationProfile.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the organization in which the pool will be used."
+      }
+    },
+    "com.azure.devopsinfrastructure#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current operation."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the pool. It needs to be globally unique."
+          }
+        },
+        "identity": {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "tags": {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#PoolUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.devopsinfrastructure#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the current operation."
+          }
+        },
+        "maximumConcurrency": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Defines how many resources can there be created at any given time."
+          }
+        },
+        "organizationProfile": {
+          "target": "com.azure.devopsinfrastructure#OrganizationProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines the organization in which the pool will be used."
+          }
+        },
+        "agentProfile": {
+          "target": "com.azure.devopsinfrastructure#AgentProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines how the machine will be handled once it executed a job."
+          }
+        },
+        "fabricProfile": {
+          "target": "com.azure.devopsinfrastructure#FabricProfile",
+          "traits": {
+            "smithy.api#documentation": "Defines the type of fabric the agent will run on."
+          }
+        },
+        "devCenterProjectResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource id of the DevCenter Project the pool belongs to."
+          }
+        },
+        "runtimeConfiguration": {
+          "target": "com.azure.devopsinfrastructure#RuntimeConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The runtime configuration of the pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the Pool."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsUpdateRequestIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.devopsinfrastructure#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.devopsinfrastructure#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "Create a Pool",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#PoolProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.devopsinfrastructure#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the pool. It needs to be globally unique."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#PoolProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.devopsinfrastructure#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#PoolsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "Get a Pool",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devopsinfrastructure#PoolsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#PoolProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.devopsinfrastructure#PoolsGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.devopsinfrastructure#PoolsGetResponseIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsGetResponseIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.devopsinfrastructure#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "poolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the pool. It needs to be globally unique."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#PoolListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List Pool resources by resource group",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devopsinfrastructure#PoolListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Pool items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Pool list operation."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#Pool"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Pool items on this page"
+      }
+    },
+    "com.azure.devopsinfrastructure#Pool": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devopsinfrastructure#PoolTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#PoolProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.devopsinfrastructure#PoolIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete tracked resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.devopsinfrastructure#PoolIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.devopsinfrastructure#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#ImageVersionsListByImage": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#ImageVersionsListByImageRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#ImageVersionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/images/{imageName}/versions",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List ImageVersion resources by Image",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#ImageVersionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devopsinfrastructure#ImageVersionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ImageVersion items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ImageVersion list operation."
+      }
+    },
+    "com.azure.devopsinfrastructure#ImageVersionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ImageVersion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ImageVersion items on this page"
+      }
+    },
+    "com.azure.devopsinfrastructure#ImageVersion": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#ImageVersionProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An image version object"
+      }
+    },
+    "com.azure.devopsinfrastructure#ImageVersionProperties": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the image.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the ImageVersionProperties."
+      }
+    },
+    "com.azure.devopsinfrastructure#ImageVersionsListByImageRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#PoolListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/pools",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List Pool resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#SubscriptionUsagesUsages": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#SubscriptionUsagesUsagesRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#PagedQuota"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/locations/{location}/usages",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List Quota resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#PagedQuota": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devopsinfrastructure#PagedQuotaValueList",
+          "traits": {
+            "smithy.api#documentation": "The Quota items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of Quota items"
+      }
+    },
+    "com.azure.devopsinfrastructure#PagedQuotaValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#Quota"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Quota items on this page"
+      }
+    },
+    "com.azure.devopsinfrastructure#Quota": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.devopsinfrastructure#QuotaName",
+          "traits": {
+            "smithy.api#documentation": "The name of the quota."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ARM resource id",
+            "smithy.api#required": {}
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of usage measurement.",
+            "smithy.api#required": {}
+          }
+        },
+        "currentValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current usage of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum permitted usage of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes Resource Quota"
+      }
+    },
+    "com.azure.devopsinfrastructure#QuotaName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized name of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Quota Names"
+      }
+    },
+    "com.azure.devopsinfrastructure#SubscriptionUsagesUsagesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#SkuListByLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#SkuListByLocationRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#ResourceSkuListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/locations/{locationName}/skus",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List ResourceSku resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ResourceSku items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ResourceSku list operation."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceSku"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ResourceSku items on this page"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSku": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.devopsinfrastructure#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ResourceSku"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuProperties": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource the SKU applies to.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tier of virtual machines in a scale set",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The size of the SKU.",
+            "smithy.api#required": {}
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The family of the SKU.",
+            "smithy.api#required": {}
+          }
+        },
+        "locations": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuPropertiesLocationsList",
+          "traits": {
+            "smithy.api#documentation": "The set of locations that the SKU is available.",
+            "smithy.api#required": {}
+          }
+        },
+        "locationInfo": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuPropertiesLocationInfoList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations and availability zones in those locations where the SKU is available",
+            "smithy.api#required": {}
+          }
+        },
+        "capabilities": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuPropertiesCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "Name value pairs to describe the capability.",
+            "smithy.api#required": {}
+          }
+        },
+        "restrictions": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuPropertiesRestrictionsList",
+          "traits": {
+            "smithy.api#documentation": "The restrictions of the SKU.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a ResourceSku"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuPropertiesRestrictionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictions"
+      },
+      "traits": {
+        "smithy.api#documentation": "The restrictions of the SKU."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictions": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictionsType",
+          "traits": {
+            "smithy.api#documentation": "the type of restrictions."
+          }
+        },
+        "values": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictionsValuesList",
+          "traits": {
+            "smithy.api#documentation": "The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.",
+            "smithy.api#required": {}
+          }
+        },
+        "restrictionInfo": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictionInfo",
+          "traits": {
+            "smithy.api#documentation": "The information about the restriction where the SKU cannot be used.",
+            "smithy.api#required": {}
+          }
+        },
+        "reasonCode": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictionsReasonCode",
+          "traits": {
+            "smithy.api#documentation": "the reason for restriction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The restrictions of the SKU."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictionsReasonCode": {
+      "type": "enum",
+      "members": {
+        "QUOTAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QuotaId"
+          }
+        },
+        "NOTAVAILABLEFORSUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotAvailableForSubscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the reason for SKU restriction."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictionInfo": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictionInfoLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Locations where the SKU is restricted"
+          }
+        },
+        "zones": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuRestrictionInfoZonesList",
+          "traits": {
+            "smithy.api#documentation": "List of availability zones where the SKU is restricted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes an available Compute SKU Restriction Information."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictionInfoZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of availability zones where the SKU is restricted."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictionInfoLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Locations where the SKU is restricted"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictionsValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuRestrictionsType": {
+      "type": "enum",
+      "members": {
+        "LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Location"
+          }
+        },
+        "ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zone"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the kind of SKU restrictions that can exist"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuPropertiesCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceSkuCapabilities"
+      },
+      "traits": {
+        "smithy.api#documentation": "Name value pairs to describe the capability."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuCapabilities": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU capability.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the SKU capability.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes The SKU capabilities object."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuPropertiesLocationInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceSkuLocationInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of locations and availability zones in those locations where the SKU is available"
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuLocationInfo": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuLocationInfoZonesList",
+          "traits": {
+            "smithy.api#documentation": "List of availability zones where the SKU is supported.",
+            "smithy.api#required": {}
+          }
+        },
+        "zoneDetails": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuLocationInfoZoneDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Gets details of capabilities available to a SKU in specific zones.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes an available Compute SKU Location Information."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuLocationInfoZoneDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceSkuZoneDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets details of capabilities available to a SKU in specific zones."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuZoneDetails": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuZoneDetailsNameList",
+          "traits": {
+            "smithy.api#documentation": "Gets the set of zones that the SKU is available in with the specified capabilities.",
+            "smithy.api#required": {}
+          }
+        },
+        "capabilities": {
+          "target": "com.azure.devopsinfrastructure#ResourceSkuZoneDetailsCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "A list of capabilities that are available for the SKU in the specified list of zones.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes The zonal capabilities of a SKU."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuZoneDetailsCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#ResourceSkuCapabilities"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of capabilities that are available for the SKU in the specified list of zones."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuZoneDetailsNameList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets the set of zones that the SKU is available in with the specified capabilities."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuLocationInfoZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of availability zones where the SKU is supported."
+      }
+    },
+    "com.azure.devopsinfrastructure#ResourceSkuPropertiesLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of locations that the SKU is available."
+      }
+    },
+    "com.azure.devopsinfrastructure#SkuListByLocationRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "locationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devopsinfrastructure#PoolsCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#CheckNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "Checks that the pool name is valid and is not already in use.",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#CheckNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "available": {
+          "target": "com.azure.devopsinfrastructure#AvailabilityStatus",
+          "traits": {
+            "smithy.api#documentation": "Availability status of the name.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message explaining why the name is unavailable. Will be null if the name is available.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name whose availability was checked.",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "com.azure.devopsinfrastructure#CheckNameAvailabilityReason",
+          "traits": {
+            "smithy.api#documentation": "The reason code explaining why the name is unavailable. Will be null if the name is available.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The CheckNameAvailability operation response."
+      }
+    },
+    "com.azure.devopsinfrastructure#CheckNameAvailabilityReason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason code explaining why the name is unavailable. Will be null if the name is available."
+      }
+    },
+    "com.azure.devopsinfrastructure#AvailabilityStatus": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Available"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unavailable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AvailabilityStatus of a name."
+      }
+    },
+    "com.azure.devopsinfrastructure#PoolsCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.azure.devopsinfrastructure#DevOpsInfrastructureResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource that is used as the scope of the availability check.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#DevOpsInfrastructureResourceType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_DEVOPSINFRASTRUCTURE_POOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.DevOpsInfrastructure/pools"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource."
+      }
+    },
+    "com.azure.devopsinfrastructure#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.devopsinfrastructure#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DevOpsInfrastructure/operations",
+          "code": 200,
+          "apiVersion": "2025-09-20"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-09-20"
+      }
+    },
+    "com.azure.devopsinfrastructure#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devopsinfrastructure#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devopsinfrastructure#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devopsinfrastructure#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.devopsinfrastructure#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.devopsinfrastructure#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.devopsinfrastructure#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.devopsinfrastructure#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.devopsinfrastructure#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.devopsinfrastructure#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.devopsinfrastructure#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.devopsinfrastructure#Devopsinfrastructure": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsDeleteResources"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#ResourceDetailsListByPool"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsDelete"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsUpdate"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsGet"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#ImageVersionsListByImage"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsListBySubscription"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#SubscriptionUsagesUsages"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#SkuListByLocation"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#PoolsCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Devopsinfrastructure",
+        "smithy.api#documentation": "Azure Devopsinfrastructure API — merged from the devopsinfrastructure resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Align user#AuditLogsList with distilled cloudflare/user listAuditLogs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#AuditLogsList",
+      "path": "/shapes/com.cloudflare.user#ListAuditLogs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#AuditLogsListRequest",
+      "path": "/shapes/com.cloudflare.user#ListAuditLogsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListAuditLogs/input/target",
+      "value": "com.cloudflare.user#ListAuditLogsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#AuditLogsListResponse",
+      "path": "/shapes/com.cloudflare.user#ListAuditLogsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListAuditLogs/output/target",
+      "value": "com.cloudflare.user#ListAuditLogsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#ListAuditLogs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

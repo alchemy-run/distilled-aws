@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#GatewayRulesListTenant with distilled cloudflare/zero-trust listTenantGatewayRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesListTenant",
+      "path": "/shapes/com.cloudflare.zero_trust#ListTenantGatewayRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesListTenantRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListTenantGatewayRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListTenantGatewayRule/input/target",
+      "value": "com.cloudflare.zero_trust#ListTenantGatewayRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesListTenantResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListTenantGatewayRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListTenantGatewayRule/output/target",
+      "value": "com.cloudflare.zero_trust#ListTenantGatewayRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListTenantGatewayRule/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

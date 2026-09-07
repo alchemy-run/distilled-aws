@@ -1,0 +1,460 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.argo#SmartRoutingEditRequestValue": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the zone associated with the API call.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.argo#SmartRoutingEditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Specifies the enablement value of Argo Smart Routing.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingEditResponseValue": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identifier of the Argo Smart Routing setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies if the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.argo#SmartRoutingEditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Specifies the enablement value of Argo Smart Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the time when the setting was last modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.argo#SmartRoutingEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.argo#SmartRoutingEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/argo/smart_routing",
+          "code": 200
+        },
+        "smithy.api#documentation": "Configures the value of the Argo Smart Routing enablement setting."
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the zone associated with the API call.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingGetResponseValue": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identifier of the Argo Smart Routing setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies if the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.argo#SmartRoutingGetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Specifies the enablement value of Argo Smart Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the time when the setting was last modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.argo#SmartRoutingGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.argo#SmartRoutingGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.argo#SmartRoutingGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/argo/smart_routing",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the value of Argo Smart Routing enablement setting.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.argo#TieredCachingEditRequestValue": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#TieredCachingEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.argo#TieredCachingEditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Enables Tiered Caching.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.argo#TieredCachingEditResponseId": {
+      "type": "enum",
+      "members": {
+        "TIERED_CACHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tiered_caching"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#TieredCachingEditResponseValue": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#TieredCachingEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.argo#TieredCachingEditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.argo#TieredCachingEditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.argo#TieredCachingEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.argo#TieredCachingEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.argo#TieredCachingEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/argo/tiered_caching",
+          "code": 200
+        },
+        "smithy.api#documentation": "Tiered Cache works by dividing Cloudflare's data centers into a hierarchy of lower-tiers and upper-tiers. If content is not cached in lower-tier data centers (generally the ones closest to a visitor), the lower-tier must ask an upper-tier to see if it has the content. If the upper-tier does not have the content, only the upper-tier can ask the origin for content. This practice improves bandwidth efficiency by limiting the number of data centers that can ask the origin for content, which reduces origin load and makes websites more cost-effective to operate. Additionally, Tiered Cache concentrates connections to origin servers so they come from a small number of data centers rather than the full set of network locations. This results in fewer open connections using server resources."
+      }
+    },
+    "com.cloudflare.argo#TieredCachingGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.argo#TieredCachingGetResponseId": {
+      "type": "enum",
+      "members": {
+        "TIERED_CACHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tiered_caching"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#TieredCachingGetResponseValue": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        }
+      }
+    },
+    "com.cloudflare.argo#TieredCachingGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.argo#TieredCachingGetResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.argo#TieredCachingGetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.argo#TieredCachingGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.argo#TieredCachingGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.argo#TieredCachingGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/argo/tiered_caching",
+          "code": 200
+        },
+        "smithy.api#documentation": "Tiered Cache works by dividing Cloudflare's data centers into a hierarchy of lower-tiers and upper-tiers. If content is not cached in lower-tier data centers (generally the ones closest to a visitor), the lower-tier must ask an upper-tier to see if it has the content. If the upper-tier does not have the content, only the upper-tier can ask the origin for content. This practice improves bandwidth efficiency by limiting the number of data centers that can ask the origin for content, which reduces origin load and makes websites more cost-effective to operate. Additionally, Tiered Cache concentrates connections to origin servers so they come from a small number of data centers rather than the full set of network locations. This results in fewer open connections using server resources.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.argo#Argo": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.argo#SmartRoutingEdit"
+        },
+        {
+          "target": "com.cloudflare.argo#SmartRoutingGet"
+        },
+        {
+          "target": "com.cloudflare.argo#TieredCachingEdit"
+        },
+        {
+          "target": "com.cloudflare.argo#TieredCachingGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Argo",
+        "smithy.api#documentation": "Cloudflare API — argo resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

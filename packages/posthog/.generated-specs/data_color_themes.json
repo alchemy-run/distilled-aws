@@ -1,0 +1,599 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.data_color_themes#DataColorThemesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_color_themes#PaginatedDataColorThemeList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.data_color_themes#PaginatedDataColorThemeListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#DataColorTheme": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "colors": {
+          "target": "smithy.api#Document"
+        },
+        "is_global": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.data_color_themes#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.data_color_themes#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.data_color_themes#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.data_color_themes#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.data_color_themes#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.data_color_themes#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#PaginatedDataColorThemeListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.data_color_themes#DataColorTheme"
+      },
+      "traits": {}
+    },
+    "com.posthog.data_color_themes#DataColorThemesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_color_themes#DataColorThemesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_color_themes#PaginatedDataColorThemeList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.data_color_themes#BadRequest"
+        },
+        {
+          "target": "com.posthog.data_color_themes#Forbidden"
+        },
+        {
+          "target": "com.posthog.data_color_themes#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_color_themes/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "colors": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_color_themes#DataColorThemesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_color_themes#DataColorTheme"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.data_color_themes#BadRequest"
+        },
+        {
+          "target": "com.posthog.data_color_themes#Forbidden"
+        },
+        {
+          "target": "com.posthog.data_color_themes#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/data_color_themes/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this data color theme."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_color_themes#DataColorThemesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_color_themes#DataColorTheme"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.data_color_themes#Forbidden"
+        },
+        {
+          "target": "com.posthog.data_color_themes#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_color_themes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this data color theme."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "colors": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_color_themes#DataColorThemesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_color_themes#DataColorTheme"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.data_color_themes#BadRequest"
+        },
+        {
+          "target": "com.posthog.data_color_themes#Forbidden"
+        },
+        {
+          "target": "com.posthog.data_color_themes#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/data_color_themes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this data color theme."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "colors": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_color_themes#DataColorThemesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_color_themes#DataColorTheme"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.data_color_themes#BadRequest"
+        },
+        {
+          "target": "com.posthog.data_color_themes#Forbidden"
+        },
+        {
+          "target": "com.posthog.data_color_themes#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/data_color_themes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this data color theme."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_color_themes#DataColorThemesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.data_color_themes#Forbidden"
+        },
+        {
+          "target": "com.posthog.data_color_themes#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/data_color_themes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.data_color_themes#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.data_color_themes#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.data_color_themes#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.data_color_themes#DataColorThemes": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesList"
+        },
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesCreate"
+        },
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesRetrieve"
+        },
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesUpdate"
+        },
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

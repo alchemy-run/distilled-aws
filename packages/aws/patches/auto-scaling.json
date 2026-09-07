@@ -1,0 +1,58 @@
+{
+  "operations": {
+    "describeScheduledActions": {
+      "syntheticErrors": [
+        {
+          "name": "AutoScalingGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "not found" }
+        }
+      ]
+    },
+    "putScheduledUpdateGroupAction": {
+      "syntheticErrors": [
+        {
+          "name": "AutoScalingGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "not found" }
+        }
+      ]
+    },
+    "deleteScheduledAction": {
+      "syntheticErrors": [
+        {
+          "name": "AutoScalingGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "not found" }
+        }
+      ]
+    },
+    "describeLifecycleHooks": {
+      "syntheticErrors": [
+        {
+          "name": "AutoScalingGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "not found" }
+        }
+      ]
+    },
+    "putLifecycleHook": {
+      "syntheticErrors": [
+        {
+          "name": "AutoScalingGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "not found" }
+        }
+      ]
+    },
+    "deleteLifecycleHook": {
+      "syntheticErrors": [
+        {
+          "name": "AutoScalingGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "not found" }
+        }
+      ]
+    }
+  }
+}

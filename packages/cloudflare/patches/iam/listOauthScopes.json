@@ -1,0 +1,28 @@
+{
+  "description": "Align iam#OauthScopesList with distilled cloudflare/iam listOauthScopes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthScopesList",
+      "path": "/shapes/com.cloudflare.iam#ListOauthScopes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthScopesListResponse",
+      "path": "/shapes/com.cloudflare.iam#ListOauthScopesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListOauthScopes/output/target",
+      "value": "com.cloudflare.iam#ListOauthScopesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListOauthScopes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

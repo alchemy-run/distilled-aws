@@ -1,0 +1,1481 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.communitytraining#CommunityTrainingsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.communitytraining#CommunityTrainingsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Community/communityTrainings/{communityTrainingName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Delete a CommunityTraining",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "communityTrainingName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Community Training Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.communitytraining#CommunityTrainingsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.communitytraining#CommunityTrainingsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Community/communityTrainings/{communityTrainingName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Update a CommunityTraining",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.communitytraining#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.communitytraining#CommunityTrainingsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.communitytraining#CommunityTrainingProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.communitytraining#CommunityTrainingsUpdateResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdateResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.communitytraining#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.communitytraining#SkuTier": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingProperties": {
+      "type": "structure",
+      "members": {
+        "portalName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The portal name (website name) of the Community Training instance",
+            "smithy.api#required": {}
+          }
+        },
+        "portalAdminEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the portal admin",
+            "smithy.api#required": {}
+          }
+        },
+        "portalOwnerOrganizationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization name of the portal owner",
+            "smithy.api#required": {}
+          }
+        },
+        "portalOwnerEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the portal owner. Will be used as the primary contact",
+            "smithy.api#required": {}
+          }
+        },
+        "identityConfiguration": {
+          "target": "com.azure.communitytraining#IdentityConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The identity configuration of the Community Training resource",
+            "smithy.api#required": {}
+          }
+        },
+        "zoneRedundancyEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To indicate whether the Community Training instance has Zone Redundancy enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "disasterRecoveryEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To indicate whether the Community Training instance has Disaster Recovery enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.communitytraining#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the Community CommunityTraining."
+      }
+    },
+    "com.azure.communitytraining#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current operation."
+      }
+    },
+    "com.azure.communitytraining#IdentityConfigurationProperties": {
+      "type": "structure",
+      "members": {
+        "identityType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity type of the Community Training Resource",
+            "smithy.api#required": {}
+          }
+        },
+        "teamsEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To indicate whether the Community Training Resource has Teams enabled"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenantId of the selected identity provider for the Community Training Resource",
+            "smithy.api#required": {}
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the selected identity provider for the Community Training Resource",
+            "smithy.api#required": {}
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The clientId of the application registered in the selected identity provider for the Community Training Resource",
+            "smithy.api#required": {}
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client secret of the application registered in the selected identity provider for the Community Training Resource",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "b2cAuthenticationPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the authentication policy registered in ADB2C for the Community Training Resource"
+          }
+        },
+        "b2cPasswordResetPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the password reset policy registered in ADB2C for the Community Training Resource",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "customLoginParameters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom login parameters for the Community Training Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the Community CommunityTraining Identity Configuration"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.communitytraining#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.communitytraining#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.communitytraining#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.communitytraining#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.communitytraining#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "communityTrainingName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Community Training Resource"
+          }
+        },
+        "sku": {
+          "target": "com.azure.communitytraining#CommunityTrainingsUpdateRequestSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        },
+        "tags": {
+          "target": "com.azure.communitytraining#CommunityTrainingsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.communitytraining#CommunityTrainingUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "identityConfiguration": {
+          "target": "com.azure.communitytraining#IdentityConfigurationPropertiesUpdate",
+          "traits": {
+            "smithy.api#documentation": "The identity configuration of the Community Training resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the CommunityTraining."
+      }
+    },
+    "com.azure.communitytraining#IdentityConfigurationPropertiesUpdate": {
+      "type": "structure",
+      "members": {
+        "identityType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity type of the Community Training Resource"
+          }
+        },
+        "teamsEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To indicate whether the Community Training Resource has Teams enabled"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenantId of the selected identity provider for the Community Training Resource"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the selected identity provider for the Community Training Resource"
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The clientId of the application registered in the selected identity provider for the Community Training Resource"
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client secret of the application registered in the selected identity provider for the Community Training Resource",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "b2cAuthenticationPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the authentication policy registered in ADB2C for the Community Training Resource"
+          }
+        },
+        "b2cPasswordResetPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the password reset policy registered in ADB2C for the Community Training Resource",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "customLoginParameters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom login parameters for the Community Training Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the Community CommunityTraining Identity Configuration"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsUpdateRequestSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.communitytraining#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.communitytraining#CommunityTrainingsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.communitytraining#CommunityTrainingsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Community/communityTrainings/{communityTrainingName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Create a CommunityTraining",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.communitytraining#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.communitytraining#CommunityTrainingsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.communitytraining#CommunityTrainingProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.communitytraining#CommunityTrainingsCreateResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreateResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.communitytraining#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "communityTrainingName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Community Training Resource"
+          }
+        },
+        "tags": {
+          "target": "com.azure.communitytraining#CommunityTrainingsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.communitytraining#CommunityTrainingProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.communitytraining#CommunityTrainingsCreateRequestSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreateRequestSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.communitytraining#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.communitytraining#CommunityTrainingsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.communitytraining#CommunityTrainingsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Community/communityTrainings/{communityTrainingName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Get a CommunityTraining",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.communitytraining#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.communitytraining#CommunityTrainingsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.communitytraining#CommunityTrainingProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.communitytraining#CommunityTrainingsGetResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsGetResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.communitytraining#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "communityTrainingName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Community Training Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.communitytraining#CommunityTrainingsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.communitytraining#CommunityTrainingListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Community/communityTrainings",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List CommunityTraining resources by resource group",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.communitytraining#CommunityTrainingListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CommunityTraining items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CommunityTraining list operation."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.communitytraining#CommunityTraining"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CommunityTraining items on this page"
+      }
+    },
+    "com.azure.communitytraining#CommunityTraining": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.communitytraining#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.communitytraining#CommunityTrainingTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.communitytraining#CommunityTrainingProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.communitytraining#CommunityTrainingSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A CommunityProviderHub resource"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.communitytraining#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.communitytraining#CommunityTrainingsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.communitytraining#CommunityTrainingListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Community/communityTrainings",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List CommunityTraining resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#CommunityTrainingsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.communitytraining#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.communitytraining#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Community/operations",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.communitytraining#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.communitytraining#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.communitytraining#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.communitytraining#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.communitytraining#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.communitytraining#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.communitytraining#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.communitytraining#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.communitytraining#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.communitytraining#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.communitytraining#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.communitytraining#Communitytraining": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.communitytraining#CommunityTrainingsDelete"
+        },
+        {
+          "target": "com.azure.communitytraining#CommunityTrainingsUpdate"
+        },
+        {
+          "target": "com.azure.communitytraining#CommunityTrainingsCreate"
+        },
+        {
+          "target": "com.azure.communitytraining#CommunityTrainingsGet"
+        },
+        {
+          "target": "com.azure.communitytraining#CommunityTrainingsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.communitytraining#CommunityTrainingsListBySubscription"
+        },
+        {
+          "target": "com.azure.communitytraining#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Communitytraining",
+        "smithy.api#documentation": "Azure Communitytraining API — merged from the communitytraining resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

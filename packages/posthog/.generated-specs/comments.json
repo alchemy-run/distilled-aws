@@ -1,0 +1,1044 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.comments#CommentsListRequestCompleted": {
+      "type": "enum",
+      "members": {
+        "ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "any"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentsListRequestKind": {
+      "type": "enum",
+      "members": {
+        "ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "any"
+          }
+        },
+        "COMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment"
+          }
+        },
+        "TASK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "task"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "completed": {
+          "target": "com.posthog.comments#CommentsListRequestCompleted",
+          "traits": {
+            "smithy.api#httpQuery": "completed",
+            "smithy.api#documentation": "When kind=task, restrict to open (incomplete) or completed tasks. Ignored when kind is not 'task'. Defaults to 'any' (no filter).\n\n* `any` - any\n* `open` - open\n* `completed` - completed"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "The pagination cursor value."
+          }
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "item_id",
+            "smithy.api#documentation": "Filter by the ID of the resource being commented on."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.comments#CommentsListRequestKind",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "Filter by comment kind. 'task' returns only items intentionally created as actionable. 'comment' excludes tasks. Defaults to 'any' (no filter).\n\n* `any` - any\n* `comment` - comment\n* `task` - task"
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scope",
+            "smithy.api#documentation": "Filter by resource type (e.g. Dashboard, FeatureFlag, Insight, Replay)."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Full-text search within comment content."
+          }
+        },
+        "source_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_comment",
+            "smithy.api#documentation": "Filter replies to a specific parent comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#PaginatedCommentListOutput": {
+      "type": "structure",
+      "members": {
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.comments#PaginatedCommentListOutputResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.comments#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_task": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this comment is an actionable task that can be marked complete. Tasks render with a checkbox in the UI and can be filtered as a separate kind. Cannot be set on replies (source_comment) or emoji reactions. Immutable after creation."
+          }
+        },
+        "completed_by": {
+          "target": "com.posthog.comments#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "The user who marked this task complete. Null for open tasks and non-task comments.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rich_content": {
+          "target": "smithy.api#Document"
+        },
+        "version": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "item_context": {
+          "target": "smithy.api#Document"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO timestamp when the task was marked complete. Only meaningful when is_task is true. Read-only — toggled via the /complete and /reopen actions, not via PATCH.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.comments#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.comments#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.comments#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.comments#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.comments#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#PaginatedCommentListOutputResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#PaginatedCommentListOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#BadRequest"
+        },
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/comments/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#CommentsCreateRequestMentionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mentions": {
+          "target": "com.posthog.comments#CommentsCreateRequestMentionsList"
+        },
+        "slug": {
+          "target": "smithy.api#String"
+        },
+        "is_task": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this comment is an actionable task that can be marked complete. Tasks render with a checkbox in the UI and can be filtered as a separate kind. Cannot be set on replies (source_comment) or emoji reactions. Immutable after creation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rich_content": {
+          "target": "smithy.api#Document"
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "item_context": {
+          "target": "smithy.api#Document"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "source_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#BadRequest"
+        },
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/comments/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#CommentsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/comments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#CommentsUpdateRequestMentionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mentions": {
+          "target": "com.posthog.comments#CommentsUpdateRequestMentionsList"
+        },
+        "slug": {
+          "target": "smithy.api#String"
+        },
+        "is_task": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this comment is an actionable task that can be marked complete. Tasks render with a checkbox in the UI and can be filtered as a separate kind. Cannot be set on replies (source_comment) or emoji reactions. Immutable after creation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rich_content": {
+          "target": "smithy.api#Document"
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "item_context": {
+          "target": "smithy.api#Document"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "source_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#BadRequest"
+        },
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/comments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#CommentsPartialUpdateRequestMentionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.comments#CommentsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mentions": {
+          "target": "com.posthog.comments#CommentsPartialUpdateRequestMentionsList"
+        },
+        "slug": {
+          "target": "smithy.api#String"
+        },
+        "is_task": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this comment is an actionable task that can be marked complete. Tasks render with a checkbox in the UI and can be filtered as a separate kind. Cannot be set on replies (source_comment) or emoji reactions. Immutable after creation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rich_content": {
+          "target": "smithy.api#Document"
+        },
+        "item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "item_context": {
+          "target": "smithy.api#Document"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "source_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#BadRequest"
+        },
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/comments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#CommentsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/comments/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.comments#CommentsCompleteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsCompleteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsCompleteCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/comments/{id}/complete/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mark a task-comment as complete. Sets completed_at and completed_by. 400 if the comment is not a task or is already complete."
+      }
+    },
+    "com.posthog.comments#CommentsReopenCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsReopenCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsReopenCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.comments#CommentOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/comments/{id}/reopen/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reopen a completed task-comment. Clears completed_at and completed_by. 400 if the comment is not a task or is already open."
+      }
+    },
+    "com.posthog.comments#CommentsThreadRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsThreadRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsThreadRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/comments/{id}/thread/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#CommentsCountRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.comments#CommentsCountRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.comments#CommentsCountRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.comments#Forbidden"
+        },
+        {
+          "target": "com.posthog.comments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/comments/count/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.comments#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.comments#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.comments#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.comments#Comments": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.comments#CommentsList"
+        },
+        {
+          "target": "com.posthog.comments#CommentsCreate"
+        },
+        {
+          "target": "com.posthog.comments#CommentsRetrieve"
+        },
+        {
+          "target": "com.posthog.comments#CommentsUpdate"
+        },
+        {
+          "target": "com.posthog.comments#CommentsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.comments#CommentsDestroy"
+        },
+        {
+          "target": "com.posthog.comments#CommentsCompleteCreate"
+        },
+        {
+          "target": "com.posthog.comments#CommentsReopenCreate"
+        },
+        {
+          "target": "com.posthog.comments#CommentsThreadRetrieve"
+        },
+        {
+          "target": "com.posthog.comments#CommentsCountRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

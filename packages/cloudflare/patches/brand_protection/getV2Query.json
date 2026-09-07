@@ -1,0 +1,30 @@
+{
+  "description": "Align brand_protection#V2QueriesGet with distilled cloudflare/brand-protection getV2Query",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#V2QueriesGet",
+      "path": "/shapes/com.cloudflare.brand_protection#GetV2Query"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#V2QueriesGetRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#GetV2QueryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#GetV2Query/input/target",
+      "value": "com.cloudflare.brand_protection#GetV2QueryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#V2QueriesGetResponse",
+      "path": "/shapes/com.cloudflare.brand_protection#GetV2QueryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#GetV2Query/output/target",
+      "value": "com.cloudflare.brand_protection#GetV2QueryResponse"
+    }
+  ]
+}

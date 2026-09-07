@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpLocationsOsGet with distilled cloudflare/radar getHttpLocationOs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsOsGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationOs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsOsGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationOsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationOs/input/target",
+      "value": "com.cloudflare.radar#GetHttpLocationOsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsOsGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationOsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationOs/output/target",
+      "value": "com.cloudflare.radar#GetHttpLocationOsResponse"
+    }
+  ]
+}

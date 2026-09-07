@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#AsnGet with distilled cloudflare/intel getAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AsnGet",
+      "path": "/shapes/com.cloudflare.intel#GetAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AsnGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetAsn/input/target",
+      "value": "com.cloudflare.intel#GetAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AsnGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetAsn/output/target",
+      "value": "com.cloudflare.intel#GetAsnResponse"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDelete with distilled cloudflare/ddos-protection deleteAdvancedTcpProtectionSynProtectionFilterItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDelete",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionFilterItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDeleteRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionFilterItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionFilterItem/input/target",
+      "value": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionFilterItemRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionSynProtectionFilterItem/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ddos_protection#SynProtectionFilterNotFound"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#Forbidden"
+        }
+      ]
+    }
+  ]
+}

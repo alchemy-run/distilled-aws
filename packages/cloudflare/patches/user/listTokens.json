@@ -1,0 +1,41 @@
+{
+  "description": "Align user#TokensList with distilled cloudflare/user listTokens",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensList",
+      "path": "/shapes/com.cloudflare.user#ListTokens"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensListRequest",
+      "path": "/shapes/com.cloudflare.user#ListTokensRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListTokens/input/target",
+      "value": "com.cloudflare.user#ListTokensRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensListResponse",
+      "path": "/shapes/com.cloudflare.user#ListTokensResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListTokens/output/target",
+      "value": "com.cloudflare.user#ListTokensResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#ListTokens/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

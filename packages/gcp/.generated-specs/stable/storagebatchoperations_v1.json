@@ -1,0 +1,2224 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "storagebatchoperations",
+    "version": "v1",
+    "title": "Storage Batch Operations API",
+    "baseUrl": "https://storagebatchoperations.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.storagebatchoperations_v1#BucketOperation": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the BucketOperation was created."
+          }
+        },
+        "rewriteObject": {
+          "target": "com.gcp.storagebatchoperations_v1#RewriteObject",
+          "traits": {
+            "smithy.api#documentation": "Rewrite the object and updates metadata like KMS key."
+          }
+        },
+        "state": {
+          "target": "com.gcp.storagebatchoperations_v1#BucketOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the BucketOperation."
+          }
+        },
+        "errorSummaries": {
+          "target": "com.gcp.storagebatchoperations_v1#ErrorSummaryList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Summarizes errors encountered with sample error log entries."
+          }
+        },
+        "updateObjectCustomContext": {
+          "target": "com.gcp.storagebatchoperations_v1#UpdateObjectCustomContext",
+          "traits": {
+            "smithy.api#documentation": "Update object custom context."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the BucketOperation. This is defined by the service. Format: `projects/{project_id}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation}`."
+          }
+        },
+        "projectSource": {
+          "target": "com.gcp.storagebatchoperations_v1#ProjectSource",
+          "traits": {
+            "smithy.api#documentation": "Specifies objects matching the object filters in a project source."
+          }
+        },
+        "setObjectAcls": {
+          "target": "com.gcp.storagebatchoperations_v1#SetObjectAcls",
+          "traits": {
+            "smithy.api#documentation": "Updates object ACLs."
+          }
+        },
+        "prefixList": {
+          "target": "com.gcp.storagebatchoperations_v1#PrefixList",
+          "traits": {
+            "smithy.api#documentation": "Specifies objects matching a prefix set."
+          }
+        },
+        "putMetadata": {
+          "target": "com.gcp.storagebatchoperations_v1#PutMetadata",
+          "traits": {
+            "smithy.api#documentation": "Updates object metadata. Allows updating fixed-key and custom metadata and fixed-key metadata i.e. Cache-Control, Content-Disposition, Content-Encoding, Content-Language, Content-Type, Custom-Time."
+          }
+        },
+        "manifest": {
+          "target": "com.gcp.storagebatchoperations_v1#Manifest",
+          "traits": {
+            "smithy.api#documentation": "Specifies objects in a manifest file."
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bucket name of the objects to be transformed in the BucketOperation."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the BucketOperation was started."
+          }
+        },
+        "counters": {
+          "target": "com.gcp.storagebatchoperations_v1#Counters",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information about the progress of the bucket operation."
+          }
+        },
+        "putObjectHold": {
+          "target": "com.gcp.storagebatchoperations_v1#PutObjectHold",
+          "traits": {
+            "smithy.api#documentation": "Changes object hold status."
+          }
+        },
+        "completeTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the BucketOperation was completed."
+          }
+        },
+        "deleteObject": {
+          "target": "com.gcp.storagebatchoperations_v1#DeleteObject",
+          "traits": {
+            "smithy.api#documentation": "Delete objects."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "BucketOperation represents a bucket-level breakdown of a Job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#BucketOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ErrorSummaryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#ErrorSummary"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ObjectRetention": {
+      "type": "structure",
+      "members": {
+        "retainUntilTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The object's retention expiration time, during which, the object is protected from being deleted or overwritten. The time must be specified in RFC 3339 format, for example `YYYY-MM-DD'T'HH:MM:SS'Z'` or `YYYY-MM-DD'T'HH:MM:SS.SS'Z'`. To clear an object's retention, both `retentionMode` and `retainUntilTime` must be left unset (omitted). Setting `retentionMode` to `RETENTION_MODE_UNSPECIFIED` is treated as a no-op. Unlike an unset field, it doesn't modify or clear the retention settings."
+          }
+        },
+        "retentionMode": {
+          "target": "com.gcp.storagebatchoperations_v1#ObjectRetentionRetentionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The retention mode."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options for object retention update."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ObjectRetentionRetentionModeEnum": {
+      "type": "enum",
+      "members": {
+        "RETENTION_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETENTION_MODE_UNSPECIFIED"
+          }
+        },
+        "LOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCKED"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCKED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#RewriteObject": {
+      "type": "structure",
+      "members": {
+        "storageClass": {
+          "target": "com.gcp.storagebatchoperations_v1#RewriteObjectStorageClassEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Rewrites the object to the specified storage class. Setting this field will perform a full byte copy of the object if the storage class is different from the object's current storage class. If Autoclass is enabled on the bucket, storage class changes are ignored by Cloud Storage."
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resource name of the Cloud KMS key that is used to encrypt the object. The Cloud KMS key must be located in same location as the object. For details, see https://cloud.google.com/storage/docs/encryption/using-customer-managed-keys#add-object-key Format: `projects/{project_id}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}` For example: `projects/123456/locations/us-central1/keyRings/my-keyring/cryptoKeys/my-key`. The object will be rewritten and set with the specified KMS key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options for object rewrite."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#RewriteObjectStorageClassEnum": {
+      "type": "enum",
+      "members": {
+        "STORAGE_CLASS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_UNSPECIFIED"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD"
+          }
+        },
+        "NEARLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEARLINE"
+          }
+        },
+        "COLDLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLDLINE"
+          }
+        },
+        "ARCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ObjectCustomContextPayload": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the object custom context. If set, `value` can't be an empty string because it is a required field in custom context. If unset, `value` is ignored and no changes are made to the `value` field of the custom context payload."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the payload of a user-defined object custom context."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.storagebatchoperations_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#Operation"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Status": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.storagebatchoperations_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#DocumentMap"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#TargetLocations": {
+      "type": "structure",
+      "members": {
+        "snapshotTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. OPTIONAL. The exact Storage Insights snapshot timestamp to use for the job compatible with the RFC 3339 format (e.g., `2024-01-02T03:04:05Z`). If specified, this exact snapshot must exist in BOTH the `object_attributes_view` and `bucket_attributes_view` for every location listed in `locations`. If the snapshot is missing from either view in any of the locations, the job fails."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. REQUIRED. A list of Cloud Storage locations (e.g., `us-central1`) to include in the job. If `snapshot_time` is omitted, the job automatically defaults to the most recent snapshot timestamp that is successfully populated in BOTH the `object_attributes_view` and `bucket_attributes_view` across ALL specified locations. For details on Storage Insights dataset snapshots and views, see: https://docs.cloud.google.com/storage/docs/insights/dataset-tables-and-schemas#schema"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the Cloud Storage locations to include in a ProjectSource job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CustomContextUpdates": {
+      "type": "structure",
+      "members": {
+        "updates": {
+          "target": "com.gcp.storagebatchoperations_v1#ObjectCustomContextPayloadMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Insert or update the existing custom contexts."
+          }
+        },
+        "keysToClear": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Custom contexts to clear by key. A key can't be present in both `updates` and `keys_to_clear`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a collection of updates to apply to custom contexts identified by key."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ObjectCustomContextPayloadMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.storagebatchoperations_v1#ObjectCustomContextPayload"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ProjectSource": {
+      "type": "structure",
+      "members": {
+        "objectFilters": {
+          "target": "com.gcp.storagebatchoperations_v1#Expr",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters expressed in Common Expression Language (CEL) to apply to objects to identify objects to be transformed."
+          }
+        },
+        "insightsDatasetConfig": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource identifier of the Storage Insights dataset configuration. Storage batch operations uses the latest snapshot from this dataset as the source to list and filter target objects. Format: `projects/{project_id}/locations/{location}/datasetConfigs/{dataset_config}`."
+          }
+        },
+        "targetLocations": {
+          "target": "com.gcp.storagebatchoperations_v1#TargetLocations",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the Cloud Storage locations to include in the job. If provided, only buckets and objects within these locations will be discovered from the Storage Insights dataset as configured in the `insights_dataset_config`. If omitted, the job will discover buckets and objects from all locations configured in the `insights_dataset_config`."
+          }
+        },
+        "bucketFilters": {
+          "target": "com.gcp.storagebatchoperations_v1#Expr",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters expressed in Common Expression Language (CEL) to apply to buckets to identify buckets with objects to be transformed."
+          }
+        },
+        "snapshotTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The snapshot time used by the job to read the Storage Insights dataset for bucket and object discovery. This field is populated by the service and reflects the exact timestamp of the dataset snapshot used."
+          }
+        },
+        "dryRunJobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of a dry run job to use as the baseline for the current job. Specifying this ID ensures the job is executed against the same set of objects validated during the dry run. The value corresponds to the {job_id} segment of the resource name: `projects/{project_id}/locations/{location}/jobs/{job_id}`."
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Project name of the objects to be transformed. e.g. projects/my-project or projects/123456."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the project source where the objects satisfying the filters will be transformed."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#SetObjectAcls": {
+      "type": "structure",
+      "members": {
+        "accessControlsUpdates": {
+          "target": "com.gcp.storagebatchoperations_v1#AccessControlsUpdates",
+          "traits": {
+            "smithy.api#documentation": "Required. Add, update, or remove grants from the object's existing ACLs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options for setting object ACLs."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelJobRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID in case you need to retry your request. Requests with same `request_id` are ignored for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID isn't supported (00000000-0000-0000-0000-000000000000)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for Job to Cancel"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DeleteObject": {
+      "type": "structure",
+      "members": {
+        "permanentObjectDeletionEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Controls deletion behavior when versioning is enabled for the object's bucket. If true, both live and noncurrent objects will be permanently deleted. Otherwise live objects in versioned buckets will become noncurrent and objects that were already noncurrent will be skipped. This setting doesn't have any impact on the Soft Delete feature. All objects deleted by this service can be be restored for the duration of the Soft Delete retention duration if enabled. If enabled and the manifest doesn't specify an object's generation, a `GetObjectMetadata` call is made to determine the live object generation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options to delete an object."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListBucketOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "bucketOperations": {
+          "target": "com.gcp.storagebatchoperations_v1#BucketOperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of storage batch bucket operations."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing BucketOperations"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#BucketOperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#BucketOperation"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#PutMetadata": {
+      "type": "structure",
+      "members": {
+        "customMetadata": {
+          "target": "com.gcp.storagebatchoperations_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates the object's custom metadata. This operation adds or sets individual custom metadata key-value pairs. Keys specified with empty values have their values cleared. Existing custom metadata keys not included in the request remain unchanged. For details, see [Custom metadata](https://cloud.google.com/storage/docs/metadata#custom-metadata)."
+          }
+        },
+        "contentLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates the objects `Content-Language` fixed metadata. Metadata values must use ISO 639-1 language codes. The maximum length for metadata values is 100 characters. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Language](https://cloud.google.com/storage/docs/metadata#content-language)."
+          }
+        },
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates objects `Content-Type` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Type](https://cloud.google.com/storage/docs/metadata#content-type)."
+          }
+        },
+        "contentDisposition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates objects `Content-Disposition` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Disposition](https://cloud.google.com/storage/docs/metadata#content-disposition)."
+          }
+        },
+        "objectRetention": {
+          "target": "com.gcp.storagebatchoperations_v1#ObjectRetention",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates an object's retention configuration. To clear an object's retention, both `retentionMode` and `retainUntilTime` must be left unset (omitted). Setting `retentionMode` to `RETENTION_MODE_UNSPECIFIED` is treated as a no-op. Unlike an unset field, it doesn't modify or clear the retention settings. An object with `LOCKED` retention mode can't have its retention cleared or its `retainUntilTime` reduced. For more information, see [Object retention](https://cloud.google.com/storage/docs/batch-operations/create-manage-batch-operation-jobs#retain-until-time)."
+          }
+        },
+        "contentEncoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates the objects `Content-Encoding` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Encoding](https://cloud.google.com/storage/docs/metadata#content-encoding)."
+          }
+        },
+        "customTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates the objects `Custom-Time` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. The time must be specified in RFC 3339 format, for example `YYYY-MM-DD'T'HH:MM:SS'Z'` or `YYYY-MM-DD'T'HH:MM:SS.SS'Z'`. For details, see [Custom-Time](https://cloud.google.com/storage/docs/metadata#custom-time)."
+          }
+        },
+        "cacheControl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Updates the objects `Cache-Control` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. Additionally, the value for `Custom-Time` can't decrease. For details, see [Cache-Control](https://cloud.google.com/storage/docs/metadata#caching_data)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options for object metadata update."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ErrorLogEntry": {
+      "type": "structure",
+      "members": {
+        "objectUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Output only. Object URL. e.g. gs://my_bucket/object.txt"
+          }
+        },
+        "errorDetails": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. At most 5 error log entries are recorded for a given error code for a job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An entry describing an error that has occurred."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#LoggingConfig": {
+      "type": "structure",
+      "members": {
+        "logActions": {
+          "target": "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the actions to be logged."
+          }
+        },
+        "logActionStates": {
+          "target": "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionStatesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. States in which Action are logged.If empty, no logs are generated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the Cloud Logging behavior."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionsItemEnum": {
+      "type": "enum",
+      "members": {
+        "LOGGABLE_ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGGABLE_ACTION_UNSPECIFIED"
+          }
+        },
+        "TRANSFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFORM"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionsItemEnum"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionStatesItemEnum": {
+      "type": "enum",
+      "members": {
+        "LOGGABLE_ACTION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGGABLE_ACTION_STATE_UNSPECIFIED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionStatesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#LoggingConfigLogActionStatesItemEnum"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Bucket": {
+      "type": "structure",
+      "members": {
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Bucket name for the objects to be transformed."
+          }
+        },
+        "manifest": {
+          "target": "com.gcp.storagebatchoperations_v1#Manifest",
+          "traits": {
+            "smithy.api#documentation": "Specifies objects in a manifest file."
+          }
+        },
+        "prefixList": {
+          "target": "com.gcp.storagebatchoperations_v1#PrefixList",
+          "traits": {
+            "smithy.api#documentation": "Specifies objects matching a prefix set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes configuration of a single bucket and its objects to be transformed."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#UpdateObjectCustomContext": {
+      "type": "structure",
+      "members": {
+        "customContextUpdates": {
+          "target": "com.gcp.storagebatchoperations_v1#CustomContextUpdates",
+          "traits": {
+            "smithy.api#documentation": "A collection of updates to apply to specific custom contexts. Use this to add, update or delete individual contexts by key."
+          }
+        },
+        "clearAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set, must be set to true and all existing object custom contexts are deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options to update object custom contexts."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#AccessControlsUpdates": {
+      "type": "structure",
+      "members": {
+        "grants": {
+          "target": "com.gcp.storagebatchoperations_v1#ObjectAccessControlList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Grants to add or update. If a grant for same entity exists, its role is updated."
+          }
+        },
+        "removeEntities": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Entities for which all grants should be removed. An entity can't be in both `grants` and `remove_entities`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents updates to existing access-control entries on an object."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ObjectAccessControlList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#ObjectAccessControl"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelJobResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Message for response to cancel Job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Manifest": {
+      "type": "structure",
+      "members": {
+        "manifestLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specify the manifest file location. The format of manifest location can be an absolute path to the object in the format of `gs://bucket_name/path/object_name`. For example, `gs://bucket_name/path/object_name.csv`. Alternatively, you can specify an absolute path with a single wildcard character in the file name, for example `gs://bucket_name/path/file_name*.csv`. If the manifest location is specified with a wildcard, objects in all manifest files matching the pattern will be acted upon. The manifest is a CSV file, uploaded to Cloud Storage, that contains one object or a list of objects that you want to process. Each row in the manifest must include the `bucket` and `name` of the object. You can optionally specify the `generation` of the object. If you don't specify the `generation`, the current version of the object is used. You can optionally include a header row with the following format: `bucket,name,generation`. For example, bucket,name,generation bucket_1,object_1,generation_1 bucket_1,object_2,generation_2 bucket_1,object_3,generation_3 Note: The manifest file must specify only objects within the bucket provided to the job. Rows referencing objects in other buckets are ignored."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes list of objects to be transformed."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#PutObjectHold": {
+      "type": "structure",
+      "members": {
+        "eventBasedHold": {
+          "target": "com.gcp.storagebatchoperations_v1#PutObjectHoldEventBasedHoldEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Updates object event based holds state. When object event based hold is set, object can't be deleted or replaced. Resets object's time in the bucket for the purposes of the retention period."
+          }
+        },
+        "temporaryHold": {
+          "target": "com.gcp.storagebatchoperations_v1#PutObjectHoldTemporaryHoldEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Updates object temporary holds state. When object temporary hold is set, object can't be deleted or replaced."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes options to update object hold."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#PutObjectHoldEventBasedHoldEnum": {
+      "type": "enum",
+      "members": {
+        "HOLD_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOLD_STATUS_UNSPECIFIED"
+          }
+        },
+        "SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET"
+          }
+        },
+        "UNSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSET"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#PutObjectHoldTemporaryHoldEnum": {
+      "type": "enum",
+      "members": {
+        "HOLD_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOLD_STATUS_UNSPECIFIED"
+          }
+        },
+        "SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET"
+          }
+        },
+        "UNSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSET"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.storagebatchoperations_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#Location"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ObjectAccessControl": {
+      "type": "structure",
+      "members": {
+        "entity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The entity holding the permission, in one of the following forms: * `allUsers` * `allAuthenticatedUsers`"
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The role to grant. Acceptable values are: * `READER` - gives read access to the object. * `OWNER` - gives owner access to the object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an access control entry on an object."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#PrefixList": {
+      "type": "structure",
+      "members": {
+        "includedObjectPrefixes": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specify one or more object prefixes. For example: * To match one object, use a single prefix, `prefix1`. * To match multiple objects, use comma-separated prefixes, `prefix1, prefix2`. * To match all objects, use an empty prefix, `''`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes prefixes of objects to be transformed."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Counters": {
+      "type": "structure",
+      "members": {
+        "objectCustomContextsDeleted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of object custom contexts deleted. This field is only populated for jobs with the UpdateObjectCustomContext transformation."
+          }
+        },
+        "totalObjectCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of objects listed."
+          }
+        },
+        "objectCustomContextsCreated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of object custom contexts created. This field is only populated for jobs with the UpdateObjectCustomContext transformation."
+          }
+        },
+        "objectCustomContextsUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of object custom contexts updated. This counter tracks custom contexts where the key already existed, but the payload was modified. This field is only populated for jobs with the UpdateObjectCustomContext transformation."
+          }
+        },
+        "totalBytesTransformed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The total number of bytes affected by the transformation. For example, this counts bytes deleted for `DeleteObject` operations and bytes rewritten for `RewriteObject` operations."
+          }
+        },
+        "failedObjectCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of objects that failed due to user errors or service errors."
+          }
+        },
+        "totalBytesFound": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of bytes found from source. This field is only populated for jobs with a prefix list object configuration."
+          }
+        },
+        "succeededObjectCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of objects completed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes details about the progress of the job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Expr": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.storagebatchoperations_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.storagebatchoperations_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.storagebatchoperations_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListJobsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results."
+          }
+        },
+        "jobs": {
+          "target": "com.gcp.storagebatchoperations_v1#JobList",
+          "traits": {
+            "smithy.api#documentation": "A list of storage batch jobs."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing Jobs"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#JobList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#Job"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.storagebatchoperations_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.storagebatchoperations_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ErrorSummary": {
+      "type": "structure",
+      "members": {
+        "errorCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Number of errors encountered per `error_code`."
+          }
+        },
+        "errorLogEntries": {
+          "target": "com.gcp.storagebatchoperations_v1#ErrorLogEntryList",
+          "traits": {
+            "smithy.api#documentation": "Required. Sample error logs."
+          }
+        },
+        "errorCode": {
+          "target": "com.gcp.storagebatchoperations_v1#ErrorSummaryErrorCodeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The canonical error code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A summary of errors by error code, plus a count and sample error log entries."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ErrorLogEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#ErrorLogEntry"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ErrorSummaryErrorCodeEnum": {
+      "type": "enum",
+      "members": {
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OK"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "INVALID_ARGUMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_ARGUMENT"
+          }
+        },
+        "DEADLINE_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEADLINE_EXCEEDED"
+          }
+        },
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        },
+        "ALREADY_EXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALREADY_EXISTS"
+          }
+        },
+        "PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_DENIED"
+          }
+        },
+        "UNAUTHENTICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAUTHENTICATED"
+          }
+        },
+        "RESOURCE_EXHAUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_EXHAUSTED"
+          }
+        },
+        "FAILED_PRECONDITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_PRECONDITION"
+          }
+        },
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "OUT_OF_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUT_OF_RANGE"
+          }
+        },
+        "UNIMPLEMENTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNIMPLEMENTED"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE"
+          }
+        },
+        "DATA_LOSS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_LOSS"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "job": {
+          "target": "com.gcp.storagebatchoperations_v1#Job",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Job associated with the operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique operation resource name. Format: projects/{project_id}/locations/global/operations/{operation}."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Job": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A user-provided description for the job. Maximum length: 1024 bytes when unicode-encoded."
+          }
+        },
+        "scheduleTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the job was scheduled."
+          }
+        },
+        "putMetadata": {
+          "target": "com.gcp.storagebatchoperations_v1#PutMetadata",
+          "traits": {
+            "smithy.api#documentation": "Updates object metadata. Allows updating fixed-key and custom metadata. For example, `Cache-Control`, `Content-Disposition`, `Content-Encoding`, `Content-Language`, `Content-Type`, `Custom-Time`, and `Retention configuration`."
+          }
+        },
+        "deleteObject": {
+          "target": "com.gcp.storagebatchoperations_v1#DeleteObject",
+          "traits": {
+            "smithy.api#documentation": "Delete objects."
+          }
+        },
+        "putObjectHold": {
+          "target": "com.gcp.storagebatchoperations_v1#PutObjectHold",
+          "traits": {
+            "smithy.api#documentation": "Changes object hold status."
+          }
+        },
+        "completeTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the job was completed."
+          }
+        },
+        "counters": {
+          "target": "com.gcp.storagebatchoperations_v1#Counters",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information about the progress of the job."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, the job runs in dry run mode, returning the total object count and, if the object configuration is a prefix list, the bytes found from source. No transformations are performed."
+          }
+        },
+        "rewriteObject": {
+          "target": "com.gcp.storagebatchoperations_v1#RewriteObject",
+          "traits": {
+            "smithy.api#documentation": "Rewrite the object and updates metadata like KMS key."
+          }
+        },
+        "state": {
+          "target": "com.gcp.storagebatchoperations_v1#JobStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the job."
+          }
+        },
+        "errorSummaries": {
+          "target": "com.gcp.storagebatchoperations_v1#ErrorSummaryList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Summarizes errors encountered with sample error log entries."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the job was created."
+          }
+        },
+        "isMultiBucketJob": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. If true, this job operates on multiple buckets. Multi-bucket jobs are subject to different quota limits than single-bucket jobs."
+          }
+        },
+        "bucketList": {
+          "target": "com.gcp.storagebatchoperations_v1#BucketList",
+          "traits": {
+            "smithy.api#documentation": "Specifies a list of buckets and their objects to be transformed."
+          }
+        },
+        "projectSource": {
+          "target": "com.gcp.storagebatchoperations_v1#ProjectSource",
+          "traits": {
+            "smithy.api#documentation": "Specifies a project source and filters to identify objects to be transformed."
+          }
+        },
+        "setObjectAcls": {
+          "target": "com.gcp.storagebatchoperations_v1#SetObjectAcls",
+          "traits": {
+            "smithy.api#documentation": "Updates object ACLs."
+          }
+        },
+        "loggingConfig": {
+          "target": "com.gcp.storagebatchoperations_v1#LoggingConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Logging configuration."
+          }
+        },
+        "updateObjectCustomContext": {
+          "target": "com.gcp.storagebatchoperations_v1#UpdateObjectCustomContext",
+          "traits": {
+            "smithy.api#documentation": "Update object custom context."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the job. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. For example: `projects/123456/locations/global/jobs/job01`. `job_id` is unique in a given project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The storage batch operations job description."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#JobStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#BucketList": {
+      "type": "structure",
+      "members": {
+        "buckets": {
+          "target": "com.gcp.storagebatchoperations_v1#BucketList_",
+          "traits": {
+            "smithy.api#documentation": "Required. List of buckets and their objects to be transformed. You can specify only one bucket per job. If multiple buckets are specified, an error occurs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes list of buckets and their objects to be transformed."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#BucketList_": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagebatchoperations_v1#Bucket"
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.storagebatchoperations_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagebatchoperations_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list page size. The default page size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: projects/{project_id}/locations/global.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field to sort by. Supported fields are `name` and `create_time`.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters results as defined by https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#ListProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#ListJobsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/jobs"
+        },
+        "smithy.api#documentation": "Lists Jobs in a given project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` of the job to retrieve. Format: `projects/{project_id}/locations/global/jobs/{job_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#GetProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Job"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a batch job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DeleteProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID in case you need to retry your request. Requests with same `request_id` are ignored for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID isn't supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` of the job to delete. Format: `projects/{project_id}/locations/global/jobs/{job_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, any child bucket operations of the job are deleted. We recommend setting this to `true`. You can't mutate bucket operations directly, so only the `jobs.delete` permission is required to delete a job (and its child bucket operations).",
+            "smithy.api#httpQuery": "force"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#DeleteProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#DeleteProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a batch job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` of the job to cancel. Format: `projects/{project_id}/locations/global/jobs/{job_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagebatchoperations_v1#CancelJobRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CancelProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#CancelProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#CancelJobResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Cancels a batch job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CreateProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID in case you need to retry your request. Requests with same `request_id` are ignored for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID isn't supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The value for parent.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A unique identifier for the job. `job_id` must be up to 128 characters and must include only characters available in DNS names, as defined by RFC-1123.",
+            "smithy.api#httpQuery": "jobId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagebatchoperations_v1#Job",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#CreateProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#CreateProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/jobs"
+        },
+        "smithy.api#documentation": "Creates a batch job."
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsJobsBucketOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list page size. Default page size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/global/jobs/{job_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field to sort by. Supported fields are `name` and `create_time`.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters results as defined by https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#ListProjectsLocationsJobsBucketOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#ListProjectsLocationsJobsBucketOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#ListBucketOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/bucketOperations"
+        },
+        "smithy.api#documentation": "Lists BucketOperations in a given project and job.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsJobsBucketOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` of the bucket operation to retrieve. Format: `projects/{project_id}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagebatchoperations_v1#GetProjectsLocationsJobsBucketOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagebatchoperations_v1#GetProjectsLocationsJobsBucketOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagebatchoperations_v1#BucketOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagebatchoperations_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagebatchoperations_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a BucketOperation."
+      }
+    }
+  }
+}

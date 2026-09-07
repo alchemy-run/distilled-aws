@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EntitiesAsnsBotnetThreatFeed with distilled cloudflare/radar botnetThreatFeedEntityAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsBotnetThreatFeed",
+      "path": "/shapes/com.cloudflare.radar#BotnetThreatFeedEntityAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsBotnetThreatFeedRequest",
+      "path": "/shapes/com.cloudflare.radar#BotnetThreatFeedEntityAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BotnetThreatFeedEntityAsn/input/target",
+      "value": "com.cloudflare.radar#BotnetThreatFeedEntityAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsBotnetThreatFeedResponse",
+      "path": "/shapes/com.cloudflare.radar#BotnetThreatFeedEntityAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BotnetThreatFeedEntityAsn/output/target",
+      "value": "com.cloudflare.radar#BotnetThreatFeedEntityAsnResponse"
+    }
+  ]
+}

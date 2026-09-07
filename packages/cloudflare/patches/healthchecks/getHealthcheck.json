@@ -1,0 +1,42 @@
+{
+  "description": "Align healthchecks#Get with distilled cloudflare/healthchecks getHealthcheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#Get",
+      "path": "/shapes/com.cloudflare.healthchecks#GetHealthcheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#GetRequest",
+      "path": "/shapes/com.cloudflare.healthchecks#GetHealthcheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#GetHealthcheck/input/target",
+      "value": "com.cloudflare.healthchecks#GetHealthcheckRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#GetResponse",
+      "path": "/shapes/com.cloudflare.healthchecks#GetHealthcheckResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#GetHealthcheck/output/target",
+      "value": "com.cloudflare.healthchecks#GetHealthcheckResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.healthchecks#GetHealthcheck/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.healthchecks#HealthcheckNotFound"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#Forbidden"
+        }
+      ]
+    }
+  ]
+}

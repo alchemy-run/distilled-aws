@@ -1,0 +1,3785 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.papers#ClaimPaperAuthorshipRequest": {
+      "type": "structure",
+      "members": {
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ArXiv paper identifier being claimed.",
+            "smithy.api#required": {}
+          }
+        },
+        "claimAuthorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Author entry on the paper being claimed.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetUserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HF user who should receive the claim."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#ClaimPaperAuthorshipResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "claimedPaperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.papers#ClaimPaperAuthorship": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#ClaimPaperAuthorshipRequest"
+      },
+      "output": {
+        "target": "com.huggingface.papers#ClaimPaperAuthorshipResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/settings/papers/claim",
+          "code": 200
+        },
+        "smithy.api#documentation": "Claim paper authorship"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersRequestSort": {
+      "type": "enum",
+      "members": {
+        "PUBLISHEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "publishedAt"
+          }
+        },
+        "TRENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trending"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetDailyPapersRequest": {
+      "type": "structure",
+      "members": {
+        "p": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "p"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date"
+          }
+        },
+        "week": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "week"
+          }
+        },
+        "month": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "month"
+          }
+        },
+        "submitter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "submitter"
+          }
+        },
+        "sort": {
+          "target": "com.huggingface.papers#GetDailyPapersRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAuthorsItemUser": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User overview information"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAuthorsItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "statusLastChangedAt": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAuthorsItemUser",
+          "traits": {
+            "smithy.api#documentation": "User overview information"
+          }
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paper author information"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAuthorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAuthorsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperMediaUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperSubmittedOnDailyBy": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User overview information"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAiKeywordsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemPaper": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authors": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAuthorsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mediaUrls": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperMediaUrlsList"
+        },
+        "publishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "submittedOnDailyAt": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "submittedOnDailyBy": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperSubmittedOnDailyBy",
+          "traits": {
+            "smithy.api#documentation": "User overview information"
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "upvotes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "withdrawnAt": {
+          "target": "smithy.api#String"
+        },
+        "discussionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectPage": {
+          "target": "smithy.api#String"
+        },
+        "githubRepo": {
+          "target": "smithy.api#String"
+        },
+        "ai_summary": {
+          "target": "smithy.api#String"
+        },
+        "ai_keywords": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaperAiKeywordsList"
+        },
+        "ai_summary_model": {
+          "target": "smithy.api#String"
+        },
+        "githubStars": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paper data with metadata"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemMediaUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItemSubmittedBy": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User overview information"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "paper": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemPaper",
+          "traits": {
+            "smithy.api#documentation": "Paper data with metadata",
+            "smithy.api#required": {}
+          }
+        },
+        "publishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mediaUrls": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemMediaUrlsList"
+        },
+        "thumbnail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numComments": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "submittedBy": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyItemSubmittedBy",
+          "traits": {
+            "smithy.api#documentation": "User overview information",
+            "smithy.api#required": {}
+          }
+        },
+        "isAuthorParticipating": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Daily paper data for API responses"
+      }
+    },
+    "com.huggingface.papers#GetDailyPapersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetDailyPapersResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetDailyPapersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.papers#GetDailyPapersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.papers#GetDailyPapers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#GetDailyPapersRequest"
+      },
+      "output": {
+        "target": "com.huggingface.papers#GetDailyPapersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/daily_papers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Daily Papers"
+      }
+    },
+    "com.huggingface.papers#ListPapersRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#ListPapersResponseBodyItemAuthorsItemUser": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User overview information"
+      }
+    },
+    "com.huggingface.papers#ListPapersResponseBodyItemAuthorsItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "statusLastChangedAt": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.huggingface.papers#ListPapersResponseBodyItemAuthorsItemUser",
+          "traits": {
+            "smithy.api#documentation": "User overview information"
+          }
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paper author information"
+      }
+    },
+    "com.huggingface.papers#ListPapersResponseBodyItemAuthorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#ListPapersResponseBodyItemAuthorsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#ListPapersResponseBodyItemOrganization": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String"
+        },
+        "avatar": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#ListPapersResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "upvotes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "publishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "thumbnailUrl": {
+          "target": "smithy.api#String"
+        },
+        "authors": {
+          "target": "com.huggingface.papers#ListPapersResponseBodyItemAuthorsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectPage": {
+          "target": "smithy.api#String"
+        },
+        "githubRepo": {
+          "target": "smithy.api#String"
+        },
+        "ai_summary": {
+          "target": "smithy.api#String"
+        },
+        "organization": {
+          "target": "com.huggingface.papers#ListPapersResponseBodyItemOrganization"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#ListPapersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#ListPapersResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#ListPapersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.papers#ListPapersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.papers#ListPapers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#ListPapersRequest"
+      },
+      "output": {
+        "target": "com.huggingface.papers#ListPapersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/papers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List papers\n\nList arXiv papers sorted by published date"
+      }
+    },
+    "com.huggingface.papers#SearchPapersRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#SearchPapers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#SearchPapersRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/papers/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search papers\n\nPerform a hybrid semantic / full-text-search on papers"
+      }
+    },
+    "com.huggingface.papers#IndexPaperRequest": {
+      "type": "structure",
+      "members": {
+        "arxivId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The arXiv ID of the paper to index (e.g. 2301.00001)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#IndexPaperResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.papers#IndexPaper": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#IndexPaperRequest"
+      },
+      "output": {
+        "target": "com.huggingface.papers#IndexPaperResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/papers/index",
+          "code": 200
+        },
+        "smithy.api#documentation": "Index a paper\n\nIndex a paper from arXiv by its ID. If the paper is already indexed, only its authors can re-index it."
+      }
+    },
+    "com.huggingface.papers#GetPaperRequestFieldCase0": {
+      "type": "enum",
+      "members": {
+        "SUBMISSIONDEADLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "submissionDeadline"
+          }
+        },
+        "COMMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comments"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperRequestFieldCase1Item": {
+      "type": "enum",
+      "members": {
+        "SUBMISSIONDEADLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "submissionDeadline"
+          }
+        },
+        "COMMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comments"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperRequestFieldCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperRequestFieldCase1Item"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperRequestField": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.papers#GetPaperRequestFieldCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.papers#GetPaperRequestFieldCase1List"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperRequest": {
+      "type": "structure",
+      "members": {
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "field": {
+          "target": "com.huggingface.papers#GetPaperRequestField",
+          "traits": {
+            "smithy.api#httpQuery": "field"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#GetPaperResponseAuthorsItemUser": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User overview information"
+      }
+    },
+    "com.huggingface.papers#GetPaperResponseAuthorsItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "statusLastChangedAt": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.huggingface.papers#GetPaperResponseAuthorsItemUser",
+          "traits": {
+            "smithy.api#documentation": "User overview information"
+          }
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paper author information"
+      }
+    },
+    "com.huggingface.papers#GetPaperResponseAuthorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseAuthorsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseMediaUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseSubmittedOnDailyBy": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User overview information"
+      }
+    },
+    "com.huggingface.papers#GetPaperResponseAiKeywordsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProvider": {
+      "type": "enum",
+      "members": {
+        "BASETEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "baseten"
+          }
+        },
+        "CEREBRAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cerebras"
+          }
+        },
+        "COHERE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cohere"
+          }
+        },
+        "DEEPINFRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deepinfra"
+          }
+        },
+        "FAL_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fal-ai"
+          }
+        },
+        "FEATHERLESS_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "featherless-ai"
+          }
+        },
+        "FIREWORKS_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fireworks-ai"
+          }
+        },
+        "GROQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "groq"
+          }
+        },
+        "HF_INFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hf-inference"
+          }
+        },
+        "NOVITA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "novita"
+          }
+        },
+        "NSCALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nscale"
+          }
+        },
+        "OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai"
+          }
+        },
+        "OVHCLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ovhcloud"
+          }
+        },
+        "PUBLICAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "publicai"
+          }
+        },
+        "REPLICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replicate"
+          }
+        },
+        "SCALEWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scaleway"
+          }
+        },
+        "TOGETHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "together"
+          }
+        },
+        "WAVESPEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wavespeed"
+          }
+        },
+        "ZAI_ORG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zai-org"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProviderStatus": {
+      "type": "enum",
+      "members": {
+        "LIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "live"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemModelStatus": {
+      "type": "enum",
+      "members": {
+        "LIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "live"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemTask": {
+      "type": "enum",
+      "members": {
+        "TEXT_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-classification"
+          }
+        },
+        "TOKEN_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-classification"
+          }
+        },
+        "TABLE_QUESTION_ANSWERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "table-question-answering"
+          }
+        },
+        "QUESTION_ANSWERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "question-answering"
+          }
+        },
+        "ZERO_SHOT_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zero-shot-classification"
+          }
+        },
+        "TRANSLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "translation"
+          }
+        },
+        "SUMMARIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "summarization"
+          }
+        },
+        "FEATURE_EXTRACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature-extraction"
+          }
+        },
+        "TEXT_GENERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-generation"
+          }
+        },
+        "FILL_MASK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fill-mask"
+          }
+        },
+        "SENTENCE_SIMILARITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sentence-similarity"
+          }
+        },
+        "TEXT_TO_SPEECH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-to-speech"
+          }
+        },
+        "TEXT_TO_AUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-to-audio"
+          }
+        },
+        "AUTOMATIC_SPEECH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automatic-speech-recognition"
+          }
+        },
+        "AUDIO_TO_AUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "audio-to-audio"
+          }
+        },
+        "AUDIO_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "audio-classification"
+          }
+        },
+        "AUDIO_TEXT_TO_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "audio-text-to-text"
+          }
+        },
+        "VOICE_ACTIVITY_DETECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "voice-activity-detection"
+          }
+        },
+        "DEPTH_ESTIMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "depth-estimation"
+          }
+        },
+        "IMAGE_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-classification"
+          }
+        },
+        "OBJECT_DETECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "object-detection"
+          }
+        },
+        "IMAGE_SEGMENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-segmentation"
+          }
+        },
+        "TEXT_TO_IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-to-image"
+          }
+        },
+        "IMAGE_TO_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-to-text"
+          }
+        },
+        "IMAGE_TO_IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-to-image"
+          }
+        },
+        "IMAGE_TO_VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-to-video"
+          }
+        },
+        "UNCONDITIONAL_IMAGE_GENERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unconditional-image-generation"
+          }
+        },
+        "VIDEO_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "video-classification"
+          }
+        },
+        "REINFORCEMENT_LEARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reinforcement-learning"
+          }
+        },
+        "ROBOTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "robotics"
+          }
+        },
+        "TABULAR_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tabular-classification"
+          }
+        },
+        "TABULAR_REGRESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tabular-regression"
+          }
+        },
+        "TABULAR_TO_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tabular-to-text"
+          }
+        },
+        "TABLE_TO_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "table-to-text"
+          }
+        },
+        "MULTIPLE_CHOICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multiple-choice"
+          }
+        },
+        "TEXT_RANKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-ranking"
+          }
+        },
+        "TEXT_RETRIEVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-retrieval"
+          }
+        },
+        "TIME_SERIES_FORECASTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "time-series-forecasting"
+          }
+        },
+        "TEXT_TO_VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-to-video"
+          }
+        },
+        "IMAGE_TEXT_TO_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-text-to-text"
+          }
+        },
+        "IMAGE_TEXT_TO_IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-text-to-image"
+          }
+        },
+        "IMAGE_TEXT_TO_VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-text-to-video"
+          }
+        },
+        "VISUAL_QUESTION_ANSWERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "visual-question-answering"
+          }
+        },
+        "DOCUMENT_QUESTION_ANSWERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "document-question-answering"
+          }
+        },
+        "ZERO_SHOT_IMAGE_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zero-shot-image-classification"
+          }
+        },
+        "GRAPH_ML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "graph-ml"
+          }
+        },
+        "MASK_GENERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mask-generation"
+          }
+        },
+        "ZERO_SHOT_OBJECT_DETECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zero-shot-object-detection"
+          }
+        },
+        "TEXT_TO_3D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text-to-3d"
+          }
+        },
+        "IMAGE_TO_3D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-to-3d"
+          }
+        },
+        "IMAGE_FEATURE_EXTRACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image-feature-extraction"
+          }
+        },
+        "VIDEO_TEXT_TO_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "video-text-to-text"
+          }
+        },
+        "KEYPOINT_DETECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keypoint-detection"
+          }
+        },
+        "VISUAL_DOCUMENT_RETRIEVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "visual-document-retrieval"
+          }
+        },
+        "ANY_TO_ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "any-to-any"
+          }
+        },
+        "VIDEO_TO_VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "video-to-video"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        },
+        "CONVERSATIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "conversational"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemFeatures": {
+      "type": "structure",
+      "members": {
+        "toolCalling": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItem": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProvider",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "providerStatus": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProviderStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modelStatus": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemModelStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "providerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "task": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemTask",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "adapterType": {
+          "target": "smithy.api#Document"
+        },
+        "adapterWeightsPath": {
+          "target": "smithy.api#String"
+        },
+        "features": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemFeatures"
+        },
+        "isCheapestPricingOutput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFastestThroughput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isModelAuthor": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tokensPerSecond": {
+          "target": "smithy.api#Double"
+        },
+        "pricingOutput": {
+          "target": "smithy.api#Double"
+        },
+        "freeUntil": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemGatedCase1": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemGatedCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemResourceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase0Plan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase0": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase0Plan"
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgUserRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrg": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "plan": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgPlan"
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "hasPrivateMembersList": {
+          "target": "smithy.api#Boolean"
+        },
+        "userRole": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgUserRole"
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "primaryOrg": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrg"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorDataCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItemWidgetOutputUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsItem": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "availableInferenceProviders": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAvailableInferenceProvidersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isLikedByUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastModified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "likes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pipeline_tag": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repoType": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gated": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemGated",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroup": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemResourceGroup"
+        },
+        "numParameters": {
+          "target": "smithy.api#Double"
+        },
+        "authorData": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemAuthorData"
+        },
+        "widgetOutputUrls": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItemWidgetOutputUrlsList"
+        },
+        "isPreRelease": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedModelsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedModelsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoViewer": {
+      "type": "enum",
+      "members": {
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        },
+        "VIEWER_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer-partial"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesItem": {
+      "type": "enum",
+      "members": {
+        "MLCROISSANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mlcroissant"
+          }
+        },
+        "WEBDATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webdataset"
+          }
+        },
+        "DATASETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datasets"
+          }
+        },
+        "PANDAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pandas"
+          }
+        },
+        "DASK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dask"
+          }
+        },
+        "DISTILABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "distilabel"
+          }
+        },
+        "FIFTYONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fiftyone"
+          }
+        },
+        "LANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lance"
+          }
+        },
+        "ARGILLA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "argilla"
+          }
+        },
+        "POLARS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "polars"
+          }
+        },
+        "DUCKDB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "duckdb"
+          }
+        },
+        "DATADESIGNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datadesigner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsItem": {
+      "type": "enum",
+      "members": {
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        },
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "PARQUET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "parquet"
+          }
+        },
+        "IMAGEFOLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "imagefolder"
+          }
+        },
+        "AUDIOFOLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "audiofolder"
+          }
+        },
+        "WEBDATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webdataset"
+          }
+        },
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "ARROW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arrow"
+          }
+        },
+        "OPTIMIZED_PARQUET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimized-parquet"
+          }
+        },
+        "AGENT_TRACES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "agent-traces"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesItem": {
+      "type": "enum",
+      "members": {
+        "_3D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "3d"
+          }
+        },
+        "AUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "audio"
+          }
+        },
+        "DOCUMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "document"
+          }
+        },
+        "GEOSPATIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "geospatial"
+          }
+        },
+        "IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "image"
+          }
+        },
+        "TABULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tabular"
+          }
+        },
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "TIMESERIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timeseries"
+          }
+        },
+        "VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "video"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfo": {
+      "type": "structure",
+      "members": {
+        "viewer": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoViewer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numRows": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "libraries": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formats": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modalities": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemGatedCase1": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemGatedCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemResourceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsItem": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isLikedByUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "likes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "datasetsServerInfo": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemDatasetsServerInfo"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repoType": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gated": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemGated",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastModified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroup": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItemResourceGroup"
+        },
+        "isBenchmark": {
+          "target": "smithy.api#Boolean"
+        },
+        "isTraces": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedDatasetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedSpacesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "running": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "shortDescription": {
+          "target": "smithy.api#String"
+        },
+        "featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseLinkedSpacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseLinkedSpacesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPrimaryOrgPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPrimaryOrgUserRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPrimaryOrg": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "plan": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPrimaryOrgPlan"
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "hasPrivateMembersList": {
+          "target": "smithy.api#Boolean"
+        },
+        "userRole": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPrimaryOrgUserRole"
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthorOauthAppImageData": {
+      "type": "structure",
+      "members": {
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "colorFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "colorTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthorOauthApp": {
+      "type": "structure",
+      "members": {
+        "imageUrl": {
+          "target": "smithy.api#String"
+        },
+        "imageData": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthorOauthAppImageData"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemAuthor": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String"
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String"
+        },
+        "fullname": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean"
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean"
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean"
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document"
+        },
+        "plan": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPlan"
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean"
+        },
+        "primaryOrg": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthorPrimaryOrg"
+        },
+        "isOwner": {
+          "target": "smithy.api#Boolean"
+        },
+        "isOrgMember": {
+          "target": "smithy.api#Boolean"
+        },
+        "isBlockedByMe": {
+          "target": "smithy.api#Boolean"
+        },
+        "oauthApp": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthorOauthApp"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataHiddenReason": {
+      "type": "enum",
+      "members": {
+        "SPAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Spam"
+          }
+        },
+        "ABUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Abuse"
+          }
+        },
+        "GRAPHIC_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Graphic Content"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolved"
+          }
+        },
+        "OFF_TOPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Off-Topic"
+          }
+        },
+        "LOW_QUALITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Low Quality"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase0Plan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase0": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase0Plan"
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgUserRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrg": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "plan": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgPlan"
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "hasPrivateMembersList": {
+          "target": "smithy.api#Boolean"
+        },
+        "userRole": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgUserRole"
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "primaryOrg": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrg"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthor": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthorCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataLatest": {
+      "type": "structure",
+      "members": {
+        "raw": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatestAuthor"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataEditorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataEditorAvatarUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsItemReaction": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "🔥"
+          }
+        },
+        "VALUE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "🚀"
+          }
+        },
+        "VALUE_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "👀"
+          }
+        },
+        "VALUE_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "❤️"
+          }
+        },
+        "VALUE_5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "🤗"
+          }
+        },
+        "VALUE_6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "😎"
+          }
+        },
+        "VALUE_7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "➕"
+          }
+        },
+        "VALUE_8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "🧠"
+          }
+        },
+        "VALUE_9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "👍"
+          }
+        },
+        "VALUE_10": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "🤝"
+          }
+        },
+        "VALUE_11": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "😔"
+          }
+        },
+        "VALUE_12": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "🤯"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsItemUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsItem": {
+      "type": "structure",
+      "members": {
+        "reaction": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsItemReaction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsItemUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemDataIdentifiedLanguage": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "probability": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItemData": {
+      "type": "structure",
+      "members": {
+        "edited": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hiddenBy": {
+          "target": "smithy.api#String"
+        },
+        "hiddenReason": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataHiddenReason"
+        },
+        "latest": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataLatest",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numEdits": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "editors": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataEditorsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "editorAvatarUrls": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataEditorAvatarUrlsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reactions": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataReactionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "identifiedLanguage": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemDataIdentifiedLanguage"
+        },
+        "relatedEventId": {
+          "target": "smithy.api#String"
+        },
+        "isReport": {
+          "target": "smithy.api#Boolean"
+        },
+        "parentCommentId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemAuthor"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsItemData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.papers#GetPaperResponseCommentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.papers#GetPaperResponseCommentsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "only available when field contains 'comments'"
+      }
+    },
+    "com.huggingface.papers#GetPaperResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authors": {
+          "target": "com.huggingface.papers#GetPaperResponseAuthorsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mediaUrls": {
+          "target": "com.huggingface.papers#GetPaperResponseMediaUrlsList"
+        },
+        "publishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "submittedOnDailyAt": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "submittedOnDailyBy": {
+          "target": "com.huggingface.papers#GetPaperResponseSubmittedOnDailyBy",
+          "traits": {
+            "smithy.api#documentation": "User overview information"
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "upvotes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "withdrawnAt": {
+          "target": "smithy.api#String"
+        },
+        "discussionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectPage": {
+          "target": "smithy.api#String"
+        },
+        "githubRepo": {
+          "target": "smithy.api#String"
+        },
+        "ai_summary": {
+          "target": "smithy.api#String"
+        },
+        "ai_keywords": {
+          "target": "com.huggingface.papers#GetPaperResponseAiKeywordsList"
+        },
+        "ai_summary_model": {
+          "target": "smithy.api#String"
+        },
+        "githubStars": {
+          "target": "smithy.api#Double"
+        },
+        "submissionDeadline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "only available when field contains 'submissionDeadline'"
+          }
+        },
+        "linkedModels": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedModelsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numTotalModels": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "linkedDatasets": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedDatasetsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numTotalDatasets": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "linkedSpaces": {
+          "target": "com.huggingface.papers#GetPaperResponseLinkedSpacesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numTotalSpaces": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments": {
+          "target": "com.huggingface.papers#GetPaperResponseCommentsList",
+          "traits": {
+            "smithy.api#documentation": "only available when field contains 'comments'"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.papers#GetPaper": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#GetPaperRequest"
+      },
+      "output": {
+        "target": "com.huggingface.papers#GetPaperResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/papers/{paperId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a paper"
+      }
+    },
+    "com.huggingface.papers#UpdatePaperLinksRequest": {
+      "type": "structure",
+      "members": {
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectPage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "githubRepo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.papers#UpdatePaperLinksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.papers#UpdatePaperLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.papers#UpdatePaperLinksRequest"
+      },
+      "output": {
+        "target": "com.huggingface.papers#UpdatePaperLinksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/papers/{paperId}/links",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update paper links\n\nUpdate the project page, GitHub repository, or submitting organization for a paper. Requires the requester to be the paper author, the Daily Papers submitter, or a papers admin."
+      }
+    },
+    "com.huggingface.papers#Papers": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.papers#ClaimPaperAuthorship"
+        },
+        {
+          "target": "com.huggingface.papers#GetDailyPapers"
+        },
+        {
+          "target": "com.huggingface.papers#ListPapers"
+        },
+        {
+          "target": "com.huggingface.papers#SearchPapers"
+        },
+        {
+          "target": "com.huggingface.papers#IndexPaper"
+        },
+        {
+          "target": "com.huggingface.papers#GetPaper"
+        },
+        {
+          "target": "com.huggingface.papers#UpdatePaperLinks"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#BetaWorkersCreate with distilled cloudflare/workers createBetaWorker",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorker"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorker/input/target",
+      "value": "com.cloudflare.workers#CreateBetaWorkerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorker/output/target",
+      "value": "com.cloudflare.workers#CreateBetaWorkerResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorker/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,983 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.server_types#ListServerTypesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter resources by their name.\n\nThe response will only contain the resources\nmatching exactly the specified name.\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItemPriceHourly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hourly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItemPriceMonthly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monthly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItemPricePerTbTraffic": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItem": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations) the price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "price_hourly": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItemPriceHourly",
+          "traits": {
+            "smithy.api#documentation": "Hourly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_monthly": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItemPriceMonthly",
+          "traits": {
+            "smithy.api#documentation": "Monthly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free traffic per month in bytes in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_per_tb_traffic": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItemPricePerTbTraffic",
+          "traits": {
+            "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Price per [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemStorageType": {
+      "type": "enum",
+      "members": {
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "local"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of Server boot drive. Local has higher speed. Network has better availability."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemCpuType": {
+      "type": "enum",
+      "members": {
+        "SHARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shared"
+          }
+        },
+        "DEDICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of cpu."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemArchitecture": {
+      "type": "enum",
+      "members": {
+        "X86": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "x86"
+          }
+        },
+        "ARM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CPU architecture of the Server Type.\n"
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is deprecated.\n\nUse the `deprecation` object in the `locations` field instead (`.locations[].deprecation`).\n"
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemLocationsItemDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n"
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemLocationsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemLocationsItemDeprecation",
+          "traits": {
+            "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recommended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the [Server Type](#tag/server-types) is recommended in this [Location](#tag/locations).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the [Server Type](#tag/server-types) is temporarily unavailable in this [Location](#tag/locations).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A [Location](#tag/locations) (containing only id and name) and Server Type specific metadata.\n"
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItemLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemLocationsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Supported [Location](#tag/locations) and per [Location](#tag/locations) details for the [Server Type](#tag/server-types).\n\nA [Server Type](#tag/server-types) is:\n - only supported in the [Location](#tag/locations) that are listed.\n - deprecated in the [Location](#tag/locations) when the `deprecation` property is set.\n - permanently unavailable in the [Location](#tag/locations) when the `deprecation.unavailable_after` date is in the past.\n - temporarily unavailable in the [Location](#tag/locations) when the `deprecation.available` is false.\n"
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Server type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the Server type.",
+            "smithy.api#required": {}
+          }
+        },
+        "cores": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of cpu cores a Server of this type will have.",
+            "smithy.api#required": {}
+          }
+        },
+        "memory": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Memory a Server of this type will have in GB.",
+            "smithy.api#required": {}
+          }
+        },
+        "disk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Disk size a Server of this type will have in GB.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated. Use the deprecation object instead.",
+            "smithy.api#required": {}
+          }
+        },
+        "prices": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemPricesList",
+          "traits": {
+            "smithy.api#documentation": "Price per [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "storage_type": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemStorageType",
+          "traits": {
+            "smithy.api#documentation": "Type of Server boot drive. Local has higher speed. Network has better availability.",
+            "smithy.api#required": {}
+          }
+        },
+        "cpu_type": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemCpuType",
+          "traits": {
+            "smithy.api#documentation": "Type of cpu.",
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Category of Server Type."
+          }
+        },
+        "architecture": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemArchitecture",
+          "traits": {
+            "smithy.api#documentation": "CPU architecture of the Server Type.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemDeprecation",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated.\n\nUse the `deprecation` object in the `locations` field instead (`.locations[].deprecation`).\n",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "locations": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItemLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Supported [Location](#tag/locations) and per [Location](#tag/locations) details for the [Server Type](#tag/server-types).\n\nA [Server Type](#tag/server-types) is:\n - only supported in the [Location](#tag/locations) that are listed.\n - deprecated in the [Location](#tag/locations) when the `deprecation` property is set.\n - permanently unavailable in the [Location](#tag/locations) when the `deprecation.unavailable_after` date is in the past.\n - temporarily unavailable in the [Location](#tag/locations) when the `deprecation.available` is false.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.server_types#ListServerTypesResponseServerTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.server_types#ListServerTypesResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.server_types#ListServerTypesResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.server_types#ListServerTypesResponse": {
+      "type": "structure",
+      "members": {
+        "server_types": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseServerTypesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.server_types#ListServerTypesResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.server_types#ListServerTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.server_types#ListServerTypesRequest"
+      },
+      "output": {
+        "target": "com.hetzner.server_types#ListServerTypesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/server_types",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Server Types\n\nGets all Server type objects.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "server_types",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Server Type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItemPriceHourly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hourly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItemPriceMonthly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monthly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItemPricePerTbTraffic": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItem": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations) the price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "price_hourly": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItemPriceHourly",
+          "traits": {
+            "smithy.api#documentation": "Hourly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_monthly": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItemPriceMonthly",
+          "traits": {
+            "smithy.api#documentation": "Monthly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free traffic per month in bytes in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_per_tb_traffic": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItemPricePerTbTraffic",
+          "traits": {
+            "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypePricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.server_types#GetServerTypeResponseServerTypePricesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Price per [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeStorageType": {
+      "type": "enum",
+      "members": {
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "local"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of Server boot drive. Local has higher speed. Network has better availability."
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeCpuType": {
+      "type": "enum",
+      "members": {
+        "SHARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shared"
+          }
+        },
+        "DEDICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of cpu."
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeArchitecture": {
+      "type": "enum",
+      "members": {
+        "X86": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "x86"
+          }
+        },
+        "ARM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CPU architecture of the Server Type.\n"
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is deprecated.\n\nUse the `deprecation` object in the `locations` field instead (`.locations[].deprecation`).\n"
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeLocationsItemDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n"
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeLocationsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeLocationsItemDeprecation",
+          "traits": {
+            "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recommended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the [Server Type](#tag/server-types) is recommended in this [Location](#tag/locations).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the [Server Type](#tag/server-types) is temporarily unavailable in this [Location](#tag/locations).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A [Location](#tag/locations) (containing only id and name) and Server Type specific metadata.\n"
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerTypeLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeLocationsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Supported [Location](#tag/locations) and per [Location](#tag/locations) details for the [Server Type](#tag/server-types).\n\nA [Server Type](#tag/server-types) is:\n - only supported in the [Location](#tag/locations) that are listed.\n - deprecated in the [Location](#tag/locations) when the `deprecation` property is set.\n - permanently unavailable in the [Location](#tag/locations) when the `deprecation.unavailable_after` date is in the past.\n - temporarily unavailable in the [Location](#tag/locations) when the `deprecation.available` is false.\n"
+      }
+    },
+    "com.hetzner.server_types#GetServerTypeResponseServerType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Server type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the Server type.",
+            "smithy.api#required": {}
+          }
+        },
+        "cores": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of cpu cores a Server of this type will have.",
+            "smithy.api#required": {}
+          }
+        },
+        "memory": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Memory a Server of this type will have in GB.",
+            "smithy.api#required": {}
+          }
+        },
+        "disk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Disk size a Server of this type will have in GB.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated. Use the deprecation object instead.",
+            "smithy.api#required": {}
+          }
+        },
+        "prices": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypePricesList",
+          "traits": {
+            "smithy.api#documentation": "Price per [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "storage_type": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeStorageType",
+          "traits": {
+            "smithy.api#documentation": "Type of Server boot drive. Local has higher speed. Network has better availability.",
+            "smithy.api#required": {}
+          }
+        },
+        "cpu_type": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeCpuType",
+          "traits": {
+            "smithy.api#documentation": "Type of cpu.",
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Category of Server Type."
+          }
+        },
+        "architecture": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeArchitecture",
+          "traits": {
+            "smithy.api#documentation": "CPU architecture of the Server Type.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeDeprecation",
+          "traits": {
+            "smithy.api#documentation": "This field is deprecated.\n\nUse the `deprecation` object in the `locations` field instead (`.locations[].deprecation`).\n",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "locations": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerTypeLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Supported [Location](#tag/locations) and per [Location](#tag/locations) details for the [Server Type](#tag/server-types).\n\nA [Server Type](#tag/server-types) is:\n - only supported in the [Location](#tag/locations) that are listed.\n - deprecated in the [Location](#tag/locations) when the `deprecation` property is set.\n - permanently unavailable in the [Location](#tag/locations) when the `deprecation.unavailable_after` date is in the past.\n - temporarily unavailable in the [Location](#tag/locations) when the `deprecation.available` is false.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.server_types#GetServerTypeResponse": {
+      "type": "structure",
+      "members": {
+        "server_type": {
+          "target": "com.hetzner.server_types#GetServerTypeResponseServerType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.server_types#GetServerType": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.server_types#GetServerTypeRequest"
+      },
+      "output": {
+        "target": "com.hetzner.server_types#GetServerTypeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/server_types/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Server Type\n\nGets a specific Server type object."
+      }
+    },
+    "com.hetzner.server_types#ServerTypes": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.server_types#ListServerTypes"
+        },
+        {
+          "target": "com.hetzner.server_types#GetServerType"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

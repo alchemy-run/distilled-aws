@@ -1,0 +1,10 @@
+{
+  "description": "serviceDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ServiceDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation serviceDelete($environmentId: String, $id: String!) {\n  serviceDelete(environmentId: $environmentId, id: $id)\n}"
+    }
+  ]
+}

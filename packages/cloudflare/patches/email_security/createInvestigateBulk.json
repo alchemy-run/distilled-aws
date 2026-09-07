@@ -1,0 +1,30 @@
+{
+  "description": "Align email_security#InvestigateBulkCreate with distilled cloudflare/email-security createInvestigateBulk",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateBulkCreate",
+      "path": "/shapes/com.cloudflare.email_security#CreateInvestigateBulk"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateBulkCreateRequest",
+      "path": "/shapes/com.cloudflare.email_security#CreateInvestigateBulkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#CreateInvestigateBulk/input/target",
+      "value": "com.cloudflare.email_security#CreateInvestigateBulkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateBulkCreateResponse",
+      "path": "/shapes/com.cloudflare.email_security#CreateInvestigateBulkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#CreateInvestigateBulk/output/target",
+      "value": "com.cloudflare.email_security#CreateInvestigateBulkResponse"
+    }
+  ]
+}

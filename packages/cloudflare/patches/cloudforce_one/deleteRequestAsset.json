@@ -1,0 +1,20 @@
+{
+  "description": "Align cloudforce_one#RequestsAssetsDelete with distilled cloudflare/cloudforce-one deleteRequestAsset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsAssetsDelete",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestAsset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsAssetsDeleteRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestAssetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestAsset/input/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteRequestAssetRequest"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align web3#HostnamesIpfsUniversalPathsContentListsEntriesList with distilled cloudflare/web3 listHostnameIpfsUniversalPathContentListEntries",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesList",
+      "path": "/shapes/com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntries"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesListRequest",
+      "path": "/shapes/com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntries/input/target",
+      "value": "com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesListResponse",
+      "path": "/shapes/com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntries/output/target",
+      "value": "com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntriesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntries/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.web3#Web3HostnameNotFound"
+        },
+        {
+          "target": "com.cloudflare.web3#InvalidWeb3HostnameTarget"
+        },
+        {
+          "target": "com.cloudflare.web3#Forbidden"
+        }
+      ]
+    }
+  ]
+}

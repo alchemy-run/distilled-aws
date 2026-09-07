@@ -1,0 +1,30 @@
+{
+  "description": "Align rulesets#RulesDeleteForZone with distilled cloudflare/rulesets deleteRuleForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesDeleteForZone",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesDeleteForZoneRequest",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForZone/input/target",
+      "value": "com.cloudflare.rulesets#DeleteRuleForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesDeleteForZoneResponse",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForZone/output/target",
+      "value": "com.cloudflare.rulesets#DeleteRuleForZoneResponse"
+    }
+  ]
+}

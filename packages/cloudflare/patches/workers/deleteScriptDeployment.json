@@ -1,0 +1,32 @@
+{
+  "description": "Align workers#ScriptsDeploymentsDelete with distilled cloudflare/workers deleteScriptDeployment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeploymentsDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptDeployment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeploymentsDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptDeploymentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptDeployment/input/target",
+      "value": "com.cloudflare.workers#DeleteScriptDeploymentRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptDeployment/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#DeploymentNotFound"
+        }
+      ]
+    }
+  ]
+}

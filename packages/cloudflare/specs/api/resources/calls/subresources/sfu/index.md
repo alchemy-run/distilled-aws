@@ -1,0 +1,663 @@
+# SFU
+
+## List apps
+
+**get** `/accounts/{account_id}/calls/apps`
+
+Lists all apps in the Cloudflare account
+
+### Path Parameters
+
+- `account_id: string`
+
+  The account identifier tag.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional array of object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/calls/apps \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": [
+    {
+      "created": "2014-01-02T02:20:00Z",
+      "modified": "2014-01-02T02:20:00Z",
+      "name": "production-realtime-app",
+      "uid": "2a95132c15732412d22c1476fa83f27a"
+    }
+  ]
+}
+```
+
+## Retrieve app details
+
+**get** `/accounts/{account_id}/calls/apps/{app_id}`
+
+Fetches details for a single Calls app.
+
+### Path Parameters
+
+- `account_id: string`
+
+  The account identifier tag.
+
+- `app_id: string`
+
+  A Cloudflare-generated unique identifier for a item.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/calls/apps/$APP_ID \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "created": "2014-01-02T02:20:00Z",
+    "modified": "2014-01-02T02:20:00Z",
+    "name": "production-realtime-app",
+    "uid": "2a95132c15732412d22c1476fa83f27a"
+  }
+}
+```
+
+## Create a new app
+
+**post** `/accounts/{account_id}/calls/apps`
+
+Creates a new Cloudflare calls app. An app is an unique enviroment where each Session can access all Tracks within the app.
+
+### Path Parameters
+
+- `account_id: string`
+
+  The account identifier tag.
+
+### Body Parameters
+
+- `name: optional string`
+
+  A short description of Calls app, not shown to end users.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { created, modified, name, 2 more }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `secret: optional string`
+
+    Bearer token
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/calls/apps \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "name": "production-realtime-app"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "created": "2014-01-02T02:20:00Z",
+    "modified": "2014-01-02T02:20:00Z",
+    "name": "production-realtime-app",
+    "secret": "66bcf64aa8907b9f9d90ac17746a77ce394c393b92b3916633dc02846e608ad4",
+    "uid": "2a95132c15732412d22c1476fa83f27a"
+  }
+}
+```
+
+## Edit app details
+
+**put** `/accounts/{account_id}/calls/apps/{app_id}`
+
+Edit details for a single app.
+
+### Path Parameters
+
+- `account_id: string`
+
+  The account identifier tag.
+
+- `app_id: string`
+
+  A Cloudflare-generated unique identifier for a item.
+
+### Body Parameters
+
+- `name: optional string`
+
+  A short description of Calls app, not shown to end users.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/calls/apps/$APP_ID \
+    -X PUT \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "name": "production-realtime-app"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "created": "2014-01-02T02:20:00Z",
+    "modified": "2014-01-02T02:20:00Z",
+    "name": "production-realtime-app",
+    "uid": "2a95132c15732412d22c1476fa83f27a"
+  }
+}
+```
+
+## Delete app
+
+**delete** `/accounts/{account_id}/calls/apps/{app_id}`
+
+Deletes an app from Cloudflare Calls
+
+### Path Parameters
+
+- `account_id: string`
+
+  The account identifier tag.
+
+- `app_id: string`
+
+  A Cloudflare-generated unique identifier for a item.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/calls/apps/$APP_ID \
+    -X DELETE \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "created": "2014-01-02T02:20:00Z",
+    "modified": "2014-01-02T02:20:00Z",
+    "name": "production-realtime-app",
+    "uid": "2a95132c15732412d22c1476fa83f27a"
+  }
+}
+```
+
+## Domain Types
+
+### SFU List Response
+
+- `SFUListResponse object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### SFU Get Response
+
+- `SFUGetResponse object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### SFU Create Response
+
+- `SFUCreateResponse object { created, modified, name, 2 more }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `secret: optional string`
+
+    Bearer token
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### SFU Update Response
+
+- `SFUUpdateResponse object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.
+
+### SFU Delete Response
+
+- `SFUDeleteResponse object { created, modified, name, uid }`
+
+  - `created: optional string`
+
+    The date and time the item was created.
+
+  - `modified: optional string`
+
+    The date and time the item was last modified.
+
+  - `name: optional string`
+
+    A short description of Calls app, not shown to end users.
+
+  - `uid: optional string`
+
+    A Cloudflare-generated unique identifier for a item.

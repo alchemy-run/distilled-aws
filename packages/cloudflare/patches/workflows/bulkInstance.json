@@ -1,0 +1,56 @@
+{
+  "description": "Align workflows#InstancesBulk with distilled cloudflare/workflows bulkInstance",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesBulk",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstance"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesBulkRequest",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstanceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstance/input/target",
+      "value": "com.cloudflare.workflows#BulkInstanceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesBulkResponse",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstanceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstance/output/target",
+      "value": "com.cloudflare.workflows#BulkInstanceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstance/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#BulkInstance/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workflows#WorkflowNotFound"
+        },
+        {
+          "target": "com.cloudflare.workflows#InstanceAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidBody"
+        }
+      ]
+    }
+  ]
+}

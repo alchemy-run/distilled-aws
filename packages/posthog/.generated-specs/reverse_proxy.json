@@ -1,0 +1,774 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.reverse_proxy#ProxyRecordsListRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordListResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.reverse_proxy#ProxyRecordListResponseResultsList"
+        },
+        "max_proxy_records": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of proxy records allowed for this organization's current plan."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#ProxyRecord": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the proxy record."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom domain to proxy through, e.g. 'e.example.com'. Must be a valid subdomain you control."
+          }
+        },
+        "target_cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME target to add as a DNS record for your domain. Point your domain's CNAME to this value."
+          }
+        },
+        "status": {
+          "target": "com.posthog.reverse_proxy#ProxyRecordStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current provisioning status. Values: waiting (DNS verification pending), issuing (SSL certificate being issued), valid (proxy is live and working), warning (proxy has issues but is operational), erroring (proxy setup failed), deleting (removal in progress), timed_out (DNS verification timed out).\n\n* `waiting` - Waiting\n* `issuing` - Issuing\n* `valid` - Valid\n* `warning` - Warning\n* `erroring` - Erroring\n* `deleting` - Deleting\n* `timed_out` - Timed Out"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable status message with details about errors or warnings, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this proxy record was created."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this proxy record was last updated."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who created this proxy record."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#ProxyRecordStatusEnum": {
+      "type": "enum",
+      "members": {
+        "WAITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting"
+          }
+        },
+        "ISSUING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issuing"
+          }
+        },
+        "VALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "valid"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warning"
+          }
+        },
+        "ERRORING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "erroring"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `waiting` - Waiting\n* `issuing` - Issuing\n* `valid` - Valid\n* `warning` - Warning\n* `erroring` - Erroring\n* `deleting` - Deleting\n* `timed_out` - Timed Out"
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordListResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.reverse_proxy#ProxyRecord"
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordListResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.reverse_proxy#Forbidden"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{organization_id}/proxy_records/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all reverse proxies configured for the organization. Returns proxy records along with the maximum number allowed by the current plan."
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom domain to proxy through, e.g. 'e.example.com'. Must be a valid subdomain you control."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.reverse_proxy#ProxyRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.reverse_proxy#BadRequest"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#Forbidden"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{organization_id}/proxy_records/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new managed reverse proxy. Provide the domain you want to proxy through. The response includes the CNAME target you need to add as a DNS record. Once the CNAME is configured, the proxy will be automatically verified and provisioned."
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this proxy record."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.reverse_proxy#ProxyRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.reverse_proxy#Forbidden"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{organization_id}/proxy_records/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details of a specific reverse proxy by ID. Returns the full configuration including domain, CNAME target, and current provisioning status."
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this proxy record."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.reverse_proxy#Forbidden"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{organization_id}/proxy_records/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a reverse proxy. For proxies in 'waiting', 'erroring', or 'timed_out' status, the record is deleted immediately. For active proxies, a deletion workflow is started to clean up the provisioned infrastructure."
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsDiagnoseCreateRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this proxy record."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reverse_proxy#DiagnosticReport": {
+      "type": "structure",
+      "members": {
+        "ran_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this diagnostic report was generated (UTC).",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "com.posthog.reverse_proxy#DiagnosticReportSummary",
+          "traits": {
+            "smithy.api#documentation": "Top-level outcome and recommended next action.",
+            "smithy.api#required": {}
+          }
+        },
+        "checks": {
+          "target": "com.posthog.reverse_proxy#DiagnosticReportChecksList",
+          "traits": {
+            "smithy.api#documentation": "Per-check results in execution order.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#DiagnosticReportSummary": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.posthog.reverse_proxy#DiagnosticReportSummaryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Overall outcome: healthy if the proxy is serving requests, warn for non-blocking issues, fail otherwise.\n\n* `healthy` - healthy\n* `warn` - warn\n* `fail` - fail",
+            "smithy.api#required": {}
+          }
+        },
+        "primary_issue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Check id of the most actionable failure, if any. Null when status is healthy.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One-sentence next action the customer should take. Null when nothing's wrong.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#DiagnosticReportSummaryStatusEnum": {
+      "type": "enum",
+      "members": {
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warn"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `healthy` - healthy\n* `warn` - warn\n* `fail` - fail"
+      }
+    },
+    "com.posthog.reverse_proxy#DiagnosticCheckResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for the check (e.g. cname, cloudflare, caa, http_challenge, live_event, cert_expiry).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable check name.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.reverse_proxy#DiagnosticCheckResultStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "passed: ok. warned: degraded but not blocking. failed: blocking. skipped: not run for this state.\n\n* `passed` - passed\n* `warned` - warned\n* `failed` - failed\n* `skipped` - skipped",
+            "smithy.api#required": {}
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer-facing explanation of the check's outcome.",
+            "smithy.api#required": {}
+          }
+        },
+        "remediation": {
+          "target": "com.posthog.reverse_proxy#DiagnosticRemediation",
+          "traits": {
+            "smithy.api#documentation": "Concrete remediation steps when the check failed; null when there's nothing actionable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#DiagnosticCheckResultStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "passed"
+          }
+        },
+        "WARNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warned"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `passed` - passed\n* `warned` - warned\n* `failed` - failed\n* `skipped` - skipped"
+      }
+    },
+    "com.posthog.reverse_proxy#DiagnosticRemediation": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.reverse_proxy#DiagnosticRemediationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Category of fix. dns: customer must change DNS records. config: customer must adjust their server config (e.g. allow port 80). wait: no action — the system will resolve on its own. retry: hit Retry.\n\n* `dns` - dns\n* `config` - config\n* `wait` - wait\n* `retry` - retry",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One-line, action-oriented summary of what to do.",
+            "smithy.api#required": {}
+          }
+        },
+        "records": {
+          "target": "com.posthog.reverse_proxy#DiagnosticRemediationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DNS records the customer should add (empty when remediation is not DNS-based).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#DiagnosticRemediationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dns"
+          }
+        },
+        "CONFIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "config"
+          }
+        },
+        "WAIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wait"
+          }
+        },
+        "RETRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "retry"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `dns` - dns\n* `config` - config\n* `wait` - wait\n* `retry` - retry"
+      }
+    },
+    "com.posthog.reverse_proxy#DiagnosticDnsRecord": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name (the hostname the record is set on).",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record type, e.g. CNAME, CAA, A.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record value to set.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reverse_proxy#DiagnosticRemediationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.reverse_proxy#DiagnosticDnsRecord"
+      },
+      "traits": {
+        "smithy.api#documentation": "DNS records the customer should add (empty when remediation is not DNS-based)."
+      }
+    },
+    "com.posthog.reverse_proxy#DiagnosticReportChecksList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.reverse_proxy#DiagnosticCheckResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-check results in execution order."
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsDiagnoseCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsDiagnoseCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.reverse_proxy#DiagnosticReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{organization_id}/proxy_records/{id}/diagnose/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run a deep diagnostic on a reverse proxy. Inspects DNS CNAME alignment, the certificate provider's hostname state, CAA records walked up the customer's DNS tree, HTTP-01 challenge reachability, a live event probe, and certificate expiry. Returns a structured report with each check's status and concrete remediation steps (e.g. exact DNS records to add). Use this to debug why a proxy is stuck or erroring."
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsRetryCreateRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this proxy record."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reverse_proxy#ProxyRecordsRetryCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reverse_proxy#ProxyRecordsRetryCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.reverse_proxy#ProxyRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.reverse_proxy#Forbidden"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{organization_id}/proxy_records/{id}/retry/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retry provisioning a failed reverse proxy. Only available for proxies in 'erroring' or 'timed_out' status. Resets the proxy to 'waiting' status and restarts the provisioning workflow."
+      }
+    },
+    "com.posthog.reverse_proxy#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.reverse_proxy#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.reverse_proxy#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.reverse_proxy#ReverseProxy": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsList"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsCreate"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsRetrieve"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsDestroy"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsDiagnoseCreate"
+        },
+        {
+          "target": "com.posthog.reverse_proxy#ProxyRecordsRetryCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

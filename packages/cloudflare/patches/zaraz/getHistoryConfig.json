@@ -1,0 +1,30 @@
+{
+  "description": "Align zaraz#HistoryConfigsGet with distilled cloudflare/zaraz getHistoryConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryConfigsGet",
+      "path": "/shapes/com.cloudflare.zaraz#GetHistoryConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryConfigsGetRequest",
+      "path": "/shapes/com.cloudflare.zaraz#GetHistoryConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetHistoryConfig/input/target",
+      "value": "com.cloudflare.zaraz#GetHistoryConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryConfigsGetResponse",
+      "path": "/shapes/com.cloudflare.zaraz#GetHistoryConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetHistoryConfig/output/target",
+      "value": "com.cloudflare.zaraz#GetHistoryConfigResponse"
+    }
+  ]
+}

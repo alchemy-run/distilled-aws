@@ -1,0 +1,20 @@
+{
+  "description": "Align zero_trust#DexCommandsDownloadsGet with distilled cloudflare/zero-trust getDexCommandDownload",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsDownloadsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandDownload"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsDownloadsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandDownloadRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandDownload/input/target",
+      "value": "com.cloudflare.zero_trust#GetDexCommandDownloadRequest"
+    }
+  ]
+}

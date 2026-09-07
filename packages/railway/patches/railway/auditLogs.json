@@ -1,0 +1,31 @@
+{
+  "description": "Select only AuditLog scalars (id, eventType, createdAt, ids, payload, context). Nested project/environment at maxDepth 2 pulls Project.subscriptionType and Environment.canvasGroupRefs, which fail decode on live rows. Matches https://docs.railway.com/reference/audit-logs.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#AuditLogRequest/traits/com.railway.graphql#operation/query",
+      "value": "query auditLog($id: String!, $workspaceId: String!) {\n  auditLog(id: $id, workspaceId: $workspaceId) {\n    context\n    createdAt\n    environmentId\n    eventType\n    id\n    payload\n    projectId\n    workspaceId\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#AuditLogResponse/members/environment"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#AuditLogResponse/members/project"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#AuditLogsRequest/traits/com.railway.graphql#operation/query",
+      "value": "query auditLogs($after: String, $before: String, $filter: AuditLogFilterInput, $first: Int, $last: Int, $sort: SortOrder, $workspaceId: String!) {\n  auditLogs(after: $after, before: $before, filter: $filter, first: $first, last: $last, sort: $sort, workspaceId: $workspaceId) {\n    edges {\n      cursor\n      node {\n        context\n        createdAt\n        environmentId\n        eventType\n        id\n        payload\n        projectId\n        workspaceId\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#AuditLogsResponseEdgesItemNode/members/environment"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#AuditLogsResponseEdgesItemNode/members/project"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align firewall#LockdownsCreate with distilled cloudflare/firewall createLockdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsCreate",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsCreateRequest",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdown/input/target",
+      "value": "com.cloudflare.firewall#CreateLockdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsCreateResponse",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdown/output/target",
+      "value": "com.cloudflare.firewall#CreateLockdownResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdown/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#DuplicateLockdown"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

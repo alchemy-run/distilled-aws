@@ -1,0 +1,1470 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "mybusinessaccountmanagement",
+    "version": "v1",
+    "title": "My Business Account Management API",
+    "baseUrl": "https://mybusinessaccountmanagement.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.mybusinessaccountmanagement_v1#Account": {
+      "type": "structure",
+      "members": {
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the account. For an account of type `PERSONAL`, this is the first and last name of the user account."
+          }
+        },
+        "primaryOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id}`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name, in the format `accounts/{account_id}`."
+          }
+        },
+        "vettedState": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AccountVettedStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether the account is vetted by Google. A vetted account is able to verify locations via the VETTED_PARTNER method."
+          }
+        },
+        "accountNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Account reference number if provisioned."
+          }
+        },
+        "permissionLevel": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AccountPermissionLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies the permission level the user has for this account."
+          }
+        },
+        "type": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AccountTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Contains the type of account. Accounts of type PERSONAL and ORGANIZATION cannot be created using this API."
+          }
+        },
+        "verificationState": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AccountVerificationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. If verified, future locations that are created are automatically connected to Google Maps, and have Google+ pages created, without requiring moderation."
+          }
+        },
+        "role": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AccountRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies the AccountRole of this account."
+          }
+        },
+        "organizationInfo": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#OrganizationInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. Additional info for an organization. This is populated only for an organization account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An account is a container for your location. If you are the only user who manages locations for your business, you can use your personal Google Account. To share management of locations with multiple users, [create a business account] (https://support.google.com/business/answer/6085339?ref_topic=6085325)."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AccountVettedStateEnum": {
+      "type": "enum",
+      "members": {
+        "VETTED_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VETTED_STATE_UNSPECIFIED"
+          }
+        },
+        "NOT_VETTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_VETTED"
+          }
+        },
+        "VETTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VETTED"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AccountPermissionLevelEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_LEVEL_UNSPECIFIED"
+          }
+        },
+        "OWNER_LEVEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER_LEVEL"
+          }
+        },
+        "MEMBER_LEVEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBER_LEVEL"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AccountTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_TYPE_UNSPECIFIED"
+          }
+        },
+        "PERSONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSONAL"
+          }
+        },
+        "LOCATION_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCATION_GROUP"
+          }
+        },
+        "USER_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_GROUP"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIZATION"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AccountVerificationStateEnum": {
+      "type": "enum",
+      "members": {
+        "VERIFICATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFICATION_STATE_UNSPECIFIED"
+          }
+        },
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFIED"
+          }
+        },
+        "UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNVERIFIED"
+          }
+        },
+        "VERIFICATION_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFICATION_REQUESTED"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AccountRoleEnum": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_ROLE_UNSPECIFIED"
+          }
+        },
+        "PRIMARY_OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIMARY_OWNER"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANAGER"
+          }
+        },
+        "SITE_MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_MANAGER"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListLocationAdminsResponse": {
+      "type": "structure",
+      "members": {
+        "admins": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AdminList",
+          "traits": {
+            "smithy.api#documentation": "A collection of Admins."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for AccessControl.ListLocationAdmins."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AdminList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Admin"
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#TransferLocationRequest": {
+      "type": "structure",
+      "members": {
+        "destinationAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the account resource to transfer the location to (for example, \"accounts/{account}\")."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for AccessControl.TransferLocation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#Admin": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AdminRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the role that this admin uses with the specified Account or Location."
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The name of the Account resource that this Admin refers to. Used when calling locations.admins.create to invite a LocationGroup as an admin. If both this field and `admin` are set on `CREATE` requests, this field takes precedence and the email address in `admin` will be ignored. Format: `accounts/{account}`."
+          }
+        },
+        "admin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the admin. When making the initial invitation, this is the invitee's email address. On `GET` calls, the user's email address is returned if the invitation is still pending. Otherwise, it contains the user's first and last names. This field is only needed to be set during admin creation."
+          }
+        },
+        "pendingInvitation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether this admin has a pending invitation for the specified resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name. For account admins, this is in the form: `accounts/{account_id}/admins/{admin_id}` For location admins, this is in the form: `locations/{location_id}/admins/{admin_id}` This field will be ignored if set during admin creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An administrator of an Account or a location."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AdminRoleEnum": {
+      "type": "enum",
+      "members": {
+        "ADMIN_ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN_ROLE_UNSPECIFIED"
+          }
+        },
+        "PRIMARY_OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIMARY_OWNER"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANAGER"
+          }
+        },
+        "SITE_MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_MANAGER"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#Invitation": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#InvitationRoleEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The invited role on the account."
+          }
+        },
+        "targetType": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#InvitationTargetTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies which target types should appear in the response."
+          }
+        },
+        "targetAccount": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Account",
+          "traits": {
+            "smithy.api#documentation": "The sparsely populated account this invitation is for."
+          }
+        },
+        "targetLocation": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#TargetLocation",
+          "traits": {
+            "smithy.api#documentation": "The target location this invitation is for."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name for the invitation. `accounts/{account_id}/invitations/{invitation_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a pending invitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#InvitationRoleEnum": {
+      "type": "enum",
+      "members": {
+        "ADMIN_ROLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN_ROLE_UNSPECIFIED"
+          }
+        },
+        "PRIMARY_OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIMARY_OWNER"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANAGER"
+          }
+        },
+        "SITE_MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_MANAGER"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#InvitationTargetTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TARGET_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARGET_TYPE_UNSPECIFIED"
+          }
+        },
+        "ACCOUNTS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNTS_ONLY"
+          }
+        },
+        "LOCATIONS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCATIONS_ONLY"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeclineInvitationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for AccessControl.DeclineInvitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListInvitationsResponse": {
+      "type": "structure",
+      "members": {
+        "invitations": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#InvitationList",
+          "traits": {
+            "smithy.api#documentation": "A collection of invitations that are pending for the account. The number of invitations listed here cannot exceed 1000."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for AccessControl.ListInvitations."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#InvitationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Invitation"
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#OrganizationInfo": {
+      "type": "structure",
+      "members": {
+        "registeredDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The registered domain for the account."
+          }
+        },
+        "address": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#PostalAddress",
+          "traits": {
+            "smithy.api#documentation": "Output only. The postal address for the account."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The contact number for the organization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information stored for an organization."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#TargetLocation": {
+      "type": "structure",
+      "members": {
+        "locationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the location to which the user is invited."
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The address of the location to which the user is invited. Not always populated."
+          }
+        },
+        "placeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Place ID of the location to which the user is invited. Not always populated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a target location for a pending invitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the number of accounts exceeds the requested page size, this field is populated with a token to fetch the next page of accounts on a subsequent call to `accounts.list`. If there are no more accounts, this field is not present in the response."
+          }
+        },
+        "accounts": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AccountList",
+          "traits": {
+            "smithy.api#documentation": "A collection of accounts to which the user has access. The personal account of the user doing the query will always be the first item of the result, unless it is filtered out."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for Accounts.ListAccounts."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AccountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Account"
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PostalAddress": {
+      "type": "structure",
+      "members": {
+        "recipients": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain \"care of\" information."
+          }
+        },
+        "addressLines": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas)."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland."
+          }
+        },
+        "locality": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address' country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: \"zh-Hant\", \"ja\", \"ja-Latn\", \"en\"."
+          }
+        },
+        "revision": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision. All new revisions **must** be backward compatible with old revisions."
+          }
+        },
+        "sortingCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (for example, \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (Côte d'Ivoire)."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the organization at the address."
+          }
+        },
+        "sublocality": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States)."
+          }
+        },
+        "administrativeArea": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountAdminsResponse": {
+      "type": "structure",
+      "members": {
+        "accountAdmins": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AdminList",
+          "traits": {
+            "smithy.api#documentation": "A collection of Admin instances."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for AccessControl.ListAccountAdmins."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AcceptInvitationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for AccessControl.AcceptInvitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#CreateAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Account",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#CreateAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#CreateAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/accounts"
+        },
+        "smithy.api#documentation": "Creates an account with the specified name and type under the given parent. - Personal accounts and Organizations cannot be created. - User Groups cannot be created with a Personal account as primary owner. - Location Groups cannot be created with a primary owner of a Personal account if the Personal account is in an Organization. - Location Groups cannot own Location Groups."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#GetAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the account to fetch.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#GetAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#GetAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the specified account. Returns `NOT_FOUND` if the account does not exist or if the caller does not have access rights to it."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PatchAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, the request is validated without actually updating the account.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific fields that should be updated. The only editable field is `accountName`.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name, in the format `accounts/{account_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Account",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PatchAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#PatchAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the specified business account. Personal accounts cannot be updated using this method."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "parentAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name of the account for which the list of directly accessible accounts is to be retrieved. This only makes sense for Organizations and User Groups. If empty, will return `ListAccounts` for the authenticated user. `accounts/{account_id}`.",
+            "smithy.api#httpQuery": "parentAccount"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many accounts to fetch per page. The default and maximum is 20.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If specified, the next page of accounts is retrieved. The `pageToken` is returned when a call to `accounts.list` returns more results than can fit into the requested page size.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter constraining the accounts to return. The response includes only entries that match the filter. If `filter` is empty, then no constraints are applied and all accounts (paginated) are retrieved for the requested account. For example, a request with the filter `type=USER_GROUP` will only return user groups. The `type` field is the only supported filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/accounts"
+        },
+        "smithy.api#documentation": "Lists all of the accounts for the authenticated user. This includes all accounts that the user owns, as well as any accounts for which the user has management rights.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AcceptAccountsInvitationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the invitation that is being accepted. `accounts/{account_id}/invitations/{invitation_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#AcceptInvitationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#AcceptAccountsInvitations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#AcceptAccountsInvitationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:accept"
+        },
+        "smithy.api#documentation": "Accepts the specified invitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeclineAccountsInvitationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the account invitation that is being declined. `accounts/{account_id}/invitations/{invitation_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#DeclineInvitationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeclineAccountsInvitations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#DeclineAccountsInvitationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:decline"
+        },
+        "smithy.api#documentation": "Declines the specified invitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountsInvitationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the account from which the list of invitations is being retrieved. `accounts/{account_id}/invitations`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering the response is supported via the Invitation.target_type field.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountsInvitations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListAccountsInvitationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListInvitationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/invitations"
+        },
+        "smithy.api#documentation": "Lists pending invitations for the specified account."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the account from which to retrieve a list of admins. `accounts/{account_id}/admins`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListAccountsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListAccountsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListAccountAdminsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/admins"
+        },
+        "smithy.api#documentation": "Lists the admins for the specified account."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeleteAccountsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the admin to remove from the account. `accounts/{account_id}/admins/{admin_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeleteAccountsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#DeleteAccountsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Removes the specified admin from the specified account."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PatchAccountsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name. For account admins, this is in the form: `accounts/{account_id}/admins/{admin_id}` For location admins, this is in the form: `locations/{location_id}/admins/{admin_id}` This field will be ignored if set during admin creation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific fields that should be updated. The only editable field is role.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Admin",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PatchAccountsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#PatchAccountsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Admin"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the Admin for the specified Account Admin."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#CreateAccountsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the account this admin is created for. `accounts/{account_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Admin",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#CreateAccountsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#CreateAccountsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Admin"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/admins"
+        },
+        "smithy.api#documentation": "Invites the specified user to become an administrator for the specified account. The invitee must accept the invitation in order to be granted access to the account. See AcceptInvitation to programmatically accept an invitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#TransferLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the location to transfer. `locations/{location_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#TransferLocationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#TransferLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#TransferLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:transfer"
+        },
+        "smithy.api#documentation": "Moves a location from an account that the user owns to another account that the same user administers. The user must be an owner of the account the location is currently associated with and must also be at least a manager of the destination account."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#CreateLocationsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the location this admin is created for. `locations/{location_id}/admins`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Admin",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#CreateLocationsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#CreateLocationsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Admin"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/admins"
+        },
+        "smithy.api#documentation": "Invites the specified user to become an administrator for the specified location. The invitee must accept the invitation in order to be granted access to the location. See AcceptInvitation to programmatically accept an invitation."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeleteLocationsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the admin to remove from the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#DeleteLocationsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#DeleteLocationsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Removes the specified admin as a manager of the specified location."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PatchLocationsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific fields that should be updated. The only editable field is role.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name. For account admins, this is in the form: `accounts/{account_id}/admins/{admin_id}` For location admins, this is in the form: `locations/{location_id}/admins/{admin_id}` This field will be ignored if set during admin creation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Admin",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#PatchLocationsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#PatchLocationsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#Admin"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the Admin for the specified location. Only the AdminRole of the Admin can be updated."
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListLocationsAdminsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the location to list admins of. `locations/{location_id}/admins`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessaccountmanagement_v1#ListLocationsAdmins": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListLocationsAdminsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessaccountmanagement_v1#ListLocationAdminsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessaccountmanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/admins"
+        },
+        "smithy.api#documentation": "Lists all of the admins for the specified location."
+      }
+    }
+  }
+}

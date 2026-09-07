@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessGroupsDeleteForAccount with distilled cloudflare/zero-trust deleteAccessGroupForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsDeleteForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGroupForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGroupForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGroupForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessGroupForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGroupForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGroupForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessGroupForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGroupForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

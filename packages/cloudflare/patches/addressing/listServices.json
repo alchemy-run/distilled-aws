@@ -1,0 +1,38 @@
+{
+  "description": "Align addressing#ServicesList with distilled cloudflare/addressing listServices",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#ServicesList",
+      "path": "/shapes/com.cloudflare.addressing#ListServices"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#ServicesListRequest",
+      "path": "/shapes/com.cloudflare.addressing#ListServicesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#ListServices/input/target",
+      "value": "com.cloudflare.addressing#ListServicesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#ServicesListResponse",
+      "path": "/shapes/com.cloudflare.addressing#ListServicesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#ListServices/output/target",
+      "value": "com.cloudflare.addressing#ListServicesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#ListServices/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

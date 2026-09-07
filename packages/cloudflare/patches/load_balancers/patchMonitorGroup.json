@@ -1,0 +1,30 @@
+{
+  "description": "Align load_balancers#MonitorGroupsEdit with distilled cloudflare/load-balancers patchMonitorGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsEdit",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchMonitorGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsEditRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchMonitorGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchMonitorGroup/input/target",
+      "value": "com.cloudflare.load_balancers#PatchMonitorGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsEditResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchMonitorGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchMonitorGroup/output/target",
+      "value": "com.cloudflare.load_balancers#PatchMonitorGroupResponse"
+    }
+  ]
+}

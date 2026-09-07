@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpLocationsBrowserFamilyGet with distilled cloudflare/radar getHttpLocationBrowserFamily",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsBrowserFamilyGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBrowserFamily"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsBrowserFamilyGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBrowserFamilyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBrowserFamily/input/target",
+      "value": "com.cloudflare.radar#GetHttpLocationBrowserFamilyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsBrowserFamilyGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBrowserFamilyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBrowserFamily/output/target",
+      "value": "com.cloudflare.radar#GetHttpLocationBrowserFamilyResponse"
+    }
+  ]
+}

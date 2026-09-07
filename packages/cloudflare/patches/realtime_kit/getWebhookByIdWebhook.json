@@ -1,0 +1,42 @@
+{
+  "description": "Align realtime_kit#WebhooksGetWebhookById with distilled cloudflare/realtime-kit getWebhookByIdWebhook",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#WebhooksGetWebhookById",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetWebhookByIdWebhook"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#WebhooksGetWebhookByIdRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetWebhookByIdWebhookRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetWebhookByIdWebhook/input/target",
+      "value": "com.cloudflare.realtime_kit#GetWebhookByIdWebhookRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#WebhooksGetWebhookByIdResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetWebhookByIdWebhookResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetWebhookByIdWebhook/output/target",
+      "value": "com.cloudflare.realtime_kit#GetWebhookByIdWebhookResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetWebhookByIdWebhook/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.realtime_kit#RealtimeKitWebhookNotFound"
+        },
+        {
+          "target": "com.cloudflare.realtime_kit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Align ai_search#NamespacesInstancesItemsDownload with distilled cloudflare/aisearch downloadNamespaceInstanceItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsDownload",
+      "path": "/shapes/com.cloudflare.ai_search#DownloadNamespaceInstanceItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsDownloadRequest",
+      "path": "/shapes/com.cloudflare.ai_search#DownloadNamespaceInstanceItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#DownloadNamespaceInstanceItem/input/target",
+      "value": "com.cloudflare.ai_search#DownloadNamespaceInstanceItemRequest"
+    }
+  ]
+}

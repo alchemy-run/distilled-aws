@@ -1,0 +1,1943 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "css",
+    "version": "v1",
+    "title": "CSS API",
+    "baseUrl": "https://css.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.css_v1#ProductDimension": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. The dimension value represented as a number. The value can have a maximum precision of four decimal places."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The dimension units. Acceptable values are: * \"`in`\" * \"`cm`\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The dimension of the product."
+      }
+    },
+    "com.gcp.css_v1#Price": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)."
+          }
+        },
+        "amountMicros": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The price represented as a number in micros (1 million micros is an equivalent to one's currency standard unit, for example, 1 USD = 1000000 micros)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The price represented as a number and currency."
+      }
+    },
+    "com.gcp.css_v1#HeadlineOfferSubscriptionCost": {
+      "type": "structure",
+      "members": {
+        "amount": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "The amount the buyer has to pay per subscription period."
+          }
+        },
+        "period": {
+          "target": "com.gcp.css_v1#HeadlineOfferSubscriptionCostPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of subscription period. Supported values are: * \"`month`\" * \"`year`\""
+          }
+        },
+        "periodLength": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of subscription periods the buyer has to pay."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SubscriptionCost of the product."
+      }
+    },
+    "com.gcp.css_v1#HeadlineOfferSubscriptionCostPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "SUBSCRIPTION_PERIOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_PERIOD_UNSPECIFIED"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH"
+          }
+        },
+        "YEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#CssProduct": {
+      "type": "structure",
+      "members": {
+        "rawProvidedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Your unique raw identifier for the product."
+          }
+        },
+        "contentLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product."
+          }
+        },
+        "feedLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The feed label for the product."
+          }
+        },
+        "cssProductStatus": {
+          "target": "com.gcp.css_v1#CssProductStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of a product, data validation issues, that is, information about a product computed asynchronously."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the CSS Product. Format: `\"accounts/{account}/cssProducts/{css_product}\"`"
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.css_v1#Attributes",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of product attributes."
+          }
+        },
+        "customAttributes": {
+          "target": "com.gcp.css_v1#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of custom (CSS-provided) attributes. It can also be used to submit any attribute of the feed specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The processed CSS Product."
+      }
+    },
+    "com.gcp.css_v1#CustomAttributeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#CustomAttribute"
+      }
+    },
+    "com.gcp.css_v1#ListQuotaGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "quotaGroups": {
+          "target": "com.gcp.css_v1#QuotaGroupList",
+          "traits": {
+            "smithy.api#documentation": "The methods, current quota usage and limits per each group. The quota is shared between all methods in the group. The groups are sorted in descending order based on quota_usage."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListMethodGroups method."
+      }
+    },
+    "com.gcp.css_v1#QuotaGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#QuotaGroup"
+      }
+    },
+    "com.gcp.css_v1#DestinationStatus": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the destination"
+          }
+        },
+        "pendingCountries": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the CSS Product is pending approval."
+          }
+        },
+        "disapprovedCountries": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the CSS Product is disapproved."
+          }
+        },
+        "approvedCountries": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the CSS Product is approved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The destination status of the product status."
+      }
+    },
+    "com.gcp.css_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.css_v1#ItemLevelIssue": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The destination the issue applies to."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed issue description in English."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code of the issue."
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether the issue can be resolved by the merchant."
+          }
+        },
+        "attribute": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The attribute's name, if the issue is caused by a single attribute."
+          }
+        },
+        "applicableCountries": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where issue applies to the CSS Product."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short issue description in English."
+          }
+        },
+        "documentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of a web page to help with resolving this issue."
+          }
+        },
+        "servability": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How this issue affects serving of the CSS Product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ItemLevelIssue of the product status."
+      }
+    },
+    "com.gcp.css_v1#Account": {
+      "type": "structure",
+      "members": {
+        "homepageUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The CSS/MC account's homepage."
+          }
+        },
+        "automaticLabelIds": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Automatically created label IDs assigned to the MC account by CSS Center."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label resource name. Format: accounts/{account}"
+          }
+        },
+        "accountType": {
+          "target": "com.gcp.css_v1#AccountAccountTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of this account."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CSS/MC account's parent resource. CSS group for CSS domains; CSS domain for MC accounts. Returned only if the user has access to the parent account. Note: For MC sub-accounts, this is also the CSS domain that is the parent resource of the MCA account, since we are effectively flattening the hierarchy.\""
+          }
+        },
+        "labelIds": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Manually created label IDs assigned to the CSS/MC account by a CSS parent account."
+          }
+        },
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The CSS/MC account's full name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CSS/MC account's short display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about CSS/MC account."
+      }
+    },
+    "com.gcp.css_v1#AccountAccountTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_TYPE_UNSPECIFIED"
+          }
+        },
+        "CSS_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSS_GROUP"
+          }
+        },
+        "CSS_DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSS_DOMAIN"
+          }
+        },
+        "MC_PRIMARY_CSS_MCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC_PRIMARY_CSS_MCA"
+          }
+        },
+        "MC_CSS_MCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC_CSS_MCA"
+          }
+        },
+        "MC_MARKETPLACE_MCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC_MARKETPLACE_MCA"
+          }
+        },
+        "MC_OTHER_MCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC_OTHER_MCA"
+          }
+        },
+        "MC_STANDALONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC_STANDALONE"
+          }
+        },
+        "MC_MCA_SUBACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC_MCA_SUBACCOUNT"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#AccountLabel": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the label. Format: accounts/{account}/labels/{label}"
+          }
+        },
+        "labelType": {
+          "target": "com.gcp.css_v1#AccountLabelLabelTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of this label."
+          }
+        },
+        "labelId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID of the label."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of this label."
+          }
+        },
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID of account this label belongs to."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of this label."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Label assigned by CSS domain or CSS group to one of its sub-accounts."
+      }
+    },
+    "com.gcp.css_v1#AccountLabelLabelTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_TYPE_UNSPECIFIED"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANUAL"
+          }
+        },
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMATIC"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#ListAccountLabelsResponse": {
+      "type": "structure",
+      "members": {
+        "accountLabels": {
+          "target": "com.gcp.css_v1#AccountLabelList",
+          "traits": {
+            "smithy.api#documentation": "The labels from the specified account."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the `ListAccountLabels` method."
+      }
+    },
+    "com.gcp.css_v1#AccountLabelList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#AccountLabel"
+      }
+    },
+    "com.gcp.css_v1#Certification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the certification. At this time, the most common value is \"EPREL\", which represents energy efficiency certifications in the EU European Registry for Energy Labeling (EPREL) database."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The code of the certification. For example, for the EPREL certificate with the link https://eprel.ec.europa.eu/screen/product/dishwashers2019/123456 the code is 123456. The code is required for European Energy Labels."
+          }
+        },
+        "authority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The authority or certification body responsible for issuing the certification. At this time, the most common value is \"EC\" or “European_Commission” for energy labels in the EU."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The certification for the product. Use the this attribute to describe certifications, such as energy efficiency ratings, associated with a product."
+      }
+    },
+    "com.gcp.css_v1#ListChildAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "accounts": {
+          "target": "com.gcp.css_v1#AccountList",
+          "traits": {
+            "smithy.api#documentation": "The CSS/MC accounts returned for the specified CSS parent account."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the `ListChildAccounts` method."
+      }
+    },
+    "com.gcp.css_v1#AccountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#Account"
+      }
+    },
+    "com.gcp.css_v1#CssProductStatus": {
+      "type": "structure",
+      "members": {
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item has been last updated, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "destinationStatuses": {
+          "target": "com.gcp.css_v1#DestinationStatusList",
+          "traits": {
+            "smithy.api#documentation": "The intended destinations for the product."
+          }
+        },
+        "itemLevelIssues": {
+          "target": "com.gcp.css_v1#ItemLevelIssueList",
+          "traits": {
+            "smithy.api#documentation": "A list of all issues associated with the product."
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item has been created, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "googleExpirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item expires, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the Css Product, data validation issues, that is, information about the Css Product computed asynchronously."
+      }
+    },
+    "com.gcp.css_v1#DestinationStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#DestinationStatus"
+      }
+    },
+    "com.gcp.css_v1#ItemLevelIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#ItemLevelIssue"
+      }
+    },
+    "com.gcp.css_v1#HeadlineOfferInstallment": {
+      "type": "structure",
+      "members": {
+        "downpayment": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "The up-front down payment amount the buyer has to pay."
+          }
+        },
+        "amount": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "The amount the buyer has to pay per month."
+          }
+        },
+        "months": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of installments the buyer has to pay."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that represents installment."
+      }
+    },
+    "com.gcp.css_v1#ProductWeight": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The weight unit. Acceptable values are: * \"`g`\" * \"`kg`\" * \"`oz`\" * \"`lb`\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The weight of the product."
+      }
+    },
+    "com.gcp.css_v1#MethodDetails": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The API version that the method belongs to."
+          }
+        },
+        "subapi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The sub-API that the method belongs to. In the CSS API, this is always `css`."
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the method for example `cssproductsservice.listcssproducts`."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The path for the method such as `v1/cssproductsservice.listcssproducts`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The method details per method in the CSS API."
+      }
+    },
+    "com.gcp.css_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.css_v1#CssProductInput": {
+      "type": "structure",
+      "members": {
+        "finalName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the processed CSS Product. Format: `accounts/{account}/cssProducts/{css_product}` \""
+          }
+        },
+        "freshnessTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. Use expiration_date instead. Represents the existing version (freshness) of the CSS Product, which can be used to preserve the right order when multiple updates are done at the same time. This field must not be set to the future time. If set, the update is prevented if a newer version of the item already exists in our system (that is the last update time of the existing CSS products is later than the freshness time set in the update). If the update happens, the last update time is then set to this freshness time. If not set, the update will not be prevented and the last update time will default to when this request was received by the CSS API. If the operation is prevented, the aborted exception will be thrown."
+          }
+        },
+        "customAttributes": {
+          "target": "com.gcp.css_v1#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "A list of custom (CSS-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (for example: `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google."
+          }
+        },
+        "rawProvidedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Your unique identifier for the CSS Product. This is the same for the CSS Product input and processed CSS Product. We only allow ids with alphanumerics, underscores and dashes. See the [products feed specification](https://support.google.com/merchants/answer/188494#id) for details."
+          }
+        },
+        "contentLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the CSS Product."
+          }
+        },
+        "feedLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the CSS Product. Feed Label is synonymous to \"target country\" and hence should always be a valid region code. For example: 'DE' for Germany, 'FR' for France."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123"
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.css_v1#Attributes",
+          "traits": {
+            "smithy.api#documentation": "A list of CSS Product attributes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents input data you submit for a CSS Product, not the processed CSS Product that you see in CSS Center, in Shopping Ads, or across Google surfaces."
+      }
+    },
+    "com.gcp.css_v1#CustomAttribute": {
+      "type": "structure",
+      "members": {
+        "groupValues": {
+          "target": "com.gcp.css_v1#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the attribute."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the attribute. If `value` is not empty, `group_values` must be empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty."
+      }
+    },
+    "com.gcp.css_v1#ListCssProductsResponse": {
+      "type": "structure",
+      "members": {
+        "cssProducts": {
+          "target": "com.gcp.css_v1#CssProductList",
+          "traits": {
+            "smithy.api#documentation": "The processed CSS products from the specified account. These are your processed CSS products after applying rules and supplemental feeds."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListCssProducts method."
+      }
+    },
+    "com.gcp.css_v1#CssProductList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#CssProduct"
+      }
+    },
+    "com.gcp.css_v1#QuotaGroup": {
+      "type": "structure",
+      "members": {
+        "methodDetails": {
+          "target": "com.gcp.css_v1#MethodDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of all methods group quota applies to."
+          }
+        },
+        "quotaUsage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at at 12:00 PM midday UTC."
+          }
+        },
+        "quotaLimit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The maximum number of calls allowed per day for the group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the quota group. Format: accounts/{account}/quotas/{group} Example: `accounts/12345678/quotas/css-products-insert` Note: The {group} part is not guaranteed to follow a specific pattern."
+          }
+        },
+        "quotaMinuteLimit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The maximum number of calls allowed per minute for the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The group information for methods in the CSS API. The quota is shared between all methods in the group. Even if none of the methods within the group have usage the information for the group is returned."
+      }
+    },
+    "com.gcp.css_v1#MethodDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#MethodDetails"
+      }
+    },
+    "com.gcp.css_v1#ProductDetail": {
+      "type": "structure",
+      "members": {
+        "sectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The section header used to group a set of product details."
+          }
+        },
+        "attributeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the product detail."
+          }
+        },
+        "attributeValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the product detail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The product details."
+      }
+    },
+    "com.gcp.css_v1#UpdateAccountLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "labelIds": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of label IDs to overwrite the existing account label IDs. If the list is empty, all currently assigned label IDs will be deleted."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Only required when updating MC account labels. The CSS domain that is the parent resource of the MC account. Format: accounts/{account}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for the `UpdateLabels` method."
+      }
+    },
+    "com.gcp.css_v1#Attributes": {
+      "type": "structure",
+      "members": {
+        "productLength": {
+          "target": "com.gcp.css_v1#ProductDimension",
+          "traits": {
+            "smithy.api#documentation": "The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+          }
+        },
+        "customLabel2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 2 for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the item."
+          }
+        },
+        "material": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The material of which the item is made."
+          }
+        },
+        "gtin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Global Trade Item Number ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item."
+          }
+        },
+        "googleProductCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API."
+          }
+        },
+        "sizeTypes": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided (see [size type](https://support.google.com/merchants/answer/6324497)."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product Related Attributes.[14-36] Brand of the item."
+          }
+        },
+        "imageLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of an image of the item."
+          }
+        },
+        "isBundle": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the item."
+          }
+        },
+        "cppMobileLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the mobile-optimized version of the Product Detail Page of the CSS."
+          }
+        },
+        "lowPrice": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Low Price of the CSS Product."
+          }
+        },
+        "customLabel3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 3 for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "adult": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true if the item is targeted towards adults."
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Color of the item."
+          }
+        },
+        "headlineOfferSubscriptionCost": {
+          "target": "com.gcp.css_v1#HeadlineOfferSubscriptionCost",
+          "traits": {
+            "smithy.api#documentation": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
+          }
+        },
+        "cppLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL directly linking to your the Product Detail Page of the CSS."
+          }
+        },
+        "headlineOfferCondition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Condition of the headline offer."
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item should expire, as specified upon insertion, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. The actual expiration date is exposed in `productstatuses` as [googleExpirationDate](https://support.google.com/merchants/answer/6324499) and might be earlier if `expirationDate` is too far in the future. Note: It may take 2+ days from the expiration date for the item to actually get deleted."
+          }
+        },
+        "rating": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Average rating score of the product. The value must be within the range of [`min_rating`, `max_rating`], inclusive. When displayed on the product page, this rating is normalized to a scale of [1, 5] with one decimal place. If provided, `review_count`, `min_rating`, and `max_rating` are also required. This field is for an upcoming feature and is not yet used."
+          }
+        },
+        "minRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum rating score of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used."
+          }
+        },
+        "numberOfOffers": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of CSS Products."
+          }
+        },
+        "headlineOfferShippingPrice": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Headline Price of the CSS Product."
+          }
+        },
+        "headlineOfferLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the headline offer."
+          }
+        },
+        "includedDestinations": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`."
+          }
+        },
+        "headlineOfferMobileLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mobile Link to the headline offer."
+          }
+        },
+        "productHeight": {
+          "target": "com.gcp.css_v1#ProductDimension",
+          "traits": {
+            "smithy.api#documentation": "The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+          }
+        },
+        "certifications": {
+          "target": "com.gcp.css_v1#CertificationList",
+          "traits": {
+            "smithy.api#documentation": "A list of certificates claimed by the CSS for the given product."
+          }
+        },
+        "sizeSystem": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System in which the size is specified. Recommended for apparel items."
+          }
+        },
+        "customLabel4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 4 for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "maxRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum rating score of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used."
+          }
+        },
+        "additionalImageLinks": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional URL of images of the item."
+          }
+        },
+        "multipack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of identical products in a merchant-defined multipack."
+          }
+        },
+        "customLabel0": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 0 for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item's pattern (e.g. polka dots)."
+          }
+        },
+        "reviewCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of reviews of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used."
+          }
+        },
+        "productHighlights": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Bullet points describing the most relevant highlights of a product."
+          }
+        },
+        "ageGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target age group of the item."
+          }
+        },
+        "gender": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target gender of the item."
+          }
+        },
+        "mpn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item."
+          }
+        },
+        "highPrice": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "High Price of the CSS Product."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value (see [https://support.google.com/merchants/answer/6324492](size definition))."
+          }
+        },
+        "customLabel1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 1 for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "pause": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Publication of this item will be temporarily paused."
+          }
+        },
+        "productDetails": {
+          "target": "com.gcp.css_v1#ProductDetailList",
+          "traits": {
+            "smithy.api#documentation": "Technical specification or additional product details."
+          }
+        },
+        "productWidth": {
+          "target": "com.gcp.css_v1#ProductDimension",
+          "traits": {
+            "smithy.api#documentation": "The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+          }
+        },
+        "headlineOfferPrice": {
+          "target": "com.gcp.css_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Headline Price of the CSS Product."
+          }
+        },
+        "headlineOfferInstallment": {
+          "target": "com.gcp.css_v1#HeadlineOfferInstallment",
+          "traits": {
+            "smithy.api#documentation": "Number and amount of installments to pay for an item."
+          }
+        },
+        "excludedDestinations": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center)."
+          }
+        },
+        "productTypes": {
+          "target": "com.gcp.css_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Categories of the item (formatted as in [products data specification](https://support.google.com/merchants/answer/6324406))."
+          }
+        },
+        "cppAdsRedirect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Allows advertisers to override the item URL when the product is shown within the context of Product Ads."
+          }
+        },
+        "productWeight": {
+          "target": "com.gcp.css_v1#ProductWeight",
+          "traits": {
+            "smithy.api#documentation": "The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive)."
+          }
+        },
+        "itemGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shared identifier for all variants of the same product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attributes for CSS Product."
+      }
+    },
+    "com.gcp.css_v1#CertificationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#Certification"
+      }
+    },
+    "com.gcp.css_v1#ProductDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.css_v1#ProductDetail"
+      }
+    },
+    "com.gcp.css_v1#GetAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Only required when retrieving MC account information. The CSS domain that is the parent resource of the MC account. Format: accounts/{account}",
+            "smithy.api#httpQuery": "parent"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the managed CSS/MC account. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.css_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.css_v1#GetAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#GetAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves a single CSS/MC account by ID."
+      }
+    },
+    "com.gcp.css_v1#UpdateLabelsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The label resource name. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.css_v1#UpdateAccountLabelsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.css_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.css_v1#UpdateLabelsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#UpdateLabelsAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:updateLabels"
+        },
+        "smithy.api#documentation": "Updates labels assigned to CSS/MC accounts by a CSS domain."
+      }
+    },
+    "com.gcp.css_v1#ListChildAccountsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListChildAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChildAccounts` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "labelId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, only the MC accounts with the given label ID will be returned.",
+            "smithy.api#httpQuery": "labelId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent account. Must be a CSS group or domain. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, only the MC accounts with the given name (case sensitive) will be returned.",
+            "smithy.api#httpQuery": "fullName"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#ListChildAccountsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#ListChildAccountsAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#ListChildAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}:listChildAccounts"
+        },
+        "smithy.api#documentation": "Lists all the accounts under the specified CSS account ID, and optionally filters by label ID and account name.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.css_v1#ListAccountsLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent account. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#ListAccountsLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#ListAccountsLabelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#ListAccountLabelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/labels"
+        },
+        "smithy.api#documentation": "Lists the labels owned by an account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.css_v1#PatchAccountsLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the label. Format: accounts/{account}/labels/{label}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.css_v1#AccountLabel",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#PatchAccountsLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#PatchAccountsLabelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#AccountLabel"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a label."
+      }
+    },
+    "com.gcp.css_v1#CreateAccountsLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent account. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.css_v1#AccountLabel",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#CreateAccountsLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#CreateAccountsLabelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#AccountLabel"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/labels"
+        },
+        "smithy.api#documentation": "Creates a new label, not assigned to any account."
+      }
+    },
+    "com.gcp.css_v1#DeleteAccountsLabelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the label to delete. Format: accounts/{account}/labels/{label}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#DeleteAccountsLabels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#DeleteAccountsLabelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a label and removes it from all accounts to which it was assigned."
+      }
+    },
+    "com.gcp.css_v1#DeleteAccountsCssProductInputsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the CSS product input resource to delete. Format: accounts/{account}/cssProductInputs/{css_product_input}, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "supplementalFeedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Content API Supplemental Feed ID. The field must not be set if the action applies to a primary feed. If the field is set, then product action applies to a supplemental feed instead of primary Content API feed.",
+            "smithy.api#httpQuery": "supplementalFeedId"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#DeleteAccountsCssProductInputs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#DeleteAccountsCssProductInputsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a CSS Product input from your CSS Center account. After a delete it may take several minutes until the input is no longer available."
+      }
+    },
+    "com.gcp.css_v1#PatchAccountsCssProductInputsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list of CSS product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the CSS product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special \"*\" value for full CSS product replacement is not supported.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the CSS Product input. Format: `accounts/{account}/cssProductInputs/{css_product_input}`, where the last section `css_product_input` consists of 3 parts: contentLanguage~feedLabel~offerId. Example: accounts/123/cssProductInputs/de~DE~rawProvidedId123",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.css_v1#CssProductInput",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#PatchAccountsCssProductInputs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#PatchAccountsCssProductInputsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#CssProductInput"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the existing Css Product input in your CSS Center account. After inserting, updating, or deleting a CSS Product input, it may take several minutes before the processed Css Product can be retrieved."
+      }
+    },
+    "com.gcp.css_v1#InsertAccountsCssProductInputsRequest": {
+      "type": "structure",
+      "members": {
+        "feedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. DEPRECATED. Feed id is not required for CSS Products. The primary or supplemental feed id. If CSS Product already exists and feed id provided is different, then the CSS Product will be moved to a new feed. Note: For now, CSSs do not need to provide feed ids as we create feeds on the fly. We do not have supplemental feed support for CSS Products yet.",
+            "smithy.api#httpQuery": "feedId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account where this CSS Product will be inserted. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.css_v1#CssProductInput",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#InsertAccountsCssProductInputs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#InsertAccountsCssProductInputsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#CssProductInput"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.css_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.css_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/cssProductInputs:insert"
+        },
+        "smithy.api#documentation": "Uploads a CssProductInput to your CSS Center account. If an input with the same contentLanguage, identity, feedLabel and feedId already exists, this method replaces that entry. After inserting, updating, or deleting a CSS Product input, it may take several minutes before the processed CSS Product can be retrieved."
+      }
+    },
+    "com.gcp.css_v1#ListAccountsQuotasRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The CSS account that owns the collection of method quotas and resources. In most cases, this is the CSS domain. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of quotas to return in the response, used for paging. Defaults to 500; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#ListAccountsQuotas": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#ListAccountsQuotasRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#ListQuotaGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/quotas"
+        },
+        "smithy.api#documentation": "Lists the daily call quota and usage per group for your CSS Center account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.css_v1#ListAccountsCssProductsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account/domain to list processed CSS Products for. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of CSS Products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of CSS products will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListCssProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCssProducts` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#ListAccountsCssProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#ListAccountsCssProductsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#ListCssProductsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/cssProducts"
+        },
+        "smithy.api#documentation": "Lists the processed CSS Products in your CSS Center account. The response might contain fewer items than specified by pageSize. Rely on pageToken to determine if there are more items to be requested. After inserting, updating, or deleting a CSS product input, it may take several minutes before the updated processed CSS product can be retrieved.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.css_v1#GetAccountsCssProductsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the CSS product to retrieve. Format: `accounts/{account}/cssProducts/{css_product}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.css_v1#GetAccountsCssProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.css_v1#GetAccountsCssProductsRequest"
+      },
+      "output": {
+        "target": "com.gcp.css_v1#CssProduct"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.css_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.css_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves the processed CSS Product from your CSS Center account. After inserting, updating, or deleting a product input, it may take several minutes before the updated final product can be retrieved."
+      }
+    }
+  }
+}

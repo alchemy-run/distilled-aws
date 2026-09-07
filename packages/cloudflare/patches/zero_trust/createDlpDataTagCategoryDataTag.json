@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpDataTagCategoriesDataTagsCreate with distilled cloudflare/zero-trust createDlpDataTagCategoryDataTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDataTagsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDataTagsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTag/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDataTagsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTag/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpDataTagCategoryDataTagResponse"
+    }
+  ]
+}

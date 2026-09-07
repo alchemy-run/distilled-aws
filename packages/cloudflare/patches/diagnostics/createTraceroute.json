@@ -1,0 +1,38 @@
+{
+  "description": "Align diagnostics#TraceroutesCreate with distilled cloudflare/diagnostics createTraceroute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#TraceroutesCreate",
+      "path": "/shapes/com.cloudflare.diagnostics#CreateTraceroute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#TraceroutesCreateRequest",
+      "path": "/shapes/com.cloudflare.diagnostics#CreateTracerouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#CreateTraceroute/input/target",
+      "value": "com.cloudflare.diagnostics#CreateTracerouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#TraceroutesCreateResponse",
+      "path": "/shapes/com.cloudflare.diagnostics#CreateTracerouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#CreateTraceroute/output/target",
+      "value": "com.cloudflare.diagnostics#CreateTracerouteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.diagnostics#CreateTraceroute/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

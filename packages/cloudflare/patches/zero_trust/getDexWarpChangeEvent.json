@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexWarpChangeEventsGet with distilled cloudflare/zero-trust getDexWarpChangeEvent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexWarpChangeEventsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexWarpChangeEvent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexWarpChangeEventsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexWarpChangeEventRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexWarpChangeEvent/input/target",
+      "value": "com.cloudflare.zero_trust#GetDexWarpChangeEventRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexWarpChangeEventsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexWarpChangeEventResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexWarpChangeEvent/output/target",
+      "value": "com.cloudflare.zero_trust#GetDexWarpChangeEventResponse"
+    }
+  ]
+}

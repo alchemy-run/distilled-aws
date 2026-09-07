@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessApplicationsRevokeTokensForAccount with distilled cloudflare/zero-trust revokeTokensAccessApplicationForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsRevokeTokensForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsRevokeTokensForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsRevokeTokensForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#RevokeTokensAccessApplicationForAccountResponse"
+    }
+  ]
+}

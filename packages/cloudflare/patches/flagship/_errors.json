@@ -1,0 +1,83 @@
+{
+  "description": "Errors shared by the flagship operations. Declared once here rather than repeated in every operation's patch file (#421); each operation still lists the ones it returns in its own `errors` array.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#FlagshipAppNotFound",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": {
+            "target": "smithy.api#Integer"
+          },
+          "message": {
+            "target": "smithy.api#String"
+          }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "com.cloudflare.protocols#errorMatchers": [
+            {
+              "status": 404,
+              "message": {
+                "includes": "App not found"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#FlagshipFlagAlreadyExists",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": {
+            "target": "smithy.api#Integer"
+          },
+          "message": {
+            "target": "smithy.api#String"
+          }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "com.cloudflare.protocols#errorMatchers": [
+            {
+              "status": 409,
+              "message": {
+                "includes": "Flag already exists"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#FlagshipFlagNotFound",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": {
+            "target": "smithy.api#Integer"
+          },
+          "message": {
+            "target": "smithy.api#String"
+          }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "com.cloudflare.protocols#errorMatchers": [
+            {
+              "status": 404,
+              "message": {
+                "includes": "Flag not found"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

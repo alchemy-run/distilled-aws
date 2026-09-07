@@ -1,0 +1,45 @@
+{
+  "description": "Align spectrum#AppsUpdate with distilled cloudflare/spectrum updateApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsUpdate",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsUpdateRequest",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateApp/input/target",
+      "value": "com.cloudflare.spectrum#UpdateAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsUpdateResponse",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateApp/output/target",
+      "value": "com.cloudflare.spectrum#UpdateAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.spectrum#SpectrumAppNotFound"
+        },
+        {
+          "target": "com.cloudflare.spectrum#SpectrumProtocolNotAvailable"
+        },
+        {
+          "target": "com.cloudflare.spectrum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "description": "Vectorize insert takes a raw application/x-ndjson body (one vector per line) — the docs never model it, so requests went out empty. Mirrors distilled #379.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.vectorize#InsertIndex/traits/smithy.api#http/bodyMediaType",
+      "value": "application/x-ndjson"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.vectorize#InsertIndexRequest/members/body",
+      "value": {
+        "target": "smithy.api#Blob",
+        "traits": {
+          "smithy.api#httpPayload": {},
+          "smithy.api#required": {},
+          "smithy.api#documentation": "Vectors as newline-delimited JSON (application/x-ndjson), one vector object per line."
+        }
+      }
+    }
+  ]
+}

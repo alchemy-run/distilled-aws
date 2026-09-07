@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_transit#SitesWansGet with distilled cloudflare/magic-transit getSiteWan",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#SitesWansGet",
+      "path": "/shapes/com.cloudflare.magic_transit#GetSiteWan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#SitesWansGetRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#GetSiteWanRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetSiteWan/input/target",
+      "value": "com.cloudflare.magic_transit#GetSiteWanRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#SitesWansGetResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#GetSiteWanResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetSiteWan/output/target",
+      "value": "com.cloudflare.magic_transit#GetSiteWanResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#GetSiteWan/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#SiteWanNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#MagicWanUnauthorized"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

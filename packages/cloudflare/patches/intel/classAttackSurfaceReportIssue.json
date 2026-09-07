@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#AttackSurfaceReportIssuesClass with distilled cloudflare/intel classAttackSurfaceReportIssue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesClass",
+      "path": "/shapes/com.cloudflare.intel#ClassAttackSurfaceReportIssue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesClassRequest",
+      "path": "/shapes/com.cloudflare.intel#ClassAttackSurfaceReportIssueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ClassAttackSurfaceReportIssue/input/target",
+      "value": "com.cloudflare.intel#ClassAttackSurfaceReportIssueRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesClassResponse",
+      "path": "/shapes/com.cloudflare.intel#ClassAttackSurfaceReportIssueResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ClassAttackSurfaceReportIssue/output/target",
+      "value": "com.cloudflare.intel#ClassAttackSurfaceReportIssueResponse"
+    }
+  ]
+}

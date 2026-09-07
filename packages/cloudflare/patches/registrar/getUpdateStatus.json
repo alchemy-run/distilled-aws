@@ -1,0 +1,30 @@
+{
+  "description": "Align registrar#UpdateStatusGet with distilled cloudflare/registrar getUpdateStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#UpdateStatusGet",
+      "path": "/shapes/com.cloudflare.registrar#GetUpdateStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#UpdateStatusGetRequest",
+      "path": "/shapes/com.cloudflare.registrar#GetUpdateStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#GetUpdateStatus/input/target",
+      "value": "com.cloudflare.registrar#GetUpdateStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#UpdateStatusGetResponse",
+      "path": "/shapes/com.cloudflare.registrar#GetUpdateStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#GetUpdateStatus/output/target",
+      "value": "com.cloudflare.registrar#GetUpdateStatusResponse"
+    }
+  ]
+}

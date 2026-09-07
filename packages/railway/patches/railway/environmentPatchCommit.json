@@ -1,0 +1,10 @@
+{
+  "description": "environmentPatchCommit returns String! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#EnvironmentPatchCommitRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation environmentPatchCommit($commitMessage: String, $environmentId: String!, $patch: EnvironmentConfig) {\n  environmentPatchCommit(commitMessage: $commitMessage, environmentId: $environmentId, patch: $patch)\n}"
+    }
+  ]
+}

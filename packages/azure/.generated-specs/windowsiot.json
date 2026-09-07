@@ -1,0 +1,1018 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.windowsiot#ServicesCheckDeviceServiceNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesCheckDeviceServiceNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#DeviceServiceNameAvailabilityInfo"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.WindowsIoT/checkDeviceServiceNameAvailability",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Check if a Windows IoT Device Service name is available.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#DeviceServiceNameAvailabilityInfo": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The value which indicates whether the provided name is available."
+          }
+        },
+        "reason": {
+          "target": "com.azure.windowsiot#DeviceServiceNameAvailabilityInfoReason",
+          "traits": {
+            "smithy.api#documentation": "The reason for unavailability."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed reason message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties indicating whether a given Windows IoT Device Service name is available."
+      }
+    },
+    "com.azure.windowsiot#DeviceServiceNameAvailabilityInfoReason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason for unavailability."
+      }
+    },
+    "com.azure.windowsiot#ServicesCheckDeviceServiceNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Windows IoT Device Service to check.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesListRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#DeviceServiceDescriptionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.WindowsIoT/deviceServices",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Get all the IoT hubs in a subscription.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#DeviceServiceDescriptionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.windowsiot#DeviceServiceDescriptionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The array of DeviceService objects."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The JSON-serialized array of DeviceService objects with a next link."
+      }
+    },
+    "com.azure.windowsiot#DeviceServiceDescriptionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.windowsiot#DeviceService"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of DeviceService objects."
+      }
+    },
+    "com.azure.windowsiot#DeviceService": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#DeviceServiceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The description of the Windows IoT Device Service."
+      }
+    },
+    "com.azure.windowsiot#DeviceServiceProperties": {
+      "type": "structure",
+      "members": {
+        "notes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service notes."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service start date,"
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service device allocation,"
+          }
+        },
+        "billingDomainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service ODM AAD domain"
+          }
+        },
+        "adminDomainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service OEM AAD domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+      }
+    },
+    "com.azure.windowsiot#DeviceServiceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#DeviceServiceDescriptionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WindowsIoT/deviceServices",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Get all the IoT hubs in a resource group.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#ServicesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group that contains the Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesDeleteRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#ServicesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WindowsIoT/deviceServices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Delete a Windows IoT Device Service.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#ServicesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#ServicesDeleteResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesDeleteResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group that contains the Windows IoT Device Service."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#ServicesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WindowsIoT/deviceServices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Updates the metadata of a Windows IoT Device Service.\n\nUpdates the metadata of a Windows IoT Device Service. The usual pattern to modify a property is to retrieve the Windows IoT Device Service metadata and security metadata, and then combine them with the modified values in a new body to update the Windows IoT Device Service.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#ServicesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#ServicesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group that contains the Windows IoT Device Service."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Windows IoT Device Service."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#ServicesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#DeviceServicePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "notes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service notes."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service device allocation,"
+          }
+        },
+        "billingDomainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service ODM AAD domain"
+          }
+        },
+        "adminDomainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows IoT Device Service OEM AAD domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+      }
+    },
+    "com.azure.windowsiot#ServicesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#ServicesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WindowsIoT/deviceServices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Create or update the metadata of a Windows IoT Device Service.\n\nCreate or update the metadata of a Windows IoT Device Service. The usual pattern to modify a property is to retrieve the Windows IoT Device Service metadata and security metadata, and then combine them with the modified values in a new body to update the Windows IoT Device Service.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#ServicesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#ServicesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group that contains the Windows IoT Device Service."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Windows IoT Device Service."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#ServicesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.windowsiot#ServicesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#ServicesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WindowsIoT/deviceServices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Get the non-security related metadata of a Windows IoT Device Service.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#ServicesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.windowsiot#ServicesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the resource lives"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention."
+          }
+        },
+        "properties": {
+          "target": "com.azure.windowsiot#DeviceServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.windowsiot#ServicesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.windowsiot#ServicesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group that contains the Windows IoT Device Service."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Windows IoT Device Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.windowsiot#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.windowsiot#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.WindowsIoT/operations",
+          "code": 200,
+          "apiVersion": "2019-06-01"
+        },
+        "smithy.api#documentation": "Lists all of the available Windows IoT Services REST API operations.",
+        "com.distilled.openapi#apiVersion": "2019-06-01"
+      }
+    },
+    "com.azure.windowsiot#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.windowsiot#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Windows IoT Device Service operations supported by the Microsoft.WindowsIoT resource provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the request to list Windows IoT Device Service operations. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.windowsiot#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.windowsiot#OperationEntity"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Windows IoT Device Service operations supported by the Microsoft.WindowsIoT resource provider."
+      }
+    },
+    "com.azure.windowsiot#OperationEntity": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}."
+          }
+        },
+        "display": {
+          "target": "com.azure.windowsiot#OperationDisplayInfo",
+          "traits": {
+            "smithy.api#documentation": "The operation supported by Azure Data Catalog Service."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the executor of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation supported by Azure Data Catalog Service."
+      }
+    },
+    "com.azure.windowsiot#OperationDisplayInfo": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The action that users can perform, based on their permission level."
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Azure Data Catalog Service."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation supported by Azure Data Catalog Service."
+      }
+    },
+    "com.azure.windowsiot#Windowsiot": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.windowsiot#ServicesCheckDeviceServiceNameAvailability"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesList"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesDelete"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesUpdate"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesGet"
+        },
+        {
+          "target": "com.azure.windowsiot#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Windowsiot",
+        "smithy.api#documentation": "Azure Windowsiot API — merged from the windowsiot resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

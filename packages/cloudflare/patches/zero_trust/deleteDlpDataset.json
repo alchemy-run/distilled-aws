@@ -1,0 +1,20 @@
+{
+  "description": "Align zero_trust#DlpDatasetsDelete with distilled cloudflare/zero-trust deleteDlpDataset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDatasetsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDatasetsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDatasetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataset/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpDatasetRequest"
+    }
+  ]
+}

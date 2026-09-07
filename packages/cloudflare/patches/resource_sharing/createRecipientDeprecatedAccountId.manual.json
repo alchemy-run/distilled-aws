@@ -1,0 +1,9 @@
+{
+  "description": "The create-recipient body's `account_id` is documented as \"Deprecated alias for recipient_account_id\" — identical meaning to the `recipient_account_id` member that already exists. The converter dedup (colliding with the path param) surfaced it as `accountId2`; drop the deprecated alias instead of naming it.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateRecipientRequest/members/account_id_2"
+    }
+  ]
+}

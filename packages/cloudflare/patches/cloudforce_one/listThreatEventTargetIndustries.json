@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsTargetIndustriesList with distilled cloudflare/cloudforce-one listThreatEventTargetIndustries",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsTargetIndustriesList",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventTargetIndustries"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsTargetIndustriesListRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventTargetIndustriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventTargetIndustries/input/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventTargetIndustriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsTargetIndustriesListResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventTargetIndustriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventTargetIndustries/output/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventTargetIndustriesResponse"
+    }
+  ]
+}

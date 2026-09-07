@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpSettingsDelete with distilled cloudflare/zero-trust deleteDlpSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSettingsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSettingsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSetting/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSettingsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpSetting/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpSettingResponse"
+    }
+  ]
+}

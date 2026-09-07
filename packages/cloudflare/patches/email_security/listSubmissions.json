@@ -1,0 +1,41 @@
+{
+  "description": "Align email_security#SubmissionsList with distilled cloudflare/email-security listSubmissions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SubmissionsList",
+      "path": "/shapes/com.cloudflare.email_security#ListSubmissions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SubmissionsListRequest",
+      "path": "/shapes/com.cloudflare.email_security#ListSubmissionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListSubmissions/input/target",
+      "value": "com.cloudflare.email_security#ListSubmissionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SubmissionsListResponse",
+      "path": "/shapes/com.cloudflare.email_security#ListSubmissionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListSubmissions/output/target",
+      "value": "com.cloudflare.email_security#ListSubmissionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#ListSubmissions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

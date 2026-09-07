@@ -1,0 +1,86 @@
+{
+  "structures": {
+    "DescribeGeofenceCollectionResponse": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "DescribeMapResponse": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "DescribePlaceIndexResponse": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "DescribeRouteCalculatorResponse": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "DescribeTrackerResponse": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "ListGeofenceCollectionsResponseEntry": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "ListMapsResponseEntry": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "ListPlaceIndexesResponseEntry": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "ListRouteCalculatorsResponseEntry": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "ListTrackersResponseEntry": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    },
+    "BatchEvaluateGeofencesResponse": {
+      "members": {
+        "Errors": {
+          "optional": true
+        }
+      }
+    }
+  },
+  "operations": {
+    "cancelJob": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  }
+}

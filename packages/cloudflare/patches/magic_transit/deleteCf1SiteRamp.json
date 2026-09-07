@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#Cf1SitesRampsDelete with distilled cloudflare/magic-transit deleteCf1SiteRamp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesRampsDelete",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteCf1SiteRamp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesRampsDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteCf1SiteRampRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteCf1SiteRamp/input/target",
+      "value": "com.cloudflare.magic_transit#DeleteCf1SiteRampRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesRampsDeleteResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteCf1SiteRampResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteCf1SiteRamp/output/target",
+      "value": "com.cloudflare.magic_transit#DeleteCf1SiteRampResponse"
+    }
+  ]
+}

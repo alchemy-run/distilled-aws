@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTimeseriesGroupsDnssecAware with distilled cloudflare/radar dnssecAwareDnsTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsDnssecAware",
+      "path": "/shapes/com.cloudflare.radar#DnssecAwareDnsTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsDnssecAwareRequest",
+      "path": "/shapes/com.cloudflare.radar#DnssecAwareDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DnssecAwareDnsTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#DnssecAwareDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsDnssecAwareResponse",
+      "path": "/shapes/com.cloudflare.radar#DnssecAwareDnsTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DnssecAwareDnsTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#DnssecAwareDnsTimeseriesGroupResponse"
+    }
+  ]
+}

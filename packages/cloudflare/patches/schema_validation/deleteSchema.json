@@ -1,0 +1,39 @@
+{
+  "description": "Align schema_validation#SchemasDelete with distilled cloudflare/schema-validation deleteSchema",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SchemasDelete",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSchema"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SchemasDeleteRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSchemaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSchema/input/target",
+      "value": "com.cloudflare.schema_validation#DeleteSchemaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SchemasDeleteResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSchemaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSchema/output/target",
+      "value": "com.cloudflare.schema_validation#DeleteSchemaResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSchema/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.schema_validation#SchemaNotFound"
+        }
+      ]
+    }
+  ]
+}

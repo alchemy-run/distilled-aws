@@ -1,0 +1,31 @@
+{
+  "description": "posture integration request config is a flat string map per provider (Record<string, string> in alchemy)",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DevicesPostureIntegrationsCreateRequestConfig",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DevicesPostureIntegrationsEditRequestConfig",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    }
+  ]
+}

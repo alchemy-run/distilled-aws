@@ -1,0 +1,42 @@
+{
+  "description": "Align vectorize#IndexesDelete with distilled cloudflare/vectorize deleteIndex",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesDelete",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteIndex"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesDeleteRequest",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteIndexRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteIndex/input/target",
+      "value": "com.cloudflare.vectorize#DeleteIndexRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesDeleteResponse",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteIndexResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteIndex/output/target",
+      "value": "com.cloudflare.vectorize#DeleteIndexResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteIndex/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.vectorize#NotFound"
+        },
+        {
+          "target": "com.cloudflare.vectorize#Gone"
+        }
+      ]
+    }
+  ]
+}

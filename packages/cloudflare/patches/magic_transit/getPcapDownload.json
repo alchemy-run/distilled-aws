@@ -1,0 +1,20 @@
+{
+  "description": "Align magic_transit#PcapsDownloadGet with distilled cloudflare/magic-transit getPcapDownload",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsDownloadGet",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapDownload"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsDownloadGetRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapDownloadRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapDownload/input/target",
+      "value": "com.cloudflare.magic_transit#GetPcapDownloadRequest"
+    }
+  ]
+}

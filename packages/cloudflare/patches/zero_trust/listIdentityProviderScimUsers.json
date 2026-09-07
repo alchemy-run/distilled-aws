@@ -1,0 +1,41 @@
+{
+  "description": "Align zero_trust#IdentityProvidersScimUsersList with distilled cloudflare/zero-trust listIdentityProviderScimUsers",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersScimUsersList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListIdentityProviderScimUsers"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersScimUsersListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListIdentityProviderScimUsersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListIdentityProviderScimUsers/input/target",
+      "value": "com.cloudflare.zero_trust#ListIdentityProviderScimUsersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersScimUsersListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListIdentityProviderScimUsersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListIdentityProviderScimUsers/output/target",
+      "value": "com.cloudflare.zero_trust#ListIdentityProviderScimUsersResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListIdentityProviderScimUsers/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

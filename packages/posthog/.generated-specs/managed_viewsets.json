@@ -1,0 +1,144 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.managed_viewsets#ManagedViewsetsRetrieveRequestKind": {
+      "type": "enum",
+      "members": {
+        "REVENUE_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "revenue_analytics"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `revenue_analytics` - Revenue Analytics"
+      }
+    },
+    "com.posthog.managed_viewsets#ManagedViewsetsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.managed_viewsets#ManagedViewsetsRetrieveRequestKind",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.managed_viewsets#ManagedViewsetsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.managed_viewsets#ManagedViewsetsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/managed_viewsets/{kind}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all views associated with a specific managed viewset.\nGET /api/environments/{team_id}/managed_viewsets/{kind}/"
+      }
+    },
+    "com.posthog.managed_viewsets#ManagedViewsetsUpdateRequestKind": {
+      "type": "enum",
+      "members": {
+        "REVENUE_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "revenue_analytics"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `revenue_analytics` - Revenue Analytics"
+      }
+    },
+    "com.posthog.managed_viewsets#ManagedViewsetsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.managed_viewsets#ManagedViewsetsUpdateRequestKind",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.managed_viewsets#ManagedViewsetsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.managed_viewsets#ManagedViewsetsUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/managed_viewsets/{kind}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable or disable a managed viewset by kind.\nPUT /api/environments/{team_id}/managed_viewsets/{kind}/ with body {\"enabled\": true/false}"
+      }
+    },
+    "com.posthog.managed_viewsets#ManagedViewsets": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.managed_viewsets#ManagedViewsetsRetrieve"
+        },
+        {
+          "target": "com.posthog.managed_viewsets#ManagedViewsetsUpdate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

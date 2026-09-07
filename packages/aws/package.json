@@ -1,0 +1,126 @@
+{
+  "name": "@distilled.cloud/aws",
+  "version": "1.0.0-rc.8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alchemy-run/distilled",
+    "directory": "packages/aws"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "module": "src/index.ts",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "bun": "./src/index.ts",
+      "worker": "./src/index.ts",
+      "browser": "./lib/index.browser.js",
+      "default": "./lib/index.js"
+    },
+    "./*": {
+      "types": "./lib/services/*.d.ts",
+      "bun": "./src/services/*.ts",
+      "worker": "./src/services/*.ts",
+      "default": "./lib/services/*.js"
+    },
+    "./Auth": {
+      "types": "./lib/auth.d.ts",
+      "bun": "./src/auth.ts",
+      "worker": "./src/auth.ts",
+      "browser": "./lib/auth.browser.js",
+      "default": "./lib/auth.js"
+    },
+    "./Category": {
+      "types": "./lib/category.d.ts",
+      "bun": "./src/category.ts",
+      "worker": "./src/category.ts",
+      "default": "./lib/category.js"
+    },
+    "./Credentials": {
+      "types": "./lib/credentials.d.ts",
+      "bun": "./src/credentials.ts",
+      "worker": "./src/credentials.ts",
+      "browser": "./lib/credentials.browser.js",
+      "default": "./lib/credentials.js"
+    },
+    "./Endpoint": {
+      "types": "./lib/endpoint.d.ts",
+      "bun": "./src/endpoint.ts",
+      "worker": "./src/endpoint.ts",
+      "default": "./lib/endpoint.js"
+    },
+    "./Errors": {
+      "types": "./lib/errors.d.ts",
+      "bun": "./src/errors.ts",
+      "worker": "./src/errors.ts",
+      "default": "./lib/errors.js"
+    },
+    "./Presign": {
+      "types": "./lib/presign.d.ts",
+      "bun": "./src/presign.ts",
+      "worker": "./src/presign.ts",
+      "default": "./lib/presign.js"
+    },
+    "./Region": {
+      "types": "./lib/region.d.ts",
+      "bun": "./src/region.ts",
+      "worker": "./src/region.ts",
+      "default": "./lib/region.js"
+    },
+    "./Retry": {
+      "types": "./lib/retry.d.ts",
+      "bun": "./src/retry.ts",
+      "worker": "./src/retry.ts",
+      "default": "./lib/retry.js"
+    },
+    "./Sensitive": {
+      "types": "./lib/sensitive.d.ts",
+      "bun": "./src/sensitive.ts",
+      "worker": "./src/sensitive.ts",
+      "default": "./lib/sensitive.js"
+    },
+    "./Traits": {
+      "types": "./lib/traits.d.ts",
+      "bun": "./src/traits.ts",
+      "worker": "./src/traits.ts",
+      "default": "./lib/traits.js"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "build": "tsc -b",
+    "fmt": "oxfmt --write src",
+    "lint": "oxlint --fix src",
+    "check": "tsc && oxlint src && oxfmt --check src",
+    "generate": "bun run scripts/generate.ts",
+    "specs:fetch": "git submodule update --force --init --recursive --depth=1 specs/api-models-aws && git -C specs/api-models-aws checkout -- .",
+    "specs:update": "git -C specs/api-models-aws fetch && git -C specs/api-models-aws checkout main && git -C specs/api-models-aws pull"
+  },
+  "dependencies": {
+    "@aws-crypto/crc32": "catalog:aws",
+    "@aws-crypto/util": "catalog:aws",
+    "@aws-sdk/credential-providers": "catalog:aws",
+    "@aws-sdk/types": "catalog:aws",
+    "@distilled.cloud/core": "workspace:*",
+    "@smithy/shared-ini-file-loader": "catalog:aws",
+    "@smithy/types": "catalog:aws",
+    "@smithy/util-base64": "catalog:aws",
+    "aws4fetch": "catalog:aws",
+    "fast-xml-parser": "catalog:shared"
+  },
+  "devDependencies": {
+    "@effect/platform-bun": "catalog:effect",
+    "@types/bun": "catalog:tooling",
+    "@types/node": "catalog:tooling",
+    "dedent": "catalog:tooling",
+    "pathe": "catalog:tooling"
+  },
+  "peerDependencies": {
+    "effect": "catalog:effect"
+  }
+}

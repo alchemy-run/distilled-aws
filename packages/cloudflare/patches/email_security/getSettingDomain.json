@@ -1,0 +1,45 @@
+{
+  "description": "Align email_security#SettingsDomainsGet with distilled cloudflare/email-security getSettingDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsDomainsGet",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsDomainsGetRequest",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingDomain/input/target",
+      "value": "com.cloudflare.email_security#GetSettingDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsDomainsGetResponse",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingDomain/output/target",
+      "value": "com.cloudflare.email_security#GetSettingDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_security#EmailSecurityDomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.email_security#EmailSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.email_security#Forbidden"
+        }
+      ]
+    }
+  ]
+}

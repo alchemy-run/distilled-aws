@@ -1,0 +1,2845 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "datalineage",
+    "version": "v1",
+    "title": "Data Lineage API",
+    "baseUrl": "https://datalineage.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestRootCriteria": {
+      "type": "structure",
+      "members": {
+        "entities": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1MultipleEntityReference",
+          "traits": {
+            "smithy.api#documentation": "Optional. The entities to initiate the search from. Entities can be specified by FQN only, or by FQN and field. To search by FQN and all available fields for that FQN, use the wildcard `*` as the field value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Criteria for the root of the search."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion": {
+      "type": "structure",
+      "members": {
+        "rules": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of rules for Data Lineage ingestion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines how Lineage should be ingested for a given resource."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Origin": {
+      "type": "structure",
+      "members": {
+        "sourceType": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OriginSourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the source. Use of a source_type other than `CUSTOM` for process creation or updating is highly discouraged. It might be restricted in the future without notice. There will be increase in cost if you use any of the source types other than `CUSTOM`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the source_type isn't CUSTOM, the value of this field should be a Google Cloud resource name of the system, which reports lineage. The project and location parts of the resource name must match the project and location of the lineage resource being created. Examples: - `{source_type: COMPOSER, name: \"projects/foo/locations/us/environments/bar\"}` - `{source_type: BIGQUERY, name: \"projects/foo/locations/eu\"}` - `{source_type: CUSTOM, name: \"myCustomIntegration\"}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Origin of a process."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OriginSourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        },
+        "BIGQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIGQUERY"
+          }
+        },
+        "DATA_FUSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_FUSION"
+          }
+        },
+        "COMPOSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPOSER"
+          }
+        },
+        "LOOKER_STUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_STUDIO"
+          }
+        },
+        "DATAPROC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATAPROC"
+          }
+        },
+        "VERTEX_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERTEX_AI"
+          }
+        },
+        "DATAFLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATAFLOW"
+          }
+        },
+        "LOOKER_CORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "links": {
+          "target": "com.gcp.datalineage_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. An array of links to check for their associated LineageProcesses. The maximum number of items in this array is 100. If the request contains more than 100 links, it returns the `INVALID_ARGUMENT` error. Format: `projects/{project}/locations/{location}/links/{link}`."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of processes to return in a single page of the response. A page may contain fewer results than this value."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token received from a previous `BatchSearchLinkProcesses` call. Use it to get the next page. When requesting subsequent pages of a response, remember that all parameters must match the values you provided in the original request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for BatchSearchLinkProcesses."
+      }
+    },
+    "com.gcp.datalineage_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ListRunsResponse": {
+      "type": "structure",
+      "members": {
+        "runs": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1RunList",
+          "traits": {
+            "smithy.api#documentation": "The runs from the specified project and location."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to specify as `page_token` in the next call to get the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListRuns."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1RunList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ListLineageEventsResponse": {
+      "type": "structure",
+      "members": {
+        "lineageEvents": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEventList",
+          "traits": {
+            "smithy.api#documentation": "Lineage events from the specified project and location."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to specify as `page_token` in the next call to get the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListLineageEvents."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEventList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEvent"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse": {
+      "type": "structure",
+      "members": {
+        "run": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Created run name. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}`."
+          }
+        },
+        "process": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Created process name. Format: `projects/{project}/locations/{location}/processes/{process}`."
+          }
+        },
+        "lineageEvents": {
+          "target": "com.gcp.datalineage_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Created lineage event names. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}/lineageEvents/{lineage_event}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ProcessOpenLineageRunEvent."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEvent": {
+      "type": "structure",
+      "members": {
+        "links": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EventLinkList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of source-target pairs. Can't contain more than 100 tuples."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The end of the transformation which resulted in this lineage event. For streaming scenarios, it should be the end of the period from which the lineage is being reported."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the lineage event. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}/lineageEvents/{lineage_event}`. Can be specified or auto-assigned. {lineage_event} must be not longer than 200 characters and only contain characters in a set: `a-zA-Z0-9_-:.`"
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The beginning of the transformation which resulted in this lineage event. For streaming scenarios, it should be the beginning of the period from which the lineage is being reported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lineage event represents an operation on assets. Within the operation, the data flows from the source to the target defined in the links field."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EventLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EventLink"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingResponse": {
+      "type": "structure",
+      "members": {
+        "links": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lineage links that match the search criteria. Can be empty if no links match."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datalineage_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. If non-empty, the result set might be incomplete. Currently, only locations are supported. Format: `projects/[PROJECT_NUMBER]/locations/[LOCATION]` Example: projects/123456789/locations/us-east1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for SearchLineageStreaming."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLink"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference": {
+      "type": "structure",
+      "members": {
+        "fullyQualifiedName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. [Fully Qualified Name (FQN)](https://cloud.google.com/dataplex/docs/fully-qualified-names) of the entity."
+          }
+        },
+        "field": {
+          "target": "com.gcp.datalineage_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field path within the entity. Each nesting level should be a separate value in the repeated field. The order matters. Must be empty for asset level lineage For example to address \"salary.net\" subfield where \"salary\" is a column and \"net\" is a proto field two values in the `field` should be reported, the first is \"salary\" and the second is \"net\". Each field length is limited to 500 characters. Maximum supported nesting level is 20."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The soft reference to everything you can attach a lineage event to."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfo": {
+      "type": "structure",
+      "members": {
+        "dependencyType": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfoDependencyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of dependency."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dependency info describes how one entity is dependent on another."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfoDependencyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEPENDENCY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPENDENCY_TYPE_UNSPECIFIED"
+          }
+        },
+        "EXACT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXACT_COPY"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
+      "type": "structure",
+      "members": {
+        "ingestion": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion",
+          "traits": {
+            "smithy.api#documentation": "Optional. Ingestion rule for Data Lineage ingestion."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a config from overwriting each other. It is required that systems make use of the `etag` in the read-modify-write cycle to perform config updates in order to avoid race conditions: An `etag` is returned in the response to `GetConfig`, and systems are expected to put that etag in the request to `UpdateConfig` to ensure that their change will be applied to the same version of the config. If an `etag` is not provided in the call to `UpdateConfig`, then the existing config, if any, will be overwritten."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for Data Lineage. Defines different configuration options for Lineage customers to control behaviour of lineage systems."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule": {
+      "type": "structure",
+      "members": {
+        "lineageEnablement": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement",
+          "traits": {
+            "smithy.api#documentation": "Required. Lineage enablement configuration. Defines configurations for the ingestion of lineage for the resource and its children. If unspecified, the ingestion will be enabled only if it was configured in the resource's parent."
+          }
+        },
+        "integrationSelector": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector",
+          "traits": {
+            "smithy.api#documentation": "Required. Integration selector of the rule. The rule is only applied to the Integration selected by the selector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingestion rule for Data Lineage ingestion."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchLimits": {
+      "type": "structure",
+      "members": {
+        "maxDepth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum depth of the search. The default value is 5 and maximum value is 100."
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of links to return in the response. The default value is 1_000 and the maximum value is 10_000."
+          }
+        },
+        "maxProcessPerLink": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of processes to return per link. The default value is 0 and the maximum value is 100. If this value is non-zero, the response will contain process names for the links. To retrieve full process details in the response, include `links.processes.process` in the [FieldMask](https://developers.google.com/workspace/docs/api/how-tos/field-masks#read_with_a_field_mask)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Limits for the search results."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleLongrunningListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datalineage_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.datalineage_v1#GoogleLongrunningOperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleLongrunningOperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleLongrunningOperation"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The [relative name] (https://cloud.google.com//apis/design/resource_names#relative_resource_name) of the resource being operated on."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp of the operation submission to the server."
+          }
+        },
+        "resourceUuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The UUID of the resource being operated on."
+          }
+        },
+        "state": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OperationMetadataStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current operation state."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp of the operation termination, regardless of its success. This field is unset if the operation is still ongoing."
+          }
+        },
+        "operationType": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OperationMetadataOperationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the operation being performed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata describing the operation."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OperationMetadataStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1OperationMetadataOperationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleLongrunningCancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector": {
+      "type": "structure",
+      "members": {
+        "integration": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelectorIntegrationEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Integration to which the rule applies. This field can be used to specify the integration against which the ingestion rule should be applied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Integration selector of the rule. The rule is only applied to the Integration selected by the selector."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelectorIntegrationEnum": {
+      "type": "enum",
+      "members": {
+        "INTEGRATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEGRATION_UNSPECIFIED"
+          }
+        },
+        "BIGQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIGQUERY"
+          }
+        },
+        "DATAPROC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATAPROC"
+          }
+        },
+        "LOOKER_CORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE"
+          }
+        },
+        "MANAGED_AIRFLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANAGED_AIRFLOW"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkDependencyInfo": {
+      "type": "structure",
+      "members": {
+        "dependencyType": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkDependencyInfoDependencyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of dependency."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dependency info describes how one entity depends on another."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkDependencyInfoDependencyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEPENDENCY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPENDENCY_TYPE_UNSPECIFIED"
+          }
+        },
+        "EXACT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXACT_COPY"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ListProcessesResponse": {
+      "type": "structure",
+      "members": {
+        "processes": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessList",
+          "traits": {
+            "smithy.api#documentation": "The processes from the specified project and location."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to specify as `page_token` in the next call to get the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListProcesses."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkLineageProcess": {
+      "type": "structure",
+      "members": {
+        "process": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process",
+          "traits": {
+            "smithy.api#documentation": "Process that created the link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Process metadata for the link."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleRpcStatus": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.datalineage_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.datalineage_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.datalineage_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#DocumentMap"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleLongrunningOperation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.datalineage_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.datalineage_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.datalineage_v1#GoogleRpcStatus",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLinksRequest": {
+      "type": "structure",
+      "members": {
+        "targets": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1MultipleEntityReference",
+          "traits": {
+            "smithy.api#documentation": "Optional. Send a list of asset information in the **targets** field to retrieve all links that lead from upstream assets to the specified assets. This field is similar to the `target` target field but allows providing multiple entities. All entities within the `MultipleEntityReference` must have the same `fully_qualified_name`."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of links to return in a single page of the response. A page may contain fewer links than this value. If unspecified, at most 10 links are returned. Maximum value is 100; values greater than 100 are reduced to 100."
+          }
+        },
+        "sources": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1MultipleEntityReference",
+          "traits": {
+            "smithy.api#documentation": "Optional. Send a list of asset information in the **sources** field to retrieve all links that lead from the specified assets to downstream assets. This field is similar to the `source` source field but allows providing multiple entities. All entities within the `MultipleEntityReference` must have the same `fully_qualified_name`."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token received from a previous `SearchLinksRequest` call. Use it to get the next page. When requesting subsequent pages of a response, remember that all parameters must match the values you provided in the original request."
+          }
+        },
+        "source": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "Optional. Send asset information in the **source** field to retrieve all links that lead from the specified asset to downstream assets."
+          }
+        },
+        "target": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "Optional. Send asset information in the **target** field to retrieve all links that lead from upstream assets to the specified asset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for SearchLinks."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse": {
+      "type": "structure",
+      "members": {
+        "processLinks": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinksList",
+          "traits": {
+            "smithy.api#documentation": "An array of processes associated with the specified links."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to specify as `page_token` in the subsequent call to get the next page. Omitted if there are no more pages in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for BatchSearchLinkProcesses."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinksList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinks"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFilters": {
+      "type": "structure",
+      "members": {
+        "timeRange": {
+          "target": "com.gcp.datalineage_v1#GoogleTypeInterval",
+          "traits": {
+            "smithy.api#documentation": "Optional. Time interval to search for lineage. If unspecified, all lineage is returned. Currently, at most one of `start_time` and `end_time` can be set."
+          }
+        },
+        "entitySet": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersEntitySetEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Entity set restriction. If unspecified, the method returns all entities."
+          }
+        },
+        "dependencyTypes": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersDependencyTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Types of dependencies between entities to retrieve. If unspecified, all dependency types are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filters for the search."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersEntitySetEnum": {
+      "type": "enum",
+      "members": {
+        "ENTITY_SET_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTITY_SET_UNSPECIFIED"
+          }
+        },
+        "ENTITIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTITIES"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersDependencyTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "DEPENDENCY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPENDENCY_TYPE_UNSPECIFIED"
+          }
+        },
+        "EXACT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXACT_COPY"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersDependencyTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersDependencyTypesItemEnum"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1MultipleEntityReference": {
+      "type": "structure",
+      "members": {
+        "entities": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReferenceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of entities to search for links. The maximum number of entities is 20."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Multiple entity reference for SearchLinksRequest."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLinksResponse": {
+      "type": "structure",
+      "members": {
+        "links": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkList",
+          "traits": {
+            "smithy.api#documentation": "The list of links for a given asset. Can be empty if the asset has no relations of requested type (source or target)."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to specify as `page_token` in the subsequent call to get the next page. Omitted if there are no more pages in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for SearchLinks."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Link"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the lineage process. Format: `projects/{project}/locations/{location}/processes/{process}`. Can be specified or auto-assigned. {process} must be not longer than 200 characters and only contain characters in a set: `a-zA-Z0-9_-:.`"
+          }
+        },
+        "origin": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Origin",
+          "traits": {
+            "smithy.api#documentation": "Optional. The origin of this process and its runs and lineage events."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A human-readable name you can set to display in a user interface. Must be not longer than 200 characters and only contain UTF-8 letters or numbers, spaces or characters like `_-:&.`"
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.datalineage_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The attributes of the process. Should only be used for the purpose of non-semantic management (classifying, describing or labeling the process). Up to 100 attributes are allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A process is the definition of a data transformation operation."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The timestamp of the start of the run."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The timestamp of the end of the run."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the run. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}`. Can be specified or auto-assigned. {run} must be not longer than 200 characters and only contain characters in a set: `a-zA-Z0-9_-:.`"
+          }
+        },
+        "state": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1RunStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The state of the run."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A human-readable name you can set to display in a user interface. Must be not longer than 200 characters and only contain UTF-8 letters or numbers, spaces or characters like `_-:&.`"
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.datalineage_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The attributes of the run. Should only be used for the purpose of non-semantic management (classifying, describing or labeling the run). Up to 100 attributes are allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lineage run represents an execution of a process that creates lineage events."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1RunStateEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTED"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinks": {
+      "type": "structure",
+      "members": {
+        "process": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The process name in the format of `projects/{project}/locations/{location}/processes/{process}`."
+          }
+        },
+        "links": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinkInfoList",
+          "traits": {
+            "smithy.api#documentation": "An array containing link details objects of the links provided in the original request. A single process can result in creating multiple links. If any of the links you provide in the request are created by the same process, they all are included in this array."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Links associated with a specific process."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinkInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinkInfo"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLink": {
+      "type": "structure",
+      "members": {
+        "processes": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkLineageProcessList",
+          "traits": {
+            "smithy.api#documentation": "Processes metadata associated with the link."
+          }
+        },
+        "depth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Depth of the current link in the graph starting from 1."
+          }
+        },
+        "dependencyInfo": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfoList",
+          "traits": {
+            "smithy.api#documentation": "Describes how the target entity is dependent on the source entity."
+          }
+        },
+        "source": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "The entity that is the **source** of this link."
+          }
+        },
+        "target": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "The entity that is the **target** of this link."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location where the LineageEvent that created the link is stored."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lineage link between two entities."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkLineageProcessList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkLineageProcess"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfo"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessLinkInfo": {
+      "type": "structure",
+      "members": {
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the link in the format of `projects/{project}/locations/{location}/links/{link}`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of the last event establishing this link-process tuple."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start of the first event establishing this link-process tuple."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Link details."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleTypeInterval": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EventLink": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "Required. Reference to the source entity"
+          }
+        },
+        "target": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "Required. Reference to the target entity"
+          }
+        },
+        "dependencyInfo": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1DependencyInfo",
+          "traits": {
+            "smithy.api#documentation": "Optional. Describes how the target depends on the source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lineage between source and target entities."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1DependencyInfo": {
+      "type": "structure",
+      "members": {
+        "dependencyType": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1DependencyInfoDependencyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of dependency."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dependency info describes how one entity depends on another."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1DependencyInfoDependencyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEPENDENCY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPENDENCY_TYPE_UNSPECIFIED"
+          }
+        },
+        "EXACT_COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXACT_COPY"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequest": {
+      "type": "structure",
+      "members": {
+        "direction": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestDirectionEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Direction of the search."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.datalineage_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The locations to search in. This list should contain the location from the `parent` field."
+          }
+        },
+        "filters": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFilters",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters for the search."
+          }
+        },
+        "limits": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchLimits",
+          "traits": {
+            "smithy.api#documentation": "Optional. Limits for the search."
+          }
+        },
+        "rootCriteria": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestRootCriteria",
+          "traits": {
+            "smithy.api#documentation": "Required. Criteria for the root of the search."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for SearchLineageStreaming."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestDirectionEnum": {
+      "type": "enum",
+      "members": {
+        "SEARCH_DIRECTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEARCH_DIRECTION_UNSPECIFIED"
+          }
+        },
+        "DOWNSTREAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOWNSTREAM"
+          }
+        },
+        "UPSTREAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPSTREAM"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Link": {
+      "type": "structure",
+      "members": {
+        "dependencyInfo": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkDependencyInfoList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The dependency info of the link (applies only to column level links)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The name of the link. Format: `projects/{project}/locations/{location}/links/{link}`."
+          }
+        },
+        "source": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "The pointer to the entity that is the **source** of this link."
+          }
+        },
+        "target": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1EntityReference",
+          "traits": {
+            "smithy.api#documentation": "The pointer to the entity that is the **target** of this link."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of the last event establishing this link."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start of the first event establishing this link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Links represent the data flow between **source** (upstream) and **target** (downstream) assets in transformation pipelines. Links are created when LineageEvents record data transformation between related assets."
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkDependencyInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LinkDependencyInfo"
+      }
+    },
+    "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, ingestion of lineage should be enabled. If false, it should be disabled. If unspecified, the system default value is used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lineage enablement configuration. Defines configurations for the ingestion of lineage for the resource and its children."
+      }
+    },
+    "com.gcp.datalineage_v1#GetOrganizationsLocationsConfigRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. REQUIRED: The resource name of the config to be fetched. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.datalineage_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.datalineage_v1#GetOrganizationsLocationsConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetOrganizationsLocationsConfigRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get the Config for a given resource."
+      }
+    },
+    "com.gcp.datalineage_v1#PatchOrganizationsLocationsConfigRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.datalineage_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.datalineage_v1#PatchOrganizationsLocationsConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#PatchOrganizationsLocationsConfigRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update the Config for a given resource."
+      }
+    },
+    "com.gcp.datalineage_v1#GetFoldersLocationsConfigRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. REQUIRED: The resource name of the config to be fetched. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetFoldersLocationsConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetFoldersLocationsConfigRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get the Config for a given resource."
+      }
+    },
+    "com.gcp.datalineage_v1#PatchFoldersLocationsConfigRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#PatchFoldersLocationsConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#PatchFoldersLocationsConfigRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update the Config for a given resource."
+      }
+    },
+    "com.gcp.datalineage_v1#ProcessOpenLineageRunEventProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project and its location that should own the process, run, and lineage event.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#ProcessOpenLineageRunEventProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#ProcessOpenLineageRunEventProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:processOpenLineageRunEvent"
+        },
+        "smithy.api#documentation": "Creates new lineage events together with their parents: process and run. Updates the process and run if they already exist. Mapped from Open Lineage specification: https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json."
+      }
+    },
+    "com.gcp.datalineage_v1#SearchLinksProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location you want search in.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLinksRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#SearchLinksProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#SearchLinksProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLinksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:searchLinks"
+        },
+        "smithy.api#documentation": "Retrieve a list of links connected to a specific asset. Links represent the data flow between **source** (upstream) and **target** (downstream) assets in transformation pipelines. Links are stored in the same project as the Lineage Events that create them. You can retrieve links in every project where you have the `datalineage.events.get` permission. The project provided in the URL is used for Billing and Quota."
+      }
+    },
+    "com.gcp.datalineage_v1#BatchSearchLinkProcessesProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location where you want to search.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#BatchSearchLinkProcessesProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#BatchSearchLinkProcessesProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:batchSearchLinkProcesses"
+        },
+        "smithy.api#documentation": "Retrieve information about LineageProcesses associated with specific links. LineageProcesses are transformation pipelines that result in data flowing from **source** to **target** assets. Links between assets represent this operation. If you have specific link names, you can use this method to verify which LineageProcesses contribute to creating those links. See the SearchLinks method for more information on how to retrieve link name. You can retrieve the LineageProcess information in every project where you have the `datalineage.events.get` permission. The project provided in the URL is used for Billing and Quota."
+      }
+    },
+    "com.gcp.datalineage_v1#SearchLineageStreamingProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location to initiate the search from.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#SearchLineageStreamingProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#SearchLineageStreamingProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1SearchLineageStreamingResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:searchLineageStreaming"
+        },
+        "smithy.api#documentation": "Retrieves a streaming response of lineage links connected to the requested assets by performing a breadth-first search in the given direction. Links represent the data flow between **source** (upstream) and **target** (downstream) assets in transformation pipelines. Links are stored in the same project as the Lineage Events that create them. This method retrieves links from all valid locations provided in the request. This method supports Column-Level Lineage (CLL) along with wildcard support to retrieve all CLL for an Entity FQN. Following permissions are required to retrieve links: * `datalineage.events.get` permission for the project where the link is stored for entity-level lineage. * `datalineage.events.getFields` permission for the project where the link is stored for column-level lineage. This method also returns processes that created the links if explicitly requested by setting [max_process_per_link](google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.limits.max_process_per_link) is non-zero and full process details are requested via `links.processes.process` in the [FieldMask](https://developers.google.com/workspace/docs/api/how-tos/field-masks#read_with_a_field_mask). Permission required to retrieve processes: * `datalineage.processes.get` permission for the project where the process is stored."
+      }
+    },
+    "com.gcp.datalineage_v1#PatchProjectsLocationsProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the lineage process. Format: `projects/{project}/locations/{location}/processes/{process}`. Can be specified or auto-assigned. {process} must be not longer than 200 characters and only contain characters in a set: `a-zA-Z0-9_-:.`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update. Currently not used. The whole message is updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true and the process is not found, the request inserts it.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#PatchProjectsLocationsProcesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#PatchProjectsLocationsProcessesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a process."
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the process to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsProcesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the details of the specified process."
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token received from a previous `ListProcesses` call. Specify it to get the next page. When paginating, all other parameters specified in this call must match the parameters of the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project and its location that owns this collection of processes.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of processes to return. The service may return fewer than this value. If unspecified, at most 50 processes are returned. The maximum value is 100; values greater than 100 are cut to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsProcesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ListProcessesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/processes"
+        },
+        "smithy.api#documentation": "List processes in the given project and location. List order is descending by insertion time.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project and its location that should own the process.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CreateProjectsLocationsProcesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Process"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/processes"
+        },
+        "smithy.api#documentation": "Creates a new process."
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the process to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true and the process is not found, the request succeeds but the server doesn't perform any actions.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsProcesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the process with the specified name."
+      }
+    },
+    "com.gcp.datalineage_v1#PatchProjectsLocationsProcessesRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the run. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}`. Can be specified or auto-assigned. {run} must be not longer than 200 characters and only contain characters in a set: `a-zA-Z0-9_-:.`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update. Currently not used. The whole message is updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true and the run is not found, the request creates it.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#PatchProjectsLocationsProcessesRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#PatchProjectsLocationsProcessesRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a run."
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the run to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the details of the specified run."
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRunsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of runs to return. The service may return fewer than this value. If unspecified, at most 50 runs are returned. The maximum value is 100; values greater than 100 are cut to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of process that owns this collection of runs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token received from a previous `ListRuns` call. Specify it to get the next page. When paginating, all other parameters specified in this call must match the parameters of the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ListRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/runs"
+        },
+        "smithy.api#documentation": "Lists runs in the given project and location. List order is descending by `start_time`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRunsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the process that should own the run.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1Run"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/runs"
+        },
+        "smithy.api#documentation": "Creates a new run."
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the run to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true and the run is not found, the request succeeds but the server doesn't perform any actions.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the run with the specified name."
+      }
+    },
+    "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRunsLineageEventsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the run that should own the lineage event.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEvent",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRunsLineageEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#CreateProjectsLocationsProcessesRunsLineageEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEvent"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/lineageEvents"
+        },
+        "smithy.api#documentation": "Creates a new lineage event."
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRunsLineageEventsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the lineage event to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRunsLineageEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetProjectsLocationsProcessesRunsLineageEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1LineageEvent"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a specified lineage event."
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRunsLineageEventsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the lineage event to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true and the lineage event is not found, the request succeeds but the server doesn't perform any actions.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRunsLineageEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#DeleteProjectsLocationsProcessesRunsLineageEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the lineage event with the specified name."
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRunsLineageEventsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token received from a previous `ListLineageEvents` call. Specify it to get the next page. When paginating, all other parameters specified in this call must match the parameters of the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the run that owns the collection of lineage events to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of lineage events to return. The service may return fewer events than this value. If unspecified, at most 50 events are returned. The maximum value is 100; values greater than 100 are cut to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRunsLineageEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#ListProjectsLocationsProcessesRunsLineageEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageV1ListLineageEventsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/lineageEvents"
+        },
+        "smithy.api#documentation": "Lists lineage events in the given project and location. The list order is not defined.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleLongrunningCancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleLongrunningListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsConfigRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. REQUIRED: The resource name of the config to be fetched. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#GetProjectsLocationsConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#GetProjectsLocationsConfigRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get the Config for a given resource."
+      }
+    },
+    "com.gcp.datalineage_v1#PatchProjectsLocationsConfigRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datalineage_v1#PatchProjectsLocationsConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datalineage_v1#PatchProjectsLocationsConfigRequest"
+      },
+      "output": {
+        "target": "com.gcp.datalineage_v1#GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datalineage_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datalineage_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update the Config for a given resource."
+      }
+    }
+  }
+}

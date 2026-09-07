@@ -1,0 +1,42 @@
+{
+  "description": "Align user#TokensValueUpdate with distilled cloudflare/user putTokenValue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensValueUpdate",
+      "path": "/shapes/com.cloudflare.user#PutTokenValue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensValueUpdateRequest",
+      "path": "/shapes/com.cloudflare.user#PutTokenValueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#PutTokenValue/input/target",
+      "value": "com.cloudflare.user#PutTokenValueRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensValueUpdateResponse",
+      "path": "/shapes/com.cloudflare.user#PutTokenValueResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#PutTokenValue/output/target",
+      "value": "com.cloudflare.user#PutTokenValueResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#PutTokenValue/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#TokenNotFound"
+        }
+      ]
+    }
+  ]
+}

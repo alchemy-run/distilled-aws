@@ -1,0 +1,42 @@
+{
+  "description": "Align origin_tls_client_auth#Get with distilled cloudflare/origin-tls-client-auth getOriginTlsClientAuth",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#Get",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuth"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#GetRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuth/input/target",
+      "value": "com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#GetResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuth/output/target",
+      "value": "com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuth/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

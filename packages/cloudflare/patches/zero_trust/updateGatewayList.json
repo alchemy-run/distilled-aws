@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#GatewayListsUpdate with distilled cloudflare/zero-trust updateGatewayList",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayList"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayListRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayList/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateGatewayListRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayListResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayList/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateGatewayListResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#GatewayListNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DevicesPoliciesDefaultIncludesGet with distilled cloudflare/zero-trust getDevicePolicyDefaultInclude",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesDefaultIncludesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultInclude"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesDefaultIncludesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultIncludeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultInclude/input/target",
+      "value": "com.cloudflare.zero_trust#GetDevicePolicyDefaultIncludeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesDefaultIncludesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultIncludeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultInclude/output/target",
+      "value": "com.cloudflare.zero_trust#GetDevicePolicyDefaultIncludeResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultInclude/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

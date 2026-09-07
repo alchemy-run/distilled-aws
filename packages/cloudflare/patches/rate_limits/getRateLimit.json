@@ -1,0 +1,30 @@
+{
+  "description": "Align rate_limits#Get with distilled cloudflare/rate-limits getRateLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#Get",
+      "path": "/shapes/com.cloudflare.rate_limits#GetRateLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#GetRequest",
+      "path": "/shapes/com.cloudflare.rate_limits#GetRateLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#GetRateLimit/input/target",
+      "value": "com.cloudflare.rate_limits#GetRateLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#GetResponse",
+      "path": "/shapes/com.cloudflare.rate_limits#GetRateLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#GetRateLimit/output/target",
+      "value": "com.cloudflare.rate_limits#GetRateLimitResponse"
+    }
+  ]
+}

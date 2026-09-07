@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#GatewayProxyEndpointsEdit with distilled cloudflare/zero-trust patchGatewayProxyEndpoint",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayProxyEndpoint"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayProxyEndpointRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayProxyEndpoint/input/target",
+      "value": "com.cloudflare.zero_trust#PatchGatewayProxyEndpointRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayProxyEndpointResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayProxyEndpoint/output/target",
+      "value": "com.cloudflare.zero_trust#PatchGatewayProxyEndpointResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayProxyEndpoint/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#ProxyEndpointNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "operations": {
+    "createModel": {
+      "syntheticErrors": [
+        {
+          "name": "ModelAlreadyExists",
+          "from": "ValidationException",
+          "message": { "includes": "Cannot create already existing model" }
+        }
+      ]
+    },
+    "describeModel": {
+      "syntheticErrors": [
+        {
+          "name": "ModelNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find model" }
+        }
+      ]
+    },
+    "deleteModel": {
+      "syntheticErrors": [
+        {
+          "name": "ModelNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find model" }
+        }
+      ]
+    },
+    "createEndpointConfig": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointConfigAlreadyExists",
+          "from": "ValidationException",
+          "message": {
+            "includes": "Cannot create already existing endpoint configuration"
+          }
+        }
+      ]
+    },
+    "describeEndpointConfig": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointConfigNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint configuration" }
+        }
+      ]
+    },
+    "deleteEndpointConfig": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointConfigNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint configuration" }
+        }
+      ]
+    },
+    "createEndpoint": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointConfigNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint configuration" }
+        },
+        {
+          "name": "EndpointAlreadyExists",
+          "from": "ValidationException",
+          "message": { "includes": "Cannot create already existing endpoint" }
+        }
+      ]
+    },
+    "describeEndpoint": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint \"" }
+        }
+      ]
+    },
+    "deleteEndpoint": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint \"" }
+        }
+      ]
+    },
+    "updateEndpoint": {
+      "syntheticErrors": [
+        {
+          "name": "EndpointConfigNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint configuration" }
+        },
+        {
+          "name": "EndpointNotFound",
+          "from": "ValidationException",
+          "message": { "includes": "Could not find endpoint \"" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "ModelNotFound": ["NotFoundError"],
+    "ModelAlreadyExists": ["AlreadyExistsError", "ConflictError"],
+    "EndpointConfigNotFound": ["NotFoundError"],
+    "EndpointConfigAlreadyExists": ["AlreadyExistsError", "ConflictError"],
+    "EndpointNotFound": ["NotFoundError"],
+    "EndpointAlreadyExists": ["AlreadyExistsError", "ConflictError"]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "description": "Align kv#NamespacesKeysBulkGet with distilled cloudflare/kv bulkGetNamespaces (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#NamespacesKeysBulkGet/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.kv#MinimumKeysRequired"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

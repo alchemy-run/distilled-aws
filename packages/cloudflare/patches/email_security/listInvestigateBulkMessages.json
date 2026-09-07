@@ -1,0 +1,41 @@
+{
+  "description": "Align email_security#InvestigateBulkMessagesList with distilled cloudflare/email-security listInvestigateBulkMessages",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateBulkMessagesList",
+      "path": "/shapes/com.cloudflare.email_security#ListInvestigateBulkMessages"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateBulkMessagesListRequest",
+      "path": "/shapes/com.cloudflare.email_security#ListInvestigateBulkMessagesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListInvestigateBulkMessages/input/target",
+      "value": "com.cloudflare.email_security#ListInvestigateBulkMessagesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateBulkMessagesListResponse",
+      "path": "/shapes/com.cloudflare.email_security#ListInvestigateBulkMessagesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListInvestigateBulkMessages/output/target",
+      "value": "com.cloudflare.email_security#ListInvestigateBulkMessagesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#ListInvestigateBulkMessages/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "description": "Docs gap: token condition `request_ip.in`/`not_in` leave the item type opaque, but each item is an IPv4/IPv6 CIDR string on the wire (v0 typed string[]).",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensCreateRequestConditionRequestIpInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensCreateRequestConditionRequestIpNotInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensCreateResponseConditionRequestIpInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensCreateResponseConditionRequestIpNotInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensGetResponseConditionRequestIpInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensGetResponseConditionRequestIpNotInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensListResultItemConditionRequestIpInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensListResultItemConditionRequestIpNotInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensUpdateRequestConditionRequestIpInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensUpdateRequestConditionRequestIpNotInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensUpdateResponseConditionRequestIpInList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#TokensUpdateResponseConditionRequestIpNotInList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

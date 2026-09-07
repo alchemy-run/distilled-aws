@@ -1,0 +1,30 @@
+{
+  "description": "Align rum#RulesBulkCreate with distilled cloudflare/rum bulkCreateRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesBulkCreate",
+      "path": "/shapes/com.cloudflare.rum#BulkCreateRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesBulkCreateRequest",
+      "path": "/shapes/com.cloudflare.rum#BulkCreateRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#BulkCreateRules/input/target",
+      "value": "com.cloudflare.rum#BulkCreateRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesBulkCreateResponse",
+      "path": "/shapes/com.cloudflare.rum#BulkCreateRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#BulkCreateRules/output/target",
+      "value": "com.cloudflare.rum#BulkCreateRulesResponse"
+    }
+  ]
+}

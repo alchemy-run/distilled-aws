@@ -1,0 +1,42 @@
+{
+  "description": "Align flagship#AppsFlagsCreate with distilled cloudflare/flagship createAppFlag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsCreate",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsCreateRequest",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlag/input/target",
+      "value": "com.cloudflare.flagship#CreateAppFlagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsCreateResponse",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlag/output/target",
+      "value": "com.cloudflare.flagship#CreateAppFlagResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlag/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.flagship#FlagshipFlagAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.flagship#FlagshipAppNotFound"
+        }
+      ]
+    }
+  ]
+}

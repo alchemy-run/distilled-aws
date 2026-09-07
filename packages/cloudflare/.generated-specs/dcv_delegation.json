@@ -1,0 +1,84 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.dcv_delegation#GetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dcv_delegation#GetResponse": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DCV Delegation unique identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dcv_delegation#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dcv_delegation#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dcv_delegation#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/dcv_delegation/uuid",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the account and zone specific unique identifier used as part of the CNAME target for DCV Delegation.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dcv_delegation#DcvDelegation": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.dcv_delegation#Get"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare DcvDelegation",
+        "smithy.api#documentation": "Cloudflare API — dcv_delegation resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

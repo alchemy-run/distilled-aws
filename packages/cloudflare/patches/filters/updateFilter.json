@@ -1,0 +1,30 @@
+{
+  "description": "Align filters#Update with distilled cloudflare/filters updateFilter",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#Update",
+      "path": "/shapes/com.cloudflare.filters#UpdateFilter"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#UpdateRequest",
+      "path": "/shapes/com.cloudflare.filters#UpdateFilterRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#UpdateFilter/input/target",
+      "value": "com.cloudflare.filters#UpdateFilterRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#UpdateResponse",
+      "path": "/shapes/com.cloudflare.filters#UpdateFilterResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#UpdateFilter/output/target",
+      "value": "com.cloudflare.filters#UpdateFilterResponse"
+    }
+  ]
+}

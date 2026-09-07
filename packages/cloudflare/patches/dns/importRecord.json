@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#RecordsImport with distilled cloudflare/dns importRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsImport",
+      "path": "/shapes/com.cloudflare.dns#ImportRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsImportRequest",
+      "path": "/shapes/com.cloudflare.dns#ImportRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ImportRecord/input/target",
+      "value": "com.cloudflare.dns#ImportRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsImportResponse",
+      "path": "/shapes/com.cloudflare.dns#ImportRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ImportRecord/output/target",
+      "value": "com.cloudflare.dns#ImportRecordResponse"
+    }
+  ]
+}

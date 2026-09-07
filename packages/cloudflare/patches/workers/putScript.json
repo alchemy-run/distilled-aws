@@ -1,0 +1,87 @@
+{
+  "description": "Align workers#ScriptsUpdate with distilled cloudflare/workers putScript",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsUpdate",
+      "path": "/shapes/com.cloudflare.workers#PutScript"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers#PutScriptRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutScript/input/target",
+      "value": "com.cloudflare.workers#PutScriptRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers#PutScriptResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutScript/output/target",
+      "value": "com.cloudflare.workers#PutScriptResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PutScript/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidWorkerScript"
+        },
+        {
+          "target": "com.cloudflare.workers#DurableObjectMustBeSqlite"
+        },
+        {
+          "target": "com.cloudflare.workers#DuplicateMigrationTarget"
+        },
+        {
+          "target": "com.cloudflare.workers#ScriptStartupError"
+        },
+        {
+          "target": "com.cloudflare.workers#ScriptModuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#SecretsStoreBindingNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#KVNamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#R2BucketNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#D1DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#ServiceBindingNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#DurableObjectClassNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#VectorizeIndexNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#DispatchNamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#MtlsCertificateNotFound"
+        }
+      ]
+    }
+  ]
+}

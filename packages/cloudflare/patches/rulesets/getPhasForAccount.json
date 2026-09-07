@@ -1,0 +1,42 @@
+{
+  "description": "Align rulesets#PhasesGetForAccount with distilled cloudflare/rulesets getPhasForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesGetForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasForAccount/input/target",
+      "value": "com.cloudflare.rulesets#GetPhasForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasForAccount/output/target",
+      "value": "com.cloudflare.rulesets#GetPhasForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rulesets#RulesetNotFound"
+        },
+        {
+          "target": "com.cloudflare.rulesets#Forbidden"
+        }
+      ]
+    }
+  ]
+}

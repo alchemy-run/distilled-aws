@@ -1,0 +1,53 @@
+{
+  "description": "Align workflows#VersionsList with distilled cloudflare/workflows listVersions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsList",
+      "path": "/shapes/com.cloudflare.workflows#ListVersions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsListRequest",
+      "path": "/shapes/com.cloudflare.workflows#ListVersionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#ListVersions/input/target",
+      "value": "com.cloudflare.workflows#ListVersionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsListResponse",
+      "path": "/shapes/com.cloudflare.workflows#ListVersionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#ListVersions/output/target",
+      "value": "com.cloudflare.workflows#ListVersionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#ListVersions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#ListVersions/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workflows#WorkflowNotFound"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

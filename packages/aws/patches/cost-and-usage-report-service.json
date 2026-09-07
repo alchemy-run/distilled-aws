@@ -1,0 +1,25 @@
+{
+  "operations": {
+    "putReportDefinition": {
+      "syntheticErrors": [
+        {
+          "name": "ReportBucketNotVerified",
+          "from": "ValidationException",
+          "message": { "matches": "[Bb]ucket" }
+        }
+      ]
+    },
+    "modifyReportDefinition": {
+      "syntheticErrors": [
+        {
+          "name": "ReportBucketNotVerified",
+          "from": "ValidationException",
+          "message": { "matches": "[Bb]ucket" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "ReportBucketNotVerified": ["RetryableError"]
+  }
+}

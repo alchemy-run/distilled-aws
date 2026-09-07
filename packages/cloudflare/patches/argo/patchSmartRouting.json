@@ -1,0 +1,45 @@
+{
+  "description": "Align argo#SmartRoutingEdit with distilled cloudflare/argo patchSmartRouting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#SmartRoutingEdit",
+      "path": "/shapes/com.cloudflare.argo#PatchSmartRouting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#SmartRoutingEditRequest",
+      "path": "/shapes/com.cloudflare.argo#PatchSmartRoutingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.argo#PatchSmartRouting/input/target",
+      "value": "com.cloudflare.argo#PatchSmartRoutingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#SmartRoutingEditResponse",
+      "path": "/shapes/com.cloudflare.argo#PatchSmartRoutingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.argo#PatchSmartRouting/output/target",
+      "value": "com.cloudflare.argo#PatchSmartRoutingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.argo#PatchSmartRouting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.argo#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.argo#NotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.argo#Forbidden"
+        }
+      ]
+    }
+  ]
+}

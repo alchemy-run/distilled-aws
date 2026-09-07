@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_network_monitoring#VpcFlowsTokensCreate with distilled cloudflare/magic-network-monitoring createVpcFlowToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreate",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateVpcFlowToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreateRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateVpcFlowTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateVpcFlowToken/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#CreateVpcFlowTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreateResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateVpcFlowTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateVpcFlowToken/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#CreateVpcFlowTokenResponse"
+    }
+  ]
+}

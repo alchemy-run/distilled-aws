@@ -1,0 +1,42 @@
+{
+  "description": "Align calls#SfuGet with distilled cloudflare/calls getSfu",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#SfuGet",
+      "path": "/shapes/com.cloudflare.calls#GetSfu"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#SfuGetRequest",
+      "path": "/shapes/com.cloudflare.calls#GetSfuRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#GetSfu/input/target",
+      "value": "com.cloudflare.calls#GetSfuRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#SfuGetResponse",
+      "path": "/shapes/com.cloudflare.calls#GetSfuResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#GetSfu/output/target",
+      "value": "com.cloudflare.calls#GetSfuResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.calls#GetSfu/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.calls#CallsAppNotFound"
+        },
+        {
+          "target": "com.cloudflare.calls#Forbidden"
+        }
+      ]
+    }
+  ]
+}

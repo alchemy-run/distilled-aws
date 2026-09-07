@@ -1,0 +1,2393 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "A page number within the paginated result set."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "A search term."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#PaginatedDataWarehouseSavedQueryMinimalList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.warehouse_saved_queries#PaginatedDataWarehouseSavedQueryMinimalListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimal": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.warehouse_saved_queries#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "sync_frequency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "columns": {
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimalColumnsList"
+        },
+        "status": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQueryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of when this SavedQuery last ran.\n\n* `Cancelled` - Cancelled\n* `Modified` - Modified\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "managed_viewset_kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_materialized": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "origin": {
+          "target": "com.posthog.warehouse_saved_queries#OriginEnum",
+          "traits": {
+            "smithy.api#documentation": "Where this SavedQuery is created.\n\n* `data_warehouse` - Data Warehouse\n* `endpoint` - Endpoint\n* `managed_viewset` - Managed Viewset",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this test view should be automatically deleted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective access level the user has for this object",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lightweight serializer for list views - excludes large query field to reduce memory usage."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.warehouse_saved_queries#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.warehouse_saved_queries#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.warehouse_saved_queries#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.warehouse_saved_queries#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimalColumnsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimalColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimalColumnsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#SavedQueryStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "MODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Modified"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `Cancelled` - Cancelled\n* `Modified` - Modified\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#OriginEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_WAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data_warehouse"
+          }
+        },
+        "ENDPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoint"
+          }
+        },
+        "MANAGED_VIEWSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_viewset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `data_warehouse` - Data Warehouse\n* `endpoint` - Endpoint\n* `managed_viewset` - Managed Viewset"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#PaginatedDataWarehouseSavedQueryMinimalListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimal"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#PaginatedDataWarehouseSavedQueryMinimalList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum": {
+      "type": "enum",
+      "members": {
+        "NEVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "never"
+          }
+        },
+        "_15MIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15min"
+          }
+        },
+        "_30MIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30min"
+          }
+        },
+        "_1HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1hour"
+          }
+        },
+        "_6HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6hour"
+          }
+        },
+        "_12HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12hour"
+          }
+        },
+        "_24HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "24hour"
+          }
+        },
+        "_7DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7day"
+          }
+        },
+        "_30DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30day"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.warehouse_saved_queries#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "columns": {
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputColumnsList"
+        },
+        "status": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQueryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of when this SavedQuery last ran.\n\n* `Cancelled` - Cancelled\n* `Modified` - Modified\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "managed_viewset_kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Folder name used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_history_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_materialized": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "origin": {
+          "target": "com.posthog.warehouse_saved_queries#OriginEnum",
+          "traits": {
+            "smithy.api#documentation": "Where this SavedQuery is created.\n\n* `data_warehouse` - Data Warehouse\n* `endpoint` - Endpoint\n* `managed_viewset` - Managed Viewset",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this test view should be automatically deleted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective access level the user has for this object",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Shared methods for DataWarehouseSavedQuery serializers.\n\nThis mixin is intended to be used with serializers.ModelSerializer subclasses."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputColumnsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputColumnsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/ancestors/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the ancestors of this saved query.\n\nBy default, we return the immediate parents. The `level` parameter can be used to\nlook further back into the ancestor tree. If `level` overshoots (i.e. points to only\nancestors beyond the root), we return an empty list."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/cancel/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel a running saved query workflow."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/dependencies/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the count of immediate upstream and downstream dependencies for this saved query."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/descendants/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the descendants of this saved query.\n\nBy default, we return the immediate children. The `level` parameter can be used to\nlook further ahead into the descendants tree. If `level` overshoots (i.e. points to only\ndescendants further than a leaf), we return an empty list."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/materialize/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable materialization for this saved query with a 24-hour sync frequency."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/revert_materialization/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Undo materialization, revert back to the original view.\n(i.e. delete the materialized table and the schedule)"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/run/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run this saved query."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/{id}/run_history/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the recent run history (up to 5 most recent) for this materialized view."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreateRequestQueryKind": {
+      "type": "enum",
+      "members": {
+        "HOGQLQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HogQLQuery"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreateRequestQuery": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreateRequestQueryKind"
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the view. Used as the table name in HogQL queries and the node name in the data modeling Node."
+          }
+        },
+        "query": {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreateRequestQuery",
+          "traits": {
+            "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
+          }
+        },
+        "sync_frequency": {
+          "target": "com.posthog.warehouse_saved_queries#SavedQuerySyncFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to materialize this view. One of '15min', '30min', '1hour', '6hour', '12hour', '24hour', '7day', '30day', or 'never' to pause scheduled materialization. 15min is the fastest cadence available.\n\n* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "folder_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional folder ID used to organize this view in the SQL editor sidebar.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "edited_history_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Activity log ID from the last known edit. Used for conflict detection.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "soft_update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, skip column inference and validation. For saving drafts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dag_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional DAG to place this view into",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_test": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this view is for testing only and will auto-expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_queries/resume_schedules/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resume paused materialization schedules for multiple matviews.\n\nAccepts a list of view IDs in the request body: {\"view_ids\": [\"id1\", \"id2\", ...]}\nThis endpoint is idempotent - calling it on already running or non-existent schedules is safe."
+      }
+    },
+    "com.posthog.warehouse_saved_queries#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.warehouse_saved_queries#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.warehouse_saved_queries#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.warehouse_saved_queries#WarehouseSavedQueries": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesList"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieve"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDestroy"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieve"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieve"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align iam#SsoList with distilled cloudflare/iam listSsos",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoList",
+      "path": "/shapes/com.cloudflare.iam#ListSsos"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoListRequest",
+      "path": "/shapes/com.cloudflare.iam#ListSsosRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListSsos/input/target",
+      "value": "com.cloudflare.iam#ListSsosRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoListResponse",
+      "path": "/shapes/com.cloudflare.iam#ListSsosResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListSsos/output/target",
+      "value": "com.cloudflare.iam#ListSsosResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListSsos/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

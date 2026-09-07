@@ -1,0 +1,4516 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.resource_groups#GetResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#GetResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get resource group\n\nRetrieve a single resource group by id.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroupResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#UpdateResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#UpdateResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#UpdateResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update resource group\n\nUpdate the name and/or description of a resource group.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#DeleteResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#DeleteResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#DeleteResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#DeleteResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#DeleteResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete resource group\n\nDelete a resource group from the organization.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoin"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoinResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#ConfigureAutoJoin": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Configure auto-join\n\nConfigure the auto-join settings of a resource group.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#AddUsersRequestUsersItemCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersRequestUsersItemCase0": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#AddUsersRequestUsersItemCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersRequestUsersItemCase1Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersRequestUsersItemCase1": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#AddUsersRequestUsersItemCase1Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersRequestUsersItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#AddUsersRequestUsersItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#AddUsersRequestUsersItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#AddUsersRequestUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#AddUsersRequestUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#AddUsersResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#AddUsersResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#AddUsersResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#AddUsersResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#AddUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#AddUsersRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#AddUsersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add users\n\nAdd one or more organization members to a resource group.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleRequestRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#ChangeUserRoleResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#ChangeUserRoleResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#ChangeUserRoleResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#ChangeUserRole": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#ChangeUserRoleRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#ChangeUserRoleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change user role\n\nChange the role of a user in a resource group.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#RemoveUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#RemoveUserResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RemoveUserResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#RemoveUserResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#RemoveUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#RemoveUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#RemoveUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{name}/resource-groups/{resourceGroupId}/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove user\n\nRemove a user from a resource group, revoking the access granted through it.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItemResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#GetResourceGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.resource_groups#GetResourceGroupsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#GetResourceGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#GetResourceGroupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/resource-groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get resource groups\n\nRetrieve accessible resource groups. Get all resource groups the user has access to.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestUsersItem": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#CreateResourceGroupRequestUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RepoId": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.resource_groups#RepoIdType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#RepoIdType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestReposList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#RepoId"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestUsersList"
+        },
+        "repos": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestReposList"
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupRequestAutoJoin"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase0Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase0Scope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "READ_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_plus"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase0": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase0Role",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase0Scope"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase1": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoin": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoinCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseUsersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseUsersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseUsersItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#CreateResourceGroupResponseUsersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "addedBy": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase3"
+        },
+        "Case4": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItemCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.resource_groups#CreateResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "autoJoin": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseAutoJoin"
+        },
+        "users": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.huggingface.resource_groups#CreateResourceGroupResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.resource_groups#CreateResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.resource_groups#CreateResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.resource_groups#CreateResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/resource-groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create resource group\n\nCreate a new resource group in the organization.\n\nRequires the org to have a Team plan or higher."
+      }
+    },
+    "com.huggingface.resource_groups#ResourceGroups": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.resource_groups#GetResourceGroup"
+        },
+        {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroup"
+        },
+        {
+          "target": "com.huggingface.resource_groups#DeleteResourceGroup"
+        },
+        {
+          "target": "com.huggingface.resource_groups#ConfigureAutoJoin"
+        },
+        {
+          "target": "com.huggingface.resource_groups#AddUsers"
+        },
+        {
+          "target": "com.huggingface.resource_groups#ChangeUserRole"
+        },
+        {
+          "target": "com.huggingface.resource_groups#RemoveUser"
+        },
+        {
+          "target": "com.huggingface.resource_groups#GetResourceGroups"
+        },
+        {
+          "target": "com.huggingface.resource_groups#CreateResourceGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

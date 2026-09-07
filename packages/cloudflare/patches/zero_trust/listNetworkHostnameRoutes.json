@@ -1,0 +1,50 @@
+{
+  "description": "Align zero_trust#NetworksHostnameRoutesList with distilled cloudflare/zero-trust listNetworkHostnameRoutes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksHostnameRoutesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksHostnameRoutesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutes/input/target",
+      "value": "com.cloudflare.zero_trust#ListNetworkHostnameRoutesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksHostnameRoutesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutes/output/target",
+      "value": "com.cloudflare.zero_trust#ListNetworkHostnameRoutesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkHostnameRoutes/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

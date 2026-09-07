@@ -1,0 +1,27 @@
+{
+  "description": "Wire quirk: GET /zones/{zone_id}/security-center/securitytxt returns an EMPTY-STRING result for a zone with no security.txt configured (distilled types the response as string | {...} and passes the raw result through). The docs-derived struct decode turned that sentinel into {}, so alchemy's provider mistook an unconfigured zone for an existing file and tripped its adopt guard. Reshape as a bare envelope payload: the struct becomes the file shape, and strings pass through untouched.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#GetSecurityTxtResponse",
+      "path": "/shapes/com.cloudflare.security_txt#SecurityTxtFile"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxtResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "com.cloudflare.security_txt#SecurityTxtFile",
+            "traits": {
+              "com.cloudflare.protocols#envelopePayload": {},
+              "smithy.api#documentation": "The zone's security.txt configuration, or an empty-string sentinel when none is configured."
+            }
+          }
+        },
+        "traits": { "smithy.api#output": {} }
+      }
+    }
+  ]
+}

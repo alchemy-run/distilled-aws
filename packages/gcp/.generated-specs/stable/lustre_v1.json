@@ -1,0 +1,1821 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "lustre",
+    "version": "v1",
+    "title": "Google Cloud Managed Lustre API",
+    "baseUrl": "https://lustre.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.lustre_v1#ListInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.lustre_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
+          }
+        },
+        "instances": {
+          "target": "com.gcp.lustre_v1#InstanceList",
+          "traits": {
+            "smithy.api#documentation": "Response from ListInstances."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing Instances"
+      }
+    },
+    "com.gcp.lustre_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.lustre_v1#InstanceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#Instance"
+      }
+    },
+    "com.gcp.lustre_v1#ImportDataRequest": {
+      "type": "structure",
+      "members": {
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User-specified service account used to perform the transfer. If unspecified, the default Managed Lustre service agent will be used. Use one of the following formats: * `{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`"
+          }
+        },
+        "gcsPath": {
+          "target": "com.gcp.lustre_v1#GcsPath",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Storage source bucket and, optionally, path inside the bucket. If a path inside the bucket is specified, it must end with a forward slash (`/`)."
+          }
+        },
+        "lustrePath": {
+          "target": "com.gcp.lustre_v1#LustrePath",
+          "traits": {
+            "smithy.api#documentation": "Lustre path destination."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. UUID to identify requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for importing data to Lustre."
+      }
+    },
+    "com.gcp.lustre_v1#WeeklyMaintenanceWindow": {
+      "type": "structure",
+      "members": {
+        "dayOfWeek": {
+          "target": "com.gcp.lustre_v1#WeeklyMaintenanceWindowDayOfWeekEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Day of the week for the maintenance window."
+          }
+        },
+        "startTime": {
+          "target": "com.gcp.lustre_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Start time of the maintenance window in UTC time zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Weekly time window in which maintenance updates may occur. Duration of the window is currently fixed at 1 hour. Time zone is UTC."
+      }
+    },
+    "com.gcp.lustre_v1#WeeklyMaintenanceWindowDayOfWeekEnum": {
+      "type": "enum",
+      "members": {
+        "DAY_OF_WEEK_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
+          }
+        },
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONDAY"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TUESDAY"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEDNESDAY"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THURSDAY"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIDAY"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SATURDAY"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUNDAY"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#GcsPath": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The URI to a Cloud Storage bucket, or a path within a bucket, using the format `gs:////`. If a path inside the bucket is specified, it must end with a forward slash (`/`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a Cloud Storage bucket and, optionally, a path inside the bucket."
+      }
+    },
+    "com.gcp.lustre_v1#ExportDataRequest": {
+      "type": "structure",
+      "members": {
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User-specified service account used to perform the transfer. If unspecified, the Managed Lustre service agent is used. Use one of the following formats: * `{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`"
+          }
+        },
+        "gcsPath": {
+          "target": "com.gcp.lustre_v1#GcsPath",
+          "traits": {
+            "smithy.api#documentation": "The URI to a Cloud Storage bucket, or a path within a bucket, using the format `gs:////`. If a path inside the bucket is specified, it must end with a forward slash (`/`)."
+          }
+        },
+        "lustrePath": {
+          "target": "com.gcp.lustre_v1#LustrePath",
+          "traits": {
+            "smithy.api#documentation": "The root directory path to the Managed Lustre file system. Must start with `/`. Default is `/`."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. UUID to identify requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Export data from Managed Lustre to a Cloud Storage bucket."
+      }
+    },
+    "com.gcp.lustre_v1#MaintenanceSchedule": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The scheduled start time for the maintenance."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The scheduled end time for the maintenance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a scheduled maintenance event."
+      }
+    },
+    "com.gcp.lustre_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.lustre_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.lustre_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.lustre_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.lustre_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#DocumentMap"
+      }
+    },
+    "com.gcp.lustre_v1#DynamicTierOptions": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.gcp.lustre_v1#DynamicTierOptionsModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The dynamic tier mode of the instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dynamic tier options for a Managed Lustre instance."
+      }
+    },
+    "com.gcp.lustre_v1#DynamicTierOptionsModeEnum": {
+      "type": "enum",
+      "members": {
+        "MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODE_UNSPECIFIED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        },
+        "DEFAULT_CACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT_CACHE"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#ReconciliationOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "exclusiveAction": {
+          "target": "com.gcp.lustre_v1#ReconciliationOperationMetadataExclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Excluisive action returned by the CLH."
+          }
+        },
+        "deleteResource": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. Use exclusive_action instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation metadata returned by the CLH during resource state reconciliation."
+      }
+    },
+    "com.gcp.lustre_v1#ReconciliationOperationMetadataExclusiveActionEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_REPAIR_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_REPAIR_ACTION"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "RETRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETRY"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#RescheduleMaintenanceRequest": {
+      "type": "structure",
+      "members": {
+        "reschedule": {
+          "target": "com.gcp.lustre_v1#Reschedule",
+          "traits": {
+            "smithy.api#documentation": "Required. The desired reschedule settings."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique identifier for this request. A random UUID is recommended. This request is only idempotent if a `request_id` is provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for requesting to reschedule a maintenance event for a specific instance."
+      }
+    },
+    "com.gcp.lustre_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "response": {
+          "target": "com.gcp.lustre_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.lustre_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.lustre_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.lustre_v1#LustrePath": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The root directory path to the Managed Lustre file system. Must start with `/`. Default is `/`. If you're importing data into Managed Lustre, any path other than the default must already exist on the file system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The root directory path to the Lustre file system."
+      }
+    },
+    "com.gcp.lustre_v1#AccessRulesOptions": {
+      "type": "structure",
+      "members": {
+        "defaultSquashGid": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user squash GID for the default access rule. This user squash GID applies to all root users connecting from clients that are not matched by any of the access rules. If not set, the default is 0 (no GID squash)."
+          }
+        },
+        "defaultSquashMode": {
+          "target": "com.gcp.lustre_v1#AccessRulesOptionsDefaultSquashModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The squash mode for the default access rule."
+          }
+        },
+        "accessRules": {
+          "target": "com.gcp.lustre_v1#AccessRuleList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The access rules for the instance."
+          }
+        },
+        "defaultSquashUid": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user squash UID for the default access rule. This user squash UID applies to all root users connecting from clients that are not matched by any of the access rules. If not set, the default is 0 (no UID squash)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP-based access rules for the Managed Lustre instance. These options define the root user squash configuration."
+      }
+    },
+    "com.gcp.lustre_v1#AccessRulesOptionsDefaultSquashModeEnum": {
+      "type": "enum",
+      "members": {
+        "SQUASH_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SQUASH_MODE_UNSPECIFIED"
+          }
+        },
+        "NO_SQUASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SQUASH"
+          }
+        },
+        "ROOT_SQUASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROOT_SQUASH"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#AccessRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#AccessRule"
+      }
+    },
+    "com.gcp.lustre_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.lustre_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.lustre_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#Location"
+      }
+    },
+    "com.gcp.lustre_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of a long-running operation."
+      }
+    },
+    "com.gcp.lustre_v1#Reschedule": {
+      "type": "structure",
+      "members": {
+        "scheduleTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Required if reschedule_type is BY_TIME. Timestamp when the maintenance shall be rescheduled to. This time must be within 28 days of the original scheduled maintenance start time."
+          }
+        },
+        "rescheduleType": {
+          "target": "com.gcp.lustre_v1#RescheduleRescheduleTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of rescheduling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The desired reschedule settings."
+      }
+    },
+    "com.gcp.lustre_v1#RescheduleRescheduleTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESCHEDULE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESCHEDULE_TYPE_UNSPECIFIED"
+          }
+        },
+        "IMMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMMEDIATE"
+          }
+        },
+        "NEXT_AVAILABLE_WINDOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEXT_AVAILABLE_WINDOW"
+          }
+        },
+        "BY_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_TIME"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#MaintenancePolicy": {
+      "type": "structure",
+      "members": {
+        "weeklyMaintenanceWindows": {
+          "target": "com.gcp.lustre_v1#WeeklyMaintenanceWindowList",
+          "traits": {
+            "smithy.api#documentation": "Required. The weekly maintenance windows for the instance. Currently limited to 1 window."
+          }
+        },
+        "maintenanceExclusionWindow": {
+          "target": "com.gcp.lustre_v1#MaintenanceExclusionWindowList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The exclusion windows for the instance. Currently limited to 1 window."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a maintenance policy for a resource."
+      }
+    },
+    "com.gcp.lustre_v1#WeeklyMaintenanceWindowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#WeeklyMaintenanceWindow"
+      }
+    },
+    "com.gcp.lustre_v1#MaintenanceExclusionWindowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#MaintenanceExclusionWindow"
+      }
+    },
+    "com.gcp.lustre_v1#Lustre_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.lustre_v1#Location": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.lustre_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.lustre_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.lustre_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.lustre_v1#Instance": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the instance."
+          }
+        },
+        "capacityGib": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The storage capacity of the instance in gibibytes (GiB). Allowed values depend on the `perUnitStorageThroughput`. See [Performance tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers) for specific minimums, maximums, and step sizes for each performance tier."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A user-readable description of the instance."
+          }
+        },
+        "mountPoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Mount point of the instance in the format `IP_ADDRESS@tcp:/FILESYSTEM`."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the instance was last updated."
+          }
+        },
+        "gkeSupportEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Deprecated: No longer required for GKE instance creation. Indicates whether you want to enable support for GKE clients. By default, GKE clients are not supported."
+          }
+        },
+        "maintenancePolicy": {
+          "target": "com.gcp.lustre_v1#MaintenancePolicy",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maintenance policy for the instance to determine when to allow or exclude the instance from maintenance updates."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.lustre_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Labels as key value pairs."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the instance was created."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The full name of the VPC network to which the instance is connected. Must be in the format `projects/{project_id}/global/networks/{network_name}`."
+          }
+        },
+        "state": {
+          "target": "com.gcp.lustre_v1#InstanceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the instance."
+          }
+        },
+        "accessRulesOptions": {
+          "target": "com.gcp.lustre_v1#AccessRulesOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. The access rules options for the instance."
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The Cloud KMS key name to use for data encryption. If not set, the instance will use Google-managed encryption keys. If set, the instance will use customer-managed encryption keys. The key must be in the same region as the instance. The key format is: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}"
+          }
+        },
+        "upcomingMaintenanceSchedule": {
+          "target": "com.gcp.lustre_v1#MaintenanceSchedule",
+          "traits": {
+            "smithy.api#documentation": "Output only. Date and time of upcoming maintenance for the instance, if a maintenance policy is set."
+          }
+        },
+        "placementPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The placement policy name for the instance in the format of projects/{project}/locations/{location}/resourcePolicies/{resource_policy}"
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the resource. This is unrelated to the access rules which allow specifying the root squash uid."
+          }
+        },
+        "dynamicTierOptions": {
+          "target": "com.gcp.lustre_v1#DynamicTierOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. Specifies whether the instance is on the Dynamic tier. See [Performance tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers) for more information."
+          }
+        },
+        "filesystem": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The filesystem name for this instance. This name is used by client-side tools, including when mounting the instance. Must be eight characters or less and can only contain letters and numbers."
+          }
+        },
+        "perUnitStorageThroughput": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The throughput of the instance in MBps per TiB. Valid values are 0, 125, 250, 500, 1000. See [Performance tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers) for more information. If the instance is using the Dynamic tier, this field must not be set or must be set to zero."
+          }
+        },
+        "stateReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The reason why the instance is in a certain state (e.g. SUSPENDED)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Managed Lustre instance."
+      }
+    },
+    "com.gcp.lustre_v1#InstanceStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "UPGRADING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPGRADING"
+          }
+        },
+        "REPAIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPAIRING"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPED"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#AccessRule": {
+      "type": "structure",
+      "members": {
+        "squashMode": {
+          "target": "com.gcp.lustre_v1#AccessRuleSquashModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Squash mode for the access rule."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the access rule policy group. Must be 16 characters or less and include only alphanumeric characters or '_'."
+          }
+        },
+        "ipAddressRanges": {
+          "target": "com.gcp.lustre_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The IP address ranges to which to apply this access rule. Accepts non-overlapping CIDR ranges (e.g., `192.168.1.0/24`) and IP addresses (e.g., `192.168.1.0`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single policy group with IP-based access rules for the Managed Lustre instance."
+      }
+    },
+    "com.gcp.lustre_v1#AccessRuleSquashModeEnum": {
+      "type": "enum",
+      "members": {
+        "SQUASH_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SQUASH_MODE_UNSPECIFIED"
+          }
+        },
+        "NO_SQUASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SQUASH"
+          }
+        },
+        "ROOT_SQUASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROOT_SQUASH"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#TimeOfDay": {
+      "type": "structure",
+      "members": {
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        },
+        "seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`."
+      }
+    },
+    "com.gcp.lustre_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.lustre_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.lustre_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.lustre_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.lustre_v1#Operation"
+      }
+    },
+    "com.gcp.lustre_v1#MaintenanceExclusionWindow": {
+      "type": "structure",
+      "members": {
+        "startDate": {
+          "target": "com.gcp.lustre_v1#Lustre_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. Start date of the exclusion period in UTC time zone. This date is inclusive."
+          }
+        },
+        "time": {
+          "target": "com.gcp.lustre_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Time in UTC when the exclusion window starts on start_date and ends on end_date. This can be: * Full time OR * All zeros for 00:00:00 UTC"
+          }
+        },
+        "endDate": {
+          "target": "com.gcp.lustre_v1#Lustre_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. End date of the exclusion period in UTC time zone. This date is inclusive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Exclusion period when maintenance updates should not occur. An exclusion window can be in either of the following two formats: * Non-recurring : A full date, with non-zero year, month and day values. * Recurring : A month and day value, with a zero year. Time zone is UTC."
+      }
+    },
+    "com.gcp.lustre_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.lustre_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.lustre_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.lustre_v1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.lustre_v1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.lustre_v1#ListProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Desired order of results.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location for which to retrieve a list of instances, in the format `projects/{projectId}/locations/{location}`. To retrieve instance information for all locations, use \"-\" as the value of `{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server might return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#ListProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#ListProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#ListInstancesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Lists instances in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.lustre_v1#CreateProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Managed Lustre instance. * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter.",
+            "smithy.api#httpQuery": "instanceId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The instance's project and location, in the format `projects/{project}/locations/{location}`. Locations map to Google Cloud zones; for example, `us-west1-b`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.lustre_v1#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.lustre_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.lustre_v1#CreateProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#CreateProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Creates a new instance in a given project and location."
+      }
+    },
+    "com.gcp.lustre_v1#RescheduleMaintenanceProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.lustre_v1#RescheduleMaintenanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#RescheduleMaintenanceProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#RescheduleMaintenanceProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:rescheduleMaintenance"
+        },
+        "smithy.api#documentation": "Reschedules a planned maintenance event for a specific instance."
+      }
+    },
+    "com.gcp.lustre_v1#GetProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The instance resource name, in the format `projects/{projectId}/locations/{location}/instances/{instanceId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#GetProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#GetProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Instance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single instance."
+      }
+    },
+    "com.gcp.lustre_v1#PatchProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the instance.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the fields to be overwritten in the instance resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If no mask is provided then all fields present in the request are overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.lustre_v1#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#PatchProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#PatchProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single instance."
+      }
+    },
+    "com.gcp.lustre_v1#ExportDataProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Managed Lustre instance in the format `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.lustre_v1#ExportDataRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#ExportDataProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#ExportDataProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:exportData"
+        },
+        "smithy.api#documentation": "Exports data from a Managed Lustre instance to Cloud Storage."
+      }
+    },
+    "com.gcp.lustre_v1#ImportDataProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Managed Lustre instance in the format `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.lustre_v1#ImportDataRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#ImportDataProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#ImportDataProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:importData"
+        },
+        "smithy.api#documentation": "Imports data from Cloud Storage to a Managed Lustre instance."
+      }
+    },
+    "com.gcp.lustre_v1#DeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the instance to delete, in the format `projects/{projectId}/locations/{location}/instances/{instanceId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#DeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#DeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single instance."
+      }
+    },
+    "com.gcp.lustre_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.lustre_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.lustre_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.lustre_v1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.lustre_v1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.lustre_v1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.lustre_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.lustre_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.lustre_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.lustre_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    }
+  }
+}

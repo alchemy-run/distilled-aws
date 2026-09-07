@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112SummaryResponseCodes with distilled cloudflare/radar responseCodesAs112Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryResponseCodes",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryResponseCodesRequest",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112Summary/input/target",
+      "value": "com.cloudflare.radar#ResponseCodesAs112SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryResponseCodesResponse",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112Summary/output/target",
+      "value": "com.cloudflare.radar#ResponseCodesAs112SummaryResponse"
+    }
+  ]
+}

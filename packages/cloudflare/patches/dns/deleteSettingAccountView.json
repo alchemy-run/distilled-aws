@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#SettingsAccountViewsDelete with distilled cloudflare/dns deleteSettingAccountView",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsDelete",
+      "path": "/shapes/com.cloudflare.dns#DeleteSettingAccountView"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsDeleteRequest",
+      "path": "/shapes/com.cloudflare.dns#DeleteSettingAccountViewRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteSettingAccountView/input/target",
+      "value": "com.cloudflare.dns#DeleteSettingAccountViewRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsDeleteResponse",
+      "path": "/shapes/com.cloudflare.dns#DeleteSettingAccountViewResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteSettingAccountView/output/target",
+      "value": "com.cloudflare.dns#DeleteSettingAccountViewResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#DeleteSettingAccountView/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#ViewNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align queues#Delete with distilled cloudflare/queues deleteQueue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#Delete",
+      "path": "/shapes/com.cloudflare.queues#DeleteQueue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#DeleteRequest",
+      "path": "/shapes/com.cloudflare.queues#DeleteQueueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#DeleteQueue/input/target",
+      "value": "com.cloudflare.queues#DeleteQueueRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#DeleteQueue/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#QueueInUseByEventNotification"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.queues#QueueInUseByWorkerBinding"
+        }
+      ]
+    }
+  ]
+}

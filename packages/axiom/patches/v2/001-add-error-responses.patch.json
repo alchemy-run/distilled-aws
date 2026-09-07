@@ -1,0 +1,560 @@
+{
+  "description": "Add observed error responses to v2 operations. Discovered via live API probes against api.axiom.co: 404 is returned for unknown resource IDs on all by-ID GET/PUT/DELETE endpoints; 422 is returned for missing/invalid body fields on create/update; 400 is returned for malformed inputs (e.g. invalid dataset name, malformed annotation ID).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/components/responses/BadRequestError",
+      "value": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/components/responses/UnprocessableEntityError",
+      "value": {
+        "description": "Unprocessable entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets/post/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1fields/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1fields~1{field_id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1fields~1{field_id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1fields~1{field_id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1mapfields/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1mapfields/post/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1mapfields/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1mapfields/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1datasets~1{dataset_id}~1mapfields~1{map_field_name}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors~1{id}~1history/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1monitors~1{id}~1history/get/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1notifiers/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1notifiers~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1notifiers~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1notifiers~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1notifiers~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1orgs~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1orgs~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1roles/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1roles~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1roles~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1roles~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1roles~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1groups/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1groups~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1groups~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1groups~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1rbac~1groups~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1apl-starred-queries/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1apl-starred-queries~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1apl-starred-queries~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1apl-starred-queries~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1apl-starred-queries~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1tokens/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1tokens~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1tokens~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1tokens~1{id}~1regenerate/post/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1tokens~1{id}~1regenerate/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1users/post/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1users/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1users~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1users~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1users~1{id}~1role/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1users~1{id}~1role/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1vfields/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1vfields~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1vfields~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1vfields~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1vfields~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1views/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1views~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1views~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1views~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1views~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations/post/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/get/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/get/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/put/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/put/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/put/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/delete/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1annotations~1{id}/delete/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    }
+  ]
+}

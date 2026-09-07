@@ -1,0 +1,10 @@
+{
+  "description": "serviceInstanceUpdate returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ServiceInstanceUpdateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation serviceInstanceUpdate($environmentId: String, $input: ServiceInstanceUpdateInput!, $serviceId: String!) {\n  serviceInstanceUpdate(environmentId: $environmentId, input: $input, serviceId: $serviceId)\n}"
+    }
+  ]
+}

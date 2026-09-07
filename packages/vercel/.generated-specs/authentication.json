@@ -1,0 +1,1609 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase0GrantType": {
+      "type": "enum",
+      "members": {
+        "AUTHORIZATION_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "authorization_code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The grant type, when using x-www-form-urlencoded content type"
+      }
+    },
+    "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase0": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sensitive code received from Vercel",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state received from the initialization request"
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The integration client id",
+            "smithy.api#required": {}
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The integration client secret",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "redirect_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The integration redirect URI"
+          }
+        },
+        "grant_type": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase0GrantType",
+          "traits": {
+            "smithy.api#documentation": "The grant type, when using x-www-form-urlencoded content type",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase1GrantType": {
+      "type": "enum",
+      "members": {
+        "REFRESH_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refresh_token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The grant type, when using x-www-form-urlencoded content type"
+      }
+    },
+    "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase1": {
+      "type": "structure",
+      "members": {
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The refresh token received from previous token exchange",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The integration client id",
+            "smithy.api#required": {}
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The integration client secret",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "grant_type": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase1GrantType",
+          "traits": {
+            "smithy.api#documentation": "The grant type, when using x-www-form-urlencoded content type",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ExchangeSsoTokenRequestBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenRequestBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ExchangeSsoTokenRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.authentication#ExchangeSsoTokenResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "id_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Double"
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ExchangeSsoTokenResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "id_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ExchangeSsoTokenResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ExchangeSsoTokenResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.authentication#ExchangeSsoTokenResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.authentication#ExchangeSsoToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.authentication#ExchangeSsoTokenRequest"
+      },
+      "output": {
+        "target": "com.vercel.authentication#ExchangeSsoTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.authentication#BadRequest"
+        },
+        {
+          "target": "com.vercel.authentication#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/integrations/sso/token",
+          "code": 200
+        },
+        "smithy.api#documentation": "SSO Token Exchange\n\nDuring the autorization process, Vercel sends the user to the provider [redirectLoginUrl](https://vercel.com/docs/integrations/create-integration/submit-integration#redirect-login-url), that includes the OAuth authorization `code` parameter. The provider then calls the SSO Token Exchange endpoint with the sent code and receives the OIDC token. They log the user in based on this token and redirects the user back to the Vercel account using deep-link parameters included the redirectLoginUrl. Providers should not persist the returned `id_token` in a database since the token will expire. See [**Authentication with SSO**](https://vercel.com/docs/integrations/create-integration/marketplace-api#authentication-with-sso) for more details."
+      }
+    },
+    "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuotaRefreshPeriod": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "daily"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How often the quota refreshes."
+      }
+    },
+    "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuotaAlertThresholdsItem": {
+      "type": "intEnum",
+      "members": {
+        "_50": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 50
+          }
+        },
+        "_75": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 75
+          }
+        },
+        "_100": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 100
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuotaAlertThresholdsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuotaAlertThresholdsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Spend percentages (a subset of [50, 75, 100]) at which to send a spend alert."
+      }
+    },
+    "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuota": {
+      "type": "structure",
+      "members": {
+        "limitAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The quota limit amount.",
+            "smithy.api#required": {}
+          }
+        },
+        "includeByokInQuota": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include BYOK (Bring Your Own Key) usage in the quota."
+          }
+        },
+        "refreshPeriod": {
+          "target": "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuotaRefreshPeriod",
+          "traits": {
+            "smithy.api#documentation": "How often the quota refreshes."
+          }
+        },
+        "alertThresholds": {
+          "target": "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuotaAlertThresholdsList",
+          "traits": {
+            "smithy.api#documentation": "Spend percentages (a subset of [50, 75, 100]) at which to send a spend alert."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional AI Gateway quota configuration for the API key."
+      }
+    },
+    "com.vercel.authentication#CreateApiKeysRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional generic metadata for the API key. The accepted shape depends on the key's `purpose` and is validated on creation; for `ai-gateway` keys this accepts `environment`."
+      }
+    },
+    "com.vercel.authentication#CreateApiKeysRequest": {
+      "type": "structure",
+      "members": {
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API key's purpose, which restricts how it can be used.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional project to restrict the API key to."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional name for the API key."
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The API key's expiration, expressed as a UNIX timestamp in milliseconds."
+          }
+        },
+        "aiGatewayQuota": {
+          "target": "com.vercel.authentication#CreateApiKeysRequestAiGatewayQuota",
+          "traits": {
+            "smithy.api#documentation": "Optional AI Gateway quota configuration for the API key."
+          }
+        },
+        "metadata": {
+          "target": "com.vercel.authentication#CreateApiKeysRequestMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Optional generic metadata for the API key. The accepted shape depends on the key's `purpose` and is validated on creation; for `ai-gateway` keys this accepts `environment`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.authentication#APIKey": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the API key.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable name of the API key.",
+            "smithy.api#required": {}
+          }
+        },
+        "partialKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last few characters of the API key string, for helping identify the API key.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team that the API key grants access to.",
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API key's purpose, i.e. what resources it can be used with.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the project that this API key grants access to.\n\nWhen this is unset, the API key grants access to all projects in the team.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the API key expires.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "activeAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the API key was most recently used.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the API key was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user who created the API key.",
+            "smithy.api#required": {}
+          }
+        },
+        "leakedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the API key was marked as leaked.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "leakedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL where the API key was discovered as leaked.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "createdByAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the app that created the API key, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quota": {
+          "target": "com.vercel.authentication#APIKeyQuota"
+        },
+        "metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Generic metadata attached to the API key.\n\nThe accepted shape depends on the key's `purpose` and is validated when the key is created. For `ai-gateway` keys this carries `environment` and `spendAttribution`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the newly created API key."
+      }
+    },
+    "com.vercel.authentication#APIKeyQuota": {
+      "type": "structure",
+      "members": {
+        "quotaEntityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the quota.",
+            "smithy.api#required": {}
+          }
+        },
+        "limitAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The quota limit amount.",
+            "smithy.api#required": {}
+          }
+        },
+        "currentSpend": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The current amount spent against the quota.",
+            "smithy.api#required": {}
+          }
+        },
+        "currentByokSpend": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The current BYOK spend (tracked separately).",
+            "smithy.api#required": {}
+          }
+        },
+        "includeByokInQuota": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether BYOK (Bring Your Own Key) spend counts against the quota.",
+            "smithy.api#required": {}
+          }
+        },
+        "refreshPeriod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How often the quota refreshes.",
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the quota is currently active.",
+            "smithy.api#required": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the quota has been archived.",
+            "smithy.api#required": {}
+          }
+        },
+        "alertThresholds": {
+          "target": "com.vercel.authentication#APIKeyQuotaAlertThresholdsList",
+          "traits": {
+            "smithy.api#documentation": "Spend percentages (a subset of [50, 75, 100]) at which to send a spend alert. Empty or undefined disables alerts."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the quota was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the quota was last updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AI Gateway quota associated with an API key."
+      }
+    },
+    "com.vercel.authentication#APIKeyQuotaAlertThresholdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "Spend percentages (a subset of [50, 75, 100]) at which to send a spend alert. Empty or undefined disables alerts."
+      }
+    },
+    "com.vercel.authentication#CreateApiKeysResponse": {
+      "type": "structure",
+      "members": {
+        "apiKeyString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API key's actual value. This value is only provided in this response, and can never be retrieved again in the future. Be sure to save it somewhere safe!",
+            "smithy.api#required": {}
+          }
+        },
+        "apiKey": {
+          "target": "com.vercel.authentication#APIKey",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.authentication#CreateApiKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.authentication#CreateApiKeysRequest"
+      },
+      "output": {
+        "target": "com.vercel.authentication#CreateApiKeysResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.authentication#BadRequest"
+        },
+        {
+          "target": "com.vercel.authentication#Forbidden"
+        },
+        {
+          "target": "com.vercel.authentication#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api-keys",
+          "code": 200
+        }
+      }
+    },
+    "com.vercel.authentication#AuthToken": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable name of the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token's prefix, for identification purposes."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last few characters of the token, for identification purposes."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin of how the token was created."
+          }
+        },
+        "scopes": {
+          "target": "com.vercel.authentication#AuthTokenScopesList",
+          "traits": {
+            "smithy.api#documentation": "The access scopes granted to the token."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the token was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "activeAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the token was most recently used.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the token expires."
+          }
+        },
+        "revokedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the token was revoked."
+          }
+        },
+        "leakedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp (in milliseconds) of when the token was marked as leaked."
+          }
+        },
+        "leakedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL where the token was discovered as leaked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Authentication token metadata."
+      }
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase0SudoOrigin": {
+      "type": "enum",
+      "members": {
+        "EMAIL_OTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email-otp"
+          }
+        },
+        "OTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "otp"
+          }
+        },
+        "RECOVERY_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recovery-code"
+          }
+        },
+        "TOTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "totp"
+          }
+        },
+        "WEBAUTHN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webauthn"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible step-up auth origins"
+      }
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase0Sudo": {
+      "type": "structure",
+      "members": {
+        "origin": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase0SudoOrigin",
+          "traits": {
+            "smithy.api#documentation": "Possible step-up auth origins",
+            "smithy.api#required": {}
+          }
+        },
+        "verifiedAt": {
+          "target": "smithy.api#Double"
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase0Origin": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        },
+        "APPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "apple"
+          }
+        },
+        "BITBUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bitbucket"
+          }
+        },
+        "CHATGPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "chatgpt"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "EMU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "emu"
+          }
+        },
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITHUB_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github-webhook"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "INVITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invite"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "OTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "otp"
+          }
+        },
+        "PASSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "passkey"
+          }
+        },
+        "SAML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saml"
+          }
+        },
+        "SMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sms"
+          }
+        },
+        "TOKEN_EXCHANGE_OIDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-exchange-oidc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sudo": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase0Sudo"
+        },
+        "origin": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase0Origin"
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The access scopes granted to the token."
+      }
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase1Type": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase1Origin": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        },
+        "APPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "apple"
+          }
+        },
+        "BITBUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bitbucket"
+          }
+        },
+        "CHATGPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "chatgpt"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "EMU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "emu"
+          }
+        },
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITHUB_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github-webhook"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "INVITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invite"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "OTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "otp"
+          }
+        },
+        "PASSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "passkey"
+          }
+        },
+        "SAML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saml"
+          }
+        },
+        "SMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sms"
+          }
+        },
+        "TOKEN_EXCHANGE_OIDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-exchange-oidc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#AuthTokenScopesItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase1Origin"
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The access scopes granted to the token."
+      }
+    },
+    "com.vercel.authentication#AuthTokenScopesItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.authentication#AuthTokenScopesItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#AuthTokenScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.authentication#AuthTokenScopesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The access scopes granted to the token."
+      }
+    },
+    "com.vercel.authentication#ListAuthTokensResponseBodyCase0TokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.authentication#AuthToken"
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ListAuthTokensResponseBodyCase0Pagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ListAuthTokensResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "tokens": {
+          "target": "com.vercel.authentication#ListAuthTokensResponseBodyCase0TokensList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.authentication#ListAuthTokensResponseBodyCase0Pagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ListAuthTokensResponseBodyCase1TokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.authentication#AuthToken"
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#Pagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Amount of items in the current page.",
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp that must be used to request the next page.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prev": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp that must be used to request the previous page.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data."
+      }
+    },
+    "com.vercel.authentication#ListAuthTokensResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "tokens": {
+          "target": "com.vercel.authentication#ListAuthTokensResponseBodyCase1TokensList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.authentication#Pagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ListAuthTokensResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.authentication#ListAuthTokensResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.authentication#ListAuthTokensResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.authentication#ListAuthTokensResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.authentication#ListAuthTokensResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.authentication#ListAuthTokens": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.vercel.authentication#ListAuthTokensResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.authentication#BadRequest"
+        },
+        {
+          "target": "com.vercel.authentication#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v6/user/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Auth Tokens\n\nRetrieve a list of the current User's authentication tokens."
+      }
+    },
+    "com.vercel.authentication#CreateAuthTokenRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double"
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the project to scope this token to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.authentication#CreateAuthTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "com.vercel.authentication#AuthToken",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "bearerToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The authentication token's actual value. This token is only provided in this response, and can never be retrieved again in the future. Be sure to save it somewhere safe!",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.authentication#CreateAuthToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.authentication#CreateAuthTokenRequest"
+      },
+      "output": {
+        "target": "com.vercel.authentication#CreateAuthTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.authentication#BadRequest"
+        },
+        {
+          "target": "com.vercel.authentication#Forbidden"
+        },
+        {
+          "target": "com.vercel.authentication#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v3/user/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an Auth Token\n\nCreates and returns a new authentication token for the currently authenticated User. The `bearerToken` property is only provided once, in the response body, so be sure to save it on the client for use with API requests."
+      }
+    },
+    "com.vercel.authentication#GetAuthTokenRequest": {
+      "type": "structure",
+      "members": {
+        "tokenId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The identifier of the token to retrieve. The special value \"current\" may be supplied, which returns the metadata for the token that the current HTTP request is authenticated with."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.authentication#GetAuthTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "com.vercel.authentication#AuthToken",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.authentication#GetAuthToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.authentication#GetAuthTokenRequest"
+      },
+      "output": {
+        "target": "com.vercel.authentication#GetAuthTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.authentication#BadRequest"
+        },
+        {
+          "target": "com.vercel.authentication#Forbidden"
+        },
+        {
+          "target": "com.vercel.authentication#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v5/user/tokens/{tokenId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Auth Token Metadata\n\nRetrieve metadata about an authentication token belonging to the currently authenticated User."
+      }
+    },
+    "com.vercel.authentication#DeleteAuthTokenRequest": {
+      "type": "structure",
+      "members": {
+        "tokenId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The identifier of the token to invalidate. The special value \"current\" may be supplied, which invalidates the token that the HTTP request was authenticated with."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.authentication#DeleteAuthTokenResponse": {
+      "type": "structure",
+      "members": {
+        "tokenId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the token that was deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.authentication#DeleteAuthToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.authentication#DeleteAuthTokenRequest"
+      },
+      "output": {
+        "target": "com.vercel.authentication#DeleteAuthTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.authentication#BadRequest"
+        },
+        {
+          "target": "com.vercel.authentication#Forbidden"
+        },
+        {
+          "target": "com.vercel.authentication#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v3/user/tokens/{tokenId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an authentication token\n\nInvalidate an authentication token, such that it will no longer be valid for future HTTP requests."
+      }
+    },
+    "com.vercel.authentication#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.authentication#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.authentication#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.authentication#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.authentication#Authentication": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.authentication#ExchangeSsoToken"
+        },
+        {
+          "target": "com.vercel.authentication#CreateApiKeys"
+        },
+        {
+          "target": "com.vercel.authentication#ListAuthTokens"
+        },
+        {
+          "target": "com.vercel.authentication#CreateAuthToken"
+        },
+        {
+          "target": "com.vercel.authentication#GetAuthToken"
+        },
+        {
+          "target": "com.vercel.authentication#DeleteAuthToken"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

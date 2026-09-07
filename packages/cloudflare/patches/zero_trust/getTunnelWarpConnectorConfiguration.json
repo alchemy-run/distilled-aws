@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#TunnelsWarpConnectorConfigurationsGet with distilled cloudflare/zero-trust getTunnelWarpConnectorConfiguration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorConfigurationsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConfiguration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorConfigurationsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConfigurationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConfiguration/input/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelWarpConnectorConfigurationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorConfigurationsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConfigurationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConfiguration/output/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelWarpConnectorConfigurationResponse"
+    }
+  ]
+}

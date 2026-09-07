@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer3TimeseriesGroupsBitrate with distilled cloudflare/radar bitrateAttackLayer3TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3TimeseriesGroupsBitrate",
+      "path": "/shapes/com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3TimeseriesGroupsBitrateRequest",
+      "path": "/shapes/com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3TimeseriesGroupsBitrateResponse",
+      "path": "/shapes/com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#BitrateAttackLayer3TimeseriesGroupResponse"
+    }
+  ]
+}

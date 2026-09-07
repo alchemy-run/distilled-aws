@@ -1,0 +1,48 @@
+{
+  "description": "Align pipelines#StreamsDelete with distilled cloudflare/pipelines deleteStream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsDelete",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteStream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsDeleteRequest",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteStreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteStream/input/target",
+      "value": "com.cloudflare.pipelines#DeleteStreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#StreamsDeleteResponse",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteStreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteStream/output/target",
+      "value": "com.cloudflare.pipelines#DeleteStreamResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteStream/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#PipelineNotExists"
+        },
+        {
+          "target": "com.cloudflare.pipelines#StreamNotFound"
+        },
+        {
+          "target": "com.cloudflare.pipelines#InvalidStreamId"
+        },
+        {
+          "target": "com.cloudflare.pipelines#StreamInUse"
+        }
+      ]
+    }
+  ]
+}

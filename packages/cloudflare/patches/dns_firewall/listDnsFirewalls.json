@@ -1,0 +1,50 @@
+{
+  "description": "Align dns_firewall#List with distilled cloudflare/dns-firewall listDnsFirewalls",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#List",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewalls"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#ListRequest",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewallsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewalls/input/target",
+      "value": "com.cloudflare.dns_firewall#ListDnsFirewallsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#ListResponse",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewallsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewalls/output/target",
+      "value": "com.cloudflare.dns_firewall#ListDnsFirewallsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewalls/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListDnsFirewalls/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns_firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

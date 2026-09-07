@@ -1,0 +1,50 @@
+{
+  "description": "Align zero_trust#AccessApplicationsListForAccount with distilled cloudflare/zero-trust listAccessApplicationsForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsListForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsListForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessApplicationsForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsListForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessApplicationsForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationsForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessReferenceNotFound"
+        }
+      ]
+    }
+  ]
+}

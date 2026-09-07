@@ -1,0 +1,12 @@
+{
+  "description": "Key dictionary / op aliases for calls (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "key": "secret"
+      }
+    }
+  ]
+}

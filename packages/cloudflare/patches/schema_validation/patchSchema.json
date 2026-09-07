@@ -1,0 +1,39 @@
+{
+  "description": "Align schema_validation#SchemasEdit with distilled cloudflare/schema-validation patchSchema",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SchemasEdit",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSchema"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SchemasEditRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSchemaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSchema/input/target",
+      "value": "com.cloudflare.schema_validation#PatchSchemaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SchemasEditResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSchemaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSchema/output/target",
+      "value": "com.cloudflare.schema_validation#PatchSchemaResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSchema/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.schema_validation#SchemaNotFound"
+        }
+      ]
+    }
+  ]
+}

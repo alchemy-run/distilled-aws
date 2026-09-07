@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#NetworksHostnameRoutesDelete with distilled cloudflare/zero-trust deleteNetworkHostnameRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksHostnameRoutesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkHostnameRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksHostnameRoutesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkHostnameRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkHostnameRoute/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkHostnameRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksHostnameRoutesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkHostnameRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkHostnameRoute/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkHostnameRouteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkHostnameRoute/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#HostnameRouteNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

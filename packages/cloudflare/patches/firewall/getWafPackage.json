@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#WafPackagesGet with distilled cloudflare/firewall getWafPackage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesGet",
+      "path": "/shapes/com.cloudflare.firewall#GetWafPackage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesGetRequest",
+      "path": "/shapes/com.cloudflare.firewall#GetWafPackageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetWafPackage/input/target",
+      "value": "com.cloudflare.firewall#GetWafPackageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesGetResponse",
+      "path": "/shapes/com.cloudflare.firewall#GetWafPackageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetWafPackage/output/target",
+      "value": "com.cloudflare.firewall#GetWafPackageResponse"
+    }
+  ]
+}

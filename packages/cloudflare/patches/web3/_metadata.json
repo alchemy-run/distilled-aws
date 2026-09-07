@@ -1,0 +1,13 @@
+{
+  "description": "Key dictionary / op aliases for web3 (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdOn": "created_on",
+        "modifiedOn": "modified_on"
+      }
+    }
+  ]
+}

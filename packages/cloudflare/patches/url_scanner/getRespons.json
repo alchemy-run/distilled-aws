@@ -1,0 +1,20 @@
+{
+  "description": "Align url_scanner#ResponsesGet with distilled cloudflare/url-scanner getRespons",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ResponsesGet",
+      "path": "/shapes/com.cloudflare.url_scanner#GetRespons"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ResponsesGetRequest",
+      "path": "/shapes/com.cloudflare.url_scanner#GetResponsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#GetRespons/input/target",
+      "value": "com.cloudflare.url_scanner#GetResponsRequest"
+    }
+  ]
+}

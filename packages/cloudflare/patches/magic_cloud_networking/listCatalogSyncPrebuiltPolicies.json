@@ -1,0 +1,50 @@
+{
+  "description": "Align magic_cloud_networking#CatalogSyncsPrebuiltPoliciesList with distilled cloudflare/magic-cloud-networking listCatalogSyncPrebuiltPolicies",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CatalogSyncsPrebuiltPoliciesList",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPolicies"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CatalogSyncsPrebuiltPoliciesListRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPoliciesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPolicies/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPoliciesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CatalogSyncsPrebuiltPoliciesListResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPoliciesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPolicies/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPoliciesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPolicies/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPolicies/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_cloud_networking#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5208 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.reservations#GetCatalog": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#GetCatalogRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#CatalogsResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity/catalogs",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get the regions and skus that are available for RI purchase for the specified Azure subscription.\n\nGet the regions and skus that are available for RI purchase for the specified Azure subscription.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#CatalogsResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.reservations#CatalogsResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Catalog items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        },
+        "totalItems": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total amount of catalog items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of catalogs and pagination information."
+      }
+    },
+    "com.azure.reservations#CatalogsResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#Catalog"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Catalog items on this page"
+      }
+    },
+    "com.azure.reservations#Catalog": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource the sku applies to."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of sku"
+          }
+        },
+        "billingPlans": {
+          "target": "com.azure.reservations#CatalogBillingPlansMap",
+          "traits": {
+            "smithy.api#documentation": "The billing plan options available for this sku."
+          }
+        },
+        "terms": {
+          "target": "com.azure.reservations#CatalogTermsList",
+          "traits": {
+            "smithy.api#documentation": "Available reservation terms for this resource"
+          }
+        },
+        "locations": {
+          "target": "com.azure.reservations#CatalogLocationsList"
+        },
+        "skuProperties": {
+          "target": "com.azure.reservations#CatalogSkuPropertiesList"
+        },
+        "msrp": {
+          "target": "com.azure.reservations#CatalogMsrp",
+          "traits": {
+            "smithy.api#documentation": "Pricing information about the sku"
+          }
+        },
+        "restrictions": {
+          "target": "com.azure.reservations#CatalogRestrictionsList"
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tier of this sku"
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The size of this sku"
+          }
+        },
+        "capabilities": {
+          "target": "com.azure.reservations#CatalogCapabilitiesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product details of a type of resource."
+      }
+    },
+    "com.azure.reservations#CatalogCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#SkuCapability"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#SkuCapability": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An invariant to describe the feature."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An invariant if the feature is measured by quantity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capability of a sku."
+      }
+    },
+    "com.azure.reservations#CatalogRestrictionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#SkuRestriction"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#SkuRestriction": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of restrictions."
+          }
+        },
+        "values": {
+          "target": "com.azure.reservations#SkuRestrictionValuesList",
+          "traits": {
+            "smithy.api#documentation": "The value of restrictions. If the restriction type is set to location. This would be different locations where the sku is restricted."
+          }
+        },
+        "reasonCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for restriction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Restriction of a sku."
+      }
+    },
+    "com.azure.reservations#SkuRestrictionValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The value of restrictions. If the restriction type is set to location. This would be different locations where the sku is restricted."
+      }
+    },
+    "com.azure.reservations#CatalogMsrp": {
+      "type": "structure",
+      "members": {
+        "p1Y": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount in pricing currency. Tax not included."
+          }
+        },
+        "p3Y": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount in pricing currency. Tax not included."
+          }
+        },
+        "p5Y": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount in pricing currency. Tax not included."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pricing information about the sku"
+      }
+    },
+    "com.azure.reservations#Price": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+      }
+    },
+    "com.azure.reservations#CatalogSkuPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#SkuProperty"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#SkuProperty": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An invariant to describe the feature."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An invariant if the feature is measured by quantity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property of a sku."
+      }
+    },
+    "com.azure.reservations#CatalogLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#CatalogTermsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationTerm"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available reservation terms for this resource"
+      }
+    },
+    "com.azure.reservations#ReservationTerm": {
+      "type": "enum",
+      "members": {
+        "P1Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1Y"
+          }
+        },
+        "P3Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P3Y"
+          }
+        },
+        "P5Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P5Y"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent the term of reservation."
+      }
+    },
+    "com.azure.reservations#CatalogBillingPlansMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.reservations#CatalogBillingPlansValueList"
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing plan options available for this sku."
+      }
+    },
+    "com.azure.reservations#CatalogBillingPlansValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationBillingPlan"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ReservationBillingPlan": {
+      "type": "enum",
+      "members": {
+        "UPFRONT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Upfront"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Monthly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent the billing plans."
+      }
+    },
+    "com.azure.reservations#GetCatalogRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "reservedResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "reservedResourceType",
+            "smithy.api#documentation": "The type of the resource for which the skus should be provided."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "location",
+            "smithy.api#documentation": "Filters the skus based on the location specified in this parameter. This can be an azure region or global"
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "publisherId",
+            "smithy.api#documentation": "Publisher id used to get the third party products"
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "offerId",
+            "smithy.api#documentation": "Offer id used to get the third party products"
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "planId",
+            "smithy.api#documentation": "Plan id used to get the third party products"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "May be used to filter by Catalog properties. The filter supports 'eq', 'or', and 'and'."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of reservations to skip from the list before returning results"
+          }
+        },
+        "_take": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "$take",
+            "smithy.api#documentation": "To number of reservations to return"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#GetAppliedReservationList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#GetAppliedReservationListRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#AppliedReservations"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity/appliedReservations",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get list of applicable `Reservation`s.\n\nGet applicable `Reservation`s that are applied to this subscription or a resource group under this subscription.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#AppliedReservations": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the applied reservations"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of resource. \"Microsoft.Capacity/AppliedReservations\""
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#AppliedReservationsProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for applied reservations returned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for applied reservations api"
+      }
+    },
+    "com.azure.reservations#AppliedReservationsProperties": {
+      "type": "structure",
+      "members": {
+        "reservationOrderIds": {
+          "target": "com.azure.reservations#AppliedReservationList",
+          "traits": {
+            "smithy.api#documentation": "Paginated list of applied reservations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for applied reservations returned"
+      }
+    },
+    "com.azure.reservations#AppliedReservationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.reservations#AppliedReservationListValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of reservation resource ids"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page of reservations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paginated list of applied reservations"
+      }
+    },
+    "com.azure.reservations#AppliedReservationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of reservation resource ids"
+      }
+    },
+    "com.azure.reservations#GetAppliedReservationListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationListAll": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationListAllRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationsListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/reservations",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "List the reservations and the roll up counts of reservations group by provisioning states that the user has access to in the current tenant.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationsListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.reservations#ReservationsListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of reservations."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        },
+        "summary": {
+          "target": "com.azure.reservations#ReservationSummary",
+          "traits": {
+            "smithy.api#documentation": "The roll out count summary of the reservations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of reservations and summary of roll out count of reservations in each state."
+      }
+    },
+    "com.azure.reservations#ReservationSummary": {
+      "type": "structure",
+      "members": {
+        "succeededCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Succeeded state"
+          }
+        },
+        "failedCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Failed state"
+          }
+        },
+        "expiringCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Expiring state"
+          }
+        },
+        "expiredCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Expired state"
+          }
+        },
+        "pendingCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Pending state"
+          }
+        },
+        "cancelledCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Cancelled state"
+          }
+        },
+        "processingCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Processing state"
+          }
+        },
+        "warningCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in Warning state"
+          }
+        },
+        "noBenefitCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of reservation in NoBenefit state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The roll up count summary of reservations in each state"
+      }
+    },
+    "com.azure.reservations#ReservationsListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of reservations."
+      }
+    },
+    "com.azure.reservations#ReservationResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationsProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties associated to this reservation "
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure region where the reserved resource lives."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        },
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The sku information associated to this reservation"
+          }
+        },
+        "kind": {
+          "target": "com.azure.reservations#ReservationResponseKind",
+          "traits": {
+            "smithy.api#documentation": "Resource Provider type to be reserved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of the reservation."
+      }
+    },
+    "com.azure.reservations#ReservationResponseKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_COMPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Compute"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource Provider type to be reserved."
+      }
+    },
+    "com.azure.reservations#SkuName": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of sku"
+      }
+    },
+    "com.azure.reservations#ReservationsProperties": {
+      "type": "structure",
+      "members": {
+        "reservedResourceType": {
+          "target": "com.azure.reservations#ReservedResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource that is being reserved."
+          }
+        },
+        "instanceFlexibility": {
+          "target": "com.azure.reservations#InstanceFlexibility",
+          "traits": {
+            "smithy.api#documentation": "Allows reservation discount to be applied across skus within the same auto fit group. Not all skus support instance size flexibility."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name for user to easily identify the reservation"
+          }
+        },
+        "appliedScopes": {
+          "target": "com.azure.reservations#ReservationsPropertiesAppliedScopesList",
+          "traits": {
+            "smithy.api#documentation": "The list of applied scopes"
+          }
+        },
+        "appliedScopeType": {
+          "target": "com.azure.reservations#AppliedScopeType",
+          "traits": {
+            "smithy.api#documentation": "The applied scope type"
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the reservation is archived"
+          }
+        },
+        "capabilities": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capabilities of the reservation"
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity of the skus that are part of the reservation. Must be greater than zero."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.reservations#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the reservation."
+          }
+        },
+        "effectiveDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DateTime of the reservation starting when this version is effective from."
+          }
+        },
+        "benefitStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the DateTime when the reservation benefit started."
+          }
+        },
+        "lastUpdatedDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DateTime of the last time the reservation was updated."
+          }
+        },
+        "expiryDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date when the reservation will expire."
+          }
+        },
+        "expiryDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the reservation will expire."
+          }
+        },
+        "reviewDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the Azure Hybrid Benefit needs to be reviewed."
+          }
+        },
+        "skuDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the sku in english."
+          }
+        },
+        "extendedStatusInfo": {
+          "target": "com.azure.reservations#ExtendedStatusInfo",
+          "traits": {
+            "smithy.api#documentation": "The message giving detailed information about the status code."
+          }
+        },
+        "billingPlan": {
+          "target": "com.azure.reservations#ReservationBillingPlan",
+          "traits": {
+            "smithy.api#documentation": "The billing plan options available for this sku."
+          }
+        },
+        "displayProvisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the reservation for display, e.g. Succeeded"
+          }
+        },
+        "provisioningSubState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning sub-state of the reservation, e.g. Succeeded"
+          }
+        },
+        "purchaseDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date when the reservation was purchased."
+          }
+        },
+        "purchaseDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the reservation was purchased."
+          }
+        },
+        "splitProperties": {
+          "target": "com.azure.reservations#ReservationSplitProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of reservation split"
+          }
+        },
+        "mergeProperties": {
+          "target": "com.azure.reservations#ReservationMergeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of reservation merge"
+          }
+        },
+        "swapProperties": {
+          "target": "com.azure.reservations#ReservationSwapProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of reservation swap"
+          }
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.reservations#AppliedScopeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+          }
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription that will be charged for purchasing reservation or savings plan"
+          }
+        },
+        "renew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Setting this to true will automatically purchase a new reservation on the expiration date time."
+          }
+        },
+        "renewSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reservation Id of the reservation from which this reservation is renewed. Format of the resource Id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}."
+          }
+        },
+        "renewDestination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reservation Id of the reservation which is purchased because of renew. Format of the resource Id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}."
+          }
+        },
+        "renewProperties": {
+          "target": "com.azure.reservations#RenewPropertiesResponse",
+          "traits": {
+            "smithy.api#documentation": "The renew properties for a reservation."
+          }
+        },
+        "term": {
+          "target": "com.azure.reservations#ReservationTerm",
+          "traits": {
+            "smithy.api#documentation": "Represent the term of reservation."
+          }
+        },
+        "userFriendlyAppliedScopeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The applied scope type of the reservation for display, e.g. Shared"
+          }
+        },
+        "userFriendlyRenewState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The renew state of the reservation for display, e.g. On"
+          }
+        },
+        "utilization": {
+          "target": "com.azure.reservations#ReservationsPropertiesUtilization",
+          "traits": {
+            "smithy.api#documentation": "Reservation utilization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the reservations"
+      }
+    },
+    "com.azure.reservations#ReservationsPropertiesUtilization": {
+      "type": "structure",
+      "members": {
+        "trend": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "last 7 day utilization trend for a reservation"
+          }
+        },
+        "aggregates": {
+          "target": "com.azure.reservations#ReservationsPropertiesUtilizationAggregatesList",
+          "traits": {
+            "smithy.api#documentation": "The array of aggregates of a reservation's utilization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation utilization"
+      }
+    },
+    "com.azure.reservations#ReservationsPropertiesUtilizationAggregatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationUtilizationAggregates"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of aggregates of a reservation's utilization"
+      }
+    },
+    "com.azure.reservations#ReservationUtilizationAggregates": {
+      "type": "structure",
+      "members": {
+        "grain": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The grain of the aggregate"
+          }
+        },
+        "grainUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The grain unit of the aggregate"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The aggregate value"
+          }
+        },
+        "valueUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The aggregate value unit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The aggregate values of reservation utilization"
+      }
+    },
+    "com.azure.reservations#RenewPropertiesResponse": {
+      "type": "structure",
+      "members": {
+        "purchaseProperties": {
+          "target": "com.azure.reservations#PurchaseRequest",
+          "traits": {
+            "smithy.api#documentation": "The request for reservation purchase"
+          }
+        },
+        "pricingCurrencyTotal": {
+          "target": "com.azure.reservations#RenewPropertiesResponsePricingCurrencyTotal",
+          "traits": {
+            "smithy.api#documentation": "Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. This is locked price 30 days before expiry."
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#RenewPropertiesResponseBillingCurrencyTotal",
+          "traits": {
+            "smithy.api#documentation": "Currency and amount that customer will be charged in customer's local currency for renewal purchase. Tax is not included."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The renew properties for a reservation."
+      }
+    },
+    "com.azure.reservations#RenewPropertiesResponseBillingCurrencyTotal": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Currency and amount that customer will be charged in customer's local currency for renewal purchase. Tax is not included."
+      }
+    },
+    "com.azure.reservations#RenewPropertiesResponsePricingCurrencyTotal": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. This is locked price 30 days before expiry."
+      }
+    },
+    "com.azure.reservations#PurchaseRequest": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of sku"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure region where the reserved resource lives."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#PurchaseRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of reservation purchase request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request for reservation purchase"
+      }
+    },
+    "com.azure.reservations#PurchaseRequestProperties": {
+      "type": "structure",
+      "members": {
+        "reservedResourceType": {
+          "target": "com.azure.reservations#ReservedResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource that is being reserved. In addition to below types we have also added the following: OpenAIPTU, MDC, Sentinel."
+          }
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription that will be charged for purchasing reservation or savings plan"
+          }
+        },
+        "term": {
+          "target": "com.azure.reservations#ReservationTerm",
+          "traits": {
+            "smithy.api#documentation": "Represent the term of reservation."
+          }
+        },
+        "billingPlan": {
+          "target": "com.azure.reservations#ReservationBillingPlan",
+          "traits": {
+            "smithy.api#documentation": "Represent the billing plans."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity of the skus that are part of the reservation."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name of the reservation"
+          }
+        },
+        "appliedScopeType": {
+          "target": "com.azure.reservations#AppliedScopeType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Applied Scope."
+          }
+        },
+        "appliedScopes": {
+          "target": "com.azure.reservations#PurchaseRequestPropertiesAppliedScopesList",
+          "traits": {
+            "smithy.api#documentation": "List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType."
+          }
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.reservations#AppliedScopeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+          }
+        },
+        "renew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Setting this to true will automatically purchase a new reservation on the expiration date time."
+          }
+        },
+        "reservedResourceProperties": {
+          "target": "com.azure.reservations#PurchaseRequestPropertiesReservedResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
+          }
+        },
+        "reviewDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the Azure hybrid benefit needs to be reviewed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of reservation purchase request"
+      }
+    },
+    "com.azure.reservations#PurchaseRequestPropertiesReservedResourceProperties": {
+      "type": "structure",
+      "members": {
+        "instanceFlexibility": {
+          "target": "com.azure.reservations#InstanceFlexibility",
+          "traits": {
+            "smithy.api#documentation": "Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
+      }
+    },
+    "com.azure.reservations#InstanceFlexibility": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "On"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Off"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type."
+      }
+    },
+    "com.azure.reservations#AppliedScopeProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant ID where the savings plan should apply benefit."
+          }
+        },
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully-qualified identifier of the management group where the benefit must be applied."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully-qualified identifier of the subscription."
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully-qualified identifier of the resource group."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+      }
+    },
+    "com.azure.reservations#PurchaseRequestPropertiesAppliedScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType."
+      }
+    },
+    "com.azure.reservations#AppliedScopeType": {
+      "type": "enum",
+      "members": {
+        "SINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Single"
+          }
+        },
+        "SHARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Shared"
+          }
+        },
+        "MANAGEMENTGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagementGroup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Applied Scope."
+      }
+    },
+    "com.azure.reservations#ReservedResourceType": {
+      "type": "enum",
+      "members": {
+        "VIRTUALMACHINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VirtualMachines"
+          }
+        },
+        "SQLDATABASES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlDatabases"
+          }
+        },
+        "SUSELINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SuseLinux"
+          }
+        },
+        "COSMOSDB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CosmosDb"
+          }
+        },
+        "REDHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RedHat"
+          }
+        },
+        "SQLDATAWAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlDataWarehouse"
+          }
+        },
+        "VMWARECLOUDSIMPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMwareCloudSimple"
+          }
+        },
+        "REDHATOSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RedHatOsa"
+          }
+        },
+        "DATABRICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Databricks"
+          }
+        },
+        "APPSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AppService"
+          }
+        },
+        "MANAGEDDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedDisk"
+          }
+        },
+        "BLOCKBLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BlockBlob"
+          }
+        },
+        "REDISCACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RedisCache"
+          }
+        },
+        "AZUREDATAEXPLORER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureDataExplorer"
+          }
+        },
+        "MYSQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MySql"
+          }
+        },
+        "MARIADB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MariaDb"
+          }
+        },
+        "POSTGRESQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PostgreSql"
+          }
+        },
+        "DEDICATEDHOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DedicatedHost"
+          }
+        },
+        "SAPHANA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SapHana"
+          }
+        },
+        "SQLAZUREHYBRIDBENEFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlAzureHybridBenefit"
+          }
+        },
+        "AVS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVS"
+          }
+        },
+        "DATAFACTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataFactory"
+          }
+        },
+        "NETAPPSTORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NetAppStorage"
+          }
+        },
+        "AZUREFILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureFiles"
+          }
+        },
+        "SQLEDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlEdge"
+          }
+        },
+        "VIRTUALMACHINESOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VirtualMachineSoftware"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the resource that is being reserved. In addition to below types we have also added the following: OpenAIPTU, MDC, Sentinel."
+      }
+    },
+    "com.azure.reservations#ReservationSwapProperties": {
+      "type": "structure",
+      "members": {
+        "swapSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id of the source reservation that gets swapped. Format of the resource id is /providers/microsoft.capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        },
+        "swapDestination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reservation resource id that the original resource gets swapped to. Format of the resource id is /providers/microsoft.capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of reservation swap"
+      }
+    },
+    "com.azure.reservations#ReservationMergeProperties": {
+      "type": "structure",
+      "members": {
+        "mergeDestination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reservation resource id Created due to the merge. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        },
+        "mergeSources": {
+          "target": "com.azure.reservations#ReservationMergePropertiesMergeSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resource ids of the source reservation's merged to form this reservation. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of reservation merge"
+      }
+    },
+    "com.azure.reservations#ReservationMergePropertiesMergeSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource ids of the source reservation's merged to form this reservation. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+      }
+    },
+    "com.azure.reservations#ReservationSplitProperties": {
+      "type": "structure",
+      "members": {
+        "splitDestinations": {
+          "target": "com.azure.reservations#ReservationSplitPropertiesSplitDestinationsList",
+          "traits": {
+            "smithy.api#documentation": "List of destination resource id that are created due to split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        },
+        "splitSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id of the reservation from which this is split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of reservation split"
+      }
+    },
+    "com.azure.reservations#ReservationSplitPropertiesSplitDestinationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of destination resource id that are created due to split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+      }
+    },
+    "com.azure.reservations#ExtendedStatusInfo": {
+      "type": "structure",
+      "members": {
+        "statusCode": {
+          "target": "com.azure.reservations#ReservationStatusCode"
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message giving detailed information about the status code."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ReservationStatusCode": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Processing"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "PURCHASEERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PurchaseError"
+          }
+        },
+        "PAYMENTINSTRUMENTERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PaymentInstrumentError"
+          }
+        },
+        "SPLIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Split"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Merged"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "PENDINGRESOURCEHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingResourceHold"
+          }
+        },
+        "CONFIRMEDRESOURCEHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConfirmedResourceHold"
+          }
+        },
+        "PENDINGBILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingBilling"
+          }
+        },
+        "CONFIRMEDBILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConfirmedBilling"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "BILLINGFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingFailed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SPLIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Split"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Merged"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent the current state of the Reservation."
+      }
+    },
+    "com.azure.reservations#ReservationsPropertiesAppliedScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of applied scopes"
+      }
+    },
+    "com.azure.reservations#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.reservations#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.reservations#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.reservations#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.reservations#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.reservations#ReservationListAllRequest": {
+      "type": "structure",
+      "members": {
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does not currently support 'ne', 'gt', 'le', 'ge', or 'not'. Reservation properties include sku/name, properties/{appliedScopeType, archived, displayName, displayProvisioningState, effectiveDateTime, expiryDate, expiryDateTime, provisioningState, quantity, renew, reservedResourceType, term, userFriendlyAppliedScopeType, userFriendlyRenewState}"
+          }
+        },
+        "_orderby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$orderby",
+            "smithy.api#documentation": "May be used to sort order by reservation properties."
+          }
+        },
+        "refreshSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "refreshSummary",
+            "smithy.api#documentation": "To indicate whether to refresh the roll up counts of the reservations group by provisioning states"
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "The number of reservations to skip from the list before returning results"
+          }
+        },
+        "selectedState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "selectedState",
+            "smithy.api#documentation": "The selected provisioning state"
+          }
+        },
+        "take": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "take",
+            "smithy.api#documentation": "To number of reservations to return"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationSplit": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationSplitRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationSplitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/split",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Split the `Reservation`.\n\nSplit a `Reservation` into two `Reservation`s with specified quantity distribution.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationSplitResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.reservations#ReservationSplitResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationSplitResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationResponse"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ReservationSplitRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#SplitProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for reservation split"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#SplitProperties": {
+      "type": "structure",
+      "members": {
+        "quantities": {
+          "target": "com.azure.reservations#SplitPropertiesQuantitiesList",
+          "traits": {
+            "smithy.api#documentation": "List of the quantities in the new reservations to create."
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id of the reservation to be split. Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for reservation split"
+      }
+    },
+    "com.azure.reservations#SplitPropertiesQuantitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the quantities in the new reservations to create."
+      }
+    },
+    "com.azure.reservations#ReturnPost": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReturnPostRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReturnPostResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/return",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Return a reservation.\n\nReturn a reservation and get refund information.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReturnPostResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationOrderProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a reservation order."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationOrderProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name for user to easily identified the reservation."
+          }
+        },
+        "requestDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the DateTime when the reservation was initially requested for purchase."
+          }
+        },
+        "createdDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the DateTime when the reservation was created."
+          }
+        },
+        "expiryDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date when the reservation will expire."
+          }
+        },
+        "expiryDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the reservation will expire."
+          }
+        },
+        "benefitStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the DateTime when the reservation benefit started."
+          }
+        },
+        "originalQuantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total Quantity of the skus purchased in the reservation."
+          }
+        },
+        "term": {
+          "target": "com.azure.reservations#ReservationTerm",
+          "traits": {
+            "smithy.api#documentation": "Represent the term of reservation."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.reservations#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the reservation."
+          }
+        },
+        "billingPlan": {
+          "target": "com.azure.reservations#ReservationBillingPlan",
+          "traits": {
+            "smithy.api#documentation": "Represent the billing plans."
+          }
+        },
+        "planInformation": {
+          "target": "com.azure.reservations#ReservationOrderBillingPlanInformation",
+          "traits": {
+            "smithy.api#documentation": "Information describing the type of billing plan for this reservation."
+          }
+        },
+        "reservations": {
+          "target": "com.azure.reservations#ReservationOrderPropertiesReservationsList"
+        },
+        "reviewDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the Azure Hybrid Benefit needs to be reviewed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a reservation order."
+      }
+    },
+    "com.azure.reservations#ReservationOrderPropertiesReservationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationResponse"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ReservationOrderBillingPlanInformation": {
+      "type": "structure",
+      "members": {
+        "pricingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount of money to be paid for the Order. Tax is not included."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the billing plan has started."
+          }
+        },
+        "nextPaymentDueDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For recurring billing plans, indicates the date when next payment will be processed. Null when total is paid off."
+          }
+        },
+        "transactions": {
+          "target": "com.azure.reservations#ReservationOrderBillingPlanInformationTransactionsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information describing the type of billing plan for this reservation."
+      }
+    },
+    "com.azure.reservations#ReservationOrderBillingPlanInformationTransactionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#PaymentDetail"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#PaymentDetail": {
+      "type": "structure",
+      "members": {
+        "dueDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the payment needs to be done."
+          }
+        },
+        "paymentDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the transaction is completed. Is null when it is scheduled."
+          }
+        },
+        "pricingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount in pricing currency. Tax not included."
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount charged in Billing currency. Tax not included. Is null for future payments"
+          }
+        },
+        "billingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shows the Account that is charged for this payment."
+          }
+        },
+        "status": {
+          "target": "com.azure.reservations#PaymentStatus",
+          "traits": {
+            "smithy.api#documentation": "Describes whether the payment is completed, failed, cancelled or scheduled in the future."
+          }
+        },
+        "extendedStatusInfo": {
+          "target": "com.azure.reservations#ExtendedStatusInfo"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about payment related to a reservation order."
+      }
+    },
+    "com.azure.reservations#PaymentStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scheduled"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes whether the payment is completed, failed, cancelled or scheduled in the future."
+      }
+    },
+    "com.azure.reservations#ReturnPostRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#RefundRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties needed for refund request including the session id from calculate refund, the scope, the reservation to be returned and the return reason."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#RefundRequestProperties": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SessionId that was returned by CalculateRefund API."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope of the refund, e.g. Reservation"
+          }
+        },
+        "reservationToReturn": {
+          "target": "com.azure.reservations#ReservationToReturn",
+          "traits": {
+            "smithy.api#documentation": "Reservation to return"
+          }
+        },
+        "returnReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason of returning the reservation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties needed for refund request including the session id from calculate refund, the scope, the reservation to be returned and the return reason."
+      }
+    },
+    "com.azure.reservations#ReservationToReturn": {
+      "type": "structure",
+      "members": {
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified identifier of the reservation being returned"
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity to be returned. Must be greater than zero."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation to return"
+      }
+    },
+    "com.azure.reservations#ReservationUnarchive": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationUnarchiveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/unarchive",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Unarchive a `Reservation`.\n\nRestores a `Reservation` to the state it was before archiving.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationUnarchiveRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the reservation item"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationListRevisions": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationListRevisionsRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/revisions",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get `Reservation` revisions.\n\nList of all the revisions for the `Reservation`.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.reservations#ReservationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The ReservationResponse items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of `Reservation`s"
+      }
+    },
+    "com.azure.reservations#ReservationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ReservationResponse items on this page"
+      }
+    },
+    "com.azure.reservations#ReservationListRevisionsRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the reservation item"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationAvailableScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationAvailableScopesRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#AvailableScopeProperties"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/availableScopes",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get Available Scopes for `Reservation`.\n\nCheck whether the scopes from request is valid for `Reservation`.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#AvailableScopeProperties": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#SubscriptionScopeProperties",
+          "traits": {
+            "smithy.api#documentation": "The scopes checked by the available scope api."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of available scope api containing scopes and their eligibilities."
+      }
+    },
+    "com.azure.reservations#SubscriptionScopeProperties": {
+      "type": "structure",
+      "members": {
+        "scopes": {
+          "target": "com.azure.reservations#SubscriptionScopePropertiesScopesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scopes checked by the available scope api."
+      }
+    },
+    "com.azure.reservations#SubscriptionScopePropertiesScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ScopeProperties"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ScopeProperties": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "valid": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scope and whether it is valid."
+      }
+    },
+    "com.azure.reservations#ReservationAvailableScopesRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the reservation item"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#AvailableScopeRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Available scope request properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#AvailableScopeRequestProperties": {
+      "type": "structure",
+      "members": {
+        "scopes": {
+          "target": "com.azure.reservations#AvailableScopeRequestPropertiesScopesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available scope request properties"
+      }
+    },
+    "com.azure.reservations#AvailableScopeRequestPropertiesScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ReservationArchive": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationArchiveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/archive",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Archive a `Reservation`.\n\nArchiving a `Reservation` moves it to `Archived` state.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationArchiveRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the reservation item"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Updates a `Reservation`.\n\nUpdates the applied scopes of the `Reservation`.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationsProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties associated to this reservation "
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure region where the reserved resource lives."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        },
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The sku information associated to this reservation"
+          }
+        },
+        "kind": {
+          "target": "com.azure.reservations#ReservationUpdateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "Resource Provider type to be reserved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationUpdateResponseKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_COMPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Compute"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource Provider type to be reserved."
+      }
+    },
+    "com.azure.reservations#ReservationUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the reservation item"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#PatchProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for reservation patch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#PatchProperties": {
+      "type": "structure",
+      "members": {
+        "appliedScopeType": {
+          "target": "com.azure.reservations#AppliedScopeType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Applied Scope."
+          }
+        },
+        "appliedScopes": {
+          "target": "com.azure.reservations#PatchPropertiesAppliedScopesList",
+          "traits": {
+            "smithy.api#documentation": "List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType."
+          }
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.reservations#AppliedScopeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+          }
+        },
+        "instanceFlexibility": {
+          "target": "com.azure.reservations#InstanceFlexibility",
+          "traits": {
+            "smithy.api#documentation": "Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the reservation"
+          }
+        },
+        "renew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Setting this to true will automatically purchase a new reservation on the expiration date time."
+          }
+        },
+        "renewProperties": {
+          "target": "com.azure.reservations#PatchPropertiesRenewProperties"
+        },
+        "reviewDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the Azure hybrid benefit needs to be reviewed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for reservation patch"
+      }
+    },
+    "com.azure.reservations#PatchPropertiesRenewProperties": {
+      "type": "structure",
+      "members": {
+        "purchaseProperties": {
+          "target": "com.azure.reservations#PurchaseRequest",
+          "traits": {
+            "smithy.api#documentation": "The request for reservation purchase"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#PatchPropertiesAppliedScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType."
+      }
+    },
+    "com.azure.reservations#ReservationGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationGetRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get `Reservation` details.\n\nGet specific `Reservation` details.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationsProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties associated to this reservation "
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure region where the reserved resource lives."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        },
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The sku information associated to this reservation"
+          }
+        },
+        "kind": {
+          "target": "com.azure.reservations#ReservationGetResponseKind",
+          "traits": {
+            "smithy.api#documentation": "Resource Provider type to be reserved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationGetResponseKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_COMPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Compute"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource Provider type to be reserved."
+      }
+    },
+    "com.azure.reservations#ReservationGetRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the reservation item"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Supported value of this query is renewProperties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationList2": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationListRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get `Reservation`s in a given reservation Order\n\nList `Reservation`s within a single `ReservationOrder`.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationListRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationMerge": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationMergeRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationMergeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/merge",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Merges two `Reservation`s.\n\nMerge the specified `Reservation`s into a new `Reservation`. The two `Reservation`s being merged must have same properties.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationMergeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.reservations#ReservationMergeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationMergeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationResponse"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ReservationMergeRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#MergeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for reservation merge"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#MergeProperties": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.azure.reservations#MergePropertiesSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for reservation merge"
+      }
+    },
+    "com.azure.reservations#MergePropertiesSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}"
+      }
+    },
+    "com.azure.reservations#ReservationOrderChangeDirectory": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationOrderChangeDirectoryRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ChangeDirectoryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/changeDirectory",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Change directory of `ReservationOrder`.\n\nChange directory (tenant) of `ReservationOrder` and all `Reservation` under it to specified tenant id",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ChangeDirectoryResponse": {
+      "type": "structure",
+      "members": {
+        "reservationOrder": {
+          "target": "com.azure.reservations#ChangeDirectoryResult",
+          "traits": {
+            "smithy.api#documentation": "Change directory result for reservation order or reservation"
+          }
+        },
+        "reservations": {
+          "target": "com.azure.reservations#ChangeDirectoryResponseReservationsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Change directory response"
+      }
+    },
+    "com.azure.reservations#ChangeDirectoryResponseReservationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ChangeDirectoryResult"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#ChangeDirectoryResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the reservation order or reservation"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the reservation order or reservation"
+          }
+        },
+        "isSucceeded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if change directory operation succeeded on this reservation order or reservation"
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error reason if operation failed. Null otherwise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Change directory result for reservation order or reservation"
+      }
+    },
+    "com.azure.reservations#ReservationOrderChangeDirectoryRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "destinationTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant id GUID that reservation order is to be transferred to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#CalculateRefundPost": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#CalculateRefundPostRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#CalculateRefundResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/calculateRefund",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Calculate the refund amount of a reservation order.\n\nCalculate price for returning `Reservations` if there are no policy errors.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#CalculateRefundResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified identifier of the reservation being returned"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#RefundResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "The refund properties of reservation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of calculate refund containing refund information of reservation"
+      }
+    },
+    "com.azure.reservations#RefundResponseProperties": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refund session identifier"
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity to be returned"
+          }
+        },
+        "billingRefundAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "pricingRefundAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "policyResult": {
+          "target": "com.azure.reservations#RefundPolicyResult",
+          "traits": {
+            "smithy.api#documentation": "Refund policy result"
+          }
+        },
+        "billingInformation": {
+          "target": "com.azure.reservations#RefundBillingInformation",
+          "traits": {
+            "smithy.api#documentation": "billing information"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The refund properties of reservation"
+      }
+    },
+    "com.azure.reservations#RefundBillingInformation": {
+      "type": "structure",
+      "members": {
+        "billingPlan": {
+          "target": "com.azure.reservations#ReservationBillingPlan",
+          "traits": {
+            "smithy.api#documentation": "Represent the billing plans."
+          }
+        },
+        "completedTransactions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of completed transactions in this reservation's payment"
+          }
+        },
+        "totalTransactions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of total transactions in this reservation's payment"
+          }
+        },
+        "billingCurrencyTotalPaidAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "billingCurrencyProratedAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "billingCurrencyRemainingCommitmentAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "billing information"
+      }
+    },
+    "com.azure.reservations#RefundPolicyResult": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#RefundPolicyResultProperty",
+          "traits": {
+            "smithy.api#documentation": "Refund policy result property"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Refund policy result"
+      }
+    },
+    "com.azure.reservations#RefundPolicyResultProperty": {
+      "type": "structure",
+      "members": {
+        "consumedRefundsTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "maxRefundLimit": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "policyErrors": {
+          "target": "com.azure.reservations#RefundPolicyResultPropertyPolicyErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Refund Policy errors"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Refund policy result property"
+      }
+    },
+    "com.azure.reservations#RefundPolicyResultPropertyPolicyErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#RefundPolicyError"
+      },
+      "traits": {
+        "smithy.api#documentation": "Refund Policy errors"
+      }
+    },
+    "com.azure.reservations#RefundPolicyError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.azure.reservations#ErrorResponseCode",
+          "traits": {
+            "smithy.api#documentation": "Error code describing the reason that service is not able to process the incoming request"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "error details"
+      }
+    },
+    "com.azure.reservations#ErrorResponseCode": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "INTERNALSERVERERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InternalServerError"
+          }
+        },
+        "SERVERTIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServerTimeout"
+          }
+        },
+        "AUTHORIZATIONFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AuthorizationFailed"
+          }
+        },
+        "BADREQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadRequest"
+          }
+        },
+        "CLIENTCERTIFICATETHUMBPRINTNOTSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ClientCertificateThumbprintNotSet"
+          }
+        },
+        "INVALIDREQUESTCONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidRequestContent"
+          }
+        },
+        "OPERATIONFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OperationFailed"
+          }
+        },
+        "HTTPMETHODNOTSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HttpMethodNotSupported"
+          }
+        },
+        "INVALIDREQUESTURI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidRequestUri"
+          }
+        },
+        "MISSINGTENANTID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MissingTenantId"
+          }
+        },
+        "INVALIDTENANTID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidTenantId"
+          }
+        },
+        "INVALIDRESERVATIONORDERID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidReservationOrderId"
+          }
+        },
+        "INVALIDRESERVATIONID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidReservationId"
+          }
+        },
+        "RESERVATIONIDNOTINRESERVATIONORDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReservationIdNotInReservationOrder"
+          }
+        },
+        "RESERVATIONORDERNOTFOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReservationOrderNotFound"
+          }
+        },
+        "INVALIDSUBSCRIPTIONID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidSubscriptionId"
+          }
+        },
+        "INVALIDACCESSTOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidAccessToken"
+          }
+        },
+        "INVALIDLOCATIONID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidLocationId"
+          }
+        },
+        "UNAUTHENTICATEDREQUESTSTHROTTLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UnauthenticatedRequestsThrottled"
+          }
+        },
+        "INVALIDHEALTHCHECKTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidHealthCheckType"
+          }
+        },
+        "FORBIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Forbidden"
+          }
+        },
+        "BILLINGSCOPEIDCANNOTBECHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingScopeIdCannotBeChanged"
+          }
+        },
+        "APPLIEDSCOPESNOTASSOCIATEDWITHCOMMERCEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AppliedScopesNotAssociatedWithCommerceAccount"
+          }
+        },
+        "PATCHVALUESSAMEASEXISTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PatchValuesSameAsExisting"
+          }
+        },
+        "ROLEASSIGNMENTCREATIONFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RoleAssignmentCreationFailed"
+          }
+        },
+        "RESERVATIONORDERCREATIONFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReservationOrderCreationFailed"
+          }
+        },
+        "RESERVATIONORDERNOTENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReservationOrderNotEnabled"
+          }
+        },
+        "CAPACITYUPDATESCOPESFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CapacityUpdateScopesFailed"
+          }
+        },
+        "UNSUPPORTEDRESERVATIONTERM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UnsupportedReservationTerm"
+          }
+        },
+        "RESERVATIONORDERIDALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReservationOrderIdAlreadyExists"
+          }
+        },
+        "RISKCHECKFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RiskCheckFailed"
+          }
+        },
+        "CREATEQUOTEFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CreateQuoteFailed"
+          }
+        },
+        "ACTIVATEQUOTEFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivateQuoteFailed"
+          }
+        },
+        "NONSUPPORTEDACCOUNTID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NonsupportedAccountId"
+          }
+        },
+        "PAYMENTINSTRUMENTNOTFOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PaymentInstrumentNotFound"
+          }
+        },
+        "MISSINGAPPLIEDSCOPESFORSINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MissingAppliedScopesForSingle"
+          }
+        },
+        "NOVALIDRESERVATIONSTORERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoValidReservationsToReRate"
+          }
+        },
+        "RERATEONLYALLOWEDFOREA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReRateOnlyAllowedForEA"
+          }
+        },
+        "OPERATIONCANNOTBEPERFORMEDINCURRENTSTATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OperationCannotBePerformedInCurrentState"
+          }
+        },
+        "INVALIDSINGLEAPPLIEDSCOPESCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidSingleAppliedScopesCount"
+          }
+        },
+        "INVALIDFULFILLMENTREQUESTPARAMETERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidFulfillmentRequestParameters"
+          }
+        },
+        "NOTSUPPORTEDCOUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSupportedCountry"
+          }
+        },
+        "INVALIDREFUNDQUANTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidRefundQuantity"
+          }
+        },
+        "PURCHASEERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PurchaseError"
+          }
+        },
+        "BILLINGCUSTOMERINPUTERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingCustomerInputError"
+          }
+        },
+        "BILLINGPAYMENTINSTRUMENTSOFTERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingPaymentInstrumentSoftError"
+          }
+        },
+        "BILLINGPAYMENTINSTRUMENTHARDERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingPaymentInstrumentHardError"
+          }
+        },
+        "BILLINGTRANSIENTERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingTransientError"
+          }
+        },
+        "BILLINGERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BillingError"
+          }
+        },
+        "FULFILLMENTCONFIGURATIONERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FulfillmentConfigurationError"
+          }
+        },
+        "FULFILLMENTOUTOFSTOCKERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FulfillmentOutOfStockError"
+          }
+        },
+        "FULFILLMENTTRANSIENTERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FulfillmentTransientError"
+          }
+        },
+        "FULFILLMENTERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FulfillmentError"
+          }
+        },
+        "CALCULATEPRICEFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CalculatePriceFailed"
+          }
+        },
+        "APPLIEDSCOPESSAMEASEXISTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AppliedScopesSameAsExisting"
+          }
+        },
+        "SELFSERVICEREFUNDNOTSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SelfServiceRefundNotSupported"
+          }
+        },
+        "REFUNDLIMITEXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RefundLimitExceeded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error code describing the reason that service is not able to process the incoming request"
+      }
+    },
+    "com.azure.reservations#CalculateRefundPostRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified identifier of the reservation order being returned"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#CalculateRefundRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties needed for calculate refund including the scope and the reservation to be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#CalculateRefundRequestProperties": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope of the refund, e.g. Reservation"
+          }
+        },
+        "reservationToReturn": {
+          "target": "com.azure.reservations#ReservationToReturn",
+          "traits": {
+            "smithy.api#documentation": "Reservation to return"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties needed for calculate refund including the scope and the reservation to be returned."
+      }
+    },
+    "com.azure.reservations#ReservationOrderPurchase": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationOrderPurchaseRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationOrderPurchaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Purchase `ReservationOrder`\n\nPurchase `ReservationOrder` and create resource under the specified URI.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationOrderPurchaseResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationOrderProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a reservation order."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationOrderPurchaseRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of sku"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure region where the reserved resource lives."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#PurchaseRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of reservation purchase request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationOrderGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationOrderGetRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationOrderGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get a specific `ReservationOrder`.\n\nGet the details of the `ReservationOrder`.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationOrderGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationOrderProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a reservation order."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.reservations#ReservationOrderGetRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order Id of the reservation"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "May be used to expand the planInformation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ReservationOrderList2": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.reservations#ReservationOrderList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/reservationOrders",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get all `ReservationOrder`s.\n\nList of all the `ReservationOrder`s that the user has access to in the current tenant.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ReservationOrderList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.reservations#ReservationOrderListValueList",
+          "traits": {
+            "smithy.api#documentation": "The ReservationOrderResponse items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of `ReservationOrder`s"
+      }
+    },
+    "com.azure.reservations#ReservationOrderListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationOrderResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ReservationOrderResponse items on this page"
+      }
+    },
+    "com.azure.reservations#ReservationOrderResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.reservations#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ReservationOrderProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a reservation order."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a reservation order being returned."
+      }
+    },
+    "com.azure.reservations#OperationList2": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.reservations#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Capacity/operations",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get operations.\n\nList all the operations.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.reservations#OperationListValueList"
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page of items."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#OperationResponse"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#OperationResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "display": {
+          "target": "com.azure.reservations#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display of the operation"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Properties of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response containing operation information"
+      }
+    },
+    "com.azure.reservations#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String"
+        },
+        "resource": {
+          "target": "smithy.api#String"
+        },
+        "operation": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an operation"
+      }
+    },
+    "com.azure.reservations#ExchangePost": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ExchangePostRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#ExchangeOperationResultResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/exchange",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Exchange Reservation(s)\n\nReturns one or more `Reservations` in exchange for one or more `Reservation` purchases.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#ExchangeOperationResultResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It should match what is used to GET the operation result."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It must match the last segment of the id field, and will typically be a GUID / system generated value."
+          }
+        },
+        "status": {
+          "target": "com.azure.reservations#ExchangeOperationResultStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the operation."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#ExchangeResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Exchange response properties"
+          }
+        },
+        "error": {
+          "target": "com.azure.reservations#OperationResultError",
+          "traits": {
+            "smithy.api#documentation": "Required if status == failed or status == canceled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Exchange operation result"
+      }
+    },
+    "com.azure.reservations#OperationResultError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required if status == failed or status == cancelled. If status == failed, provide an invariant error code used for error troubleshooting, aggregation, and analysis."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required if status == failed. Localized. If status == failed, provide an actionable error message indicating what error occurred, and what the user can do to address the issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Required if status == failed or status == canceled."
+      }
+    },
+    "com.azure.reservations#ExchangeResponseProperties": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exchange session identifier"
+          }
+        },
+        "netPayable": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "refundsTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "purchasesTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "reservationsToPurchase": {
+          "target": "com.azure.reservations#ExchangeResponsePropertiesReservationsToPurchaseList",
+          "traits": {
+            "smithy.api#documentation": "Details of the reservations being purchased"
+          }
+        },
+        "savingsPlansToPurchase": {
+          "target": "com.azure.reservations#ExchangeResponsePropertiesSavingsPlansToPurchaseList",
+          "traits": {
+            "smithy.api#documentation": "Details of the savings plans being purchased"
+          }
+        },
+        "reservationsToExchange": {
+          "target": "com.azure.reservations#ExchangeResponsePropertiesReservationsToExchangeList",
+          "traits": {
+            "smithy.api#documentation": "Details of the reservations being returned"
+          }
+        },
+        "policyResult": {
+          "target": "com.azure.reservations#ExchangePolicyErrors",
+          "traits": {
+            "smithy.api#documentation": "Exchange policy errors"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Exchange response properties"
+      }
+    },
+    "com.azure.reservations#ExchangePolicyErrors": {
+      "type": "structure",
+      "members": {
+        "policyErrors": {
+          "target": "com.azure.reservations#ExchangePolicyErrorsPolicyErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Exchange Policy errors"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Exchange policy errors"
+      }
+    },
+    "com.azure.reservations#ExchangePolicyErrorsPolicyErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ExchangePolicyError"
+      },
+      "traits": {
+        "smithy.api#documentation": "Exchange Policy errors"
+      }
+    },
+    "com.azure.reservations#ExchangePolicyError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "error details"
+      }
+    },
+    "com.azure.reservations#ExchangeResponsePropertiesReservationsToExchangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationToReturnForExchange"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the reservations being returned"
+      }
+    },
+    "com.azure.reservations#ReservationToReturnForExchange": {
+      "type": "structure",
+      "members": {
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified id of the reservation being returned."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity to be returned"
+          }
+        },
+        "billingRefundAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "billingInformation": {
+          "target": "com.azure.reservations#BillingInformation",
+          "traits": {
+            "smithy.api#documentation": "billing information"
+          }
+        },
+        "status": {
+          "target": "com.azure.reservations#OperationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the individual operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation refund details"
+      }
+    },
+    "com.azure.reservations#OperationStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the individual operation."
+      }
+    },
+    "com.azure.reservations#BillingInformation": {
+      "type": "structure",
+      "members": {
+        "billingCurrencyTotalPaidAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "billingCurrencyProratedAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "billingCurrencyRemainingCommitmentAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "billing information"
+      }
+    },
+    "com.azure.reservations#ExchangeResponsePropertiesSavingsPlansToPurchaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#SavingsPlanToPurchaseExchange"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the savings plans being purchased"
+      }
+    },
+    "com.azure.reservations#SavingsPlanToPurchaseExchange": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified id of the savings plan order being purchased"
+          }
+        },
+        "savingsPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified id of the savings plan being purchased. This value is only guaranteed to be non-null if the purchase is successful."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#SavingsPlanPurchaseRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body for savings plan purchase"
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "status": {
+          "target": "com.azure.reservations#OperationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the individual operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan purchase details"
+      }
+    },
+    "com.azure.reservations#SavingsPlanPurchaseRequest": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of sku"
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#SavingsPlanPurchaseRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a savings plan purchase"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request body for savings plan purchase"
+      }
+    },
+    "com.azure.reservations#SavingsPlanPurchaseRequestProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name of the savings plan"
+          }
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription that will be charged for purchasing reservation or savings plan"
+          }
+        },
+        "term": {
+          "target": "com.azure.reservations#SavingsPlanTerm",
+          "traits": {
+            "smithy.api#documentation": "Represent savings plan term in ISO 8601 format."
+          }
+        },
+        "billingPlan": {
+          "target": "com.azure.reservations#BillingPlan",
+          "traits": {
+            "smithy.api#documentation": "Represents the billing plan in ISO 8601 format. Required only for monthly billing plans."
+          }
+        },
+        "appliedScopeType": {
+          "target": "com.azure.reservations#AppliedScopeType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Applied Scope."
+          }
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.reservations#AppliedScopeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"
+          }
+        },
+        "commitment": {
+          "target": "com.azure.reservations#Commitment",
+          "traits": {
+            "smithy.api#documentation": "Commitment towards the benefit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a savings plan purchase"
+      }
+    },
+    "com.azure.reservations#Commitment": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        },
+        "grain": {
+          "target": "com.azure.reservations#CommitmentGrain",
+          "traits": {
+            "smithy.api#documentation": "Commitment grain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Commitment towards the benefit."
+      }
+    },
+    "com.azure.reservations#CommitmentGrain": {
+      "type": "enum",
+      "members": {
+        "HOURLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hourly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Commitment grain."
+      }
+    },
+    "com.azure.reservations#BillingPlan": {
+      "type": "enum",
+      "members": {
+        "P1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1M"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the billing plan in ISO 8601 format. Required only for monthly billing plans."
+      }
+    },
+    "com.azure.reservations#SavingsPlanTerm": {
+      "type": "enum",
+      "members": {
+        "P1Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1Y"
+          }
+        },
+        "P3Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P3Y"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent savings plan term in ISO 8601 format."
+      }
+    },
+    "com.azure.reservations#ExchangeResponsePropertiesReservationsToPurchaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationToPurchaseExchange"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the reservations being purchased"
+      }
+    },
+    "com.azure.reservations#ReservationToPurchaseExchange": {
+      "type": "structure",
+      "members": {
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified id of the reservationOrder being purchased"
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified id of the reservation being purchased. This value is only guaranteed to be non-null if the purchase is successful."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#PurchaseRequest",
+          "traits": {
+            "smithy.api#documentation": "The request for reservation purchase"
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "status": {
+          "target": "com.azure.reservations#OperationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the individual operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation purchase details"
+      }
+    },
+    "com.azure.reservations#ExchangeOperationResultStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "PENDINGREFUNDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingRefunds"
+          }
+        },
+        "PENDINGPURCHASES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingPurchases"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the operation."
+      }
+    },
+    "com.azure.reservations#ExchangePostRequest": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#ExchangeRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Exchange request properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#ExchangeRequestProperties": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SessionId that was returned by CalculateExchange API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Exchange request properties"
+      }
+    },
+    "com.azure.reservations#ReservationOrderCalculate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#ReservationOrderCalculateRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#CalculatePriceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/calculatePrice",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Calculate price for a `ReservationOrder`.\n\nCalculate price for placing a `ReservationOrder`.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#CalculatePriceResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#CalculatePriceResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for calculate price response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of calculate price for reservation."
+      }
+    },
+    "com.azure.reservations#CalculatePriceResponseProperties": {
+      "type": "structure",
+      "members": {
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#CalculatePriceResponsePropertiesBillingCurrencyTotal",
+          "traits": {
+            "smithy.api#documentation": "Currency and amount that customer will be charged in customer's local currency. Tax is not included."
+          }
+        },
+        "netTotal": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net total amount in pricing currency."
+          }
+        },
+        "taxTotal": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Tax amount in pricing currency."
+          }
+        },
+        "grandTotal": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total amount in pricing currency."
+          }
+        },
+        "isTaxIncluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not tax is included in grand total"
+          }
+        },
+        "isBillingPartnerManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if billing is managed by Microsoft Partner. Used only for CSP accounts."
+          }
+        },
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GUID that represents reservation order that can be placed after calculating price."
+          }
+        },
+        "skuTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of sku that is being purchased."
+          }
+        },
+        "skuDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of sku that is being purchased."
+          }
+        },
+        "pricingCurrencyTotal": {
+          "target": "com.azure.reservations#CalculatePriceResponsePropertiesPricingCurrencyTotal",
+          "traits": {
+            "smithy.api#documentation": "Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included."
+          }
+        },
+        "paymentSchedule": {
+          "target": "com.azure.reservations#CalculatePriceResponsePropertiesPaymentScheduleList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for calculate price response"
+      }
+    },
+    "com.azure.reservations#CalculatePriceResponsePropertiesPaymentScheduleList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#PaymentDetail"
+      },
+      "traits": {}
+    },
+    "com.azure.reservations#CalculatePriceResponsePropertiesPricingCurrencyTotal": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included."
+      }
+    },
+    "com.azure.reservations#CalculatePriceResponsePropertiesBillingCurrencyTotal": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Amount in pricing currency. Tax is not included."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Currency and amount that customer will be charged in customer's local currency. Tax is not included."
+      }
+    },
+    "com.azure.reservations#ReservationOrderCalculateRequest": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.reservations#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of sku"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure region where the reserved resource lives."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#PurchaseRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of reservation purchase request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#CalculateExchangePost": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.reservations#CalculateExchangePostRequest"
+      },
+      "output": {
+        "target": "com.azure.reservations#CalculateExchangeOperationResultResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Capacity/calculateExchange",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Calculates the refund amounts and price of the new purchases.\n\nCalculates price for exchanging `Reservations` if there are no policy errors.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeOperationResultResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It should match what is used to GET the operation result."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It must match the last segment of the id field, and will typically be a GUID / system generated value."
+          }
+        },
+        "status": {
+          "target": "com.azure.reservations#CalculateExchangeOperationResultStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the operation."
+          }
+        },
+        "properties": {
+          "target": "com.azure.reservations#CalculateExchangeResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "CalculateExchange response properties"
+          }
+        },
+        "error": {
+          "target": "com.azure.reservations#OperationResultError",
+          "traits": {
+            "smithy.api#documentation": "Required if status == failed or status == canceled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CalculateExchange operation result"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeResponseProperties": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exchange session identifier"
+          }
+        },
+        "netPayable": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "refundsTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "purchasesTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "reservationsToPurchase": {
+          "target": "com.azure.reservations#CalculateExchangeResponsePropertiesReservationsToPurchaseList",
+          "traits": {
+            "smithy.api#documentation": "Details of the reservations being purchased"
+          }
+        },
+        "savingsPlansToPurchase": {
+          "target": "com.azure.reservations#CalculateExchangeResponsePropertiesSavingsPlansToPurchaseList",
+          "traits": {
+            "smithy.api#documentation": "Details of the savings plans being purchased"
+          }
+        },
+        "reservationsToExchange": {
+          "target": "com.azure.reservations#CalculateExchangeResponsePropertiesReservationsToExchangeList",
+          "traits": {
+            "smithy.api#documentation": "Details of the reservations being returned"
+          }
+        },
+        "policyResult": {
+          "target": "com.azure.reservations#ExchangePolicyErrors",
+          "traits": {
+            "smithy.api#documentation": "Exchange policy errors"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CalculateExchange response properties"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeResponsePropertiesReservationsToExchangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationToExchange"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the reservations being returned"
+      }
+    },
+    "com.azure.reservations#ReservationToExchange": {
+      "type": "structure",
+      "members": {
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified id of the reservation being returned."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity to be returned"
+          }
+        },
+        "billingRefundAmount": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        },
+        "billingInformation": {
+          "target": "com.azure.reservations#BillingInformation",
+          "traits": {
+            "smithy.api#documentation": "billing information"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation refund details"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeResponsePropertiesSavingsPlansToPurchaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#SavingsPlanToPurchaseCalculateExchange"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the savings plans being purchased"
+      }
+    },
+    "com.azure.reservations#SavingsPlanToPurchaseCalculateExchange": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#SavingsPlanPurchaseRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body for savings plan purchase"
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan purchase details"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeResponsePropertiesReservationsToPurchaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationToPurchaseCalculateExchange"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the reservations being purchased"
+      }
+    },
+    "com.azure.reservations#ReservationToPurchaseCalculateExchange": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#PurchaseRequest",
+          "traits": {
+            "smithy.api#documentation": "The request for reservation purchase"
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.reservations#Price",
+          "traits": {
+            "smithy.api#documentation": "Pricing information containing the amount and the currency code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation purchase details"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeOperationResultStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the operation."
+      }
+    },
+    "com.azure.reservations#CalculateExchangePostRequest": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.reservations#CalculateExchangeRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Calculate exchange request properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.reservations#CalculateExchangeRequestProperties": {
+      "type": "structure",
+      "members": {
+        "reservationsToPurchase": {
+          "target": "com.azure.reservations#CalculateExchangeRequestPropertiesReservationsToPurchaseList",
+          "traits": {
+            "smithy.api#documentation": "List of reservations that are being purchased in this exchange."
+          }
+        },
+        "savingsPlansToPurchase": {
+          "target": "com.azure.reservations#CalculateExchangeRequestPropertiesSavingsPlansToPurchaseList",
+          "traits": {
+            "smithy.api#documentation": "List of savings plans that are being purchased in this exchange."
+          }
+        },
+        "reservationsToExchange": {
+          "target": "com.azure.reservations#CalculateExchangeRequestPropertiesReservationsToExchangeList",
+          "traits": {
+            "smithy.api#documentation": "List of reservations that are being returned in this exchange."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Calculate exchange request properties"
+      }
+    },
+    "com.azure.reservations#CalculateExchangeRequestPropertiesReservationsToExchangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#ReservationToReturn"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of reservations that are being returned in this exchange."
+      }
+    },
+    "com.azure.reservations#CalculateExchangeRequestPropertiesSavingsPlansToPurchaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#SavingsPlanPurchaseRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of savings plans that are being purchased in this exchange."
+      }
+    },
+    "com.azure.reservations#CalculateExchangeRequestPropertiesReservationsToPurchaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.reservations#PurchaseRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of reservations that are being purchased in this exchange."
+      }
+    },
+    "com.azure.reservations#Reservations": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.reservations#GetCatalog"
+        },
+        {
+          "target": "com.azure.reservations#GetAppliedReservationList"
+        },
+        {
+          "target": "com.azure.reservations#ReservationListAll"
+        },
+        {
+          "target": "com.azure.reservations#ReservationSplit"
+        },
+        {
+          "target": "com.azure.reservations#ReturnPost"
+        },
+        {
+          "target": "com.azure.reservations#ReservationUnarchive"
+        },
+        {
+          "target": "com.azure.reservations#ReservationListRevisions"
+        },
+        {
+          "target": "com.azure.reservations#ReservationAvailableScopes"
+        },
+        {
+          "target": "com.azure.reservations#ReservationArchive"
+        },
+        {
+          "target": "com.azure.reservations#ReservationUpdate"
+        },
+        {
+          "target": "com.azure.reservations#ReservationGet"
+        },
+        {
+          "target": "com.azure.reservations#ReservationList2"
+        },
+        {
+          "target": "com.azure.reservations#ReservationMerge"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderChangeDirectory"
+        },
+        {
+          "target": "com.azure.reservations#CalculateRefundPost"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderPurchase"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderGet"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderList2"
+        },
+        {
+          "target": "com.azure.reservations#OperationList2"
+        },
+        {
+          "target": "com.azure.reservations#ExchangePost"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderCalculate"
+        },
+        {
+          "target": "com.azure.reservations#CalculateExchangePost"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Reservations",
+        "smithy.api#documentation": "Azure Reservations API — merged from the reservations resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

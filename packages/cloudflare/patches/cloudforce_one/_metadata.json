@@ -1,0 +1,27 @@
+{
+  "description": "Key dictionary / op aliases for cloudforce_one (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "accountId": "account_id",
+        "anniversaryDate": "anniversary_date",
+        "completedAfter": "completed_after",
+        "completedBefore": "completed_before",
+        "contentType": "content_type",
+        "createdAfter": "created_after",
+        "createdBefore": "created_before",
+        "documentationUrl": "documentation_url",
+        "fileType": "file_type",
+        "messageTokens": "message_tokens",
+        "perPage": "per_page",
+        "quarterAnniversaryDate": "quarter_anniversary_date",
+        "readableId": "readable_id",
+        "requestType": "request_type",
+        "sortBy": "sort_by",
+        "sortOrder": "sort_order"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Key dictionary / op aliases for network_interconnects (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "conduitName": "conduit_name",
+        "custIp": "cust_ip",
+        "customerAsn": "customer_asn",
+        "defaultAsn": "default_asn",
+        "extraPrefixes": "extra_prefixes",
+        "md5Key": "md5_key",
+        "p2pIp": "p2p_ip",
+        "pairingKey": "pairing_key",
+        "slotId": "slot_id"
+      }
+    }
+  ]
+}

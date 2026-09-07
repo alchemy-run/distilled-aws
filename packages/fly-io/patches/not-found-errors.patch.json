@@ -1,0 +1,474 @@
+{
+  "description": "Add 404 Not Found responses to all operations with path parameters. Discovered via real API testing: the Fly.io API returns {\"error\": \"app not found\"}, {\"error\": \"machine not found\"}, {\"error\": \"volume not found\"} with HTTP 404.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1acme/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1custom/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1{hostname}/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1{hostname}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1{hostname}~1acme/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1{hostname}~1check/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1{hostname}~1custom/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1deploy_token/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1ip_assignments/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1ip_assignments/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1ip_assignments~1{ip}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1cordon/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1events/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1exec/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1lease/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1lease/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1lease/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1memory/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1memory/put/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1memory~1reclaim/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1metadata/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1metadata/put/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1metadata~1{key}/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1metadata~1{key}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1ps/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1restart/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1signal/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1start/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1stop/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1suspend/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1uncordon/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1versions/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1wait/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}~1decrypt/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}~1encrypt/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}~1generate/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}~1sign/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secretkeys~1{secret_name}~1verify/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secrets/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secrets/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secrets~1{secret_name}/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secrets~1{secret_name}/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1secrets~1{secret_name}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}/put/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}/delete/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}~1extend/put/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}~1snapshots/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}~1snapshots/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1orgs~1{org_slug}~1machines/get/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1tokens~1oidc/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1tokens~1kms/post/responses/404",
+      "value": {
+        "description": "Not Found"
+      }
+    }
+  ]
+}

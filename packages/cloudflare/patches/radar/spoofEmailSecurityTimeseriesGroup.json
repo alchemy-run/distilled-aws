@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecurityTimeseriesGroupsSpoof with distilled cloudflare/radar spoofEmailSecurityTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsSpoof",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsSpoofRequest",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsSpoofResponse",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#SpoofEmailSecurityTimeseriesGroupResponse"
+    }
+  ]
+}

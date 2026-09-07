@@ -1,0 +1,40 @@
+{
+  "description": "Align accounts#LogsAuditList with distilled cloudflare/accounts listLogAudits",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#LogsAuditList",
+      "path": "/shapes/com.cloudflare.accounts#ListLogAudits"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#LogsAuditListRequest",
+      "path": "/shapes/com.cloudflare.accounts#ListLogAuditsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#ListLogAudits/input/target",
+      "value": "com.cloudflare.accounts#ListLogAuditsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#LogsAuditListResponse",
+      "path": "/shapes/com.cloudflare.accounts#ListLogAuditsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#ListLogAudits/output/target",
+      "value": "com.cloudflare.accounts#ListLogAuditsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#ListLogAudits/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursors.after",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Align custom_nameservers#Get with distilled cloudflare/custom-nameservers getCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_nameservers#Get",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_nameservers#GetRequest",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserver/input/target",
+      "value": "com.cloudflare.custom_nameservers#GetCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_nameservers#GetResponse",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserver/output/target",
+      "value": "com.cloudflare.custom_nameservers#GetCustomNameserverResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserver/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_nameservers#GetCustomNameserver/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_nameservers#CustomNameserversNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.custom_nameservers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

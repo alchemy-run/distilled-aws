@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#NetflowsTopAses with distilled cloudflare/radar asesNetflowTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTopAses",
+      "path": "/shapes/com.cloudflare.radar#AsesNetflowTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTopAsesRequest",
+      "path": "/shapes/com.cloudflare.radar#AsesNetflowTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesNetflowTop/input/target",
+      "value": "com.cloudflare.radar#AsesNetflowTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTopAsesResponse",
+      "path": "/shapes/com.cloudflare.radar#AsesNetflowTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesNetflowTop/output/target",
+      "value": "com.cloudflare.radar#AsesNetflowTopResponse"
+    }
+  ]
+}

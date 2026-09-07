@@ -1,0 +1,42 @@
+{
+  "description": "Align addressing#PrefixesGet with distilled cloudflare/addressing getPrefix",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesGet",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefix"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesGetRequest",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefix/input/target",
+      "value": "com.cloudflare.addressing#GetPrefixRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesGetResponse",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefix/output/target",
+      "value": "com.cloudflare.addressing#GetPrefixResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefix/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#PrefixNotFound"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

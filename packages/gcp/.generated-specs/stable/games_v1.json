@@ -1,0 +1,5442 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "games",
+    "version": "v1",
+    "title": "Google Play Games Services API",
+    "baseUrl": "https://games.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.games_v1#AchievementDefinitionsListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementDefinitionsListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token corresponding to the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#AchievementDefinitionList",
+          "traits": {
+            "smithy.api#documentation": "The achievement definitions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of achievement definition objects."
+      }
+    },
+    "com.gcp.games_v1#AchievementDefinitionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#AchievementDefinition"
+      }
+    },
+    "com.gcp.games_v1#AchievementDefinition": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementDefinition`."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the achievement."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the achievement."
+          }
+        },
+        "achievementType": {
+          "target": "com.gcp.games_v1#AchievementDefinitionAchievementTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of the achievement."
+          }
+        },
+        "totalSteps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total steps for an incremental achievement."
+          }
+        },
+        "formattedTotalSteps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The total steps for an incremental achievement as a string."
+          }
+        },
+        "revealedIconUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image URL for the revealed achievement icon."
+          }
+        },
+        "isRevealedIconUrlDefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the revealed icon image being returned is a default image, or is provided by the game."
+          }
+        },
+        "unlockedIconUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image URL for the unlocked achievement icon."
+          }
+        },
+        "isUnlockedIconUrlDefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the unlocked icon image being returned is a default image, or is game-provided."
+          }
+        },
+        "initialState": {
+          "target": "com.gcp.games_v1#AchievementDefinitionInitialStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The initial state of the achievement."
+          }
+        },
+        "experiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Experience points which will be earned when unlocking this achievement."
+          }
+        },
+        "achievementLifecycleState": {
+          "target": "com.gcp.games_v1#AchievementDefinitionAchievementLifecycleStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the achievement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement definition object."
+      }
+    },
+    "com.gcp.games_v1#AchievementDefinitionAchievementTypeEnum": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD"
+          }
+        },
+        "INCREMENTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCREMENTAL"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#AchievementDefinitionInitialStateEnum": {
+      "type": "enum",
+      "members": {
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDDEN"
+          }
+        },
+        "REVEALED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEALED"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCKED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#AchievementDefinitionAchievementLifecycleStateEnum": {
+      "type": "enum",
+      "members": {
+        "ACHIEVEMENT_LIFECYCLE_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACHIEVEMENT_LIFECYCLE_STATE_UNSPECIFIED"
+          }
+        },
+        "ACHIEVEMENT_LIFECYCLE_STATE_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACHIEVEMENT_LIFECYCLE_STATE_ACTIVE"
+          }
+        },
+        "ACHIEVEMENT_LIFECYCLE_STATE_ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACHIEVEMENT_LIFECYCLE_STATE_ARCHIVED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#AchievementIncrementResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementIncrementResponse`."
+          }
+        },
+        "currentSteps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current steps recorded for this incremental achievement."
+          }
+        },
+        "newlyUnlocked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the current steps for the achievement has reached the number of steps required to unlock."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement increment response"
+      }
+    },
+    "com.gcp.games_v1#PlayerAchievementListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerAchievementListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token corresponding to the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#PlayerAchievementList",
+          "traits": {
+            "smithy.api#documentation": "The achievements."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of achievement objects."
+      }
+    },
+    "com.gcp.games_v1#PlayerAchievementList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerAchievement"
+      }
+    },
+    "com.gcp.games_v1#PlayerAchievement": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerAchievement`."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement."
+          }
+        },
+        "currentSteps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current steps for an incremental achievement."
+          }
+        },
+        "formattedCurrentStepsString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current steps for an incremental achievement as a string."
+          }
+        },
+        "achievementState": {
+          "target": "com.gcp.games_v1#PlayerAchievementAchievementStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the achievement."
+          }
+        },
+        "lastUpdatedTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the last modification to this achievement's state."
+          }
+        },
+        "experiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Experience points earned for the achievement. This field is absent for achievements that have not yet been unlocked and 0 for achievements that have been unlocked by testers but that are unpublished."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement object."
+      }
+    },
+    "com.gcp.games_v1#PlayerAchievementAchievementStateEnum": {
+      "type": "enum",
+      "members": {
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDDEN"
+          }
+        },
+        "REVEALED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEALED"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCKED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#AchievementRevealResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementRevealResponse`."
+          }
+        },
+        "currentState": {
+          "target": "com.gcp.games_v1#AchievementRevealResponseCurrentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current state of the achievement for which a reveal was attempted. This might be `UNLOCKED` if the achievement was already unlocked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement reveal response"
+      }
+    },
+    "com.gcp.games_v1#AchievementRevealResponseCurrentStateEnum": {
+      "type": "enum",
+      "members": {
+        "REVEALED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEALED"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCKED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#AchievementSetStepsAtLeastResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementSetStepsAtLeastResponse`."
+          }
+        },
+        "currentSteps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current steps recorded for this incremental achievement."
+          }
+        },
+        "newlyUnlocked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the current steps for the achievement has reached the number of steps required to unlock."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement set steps at least response."
+      }
+    },
+    "com.gcp.games_v1#AchievementUnlockResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUnlockResponse`."
+          }
+        },
+        "newlyUnlocked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement unlock response"
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateMultipleRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateMultipleRequest`."
+          }
+        },
+        "updates": {
+          "target": "com.gcp.games_v1#AchievementUpdateRequestList",
+          "traits": {
+            "smithy.api#documentation": "The individual achievement update requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of achievement update requests."
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#AchievementUpdateRequest"
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateRequest`."
+          }
+        },
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The achievement this update is being applied to."
+          }
+        },
+        "updateType": {
+          "target": "com.gcp.games_v1#AchievementUpdateRequestUpdateTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of update being applied."
+          }
+        },
+        "incrementPayload": {
+          "target": "com.gcp.games_v1#GamesAchievementIncrement",
+          "traits": {
+            "smithy.api#documentation": "The payload if an update of type `INCREMENT` was requested for the achievement."
+          }
+        },
+        "setStepsAtLeastPayload": {
+          "target": "com.gcp.games_v1#GamesAchievementSetStepsAtLeast",
+          "traits": {
+            "smithy.api#documentation": "The payload if an update of type `SET_STEPS_AT_LEAST` was requested for the achievement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to update an achievement."
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateRequestUpdateTypeEnum": {
+      "type": "enum",
+      "members": {
+        "REVEAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEAL"
+          }
+        },
+        "UNLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCK"
+          }
+        },
+        "INCREMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCREMENT"
+          }
+        },
+        "SET_STEPS_AT_LEAST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET_STEPS_AT_LEAST"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GamesAchievementIncrement": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#GamesAchievementIncrement`."
+          }
+        },
+        "steps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of steps to be incremented."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The requestId associated with an increment to an achievement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payload to request to increment an achievement."
+      }
+    },
+    "com.gcp.games_v1#GamesAchievementSetStepsAtLeast": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#GamesAchievementSetStepsAtLeast`."
+          }
+        },
+        "steps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum number of steps for the achievement to be set to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payload to request to increment an achievement."
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateMultipleResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateMultipleResponse`."
+          }
+        },
+        "updatedAchievements": {
+          "target": "com.gcp.games_v1#AchievementUpdateResponseList",
+          "traits": {
+            "smithy.api#documentation": "The updated state of the achievements."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for UpdateMultipleAchievements rpc."
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#AchievementUpdateResponse"
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#achievementUpdateResponse`."
+          }
+        },
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The achievement this update is was applied to."
+          }
+        },
+        "updateOccurred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the requested updates actually affected the achievement."
+          }
+        },
+        "currentState": {
+          "target": "com.gcp.games_v1#AchievementUpdateResponseCurrentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current state of the achievement."
+          }
+        },
+        "currentSteps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current steps recorded for this achievement if it is incremental."
+          }
+        },
+        "newlyUnlocked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this achievement was newly unlocked (that is, whether the unlock request for the achievement was the first for the player)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An updated achievement."
+      }
+    },
+    "com.gcp.games_v1#AchievementUpdateResponseCurrentStateEnum": {
+      "type": "enum",
+      "members": {
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDDEN"
+          }
+        },
+        "REVEALED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEALED"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCKED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#Application": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the application."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the application."
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The author of the application."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the application."
+          }
+        },
+        "category": {
+          "target": "com.gcp.games_v1#ApplicationCategory",
+          "traits": {
+            "smithy.api#documentation": "The category of the application."
+          }
+        },
+        "assets": {
+          "target": "com.gcp.games_v1#ImageAssetList",
+          "traits": {
+            "smithy.api#documentation": "The assets of the application."
+          }
+        },
+        "instances": {
+          "target": "com.gcp.games_v1#InstanceList",
+          "traits": {
+            "smithy.api#documentation": "The instances of the application."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#application`."
+          }
+        },
+        "lastUpdatedTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last updated timestamp of the application."
+          }
+        },
+        "achievement_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of achievements visible to the currently authenticated player."
+          }
+        },
+        "leaderboard_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of leaderboards visible to the currently authenticated player."
+          }
+        },
+        "enabledFeatures": {
+          "target": "com.gcp.games_v1#ApplicationEnabledFeaturesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "A list of features that have been enabled for the application."
+          }
+        },
+        "themeColor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A hint to the client UI for what color to use as an app-themed color. The color is given as an RGB triplet (e.g. \"E0E0E0\")."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Application resource."
+      }
+    },
+    "com.gcp.games_v1#ImageAssetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#ImageAsset"
+      }
+    },
+    "com.gcp.games_v1#InstanceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#Instance"
+      }
+    },
+    "com.gcp.games_v1#ApplicationEnabledFeaturesItemEnum": {
+      "type": "enum",
+      "members": {
+        "SNAPSHOTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SNAPSHOTS"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ApplicationEnabledFeaturesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#ApplicationEnabledFeaturesItemEnum"
+      }
+    },
+    "com.gcp.games_v1#ApplicationCategory": {
+      "type": "structure",
+      "members": {
+        "primary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary category."
+          }
+        },
+        "secondary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The secondary category."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#applicationCategory`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An application category object."
+      }
+    },
+    "com.gcp.games_v1#ImageAsset": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the asset."
+          }
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The width of the asset."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The height of the asset."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the asset."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#imageAsset`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An image asset object."
+      }
+    },
+    "com.gcp.games_v1#Instance": {
+      "type": "structure",
+      "members": {
+        "platformType": {
+          "target": "com.gcp.games_v1#InstancePlatformTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The platform type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized display name."
+          }
+        },
+        "turnBasedPlay": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to show if this game instance supports turn based play."
+          }
+        },
+        "realtimePlay": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to show if this game instance supports realtime play."
+          }
+        },
+        "androidInstance": {
+          "target": "com.gcp.games_v1#InstanceAndroidDetails",
+          "traits": {
+            "smithy.api#documentation": "Platform dependent details for Android."
+          }
+        },
+        "iosInstance": {
+          "target": "com.gcp.games_v1#InstanceIosDetails",
+          "traits": {
+            "smithy.api#documentation": "Platform dependent details for iOS."
+          }
+        },
+        "webInstance": {
+          "target": "com.gcp.games_v1#InstanceWebDetails",
+          "traits": {
+            "smithy.api#documentation": "Platform dependent details for Web."
+          }
+        },
+        "acquisitionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI which shows where a user can acquire this instance."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instance`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Instance resource."
+      }
+    },
+    "com.gcp.games_v1#InstancePlatformTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ANDROID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID"
+          }
+        },
+        "IOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS"
+          }
+        },
+        "WEB_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB_APP"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#InstanceAndroidDetails": {
+      "type": "structure",
+      "members": {
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Android package name which maps to Google Play URL."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instanceAndroidDetails`."
+          }
+        },
+        "enablePiracyCheck": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating whether the anti-piracy check is enabled."
+          }
+        },
+        "preferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this instance is the default for new installations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Android instance details resource."
+      }
+    },
+    "com.gcp.games_v1#InstanceIosDetails": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instanceIosDetails`."
+          }
+        },
+        "bundleIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bundle identifier."
+          }
+        },
+        "itunesAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iTunes App ID."
+          }
+        },
+        "supportIphone": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate if this instance supports iPhone."
+          }
+        },
+        "supportIpad": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate if this instance supports iPad."
+          }
+        },
+        "preferredForIphone": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this instance is the default for new installations on iPhone devices."
+          }
+        },
+        "preferredForIpad": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this instance is the default for new installations on iPad devices."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The iOS details resource."
+      }
+    },
+    "com.gcp.games_v1#InstanceWebDetails": {
+      "type": "structure",
+      "members": {
+        "launchUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Launch URL for the game."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#instanceWebDetails`."
+          }
+        },
+        "preferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this instance is the default for new installations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Web details resource."
+      }
+    },
+    "com.gcp.games_v1#ApplicationVerifyResponse": {
+      "type": "structure",
+      "members": {
+        "player_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the player that was issued the auth token used in this request."
+          }
+        },
+        "alternate_player_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An alternate ID that was once used for the player that was issued the auth token used in this request. (This field is not normally populated.)"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#applicationVerifyResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A third party application verification response resource."
+      }
+    },
+    "com.gcp.games_v1#EndPoint": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL suitable for loading in a web browser for the requested endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container for a URL end point of the requested type."
+      }
+    },
+    "com.gcp.games_v1#PlayerEventListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerEventListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#PlayerEventList",
+          "traits": {
+            "smithy.api#documentation": "The player events."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ListByPlayer response."
+      }
+    },
+    "com.gcp.games_v1#PlayerEventList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerEvent"
+      }
+    },
+    "com.gcp.games_v1#PlayerEvent": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerEvent`."
+          }
+        },
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the event definition."
+          }
+        },
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the player."
+          }
+        },
+        "numEvents": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current number of times this event has occurred."
+          }
+        },
+        "formattedNumEvents": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current number of times this event has occurred, as a string. The formatting of this string depends on the configuration of your event in the Play Games Developer Console."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event status resource."
+      }
+    },
+    "com.gcp.games_v1#EventDefinitionListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventDefinitionListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#EventDefinitionList",
+          "traits": {
+            "smithy.api#documentation": "The event definitions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ListDefinitions response."
+      }
+    },
+    "com.gcp.games_v1#EventDefinitionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#EventDefinition"
+      }
+    },
+    "com.gcp.games_v1#EventDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the event."
+          }
+        },
+        "visibility": {
+          "target": "com.gcp.games_v1#EventDefinitionVisibilityEnum",
+          "traits": {
+            "smithy.api#documentation": "The visibility of event being tracked in this definition."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name to display for the event."
+          }
+        },
+        "imageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The base URL for the image that represents the event."
+          }
+        },
+        "childEvents": {
+          "target": "com.gcp.games_v1#EventChildList",
+          "traits": {
+            "smithy.api#documentation": "A list of events that are a child of this event."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of what this event represents."
+          }
+        },
+        "isDefaultImageUrl": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the icon image being returned is a default image, or is game-provided."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventDefinition`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event definition resource."
+      }
+    },
+    "com.gcp.games_v1#EventDefinitionVisibilityEnum": {
+      "type": "enum",
+      "members": {
+        "REVEALED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEALED"
+          }
+        },
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDDEN"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#EventChildList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#EventChild"
+      }
+    },
+    "com.gcp.games_v1#EventChild": {
+      "type": "structure",
+      "members": {
+        "childId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the child event."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventChild`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event child relationship resource."
+      }
+    },
+    "com.gcp.games_v1#EventRecordRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventRecordRequest`."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request ID used to identify this attempt to record events."
+          }
+        },
+        "currentTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current time when this update was sent, in milliseconds, since 1970 UTC (Unix Epoch)."
+          }
+        },
+        "timePeriods": {
+          "target": "com.gcp.games_v1#EventPeriodUpdateList",
+          "traits": {
+            "smithy.api#documentation": "A list of the time period updates being made in this request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event period update resource."
+      }
+    },
+    "com.gcp.games_v1#EventPeriodUpdateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#EventPeriodUpdate"
+      }
+    },
+    "com.gcp.games_v1#EventPeriodUpdate": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.gcp.games_v1#EventPeriodRange",
+          "traits": {
+            "smithy.api#documentation": "The time period being covered by this update."
+          }
+        },
+        "updates": {
+          "target": "com.gcp.games_v1#EventUpdateRequestList",
+          "traits": {
+            "smithy.api#documentation": "The updates being made for this time period."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventPeriodUpdate`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event period update resource."
+      }
+    },
+    "com.gcp.games_v1#EventUpdateRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#EventUpdateRequest"
+      }
+    },
+    "com.gcp.games_v1#EventPeriodRange": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventPeriodRange`."
+          }
+        },
+        "periodStartMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when this update period begins, in millis, since 1970 UTC (Unix Epoch)."
+          }
+        },
+        "periodEndMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when this update period ends, in millis, since 1970 UTC (Unix Epoch)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event period time range."
+      }
+    },
+    "com.gcp.games_v1#EventUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the event being modified in this update."
+          }
+        },
+        "updateCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of times this event occurred in this time period."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventUpdateRequest`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event period update resource."
+      }
+    },
+    "com.gcp.games_v1#EventUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventUpdateResponse`."
+          }
+        },
+        "batchFailures": {
+          "target": "com.gcp.games_v1#EventBatchRecordFailureList",
+          "traits": {
+            "smithy.api#documentation": "Any batch-wide failures which occurred applying updates."
+          }
+        },
+        "eventFailures": {
+          "target": "com.gcp.games_v1#EventRecordFailureList",
+          "traits": {
+            "smithy.api#documentation": "Any failures updating a particular event."
+          }
+        },
+        "playerEvents": {
+          "target": "com.gcp.games_v1#PlayerEventList",
+          "traits": {
+            "smithy.api#documentation": "The current status of any updated events"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event period update resource."
+      }
+    },
+    "com.gcp.games_v1#EventBatchRecordFailureList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#EventBatchRecordFailure"
+      }
+    },
+    "com.gcp.games_v1#EventRecordFailureList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#EventRecordFailure"
+      }
+    },
+    "com.gcp.games_v1#EventBatchRecordFailure": {
+      "type": "structure",
+      "members": {
+        "range": {
+          "target": "com.gcp.games_v1#EventPeriodRange",
+          "traits": {
+            "smithy.api#documentation": "The time range which was rejected; empty for a request-wide failure."
+          }
+        },
+        "failureCause": {
+          "target": "com.gcp.games_v1#EventBatchRecordFailureFailureCauseEnum",
+          "traits": {
+            "smithy.api#documentation": "The cause for the update failure."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventBatchRecordFailure`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A batch update failure resource."
+      }
+    },
+    "com.gcp.games_v1#EventBatchRecordFailureFailureCauseEnum": {
+      "type": "enum",
+      "members": {
+        "TOO_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_LARGE"
+          }
+        },
+        "TIME_PERIOD_EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_PERIOD_EXPIRED"
+          }
+        },
+        "TIME_PERIOD_SHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_PERIOD_SHORT"
+          }
+        },
+        "TIME_PERIOD_LONG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_PERIOD_LONG"
+          }
+        },
+        "ALREADY_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALREADY_UPDATED"
+          }
+        },
+        "RECORD_RATE_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECORD_RATE_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#EventRecordFailure": {
+      "type": "structure",
+      "members": {
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the event that was not updated."
+          }
+        },
+        "failureCause": {
+          "target": "com.gcp.games_v1#EventRecordFailureFailureCauseEnum",
+          "traits": {
+            "smithy.api#documentation": "The cause for the update failure."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#eventRecordFailure`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An event update failure resource."
+      }
+    },
+    "com.gcp.games_v1#EventRecordFailureFailureCauseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        },
+        "INVALID_UPDATE_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_UPDATE_VALUE"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#Leaderboard": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboard`."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The leaderboard ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the leaderboard."
+          }
+        },
+        "iconUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The icon for the leaderboard."
+          }
+        },
+        "isIconUrlDefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the icon image being returned is a default image, or is game-provided."
+          }
+        },
+        "order": {
+          "target": "com.gcp.games_v1#LeaderboardOrderEnum",
+          "traits": {
+            "smithy.api#documentation": "How scores are ordered."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Leaderboard resource."
+      }
+    },
+    "com.gcp.games_v1#LeaderboardOrderEnum": {
+      "type": "enum",
+      "members": {
+        "LARGER_IS_BETTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LARGER_IS_BETTER"
+          }
+        },
+        "SMALLER_IS_BETTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMALLER_IS_BETTER"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#LeaderboardListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token corresponding to the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#LeaderboardList",
+          "traits": {
+            "smithy.api#documentation": "The leaderboards."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of leaderboard objects."
+      }
+    },
+    "com.gcp.games_v1#LeaderboardList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#Leaderboard"
+      }
+    },
+    "com.gcp.games_v1#MetagameConfig": {
+      "type": "structure",
+      "members": {
+        "currentVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current version of the metagame configuration data. When this data is updated, the version number will be increased by one."
+          }
+        },
+        "playerLevels": {
+          "target": "com.gcp.games_v1#PlayerLevelList",
+          "traits": {
+            "smithy.api#documentation": "The list of player levels."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#metagameConfig`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metagame config resource"
+      }
+    },
+    "com.gcp.games_v1#PlayerLevelList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerLevel"
+      }
+    },
+    "com.gcp.games_v1#PlayerLevel": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLevel`."
+          }
+        },
+        "level": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The level for the user."
+          }
+        },
+        "minExperiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum experience points for this level."
+          }
+        },
+        "maxExperiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum experience points for this level."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "1P/3P metadata about a user's level."
+      }
+    },
+    "com.gcp.games_v1#CategoryListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#categoryListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token corresponding to the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#CategoryList",
+          "traits": {
+            "smithy.api#documentation": "The list of categories with usage data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A third party list metagame categories response."
+      }
+    },
+    "com.gcp.games_v1#CategoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#Category"
+      }
+    },
+    "com.gcp.games_v1#Category": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#category`."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category name."
+          }
+        },
+        "experiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Experience points earned in this category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data related to individual game categories."
+      }
+    },
+    "com.gcp.games_v1#Player": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#player`"
+          }
+        },
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the player."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name to display for the player."
+          }
+        },
+        "avatarImageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The base URL for the image that represents the player."
+          }
+        },
+        "bannerUrlPortrait": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url to the portrait mode player banner image."
+          }
+        },
+        "bannerUrlLandscape": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url to the landscape mode player banner image."
+          }
+        },
+        "originalPlayerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs."
+          }
+        },
+        "profileSettings": {
+          "target": "com.gcp.games_v1#ProfileSettings",
+          "traits": {
+            "smithy.api#documentation": "The player's profile settings. Controls whether or not the player's profile is visible to other players."
+          }
+        },
+        "name": {
+          "target": "com.gcp.games_v1#PlayerName",
+          "traits": {
+            "smithy.api#documentation": "A representation of the individual components of the name."
+          }
+        },
+        "experienceInfo": {
+          "target": "com.gcp.games_v1#PlayerExperienceInfo",
+          "traits": {
+            "smithy.api#documentation": "An object to represent Play Game experience information for the player."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The player's title rewarded for their game activities."
+          }
+        },
+        "friendStatus": {
+          "target": "com.gcp.games_v1#PlayerFriendStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game."
+          }
+        },
+        "gamePlayerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Per-application unique player identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Player resource."
+      }
+    },
+    "com.gcp.games_v1#PlayerName": {
+      "type": "structure",
+      "members": {
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The family name of this player. In some places, this is known as the last name."
+          }
+        },
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The given name of this player. In some places, this is known as the first name."
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#PlayerFriendStatusEnum": {
+      "type": "enum",
+      "members": {
+        "NO_RELATIONSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_RELATIONSHIP"
+          }
+        },
+        "FRIEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIEND"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ProfileSettings": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#profileSettings`."
+          }
+        },
+        "profileVisible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the player's profile is visible to the currently signed in player."
+          }
+        },
+        "friendsListVisibility": {
+          "target": "com.gcp.games_v1#ProfileSettingsFriendsListVisibilityEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Profile settings"
+      }
+    },
+    "com.gcp.games_v1#ProfileSettingsFriendsListVisibilityEnum": {
+      "type": "enum",
+      "members": {
+        "VISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBLE"
+          }
+        },
+        "REQUEST_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUEST_REQUIRED"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#PlayerExperienceInfo": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerExperienceInfo`."
+          }
+        },
+        "currentExperiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current number of experience points for the player."
+          }
+        },
+        "lastLevelUpTimestampMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the player was leveled up, in millis since Unix epoch UTC."
+          }
+        },
+        "currentLevel": {
+          "target": "com.gcp.games_v1#PlayerLevel",
+          "traits": {
+            "smithy.api#documentation": "The current level of the player."
+          }
+        },
+        "nextLevel": {
+          "target": "com.gcp.games_v1#PlayerLevel",
+          "traits": {
+            "smithy.api#documentation": "The next level of the player. If the current level is the maximum level, this should be same as the current level."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "1P/3P metadata about the player's experience."
+      }
+    },
+    "com.gcp.games_v1#ScopedPlayerIds": {
+      "type": "structure",
+      "members": {
+        "gamePlayerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Game-scoped player identifier. This is the same id that is returned in GetPlayer game_player_id field."
+          }
+        },
+        "developerPlayerKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the player across all games of the given developer. Every player has the same developer_player_key in all games of one developer. Developer player key changes for the game if the game is transferred to another developer. Note that game_player_id will stay unchanged."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Scoped player identifiers."
+      }
+    },
+    "com.gcp.games_v1#GetMultipleApplicationPlayerIdsResponse": {
+      "type": "structure",
+      "members": {
+        "playerIds": {
+          "target": "com.gcp.games_v1#ApplicationPlayerIdList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The requested applications along with the scoped ids for tha player, if that player has an id for the application. If not, the application is not included in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for GetMultipleApplicationPlayerIds rpc."
+      }
+    },
+    "com.gcp.games_v1#ApplicationPlayerIdList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#ApplicationPlayerId"
+      }
+    },
+    "com.gcp.games_v1#ApplicationPlayerId": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application that this player identifier is for."
+          }
+        },
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The player identifier for the application."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Primary scoped player identifier for an application."
+      }
+    },
+    "com.gcp.games_v1#PlayerListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token corresponding to the next page of results."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#PlayerList",
+          "traits": {
+            "smithy.api#documentation": "The players."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A third party player list response."
+      }
+    },
+    "com.gcp.games_v1#PlayerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#Player"
+      }
+    },
+    "com.gcp.games_v1#RevisionCheckResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#revisionCheckResponse`."
+          }
+        },
+        "revisionStatus": {
+          "target": "com.gcp.games_v1#RevisionCheckResponseRevisionStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The result of the revision check."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the API this client revision should use when calling API methods."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A third party checking a revision response."
+      }
+    },
+    "com.gcp.games_v1#RevisionCheckResponseRevisionStatusEnum": {
+      "type": "enum",
+      "members": {
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OK"
+          }
+        },
+        "DEPRECATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#PlayerLeaderboardScoreListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLeaderboardScoreListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the next page of results."
+          }
+        },
+        "player": {
+          "target": "com.gcp.games_v1#Player",
+          "traits": {
+            "smithy.api#documentation": "The Player resources for the owner of this score."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#PlayerLeaderboardScoreList",
+          "traits": {
+            "smithy.api#documentation": "The leaderboard scores."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of player leaderboard scores."
+      }
+    },
+    "com.gcp.games_v1#PlayerLeaderboardScoreList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerLeaderboardScore"
+      }
+    },
+    "com.gcp.games_v1#PlayerLeaderboardScore": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerLeaderboardScore`."
+          }
+        },
+        "leaderboard_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard this score is in."
+          }
+        },
+        "scoreValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The numerical value of this score."
+          }
+        },
+        "scoreString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The formatted value of this score."
+          }
+        },
+        "publicRank": {
+          "target": "com.gcp.games_v1#LeaderboardScoreRank",
+          "traits": {
+            "smithy.api#documentation": "The public rank of the score in this leaderboard. This object will not be present if the user is not sharing their scores publicly."
+          }
+        },
+        "socialRank": {
+          "target": "com.gcp.games_v1#LeaderboardScoreRank",
+          "traits": {
+            "smithy.api#documentation": "The social rank of the score in this leaderboard."
+          }
+        },
+        "friendsRank": {
+          "target": "com.gcp.games_v1#LeaderboardScoreRank",
+          "traits": {
+            "smithy.api#documentation": "The rank of the score in the friends collection for this leaderboard."
+          }
+        },
+        "timeSpan": {
+          "target": "com.gcp.games_v1#PlayerLeaderboardScoreTimeSpanEnum",
+          "traits": {
+            "smithy.api#documentation": "The time span of this score."
+          }
+        },
+        "writeTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp at which this score was recorded, in milliseconds since the epoch in UTC."
+          }
+        },
+        "scoreTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A player leaderboard score object."
+      }
+    },
+    "com.gcp.games_v1#PlayerLeaderboardScoreTimeSpanEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#LeaderboardScoreRank": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardScoreRank`."
+          }
+        },
+        "rank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rank in the leaderboard."
+          }
+        },
+        "formattedRank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rank in the leaderboard as a string."
+          }
+        },
+        "numScores": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of scores in the leaderboard."
+          }
+        },
+        "formattedNumScores": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of scores in the leaderboard as a string."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A score rank in a leaderboard."
+      }
+    },
+    "com.gcp.games_v1#LeaderboardScores": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardScores`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the next page of results."
+          }
+        },
+        "prevPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the previous page of results."
+          }
+        },
+        "numScores": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The total number of scores in the leaderboard."
+          }
+        },
+        "playerScore": {
+          "target": "com.gcp.games_v1#LeaderboardEntry",
+          "traits": {
+            "smithy.api#documentation": "The score of the requesting player on the leaderboard. The player's score may appear both here and in the list of scores above. If you are viewing a public leaderboard and the player is not sharing their gameplay information publicly, the `scoreRank`and `formattedScoreRank` values will not be present."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#LeaderboardEntryList",
+          "traits": {
+            "smithy.api#documentation": "The scores in the leaderboard."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ListScores response."
+      }
+    },
+    "com.gcp.games_v1#LeaderboardEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#LeaderboardEntry"
+      }
+    },
+    "com.gcp.games_v1#LeaderboardEntry": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#leaderboardEntry`."
+          }
+        },
+        "player": {
+          "target": "com.gcp.games_v1#Player",
+          "traits": {
+            "smithy.api#documentation": "The player who holds this score."
+          }
+        },
+        "scoreRank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rank of this score for this leaderboard."
+          }
+        },
+        "formattedScoreRank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized string for the rank of this score for this leaderboard."
+          }
+        },
+        "scoreValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The numerical value of this score."
+          }
+        },
+        "formattedScore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized string for the numerical value of this score."
+          }
+        },
+        "timeSpan": {
+          "target": "com.gcp.games_v1#LeaderboardEntryTimeSpanEnum",
+          "traits": {
+            "smithy.api#documentation": "The time span of this high score."
+          }
+        },
+        "writeTimestampMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp at which this score was recorded, in milliseconds since the epoch in UTC."
+          }
+        },
+        "scoreTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the score. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Leaderboard Entry resource."
+      }
+    },
+    "com.gcp.games_v1#LeaderboardEntryTimeSpanEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScoreResponse`."
+          }
+        },
+        "beatenScoreTimeSpans": {
+          "target": "com.gcp.games_v1#PlayerScoreResponseBeatenScoreTimeSpansItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The time spans where the submitted score is better than the existing score for that time span."
+          }
+        },
+        "unbeatenScores": {
+          "target": "com.gcp.games_v1#PlayerScoreList",
+          "traits": {
+            "smithy.api#documentation": "The scores in time spans that have not been beaten. As an example, the submitted score may be better than the player's `DAILY` score, but not better than the player's scores for the `WEEKLY` or `ALL_TIME` time spans."
+          }
+        },
+        "formattedScore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The formatted value of the submitted score."
+          }
+        },
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The leaderboard ID that this score was submitted to."
+          }
+        },
+        "scoreTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of leaderboard entry resources."
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreResponseBeatenScoreTimeSpansItemEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreResponseBeatenScoreTimeSpansItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerScoreResponseBeatenScoreTimeSpansItemEnum"
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerScore"
+      }
+    },
+    "com.gcp.games_v1#PlayerScore": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScore`."
+          }
+        },
+        "timeSpan": {
+          "target": "com.gcp.games_v1#PlayerScoreTimeSpanEnum",
+          "traits": {
+            "smithy.api#documentation": "The time span for this player score."
+          }
+        },
+        "score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The numerical value for this player score."
+          }
+        },
+        "formattedScore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The formatted score for this player score."
+          }
+        },
+        "scoreTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A player score."
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreTimeSpanEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreSubmissionList": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScoreSubmissionList`."
+          }
+        },
+        "scores": {
+          "target": "com.gcp.games_v1#ScoreSubmissionList",
+          "traits": {
+            "smithy.api#documentation": "The score submissions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of score submission requests."
+      }
+    },
+    "com.gcp.games_v1#ScoreSubmissionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#ScoreSubmission"
+      }
+    },
+    "com.gcp.games_v1#ScoreSubmission": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#scoreSubmission`."
+          }
+        },
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The leaderboard this score is being submitted to."
+          }
+        },
+        "score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new score being submitted."
+          }
+        },
+        "scoreTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature Values will contain URI-safe characters as defined by section 2.3 of RFC 3986."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to submit a score to leaderboards."
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#playerScoreListResponse`."
+          }
+        },
+        "submittedScores": {
+          "target": "com.gcp.games_v1#PlayerScoreResponseList",
+          "traits": {
+            "smithy.api#documentation": "The score submissions statuses."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of score submission statuses."
+      }
+    },
+    "com.gcp.games_v1#PlayerScoreResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#PlayerScoreResponse"
+      }
+    },
+    "com.gcp.games_v1#Snapshot": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the snapshot."
+          }
+        },
+        "driveId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the file underlying this snapshot in the Drive API. Only present if the snapshot is a view on a Drive file and the file is owned by the caller."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#snapshot`."
+          }
+        },
+        "type": {
+          "target": "com.gcp.games_v1#SnapshotTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of this snapshot."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of this snapshot."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of this snapshot."
+          }
+        },
+        "lastModifiedMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp (in millis since Unix epoch) of the last modification to this snapshot."
+          }
+        },
+        "durationMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The duration associated with this snapshot, in millis."
+          }
+        },
+        "coverImage": {
+          "target": "com.gcp.games_v1#SnapshotImage",
+          "traits": {
+            "smithy.api#documentation": "The cover image of this snapshot. May be absent if there is no image."
+          }
+        },
+        "uniqueName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name provided when the snapshot was created."
+          }
+        },
+        "progressValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The progress value (64-bit integer set by developer) associated with this snapshot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An snapshot object."
+      }
+    },
+    "com.gcp.games_v1#SnapshotTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SAVE_GAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SAVE_GAME"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#SnapshotImage": {
+      "type": "structure",
+      "members": {
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The width of the image."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The height of the image."
+          }
+        },
+        "mime_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The MIME type of the image."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the image. This URL may be invalidated at any time and should not be cached."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#snapshotImage`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An image of a snapshot."
+      }
+    },
+    "com.gcp.games_v1#SnapshotListResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#snapshotListResponse`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token corresponding to the next page of results. If there are no more results, the token is omitted."
+          }
+        },
+        "items": {
+          "target": "com.gcp.games_v1#SnapshotList",
+          "traits": {
+            "smithy.api#documentation": "The snapshots."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A third party list snapshots response."
+      }
+    },
+    "com.gcp.games_v1#SnapshotList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#Snapshot"
+      }
+    },
+    "com.gcp.games_v1#StatsResponse": {
+      "type": "structure",
+      "members": {
+        "churn_probability": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The probability of the player not returning to play the game in the next day. E.g., 0, 0.1, 0.5, ..., 1.0. Not populated if there is not enough information."
+          }
+        },
+        "num_purchases": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of in-app purchases made by the player in this game. E.g., 0, 1, 5, 10, ... . Not populated if there is not enough information."
+          }
+        },
+        "spend_percentile": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The approximate spend percentile of the player in this game. E.g., 0, 0.25, 0.5, 0.75. Not populated if there is not enough information."
+          }
+        },
+        "days_since_last_played": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of days since the player last played this game. E.g., 0, 1, 5, 10, ... . Not populated if there is not enough information."
+          }
+        },
+        "num_sessions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The approximate number of sessions of the player within the last 28 days, where a session begins when the player is connected to Play Games Services and ends when they are disconnected. E.g., 0, 1, 5, 10, ... . Not populated if there is not enough information."
+          }
+        },
+        "num_sessions_percentile": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The approximation of the sessions percentile of the player within the last 30 days, where a session begins when the player is connected to Play Games Services and ends when they are disconnected. E.g., 0, 0.25, 0.5, 0.75. Not populated if there is not enough information."
+          }
+        },
+        "avg_session_length_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Average session length in minutes of the player. E.g., 1, 30, 60, ... . Not populated if there is not enough information."
+          }
+        },
+        "spend_probability": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The probability of the player going to spend the game in the next seven days. E.g., 0, 0.25, 0.50, 0.75. Not populated if there is not enough information."
+          }
+        },
+        "high_spender_probability": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The probability of the player going to spend beyond a threshold amount of money. E.g., 0, 0.25, 0.50, 0.75. Not populated if there is not enough information."
+          }
+        },
+        "total_spend_next_28_days": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The predicted amount of money that the player going to spend in the next 28 days. E.g., 1, 30, 60, ... . Not populated if there is not enough information."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `games#statsResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A third party stats resource."
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaRequest": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application."
+          }
+        },
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Stable identifier of the in-game account. Please refrain from re-using the same persona for different games."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Value of the token to create. Opaque to Play Games and assumed to be non-stable (encrypted with key rotation)."
+          }
+        },
+        "cardinalityConstraint": {
+          "target": "com.gcp.games_v1#LinkPersonaRequestCardinalityConstraintEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Cardinality constraint to observe when linking a persona to a player in the scope of a game."
+          }
+        },
+        "conflictingLinksResolutionPolicy": {
+          "target": "com.gcp.games_v1#LinkPersonaRequestConflictingLinksResolutionPolicyEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Resolution policy to apply when the linking of a persona to a player would result in violating the specified cardinality constraint."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Optional expiration time."
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Optional time-to-live."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to link an in-game account with a PGS principal (encoded in the session id)."
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaRequestCardinalityConstraintEnum": {
+      "type": "enum",
+      "members": {
+        "ONE_PERSONA_TO_ONE_PLAYER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONE_PERSONA_TO_ONE_PLAYER"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaRequestConflictingLinksResolutionPolicyEnum": {
+      "type": "enum",
+      "members": {
+        "KEEP_EXISTING_LINKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEEP_EXISTING_LINKS"
+          }
+        },
+        "CREATE_NEW_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE_NEW_LINK"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaResponse": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.games_v1#LinkPersonaResponseStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of a persona linking attempt."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Outcome of a persona linking attempt."
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaResponseStateEnum": {
+      "type": "enum",
+      "members": {
+        "LINK_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK_CREATED"
+          }
+        },
+        "PERSONA_OR_PLAYER_ALREADY_LINKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSONA_OR_PLAYER_ALREADY_LINKED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#RetrievePlayerTokensResponse": {
+      "type": "structure",
+      "members": {
+        "tokens": {
+          "target": "com.gcp.games_v1#RecallTokenList",
+          "traits": {
+            "smithy.api#documentation": "Required. Recall tokens associated with the requested PGS Player principal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the RetrievePlayerTokens RPC"
+      }
+    },
+    "com.gcp.games_v1#RecallTokenList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#RecallToken"
+      }
+    },
+    "com.gcp.games_v1#RecallToken": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Value of the Recall token as it is provided by the client via LinkPersona RPC"
+          }
+        },
+        "multiPlayerPersona": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Whether the persona identified by the token is linked to multiple PGS Players"
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional expiration time of the token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recall token data returned from RetrievePlayerTokens RPC"
+      }
+    },
+    "com.gcp.games_v1#RetrieveDeveloperGamesLastPlayerTokenResponse": {
+      "type": "structure",
+      "members": {
+        "gamePlayerToken": {
+          "target": "com.gcp.games_v1#GamePlayerToken",
+          "traits": {
+            "smithy.api#documentation": "The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recall token data returned from for the RetrieveDeveloperGamesLastPlayerToken RPC"
+      }
+    },
+    "com.gcp.games_v1#GamePlayerToken": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application that this player identifier is for."
+          }
+        },
+        "recallToken": {
+          "target": "com.gcp.games_v1#RecallToken",
+          "traits": {
+            "smithy.api#documentation": "Recall token data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recall tokens for a game."
+      }
+    },
+    "com.gcp.games_v1#RetrieveGamesPlayerTokensResponse": {
+      "type": "structure",
+      "members": {
+        "gamePlayerTokens": {
+          "target": "com.gcp.games_v1#GamePlayerTokenList",
+          "traits": {
+            "smithy.api#documentation": "The requested applications along with the recall tokens for the player. If the player does not have recall tokens for an application, that application is not included in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of recall token data returned from the RetrieveGamesPlayerTokens RPC"
+      }
+    },
+    "com.gcp.games_v1#GamePlayerTokenList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.games_v1#GamePlayerToken"
+      }
+    },
+    "com.gcp.games_v1#UnlinkPersonaRequest": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the Recall token as it was provided by the client in LinkPersona RPC"
+          }
+        },
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the 'persona' field as it was provided by the client in LinkPersona RPC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to remove a Recall token linking PGS principal and an in-game account"
+      }
+    },
+    "com.gcp.games_v1#UnlinkPersonaResponse": {
+      "type": "structure",
+      "members": {
+        "unlinked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Whether a Recall token specified by the request was deleted. Can be 'false' when there were no Recall tokens satisfied the criteria from the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the UnlinkPersona RPC"
+      }
+    },
+    "com.gcp.games_v1#ResetPersonaRequest": {
+      "type": "structure",
+      "members": {
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the 'persona' field as it was provided by the client in LinkPersona RPC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to remove all Recall tokens associated with a persona for an app."
+      }
+    },
+    "com.gcp.games_v1#ResetPersonaResponse": {
+      "type": "structure",
+      "members": {
+        "unlinked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Whether any tokens were unlinked as a result of this request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the ResetPersona RPC"
+      }
+    },
+    "com.gcp.games_v1#GeneratePlayGroupingApiTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "com.gcp.games_v1#PlayGroupingApiToken",
+          "traits": {
+            "smithy.api#documentation": "Token for accessing the Play Grouping API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the GeneratePlayGroupingApiToken RPC."
+      }
+    },
+    "com.gcp.games_v1#PlayGroupingApiToken": {
+      "type": "structure",
+      "members": {
+        "tokenValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Token data returned from GeneratePlayGroupingApiToken RPC."
+      }
+    },
+    "com.gcp.games_v1#GenerateRecallPlayGroupingApiTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "com.gcp.games_v1#PlayGroupingApiToken",
+          "traits": {
+            "smithy.api#documentation": "Token for accessing the Play Grouping API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the GenerateRecallPlayGroupingApiToken RPC."
+      }
+    },
+    "com.gcp.games_v1#ListAchievementDefinitionsRequest": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.games_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.games_v1#ListAchievementDefinitions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListAchievementDefinitionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#AchievementDefinitionsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/achievements"
+        },
+        "smithy.api#documentation": "Lists all the achievement definitions for your application.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#IncrementAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement used by this method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "stepsToIncrement": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The number of steps to increment.",
+            "smithy.api#httpQuery": "stepsToIncrement",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.games_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.games_v1#IncrementAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#IncrementAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#AchievementIncrementResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/achievements/{achievementId}/increment"
+        },
+        "smithy.api#documentation": "Increments the steps of the achievement with the given ID for the currently authenticated player."
+      }
+    },
+    "com.gcp.games_v1#ListAchievementsStateEnum": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDDEN"
+          }
+        },
+        "REVEALED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVEALED"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNLOCKED"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "state": {
+          "target": "com.gcp.games_v1#ListAchievementsStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.",
+            "smithy.api#httpQuery": "state"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#PlayerAchievementListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/{playerId}/achievements"
+        },
+        "smithy.api#documentation": "Lists the progress for all your application's achievements for the currently authenticated player.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#RevealAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement used by this method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#RevealAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#RevealAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#AchievementRevealResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/achievements/{achievementId}/reveal"
+        },
+        "smithy.api#documentation": "Sets the state of the achievement with the given ID to `REVEALED` for the currently authenticated player."
+      }
+    },
+    "com.gcp.games_v1#SetStepsAtLeastAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement used by this method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "steps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The minimum value to set the steps to.",
+            "smithy.api#httpQuery": "steps",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#SetStepsAtLeastAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#SetStepsAtLeastAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#AchievementSetStepsAtLeastResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/achievements/{achievementId}/setStepsAtLeast"
+        },
+        "smithy.api#documentation": "Sets the steps for the currently authenticated player towards unlocking an achievement. If the steps parameter is less than the current number of steps that the player already gained for the achievement, the achievement is not modified."
+      }
+    },
+    "com.gcp.games_v1#UnlockAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement used by this method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#UnlockAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#UnlockAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#AchievementUnlockResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/achievements/{achievementId}/unlock"
+        },
+        "smithy.api#documentation": "Unlocks this achievement for the currently authenticated player."
+      }
+    },
+    "com.gcp.games_v1#UpdateMultipleAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.games_v1#AchievementUpdateMultipleRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#UpdateMultipleAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#UpdateMultipleAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#AchievementUpdateMultipleResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/achievements/updateMultiple"
+        },
+        "smithy.api#documentation": "Updates multiple achievements for the currently authenticated player."
+      }
+    },
+    "com.gcp.games_v1#GetApplicationsPlatformTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ANDROID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID"
+          }
+        },
+        "IOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS"
+          }
+        },
+        "WEB_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB_APP"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetApplicationsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID from the Google Play developer console.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "platformType": {
+          "target": "com.gcp.games_v1#GetApplicationsPlatformTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Restrict application details returned to the specific platform.",
+            "smithy.api#httpQuery": "platformType"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetApplicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#Application"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/applications/{applicationId}"
+        },
+        "smithy.api#documentation": "Retrieves the metadata of the application with the given ID. If the requested application is not available for the specified `platformType`, the returned response will not include any instance data."
+      }
+    },
+    "com.gcp.games_v1#PlayedApplicationsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.games_v1#PlayedApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#PlayedApplicationsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/applications/played"
+        },
+        "smithy.api#documentation": "Indicate that the currently authenticated user is playing your application."
+      }
+    },
+    "com.gcp.games_v1#VerifyApplicationsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID from the Google Play developer console.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#VerifyApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#VerifyApplicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#ApplicationVerifyResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/applications/{applicationId}/verify"
+        },
+        "smithy.api#documentation": "Verifies the auth token provided with this request is for the application with the specified ID, and returns the ID of the player it was granted for."
+      }
+    },
+    "com.gcp.games_v1#GetEndPointApplicationsEndPointTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PROFILE_CREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROFILE_CREATION"
+          }
+        },
+        "PROFILE_SETTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROFILE_SETTINGS"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetEndPointApplicationsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID from the Google Play developer console.",
+            "smithy.api#httpQuery": "applicationId"
+          }
+        },
+        "endPointType": {
+          "target": "com.gcp.games_v1#GetEndPointApplicationsEndPointTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of endpoint being requested.",
+            "smithy.api#httpQuery": "endPointType"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetEndPointApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetEndPointApplicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#EndPoint"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/applications/getEndPoint"
+        },
+        "smithy.api#documentation": "Returns a URL for the requested end point type."
+      }
+    },
+    "com.gcp.games_v1#ListByPlayerEventsRequest": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListByPlayerEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListByPlayerEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#PlayerEventListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/events"
+        },
+        "smithy.api#documentation": "Returns a list showing the current progress on events in this application for the currently authenticated user.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#ListDefinitionsEventsRequest": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListDefinitionsEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListDefinitionsEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#EventDefinitionListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/eventDefinitions"
+        },
+        "smithy.api#documentation": "Returns a list of the event definitions in this application.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#RecordEventsRequest": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "body": {
+          "target": "com.gcp.games_v1#EventRecordRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#RecordEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#RecordEventsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#EventUpdateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/events"
+        },
+        "smithy.api#documentation": "Records a batch of changes to the number of times events have occurred for the currently authenticated user of this application."
+      }
+    },
+    "com.gcp.games_v1#GetLeaderboardsRequest": {
+      "type": "structure",
+      "members": {
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetLeaderboards": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetLeaderboardsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#Leaderboard"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/leaderboards/{leaderboardId}"
+        },
+        "smithy.api#documentation": "Retrieves the metadata of the leaderboard with the given ID."
+      }
+    },
+    "com.gcp.games_v1#ListLeaderboardsRequest": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListLeaderboards": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListLeaderboardsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#LeaderboardListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/leaderboards"
+        },
+        "smithy.api#documentation": "Lists all the leaderboard metadata for your application.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#GetMetagameConfigMetagameRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.games_v1#GetMetagameConfigMetagame": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetMetagameConfigMetagameRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#MetagameConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/metagameConfig"
+        },
+        "smithy.api#documentation": "Return the metagame configuration data for the calling application."
+      }
+    },
+    "com.gcp.games_v1#ListCategoriesByPlayerMetagameCollectionEnum": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListCategoriesByPlayerMetagameRequest": {
+      "type": "structure",
+      "members": {
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "collection": {
+          "target": "com.gcp.games_v1#ListCategoriesByPlayerMetagameCollectionEnum",
+          "traits": {
+            "smithy.api#documentation": "The collection of categories for which data will be returned.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListCategoriesByPlayerMetagame": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListCategoriesByPlayerMetagameRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#CategoryListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/{playerId}/categories/{collection}"
+        },
+        "smithy.api#documentation": "List play data aggregated per category for the player corresponding to `playerId`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#GetPlayersRequest": {
+      "type": "structure",
+      "members": {
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "playerIdConsistencyToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto",
+            "smithy.api#httpQuery": "playerIdConsistencyToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetPlayers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetPlayersRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#Player"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/{playerId}"
+        },
+        "smithy.api#documentation": "Retrieves the Player resource with the given ID. To retrieve the player for the currently authenticated user, set `playerId` to `me`."
+      }
+    },
+    "com.gcp.games_v1#GetScopedPlayerIdsPlayersRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.games_v1#GetScopedPlayerIdsPlayers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetScopedPlayerIdsPlayersRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#ScopedPlayerIds"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/me/scopedIds"
+        },
+        "smithy.api#documentation": "Retrieves scoped player identifiers for currently authenticated user."
+      }
+    },
+    "com.gcp.games_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.games_v1#GetMultipleApplicationPlayerIdsPlayersRequest": {
+      "type": "structure",
+      "members": {
+        "applicationIds": {
+          "target": "com.gcp.games_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The application IDs from the Google Play developer console for the games to return scoped ids for.",
+            "smithy.api#httpQuery": "applicationIds"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetMultipleApplicationPlayerIdsPlayers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetMultipleApplicationPlayerIdsPlayersRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#GetMultipleApplicationPlayerIdsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/me/multipleApplicationPlayerIds"
+        },
+        "smithy.api#documentation": "Get the application player ids for the currently authenticated player across all requested games by the same developer as the calling application. This will only return ids for players that actually have an id (scoped or otherwise) with that game."
+      }
+    },
+    "com.gcp.games_v1#ListPlayersCollectionEnum": {
+      "type": "enum",
+      "members": {
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECTED"
+          }
+        },
+        "VISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBLE"
+          }
+        },
+        "FRIENDS_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIENDS_ALL"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListPlayersRequest": {
+      "type": "structure",
+      "members": {
+        "collection": {
+          "target": "com.gcp.games_v1#ListPlayersCollectionEnum",
+          "traits": {
+            "smithy.api#documentation": "Collection of players being retrieved",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListPlayers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListPlayersRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#PlayerListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/me/players/{collection}"
+        },
+        "smithy.api#documentation": "Get the collection of players for the currently authenticated user.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#CheckRevisionsRequest": {
+      "type": "structure",
+      "members": {
+        "clientRevision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.",
+            "smithy.api#httpQuery": "clientRevision",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#CheckRevisions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#CheckRevisionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#RevisionCheckResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/revisions/check"
+        },
+        "smithy.api#documentation": "Checks whether the games client is out of date."
+      }
+    },
+    "com.gcp.games_v1#GetScoresTimeSpanEnum": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetScoresIncludeRankTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC"
+          }
+        },
+        "SOCIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL"
+          }
+        },
+        "FRIENDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIENDS"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetScoresRequest": {
+      "type": "structure",
+      "members": {
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all leaderboards for this application.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timeSpan": {
+          "target": "com.gcp.games_v1#GetScoresTimeSpanEnum",
+          "traits": {
+            "smithy.api#documentation": "The time span for the scores and ranks you're requesting.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "includeRankType": {
+          "target": "com.gcp.games_v1#GetScoresIncludeRankTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The types of ranks to return. If the parameter is omitted, no ranks will be returned.",
+            "smithy.api#httpQuery": "includeRankType"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#PlayerLeaderboardScoreListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}"
+        },
+        "smithy.api#documentation": "Get high scores, and optionally ranks, in leaderboards for the currently authenticated player. For a specific time span, `leaderboardId` can be set to `ALL` to retrieve data for all leaderboards in a given time span. `NOTE: You cannot ask for 'ALL' leaderboards and 'ALL' timeSpans in the same request; only one parameter may be set to 'ALL'.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#ListScoresCollectionEnum": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC"
+          }
+        },
+        "SOCIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL"
+          }
+        },
+        "FRIENDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIENDS"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListScoresTimeSpanEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListScoresRequest": {
+      "type": "structure",
+      "members": {
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "collection": {
+          "target": "com.gcp.games_v1#ListScoresCollectionEnum",
+          "traits": {
+            "smithy.api#documentation": "The collection of scores you're requesting.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "timeSpan": {
+          "target": "com.gcp.games_v1#ListScoresTimeSpanEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The time span for the scores and ranks you're requesting.",
+            "smithy.api#httpQuery": "timeSpan",
+            "smithy.api#required": {}
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#LeaderboardScores"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/leaderboards/{leaderboardId}/scores/{collection}"
+        },
+        "smithy.api#documentation": "Lists the scores in a leaderboard, starting from the top.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#ListWindowScoresCollectionEnum": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC"
+          }
+        },
+        "SOCIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL"
+          }
+        },
+        "FRIENDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIENDS"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListWindowScoresTimeSpanEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_TIME"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListWindowScoresRequest": {
+      "type": "structure",
+      "members": {
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "collection": {
+          "target": "com.gcp.games_v1#ListWindowScoresCollectionEnum",
+          "traits": {
+            "smithy.api#documentation": "The collection of scores you're requesting.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "timeSpan": {
+          "target": "com.gcp.games_v1#ListWindowScoresTimeSpanEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The time span for the scores and ranks you're requesting.",
+            "smithy.api#httpQuery": "timeSpan",
+            "smithy.api#required": {}
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "resultsAbove": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.",
+            "smithy.api#httpQuery": "resultsAbove"
+          }
+        },
+        "returnTopIfAbsent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.",
+            "smithy.api#httpQuery": "returnTopIfAbsent"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListWindowScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListWindowScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#LeaderboardScores"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/leaderboards/{leaderboardId}/window/{collection}"
+        },
+        "smithy.api#documentation": "Lists the scores in a leaderboard around (and including) a player's score.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#SubmitScoresRequest": {
+      "type": "structure",
+      "members": {
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.",
+            "smithy.api#httpQuery": "score",
+            "smithy.api#required": {}
+          }
+        },
+        "scoreTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+            "smithy.api#httpQuery": "scoreTag"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#SubmitScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#SubmitScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#PlayerScoreResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/leaderboards/{leaderboardId}/scores"
+        },
+        "smithy.api#documentation": "Submits a score to the specified leaderboard."
+      }
+    },
+    "com.gcp.games_v1#SubmitMultipleScoresRequest": {
+      "type": "structure",
+      "members": {
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "body": {
+          "target": "com.gcp.games_v1#PlayerScoreSubmissionList",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#SubmitMultipleScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#SubmitMultipleScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#PlayerScoreListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/leaderboards/scores"
+        },
+        "smithy.api#documentation": "Submits multiple scores to leaderboards."
+      }
+    },
+    "com.gcp.games_v1#GetSnapshotsRequest": {
+      "type": "structure",
+      "members": {
+        "snapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the snapshot.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GetSnapshots": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetSnapshotsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#Snapshot"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/snapshots/{snapshotId}"
+        },
+        "smithy.api#documentation": "Retrieves the metadata for a given snapshot ID."
+      }
+    },
+    "com.gcp.games_v1#ListSnapshotsRequest": {
+      "type": "structure",
+      "members": {
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The preferred language to use for strings returned by this method.",
+            "smithy.api#httpQuery": "language"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ListSnapshots": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ListSnapshotsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#SnapshotListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/players/{playerId}/snapshots"
+        },
+        "smithy.api#documentation": "Retrieves a list of snapshots created by your application for the player corresponding to the player ID.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.games_v1#GetStatsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.games_v1#GetStats": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GetStatsRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#StatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/stats"
+        },
+        "smithy.api#documentation": "Returns engagement and spend statistics in this application for the currently authenticated user."
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaRecallRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.games_v1#LinkPersonaRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#LinkPersonaRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#LinkPersonaRecallRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#LinkPersonaResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/recall:linkPersona"
+        },
+        "smithy.api#documentation": "Associate the PGS Player principal encoded in the provided recall session id with an in-game account"
+      }
+    },
+    "com.gcp.games_v1#RetrieveTokensRecallRequest": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#RetrieveTokensRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#RetrieveTokensRecallRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#RetrievePlayerTokensResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/recall/tokens/{sessionId}"
+        },
+        "smithy.api#documentation": "Retrieve all Recall tokens associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile."
+      }
+    },
+    "com.gcp.games_v1#LastTokenFromAllDeveloperGamesRecallRequest": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#LastTokenFromAllDeveloperGamesRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#LastTokenFromAllDeveloperGamesRecallRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#RetrieveDeveloperGamesLastPlayerTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/recall/developerGamesLastPlayerToken/{sessionId}"
+        },
+        "smithy.api#documentation": "Retrieve the last Recall token from all developer games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have active PGS Player profile."
+      }
+    },
+    "com.gcp.games_v1#GamesPlayerTokensRecallRequest": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationIds": {
+          "target": "com.gcp.games_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The application IDs from the Google Play developer console for the games to return scoped ids for.",
+            "smithy.api#httpQuery": "applicationIds"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GamesPlayerTokensRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GamesPlayerTokensRecallRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#RetrieveGamesPlayerTokensResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1/recall/gamesPlayerTokens/{sessionId}"
+        },
+        "smithy.api#documentation": "Retrieve the Recall tokens from all requested games that is associated with the PGS Player encoded in the provided recall session id. The API is only available for users that have an active PGS Player profile."
+      }
+    },
+    "com.gcp.games_v1#UnlinkPersonaRecallRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.games_v1#UnlinkPersonaRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#UnlinkPersonaRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#UnlinkPersonaRecallRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#UnlinkPersonaResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/recall:unlinkPersona"
+        },
+        "smithy.api#documentation": "Delete a Recall token linking the PGS Player principal identified by the Recall session and an in-game account identified either by the 'persona' or by the token value."
+      }
+    },
+    "com.gcp.games_v1#ResetPersonaRecallRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.games_v1#ResetPersonaRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#ResetPersonaRecall": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#ResetPersonaRecallRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#ResetPersonaResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/recall:resetPersona"
+        },
+        "smithy.api#documentation": "Delete all Recall tokens linking the given persona to any player (with or without a profile)."
+      }
+    },
+    "com.gcp.games_v1#GeneratePlayGroupingApiTokenAccesstokensRequest": {
+      "type": "structure",
+      "members": {
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. App package name to generate the token for (e.g. com.example.mygame).",
+            "smithy.api#httpQuery": "packageName"
+          }
+        },
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.",
+            "smithy.api#httpQuery": "persona"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GeneratePlayGroupingApiTokenAccesstokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GeneratePlayGroupingApiTokenAccesstokensRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#GeneratePlayGroupingApiTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/accesstokens/generatePlayGroupingApiToken"
+        },
+        "smithy.api#documentation": "Generates a Play Grouping API token for the PGS user identified by the attached credential."
+      }
+    },
+    "com.gcp.games_v1#GenerateRecallPlayGroupingApiTokenAccesstokensRequest": {
+      "type": "structure",
+      "members": {
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. App package name to generate the token for (e.g. com.example.mygame).",
+            "smithy.api#httpQuery": "packageName"
+          }
+        },
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Persona to associate with the token. Persona is a developer-provided stable identifier of the user. Must be deterministically generated (e.g. as a one-way hash) from the user account ID and user profile ID (if the app has the concept), according to the developer's own user identity system.",
+            "smithy.api#httpQuery": "persona"
+          }
+        },
+        "recallSessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application. See https://developer.android.com/games/pgs/recall/recall-setup on how to integrate with Recall and get session ID.",
+            "smithy.api#httpQuery": "recallSessionId"
+          }
+        }
+      }
+    },
+    "com.gcp.games_v1#GenerateRecallPlayGroupingApiTokenAccesstokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.games_v1#GenerateRecallPlayGroupingApiTokenAccesstokensRequest"
+      },
+      "output": {
+        "target": "com.gcp.games_v1#GenerateRecallPlayGroupingApiTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.games_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.games_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.games_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.games_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1/accesstokens/generateRecallPlayGroupingApiToken"
+        },
+        "smithy.api#documentation": "Generates a Play Grouping API token for the PGS user identified by the Recall session ID provided in the request."
+      }
+    }
+  }
+}

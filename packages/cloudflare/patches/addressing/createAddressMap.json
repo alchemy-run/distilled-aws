@@ -1,0 +1,45 @@
+{
+  "description": "Align addressing#AddressMapsCreate with distilled cloudflare/addressing createAddressMap",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsCreate",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMap"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsCreateRequest",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMapRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMap/input/target",
+      "value": "com.cloudflare.addressing#CreateAddressMapRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsCreateResponse",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMapResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMap/output/target",
+      "value": "com.cloudflare.addressing#CreateAddressMapResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#CreateAddressMap/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.addressing#Forbidden"
+        }
+      ]
+    }
+  ]
+}

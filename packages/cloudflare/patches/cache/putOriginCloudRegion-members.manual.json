@@ -1,0 +1,40 @@
+{
+  "description": "Member naming: PUT /zones/{zone_id}/origin/cloud_regions/{origin_ip} declares origin_ip BOTH as path param and required body field, so the docs-derived members collide and the body one gets mangled to originIp2 — callers passing distilled's names (originIP for the path, originIp for the body) leave the body field undefined and Cloudflare rejects with 'Invalid or missing origin IP address'. Rename to distilled's members; the URI placeholder is renamed with the label member (labels bind by member name).",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#PutOriginCloudRegionRequest/members/origin_ip",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegionRequest/members/originIP"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegion/traits/smithy.api#http/uri",
+      "value": "/zones/{zone_id}/origin/cloud_regions/{originIP}"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#PutOriginCloudRegionRequest/members/origin_ip_2",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegionRequest/members/originIp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#GetOriginCloudRegionRequest/members/origin_ip",
+      "path": "/shapes/com.cloudflare.cache#GetOriginCloudRegionRequest/members/originIP"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetOriginCloudRegion/traits/smithy.api#http/uri",
+      "value": "/zones/{zone_id}/origin/cloud_regions/{originIP}"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegionRequest/members/origin_ip",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegionRequest/members/originIP"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegion/traits/smithy.api#http/uri",
+      "value": "/zones/{zone_id}/origin/cloud_regions/{originIP}"
+    }
+  ]
+}

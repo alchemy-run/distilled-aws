@@ -1,0 +1,25 @@
+{
+  "operations": {
+    "describeStacks": {
+      "syntheticErrors": [
+        {
+          "name": "StackNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "does not exist" }
+        }
+      ]
+    },
+    "updateStack": {
+      "syntheticErrors": [
+        {
+          "name": "NoUpdateToPerform",
+          "from": "ValidationError",
+          "message": { "includes": "No updates are to be performed" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "StackNotFound": ["NotFoundError"]
+  }
+}

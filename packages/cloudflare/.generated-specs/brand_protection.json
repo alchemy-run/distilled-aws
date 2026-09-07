@@ -1,0 +1,1663 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.brand_protection#SubmitRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#SubmitResponseSkippedUrlsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#SubmitResponseSkippedUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#SubmitResponseSkippedUrlsItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#SubmitResponseSubmittedUrlsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#SubmitResponseSubmittedUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#SubmitResponseSubmittedUrlsItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#SubmitResponse": {
+      "type": "structure",
+      "members": {
+        "skipped_urls": {
+          "target": "com.cloudflare.brand_protection#SubmitResponseSkippedUrlsList"
+        },
+        "submitted_urls": {
+          "target": "com.cloudflare.brand_protection#SubmitResponseSubmittedUrlsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#Submit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#SubmitRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#SubmitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/brand-protection/submit",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return new URL submissions"
+      }
+    },
+    "com.cloudflare.brand_protection#UrlInfoRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#UrlInfoResultItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#UrlInfoResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#UrlInfoResultItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#UrlInfoResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.brand_protection#UrlInfoResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.brand_protection#UrlInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#UrlInfoRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#UrlInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/brand-protection/url-info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return submitted URLs based on ID",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesDownloadRequestLogoIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesDownloadRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "logo_id": {
+          "target": "com.cloudflare.brand_protection#LogoMatchesDownloadRequestLogoIdList",
+          "traits": {
+            "smithy.api#httpQuery": "logo_id"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "offset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesDownloadResponseMatchesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesDownloadResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#LogoMatchesDownloadResponseMatchesItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesDownloadResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.cloudflare.brand_protection#LogoMatchesDownloadResponseMatchesList"
+        },
+        "total": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesDownload": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#LogoMatchesDownloadRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#LogoMatchesDownloadResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/brand-protection/logo-matches/download",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return matches as CSV for logo queries based on ID",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesGetRequestLogoIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "logo_id": {
+          "target": "com.cloudflare.brand_protection#LogoMatchesGetRequestLogoIdList",
+          "traits": {
+            "smithy.api#httpQuery": "logo_id"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "offset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesGetResponseMatchesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesGetResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#LogoMatchesGetResponseMatchesItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesGetResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.cloudflare.brand_protection#LogoMatchesGetResponseMatchesList"
+        },
+        "total": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#LogoMatchesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#LogoMatchesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#LogoMatchesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/brand-protection/logo-matches",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return matches for logo queries based on ID",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogosCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "match_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "match_type"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tag"
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "threshold"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogosCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "tag": {
+          "target": "smithy.api#String"
+        },
+        "upload_path": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#LogosCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#LogosCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#LogosCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/brand-protection/logos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return new saved logo queries created from image files"
+      }
+    },
+    "com.cloudflare.brand_protection#LogosDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "logo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#LogosDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#LogosDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/brand-protection/logos/{logo_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return a success message after deleting saved logo queries by ID",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesDownloadRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "include_domain_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_domain_id"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "offset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesDownloadResponseMatchesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesDownloadResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#MatchesDownloadResponseMatchesItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesDownloadResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.cloudflare.brand_protection#MatchesDownloadResponseMatchesList"
+        },
+        "total": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesDownload": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#MatchesDownloadRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#MatchesDownloadResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/brand-protection/matches/download",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return matches as CSV for string queries based on ID",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "include_domain_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_domain_id"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "offset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesGetResponseMatchesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesGetResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#MatchesGetResponseMatchesItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesGetResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.cloudflare.brand_protection#MatchesGetResponseMatchesList"
+        },
+        "total": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#MatchesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#MatchesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#MatchesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/brand-protection/matches",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return matches for string queries based on ID",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesBulkRequestQueriesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesBulkRequestQueriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#QueriesBulkRequestQueriesItemMap"
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesBulkRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "queries": {
+          "target": "com.cloudflare.brand_protection#QueriesBulkRequestQueriesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesBulk": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#QueriesBulkRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/brand-protection/queries/bulk",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return a success message after creating new saved string queries in bulk"
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "scan": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "scan"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tag"
+          }
+        },
+        "max_time": {
+          "target": "smithy.api#String"
+        },
+        "min_time": {
+          "target": "smithy.api#String"
+        },
+        "scan_2": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#jsonName": "scan"
+          }
+        },
+        "string_matches": {
+          "target": "smithy.api#Document"
+        },
+        "tag_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#jsonName": "tag"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#QueriesCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/brand-protection/queries",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return a success message after creating new saved string queries"
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "scan": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "scan"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tag"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#QueriesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#QueriesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/brand-protection/queries",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return a success message after deleting saved string queries by ID",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGetRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGetRequestOrderBy": {
+      "type": "enum",
+      "members": {
+        "MATCHEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "matchedAt"
+          }
+        },
+        "DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain"
+          }
+        },
+        "SIMILARITYSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "similarityScore"
+          }
+        },
+        "REGISTRAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar"
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "query_id",
+            "smithy.api#required": {}
+          }
+        },
+        "download": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "download"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.brand_protection#V2LogoMatchesGetRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Sort order. Options: 'asc' (ascending) or 'desc' (descending)",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "orderBy": {
+          "target": "com.cloudflare.brand_protection#V2LogoMatchesGetRequestOrderBy",
+          "traits": {
+            "smithy.api#documentation": "Column to sort by. Options: 'matchedAt', 'domain', 'similarityScore', or 'registrar'",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGetResponseMatchesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "matched_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "registrar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "similarity_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url_scan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String"
+        },
+        "image_data": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGetResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#V2LogoMatchesGetResponseMatchesItem"
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGetResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.cloudflare.brand_protection#V2LogoMatchesGetResponseMatchesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogoMatchesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#V2LogoMatchesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#V2LogoMatchesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cloudforce-one/v2/brand-protection/logo/matches",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get paginated list of logo matches for a specific brand protection logo query",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "image_data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64 encoded image data. Can include data URI prefix (e.g., 'data:image/png;base64,...') or just the base64 string.",
+            "smithy.api#required": {}
+          }
+        },
+        "similarity_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Minimum similarity score (0-1) required for visual matches",
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the logo query",
+            "smithy.api#required": {}
+          }
+        },
+        "search_lookback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, search historic scanned images for matches above the similarity threshold"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosCreateResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#V2LogosCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#V2LogosCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/cloudforce-one/v2/brand-protection/logo/queries",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new saved brand protection logo query for visual similarity matching"
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#V2LogosDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#V2LogosDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/cloudforce-one/v2/brand-protection/logo/queries/{query_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a saved brand protection logo query. Returns 404 if the query ID doesn't exist.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional query ID to retrieve a specific logo query",
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "download": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If true, include base64-encoded image data in the response",
+            "smithy.api#httpQuery": "download"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "r2_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "similarity_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uploaded_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MIME type of the image (only present when download=true)"
+          }
+        },
+        "image_data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64-encoded image data (only present when download=true)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#V2LogosGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#V2LogosGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#V2LogosGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cloudforce-one/v2/brand-protection/logo/queries",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all saved brand protection logo queries for an account. Optionally specify id to get a single query. Set download=true to include base64-encoded image data.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetRequestQueryIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetRequestOrderBy": {
+      "type": "enum",
+      "members": {
+        "DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain"
+          }
+        },
+        "FIRST_SEEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "first_seen"
+          }
+        },
+        "REGISTRAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar"
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "com.cloudflare.brand_protection#V2MatchesGetRequestQueryIdList",
+          "traits": {
+            "smithy.api#documentation": "Query ID or comma-separated list of Query IDs. When multiple IDs are provided, matches are deduplicated across queries and each match includes a match_details array with per-match query metadata and dismissed state.",
+            "smithy.api#httpQuery": "query_id",
+            "smithy.api#required": {}
+          }
+        },
+        "domain_search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter matches by domain name (substring match)",
+            "smithy.api#httpQuery": "domain_search"
+          }
+        },
+        "include_dismissed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "include_dismissed"
+          }
+        },
+        "include_domain_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "include_domain_id"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.brand_protection#V2MatchesGetRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Sort order. Options: 'asc' (ascending) or 'desc' (descending)",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "orderBy": {
+          "target": "com.cloudflare.brand_protection#V2MatchesGetRequestOrderBy",
+          "traits": {
+            "smithy.api#documentation": "Column to sort by. Options: 'domain', 'first_seen', or 'registrar'",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItemPublicScans": {
+      "type": "structure",
+      "members": {
+        "submission_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItemMatchDetailsItem": {
+      "type": "structure",
+      "members": {
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Individual dismissed state for this specific match.",
+            "smithy.api#required": {}
+          }
+        },
+        "match_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tag associated with the query, if one exists.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItemMatchDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItemMatchDetailsItem"
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItem": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "first_seen": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_scans": {
+          "target": "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItemPublicScans",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "registrar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scan_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scan_submission_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the match is dismissed. Only present for single-query requests. For multi-query requests, use the dismissed field in each match_details entry."
+          }
+        },
+        "match_details": {
+          "target": "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItemMatchDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Per-match detail objects with query metadata and individual dismissed state. Only present when multiple query_ids are requested."
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesItem"
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGetResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.cloudflare.brand_protection#V2MatchesGetResponseMatchesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#V2MatchesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#V2MatchesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#V2MatchesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/matches",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get paginated list of domain matches for one or more brand protection queries. When multiple query_ids are provided (comma-separated), matches are deduplicated across queries and each match includes a match_details array with per-match query metadata and individual dismissed state.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2QueriesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.brand_protection#V2QueriesGetResponseParametersStringMatchesItem": {
+      "type": "structure",
+      "members": {
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2QueriesGetResponseParametersStringMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.brand_protection#V2QueriesGetResponseParametersStringMatchesItem"
+      }
+    },
+    "com.cloudflare.brand_protection#V2QueriesGetResponseParameters": {
+      "type": "structure",
+      "members": {
+        "string_matches": {
+          "target": "com.cloudflare.brand_protection#V2QueriesGetResponseParametersStringMatchesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "max_time": {
+          "target": "smithy.api#String"
+        },
+        "min_time": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.brand_protection#V2QueriesGetResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parameters": {
+          "target": "com.cloudflare.brand_protection#V2QueriesGetResponseParameters",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scan": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.brand_protection#V2QueriesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.brand_protection#V2QueriesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.brand_protection#V2QueriesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cloudforce-one/v2/brand-protection/domain/queries",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all saved brand protection queries for an account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.brand_protection#BrandProtection": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.brand_protection#Submit"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#UrlInfo"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#LogoMatchesDownload"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#LogoMatchesGet"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#LogosCreate"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#LogosDelete"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#MatchesDownload"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#MatchesGet"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#QueriesBulk"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#QueriesCreate"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#QueriesDelete"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#V2LogoMatchesGet"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#V2LogosCreate"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#V2LogosDelete"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#V2LogosGet"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#V2MatchesGet"
+        },
+        {
+          "target": "com.cloudflare.brand_protection#V2QueriesGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare BrandProtection",
+        "smithy.api#documentation": "Cloudflare API — brand_protection resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

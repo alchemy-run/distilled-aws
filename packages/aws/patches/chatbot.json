@@ -1,0 +1,54 @@
+{
+  "operations": {
+    "getMicrosoftTeamsChannelConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "listAssociations": {
+      "errors": ["InvalidRequestException"]
+    },
+    "associateToConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "disassociateFromConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "createSlackChannelConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "SlackWorkspaceNotAuthorized",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "is not authorized with AWS account"
+          }
+        }
+      ]
+    },
+    "createMicrosoftTeamsChannelConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "MicrosoftTeamsTeamNotConfigured",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "team id you are using is not configured"
+          }
+        }
+      ]
+    },
+    "deleteMicrosoftTeamsConfiguredTeam": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  },
+  "structures": {
+    "CustomActionAttachment": {
+      "members": {
+        "NotificationType": {
+          "optional": false
+        }
+      }
+    }
+  },
+  "errorCategories": {
+    "SlackWorkspaceNotAuthorized": ["BadRequestError"],
+    "MicrosoftTeamsTeamNotConfigured": ["BadRequestError"]
+  }
+}

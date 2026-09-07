@@ -1,0 +1,45 @@
+{
+  "description": "Align workers#ScriptsDelete with distilled cloudflare/workers deleteScript",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteScript"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteScript/input/target",
+      "value": "com.cloudflare.workers#DeleteScriptRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeleteResponse",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteScript/output/target",
+      "value": "com.cloudflare.workers#DeleteScriptResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteScript/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#QueueConsumerConflict"
+        },
+        {
+          "target": "com.cloudflare.workers#ServiceBindingConflict"
+        }
+      ]
+    }
+  ]
+}

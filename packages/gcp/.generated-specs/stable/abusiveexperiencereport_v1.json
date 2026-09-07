@@ -1,0 +1,230 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "abusiveexperiencereport",
+    "version": "v1",
+    "title": "Abusive Experience Report API",
+    "baseUrl": "https://abusiveexperiencereport.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.abusiveexperiencereport_v1#ViolatingSitesResponse": {
+      "type": "structure",
+      "members": {
+        "violatingSites": {
+          "target": "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponseList",
+          "traits": {
+            "smithy.api#documentation": "The list of violating sites."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListViolatingSites."
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponse"
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponse": {
+      "type": "structure",
+      "members": {
+        "enforcementTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which [enforcement](https://support.google.com/webtools/answer/7538608) against the site began or will begin. Not set when the filter_status is OFF."
+          }
+        },
+        "reportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A link to the full Abusive Experience Report for the site. Not set in ViolatingSitesResponse. Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report."
+          }
+        },
+        "filterStatus": {
+          "target": "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponseFilterStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The site's [enforcement status](https://support.google.com/webtools/answer/7538608)."
+          }
+        },
+        "reviewedSite": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the reviewed site, e.g. `google.com`."
+          }
+        },
+        "abusiveStatus": {
+          "target": "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponseAbusiveStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The site's Abusive Experience Report status."
+          }
+        },
+        "underReview": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the site is currently under review."
+          }
+        },
+        "lastChangeTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the site's status last changed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for GetSiteSummary."
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponseFilterStatusEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponseAbusiveStatusEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "PASSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSING"
+          }
+        },
+        "FAILING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILING"
+          }
+        }
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#GetSitesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#GetSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.abusiveexperiencereport_v1#GetSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.abusiveexperiencereport_v1#SiteSummaryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.abusiveexperiencereport_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.abusiveexperiencereport_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a site's Abusive Experience Report summary."
+      }
+    },
+    "com.gcp.abusiveexperiencereport_v1#ListViolatingSitesRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.abusiveexperiencereport_v1#ListViolatingSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.abusiveexperiencereport_v1#ListViolatingSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.abusiveexperiencereport_v1#ViolatingSitesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.abusiveexperiencereport_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.abusiveexperiencereport_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/violatingSites"
+        },
+        "smithy.api#documentation": "Lists sites that are failing in the Abusive Experience Report."
+      }
+    }
+  }
+}

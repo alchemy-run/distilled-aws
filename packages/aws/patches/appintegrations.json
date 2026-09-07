@@ -1,0 +1,38 @@
+{
+  "errorCategories": {
+    "TooManyRequestsException": ["ThrottlingError", "RetryableError"]
+  },
+  "operations": {
+    "createApplication": { "errors": ["TooManyRequestsException"] },
+    "createDataIntegration": { "errors": ["TooManyRequestsException"] },
+    "createDataIntegrationAssociation": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "createEventIntegration": { "errors": ["TooManyRequestsException"] },
+    "deleteApplication": { "errors": ["TooManyRequestsException"] },
+    "deleteDataIntegration": { "errors": ["TooManyRequestsException"] },
+    "deleteEventIntegration": { "errors": ["TooManyRequestsException"] },
+    "getApplication": { "errors": ["TooManyRequestsException"] },
+    "getDataIntegration": { "errors": ["TooManyRequestsException"] },
+    "getEventIntegration": { "errors": ["TooManyRequestsException"] },
+    "listApplicationAssociations": { "errors": ["TooManyRequestsException"] },
+    "listApplications": { "errors": ["TooManyRequestsException"] },
+    "listDataIntegrationAssociations": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listDataIntegrations": { "errors": ["TooManyRequestsException"] },
+    "listEventIntegrationAssociations": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listEventIntegrations": { "errors": ["TooManyRequestsException"] },
+    "listTagsForResource": { "errors": ["TooManyRequestsException"] },
+    "tagResource": { "errors": ["TooManyRequestsException"] },
+    "untagResource": { "errors": ["TooManyRequestsException"] },
+    "updateApplication": { "errors": ["TooManyRequestsException"] },
+    "updateDataIntegration": { "errors": ["TooManyRequestsException"] },
+    "updateDataIntegrationAssociation": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "updateEventIntegration": { "errors": ["TooManyRequestsException"] }
+  }
+}

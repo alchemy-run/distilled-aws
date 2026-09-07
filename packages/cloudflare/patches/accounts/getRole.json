@@ -1,0 +1,39 @@
+{
+  "description": "Align accounts#RolesGet with distilled cloudflare/accounts getRole",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#RolesGet",
+      "path": "/shapes/com.cloudflare.accounts#GetRole"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#RolesGetRequest",
+      "path": "/shapes/com.cloudflare.accounts#GetRoleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetRole/input/target",
+      "value": "com.cloudflare.accounts#GetRoleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#RolesGetResponse",
+      "path": "/shapes/com.cloudflare.accounts#GetRoleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetRole/output/target",
+      "value": "com.cloudflare.accounts#GetRoleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#GetRole/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

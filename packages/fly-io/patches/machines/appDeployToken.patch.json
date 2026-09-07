@@ -1,0 +1,15 @@
+{
+  "description": "Give the deploy-token response its own schema name. `POST /apps` declares a 201 with no body, so codegen synthesizes an empty `CreateAppResponse` for `createApp` — which collides with, and erases, the real `CreateAppResponse` (`{ token }`) that `POST /apps/{app_name}/deploy_token` returns. Renaming the real schema keeps `createAppDeployToken`'s `token` on the generated output type.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/components/schemas/CreateAppResponse",
+      "path": "/components/schemas/CreateAppDeployTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1apps~1{app_name}~1deploy_token/post/responses/200/content/application~1json/schema/$ref",
+      "value": "#/components/schemas/CreateAppDeployTokenResponse"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "description": "Align custom_certificates#List with distilled cloudflare/custom-certificates listCustomCertificates",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#List",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificates"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#ListRequest",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificatesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificates/input/target",
+      "value": "com.cloudflare.custom_certificates#ListCustomCertificatesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#ListResponse",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificatesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificates/output/target",
+      "value": "com.cloudflare.custom_certificates#ListCustomCertificatesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificates/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_certificates#ListCustomCertificates/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_certificates#PlanLevelNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.custom_certificates#ZoneNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

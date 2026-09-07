@@ -1,0 +1,30 @@
+{
+  "description": "Align filters#BulkDelete with distilled cloudflare/filters bulkDeleteFilters",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#BulkDelete",
+      "path": "/shapes/com.cloudflare.filters#BulkDeleteFilters"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#BulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.filters#BulkDeleteFiltersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#BulkDeleteFilters/input/target",
+      "value": "com.cloudflare.filters#BulkDeleteFiltersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#BulkDeleteResponse",
+      "path": "/shapes/com.cloudflare.filters#BulkDeleteFiltersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#BulkDeleteFilters/output/target",
+      "value": "com.cloudflare.filters#BulkDeleteFiltersResponse"
+    }
+  ]
+}

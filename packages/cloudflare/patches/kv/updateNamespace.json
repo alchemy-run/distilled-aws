@@ -1,0 +1,48 @@
+{
+  "description": "Align kv#NamespacesUpdate with distilled cloudflare/kv updateNamespace",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesUpdate",
+      "path": "/shapes/com.cloudflare.kv#UpdateNamespace"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesUpdateRequest",
+      "path": "/shapes/com.cloudflare.kv#UpdateNamespaceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#UpdateNamespace/input/target",
+      "value": "com.cloudflare.kv#UpdateNamespaceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesUpdateResponse",
+      "path": "/shapes/com.cloudflare.kv#UpdateNamespaceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#UpdateNamespace/output/target",
+      "value": "com.cloudflare.kv#UpdateNamespaceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#UpdateNamespace/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#TitleRequired"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceTitleAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

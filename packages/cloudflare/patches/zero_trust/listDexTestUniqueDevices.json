@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexTestsUniqueDevicesList with distilled cloudflare/zero-trust listDexTestUniqueDevices",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexTestsUniqueDevicesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexTestUniqueDevices"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexTestsUniqueDevicesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexTestUniqueDevicesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexTestUniqueDevices/input/target",
+      "value": "com.cloudflare.zero_trust#ListDexTestUniqueDevicesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexTestsUniqueDevicesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexTestUniqueDevicesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexTestUniqueDevices/output/target",
+      "value": "com.cloudflare.zero_trust#ListDexTestUniqueDevicesResponse"
+    }
+  ]
+}

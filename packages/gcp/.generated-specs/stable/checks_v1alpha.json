@@ -1,0 +1,4555 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "checks",
+    "version": "v1alpha",
+    "title": "Checks API",
+    "baseUrl": "https://checks.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidence": {
+      "type": "structure",
+      "members": {
+        "sdkDetails": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetailsList",
+          "traits": {
+            "smithy.api#documentation": "SDKs in violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence collected from SDK restriction violation analysis."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetails"
+      }
+    },
+    "com.gcp.checks_v1alpha#WaitOperationRequest": {
+      "type": "structure",
+      "members": {
+        "timeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.WaitOperation."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidence": {
+      "type": "structure",
+      "members": {
+        "endpointDetails": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Endpoints the data type was sent to."
+          }
+        },
+        "exfiltratedDataType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceExfiltratedDataTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of data that was exfiltrated."
+          }
+        },
+        "attributedSdks": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdkList",
+          "traits": {
+            "smithy.api#documentation": "Set of SDKs that are attributed to the exfiltration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence based on an endpoint that data was sent to."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetails"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceExfiltratedDataTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EXFILTRATED_DATA_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_UNSPECIFIED"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_PHONE_NUMBER"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_PRECISE_LOCATION"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_CONTACT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_CONTACT_NAME"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_CONTACT_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_CONTACT_EMAIL"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_CONTACT_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_CONTACT_PHONE_NUMBER"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_INCOMING_TEXT_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_INCOMING_TEXT_NUMBER"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_INCOMING_TEXT_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_INCOMING_TEXT_MESSAGE"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_OUTGOING_TEXT_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_OUTGOING_TEXT_NUMBER"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_OUTGOING_TEXT_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_OUTGOING_TEXT_MESSAGE"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_ADVERTISING_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_ADVERTISING_ID"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_ANDROID_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_ANDROID_ID"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_IMEI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_IMEI"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_IMSI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_IMSI"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_SIM_SERIAL_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_SIM_SERIAL_NUMBER"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_SSID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_SSID"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_ACCOUNT"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_EXTERNAL_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_EXTERNAL_ACCOUNT"
+          }
+        },
+        "EXFILTRATED_DATA_TYPE_INSTALLED_PACKAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXFILTRATED_DATA_TYPE_INSTALLED_PACKAGES"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdk"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaGenerateScanRequest": {
+      "type": "structure",
+      "members": {
+        "localScanPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Local scan path."
+          }
+        },
+        "cliVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. CLI version."
+          }
+        },
+        "scmMetadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaScmMetadata",
+          "traits": {
+            "smithy.api#documentation": "Required. SCM metadata."
+          }
+        },
+        "cliAnalysis": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCliAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Required. CLI analysis results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for RepoScanService.GenerateScan."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidencePermissionDetails": {
+      "type": "structure",
+      "members": {
+        "permission": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPermission",
+          "traits": {
+            "smithy.api#documentation": "The permission in violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the permission in violation."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkEvidence": {
+      "type": "structure",
+      "members": {
+        "sdk": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaSdk",
+          "traits": {
+            "smithy.api#documentation": "The SDK that was found in your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence conerning an SDK that was found in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidence": {
+      "type": "structure",
+      "members": {
+        "permissionDetails": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidencePermissionDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions in violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence collected from permission restriction violation analysis."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidencePermissionDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidencePermissionDetails"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSource": {
+      "type": "structure",
+      "members": {
+        "codeAttribution": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeAttribution",
+          "traits": {
+            "smithy.api#documentation": "Optional. Source code attribution for the finding."
+          }
+        },
+        "dataType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceDataTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Data type."
+          }
+        },
+        "falsePositive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the finding was marked as a false positive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a data source finding."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceDataTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_UNSPECIFIED"
+          }
+        },
+        "DATA_TYPE_APPROXIMATE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APPROXIMATE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PRECISE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PERSONAL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERSONAL_NAME"
+          }
+        },
+        "DATA_TYPE_EMAIL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAIL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_USER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_USER_IDS"
+          }
+        },
+        "DATA_TYPE_PHYSICAL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHYSICAL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHONE_NUMBER"
+          }
+        },
+        "DATA_TYPE_RACE_AND_ETHNICITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_RACE_AND_ETHNICITY"
+          }
+        },
+        "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS"
+          }
+        },
+        "DATA_TYPE_SEXUAL_ORIENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_SEXUAL_ORIENTATION"
+          }
+        },
+        "DATA_TYPE_OTHER_PERSONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_PERSONAL_INFO"
+          }
+        },
+        "DATA_TYPE_PAYMENT_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PAYMENT_INFO"
+          }
+        },
+        "DATA_TYPE_PURCHASE_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PURCHASE_HISTORY"
+          }
+        },
+        "DATA_TYPE_CREDIT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CREDIT_SCORE"
+          }
+        },
+        "DATA_TYPE_OTHER_FINANCIAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_FINANCIAL_INFO"
+          }
+        },
+        "DATA_TYPE_HEALTH_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_HEALTH_INFO"
+          }
+        },
+        "DATA_TYPE_FITNESS_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FITNESS_INFO"
+          }
+        },
+        "DATA_TYPE_EMAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAILS"
+          }
+        },
+        "DATA_TYPE_TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_TEXT_MESSAGES"
+          }
+        },
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_IN_APP_MESSAGES"
+          }
+        },
+        "DATA_TYPE_PHOTOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHOTOS"
+          }
+        },
+        "DATA_TYPE_VIDEOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VIDEOS"
+          }
+        },
+        "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS"
+          }
+        },
+        "DATA_TYPE_MUSIC_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_MUSIC_FILES"
+          }
+        },
+        "DATA_TYPE_OTHER_AUDIO_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_AUDIO_FILES"
+          }
+        },
+        "DATA_TYPE_FILES_AND_DOCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FILES_AND_DOCS"
+          }
+        },
+        "DATA_TYPE_CALENDAR_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CALENDAR_EVENTS"
+          }
+        },
+        "DATA_TYPE_CONTACTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CONTACTS"
+          }
+        },
+        "DATA_TYPE_APP_INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APP_INTERACTIONS"
+          }
+        },
+        "DATA_TYPE_IN_APP_SEARCH_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_IN_APP_SEARCH_HISTORY"
+          }
+        },
+        "DATA_TYPE_INSTALLED_APPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_INSTALLED_APPS"
+          }
+        },
+        "DATA_TYPE_OTHER_USER_GENERATED_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_USER_GENERATED_CONTENT"
+          }
+        },
+        "DATA_TYPE_OTHER_ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_ACTIONS"
+          }
+        },
+        "DATA_TYPE_WEB_BROWSING_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_WEB_BROWSING_HISTORY"
+          }
+        },
+        "DATA_TYPE_CRASH_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CRASH_LOGS"
+          }
+        },
+        "DATA_TYPE_PERFORMANCE_DIAGNOSTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERFORMANCE_DIAGNOSTICS"
+          }
+        },
+        "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
+          }
+        },
+        "DATA_TYPE_DEVICE_OR_OTHER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_DEVICE_OR_OTHER_IDS"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPolicyFragment": {
+      "type": "structure",
+      "members": {
+        "sourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy URL."
+          }
+        },
+        "htmlContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTML content."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a policy fragment."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaApp": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the app. Example: `accounts/123/apps/456`"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The app's title."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an app in Checks."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaSdk": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SDK identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an SDK."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCliAnalysis": {
+      "type": "structure",
+      "members": {
+        "codeScans": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested code scans resulting from preliminary CLI analysis."
+          }
+        },
+        "sources": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Data sources detected in the scan."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of a Code Compliance CLI analysis."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScan"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSource"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePrivacyPolicyTextEvidence": {
+      "type": "structure",
+      "members": {
+        "policyFragment": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPolicyFragment",
+          "traits": {
+            "smithy.api#documentation": "The privacy policy fragment that implies collection of the data type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence based on information from the privacy policy."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkIssueEvidence": {
+      "type": "structure",
+      "members": {
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SDK version."
+          }
+        },
+        "sdk": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaSdk",
+          "traits": {
+            "smithy.api#documentation": "The SDK with an issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence concerning an SDK issue."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceCode": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Path of the file."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Source code."
+          }
+        },
+        "startLine": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Start line number (1-based)."
+          }
+        },
+        "endLine": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. End line number (1-based)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains source code from a repo."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult": {
+      "type": "structure",
+      "members": {
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Final score for the results of this policy."
+          }
+        },
+        "policyType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultPolicyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the policy."
+          }
+        },
+        "violationResult": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultViolationResultEnum",
+          "traits": {
+            "smithy.api#documentation": "Result of the classification for the policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result for one policy against the corresponding input."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultPolicyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "POLICY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLICY_TYPE_UNSPECIFIED"
+          }
+        },
+        "DANGEROUS_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DANGEROUS_CONTENT"
+          }
+        },
+        "PII_SOLICITING_RECITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PII_SOLICITING_RECITING"
+          }
+        },
+        "HARASSMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HARASSMENT"
+          }
+        },
+        "SEXUALLY_EXPLICIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEXUALLY_EXPLICIT"
+          }
+        },
+        "HATE_SPEECH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HATE_SPEECH"
+          }
+        },
+        "MEDICAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_INFO"
+          }
+        },
+        "VIOLENCE_AND_GORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIOLENCE_AND_GORE"
+          }
+        },
+        "OBSCENITY_AND_PROFANITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OBSCENITY_AND_PROFANITY"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultViolationResultEnum": {
+      "type": "enum",
+      "members": {
+        "VIOLATION_RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIOLATION_RESULT_UNSPECIFIED"
+          }
+        },
+        "VIOLATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIOLATIVE"
+          }
+        },
+        "NON_VIOLATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_VIOLATIVE"
+          }
+        },
+        "CLASSIFICATION_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLASSIFICATION_ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent": {
+      "type": "structure",
+      "members": {
+        "textInput": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaTextInput",
+          "traits": {
+            "smithy.api#documentation": "Content in text format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Content to be classified."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringPermissionResult": {
+      "type": "structure",
+      "members": {
+        "permission": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPermission",
+          "traits": {
+            "smithy.api#documentation": "The permission that was found in your app."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the result."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a permission that was found in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestContext": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Prompt that generated the model response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Context about the input that will be used to help on the classification."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdk": {
+      "type": "structure",
+      "members": {
+        "sdk": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaSdk",
+          "traits": {
+            "smithy.api#documentation": "SDK that is attributed to the exfiltration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of SDK that is attributed to the exfiltration."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataSecurityEvidence": {
+      "type": "structure",
+      "members": {
+        "dataInTransitInfo": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataSecurityEvidenceDataInTransitInfoList",
+          "traits": {
+            "smithy.api#documentation": "Evidence related to data in transit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence concerning data security."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataSecurityEvidenceDataInTransitInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataSecurityEvidenceDataInTransitInfo"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScan": {
+      "type": "structure",
+      "members": {
+        "sourceCode": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceCode",
+          "traits": {
+            "smithy.api#documentation": "Required. Source code to analyze."
+          }
+        },
+        "dataTypeClassifications": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanDataTypeClassificationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Data type classification requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A requested analysis of source code. Contains the source code and processing state."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanDataTypeClassificationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaPullRequest": {
+      "type": "structure",
+      "members": {
+        "prNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. This can be supplied by the user or parsed automatically from predefined CI environment variables."
+          }
+        },
+        "baseBranch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. For PR analysis, we compare against the most recent scan of the base branch to highlight new issues."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pull request info."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaTextInput": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Language of the text in ISO 639-1 format. If the language is invalid or not specified, the system will try to detect it."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Actual piece of text to be classified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Text input to be classified."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPermission": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permission identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a permission."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePermissionEvidence": {
+      "type": "structure",
+      "members": {
+        "permission": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPermission",
+          "traits": {
+            "smithy.api#documentation": "Permission declared by your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence based on the inclusion of a permission."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEvidence": {
+      "type": "structure",
+      "members": {
+        "endpoints": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence concerning endpoints that were contacted by your app."
+          }
+        },
+        "sdkRestrictionViolations": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence collected from SDK restriction violation analysis."
+          }
+        },
+        "permissionRestrictionViolations": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence collected from permission restriction violation analysis."
+          }
+        },
+        "dataSecurity": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataSecurityEvidence",
+          "traits": {
+            "smithy.api#documentation": "Evidence concerning data security."
+          }
+        },
+        "endpointRestrictionViolations": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence collected from endpoint restriction violation analysis."
+          }
+        },
+        "sdkIssues": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkIssueEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence concerning SDK issues."
+          }
+        },
+        "privacyPolicyTexts": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPrivacyPolicyTextEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence collected from your privacy policy(s)."
+          }
+        },
+        "sdks": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence concerning SDKs that were found in your app."
+          }
+        },
+        "dataTypes": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataTypeEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence concerning data types found in your app."
+          }
+        },
+        "permissions": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "Evidence concerning permissions that were found in your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence for a check."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkIssueEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkIssueEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPrivacyPolicyTextEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPrivacyPolicyTextEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataTypeEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataTypeEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointEvidence": {
+      "type": "structure",
+      "members": {
+        "endpoint": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The endpoint that was contacted by your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence concerning an endpoint that was contacted by your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.checks_v1alpha#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.checks_v1alpha#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.checks_v1alpha#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.checks_v1alpha#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaRepoScan": {
+      "type": "structure",
+      "members": {
+        "localScanPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Local scan path."
+          }
+        },
+        "resultsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL to view results."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Resource name of the scan."
+          }
+        },
+        "cliVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CLI version."
+          }
+        },
+        "sources": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaSourceList",
+          "traits": {
+            "smithy.api#documentation": "Data sources detected."
+          }
+        },
+        "scmMetadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaScmMetadata",
+          "traits": {
+            "smithy.api#documentation": "SCM metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repo scan."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequest": {
+      "type": "structure",
+      "members": {
+        "policies": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfigList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of policies to classify against."
+          }
+        },
+        "classifierVersion": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestClassifierVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Version of the classifier to use. If not specified, the latest version will be used."
+          }
+        },
+        "input": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent",
+          "traits": {
+            "smithy.api#documentation": "Required. Content to be classified."
+          }
+        },
+        "context": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestContext",
+          "traits": {
+            "smithy.api#documentation": "Optional. Context about the input that will be used to help on the classification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request proto for ClassifyContent RPC."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestClassifierVersionEnum": {
+      "type": "enum",
+      "members": {
+        "CLASSIFIER_VERSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLASSIFIER_VERSION_UNSPECIFIED"
+          }
+        },
+        "STABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STABLE"
+          }
+        },
+        "LATEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LATEST"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaReport": {
+      "type": "structure",
+      "members": {
+        "dataMonitoring": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoring",
+          "traits": {
+            "smithy.api#documentation": "Information related to data monitoring."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of the report."
+          }
+        },
+        "appBundle": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAppBundle",
+          "traits": {
+            "smithy.api#documentation": "Information about the analyzed app bundle."
+          }
+        },
+        "resultsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL to view results."
+          }
+        },
+        "checks": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckList",
+          "traits": {
+            "smithy.api#documentation": "List of checks that were run on the app bundle."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Privacy report."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheck"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheck": {
+      "type": "structure",
+      "members": {
+        "regionCodes": {
+          "target": "com.gcp.checks_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Regions that are impacted by the check. For more info, see https://google.aip.dev/143#countries-and-regions."
+          }
+        },
+        "evidence": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEvidence",
+          "traits": {
+            "smithy.api#documentation": "Evidence that substantiates the check result."
+          }
+        },
+        "citations": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckCitationList",
+          "traits": {
+            "smithy.api#documentation": "Regulations and policies that serve as the legal basis for the check."
+          }
+        },
+        "type": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of check that was run. A type will only appear once in a report's list of checks."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "The urgency or risk level of the check."
+          }
+        },
+        "state": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The result after running the check."
+          }
+        },
+        "stateMetadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateMetadata",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the check state in relation to past reports."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A check that was run on your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckCitationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckCitation"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CHECK_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK_TYPE_UNSPECIFIED"
+          }
+        },
+        "STORE_LISTING_PRIVACY_POLICY_LINK_PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORE_LISTING_PRIVACY_POLICY_LINK_PRESENT"
+          }
+        },
+        "PRIVACY_POLICY_UPDATE_DATE_RECENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_UPDATE_DATE_RECENT"
+          }
+        },
+        "PRIVACY_POLICY_GDPR_GENERAL_RULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_GDPR_GENERAL_RULES"
+          }
+        },
+        "PRIVACY_POLICY_CCPA_GENERAL_RULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CCPA_GENERAL_RULES"
+          }
+        },
+        "PRIVACY_POLICY_COLLECTION_CATEGORIES_DATA_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_COLLECTION_CATEGORIES_DATA_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_PROCESSING_PURPOSE_DATA_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PROCESSING_PURPOSE_DATA_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_SHARING_CATEGORIES_DATA_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_SHARING_CATEGORIES_DATA_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_DATA_RETENTION_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_RETENTION_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_CONTACT_DETAILS_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CONTACT_DETAILS_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_CHILDREN_GENERAL_RULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CHILDREN_GENERAL_RULES"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_PHONE_NUMBER"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_USER_ACCOUNT_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_USER_ACCOUNT_INFO"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_PRECISE_LOCATION"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_DEVICE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_DEVICE_ID"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_APPS_ON_DEVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_APPS_ON_DEVICE"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_CONTACTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_CONTACTS"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_TEXT_MESSAGES"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_PII": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_PII"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_PII_CATEGORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_PII_CATEGORIES"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_HEALTH_AND_BIOMETRIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_HEALTH_AND_BIOMETRIC"
+          }
+        },
+        "PRIVACY_POLICY_BRAZIL_LGPD_GENERAL_RULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_BRAZIL_LGPD_GENERAL_RULES"
+          }
+        },
+        "PRIVACY_POLICY_VIRGINIA_VCDPA_GENERAL_RULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_VIRGINIA_VCDPA_GENERAL_RULES"
+          }
+        },
+        "PRIVACY_POLICY_AFFILIATION_MENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_AFFILIATION_MENTION"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_DELETE_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_DELETE_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_ACCESS_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_ACCESS_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_RECTIFICATION_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_RECTIFICATION_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_KNOW_ABOUT_SELLING_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_KNOW_ABOUT_SELLING_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_KNOW_ABOUT_SHARING_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_KNOW_ABOUT_SHARING_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_OPT_OUT_FROM_SELLING_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_OPT_OUT_FROM_SELLING_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_METHOD_TO_OPT_OUT_FROM_SELLING_OR_SHARING_NOTICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_METHOD_TO_OPT_OUT_FROM_SELLING_OR_SHARING_NOTICE"
+          }
+        },
+        "PRIVACY_POLICY_DATA_CONTROLLER_IDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_CONTROLLER_IDENTITY"
+          }
+        },
+        "PRIVACY_POLICY_DPO_CONTACT_DETAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DPO_CONTACT_DETAILS"
+          }
+        },
+        "PRIVACY_POLICY_RIGHT_TO_LODGE_A_COMPLAINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_RIGHT_TO_LODGE_A_COMPLAINT"
+          }
+        },
+        "PRIVACY_POLICY_LEGAL_BASIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_LEGAL_BASIS"
+          }
+        },
+        "PRIVACY_POLICY_CHILDREN_INFO_COLLECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CHILDREN_INFO_COLLECTION"
+          }
+        },
+        "PRIVACY_POLICY_CHILDREN_INFO_USAGE_PURPOSES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CHILDREN_INFO_USAGE_PURPOSES"
+          }
+        },
+        "PRIVACY_POLICY_CHILDREN_INFO_DISCLOSURE_PRACTICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CHILDREN_INFO_DISCLOSURE_PRACTICES"
+          }
+        },
+        "PRIVACY_POLICY_CHILDREN_INFO_PUBLICITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_CHILDREN_INFO_PUBLICITY"
+          }
+        },
+        "PRIVACY_POLICY_PARENTS_METHOD_OF_INFO_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PARENTS_METHOD_OF_INFO_DELETION"
+          }
+        },
+        "PRIVACY_POLICY_PARENTS_METHOD_TO_INFO_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PARENTS_METHOD_TO_INFO_REVIEW"
+          }
+        },
+        "PRIVACY_POLICY_PARENTS_METHOD_TO_STOP_FURTHER_INFO_COLLECTION_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PARENTS_METHOD_TO_STOP_FURTHER_INFO_COLLECTION_USE"
+          }
+        },
+        "PRIVACY_POLICY_PARENTS_RIGHT_TO_INFO_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PARENTS_RIGHT_TO_INFO_DELETION"
+          }
+        },
+        "PRIVACY_POLICY_PARENTS_RIGHT_TO_INFO_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PARENTS_RIGHT_TO_INFO_REVIEW"
+          }
+        },
+        "PRIVACY_POLICY_PARENTS_RIGHT_TO_STOP_FURTHER_INFO_COLLECTION_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PARENTS_RIGHT_TO_STOP_FURTHER_INFO_COLLECTION_USE"
+          }
+        },
+        "PRIVACY_POLICY_PSL_APPROXIMATE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_APPROXIMATE_LOCATION"
+          }
+        },
+        "PRIVACY_POLICY_PSL_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_PRECISE_LOCATION"
+          }
+        },
+        "PRIVACY_POLICY_PSL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_NAME"
+          }
+        },
+        "PRIVACY_POLICY_PSL_EMAIL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_EMAIL_ADDRESS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_USER_IDENTIFIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_USER_IDENTIFIERS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_ADDRESS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_PHONE_NUMBER"
+          }
+        },
+        "PRIVACY_POLICY_PSL_RACE_AND_ETHNICITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_RACE_AND_ETHNICITY"
+          }
+        },
+        "PRIVACY_POLICY_PSL_CREDIT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_CREDIT_SCORE"
+          }
+        },
+        "PRIVACY_POLICY_PSL_PURCHASE_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_PURCHASE_HISTORY"
+          }
+        },
+        "PRIVACY_POLICY_PSL_HEALTH_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_HEALTH_INFO"
+          }
+        },
+        "PRIVACY_POLICY_PSL_FITNESS_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_FITNESS_INFO"
+          }
+        },
+        "PRIVACY_POLICY_PSL_EMAIL_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_EMAIL_MESSAGES"
+          }
+        },
+        "PRIVACY_POLICY_PSL_TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_TEXT_MESSAGES"
+          }
+        },
+        "PRIVACY_POLICY_PSL_PHOTOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_PHOTOS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_VIDEOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_VIDEOS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_MUSIC_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_MUSIC_FILES"
+          }
+        },
+        "PRIVACY_POLICY_PSL_VOICE_OR_SOUND_RECORDINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_VOICE_OR_SOUND_RECORDINGS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_FILES_AND_DOCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_FILES_AND_DOCS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_CALENDAR_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_CALENDAR_EVENTS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_CONTACTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_CONTACTS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_APP_INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_APP_INTERACTIONS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_IN_APP_SEARCH_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_IN_APP_SEARCH_HISTORY"
+          }
+        },
+        "PRIVACY_POLICY_PSL_WEB_BROWSING_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_WEB_BROWSING_HISTORY"
+          }
+        },
+        "PRIVACY_POLICY_PSL_INSTALLED_APPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_INSTALLED_APPS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_CRASH_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_CRASH_LOGS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_DIAGNOSTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_DIAGNOSTICS"
+          }
+        },
+        "PRIVACY_POLICY_PSL_DEVICE_OR_OTHER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_PSL_DEVICE_OR_OTHER_IDS"
+          }
+        },
+        "DATA_MONITORING_NEW_ENDPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_ENDPOINT"
+          }
+        },
+        "DATA_MONITORING_NEW_PERMISSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_PERMISSION"
+          }
+        },
+        "DATA_MONITORING_NEW_DATA_TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_DATA_TYPE"
+          }
+        },
+        "DATA_MONITORING_NEW_SDK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_SDK"
+          }
+        },
+        "DATA_MONITORING_ENCRYPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_ENCRYPTION"
+          }
+        },
+        "DATA_MONITORING_NEW_DATA_TYPE_VERSION_DIFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_DATA_TYPE_VERSION_DIFF"
+          }
+        },
+        "DATA_MONITORING_NEW_ENDPOINT_VERSION_DIFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_ENDPOINT_VERSION_DIFF"
+          }
+        },
+        "DATA_MONITORING_NEW_PERMISSION_VERSION_DIFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_PERMISSION_VERSION_DIFF"
+          }
+        },
+        "DATA_MONITORING_NEW_SDK_VERSION_DIFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_NEW_SDK_VERSION_DIFF"
+          }
+        },
+        "DATA_MONITORING_SDKS_DENYLIST_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_SDKS_DENYLIST_VIOLATION"
+          }
+        },
+        "DATA_MONITORING_PERMISSIONS_DENYLIST_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_PERMISSIONS_DENYLIST_VIOLATION"
+          }
+        },
+        "DATA_MONITORING_ENDPOINTS_DENYLIST_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_ENDPOINTS_DENYLIST_VIOLATION"
+          }
+        },
+        "DATA_MONITORING_OUTDATED_SDK_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_OUTDATED_SDK_VERSION"
+          }
+        },
+        "DATA_MONITORING_CRITICAL_SDK_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_CRITICAL_SDK_ISSUE"
+          }
+        },
+        "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO"
+          }
+        },
+        "DATA_MONITORING_PII_LOGCAT_LEAK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_PII_LOGCAT_LEAK"
+          }
+        },
+        "DATA_MONITORING_MINIMIZE_PERMISSION_MEDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_MINIMIZE_PERMISSION_MEDIA"
+          }
+        },
+        "DATA_MONITORING_MINIMIZE_PERMISSION_CAMERA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_MINIMIZE_PERMISSION_CAMERA"
+          }
+        },
+        "DATA_MONITORING_MINIMIZE_PERMISSION_DOCUMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_MINIMIZE_PERMISSION_DOCUMENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "CHECK_SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK_SEVERITY_UNSPECIFIED"
+          }
+        },
+        "PRIORITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY"
+          }
+        },
+        "POTENTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POTENTIAL"
+          }
+        },
+        "OPPORTUNITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPPORTUNITY"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateEnum": {
+      "type": "enum",
+      "members": {
+        "CHECK_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK_STATE_UNSPECIFIED"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "UNCHECKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNCHECKED"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoring": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringPermissionResultList",
+          "traits": {
+            "smithy.api#documentation": "Permissions that your app uses."
+          }
+        },
+        "sdks": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringSdkResultList",
+          "traits": {
+            "smithy.api#documentation": "SDKs that your app uses."
+          }
+        },
+        "endpoints": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringEndpointResultList",
+          "traits": {
+            "smithy.api#documentation": "Endpoints that were found by dynamic analysis of your app."
+          }
+        },
+        "dataTypes": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringDataTypeResultList",
+          "traits": {
+            "smithy.api#documentation": "Data types that your app shares or collects."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the data monitoring section of the report."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringPermissionResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringPermissionResult"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringSdkResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringSdkResult"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringEndpointResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringEndpointResult"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringDataTypeResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringDataTypeResult"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAnalyzeUploadRequest": {
+      "type": "structure",
+      "members": {
+        "codeReferenceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Git commit hash or changelist number associated with the upload."
+          }
+        },
+        "appBinaryFileType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAnalyzeUploadRequestAppBinaryFileTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of the uploaded app binary. If not provided, the server assumes APK file for Android and IPA file for iOS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for ReportService.AnalyzeUpload."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAnalyzeUploadRequestAppBinaryFileTypeEnum": {
+      "type": "enum",
+      "members": {
+        "APP_BINARY_FILE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_BINARY_FILE_TYPE_UNSPECIFIED"
+          }
+        },
+        "ANDROID_APK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID_APK"
+          }
+        },
+        "ANDROID_AAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID_AAB"
+          }
+        },
+        "IOS_IPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS_IPA"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.checks_v1alpha#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.checks_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.checks_v1alpha#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#Operation"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification": {
+      "type": "structure",
+      "members": {
+        "dataType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanDataTypeClassificationDataTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Candidate data type."
+          }
+        },
+        "lineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Line number (1-based)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to classify data types."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeScanDataTypeClassificationDataTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_UNSPECIFIED"
+          }
+        },
+        "DATA_TYPE_APPROXIMATE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APPROXIMATE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PRECISE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PERSONAL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERSONAL_NAME"
+          }
+        },
+        "DATA_TYPE_EMAIL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAIL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_USER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_USER_IDS"
+          }
+        },
+        "DATA_TYPE_PHYSICAL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHYSICAL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHONE_NUMBER"
+          }
+        },
+        "DATA_TYPE_RACE_AND_ETHNICITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_RACE_AND_ETHNICITY"
+          }
+        },
+        "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS"
+          }
+        },
+        "DATA_TYPE_SEXUAL_ORIENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_SEXUAL_ORIENTATION"
+          }
+        },
+        "DATA_TYPE_OTHER_PERSONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_PERSONAL_INFO"
+          }
+        },
+        "DATA_TYPE_PAYMENT_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PAYMENT_INFO"
+          }
+        },
+        "DATA_TYPE_PURCHASE_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PURCHASE_HISTORY"
+          }
+        },
+        "DATA_TYPE_CREDIT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CREDIT_SCORE"
+          }
+        },
+        "DATA_TYPE_OTHER_FINANCIAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_FINANCIAL_INFO"
+          }
+        },
+        "DATA_TYPE_HEALTH_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_HEALTH_INFO"
+          }
+        },
+        "DATA_TYPE_FITNESS_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FITNESS_INFO"
+          }
+        },
+        "DATA_TYPE_EMAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAILS"
+          }
+        },
+        "DATA_TYPE_TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_TEXT_MESSAGES"
+          }
+        },
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_IN_APP_MESSAGES"
+          }
+        },
+        "DATA_TYPE_PHOTOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHOTOS"
+          }
+        },
+        "DATA_TYPE_VIDEOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VIDEOS"
+          }
+        },
+        "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS"
+          }
+        },
+        "DATA_TYPE_MUSIC_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_MUSIC_FILES"
+          }
+        },
+        "DATA_TYPE_OTHER_AUDIO_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_AUDIO_FILES"
+          }
+        },
+        "DATA_TYPE_FILES_AND_DOCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FILES_AND_DOCS"
+          }
+        },
+        "DATA_TYPE_CALENDAR_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CALENDAR_EVENTS"
+          }
+        },
+        "DATA_TYPE_CONTACTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CONTACTS"
+          }
+        },
+        "DATA_TYPE_APP_INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APP_INTERACTIONS"
+          }
+        },
+        "DATA_TYPE_IN_APP_SEARCH_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_IN_APP_SEARCH_HISTORY"
+          }
+        },
+        "DATA_TYPE_INSTALLED_APPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_INSTALLED_APPS"
+          }
+        },
+        "DATA_TYPE_OTHER_USER_GENERATED_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_USER_GENERATED_CONTENT"
+          }
+        },
+        "DATA_TYPE_OTHER_ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_ACTIONS"
+          }
+        },
+        "DATA_TYPE_WEB_BROWSING_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_WEB_BROWSING_HISTORY"
+          }
+        },
+        "DATA_TYPE_CRASH_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CRASH_LOGS"
+          }
+        },
+        "DATA_TYPE_PERFORMANCE_DIAGNOSTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERFORMANCE_DIAGNOSTICS"
+          }
+        },
+        "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
+          }
+        },
+        "DATA_TYPE_DEVICE_OR_OTHER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_DEVICE_OR_OTHER_IDS"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaCodeAttribution": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Path of the file."
+          }
+        },
+        "lineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Line number (1-based)."
+          }
+        },
+        "codeExcerpt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Code excerpt where the source was detected along with surrounding code."
+          }
+        },
+        "startLineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Start line number of the code excerpt (1-based)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Source code attribution."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaScmMetadata": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Branch name."
+          }
+        },
+        "remoteUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Git remote URL."
+          }
+        },
+        "pullRequest": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaPullRequest",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains info about the associated pull request. This is only populated for pull request scans."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Revision ID, e.g. Git commit hash."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SCM metadata."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPermissionEvidence": {
+      "type": "structure",
+      "members": {
+        "permission": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPermission",
+          "traits": {
+            "smithy.api#documentation": "The permission that was found in your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence concerning a permission that was found in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#Status": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.checks_v1alpha#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.checks_v1alpha#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#DocumentMap"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringSdkResult": {
+      "type": "structure",
+      "members": {
+        "sdk": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaSdk",
+          "traits": {
+            "smithy.api#documentation": "The SDK that was found in your app."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the result."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an SDK that was found in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataTypeEvidence": {
+      "type": "structure",
+      "members": {
+        "dataType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataTypeEvidenceDataTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The data type that was found in your app."
+          }
+        },
+        "dataTypeEvidence": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEvidence",
+          "traits": {
+            "smithy.api#documentation": "Evidence collected about the data type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence concerning a data type that was found in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataTypeEvidenceDataTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_UNSPECIFIED"
+          }
+        },
+        "DATA_TYPE_APPROXIMATE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APPROXIMATE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PRECISE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PERSONAL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERSONAL_NAME"
+          }
+        },
+        "DATA_TYPE_EMAIL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAIL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_USER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_USER_IDS"
+          }
+        },
+        "DATA_TYPE_PHYSICAL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHYSICAL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHONE_NUMBER"
+          }
+        },
+        "DATA_TYPE_RACE_AND_ETHNICITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_RACE_AND_ETHNICITY"
+          }
+        },
+        "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS"
+          }
+        },
+        "DATA_TYPE_SEXUAL_ORIENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_SEXUAL_ORIENTATION"
+          }
+        },
+        "DATA_TYPE_OTHER_PERSONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_PERSONAL_INFO"
+          }
+        },
+        "DATA_TYPE_PAYMENT_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PAYMENT_INFO"
+          }
+        },
+        "DATA_TYPE_PURCHASE_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PURCHASE_HISTORY"
+          }
+        },
+        "DATA_TYPE_CREDIT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CREDIT_SCORE"
+          }
+        },
+        "DATA_TYPE_OTHER_FINANCIAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_FINANCIAL_INFO"
+          }
+        },
+        "DATA_TYPE_HEALTH_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_HEALTH_INFO"
+          }
+        },
+        "DATA_TYPE_FITNESS_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FITNESS_INFO"
+          }
+        },
+        "DATA_TYPE_EMAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAILS"
+          }
+        },
+        "DATA_TYPE_TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_TEXT_MESSAGES"
+          }
+        },
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_IN_APP_MESSAGES"
+          }
+        },
+        "DATA_TYPE_PHOTOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHOTOS"
+          }
+        },
+        "DATA_TYPE_VIDEOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VIDEOS"
+          }
+        },
+        "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS"
+          }
+        },
+        "DATA_TYPE_MUSIC_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_MUSIC_FILES"
+          }
+        },
+        "DATA_TYPE_OTHER_AUDIO_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_AUDIO_FILES"
+          }
+        },
+        "DATA_TYPE_FILES_AND_DOCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FILES_AND_DOCS"
+          }
+        },
+        "DATA_TYPE_CALENDAR_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CALENDAR_EVENTS"
+          }
+        },
+        "DATA_TYPE_CONTACTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CONTACTS"
+          }
+        },
+        "DATA_TYPE_APP_INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APP_INTERACTIONS"
+          }
+        },
+        "DATA_TYPE_IN_APP_SEARCH_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_IN_APP_SEARCH_HISTORY"
+          }
+        },
+        "DATA_TYPE_INSTALLED_APPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_INSTALLED_APPS"
+          }
+        },
+        "DATA_TYPE_OTHER_USER_GENERATED_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_USER_GENERATED_CONTENT"
+          }
+        },
+        "DATA_TYPE_OTHER_ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_ACTIONS"
+          }
+        },
+        "DATA_TYPE_WEB_BROWSING_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_WEB_BROWSING_HISTORY"
+          }
+        },
+        "DATA_TYPE_CRASH_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CRASH_LOGS"
+          }
+        },
+        "DATA_TYPE_PERFORMANCE_DIAGNOSTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERFORMANCE_DIAGNOSTICS"
+          }
+        },
+        "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
+          }
+        },
+        "DATA_TYPE_DEVICE_OR_OTHER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_DEVICE_OR_OTHER_IDS"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponse": {
+      "type": "structure",
+      "members": {
+        "policyResults": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultList",
+          "traits": {
+            "smithy.api#documentation": "Results of the classification for each policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response proto for ClassifyContent RPC."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetails": {
+      "type": "structure",
+      "members": {
+        "endpoint": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Endpoint the data type was sent to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the endpoint the data type was sent to."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceEndpointDetails": {
+      "type": "structure",
+      "members": {
+        "endpoint": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The endpoint in violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the endpoint in violation."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringDataTypeResult": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the result."
+          }
+        },
+        "dataType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringDataTypeResultDataTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The data type that was shared or collected by your app."
+          }
+        },
+        "dataTypeEvidence": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEvidence",
+          "traits": {
+            "smithy.api#documentation": "Evidence collected about the data type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a data type that was found in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringDataTypeResultDataTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_UNSPECIFIED"
+          }
+        },
+        "DATA_TYPE_APPROXIMATE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APPROXIMATE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PRECISE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PRECISE_LOCATION"
+          }
+        },
+        "DATA_TYPE_PERSONAL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERSONAL_NAME"
+          }
+        },
+        "DATA_TYPE_EMAIL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAIL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_USER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_USER_IDS"
+          }
+        },
+        "DATA_TYPE_PHYSICAL_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHYSICAL_ADDRESS"
+          }
+        },
+        "DATA_TYPE_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHONE_NUMBER"
+          }
+        },
+        "DATA_TYPE_RACE_AND_ETHNICITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_RACE_AND_ETHNICITY"
+          }
+        },
+        "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS"
+          }
+        },
+        "DATA_TYPE_SEXUAL_ORIENTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_SEXUAL_ORIENTATION"
+          }
+        },
+        "DATA_TYPE_OTHER_PERSONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_PERSONAL_INFO"
+          }
+        },
+        "DATA_TYPE_PAYMENT_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PAYMENT_INFO"
+          }
+        },
+        "DATA_TYPE_PURCHASE_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PURCHASE_HISTORY"
+          }
+        },
+        "DATA_TYPE_CREDIT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CREDIT_SCORE"
+          }
+        },
+        "DATA_TYPE_OTHER_FINANCIAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_FINANCIAL_INFO"
+          }
+        },
+        "DATA_TYPE_HEALTH_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_HEALTH_INFO"
+          }
+        },
+        "DATA_TYPE_FITNESS_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FITNESS_INFO"
+          }
+        },
+        "DATA_TYPE_EMAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_EMAILS"
+          }
+        },
+        "DATA_TYPE_TEXT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_TEXT_MESSAGES"
+          }
+        },
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_IN_APP_MESSAGES"
+          }
+        },
+        "DATA_TYPE_PHOTOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PHOTOS"
+          }
+        },
+        "DATA_TYPE_VIDEOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VIDEOS"
+          }
+        },
+        "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS"
+          }
+        },
+        "DATA_TYPE_MUSIC_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_MUSIC_FILES"
+          }
+        },
+        "DATA_TYPE_OTHER_AUDIO_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_AUDIO_FILES"
+          }
+        },
+        "DATA_TYPE_FILES_AND_DOCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_FILES_AND_DOCS"
+          }
+        },
+        "DATA_TYPE_CALENDAR_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CALENDAR_EVENTS"
+          }
+        },
+        "DATA_TYPE_CONTACTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CONTACTS"
+          }
+        },
+        "DATA_TYPE_APP_INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_APP_INTERACTIONS"
+          }
+        },
+        "DATA_TYPE_IN_APP_SEARCH_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_IN_APP_SEARCH_HISTORY"
+          }
+        },
+        "DATA_TYPE_INSTALLED_APPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_INSTALLED_APPS"
+          }
+        },
+        "DATA_TYPE_OTHER_USER_GENERATED_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_USER_GENERATED_CONTENT"
+          }
+        },
+        "DATA_TYPE_OTHER_ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_ACTIONS"
+          }
+        },
+        "DATA_TYPE_WEB_BROWSING_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_WEB_BROWSING_HISTORY"
+          }
+        },
+        "DATA_TYPE_CRASH_LOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_CRASH_LOGS"
+          }
+        },
+        "DATA_TYPE_PERFORMANCE_DIAGNOSTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_PERFORMANCE_DIAGNOSTICS"
+          }
+        },
+        "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
+          }
+        },
+        "DATA_TYPE_DEVICE_OR_OTHER_IDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_TYPE_DEVICE_OR_OTHER_IDS"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateMetadata": {
+      "type": "structure",
+      "members": {
+        "firstFailingTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the check first started failing."
+          }
+        },
+        "badges": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Indicators related to the check state."
+          }
+        },
+        "lastFailingTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time the check failed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information about the check state in relation to past reports."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnum": {
+      "type": "enum",
+      "members": {
+        "CHECK_STATE_BADGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK_STATE_BADGE_UNSPECIFIED"
+          }
+        },
+        "NEWLY_FAILING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWLY_FAILING"
+          }
+        },
+        "RECENTLY_FAILING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECENTLY_FAILING"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLVED"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnum"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEvidence": {
+      "type": "structure",
+      "members": {
+        "privacyPolicyTexts": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePrivacyPolicyTextEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "List of privacy policy texts that imply collection of the data type."
+          }
+        },
+        "endpoints": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "List of endpoints the data type was sent to."
+          }
+        },
+        "permissions": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePermissionEvidenceList",
+          "traits": {
+            "smithy.api#documentation": "List of included permissions that imply collection of the data type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence collected about a data type."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePrivacyPolicyTextEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePrivacyPolicyTextEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypeEndpointEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePermissionEvidenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataTypePermissionEvidence"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckPrivacyPolicyTextEvidence": {
+      "type": "structure",
+      "members": {
+        "policyFragment": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaPolicyFragment",
+          "traits": {
+            "smithy.api#documentation": "The privacy policy fragment that was used during the check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence collected from your privacy policy(s)."
+      }
+    },
+    "com.gcp.checks_v1alpha#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckCitation": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckCitationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Citation type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Regulation or policy that serves as the legal basis for the check."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckCitationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CITATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CITATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "COPPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPPA"
+          }
+        },
+        "GDPR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GDPR"
+          }
+        },
+        "FERPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FERPA"
+          }
+        },
+        "CAL_OPPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAL_OPPA"
+          }
+        },
+        "CCPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CCPA"
+          }
+        },
+        "SOPIPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOPIPA"
+          }
+        },
+        "LGPD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LGPD"
+          }
+        },
+        "CPRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPRA"
+          }
+        },
+        "VCDPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VCDPA"
+          }
+        },
+        "GOOGLE_PLAY_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_PLAY_POLICY"
+          }
+        },
+        "APP_STORE_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_STORE_POLICY"
+          }
+        },
+        "CPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPA"
+          }
+        },
+        "CTDPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CTDPA"
+          }
+        },
+        "UCPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UCPA"
+          }
+        },
+        "PIPEDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PIPEDA"
+          }
+        },
+        "ALBERTA_PIPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALBERTA_PIPA"
+          }
+        },
+        "QUEBEC_ACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEBEC_ACT"
+          }
+        },
+        "QUEBEC_BILL_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEBEC_BILL_64"
+          }
+        },
+        "CHINA_PIPL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHINA_PIPL"
+          }
+        },
+        "SOUTH_KOREA_PIPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOUTH_KOREA_PIPA"
+          }
+        },
+        "SOUTH_AFRICA_POPIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOUTH_AFRICA_POPIA"
+          }
+        },
+        "JAPAN_APPI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JAPAN_APPI"
+          }
+        },
+        "INDIA_DPDPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIA_DPDPA"
+          }
+        },
+        "OCPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OCPA"
+          }
+        },
+        "TDPSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TDPSA"
+          }
+        },
+        "MCDPA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MCDPA"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig": {
+      "type": "structure",
+      "members": {
+        "policyType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfigPolicyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of the policy."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Score threshold to use when deciding if the content is violative or non-violative. If not specified, the default 0.5 threshold for the policy will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of policies to classify against."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfigPolicyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "POLICY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLICY_TYPE_UNSPECIFIED"
+          }
+        },
+        "DANGEROUS_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DANGEROUS_CONTENT"
+          }
+        },
+        "PII_SOLICITING_RECITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PII_SOLICITING_RECITING"
+          }
+        },
+        "HARASSMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HARASSMENT"
+          }
+        },
+        "SEXUALLY_EXPLICIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEXUALLY_EXPLICIT"
+          }
+        },
+        "HATE_SPEECH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HATE_SPEECH"
+          }
+        },
+        "MEDICAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_INFO"
+          }
+        },
+        "VIOLENCE_AND_GORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIOLENCE_AND_GORE"
+          }
+        },
+        "OBSCENITY_AND_PROFANITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OBSCENITY_AND_PROFANITY"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaListRepoScansResponse": {
+      "type": "structure",
+      "members": {
+        "repoScans": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaRepoScanList",
+          "traits": {
+            "smithy.api#documentation": "The repo scans for the specified app."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for RepoScanService.ListRepoScans."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaRepoScanList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaRepoScan"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetails": {
+      "type": "structure",
+      "members": {
+        "sdk": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaSdk",
+          "traits": {
+            "smithy.api#documentation": "The SDK in violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the SDK in violation."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringEndpointResult": {
+      "type": "structure",
+      "members": {
+        "hitCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this endpoint was contacted by your app."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the result."
+          }
+        },
+        "endpoint": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The endpoint that was contacted by your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an endpoint that was contacted by your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaEndpoint": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name (e.g. ads.google.com)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an endpoint."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckDataSecurityEvidenceDataInTransitInfo": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL contacted by your app. This includes the protocol, domain, and URL parameters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence related to data in transit detected in your app."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidence": {
+      "type": "structure",
+      "members": {
+        "endpointDetails": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceEndpointDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Endpoints in violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Evidence collected from endpoint restriction violation analysis."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceEndpointDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceEndpointDetails"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaListAppsResponse": {
+      "type": "structure",
+      "members": {
+        "apps": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaAppList",
+          "traits": {
+            "smithy.api#documentation": "The apps."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for AccountService.ListApps."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaAppList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaApp"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadata": {
+      "type": "structure",
+      "members": {
+        "lastDetectedAppVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your app's version name when this result was last detected within the last 8 weeks. If not set, it wasn't detected within the last 8 weeks."
+          }
+        },
+        "lastDetectedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when this result was last detected within the last 8 weeks. If not set, it wasn't detected within the last 8 weeks."
+          }
+        },
+        "badges": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Badges that apply to this result."
+          }
+        },
+        "firstDetectedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when this result was first detected within the last 8 weeks. If not set, it wasn't detected within the last 8 weeks."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a data monitoring result."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_MONITORING_RESULT_BADGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MONITORING_RESULT_BADGE_UNSPECIFIED"
+          }
+        },
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnum"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaListReportsResponse": {
+      "type": "structure",
+      "members": {
+        "reports": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaReportList",
+          "traits": {
+            "smithy.api#documentation": "The reports for the specified app."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for ReportService.ListReports."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaReportList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaReport"
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAppBundle": {
+      "type": "structure",
+      "members": {
+        "bundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique id of the bundle. For example: \"com.google.Gmail\"."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-visible version of the bundle such as the Android `versionName` or iOS `CFBundleShortVersionString`. For example: \"7.21.1\"."
+          }
+        },
+        "codeReferenceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash or changelist number associated with the release."
+          }
+        },
+        "versionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version used throughout the operating system and store to identify the build such as the Android `versionCode` or iOS `CFBundleVersion`."
+          }
+        },
+        "releaseType": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAppBundleReleaseTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Identifies the type of release."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the analyzed app bundle."
+      }
+    },
+    "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAppBundleReleaseTypeEnum": {
+      "type": "enum",
+      "members": {
+        "APP_BUNDLE_RELEASE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_BUNDLE_RELEASE_TYPE_UNSPECIFIED"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC"
+          }
+        },
+        "PRE_RELEASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRE_RELEASE"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the app. Example: `accounts/123/apps/456`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.checks_v1alpha#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#GetAccountsAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Gets an app."
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsAppsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return. The server may further constrain the maximum number of results returned in a single page. If unspecified, the server will decide the number of results to be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token received from a previous `ListApps` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent account. Example: `accounts/123`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#ListAccountsAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksAccountV1alphaListAppsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+parent}/apps"
+        },
+        "smithy.api#documentation": "Lists the apps under the given account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#CancelAccountsAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.checks_v1alpha#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.checks_v1alpha#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.checks_v1alpha#CancelAccountsAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#CancelAccountsAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#GetAccountsAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.checks_v1alpha#WaitAccountsAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to wait on.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.checks_v1alpha#WaitOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#WaitAccountsAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#WaitAccountsAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+name}:wait"
+        },
+        "smithy.api#documentation": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done."
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#ListAccountsAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#DeleteAccountsAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#DeleteAccountsAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#DeleteAccountsAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsAppsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "checksFilter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter checks within the report. Only checks that match the filter string are included in the response. Example: `state = FAILED`",
+            "smithy.api#httpQuery": "checksFilter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the report. Example: `accounts/123/apps/456/reports/789`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsAppsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#GetAccountsAppsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaReport"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Gets a report. By default, only the name and results_uri fields are returned. You can include other fields by listing them in the `fields` URL query parameter. For example, `?fields=name,checks` will return the name and checks fields."
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsAppsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of reports to return. If unspecified, at most 10 reports will be returned. The maximum value is 50; values above 50 will be coerced to 50.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the app. Example: `accounts/123/apps/456`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter reports. Example: `appBundle.releaseType = PRE_RELEASE`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "checksFilter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter checks within reports. Only checks that match the filter string are included in the response. Example: `state = FAILED`",
+            "smithy.api#httpQuery": "checksFilter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token received from a previous `ListReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReports` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsAppsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#ListAccountsAppsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaListReportsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+parent}/reports"
+        },
+        "smithy.api#documentation": "Lists reports for the specified app. By default, only the name and results_uri fields are returned. You can include other fields by listing them in the `fields` URL query parameter. For example, `?fields=reports(name,checks)` will return the name and checks fields.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GenerateAccountsReposScansRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the repo. Example: `accounts/123/repos/456`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaGenerateScanRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GenerateAccountsReposScans": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#GenerateAccountsReposScansRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+parent}/scans:generate"
+        },
+        "smithy.api#documentation": "Uploads the results of local Code Compliance analysis and generates a scan of privacy issues. Returns a google.longrunning.Operation containing analysis and findings."
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsReposScansRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the repo. Example: `accounts/123/repos/456`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An [AIP-160](https://google.aip.dev/160) filter string to filter repo scans. Example: `scmMetadata.branch = main`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of repo scans to return. If unspecified, at most 10 repo scans will be returned. The maximum value is 50; values above 50 will be coerced to 50.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token received from a previous `ListRepoScans` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepoScans` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#ListAccountsReposScans": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#ListAccountsReposScansRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaListRepoScansResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+parent}/scans"
+        },
+        "smithy.api#documentation": "Lists repo scans for the specified repo.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsReposScansRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the repo scan. Example: `accounts/123/repos/456/scans/789`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsReposScans": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#GetAccountsReposScansRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksRepoScanV1alphaRepoScan"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Gets a repo scan. By default, only the name and results_uri fields are returned. You can include other fields by listing them in the `fields` URL query parameter. For example, `?fields=name,sources` will return the name and sources fields."
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsReposOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#GetAccountsReposOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#GetAccountsReposOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.checks_v1alpha#ClassifyContentAisafetyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#ClassifyContentAisafety": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#ClassifyContentAisafetyRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#GoogleChecksAisafetyV1alphaClassifyContentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/aisafety:classifyContent"
+        },
+        "smithy.api#documentation": "Analyze a piece of content with the provided set of policies."
+      }
+    },
+    "com.gcp.checks_v1alpha#UploadMediaRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the app. Example: `accounts/123/apps/456`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.checks_v1alpha#GoogleChecksReportV1alphaAnalyzeUploadRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.checks_v1alpha#UploadMedia": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.checks_v1alpha#UploadMediaRequest"
+      },
+      "output": {
+        "target": "com.gcp.checks_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.checks_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.checks_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+parent}/reports:analyzeUpload"
+        },
+        "smithy.api#documentation": "Analyzes the uploaded app bundle and returns a google.longrunning.Operation containing the generated Report. ## Example (upload only) Send a regular POST request with the header `X-Goog-Upload-Protocol: raw`. ``` POST https://checks.googleapis.com/upload/v1alpha/{parent=accounts/*/apps/*}/reports:analyzeUpload HTTP/1.1 X-Goog-Upload-Protocol: raw Content-Length: Content-Type: application/octet-stream ``` ## Example (upload with metadata) Send a multipart POST request where the first body part contains the metadata JSON and the second body part contains the binary upload. Include the header `X-Goog-Upload-Protocol: multipart`. ``` POST https://checks.googleapis.com/upload/v1alpha/{parent=accounts/*/apps/*}/reports:analyzeUpload HTTP/1.1 X-Goog-Upload-Protocol: multipart Content-Length: ? Content-Type: multipart/related; boundary=BOUNDARY --BOUNDARY Content-Type: application/json {\"code_reference_id\":\"db5bcc20f94055fb5bc08cbb9b0e7a5530308786\"} --BOUNDARY --BOUNDARY-- ``` *Note:* Metadata-only requests are not supported. "
+      }
+    }
+  }
+}

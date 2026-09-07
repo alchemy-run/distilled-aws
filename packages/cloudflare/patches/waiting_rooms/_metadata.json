@@ -1,0 +1,46 @@
+{
+  "description": "Key dictionary / op aliases for waiting_rooms (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "additionalRoutes": "additional_routes",
+        "cookieAttributes": "cookie_attributes",
+        "cookieSuffix": "cookie_suffix",
+        "createdOn": "created_on",
+        "customHtml": "custom_html",
+        "customPageHtml": "custom_page_html",
+        "defaultTemplateLanguage": "default_template_language",
+        "disableSessionRenewal": "disable_session_renewal",
+        "enabledOriginCommands": "enabled_origin_commands",
+        "estimatedQueuedUsers": "estimated_queued_users",
+        "estimatedTotalActiveUsers": "estimated_total_active_users",
+        "eventEndTime": "event_end_time",
+        "eventId": "event_id",
+        "eventStartTime": "event_start_time",
+        "jsonResponseEnabled": "json_response_enabled",
+        "lastUpdated": "last_updated",
+        "maxEstimatedTimeMinutes": "max_estimated_time_minutes",
+        "modifiedOn": "modified_on",
+        "newUsersPerMinute": "new_users_per_minute",
+        "nextEventPrequeueStartTime": "next_event_prequeue_start_time",
+        "nextEventStartTime": "next_event_start_time",
+        "perPage": "per_page",
+        "prequeueStartTime": "prequeue_start_time",
+        "previewUrl": "preview_url",
+        "queueAll": "queue_all",
+        "queueingMethod": "queueing_method",
+        "queueingStatusCode": "queueing_status_code",
+        "resultInfo": "result_info",
+        "searchEngineCrawlerBypass": "search_engine_crawler_bypass",
+        "sessionDuration": "session_duration",
+        "shuffleAtEventStart": "shuffle_at_event_start",
+        "totalActiveUsers": "total_active_users",
+        "totalCount": "total_count",
+        "turnstileAction": "turnstile_action",
+        "turnstileMode": "turnstile_mode"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummaryMalicious with distilled cloudflare/radar maliciousEmailSecuritySummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryMalicious",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecuritySummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryMaliciousRequest",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecuritySummary/input/target",
+      "value": "com.cloudflare.radar#MaliciousEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryMaliciousResponse",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecuritySummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecuritySummary/output/target",
+      "value": "com.cloudflare.radar#MaliciousEmailSecuritySummaryResponse"
+    }
+  ]
+}

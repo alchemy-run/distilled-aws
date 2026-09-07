@@ -1,0 +1,21 @@
+{
+  "operations": {
+    "deleteIdNamespace": {
+      "errors": ["ConflictException"]
+    }
+  },
+  "structures": {
+    "CreateSchemaMappingOutput": {
+      "members": {
+        "description": { "optional": true }
+      }
+    },
+    "BatchDeleteUniqueIdOutput": {
+      "members": {
+        "errors": { "optional": true },
+        "deleted": { "optional": true },
+        "disconnectedUniqueIds": { "optional": true }
+      }
+    }
+  }
+}

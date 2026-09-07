@@ -1,0 +1,39 @@
+{
+  "description": "Align content_scanning#Get with distilled cloudflare/content-scanning getContentScanning",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#Get",
+      "path": "/shapes/com.cloudflare.content_scanning#GetContentScanning"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#GetRequest",
+      "path": "/shapes/com.cloudflare.content_scanning#GetContentScanningRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.content_scanning#GetContentScanning/input/target",
+      "value": "com.cloudflare.content_scanning#GetContentScanningRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#GetResponse",
+      "path": "/shapes/com.cloudflare.content_scanning#GetContentScanningResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.content_scanning#GetContentScanning/output/target",
+      "value": "com.cloudflare.content_scanning#GetContentScanningResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.content_scanning#GetContentScanning/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    }
+  ]
+}

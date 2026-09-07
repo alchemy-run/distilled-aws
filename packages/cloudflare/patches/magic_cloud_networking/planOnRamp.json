@@ -1,0 +1,20 @@
+{
+  "description": "Align magic_cloud_networking#OnRampsPlan with distilled cloudflare/magic-cloud-networking planOnRamp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsPlan",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PlanOnRamp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsPlanRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PlanOnRampRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PlanOnRamp/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#PlanOnRampRequest"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecurityTimeseriesGroupsV2 with distilled cloudflare/radar timeseriesGroupsV2EmailSecurity",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsV2",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsV2EmailSecurity"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsV2Request",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsV2EmailSecurityRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsV2EmailSecurity/input/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsV2EmailSecurityRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsV2Response",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsV2EmailSecurityResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsV2EmailSecurity/output/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsV2EmailSecurityResponse"
+    }
+  ]
+}

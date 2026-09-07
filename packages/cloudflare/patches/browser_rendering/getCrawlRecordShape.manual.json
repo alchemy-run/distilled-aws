@@ -1,0 +1,14 @@
+{
+  "description": "Docs bugs in getCrawl's response, both observed on the wire (reported in #331 by @k3dom, who had been running them as a `pnpm patch` in production). 1) `records[].metadata` is documented as required, but Cloudflare omits it for any record that hasn't completed — `queued`, `skipped`, `cancelled` — so polling a crawl that is still running fails to decode until every record finishes. 2) The response `cursor` is documented as a string but is returned as a number: the next record index for pagination, absent on the last page. (The REQUEST cursor is already correctly typed as a number upstream.)",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.browser_rendering#CrawlGetResponseRecordsItem/members/metadata/traits/smithy.api#required"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetCrawlResponse/members/cursor/target",
+      "value": "smithy.api#Integer"
+    }
+  ]
+}

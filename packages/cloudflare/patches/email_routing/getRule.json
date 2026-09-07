@@ -1,0 +1,42 @@
+{
+  "description": "Align email_routing#RulesGet with distilled cloudflare/email-routing getRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesGet",
+      "path": "/shapes/com.cloudflare.email_routing#GetRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesGetRequest",
+      "path": "/shapes/com.cloudflare.email_routing#GetRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#GetRule/input/target",
+      "value": "com.cloudflare.email_routing#GetRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesGetResponse",
+      "path": "/shapes/com.cloudflare.email_routing#GetRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#GetRule/output/target",
+      "value": "com.cloudflare.email_routing#GetRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#GetRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EmailRoutingRuleNotFound"
+        }
+      ]
+    }
+  ]
+}

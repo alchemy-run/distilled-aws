@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#ScriptsSubdomainGet with distilled cloudflare/workers getScriptSubdomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSubdomainGet",
+      "path": "/shapes/com.cloudflare.workers#GetScriptSubdomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSubdomainGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetScriptSubdomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetScriptSubdomain/input/target",
+      "value": "com.cloudflare.workers#GetScriptSubdomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSubdomainGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetScriptSubdomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetScriptSubdomain/output/target",
+      "value": "com.cloudflare.workers#GetScriptSubdomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetScriptSubdomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

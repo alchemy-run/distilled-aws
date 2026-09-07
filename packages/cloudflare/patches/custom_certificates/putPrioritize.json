@@ -1,0 +1,50 @@
+{
+  "description": "Align custom_certificates#PrioritizeUpdate with distilled cloudflare/custom-certificates putPrioritize",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#PrioritizeUpdate",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritize"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#PrioritizeUpdateRequest",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritizeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritize/input/target",
+      "value": "com.cloudflare.custom_certificates#PutPrioritizeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#PrioritizeUpdateResponse",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritizeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritize/output/target",
+      "value": "com.cloudflare.custom_certificates#PutPrioritizeResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritize/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_certificates#PutPrioritize/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_certificates#PlanLevelNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.custom_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

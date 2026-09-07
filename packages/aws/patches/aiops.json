@@ -1,0 +1,13 @@
+{
+  "operations": {
+    "getInvestigationGroup": { "errors": ["UnauthorizedException"] },
+    "updateInvestigationGroup": { "errors": ["UnauthorizedException"] },
+    "deleteInvestigationGroup": { "errors": ["UnauthorizedException"] },
+    "getInvestigationGroupPolicy": { "errors": ["UnauthorizedException"] },
+    "putInvestigationGroupPolicy": { "errors": ["UnauthorizedException"] },
+    "deleteInvestigationGroupPolicy": { "errors": ["UnauthorizedException"] }
+  },
+  "errorCategories": {
+    "UnauthorizedException": ["AuthError"]
+  }
+}

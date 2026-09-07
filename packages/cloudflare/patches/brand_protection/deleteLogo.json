@@ -1,0 +1,20 @@
+{
+  "description": "Align brand_protection#LogosDelete with distilled cloudflare/brand-protection deleteLogo",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogosDelete",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteLogo"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogosDeleteRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteLogoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteLogo/input/target",
+      "value": "com.cloudflare.brand_protection#DeleteLogoRequest"
+    }
+  ]
+}

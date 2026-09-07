@@ -1,0 +1,42 @@
+{
+  "description": "Align load_balancers#MonitorGroupsGet with distilled cloudflare/load-balancers getMonitorGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsGet",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsGetRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorGroup/input/target",
+      "value": "com.cloudflare.load_balancers#GetMonitorGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsGetResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorGroup/output/target",
+      "value": "com.cloudflare.load_balancers#GetMonitorGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#MonitorGroupNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

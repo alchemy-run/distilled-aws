@@ -1,0 +1,42 @@
+{
+  "description": "Align queues#SubscriptionsDelete with distilled cloudflare/queues deleteSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsDelete",
+      "path": "/shapes/com.cloudflare.queues#DeleteSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsDeleteRequest",
+      "path": "/shapes/com.cloudflare.queues#DeleteSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#DeleteSubscription/input/target",
+      "value": "com.cloudflare.queues#DeleteSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsDeleteResponse",
+      "path": "/shapes/com.cloudflare.queues#DeleteSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#DeleteSubscription/output/target",
+      "value": "com.cloudflare.queues#DeleteSubscriptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#DeleteSubscription/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#UnrecognizedEventType"
+        },
+        {
+          "target": "com.cloudflare.queues#SubscriptionNotFound"
+        }
+      ]
+    }
+  ]
+}

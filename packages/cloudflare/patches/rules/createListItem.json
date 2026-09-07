@@ -1,0 +1,30 @@
+{
+  "description": "Align rules#ListsItemsCreate with distilled cloudflare/rules createListItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsItemsCreate",
+      "path": "/shapes/com.cloudflare.rules#CreateListItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsItemsCreateRequest",
+      "path": "/shapes/com.cloudflare.rules#CreateListItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#CreateListItem/input/target",
+      "value": "com.cloudflare.rules#CreateListItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsItemsCreateResponse",
+      "path": "/shapes/com.cloudflare.rules#CreateListItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#CreateListItem/output/target",
+      "value": "com.cloudflare.rules#CreateListItemResponse"
+    }
+  ]
+}

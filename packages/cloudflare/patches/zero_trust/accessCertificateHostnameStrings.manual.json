@@ -1,0 +1,65 @@
+{
+  "description": "Docs gap: Access certificate `associated_hostnames` arrays omit the item schema, so the lists decode as unknown[] — each item is a hostname string on the wire (v0 typed string[]). Retype every request/response list item to string.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForAccountRequestAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForAccountResponseAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForZoneRequestAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForZoneResponseAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesGetForAccountResponseAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesGetForZoneResponseAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesListForAccountResultItemAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesListForZoneResultItemAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForAccountRequestAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForAccountResponseAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForZoneRequestAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForZoneResponseAssociatedHostnamesList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

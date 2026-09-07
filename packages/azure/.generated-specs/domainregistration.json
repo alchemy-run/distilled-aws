@@ -1,0 +1,3314 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.domainregistration#DomainsTransferOut": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsTransferOutRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsTransferOutResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/transferOut",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Transfer out domain to another registrar\n\nTransfer out domain to another registrar",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsTransferOutResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainregistration#DomainsTransferOutResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainProperties": {
+      "type": "structure",
+      "members": {
+        "contactAdmin": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Administrative contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactBilling": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Billing contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactRegistrant": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Registrant contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactTech": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Technical contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "registrationStatus": {
+          "target": "com.azure.domainregistration#DomainStatus",
+          "traits": {
+            "smithy.api#documentation": "Domain registration status."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.domainregistration#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Domain provisioning state."
+          }
+        },
+        "nameServers": {
+          "target": "com.azure.domainregistration#DomainPropertiesNameServersList",
+          "traits": {
+            "smithy.api#documentation": "Name servers."
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>."
+          }
+        },
+        "createdTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain creation timestamp."
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain expiration timestamp."
+          }
+        },
+        "lastRenewedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the domain was renewed last time."
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>."
+          }
+        },
+        "readyForDnsRecordManagement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if Azure can assign this domain to App Service apps; otherwise, <code>false</code>. This value will be <code>true</code> if domain registration status is active and \\n it is hosted on name servers Azure has programmatic access to."
+          }
+        },
+        "managedHostNames": {
+          "target": "com.azure.domainregistration#DomainPropertiesManagedHostNamesList",
+          "traits": {
+            "smithy.api#documentation": "All hostnames derived from the domain and assigned to Azure resources."
+          }
+        },
+        "consent": {
+          "target": "com.azure.domainregistration#DomainPurchaseConsent",
+          "traits": {
+            "smithy.api#documentation": "Legal agreement consent.",
+            "smithy.api#required": {}
+          }
+        },
+        "domainNotRenewableReasons": {
+          "target": "com.azure.domainregistration#DomainPropertiesDomainNotRenewableReasonsList",
+          "traits": {
+            "smithy.api#documentation": "Reasons why domain is not renewable."
+          }
+        },
+        "dnsType": {
+          "target": "com.azure.domainregistration#DnsType",
+          "traits": {
+            "smithy.api#documentation": "Current DNS type"
+          }
+        },
+        "dnsZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure DNS Zone to use"
+          }
+        },
+        "targetDnsType": {
+          "target": "com.azure.domainregistration#DnsType",
+          "traits": {
+            "smithy.api#documentation": "Target DNS type (would be used for migration)"
+          }
+        },
+        "authCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Authorization code for the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain resource specific properties"
+      }
+    },
+    "com.azure.domainregistration#DnsType": {
+      "type": "enum",
+      "members": {
+        "AZUREDNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureDns"
+          }
+        },
+        "DEFAULTDOMAINREGISTRARDNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DefaultDomainRegistrarDns"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current DNS type"
+      }
+    },
+    "com.azure.domainregistration#DomainPropertiesDomainNotRenewableReasonsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#ResourceNotRenewableReason"
+      },
+      "traits": {
+        "smithy.api#documentation": "Reasons why domain is not renewable."
+      }
+    },
+    "com.azure.domainregistration#ResourceNotRenewableReason": {
+      "type": "enum",
+      "members": {
+        "REGISTRATIONSTATUSNOTSUPPORTEDFORRENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RegistrationStatusNotSupportedForRenewal"
+          }
+        },
+        "EXPIRATIONNOTINRENEWALTIMERANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ExpirationNotInRenewalTimeRange"
+          }
+        },
+        "SUBSCRIPTIONNOTACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SubscriptionNotActive"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reasons why domain is not renewable."
+      }
+    },
+    "com.azure.domainregistration#DomainPurchaseConsent": {
+      "type": "structure",
+      "members": {
+        "agreementKeys": {
+          "target": "com.azure.domainregistration#DomainPurchaseConsentAgreementKeysList",
+          "traits": {
+            "smithy.api#documentation": "List of applicable legal agreement keys. This list can be retrieved using ListLegalAgreements API under <code>TopLevelDomain</code> resource."
+          }
+        },
+        "agreedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client IP address."
+          }
+        },
+        "agreedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the agreements were accepted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain purchase consent object, representing acceptance of applicable legal agreements."
+      }
+    },
+    "com.azure.domainregistration#DomainPurchaseConsentAgreementKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of applicable legal agreement keys. This list can be retrieved using ListLegalAgreements API under <code>TopLevelDomain</code> resource."
+      }
+    },
+    "com.azure.domainregistration#DomainPropertiesManagedHostNamesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#HostName"
+      },
+      "traits": {
+        "smithy.api#documentation": "All hostnames derived from the domain and assigned to Azure resources."
+      }
+    },
+    "com.azure.domainregistration#HostName": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the hostname."
+          }
+        },
+        "siteNames": {
+          "target": "com.azure.domainregistration#HostNameSiteNamesList",
+          "traits": {
+            "smithy.api#documentation": "List of apps the hostname is assigned to. This list will have more than one app only if the hostname is pointing to a Traffic Manager."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Azure resource the hostname is assigned to. If it is assigned to a Traffic Manager then it will be the Traffic Manager name otherwise it will be the app name."
+          }
+        },
+        "azureResourceType": {
+          "target": "com.azure.domainregistration#AzureResourceType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Azure resource the hostname is assigned to."
+          }
+        },
+        "customHostNameDnsRecordType": {
+          "target": "com.azure.domainregistration#CustomHostNameDnsRecordType",
+          "traits": {
+            "smithy.api#documentation": "Type of the DNS record."
+          }
+        },
+        "hostNameType": {
+          "target": "com.azure.domainregistration#HostNameType",
+          "traits": {
+            "smithy.api#documentation": "Type of the hostname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a hostname derived from a domain."
+      }
+    },
+    "com.azure.domainregistration#HostNameType": {
+      "type": "enum",
+      "members": {
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Verified"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the hostname."
+      }
+    },
+    "com.azure.domainregistration#CustomHostNameDnsRecordType": {
+      "type": "enum",
+      "members": {
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CName"
+          }
+        },
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the DNS record."
+      }
+    },
+    "com.azure.domainregistration#AzureResourceType": {
+      "type": "enum",
+      "members": {
+        "WEBSITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Website"
+          }
+        },
+        "TRAFFICMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TrafficManager"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Azure resource the hostname is assigned to."
+      }
+    },
+    "com.azure.domainregistration#HostNameSiteNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of apps the hostname is assigned to. This list will have more than one app only if the hostname is pointing to a Traffic Manager."
+      }
+    },
+    "com.azure.domainregistration#DomainPropertiesNameServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Name servers."
+      }
+    },
+    "com.azure.domainregistration#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain provisioning state."
+      }
+    },
+    "com.azure.domainregistration#DomainStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "AWAITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Awaiting"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "CONFISCATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Confiscated"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "EXCLUDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Excluded"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "HELD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Held"
+          }
+        },
+        "LOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Locked"
+          }
+        },
+        "PARKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Parked"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "RESERVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reserved"
+          }
+        },
+        "REVERTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reverted"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "TRANSFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Transferred"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unlocked"
+          }
+        },
+        "UNPARKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unparked"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updated"
+          }
+        },
+        "JSONCONVERTERFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JsonConverterFailed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain registration status."
+      }
+    },
+    "com.azure.domainregistration#Contact": {
+      "type": "structure",
+      "members": {
+        "addressMailing": {
+          "target": "com.azure.domainregistration#Address",
+          "traits": {
+            "smithy.api#documentation": "Mailing address."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address.",
+            "smithy.api#required": {}
+          }
+        },
+        "fax": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fax number."
+          }
+        },
+        "jobTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Job title."
+          }
+        },
+        "nameFirst": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First name.",
+            "smithy.api#required": {}
+          }
+        },
+        "nameLast": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last name.",
+            "smithy.api#required": {}
+          }
+        },
+        "nameMiddle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Middle name."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization contact belongs to."
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contact information for domain registration. If 'Domain Privacy' option is not selected then the contact information is made publicly available through the Whois\ndirectories as per ICANN requirements."
+      }
+    },
+    "com.azure.domainregistration#Address": {
+      "type": "structure",
+      "members": {
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First line of an Address.",
+            "smithy.api#required": {}
+          }
+        },
+        "address2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the Address. Optional."
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city for the address.",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country for the address.",
+            "smithy.api#required": {}
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code for the address.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state or province for the address.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Address information for domain registration."
+      }
+    },
+    "com.azure.domainregistration#DomainsTransferOutResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.domainregistration#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainregistration#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainregistration#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainregistration#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainregistration#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainregistration#DomainsTransferOutRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsRenew": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsRenewRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/renew",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Renew a domain.\n\nDescription for Renew a domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsRenewRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsDeleteOwnershipIdentifier": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsDeleteOwnershipIdentifierRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Delete ownership identifier for domain\n\nDescription for Delete ownership identifier for domain",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsDeleteOwnershipIdentifierRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdateOwnershipIdentifier": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsUpdateOwnershipIdentifierRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsUpdateOwnershipIdentifierResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Creates an ownership identifier for a domain or updates identifier details for an existing identifier\n\nDescription for Creates an ownership identifier for a domain or updates identifier details for an existing identifier",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdateOwnershipIdentifierResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierProperties",
+          "traits": {
+            "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainOwnershipIdentifierProperties": {
+      "type": "structure",
+      "members": {
+        "ownershipId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ownership Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdateOwnershipIdentifierRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of identifier."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierProperties",
+          "traits": {
+            "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifier": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifierRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifierResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Creates an ownership identifier for a domain or updates identifier details for an existing identifier\n\nDescription for Creates an ownership identifier for a domain or updates identifier details for an existing identifier",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifierResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierProperties",
+          "traits": {
+            "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifierRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of identifier."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierProperties",
+          "traits": {
+            "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsGetOwnershipIdentifier": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsGetOwnershipIdentifierRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsGetOwnershipIdentifierResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get ownership identifier for domain\n\nDescription for Get ownership identifier for domain",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsGetOwnershipIdentifierResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierProperties",
+          "traits": {
+            "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsGetOwnershipIdentifierRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsListOwnershipIdentifiers": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsListOwnershipIdentifiersRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainOwnershipIdentifierCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Lists domain ownership identifiers.\n\nDescription for Lists domain ownership identifiers.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainOwnershipIdentifierCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The DomainOwnershipIdentifier items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of domain ownership identifiers."
+      }
+    },
+    "com.azure.domainregistration#DomainOwnershipIdentifierCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#DomainOwnershipIdentifier"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DomainOwnershipIdentifier items on this page"
+      }
+    },
+    "com.azure.domainregistration#DomainOwnershipIdentifier": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainOwnershipIdentifierProperties",
+          "traits": {
+            "smithy.api#documentation": "DomainOwnershipIdentifier resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain ownership Identifier."
+      }
+    },
+    "com.azure.domainregistration#DomainsListOwnershipIdentifiersRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Delete a domain.\n\nDescription for Delete a domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "forceHardDeleteDomain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "forceHardDeleteDomain",
+            "smithy.api#documentation": "Specify <code>true</code> to delete the domain immediately. The default is <code>false</code> which deletes the domain after 24 hours."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Creates or updates a domain.\n\nDescription for Creates or updates a domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainregistration#DomainsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.domainregistration#DomainsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainPatchResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "DomainPatchResource resource specific properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainPatchResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "contactAdmin": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Administrative contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactBilling": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Billing contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactRegistrant": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Registrant contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactTech": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Technical contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>."
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>."
+          }
+        },
+        "consent": {
+          "target": "com.azure.domainregistration#DomainPurchaseConsent",
+          "traits": {
+            "smithy.api#documentation": "Legal agreement consent.",
+            "smithy.api#required": {}
+          }
+        },
+        "dnsType": {
+          "target": "com.azure.domainregistration#DnsType",
+          "traits": {
+            "smithy.api#documentation": "Current DNS type"
+          }
+        },
+        "dnsZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure DNS Zone to use"
+          }
+        },
+        "targetDnsType": {
+          "target": "com.azure.domainregistration#DnsType",
+          "traits": {
+            "smithy.api#documentation": "Target DNS type (would be used for migration)"
+          }
+        },
+        "authCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Authorization code for the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DomainPatchResource resource specific properties"
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Creates or updates a domain.\n\nDescription for Creates or updates a domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Domain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "contactAdmin": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Administrative contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactBilling": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Billing contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactRegistrant": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Registrant contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "contactTech": {
+          "target": "com.azure.domainregistration#Contact",
+          "traits": {
+            "smithy.api#documentation": "Technical contact.",
+            "smithy.api#required": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if domain privacy is enabled for this domain; otherwise, <code>false</code>."
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if the domain should be automatically renewed; otherwise, <code>false</code>."
+          }
+        },
+        "consent": {
+          "target": "com.azure.domainregistration#DomainPurchaseConsent",
+          "traits": {
+            "smithy.api#documentation": "Legal agreement consent.",
+            "smithy.api#required": {}
+          }
+        },
+        "dnsType": {
+          "target": "com.azure.domainregistration#DnsType",
+          "traits": {
+            "smithy.api#documentation": "Current DNS type"
+          }
+        },
+        "dnsZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure DNS Zone to use"
+          }
+        },
+        "targetDnsType": {
+          "target": "com.azure.domainregistration#DnsType",
+          "traits": {
+            "smithy.api#documentation": "Target DNS type (would be used for migration)"
+          }
+        },
+        "authCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Authorization code for the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain resource specific properties"
+      }
+    },
+    "com.azure.domainregistration#DomainsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.domainregistration#DomainsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get a domain.\n\nDescription for Get a domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainregistration#DomainsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.domainregistration#DomainsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get all domains in a resource group.\n\nDescription for Get all domains in a resource group.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainregistration#DomainCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The Domain items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of domains."
+      }
+    },
+    "com.azure.domainregistration#DomainCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#Domain"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Domain items on this page"
+      }
+    },
+    "com.azure.domainregistration#Domain": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainregistration#DomainTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#DomainProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a domain."
+      }
+    },
+    "com.azure.domainregistration#DomainTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.domainregistration#DomainsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsListAgreements": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#TopLevelDomainsListAgreementsRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#TldLegalAgreementCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains/{name}/listAgreements",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Gets all legal agreements that user needs to accept before purchasing a domain.\n\nDescription for Gets all legal agreements that user needs to accept before purchasing a domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#TldLegalAgreementCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainregistration#TldLegalAgreementCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The TldLegalAgreement items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of TldLegalAgreement items"
+      }
+    },
+    "com.azure.domainregistration#TldLegalAgreementCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#TldLegalAgreement"
+      },
+      "traits": {
+        "smithy.api#documentation": "The TldLegalAgreement items on this page"
+      }
+    },
+    "com.azure.domainregistration#TldLegalAgreement": {
+      "type": "structure",
+      "members": {
+        "agreementKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the agreement.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Agreement title.",
+            "smithy.api#required": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Agreement details.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL where a copy of the agreement details is hosted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Legal agreement for a top level domain."
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsListAgreementsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the top-level domain."
+          }
+        },
+        "includePrivacy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If <code>true</code>, then the list of agreements will include agreements for domain privacy as well; otherwise, <code>false</code>."
+          }
+        },
+        "forTransfer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If <code>true</code>, then the list of agreements will include agreements for domain transfer as well; otherwise, <code>false</code>."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#TopLevelDomainsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#TopLevelDomainsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains/{name}",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get details of a top-level domain.\n\nDescription for Get details of a top-level domain.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#TopLevelDomainProperties",
+          "traits": {
+            "smithy.api#documentation": "TopLevelDomain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainProperties": {
+      "type": "structure",
+      "members": {
+        "privacy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If <code>true</code>, then the top level domain supports domain privacy; otherwise, <code>false</code>."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TopLevelDomain resource specific properties"
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the top-level domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#TopLevelDomainsListRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#TopLevelDomainCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get all top-level domains supported for registration.\n\nDescription for Get all top-level domains supported for registration.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainregistration#TopLevelDomainCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The TopLevelDomain items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of Top-level domains."
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#TopLevelDomain"
+      },
+      "traits": {
+        "smithy.api#documentation": "The TopLevelDomain items on this page"
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomain": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainregistration#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#TopLevelDomainProperties",
+          "traits": {
+            "smithy.api#documentation": "TopLevelDomain resource specific properties"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A top level domain object."
+      }
+    },
+    "com.azure.domainregistration#TopLevelDomainsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsListRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsListRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#NameIdentifierCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/listDomainRecommendations",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get domain name recommendations based on keywords.\n\nDescription for Get domain name recommendations based on keywords.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#NameIdentifierCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainregistration#NameIdentifierCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The NameIdentifier items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of NameIdentifier items"
+      }
+    },
+    "com.azure.domainregistration#NameIdentifierCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#NameIdentifier"
+      },
+      "traits": {
+        "smithy.api#documentation": "The NameIdentifier items on this page"
+      }
+    },
+    "com.azure.domainregistration#NameIdentifier": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies an object."
+      }
+    },
+    "com.azure.domainregistration#DomainsListRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "keywords": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Keywords to be used for generating domain recommendations."
+          }
+        },
+        "maxDomainRecommendations": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of recommendations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsGetControlCenterSsoRequest": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsGetControlCenterSsoRequestRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainControlCenterSsoRequest"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/generateSsoRequest",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Generate a single sign-on request for the domain management portal.\n\nDescription for Generate a single sign-on request for the domain management portal.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainControlCenterSsoRequest": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL where the single sign-on request is to be made."
+          }
+        },
+        "postParameterKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Post parameter key."
+          }
+        },
+        "postParameterValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Post parameter value. Client should use 'application/x-www-form-urlencoded' encoding for this value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Single sign-on request information for domain management."
+      }
+    },
+    "com.azure.domainregistration#DomainsGetControlCenterSsoRequestRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsListRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/domains",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Get all domains in a subscription.\n\nDescription for Get all domains in a subscription.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainsCheckAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainregistration#DomainsCheckAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#DomainAvailabilityCheckResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/checkDomainAvailability",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Check if a domain is available for registration.\n\nDescription for Check if a domain is available for registration.",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#DomainAvailabilityCheckResult": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the domain."
+          }
+        },
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "<code>true</code> if domain can be purchased using CreateDomain API; otherwise, <code>false</code>."
+          }
+        },
+        "domainType": {
+          "target": "com.azure.domainregistration#DomainType",
+          "traits": {
+            "smithy.api#documentation": "Valid values are Regular domain: Azure will charge the full price of domain registration, SoftDeleted: Purchasing this domain will simply restore it and this operation will not cost anything."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain availability check result."
+      }
+    },
+    "com.azure.domainregistration#DomainType": {
+      "type": "enum",
+      "members": {
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Regular"
+          }
+        },
+        "SOFTDELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SoftDeleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Valid values are Regular domain: Azure will charge the full price of domain registration, SoftDeleted: Purchasing this domain will simply restore it and this operation will not cost anything."
+      }
+    },
+    "com.azure.domainregistration#DomainsCheckAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainregistration#DomainRegistrationProviderListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.domainregistration#CsmOperationCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DomainRegistration/operations",
+          "code": 200,
+          "apiVersion": "2024-11-01"
+        },
+        "smithy.api#documentation": "Implements Csm operations Api to exposes the list of available Csm Apis under the resource provider\n\nDescription for Implements Csm operations Api to exposes the list of available Csm Apis under the resource provider",
+        "com.distilled.openapi#apiVersion": "2024-11-01"
+      }
+    },
+    "com.azure.domainregistration#CsmOperationCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainregistration#CsmOperationCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to next page of resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of Azure resource manager operation metadata."
+      }
+    },
+    "com.azure.domainregistration#CsmOperationCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#CsmOperationDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of resources."
+      }
+    },
+    "com.azure.domainregistration#CsmOperationDescription": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name, e.g. Microsoft.Web/sites/write."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Operation display name."
+          }
+        },
+        "display": {
+          "target": "com.azure.domainregistration#CsmOperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Meta data about operation used for display in portal."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation, e.g. \"system\" or \"user\"."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainregistration#CsmOperationDescriptionProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties available for a Microsoft.Web resource provider operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Description of an operation available for Microsoft.Web resource provider."
+      }
+    },
+    "com.azure.domainregistration#CsmOperationDescriptionProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.domainregistration#ServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "Resource metrics service provided by Microsoft.Insights resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties available for a Microsoft.Web resource provider operation."
+      }
+    },
+    "com.azure.domainregistration#ServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.domainregistration#ServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Resource metrics service name."
+          }
+        },
+        "logSpecifications": {
+          "target": "com.azure.domainregistration#ServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Resource logs service provided by Microsoft.Insights resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource metrics service provided by Microsoft.Insights resource provider."
+      }
+    },
+    "com.azure.domainregistration#ServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#LogSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource logs service provided by Microsoft.Insights resource provider."
+      }
+    },
+    "com.azure.domainregistration#LogSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the log."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the log."
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Blob duration of the log."
+          }
+        },
+        "logFilterPattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log filtered pattern of the log."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log Definition of a single resource metric."
+      }
+    },
+    "com.azure.domainregistration#ServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#MetricSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource metrics service name."
+      }
+    },
+    "com.azure.domainregistration#MetricSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource metric."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the resource metric."
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the resource metric."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource metric unit."
+          }
+        },
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource metric aggregation type."
+          }
+        },
+        "supportsInstanceLevelAggregation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Resource metric supported aggregation types."
+          }
+        },
+        "enableRegionalMdmAccount": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Resource metric supported time grain types."
+          }
+        },
+        "sourceMdmAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource metric source MDM account."
+          }
+        },
+        "sourceMdmNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource metric source MDM namespace."
+          }
+        },
+        "metricFilterPattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource metric filter pattern."
+          }
+        },
+        "fillGapWithZero": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Resource metric fill gap with zero."
+          }
+        },
+        "isInternal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Resource metric is internal."
+          }
+        },
+        "dimensions": {
+          "target": "com.azure.domainregistration#MetricSpecificationDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Resource metric dimensions."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource metric category."
+          }
+        },
+        "availabilities": {
+          "target": "com.azure.domainregistration#MetricSpecificationAvailabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "Resource metric availability."
+          }
+        },
+        "supportedTimeGrainTypes": {
+          "target": "com.azure.domainregistration#MetricSpecificationSupportedTimeGrainTypesList",
+          "traits": {
+            "smithy.api#documentation": "Resource metric supported time grain types."
+          }
+        },
+        "supportedAggregationTypes": {
+          "target": "com.azure.domainregistration#MetricSpecificationSupportedAggregationTypesList",
+          "traits": {
+            "smithy.api#documentation": "Resource metric supported aggregation types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of a single resource metric."
+      }
+    },
+    "com.azure.domainregistration#MetricSpecificationSupportedAggregationTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource metric supported aggregation types."
+      }
+    },
+    "com.azure.domainregistration#MetricSpecificationSupportedTimeGrainTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource metric supported time grain types."
+      }
+    },
+    "com.azure.domainregistration#MetricSpecificationAvailabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#MetricAvailability"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource metric availability."
+      }
+    },
+    "com.azure.domainregistration#MetricAvailability": {
+      "type": "structure",
+      "members": {
+        "timeGrain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric availability time grain."
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric availability blob duration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Retention policy of a resource metric."
+      }
+    },
+    "com.azure.domainregistration#MetricSpecificationDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainregistration#Dimension"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource metric dimensions."
+      }
+    },
+    "com.azure.domainregistration#Dimension": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the dimension."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the dimension."
+          }
+        },
+        "internalName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dimension of the internal name."
+          }
+        },
+        "toBeExportedForShoebox": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Dimension to be exported for shoebox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dimension of a resource metric. For e.g. instance specific HTTP requests for a web app,\nwhere instance name is dimension of the metric HTTP request"
+      }
+    },
+    "com.azure.domainregistration#CsmOperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation description."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Meta data about operation used for display in portal."
+      }
+    },
+    "com.azure.domainregistration#Domainregistration": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.domainregistration#DomainsTransferOut"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsRenew"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsDeleteOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsUpdateOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsGetOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsListOwnershipIdentifiers"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsDelete"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsUpdate"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsGet"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.domainregistration#TopLevelDomainsListAgreements"
+        },
+        {
+          "target": "com.azure.domainregistration#TopLevelDomainsGet"
+        },
+        {
+          "target": "com.azure.domainregistration#TopLevelDomainsList"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsListRecommendations"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsGetControlCenterSsoRequest"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsList"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsCheckAvailability"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainRegistrationProviderListOperations"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Domainregistration",
+        "smithy.api#documentation": "Azure Domainregistration API — merged from the domainregistration resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

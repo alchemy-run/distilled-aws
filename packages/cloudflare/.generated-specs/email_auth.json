@@ -1,0 +1,1279 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.email_auth#DmarcReportsEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable DMARC reports for this zone"
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip the DMARC setup wizard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesItemIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesItem": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use created_at"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source domain"
+          }
+        },
+        "ips": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesItemIpsList",
+          "traits": {
+            "smithy.api#documentation": "Resolved IP addresses from SPF"
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use modified_at"
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification timestamp"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source name (typically same as domain)"
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL-friendly identifier"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source UUID"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsBimiRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsBimiRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsBimiRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDkimRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDkimRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDkimRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDmarcRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDmarcRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDmarcRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameSpfRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameSpfRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameSpfRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDkimRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDkimRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDkimRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDmarcRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDmarcRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDmarcRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsSpfRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsSpfRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsSpfRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseRecords": {
+      "type": "structure",
+      "members": {
+        "bimi_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsBimiRecordsList",
+          "traits": {
+            "smithy.api#documentation": "BIMI TXT records"
+          }
+        },
+        "cname_dkim_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDkimRecordsList",
+          "traits": {
+            "smithy.api#documentation": "CNAME records for DKIM"
+          }
+        },
+        "cname_dmarc_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameDmarcRecordsList",
+          "traits": {
+            "smithy.api#documentation": "CNAME records at _dmarc (problematic)"
+          }
+        },
+        "cname_spf_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsCnameSpfRecordsList",
+          "traits": {
+            "smithy.api#documentation": "CNAME records for SPF"
+          }
+        },
+        "dkim_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDkimRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DKIM TXT records"
+          }
+        },
+        "dmarc_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsDmarcRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DMARC TXT records"
+          }
+        },
+        "spf_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecordsSpfRecordsList",
+          "traits": {
+            "smithy.api#documentation": "SPF TXT records"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponseStatus": {
+      "type": "enum",
+      "members": {
+        "MISSING_DMARC_REPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "missing-dmarc-report"
+          }
+        },
+        "MULTIPLE_DMARC_REPORTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multiple-dmarc-reports"
+          }
+        },
+        "MISSING_DMARC_RUA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "missing-dmarc-rua"
+          }
+        },
+        "CNAME_ON_DMARC_RECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname-on-dmarc-record"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEditResponse": {
+      "type": "structure",
+      "members": {
+        "approved_sources": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesList",
+          "traits": {
+            "smithy.api#documentation": "List of approved sending sources (omitted when empty)"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use created_at"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether DMARC reports are enabled"
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use modified_at"
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification timestamp"
+          }
+        },
+        "records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecords",
+          "traits": {
+            "smithy.api#documentation": "Live DNS records for the zone, grouped by type"
+          }
+        },
+        "rua_prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix for DMARC RUA addresses (32-char hex string)"
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to skip the setup wizard"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "DMARC configuration status"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use `zone_id` instead"
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zone identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_auth#DmarcReportsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/email/auth/dmarc-reports",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the DMARC report configuration for a zone. At least one of `enabled` or `skip_wizard` must be provided. When enabling, the handler will ensure the DMARC RUA record exists in DNS."
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesItemIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesItem": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use created_at"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source domain"
+          }
+        },
+        "ips": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesItemIpsList",
+          "traits": {
+            "smithy.api#documentation": "Resolved IP addresses from SPF"
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use modified_at"
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification timestamp"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source name (typically same as domain)"
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL-friendly identifier"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source UUID"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsBimiRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsBimiRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsBimiRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDkimRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDkimRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDkimRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDmarcRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDmarcRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDmarcRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameSpfRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameSpfRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameSpfRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDkimRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDkimRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDkimRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDmarcRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDmarcRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDmarcRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsSpfRecordsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record content"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name"
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live in seconds"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Record type"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsSpfRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsSpfRecordsItem"
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseRecords": {
+      "type": "structure",
+      "members": {
+        "bimi_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsBimiRecordsList",
+          "traits": {
+            "smithy.api#documentation": "BIMI TXT records"
+          }
+        },
+        "cname_dkim_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDkimRecordsList",
+          "traits": {
+            "smithy.api#documentation": "CNAME records for DKIM"
+          }
+        },
+        "cname_dmarc_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameDmarcRecordsList",
+          "traits": {
+            "smithy.api#documentation": "CNAME records at _dmarc (problematic)"
+          }
+        },
+        "cname_spf_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsCnameSpfRecordsList",
+          "traits": {
+            "smithy.api#documentation": "CNAME records for SPF"
+          }
+        },
+        "dkim_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDkimRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DKIM TXT records"
+          }
+        },
+        "dmarc_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsDmarcRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DMARC TXT records"
+          }
+        },
+        "spf_records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecordsSpfRecordsList",
+          "traits": {
+            "smithy.api#documentation": "SPF TXT records"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "MISSING_DMARC_REPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "missing-dmarc-report"
+          }
+        },
+        "MULTIPLE_DMARC_REPORTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multiple-dmarc-reports"
+          }
+        },
+        "MISSING_DMARC_RUA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "missing-dmarc-rua"
+          }
+        },
+        "CNAME_ON_DMARC_RECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname-on-dmarc-record"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGetResponse": {
+      "type": "structure",
+      "members": {
+        "approved_sources": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesList",
+          "traits": {
+            "smithy.api#documentation": "List of approved sending sources (omitted when empty)"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use created_at"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether DMARC reports are enabled"
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use modified_at"
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification timestamp"
+          }
+        },
+        "records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseRecords",
+          "traits": {
+            "smithy.api#documentation": "Live DNS records for the zone, grouped by type"
+          }
+        },
+        "rua_prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix for DMARC RUA addresses (32-char hex string)"
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to skip the setup wizard"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_auth#DmarcReportsGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "DMARC configuration status"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use `zone_id` instead"
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zone identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_auth#DmarcReportsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_auth#DmarcReportsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/auth/dmarc-reports",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the current DMARC report configuration and status for a zone. Returns the RUA prefix, enabled status, approved sources, and DNS records.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record ID (rec_tag) to inspect",
+            "smithy.api#httpQuery": "id",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetResponseComponentsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetResponseErrorsItem": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error code. Known values:",
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain where the error occurred",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable error message",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional error-specific details (optional)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#SpfInspectGetResponseErrorsItem"
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetResponse": {
+      "type": "structure",
+      "members": {
+        "components": {
+          "target": "com.cloudflare.email_auth#SpfInspectGetResponseComponentsList",
+          "traits": {
+            "smithy.api#documentation": "Parsed SPF components (mechanisms)",
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain being inspected",
+            "smithy.api#required": {}
+          }
+        },
+        "record": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw SPF record content",
+            "smithy.api#required": {}
+          }
+        },
+        "total_lookups": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total number of DNS lookups performed across all includes",
+            "smithy.api#required": {}
+          }
+        },
+        "errors": {
+          "target": "com.cloudflare.email_auth#SpfInspectGetResponseErrorsList",
+          "traits": {
+            "smithy.api#documentation": "All errors encountered during inspection, collected from the entire tree."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_auth#SpfInspectGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_auth#SpfInspectGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/auth/spf/inspect",
+          "code": 200
+        },
+        "smithy.api#documentation": "Inspects a specific SPF TXT record and returns a parsed tree structure in the spflimit-worker format. The record ID must be provided via the `id` query parameter. Returns a recursive tree showing: - Parsed components with their qualifiers and types - Nested includes recursively resolved within components - Per-component and total lookup counts - Detailed error information with context",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_auth#EmailAuth": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.email_auth#DmarcReportsEdit"
+        },
+        {
+          "target": "com.cloudflare.email_auth#DmarcReportsGet"
+        },
+        {
+          "target": "com.cloudflare.email_auth#SpfInspectGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare EmailAuth",
+        "smithy.api#documentation": "Cloudflare API — email_auth resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

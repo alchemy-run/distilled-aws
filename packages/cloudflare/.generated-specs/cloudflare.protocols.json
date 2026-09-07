@@ -1,0 +1,132 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.protocols#v4Json": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#trait": {
+          "selector": "service"
+        },
+        "smithy.api#protocolDefinition": {
+          "traits": [
+            "smithy.api#http",
+            "smithy.api#httpLabel",
+            "smithy.api#httpQuery",
+            "smithy.api#httpHeader",
+            "smithy.api#httpPayload",
+            "smithy.api#jsonName",
+            "com.cloudflare.protocols#envelopePayload",
+            "com.cloudflare.protocols#deepQuery"
+          ]
+        },
+        "smithy.api#documentation": "Cloudflare client-v4 JSON protocol. Every response is wrapped in a `{ success, errors, messages, result, result_info }` envelope. `success`/`errors`/`messages`/`result_info` are protocol metadata handled by the client; an operation's output shape describes only the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.protocols#deepQuery": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#trait": {
+          "selector": "structure > member"
+        },
+        "smithy.api#documentation": "Marks a struct-valued input member whose fields serialize as a dotted query-parameter family (`account.id=…`). The trait value is the wire base name."
+      }
+    },
+    "com.cloudflare.protocols#envelopePayload": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#trait": {
+          "selector": "structure > member"
+        },
+        "smithy.api#documentation": "Marks the member that carries the operation-specific payload inside the v4 envelope's `result` field."
+      }
+    },
+    "com.cloudflare.protocols#ResponseEnvelope": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Whether the API call succeeded. Protocol metadata — not part of any operation output."
+          }
+        },
+        "errors": {
+          "target": "com.cloudflare.protocols#Messages",
+          "traits": {
+            "smithy.api#documentation": "Protocol metadata: error list."
+          }
+        },
+        "messages": {
+          "target": "com.cloudflare.protocols#Messages",
+          "traits": {
+            "smithy.api#documentation": "Protocol metadata: informational messages."
+          }
+        },
+        "result_info": {
+          "target": "com.cloudflare.protocols#ResultInfo",
+          "traits": {
+            "smithy.api#documentation": "Protocol metadata: pagination info."
+          }
+        },
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The operation payload. Each operation's output shape describes the contents of this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The wire envelope wrapping every Cloudflare v4 response. Modeled here for reference; operations bind only to `result`."
+      }
+    },
+    "com.cloudflare.protocols#Message": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "documentation_url": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.protocols#Messages": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.protocols#Message"
+      }
+    },
+    "com.cloudflare.protocols#ResultInfo": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Double"
+        },
+        "per_page": {
+          "target": "smithy.api#Double"
+        },
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "total_count": {
+          "target": "smithy.api#Double"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "operations": {
+    "putCodeBinding": {
+      "errors": ["ConflictException"]
+    }
+  }
+}

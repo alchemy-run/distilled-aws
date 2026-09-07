@@ -1,0 +1,20 @@
+{
+  "description": "consumer worker responses are inconsistent on the wire: create/update echo script_name, get/list return script (live-wire verified) — keep the scriptName member on the read shapes (jsonName documents the wire key) and teach the key dictionary both spellings so the TS surface stays uniform across all consumer ops",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#ConsumersGetResultWorker/members/script_name/traits/smithy.api#jsonName",
+      "value": "script"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#ConsumersListResultItemWorker/members/script_name/traits/smithy.api#jsonName",
+      "value": "script"
+    },
+    {
+      "op": "replace",
+      "path": "/metadata/keyDictionary/scriptName",
+      "value": ["script_name", "script"]
+    }
+  ]
+}

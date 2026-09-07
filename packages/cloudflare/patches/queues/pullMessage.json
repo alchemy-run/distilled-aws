@@ -1,0 +1,48 @@
+{
+  "description": "Align queues#MessagesPull with distilled cloudflare/queues pullMessage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#MessagesPull",
+      "path": "/shapes/com.cloudflare.queues#PullMessage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#MessagesPullRequest",
+      "path": "/shapes/com.cloudflare.queues#PullMessageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#PullMessage/input/target",
+      "value": "com.cloudflare.queues#PullMessageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#MessagesPullResponse",
+      "path": "/shapes/com.cloudflare.queues#PullMessageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#PullMessage/output/target",
+      "value": "com.cloudflare.queues#PullMessageResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#PullMessage/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidQueueId"
+        },
+        {
+          "target": "com.cloudflare.queues#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

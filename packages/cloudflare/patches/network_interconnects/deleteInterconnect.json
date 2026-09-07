@@ -1,0 +1,20 @@
+{
+  "description": "Align network_interconnects#InterconnectsDelete with distilled cloudflare/network-interconnects deleteInterconnect",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsDelete",
+      "path": "/shapes/com.cloudflare.network_interconnects#DeleteInterconnect"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsDeleteRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#DeleteInterconnectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#DeleteInterconnect/input/target",
+      "value": "com.cloudflare.network_interconnects#DeleteInterconnectRequest"
+    }
+  ]
+}

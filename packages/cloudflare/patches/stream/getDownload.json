@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#DownloadsGet with distilled cloudflare/stream getDownload",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DownloadsGet",
+      "path": "/shapes/com.cloudflare.stream#GetDownload"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DownloadsGetRequest",
+      "path": "/shapes/com.cloudflare.stream#GetDownloadRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetDownload/input/target",
+      "value": "com.cloudflare.stream#GetDownloadRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DownloadsGetResponse",
+      "path": "/shapes/com.cloudflare.stream#GetDownloadResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetDownload/output/target",
+      "value": "com.cloudflare.stream#GetDownloadResponse"
+    }
+  ]
+}

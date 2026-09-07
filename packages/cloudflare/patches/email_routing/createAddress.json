@@ -1,0 +1,30 @@
+{
+  "description": "Align email_routing#AddressesCreate with distilled cloudflare/email-routing createAddress",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesCreate",
+      "path": "/shapes/com.cloudflare.email_routing#CreateAddress"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesCreateRequest",
+      "path": "/shapes/com.cloudflare.email_routing#CreateAddressRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#CreateAddress/input/target",
+      "value": "com.cloudflare.email_routing#CreateAddressRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesCreateResponse",
+      "path": "/shapes/com.cloudflare.email_routing#CreateAddressResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#CreateAddress/output/target",
+      "value": "com.cloudflare.email_routing#CreateAddressResponse"
+    }
+  ]
+}

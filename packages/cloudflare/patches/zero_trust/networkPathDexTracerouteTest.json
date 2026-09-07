@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexTracerouteTestsNetworkPath with distilled cloudflare/zero-trust networkPathDexTracerouteTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexTracerouteTestsNetworkPath",
+      "path": "/shapes/com.cloudflare.zero_trust#NetworkPathDexTracerouteTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexTracerouteTestsNetworkPathRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#NetworkPathDexTracerouteTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#NetworkPathDexTracerouteTest/input/target",
+      "value": "com.cloudflare.zero_trust#NetworkPathDexTracerouteTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexTracerouteTestsNetworkPathResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#NetworkPathDexTracerouteTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#NetworkPathDexTracerouteTest/output/target",
+      "value": "com.cloudflare.zero_trust#NetworkPathDexTracerouteTestResponse"
+    }
+  ]
+}

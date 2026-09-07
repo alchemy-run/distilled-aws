@@ -1,0 +1,677 @@
+{
+  "description": "Make user-like fields (anything ending in _by, plus user/owner/assigned_to/primary_account) nullable across PostHog schemas. The spec marks them as non-null $refs but the API regularly returns null when the user has been deleted, when the request was made by an anonymous/system actor, or when the field is unset. Without this patch, decoding fails on every list response that contains an entry with a deleted/system user.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/components/schemas/Action/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/components/schemas/ActivityLog/properties/user",
+      "value": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UserBasic"
+          }
+        ],
+        "nullable": true
+      }
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Alert/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Annotation/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ApprovalPolicy/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ChangeRequest/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ChangeRequest/properties/applied_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Cohort/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Comment/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Conversation/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ConversationMinimal/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Credential/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Dashboard/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DashboardBasic/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DashboardCollaborator/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DashboardTemplate/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DataColorTheme/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DataWarehouseSavedQuery/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DataWarehouseSavedQueryFolder/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DataWarehouseSavedQueryMinimal/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Dataset/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/DatasetItem/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EndpointResponse/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EndpointVersionResponse/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EnterpriseEventDefinition/properties/updated_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EnterpriseEventDefinition/properties/verified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EnterpriseEventDefinition/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EnterprisePropertyDefinition/properties/updated_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EnterprisePropertyDefinition/properties/verified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Evaluation/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/EventDefinitionRecord/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Experiment/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ExperimentHoldout/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ExperimentSavedMetric/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/FeatureFlag/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/FeatureFlag/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/HeatmapScreenshotResponse/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/HogFlow/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/HogFlowMinimal/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/HogFunction/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/HogFunctionMinimal/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Insight/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Insight/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/IntegrationConfig/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMPrompt/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMPromptList/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMPromptVersionSummary/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMProviderKey/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMSkill/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMSkillCreate/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMSkillList/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LLMSkillVersionSummary/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LogsAlertConfiguration/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/LogsView/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Notebook/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Notebook/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/NotebookMinimal/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/NotebookMinimal/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/OrganizationIntegration/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/OrganizationInvite/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/OrganizationMember/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedAction/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedAlert/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedAnnotation/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedApprovalPolicy/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedCohort/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedComment/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedConversation/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDashboard/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDashboardTemplate/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDataColorTheme/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDataWarehouseSavedQuery/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDataWarehouseSavedQueryFolder/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDataset/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedDatasetItem/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedEnterpriseEventDefinition/properties/updated_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedEnterpriseEventDefinition/properties/verified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedEnterpriseEventDefinition/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedEnterprisePropertyDefinition/properties/updated_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedEnterprisePropertyDefinition/properties/verified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedEvaluation/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedExperiment/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedExperimentHoldout/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedExperimentSavedMetric/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedHeatmapScreenshotResponse/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedHogFlow/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedHogFunction/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedInsight/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedInsight/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedIntegrationConfig/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedLLMProviderKey/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedLogsAlertConfiguration/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedLogsView/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedNotebook/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedNotebook/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedOrganizationIntegration/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedOrganizationMember/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedProductTourSerializerCreateUpdateOnly/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedRole/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSandboxEnvironment/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSchemaPropertyGroup/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSessionGroupSummary/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSessionRecordingPlaylist/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSessionRecordingPlaylist/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSubscription/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedSurveySerializerCreateUpdateOnlySchema/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedTable/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedTask/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/PatchedUserInterview/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ProductTour/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ProductTourSerializerCreateUpdateOnly/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ReviewQueue/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/ReviewQueueItem/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Role/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/RoleExternalReference/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/RoleMembership/properties/user/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SandboxEnvironment/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SandboxEnvironmentList/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SchemaPropertyGroup/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SessionGroupSummary/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SessionGroupSummaryMinimal/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SessionRecordingPlaylist/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SessionRecordingPlaylist/properties/last_modified_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Subscription/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Survey/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SurveySerializerCreateUpdateOnly/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/SurveySerializerCreateUpdateOnlySchema/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Table/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/Task/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/TicketView/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/TraceReview/properties/created_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/TraceReview/properties/reviewed_by/nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/components/schemas/UserInterview/properties/created_by/nullable",
+      "value": true
+    }
+  ]
+}

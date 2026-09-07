@@ -1,0 +1,92 @@
+{
+  "description": "Auto-generated PostHog error responses (400/403/404) for tag \"web_analytics\". See generate-error-patches.ts.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1api~1environments~1{project_id}~1web_analytics~1weekly_digest~1/get/responses/400",
+      "value": {
+        "description": "Validation or parse error (PostHog DRF response).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                },
+                "attr": {
+                  "type": "string",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1environments~1{project_id}~1web_analytics~1weekly_digest~1/get/responses/403",
+      "value": {
+        "description": "Permission denied or insufficient scope.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                },
+                "attr": {
+                  "type": "string",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1environments~1{project_id}~1web_analytics~1weekly_digest~1/get/responses/404",
+      "value": {
+        "description": "Resource not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                },
+                "attr": {
+                  "type": "string",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

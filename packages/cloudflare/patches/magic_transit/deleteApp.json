@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_transit#AppsDelete with distilled cloudflare/magic-transit deleteApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsDelete",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteApp/input/target",
+      "value": "com.cloudflare.magic_transit#DeleteAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsDeleteResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteApp/output/target",
+      "value": "com.cloudflare.magic_transit#DeleteAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#AppNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#MagicWanUnauthorized"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

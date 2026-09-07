@@ -1,0 +1,45 @@
+{
+  "description": "Align logs#ControlCmbConfigGet with distilled cloudflare/logs getControlCmbConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigGet",
+      "path": "/shapes/com.cloudflare.logs#GetControlCmbConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigGetRequest",
+      "path": "/shapes/com.cloudflare.logs#GetControlCmbConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#GetControlCmbConfig/input/target",
+      "value": "com.cloudflare.logs#GetControlCmbConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigGetResponse",
+      "path": "/shapes/com.cloudflare.logs#GetControlCmbConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#GetControlCmbConfig/output/target",
+      "value": "com.cloudflare.logs#GetControlCmbConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logs#GetControlCmbConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logs#LogsControlNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.logs#CmbConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.logs#Forbidden"
+        }
+      ]
+    }
+  ]
+}

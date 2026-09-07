@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#RecordsScanReview with distilled cloudflare/dns scanReviewRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanReview",
+      "path": "/shapes/com.cloudflare.dns#ScanReviewRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanReviewRequest",
+      "path": "/shapes/com.cloudflare.dns#ScanReviewRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ScanReviewRecord/input/target",
+      "value": "com.cloudflare.dns#ScanReviewRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanReviewResponse",
+      "path": "/shapes/com.cloudflare.dns#ScanReviewRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ScanReviewRecord/output/target",
+      "value": "com.cloudflare.dns#ScanReviewRecordResponse"
+    }
+  ]
+}

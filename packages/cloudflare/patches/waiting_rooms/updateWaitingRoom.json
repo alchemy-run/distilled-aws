@@ -1,0 +1,45 @@
+{
+  "description": "Align waiting_rooms#Update with distilled cloudflare/waiting-rooms updateWaitingRoom",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#Update",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateWaitingRoom"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#UpdateRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateWaitingRoomRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateWaitingRoom/input/target",
+      "value": "com.cloudflare.waiting_rooms#UpdateWaitingRoomRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#UpdateResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateWaitingRoomResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateWaitingRoom/output/target",
+      "value": "com.cloudflare.waiting_rooms#UpdateWaitingRoomResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateWaitingRoom/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.waiting_rooms#WaitingRoomNotFound"
+        },
+        {
+          "target": "com.cloudflare.waiting_rooms#ZoneNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.waiting_rooms#Forbidden"
+        }
+      ]
+    }
+  ]
+}

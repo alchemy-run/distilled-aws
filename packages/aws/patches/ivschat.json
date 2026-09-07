@@ -1,0 +1,52 @@
+{
+  "operations": {
+    "createLoggingConfiguration": {
+      "errors": ["ThrottlingException"]
+    },
+    "createRoom": {
+      "errors": ["ThrottlingException"]
+    },
+    "deleteLoggingConfiguration": {
+      "errors": ["ThrottlingException"]
+    },
+    "deleteRoom": {
+      "errors": ["ThrottlingException"]
+    },
+    "getLoggingConfiguration": {
+      "errors": ["ThrottlingException"]
+    },
+    "getRoom": {
+      "errors": ["ThrottlingException"]
+    },
+    "listLoggingConfigurations": {
+      "errors": ["ThrottlingException"]
+    },
+    "listRooms": {
+      "errors": ["ThrottlingException"]
+    },
+    "listTagsForResource": {
+      "errors": ["ThrottlingException"]
+    },
+    "tagResource": {
+      "errors": ["ThrottlingException"]
+    },
+    "untagResource": {
+      "errors": ["ThrottlingException"]
+    },
+    "updateLoggingConfiguration": {
+      "errors": ["ThrottlingException"]
+    },
+    "updateRoom": {
+      "errors": ["ThrottlingException"]
+    }
+  },
+  "structures": {
+    "ValidationException": {
+      "members": {
+        "reason": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

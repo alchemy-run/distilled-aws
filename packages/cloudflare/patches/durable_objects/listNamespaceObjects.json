@@ -1,0 +1,55 @@
+{
+  "description": "Align durable_objects#NamespacesObjectsList with distilled cloudflare/durable-objects listNamespaceObjects",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.durable_objects#NamespacesObjectsList",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjects"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.durable_objects#NamespacesObjectsListRequest",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjectsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjects/input/target",
+      "value": "com.cloudflare.durable_objects#ListNamespaceObjectsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.durable_objects#NamespacesObjectsListResponse",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjectsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjects/output/target",
+      "value": "com.cloudflare.durable_objects#ListNamespaceObjectsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjects/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursors.after",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.durable_objects#ListNamespaceObjects/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.durable_objects#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.durable_objects#InvalidIdentifier"
+        },
+        {
+          "target": "com.cloudflare.durable_objects#MalformedParameter"
+        }
+      ]
+    }
+  ]
+}

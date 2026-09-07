@@ -1,0 +1,38 @@
+{
+  "description": "Align magic_transit#PcapsOwnershipGet with distilled cloudflare/magic-transit getPcapOwnership",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipGet",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapOwnership"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipGetRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapOwnershipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapOwnership/input/target",
+      "value": "com.cloudflare.magic_transit#GetPcapOwnershipRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipGetResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapOwnershipResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapOwnership/output/target",
+      "value": "com.cloudflare.magic_transit#GetPcapOwnershipResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#GetPcapOwnership/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

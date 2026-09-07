@@ -1,0 +1,48 @@
+{
+  "operations": {
+    "createAwsLogSource": { "errors": ["UnauthorizedException"] },
+    "deleteAwsLogSource": { "errors": ["UnauthorizedException"] },
+    "listLogSources": { "errors": ["UnauthorizedException"] },
+    "createCustomLogSource": { "errors": ["UnauthorizedException"] },
+    "deleteCustomLogSource": { "errors": ["UnauthorizedException"] },
+    "createDataLake": { "errors": ["UnauthorizedException"] },
+    "updateDataLake": { "errors": ["UnauthorizedException"] },
+    "deleteDataLake": { "errors": ["UnauthorizedException"] },
+    "listDataLakes": { "errors": ["UnauthorizedException"] },
+    "getDataLakeSources": { "errors": ["UnauthorizedException"] },
+    "listDataLakeExceptions": { "errors": ["UnauthorizedException"] },
+    "createDataLakeExceptionSubscription": {
+      "errors": ["UnauthorizedException"]
+    },
+    "getDataLakeExceptionSubscription": {
+      "errors": ["UnauthorizedException"]
+    },
+    "updateDataLakeExceptionSubscription": {
+      "errors": ["UnauthorizedException"]
+    },
+    "deleteDataLakeExceptionSubscription": {
+      "errors": ["UnauthorizedException"]
+    },
+    "createSubscriber": { "errors": ["UnauthorizedException"] },
+    "getSubscriber": { "errors": ["UnauthorizedException"] },
+    "updateSubscriber": { "errors": ["UnauthorizedException"] },
+    "deleteSubscriber": { "errors": ["UnauthorizedException"] },
+    "listSubscribers": { "errors": ["UnauthorizedException"] },
+    "createSubscriberNotification": { "errors": ["UnauthorizedException"] },
+    "updateSubscriberNotification": { "errors": ["UnauthorizedException"] },
+    "deleteSubscriberNotification": { "errors": ["UnauthorizedException"] },
+    "listTagsForResource": { "errors": ["UnauthorizedException"] },
+    "tagResource": { "errors": ["UnauthorizedException"] },
+    "untagResource": { "errors": ["UnauthorizedException"] }
+  },
+  "structures": {
+    "HttpsNotificationConfiguration": {
+      "members": {
+        "authorizationApiKeyValue": { "sensitive": true }
+      }
+    }
+  },
+  "errorCategories": {
+    "UnauthorizedException": ["AuthError"]
+  }
+}

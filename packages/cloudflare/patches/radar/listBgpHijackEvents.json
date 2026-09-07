@@ -1,0 +1,41 @@
+{
+  "description": "Align radar#BgpHijacksEventsList with distilled cloudflare/radar listBgpHijackEvents",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpHijacksEventsList",
+      "path": "/shapes/com.cloudflare.radar#ListBgpHijackEvents"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpHijacksEventsListRequest",
+      "path": "/shapes/com.cloudflare.radar#ListBgpHijackEventsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListBgpHijackEvents/input/target",
+      "value": "com.cloudflare.radar#ListBgpHijackEventsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpHijacksEventsListResponse",
+      "path": "/shapes/com.cloudflare.radar#ListBgpHijackEventsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListBgpHijackEvents/output/target",
+      "value": "com.cloudflare.radar#ListBgpHijackEventsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.radar#ListBgpHijackEvents/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

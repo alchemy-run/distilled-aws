@@ -1,0 +1,20 @@
+{
+  "description": "Align magic_transit#PcapsOwnershipDelete with distilled cloudflare/magic-transit deletePcapOwnership",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipDelete",
+      "path": "/shapes/com.cloudflare.magic_transit#DeletePcapOwnership"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#DeletePcapOwnershipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeletePcapOwnership/input/target",
+      "value": "com.cloudflare.magic_transit#DeletePcapOwnershipRequest"
+    }
+  ]
+}

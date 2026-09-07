@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsSummaryResponseCode with distilled cloudflare/radar responseCodeDnsSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryResponseCode",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryResponseCodeRequest",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsSummary/input/target",
+      "value": "com.cloudflare.radar#ResponseCodeDnsSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryResponseCodeResponse",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsSummary/output/target",
+      "value": "com.cloudflare.radar#ResponseCodeDnsSummaryResponse"
+    }
+  ]
+}

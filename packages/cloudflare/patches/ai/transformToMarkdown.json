@@ -1,0 +1,30 @@
+{
+  "description": "Align ai#ToMarkdownTransform with distilled cloudflare/ai transformToMarkdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ToMarkdownTransform",
+      "path": "/shapes/com.cloudflare.ai#TransformToMarkdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ToMarkdownTransformRequest",
+      "path": "/shapes/com.cloudflare.ai#TransformToMarkdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#TransformToMarkdown/input/target",
+      "value": "com.cloudflare.ai#TransformToMarkdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ToMarkdownTransformResponse",
+      "path": "/shapes/com.cloudflare.ai#TransformToMarkdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#TransformToMarkdown/output/target",
+      "value": "com.cloudflare.ai#TransformToMarkdownResponse"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align intel#SinkholesList with distilled cloudflare/intel listSinkholes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#SinkholesList",
+      "path": "/shapes/com.cloudflare.intel#ListSinkholes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#SinkholesListRequest",
+      "path": "/shapes/com.cloudflare.intel#ListSinkholesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListSinkholes/input/target",
+      "value": "com.cloudflare.intel#ListSinkholesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#SinkholesListResponse",
+      "path": "/shapes/com.cloudflare.intel#ListSinkholesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListSinkholes/output/target",
+      "value": "com.cloudflare.intel#ListSinkholesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#ListSinkholes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

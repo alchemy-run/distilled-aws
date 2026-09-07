@@ -1,0 +1,5582 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.dashboard#ManagedPrivateEndpointsRefresh": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsRefreshRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/refreshManagedPrivateEndpoints",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Refresh and sync managed private endpoints of a grafana resource to latest state.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsRefreshRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#PrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#PrivateLinkResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateLinkResources/{privateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get specific private link resource information for this grafana resource",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.dashboard#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group id."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.dashboard#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource required member names."
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.dashboard#PrivateLinkResourcePropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource Private link DNS zone name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a private link resource."
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcePropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource Private link DNS zone name."
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource required member names."
+      }
+    },
+    "com.azure.dashboard#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.dashboard#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.dashboard#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.dashboard#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.dashboard#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "privateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#PrivateLinkResourcesListRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#PrivateLinkResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List all private link resources information for this grafana resource",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#PrivateLinkResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The PrivateLinkResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a PrivateLinkResource list operation."
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateLinkResource items on this page"
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private link resource"
+      }
+    },
+    "com.azure.dashboard#PrivateLinkResourcesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Delete private endpoint connection",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private endpoint connection name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsApprove": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionsApproveRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionsApproveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Manual approve private endpoint connection",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsApproveResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesPrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The Private Endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection group ids."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the PrivateEndpointConnectProperties."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection group ids."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.dashboard#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointServiceConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection status."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesPrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ARM identifier for Private Endpoint"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint resource."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsApproveRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private endpoint connection name of Azure Managed Grafana."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesInputPrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The Private Endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionPropertiesInputGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection group ids."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the PrivateEndpointConnectProperties."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesInputGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection group ids."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.dashboard#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionPropertiesInputPrivateEndpoint": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint resource."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get private endpoint connections.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private endpoint connection name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionsListRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#PrivateEndpointConnectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get private endpoint connection",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The PrivateEndpointConnection items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a PrivateEndpointConnection list operation."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateEndpointConnection items on this page"
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.dashboard#PrivateEndpointConnectionsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Delete a managed private endpoint for a grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "managedPrivateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The managed private endpoint name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Update a managed private endpoint for an existing grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.dashboard#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        },
+        "privateLinkResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ARM resource ID of the resource for which the managed private endpoint is pointing to."
+          }
+        },
+        "privateLinkResourceRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region of the resource to which the managed private endpoint is pointing to."
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelPropertiesGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The group Ids of the managed private endpoint."
+          }
+        },
+        "requestMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User input request message of the managed private endpoint."
+          }
+        },
+        "connectionState": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointConnectionState",
+          "traits": {
+            "smithy.api#documentation": "The state of managed private endpoint connection."
+          }
+        },
+        "privateLinkServiceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the data store behind the private link service. It would be the URL in the Grafana data source configuration page without the protocol and port."
+          }
+        },
+        "privateLinkServicePrivateIP": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private IP of private endpoint after approval. This property is empty before connection is approved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to the managed private endpoint."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "The approval/rejection status of managed private endpoint connection."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the reason for approval/rejection of the connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of managed private endpoint connection."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The approval/rejection status of managed private endpoint connection."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelPropertiesGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The group Ids of the managed private endpoint."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "managedPrivateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The managed private endpoint name of Azure Managed Grafana."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The new tags of the managed private endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The new tags of the managed private endpoint."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Create or update a managed private endpoint for a grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "managedPrivateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The managed private endpoint name of Azure Managed Grafana."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateLinkResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ARM resource ID of the resource for which the managed private endpoint is pointing to."
+          }
+        },
+        "privateLinkResourceRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region of the resource to which the managed private endpoint is pointing to."
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelPropertiesInputGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The group Ids of the managed private endpoint."
+          }
+        },
+        "requestMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User input request message of the managed private endpoint."
+          }
+        },
+        "privateLinkServiceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the data store behind the private link service. It would be the URL in the Grafana data source configuration page without the protocol and port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to the managed private endpoint."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelPropertiesInputGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The group Ids of the managed private endpoint."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get a specific managed private endpoint of a grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "managedPrivateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The managed private endpoint name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointsListRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointModelListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/managedPrivateEndpoints",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List all managed private endpoints of a grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The ManagedPrivateEndpointModel items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of managed private endpoints of a grafana resource"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#ManagedPrivateEndpointModel"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ManagedPrivateEndpointModel items on this page"
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModel": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The managed private endpoint resource type."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointModelTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedPrivateEndpointsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#IntegrationFabricsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/integrationFabrics/{integrationFabricName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Delete a IntegrationFabric",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "integrationFabricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The integration fabric name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#IntegrationFabricsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#IntegrationFabricsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/integrationFabrics/{integrationFabricName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Update a IntegrationFabric",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#IntegrationFabricsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#IntegrationFabricProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.dashboard#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        },
+        "targetResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the Azure resource being integrated with Azure Managed Grafana. E.g., an Azure Kubernetes Service cluster."
+          }
+        },
+        "dataSourceResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the Azure resource which is used to configure Grafana data source. E.g., an Azure Monitor Workspace, an Azure Data Explorer cluster, etc."
+          }
+        },
+        "scenarios": {
+          "target": "com.azure.dashboard#IntegrationFabricPropertiesScenariosList",
+          "traits": {
+            "smithy.api#documentation": "A list of integration scenarios covered by this integration fabric"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#IntegrationFabricPropertiesScenariosList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of integration scenarios covered by this integration fabric"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "integrationFabricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The integration fabric name of Azure Managed Grafana."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#IntegrationFabricsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The new tags of the Integration Fabric resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#IntegrationFabricPropertiesUpdateParameters",
+          "traits": {
+            "smithy.api#documentation": "The new properties of this Integration Fabric resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricPropertiesUpdateParameters": {
+      "type": "structure",
+      "members": {
+        "scenarios": {
+          "target": "com.azure.dashboard#IntegrationFabricPropertiesUpdateParametersScenariosList",
+          "traits": {
+            "smithy.api#documentation": "The new integration scenarios covered by this integration fabric."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#IntegrationFabricPropertiesUpdateParametersScenariosList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The new integration scenarios covered by this integration fabric."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The new tags of the Integration Fabric resource."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#IntegrationFabricsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#IntegrationFabricsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/integrationFabrics/{integrationFabricName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Create a IntegrationFabric",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#IntegrationFabricsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#IntegrationFabricProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "integrationFabricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The integration fabric name of Azure Managed Grafana."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#IntegrationFabricsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#IntegrationFabricPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "targetResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the Azure resource being integrated with Azure Managed Grafana. E.g., an Azure Kubernetes Service cluster."
+          }
+        },
+        "dataSourceResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the Azure resource which is used to configure Grafana data source. E.g., an Azure Monitor Workspace, an Azure Data Explorer cluster, etc."
+          }
+        },
+        "scenarios": {
+          "target": "com.azure.dashboard#IntegrationFabricPropertiesInputScenariosList",
+          "traits": {
+            "smithy.api#documentation": "A list of integration scenarios covered by this integration fabric"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#IntegrationFabricPropertiesInputScenariosList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of integration scenarios covered by this integration fabric"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#IntegrationFabricsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#IntegrationFabricsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/integrationFabrics/{integrationFabricName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get a IntegrationFabric",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#IntegrationFabricsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#IntegrationFabricProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "integrationFabricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The integration fabric name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#IntegrationFabricsListRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#IntegrationFabricListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/integrationFabrics",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List IntegrationFabric resources by ManagedGrafana",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#IntegrationFabricListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The IntegrationFabric items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of IntegrationFabric items"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#IntegrationFabric"
+      },
+      "traits": {
+        "smithy.api#documentation": "The IntegrationFabric items on this page"
+      }
+    },
+    "com.azure.dashboard#IntegrationFabric": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#IntegrationFabricTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#IntegrationFabricProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The integration fabric resource type."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#IntegrationFabricsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaFetchAvailablePlugins": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaFetchAvailablePluginsRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#GrafanaAvailablePluginListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/fetchAvailablePlugins",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "A synchronous resource action.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#GrafanaAvailablePluginListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#GrafanaAvailablePluginListResponseValueList"
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#GrafanaAvailablePluginListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#GrafanaAvailablePlugin"
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#GrafanaAvailablePlugin": {
+      "type": "structure",
+      "members": {
+        "pluginId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Grafana plugin id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Grafana plugin display name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Grafana plugin type"
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Grafana plugin author/publisher name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available plugins of grafana"
+      }
+    },
+    "com.azure.dashboard#GrafanaFetchAvailablePluginsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaCheckEnterpriseDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaCheckEnterpriseDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#EnterpriseDetails"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/checkEnterpriseDetails",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Retrieve enterprise add-on details information",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#EnterpriseDetails": {
+      "type": "structure",
+      "members": {
+        "saasSubscriptionDetails": {
+          "target": "com.azure.dashboard#SaasSubscriptionDetails",
+          "traits": {
+            "smithy.api#documentation": "SaaS subscription details of a Grafana instance"
+          }
+        },
+        "marketplaceTrialQuota": {
+          "target": "com.azure.dashboard#MarketplaceTrialQuota",
+          "traits": {
+            "smithy.api#documentation": "The allocation details of the per subscription free trial slot of the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enterprise details of a Grafana instance"
+      }
+    },
+    "com.azure.dashboard#MarketplaceTrialQuota": {
+      "type": "structure",
+      "members": {
+        "availablePromotion": {
+          "target": "com.azure.dashboard#MarketplaceTrialQuotaAvailablePromotion",
+          "traits": {
+            "smithy.api#documentation": "Available enterprise promotion for the subscription"
+          }
+        },
+        "grafanaResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of the Grafana resource which is doing the trial."
+          }
+        },
+        "trialStartAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time in UTC of when the trial starts."
+          }
+        },
+        "trialEndAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time in UTC of when the trial ends."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The allocation details of the per subscription free trial slot of the subscription."
+      }
+    },
+    "com.azure.dashboard#MarketplaceTrialQuotaAvailablePromotion": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "FREETRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FreeTrial"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available enterprise promotion for the subscription"
+      }
+    },
+    "com.azure.dashboard#SaasSubscriptionDetails": {
+      "type": "structure",
+      "members": {
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The plan Id of the SaaS subscription."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The offer Id of the SaaS subscription."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The publisher Id of the SaaS subscription."
+          }
+        },
+        "term": {
+          "target": "com.azure.dashboard#SubscriptionTerm",
+          "traits": {
+            "smithy.api#documentation": "The billing term of the SaaS Subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SaaS subscription details of a Grafana instance"
+      }
+    },
+    "com.azure.dashboard#SubscriptionTerm": {
+      "type": "structure",
+      "members": {
+        "termUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of the billing term."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time in UTC of when the billing term starts."
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time in UTC of when the billing term ends."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current billing term of the SaaS Subscription."
+      }
+    },
+    "com.azure.dashboard#GrafanaCheckEnterpriseDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Delete a workspace for Grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#GrafanaDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#GrafanaUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Update a workspace for Grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedGrafanaProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the grafana resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.dashboard#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The Sku of the grafana resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#GrafanaUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        },
+        "identity": {
+          "target": "com.azure.dashboard#GrafanaUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.dashboard#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.dashboard#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.dashboard#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.dashboard#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.dashboard#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.dashboard#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ResourceSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU.",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "com.azure.dashboard#Size",
+          "traits": {
+            "smithy.api#documentation": "Specifies the capacity tier of the Grafana instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the SKU of a resource."
+      }
+    },
+    "com.azure.dashboard#Size": {
+      "type": "enum",
+      "members": {
+        "X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "X1"
+          }
+        },
+        "X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "X2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the capacity tier of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.dashboard#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        },
+        "grafanaVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Grafana software version."
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The endpoint of the Grafana instance."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
+          }
+        },
+        "zoneRedundancy": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesZoneRedundancy",
+          "traits": {
+            "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
+          }
+        },
+        "apiKey": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesApiKey",
+          "traits": {
+            "smithy.api#documentation": "The api key setting of the Grafana instance."
+          }
+        },
+        "creatorCanAdmin": {
+          "target": "com.azure.dashboard#CreatorCanAdmin",
+          "traits": {
+            "smithy.api#documentation": "The creator will have admin access for the Grafana instance."
+          }
+        },
+        "deterministicOutboundIP": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesDeterministicOutboundIP",
+          "traits": {
+            "smithy.api#documentation": "Whether a Grafana instance uses deterministic outbound IPs."
+          }
+        },
+        "outboundIPs": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesOutboundIPsList",
+          "traits": {
+            "smithy.api#documentation": "List of outbound IPs if deterministicOutboundIP is enabled."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connections of the Grafana instance."
+          }
+        },
+        "autoGeneratedDomainNameLabelScope": {
+          "target": "com.azure.dashboard#AutoGeneratedDomainNameLabelScope",
+          "traits": {
+            "smithy.api#documentation": "Scope for dns deterministic name hash calculation."
+          }
+        },
+        "grafanaIntegrations": {
+          "target": "com.azure.dashboard#GrafanaIntegrations",
+          "traits": {
+            "smithy.api#documentation": "GrafanaIntegrations is a bundled observability experience (e.g. pre-configured data source, tailored Grafana dashboards, alerting defaults) for common monitoring scenarios."
+          }
+        },
+        "enterpriseConfigurations": {
+          "target": "com.azure.dashboard#EnterpriseConfigurations",
+          "traits": {
+            "smithy.api#documentation": "Enterprise settings of a Grafana instance"
+          }
+        },
+        "grafanaConfigurations": {
+          "target": "com.azure.dashboard#GrafanaConfigurations",
+          "traits": {
+            "smithy.api#documentation": "Server configurations of a Grafana instance"
+          }
+        },
+        "grafanaPlugins": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesGrafanaPluginsMap",
+          "traits": {
+            "smithy.api#documentation": "Installed plugin list of the Grafana instance. Key is plugin id, value is plugin definition."
+          }
+        },
+        "grafanaMajorVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The major Grafana software version to target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to the grafana resource."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesGrafanaPluginsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.dashboard#GrafanaPlugin"
+      },
+      "traits": {
+        "smithy.api#documentation": "Installed plugin list of the Grafana instance. Key is plugin id, value is plugin definition."
+      }
+    },
+    "com.azure.dashboard#GrafanaPlugin": {
+      "type": "structure",
+      "members": {
+        "pluginId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Grafana plugin id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Plugin of Grafana"
+      }
+    },
+    "com.azure.dashboard#GrafanaConfigurations": {
+      "type": "structure",
+      "members": {
+        "smtp": {
+          "target": "com.azure.dashboard#Smtp",
+          "traits": {
+            "smithy.api#documentation": "Email server settings.\nhttps://grafana.com/docs/grafana/v9.0/setup-grafana/configure-grafana/#smtp"
+          }
+        },
+        "snapshots": {
+          "target": "com.azure.dashboard#Snapshots",
+          "traits": {
+            "smithy.api#documentation": "Grafana Snapshots settings"
+          }
+        },
+        "users": {
+          "target": "com.azure.dashboard#Users",
+          "traits": {
+            "smithy.api#documentation": "Grafana users settings"
+          }
+        },
+        "security": {
+          "target": "com.azure.dashboard#Security",
+          "traits": {
+            "smithy.api#documentation": "Grafana security settings"
+          }
+        },
+        "unifiedAlertingScreenshots": {
+          "target": "com.azure.dashboard#UnifiedAlertingScreenshots",
+          "traits": {
+            "smithy.api#documentation": "Grafana Unified Alerting Screenshots settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server configurations of a Grafana instance"
+      }
+    },
+    "com.azure.dashboard#UnifiedAlertingScreenshots": {
+      "type": "structure",
+      "members": {
+        "captureEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to false to disable capture screenshot in Unified Alert due to performance issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grafana Unified Alerting Screenshots settings"
+      }
+    },
+    "com.azure.dashboard#Security": {
+      "type": "structure",
+      "members": {
+        "csrfAlwaysCheck": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to execute the CSRF check even if the login cookie is not in a request (default false)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grafana security settings"
+      }
+    },
+    "com.azure.dashboard#Users": {
+      "type": "structure",
+      "members": {
+        "viewersCanEdit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true so viewers can access and use explore and perform temporary edits on panels in dashboards they have access to. They cannot save their changes."
+          }
+        },
+        "editorsCanAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true so editors can administrate dashboards, folders and teams they create."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grafana users settings"
+      }
+    },
+    "com.azure.dashboard#Snapshots": {
+      "type": "structure",
+      "members": {
+        "externalEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to false to disable external snapshot publish endpoint"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grafana Snapshots settings"
+      }
+    },
+    "com.azure.dashboard#Smtp": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable this to allow Grafana to send email. Default is false"
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SMTP server hostname with port, e.g. test.email.net:587"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User of SMTP auth"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Password of SMTP auth. If the password contains # or ;, then you have to wrap it with triple quotes",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "fromAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Address used when sending out emails\nhttps://pkg.go.dev/net/mail#Address"
+          }
+        },
+        "fromName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name to be used when sending out emails. Default is \"Azure Managed Grafana Notification\"\nhttps://pkg.go.dev/net/mail#Address"
+          }
+        },
+        "startTLSPolicy": {
+          "target": "com.azure.dashboard#StartTLSPolicy",
+          "traits": {
+            "smithy.api#documentation": "The StartTLSPolicy setting of the SMTP configuration\nhttps://pkg.go.dev/github.com/go-mail/mail#StartTLSPolicy"
+          }
+        },
+        "skipVerify": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Verify SSL for SMTP server. Default is false\nhttps://pkg.go.dev/crypto/tls#Config"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Email server settings.\nhttps://grafana.com/docs/grafana/v9.0/setup-grafana/configure-grafana/#smtp"
+      }
+    },
+    "com.azure.dashboard#StartTLSPolicy": {
+      "type": "enum",
+      "members": {
+        "OPPORTUNISTICSTARTTLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OpportunisticStartTLS"
+          }
+        },
+        "MANDATORYSTARTTLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MandatoryStartTLS"
+          }
+        },
+        "NOSTARTTLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoStartTLS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The StartTLSPolicy setting of the SMTP configuration\nhttps://pkg.go.dev/github.com/go-mail/mail#StartTLSPolicy"
+      }
+    },
+    "com.azure.dashboard#EnterpriseConfigurations": {
+      "type": "structure",
+      "members": {
+        "marketplacePlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Plan Id of the Azure Marketplace subscription for the Enterprise plugins"
+          }
+        },
+        "marketplaceAutoRenew": {
+          "target": "com.azure.dashboard#MarketplaceAutoRenew",
+          "traits": {
+            "smithy.api#documentation": "The AutoRenew setting of the Enterprise subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enterprise settings of a Grafana instance"
+      }
+    },
+    "com.azure.dashboard#MarketplaceAutoRenew": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AutoRenew setting of the Enterprise subscription"
+      }
+    },
+    "com.azure.dashboard#GrafanaIntegrations": {
+      "type": "structure",
+      "members": {
+        "azureMonitorWorkspaceIntegrations": {
+          "target": "com.azure.dashboard#GrafanaIntegrationsAzureMonitorWorkspaceIntegrationsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GrafanaIntegrations is a bundled observability experience (e.g. pre-configured data source, tailored Grafana dashboards, alerting defaults) for common monitoring scenarios."
+      }
+    },
+    "com.azure.dashboard#GrafanaIntegrationsAzureMonitorWorkspaceIntegrationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#AzureMonitorWorkspaceIntegration"
+      },
+      "traits": {}
+    },
+    "com.azure.dashboard#AzureMonitorWorkspaceIntegration": {
+      "type": "structure",
+      "members": {
+        "azureMonitorWorkspaceResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the connected Azure Monitor Workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Integrations for Azure Monitor Workspace."
+      }
+    },
+    "com.azure.dashboard#AutoGeneratedDomainNameLabelScope": {
+      "type": "enum",
+      "members": {
+        "TENANTREUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TenantReuse"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Scope for dns deterministic name hash calculation"
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connections of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesOutboundIPsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of outbound IPs if deterministicOutboundIP is enabled."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesDeterministicOutboundIP": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether a Grafana instance uses deterministic outbound IPs."
+      }
+    },
+    "com.azure.dashboard#CreatorCanAdmin": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The creator will have admin access for the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesApiKey": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The api key setting of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesZoneRedundancy": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "sku": {
+          "target": "com.azure.dashboard#ResourceSku"
+        },
+        "identity": {
+          "target": "com.azure.dashboard#GrafanaUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#GrafanaUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The new tags of the grafana resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInput",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the managed grafana resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInput": {
+      "type": "structure",
+      "members": {
+        "zoneRedundancy": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputZoneRedundancy",
+          "traits": {
+            "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
+          }
+        },
+        "apiKey": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputApiKey",
+          "traits": {
+            "smithy.api#documentation": "The api key setting of the Grafana instance."
+          }
+        },
+        "creatorCanAdmin": {
+          "target": "com.azure.dashboard#CreatorCanAdmin",
+          "traits": {
+            "smithy.api#documentation": "The creator will have admin access for the Grafana instance."
+          }
+        },
+        "deterministicOutboundIP": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputDeterministicOutboundIP",
+          "traits": {
+            "smithy.api#documentation": "Whether a Grafana instance uses deterministic outbound IPs."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
+          }
+        },
+        "grafanaIntegrations": {
+          "target": "com.azure.dashboard#GrafanaIntegrations",
+          "traits": {
+            "smithy.api#documentation": "GrafanaIntegrations is a bundled observability experience (e.g. pre-configured data source, tailored Grafana dashboards, alerting defaults) for common monitoring scenarios."
+          }
+        },
+        "enterpriseConfigurations": {
+          "target": "com.azure.dashboard#EnterpriseConfigurations",
+          "traits": {
+            "smithy.api#documentation": "Enterprise settings of a Grafana instance"
+          }
+        },
+        "grafanaConfigurations": {
+          "target": "com.azure.dashboard#GrafanaConfigurations",
+          "traits": {
+            "smithy.api#documentation": "Server configurations of a Grafana instance"
+          }
+        },
+        "grafanaPlugins": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputGrafanaPluginsMap",
+          "traits": {
+            "smithy.api#documentation": "Update of Grafana plugin. Key is plugin id, value is plugin definition. If plugin definition is null, plugin with given plugin id will be removed. Otherwise, given plugin will be installed."
+          }
+        },
+        "grafanaMajorVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The major Grafana software version to target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties parameters for a PATCH request to a grafana resource."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputGrafanaPluginsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.dashboard#GrafanaPluginInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Update of Grafana plugin. Key is plugin id, value is plugin definition. If plugin definition is null, plugin with given plugin id will be removed. Otherwise, given plugin will be installed."
+      }
+    },
+    "com.azure.dashboard#GrafanaPluginInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Plugin of Grafana"
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputDeterministicOutboundIP": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether a Grafana instance uses deterministic outbound IPs."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputApiKey": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The api key setting of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesUpdateParametersInputZoneRedundancy": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The new tags of the grafana resource."
+      }
+    },
+    "com.azure.dashboard#GrafanaUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.dashboard#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.dashboard#UserAssignedIdentitiesInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.dashboard#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.dashboard#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.dashboard#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.dashboard#GrafanaCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#GrafanaCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Create or update a workspace for Grafana resource. This API is idempotent, so user can either create a new grafana or update an existing grafana.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#GrafanaCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedGrafanaProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the grafana resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.dashboard#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The Sku of the grafana resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#GrafanaCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        },
+        "identity": {
+          "target": "com.azure.dashboard#GrafanaCreateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaCreateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.dashboard#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.dashboard#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.dashboard#GrafanaCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#GrafanaCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the grafana resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.dashboard#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The Sku of the grafana resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#GrafanaCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        },
+        "identity": {
+          "target": "com.azure.dashboard#GrafanaCreateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaCreateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.dashboard#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.dashboard#UserAssignedIdentitiesInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.dashboard#GrafanaCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "publicNetworkAccess": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesInputPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
+          }
+        },
+        "zoneRedundancy": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesInputZoneRedundancy",
+          "traits": {
+            "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
+          }
+        },
+        "apiKey": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesInputApiKey",
+          "traits": {
+            "smithy.api#documentation": "The api key setting of the Grafana instance."
+          }
+        },
+        "creatorCanAdmin": {
+          "target": "com.azure.dashboard#CreatorCanAdmin",
+          "traits": {
+            "smithy.api#documentation": "The creator will have admin access for the Grafana instance."
+          }
+        },
+        "deterministicOutboundIP": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesInputDeterministicOutboundIP",
+          "traits": {
+            "smithy.api#documentation": "Whether a Grafana instance uses deterministic outbound IPs."
+          }
+        },
+        "autoGeneratedDomainNameLabelScope": {
+          "target": "com.azure.dashboard#AutoGeneratedDomainNameLabelScope",
+          "traits": {
+            "smithy.api#documentation": "Scope for dns deterministic name hash calculation."
+          }
+        },
+        "grafanaIntegrations": {
+          "target": "com.azure.dashboard#GrafanaIntegrations",
+          "traits": {
+            "smithy.api#documentation": "GrafanaIntegrations is a bundled observability experience (e.g. pre-configured data source, tailored Grafana dashboards, alerting defaults) for common monitoring scenarios."
+          }
+        },
+        "enterpriseConfigurations": {
+          "target": "com.azure.dashboard#EnterpriseConfigurations",
+          "traits": {
+            "smithy.api#documentation": "Enterprise settings of a Grafana instance"
+          }
+        },
+        "grafanaConfigurations": {
+          "target": "com.azure.dashboard#GrafanaConfigurations",
+          "traits": {
+            "smithy.api#documentation": "Server configurations of a Grafana instance"
+          }
+        },
+        "grafanaPlugins": {
+          "target": "com.azure.dashboard#ManagedGrafanaPropertiesInputGrafanaPluginsMap",
+          "traits": {
+            "smithy.api#documentation": "Installed plugin list of the Grafana instance. Key is plugin id, value is plugin definition."
+          }
+        },
+        "grafanaMajorVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The major Grafana software version to target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to the grafana resource."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesInputGrafanaPluginsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.dashboard#GrafanaPluginInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Installed plugin list of the Grafana instance. Key is plugin id, value is plugin definition."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesInputDeterministicOutboundIP": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether a Grafana instance uses deterministic outbound IPs."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesInputApiKey": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The api key setting of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesInputZoneRedundancy": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaPropertiesInputPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
+      }
+    },
+    "com.azure.dashboard#GrafanaGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaGetRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#GrafanaGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get the properties of a specific workspace for Grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#GrafanaGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedGrafanaProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the grafana resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.dashboard#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The Sku of the grafana resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#GrafanaGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        },
+        "identity": {
+          "target": "com.azure.dashboard#GrafanaGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.dashboard#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.dashboard#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.dashboard#GrafanaGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#GrafanaGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The workspace name of Azure Managed Grafana."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedGrafanaListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List all resources of workspaces for Grafana under the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#ManagedGrafanaListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The ManagedGrafana items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of ManagedGrafana items"
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#ManagedGrafana"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ManagedGrafana items on this page"
+      }
+    },
+    "com.azure.dashboard#ManagedGrafana": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedGrafanaProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the grafana resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.dashboard#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The Sku of the grafana resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedGrafanaTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        },
+        "identity": {
+          "target": "com.azure.dashboard#ManagedGrafanaIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The grafana resource type."
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.dashboard#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.dashboard#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.dashboard#ManagedGrafanaTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#GrafanaListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedDashboardsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/dashboards/{dashboardName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Delete a dashboard for Grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dashboardName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Managed Dashboard."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedDashboardsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedDashboardsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/dashboards/{dashboardName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Update a dashboard for Grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedDashboardsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedDashboardProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the managed dashboard resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.dashboard#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to the grafana resource."
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dashboardName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Managed Dashboard."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedDashboardsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The new tags of the managed dashboard resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The new tags of the managed dashboard resource."
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#ManagedDashboardsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedDashboardsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/dashboards/{dashboardName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Create or update a dashboard for grafana resource. This API is idempotent, so user can either create a new dashboard or update an existing dashboard.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedDashboardsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedDashboardProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the managed dashboard resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dashboardName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Managed Dashboard."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedDashboardsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedDashboardPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the managed dashboard resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Properties specific to the grafana resource."
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#DashboardsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#DashboardsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#DashboardsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/dashboards/{dashboardName}",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "Get the properties of a specific dashboard for grafana resource.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#DashboardsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#DashboardsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedDashboardProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the managed dashboard resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#DashboardsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#DashboardsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dashboardName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Managed Dashboard."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#DashboardsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#DashboardsListRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedDashboardListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/dashboards",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List all resources of dashboards under the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#ManagedDashboardListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The ManagedDashboard items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of ManagedDashboard items"
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#ManagedDashboard"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ManagedDashboard items on this page"
+      }
+    },
+    "com.azure.dashboard#ManagedDashboard": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.dashboard#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dashboard#ManagedDashboardTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.dashboard#ManagedDashboardProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to the managed dashboard resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The managed dashboard resource type."
+      }
+    },
+    "com.azure.dashboard#ManagedDashboardTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.dashboard#DashboardsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#GrafanaList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#GrafanaListRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedGrafanaListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Dashboard/grafana",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List all resources of workspaces for Grafana under the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#GrafanaListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#DashboardsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dashboard#DashboardsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.dashboard#ManagedDashboardListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Dashboard/dashboards",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List all resources of dashboards under the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#DashboardsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dashboard#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.dashboard#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Dashboard/operations",
+          "code": 200,
+          "apiVersion": "2025-08-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-08-01"
+      }
+    },
+    "com.azure.dashboard#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dashboard#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dashboard#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dashboard#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.dashboard#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.dashboard#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.dashboard#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.dashboard#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.dashboard#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.dashboard#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.dashboard#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.dashboard#Dashboard": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsRefresh"
+        },
+        {
+          "target": "com.azure.dashboard#PrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.dashboard#PrivateLinkResourcesList"
+        },
+        {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionsApprove"
+        },
+        {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.dashboard#PrivateEndpointConnectionsList"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsDelete"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdate"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsCreate"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsGet"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedPrivateEndpointsList"
+        },
+        {
+          "target": "com.azure.dashboard#IntegrationFabricsDelete"
+        },
+        {
+          "target": "com.azure.dashboard#IntegrationFabricsUpdate"
+        },
+        {
+          "target": "com.azure.dashboard#IntegrationFabricsCreate"
+        },
+        {
+          "target": "com.azure.dashboard#IntegrationFabricsGet"
+        },
+        {
+          "target": "com.azure.dashboard#IntegrationFabricsList"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaFetchAvailablePlugins"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaCheckEnterpriseDetails"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaDelete"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaUpdate"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaCreate"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaGet"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaListByResourceGroup"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedDashboardsDelete"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedDashboardsUpdate"
+        },
+        {
+          "target": "com.azure.dashboard#ManagedDashboardsCreate"
+        },
+        {
+          "target": "com.azure.dashboard#DashboardsGet"
+        },
+        {
+          "target": "com.azure.dashboard#DashboardsList"
+        },
+        {
+          "target": "com.azure.dashboard#GrafanaList"
+        },
+        {
+          "target": "com.azure.dashboard#DashboardsListBySubscription"
+        },
+        {
+          "target": "com.azure.dashboard#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Dashboard",
+        "smithy.api#documentation": "Azure Dashboard API — merged from the dashboard resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

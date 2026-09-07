@@ -1,0 +1,12 @@
+{
+  "description": "Key dictionary / op aliases for argo (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "modifiedOn": "modified_on"
+      }
+    }
+  ]
+}

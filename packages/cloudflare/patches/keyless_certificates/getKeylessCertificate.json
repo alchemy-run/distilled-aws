@@ -1,0 +1,42 @@
+{
+  "description": "Align keyless_certificates#Get with distilled cloudflare/keyless-certificates getKeylessCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.keyless_certificates#Get",
+      "path": "/shapes/com.cloudflare.keyless_certificates#GetKeylessCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.keyless_certificates#GetRequest",
+      "path": "/shapes/com.cloudflare.keyless_certificates#GetKeylessCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.keyless_certificates#GetKeylessCertificate/input/target",
+      "value": "com.cloudflare.keyless_certificates#GetKeylessCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.keyless_certificates#GetResponse",
+      "path": "/shapes/com.cloudflare.keyless_certificates#GetKeylessCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.keyless_certificates#GetKeylessCertificate/output/target",
+      "value": "com.cloudflare.keyless_certificates#GetKeylessCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.keyless_certificates#GetKeylessCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.keyless_certificates#KeylessCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

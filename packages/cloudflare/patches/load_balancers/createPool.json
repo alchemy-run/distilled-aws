@@ -1,0 +1,42 @@
+{
+  "description": "Align load_balancers#PoolsCreate with distilled cloudflare/load-balancers createPool",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsCreate",
+      "path": "/shapes/com.cloudflare.load_balancers#CreatePool"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsCreateRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#CreatePoolRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#CreatePool/input/target",
+      "value": "com.cloudflare.load_balancers#CreatePoolRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsCreateResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#CreatePoolResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#CreatePool/output/target",
+      "value": "com.cloudflare.load_balancers#CreatePoolResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#CreatePool/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#PoolAccessFailed"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

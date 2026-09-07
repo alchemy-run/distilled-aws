@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#GatewayAppTypesList with distilled cloudflare/zero-trust listGatewayAppTypes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAppTypesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayAppTypes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAppTypesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayAppTypesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayAppTypes/input/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayAppTypesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAppTypesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayAppTypesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayAppTypes/output/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayAppTypesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayAppTypes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

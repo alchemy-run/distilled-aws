@@ -1,0 +1,1457 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "rapidmigrationassessment",
+    "version": "v1",
+    "title": "Rapid Migration Assessment API",
+    "baseUrl": "https://rapidmigrationassessment.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.rapidmigrationassessment_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.rapidmigrationassessment_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Location"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ResumeCollectorRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for resuming a Collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Collector": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User specified description of the Collector."
+          }
+        },
+        "vsphereScan": {
+          "target": "com.gcp.rapidmigrationassessment_v1#VSphereScan",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reference to MC Source vsphere_scan."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.rapidmigrationassessment_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels as key value pairs."
+          }
+        },
+        "state": {
+          "target": "com.gcp.rapidmigrationassessment_v1#CollectorStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the Collector."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Create time stamp."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User specified name of the Collector."
+          }
+        },
+        "collectionDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "How many days to collect data."
+          }
+        },
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service Account email used to ingest data to this Collector."
+          }
+        },
+        "clientVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Client version."
+          }
+        },
+        "guestOsScan": {
+          "target": "com.gcp.rapidmigrationassessment_v1#GuestOsScan",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reference to MC Source Guest Os Scan."
+          }
+        },
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Store cloud storage bucket name (which is a guid) created with this Collector."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of resource."
+          }
+        },
+        "expectedAssetCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User specified expected asset count."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Update time stamp."
+          }
+        },
+        "eulaUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri for EULA (End User License Agreement) from customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing Collector object."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CollectorStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STATE_INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_INITIALIZING"
+          }
+        },
+        "STATE_READY_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_READY_TO_USE"
+          }
+        },
+        "STATE_REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_REGISTERED"
+          }
+        },
+        "STATE_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_ACTIVE"
+          }
+        },
+        "STATE_PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_PAUSED"
+          }
+        },
+        "STATE_DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_DELETING"
+          }
+        },
+        "STATE_DECOMMISSIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_DECOMMISSIONED"
+          }
+        },
+        "STATE_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#PauseCollectorRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for pausing a Collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#VSphereScan": {
+      "type": "structure",
+      "members": {
+        "coreSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "reference to the corresponding VSphere Scan in MC Source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing a MC Source of type VSphere Scan."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GuestOsScan": {
+      "type": "structure",
+      "members": {
+        "coreSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "reference to the corresponding Guest OS Scan in MC Source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing a MC Source of type Guest OS Scan."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.rapidmigrationassessment_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.rapidmigrationassessment_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.rapidmigrationassessment_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.rapidmigrationassessment_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "response": {
+          "target": "com.gcp.rapidmigrationassessment_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Annotation": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Create time stamp."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Update time stamp."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.rapidmigrationassessment_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels as key value pairs."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of resource."
+          }
+        },
+        "type": {
+          "target": "com.gcp.rapidmigrationassessment_v1#AnnotationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of an annotation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing an Annotation"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#AnnotationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "TYPE_LEGACY_EXPORT_CONSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_LEGACY_EXPORT_CONSENT"
+          }
+        },
+        "TYPE_QWIKLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_QWIKLAB"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#RegisterCollectorRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for registering a Collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.rapidmigrationassessment_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.rapidmigrationassessment_v1#DocumentMap"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.rapidmigrationassessment_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListCollectorsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.rapidmigrationassessment_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "collectors": {
+          "target": "com.gcp.rapidmigrationassessment_v1#CollectorList",
+          "traits": {
+            "smithy.api#documentation": "The list of Collectors."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing Collectors."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CollectorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Collector"
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "extraLocationTypes": {
+          "target": "com.gcp.rapidmigrationassessment_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListCollectorsRequest.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hint for how to order the results.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filtering results.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ListCollectorsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/collectors"
+        },
+        "smithy.api#documentation": "Lists Collectors in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#PatchProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Field mask is used to specify the fields to be overwritten in the Collector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#Collector",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#PatchProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#PatchProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single Collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#RegisterProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#RegisterCollectorRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#RegisterProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#RegisterProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:register"
+        },
+        "smithy.api#documentation": "Registers the given collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#PauseProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#PauseCollectorRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#PauseProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#PauseProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:pause"
+        },
+        "smithy.api#documentation": "Pauses the given collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#DeleteProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#DeleteProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#DeleteProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single Collector - changes state of collector to \"Deleting\". Background jobs does final deletion through producer API."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ResumeProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#ResumeCollectorRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ResumeProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ResumeProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:resume"
+        },
+        "smithy.api#documentation": "Resumes the given collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CreateProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the parent (project+location).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "collectorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the requesting object.",
+            "smithy.api#httpQuery": "collectorId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#Collector",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CreateProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#CreateProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/collectors"
+        },
+        "smithy.api#documentation": "Create a Collector to manage the on-prem appliance which collects information about Customer assets."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsCollectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsCollectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsCollectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Collector"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Collector."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsAnnotationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsAnnotations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#GetProjectsLocationsAnnotationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Annotation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Annotation."
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CreateProjectsLocationsAnnotationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the parent (project+location).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.rapidmigrationassessment_v1#Annotation",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.rapidmigrationassessment_v1#CreateProjectsLocationsAnnotations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.rapidmigrationassessment_v1#CreateProjectsLocationsAnnotationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.rapidmigrationassessment_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.rapidmigrationassessment_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/annotations"
+        },
+        "smithy.api#documentation": "Creates an Annotation"
+      }
+    }
+  }
+}

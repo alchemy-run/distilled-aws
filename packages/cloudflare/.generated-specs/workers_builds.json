@@ -1,0 +1,4652 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.workers_builds#GetAccountLimitsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#GetAccountLimitsResponse": {
+      "type": "structure",
+      "members": {
+        "build_minutes_refresh_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When build minutes will refresh (only for non-paid plans)"
+          }
+        },
+        "has_reached_build_minutes_limit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether build minutes limit has been reached (only for non-paid plans)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#GetAccountLimits": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#GetAccountLimitsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#GetAccountLimitsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/account/limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve account limits and usage information",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "version_ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of version UUIDs (max 20).",
+            "smithy.api#httpQuery": "version_ids",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildOutcome": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terminated"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadataBuildTriggerSource": {
+      "type": "enum",
+      "members": {
+        "PUSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "push"
+          }
+        },
+        "PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull_request"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "API": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadataEnvironmentVariablesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadataProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadata": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "build_trigger_source": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadataBuildTriggerSource"
+        },
+        "commit_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash"
+          }
+        },
+        "commit_message": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "environment_variables": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadataEnvironmentVariablesMap"
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadataProviderType"
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValuePullRequest": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request_url": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueStatus": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTrigger": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerPathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerPathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTriggerRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValue": {
+      "type": "structure",
+      "members": {
+        "build_outcome": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildOutcome"
+        },
+        "build_trigger_metadata": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueBuildTriggerMetadata"
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "initializing_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValuePullRequest"
+        },
+        "running_on": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueStatus"
+        },
+        "stopped_on": {
+          "target": "smithy.api#String"
+        },
+        "trigger": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValueTrigger",
+          "traits": {
+            "smithy.api#documentation": "Trigger information without build_token_uuid"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsValue"
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersionResponse": {
+      "type": "structure",
+      "members": {
+        "builds": {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponseBuildsMap"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#GetBuildsByVersion": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#GetBuildsByVersionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#GetBuildsByVersionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/builds",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve builds for specific version IDs",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "external_script_ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of system-generated worker script tags (max 20).",
+            "smithy.api#httpQuery": "external_script_ids",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildOutcome": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terminated"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadataBuildTriggerSource": {
+      "type": "enum",
+      "members": {
+        "PUSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "push"
+          }
+        },
+        "PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull_request"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "API": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadataEnvironmentVariablesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadataProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadata": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "build_trigger_source": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadataBuildTriggerSource"
+        },
+        "commit_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash"
+          }
+        },
+        "commit_message": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "environment_variables": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadataEnvironmentVariablesMap"
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadataProviderType"
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValuePullRequest": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request_url": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueStatus": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTrigger": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerPathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerPathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTriggerRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValue": {
+      "type": "structure",
+      "members": {
+        "build_outcome": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildOutcome"
+        },
+        "build_trigger_metadata": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueBuildTriggerMetadata"
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "initializing_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValuePullRequest"
+        },
+        "running_on": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueStatus"
+        },
+        "stopped_on": {
+          "target": "smithy.api#String"
+        },
+        "trigger": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValueTrigger",
+          "traits": {
+            "smithy.api#documentation": "Trigger information without build_token_uuid"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsValue"
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuildsResponse": {
+      "type": "structure",
+      "members": {
+        "builds": {
+          "target": "com.cloudflare.workers_builds#GetLatestBuildsResponseBuildsMap"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#GetLatestBuilds": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#GetLatestBuildsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#GetLatestBuildsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/builds/latest",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the most recent builds for multiple worker scripts",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsCancelRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsCancelResponseBuildOutcome": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terminated"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsCancelResponse": {
+      "type": "structure",
+      "members": {
+        "build_outcome": {
+          "target": "com.cloudflare.workers_builds#BuildsCancelResponseBuildOutcome"
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "stopped_on": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#BuildsCancelRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#BuildsCancelResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/builds/builds/{build_uuid}/cancel",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel a running or queued build",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseBuildOutcome": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terminated"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataBuildTriggerSource": {
+      "type": "enum",
+      "members": {
+        "PUSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "push"
+          }
+        },
+        "PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull_request"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "API": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataEnvironmentVariablesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadata": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "build_trigger_source": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataBuildTriggerSource"
+        },
+        "commit_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash"
+          }
+        },
+        "commit_message": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "environment_variables": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataEnvironmentVariablesMap"
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataProviderType"
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponsePullRequest": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request_url": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponseTrigger": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGetResponse": {
+      "type": "structure",
+      "members": {
+        "build_outcome": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildOutcome"
+        },
+        "build_trigger_metadata": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadata"
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "initializing_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponsePullRequest"
+        },
+        "running_on": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseStatus"
+        },
+        "stopped_on": {
+          "target": "smithy.api#String"
+        },
+        "trigger": {
+          "target": "com.cloudflare.workers_builds#BuildsGetResponseTrigger",
+          "traits": {
+            "smithy.api#documentation": "Trigger information without build_token_uuid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#BuildsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#BuildsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/builds/{build_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve detailed information about a specific build",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number for pagination",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemBuildOutcome": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terminated"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataBuildTriggerSource": {
+      "type": "enum",
+      "members": {
+        "PUSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "push"
+          }
+        },
+        "PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull_request"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "API": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataEnvironmentVariablesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadata": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "build_trigger_source": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataBuildTriggerSource"
+        },
+        "commit_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash"
+          }
+        },
+        "commit_message": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "environment_variables": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataEnvironmentVariablesMap"
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataProviderType"
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemPullRequest": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request_url": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemStatus": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItemTrigger": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultItem": {
+      "type": "structure",
+      "members": {
+        "build_outcome": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildOutcome"
+        },
+        "build_trigger_metadata": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadata"
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "initializing_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "pull_request": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemPullRequest"
+        },
+        "running_on": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemStatus"
+        },
+        "stopped_on": {
+          "target": "smithy.api#String"
+        },
+        "trigger": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultItemTrigger",
+          "traits": {
+            "smithy.api#documentation": "Trigger information without build_token_uuid"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.workers_builds#BuildsListResultItem"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.workers_builds#BuildsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#BuildsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#BuildsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/workers/{external_script_id}/builds",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all builds for a specific worker script with pagination",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsLogsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination cursor for log retrieval.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesItem": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "Double": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesItem"
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsLogsGetResponse": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination cursor for log retrieval."
+          }
+        },
+        "lines": {
+          "target": "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesList"
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#BuildsLogsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#BuildsLogsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#BuildsLogsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/builds/{build_uuid}/logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve logs for a specific build with cursor-based pagination",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "script_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the worker.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name.",
+            "smithy.api#required": {}
+          }
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksCreateResponse": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters)."
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID."
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#DeployHooksCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#DeployHooksCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/builds/workers/{script_name}/deploy_hooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new deploy hook for a worker script."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "script_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the worker.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters)."
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID."
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#DeployHooksDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#DeployHooksDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/builds/workers/{script_name}/deploy_hooks/{deploy_hook_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a deploy hook.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "script_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the worker.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksGetResponse": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters)."
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID."
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#DeployHooksGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#DeployHooksGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/workers/{script_name}/deploy_hooks/{deploy_hook_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details of a specific deploy hook.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "script_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the worker.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksListResultItemLatestBuild": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksListResultItem": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters)."
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID."
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "latest_build": {
+          "target": "com.cloudflare.workers_builds#DeployHooksListResultItemLatestBuild"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.workers_builds#DeployHooksListResultItem"
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.workers_builds#DeployHooksListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#DeployHooksListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#DeployHooksListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/workers/{script_name}/deploy_hooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all deploy hooks for a specific worker script.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksTriggerRequest": {
+      "type": "structure",
+      "members": {
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksTriggerResponseStatus": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksTriggerResponse": {
+      "type": "structure",
+      "members": {
+        "already_exists": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if a pending build already exists for this branch"
+          }
+        },
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.workers_builds#DeployHooksTriggerResponseStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksTrigger": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#DeployHooksTriggerRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#DeployHooksTriggerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workers/builds/deploy_hooks/{deploy_hook_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Trigger a build using a deploy hook. This endpoint does not require authentication - the deploy_hook_uuid acts as a secret token."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "script_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the worker.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name.",
+            "smithy.api#required": {}
+          }
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_hook_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook name (1-58 characters)."
+          }
+        },
+        "deploy_hook_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deploy hook UUID."
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#DeployHooksUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#DeployHooksUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#DeployHooksUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/builds/workers/{script_name}/deploy_hooks/{deploy_hook_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing deploy hook.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGetRequestProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetRequestProviderType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name.",
+            "smithy.api#httpQuery": "branch",
+            "smithy.api#required": {}
+          }
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path.",
+            "smithy.api#httpQuery": "root_directory"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseEnvWorkerNamesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponsePackageManager": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "YARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yarn"
+          }
+        },
+        "PNPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pnpm"
+          }
+        },
+        "BUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bun"
+          }
+        },
+        "UV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uv"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseScriptsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponse": {
+      "type": "structure",
+      "members": {
+        "config_file": {
+          "target": "smithy.api#String"
+        },
+        "default_worker_name": {
+          "target": "smithy.api#String"
+        },
+        "env_worker_names": {
+          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseEnvWorkerNamesMap"
+        },
+        "package_manager": {
+          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponsePackageManager"
+        },
+        "scripts": {
+          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseScriptsMap"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConfigAutofillGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/repos/{provider_type}/{provider_account_id}/{repo_id}/config_autofill",
+          "code": 200
+        },
+        "smithy.api#documentation": "Analyze repository for automatic configuration detection",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#ReposConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#ReposConnectionsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/builds/repos/connections/{repo_connection_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a repository connection",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsUpsertRequestProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsUpsertRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertRequestProviderType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsUpsertResponseProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsUpsertResponse": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertResponseProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#ReposConnectionsUpsert": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/builds/repos/connections",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upsert a repository connection for CI/CD integration",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "build_token_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "build_token_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "cloudflare_token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensCreateResponse": {
+      "type": "structure",
+      "members": {
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "cloudflare_token_id": {
+          "target": "smithy.api#String"
+        },
+        "owner_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#TokensCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TokensCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TokensCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/builds/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new build authentication token"
+      }
+    },
+    "com.cloudflare.workers_builds#TokensDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TokensDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TokensDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/builds/tokens/{build_token_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a build authentication token",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number for pagination",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensListResultItem": {
+      "type": "structure",
+      "members": {
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "cloudflare_token_id": {
+          "target": "smithy.api#String"
+        },
+        "owner_type": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TokensListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.workers_builds#TokensListResultItem"
+      }
+    },
+    "com.cloudflare.workers_builds#TokensListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.workers_builds#TokensListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TokensList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TokensListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TokensListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all build tokens with pagination",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateRequestBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateRequestBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateRequestPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateRequestPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateRequestBranchExcludesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateRequestBranchIncludesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "build_command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID.",
+            "smithy.api#required": {}
+          }
+        },
+        "deploy_command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateRequestPathExcludesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateRequestPathIncludesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID.",
+            "smithy.api#required": {}
+          }
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path.",
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponseBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponseBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponsePathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponsePathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateResponse": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateResponseBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateResponseBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateResponsePathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateResponsePathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/builds/triggers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new CI/CD trigger"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepoProvider": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepoFilesItem": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isBase64": {
+          "target": "smithy.api#Boolean"
+        },
+        "replace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text to replace in the file"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepoFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepoFilesItem"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepo": {
+      "type": "structure",
+      "members": {
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name.",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "provider": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepoProvider",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepoFilesList"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuildRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name (required if commit_hash not provided)"
+          }
+        },
+        "commit_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash (required if branch not provided)"
+          }
+        },
+        "seed_repo": {
+          "target": "com.cloudflare.workers_builds#TriggersCreateBuildRequestSeedRepo"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuildResponse": {
+      "type": "structure",
+      "members": {
+        "build_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersCreateBuild": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersCreateBuildRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersCreateBuildResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}/builds",
+          "code": 200
+        },
+        "smithy.api#documentation": "Trigger a manual build for a specific trigger"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a CI/CD trigger",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItemBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItemBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItemPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItemPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItemRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItemRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultItemRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultItem": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultItemBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultItemBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultItemPathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultItemPathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultItemRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.workers_builds#TriggersListResultItem"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.workers_builds#TriggersListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/workers/{external_script_id}/triggers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all triggers for a specific worker script",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersPurgeCacheRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersPurgeCacheResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersPurgeCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersPurgeCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersPurgeCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}/purge_build_cache",
+          "code": 200
+        },
+        "smithy.api#documentation": "Clear the build cache for a specific trigger"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateRequestBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateRequestBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateRequestPathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateRequestPathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestPathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestPathIncludesList"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponseBranchExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponseBranchIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponsePathExcludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponsePathIncludesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnectionProviderType": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GITLAB_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab_internal"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnection": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "provider_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider account identifier."
+          }
+        },
+        "provider_account_name": {
+          "target": "smithy.api#String"
+        },
+        "provider_type": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnectionProviderType"
+        },
+        "repo_connection_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository connection UUID."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "branch_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseBranchExcludesList"
+        },
+        "branch_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseBranchIncludesList"
+        },
+        "build_caching_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "build_command": {
+          "target": "smithy.api#String"
+        },
+        "build_token_name": {
+          "target": "smithy.api#String"
+        },
+        "build_token_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Build token UUID."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "deleted_on": {
+          "target": "smithy.api#String"
+        },
+        "deploy_command": {
+          "target": "smithy.api#String"
+        },
+        "external_script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System-generated worker script tag."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "path_excludes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateResponsePathExcludesList"
+        },
+        "path_includes": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateResponsePathIncludesList"
+        },
+        "repo_connection": {
+          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnection"
+        },
+        "root_directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path."
+          }
+        },
+        "trigger_name": {
+          "target": "smithy.api#String"
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing CI/CD trigger"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "environment_variable_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Environment variable key.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}/environment_variables/{environment_variable_key}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a specific environment variable from a trigger",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultValue": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_secret": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value is null for secret environment variables"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultValue"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}/environment_variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all environment variables for a trigger",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyValue": {
+      "type": "structure",
+      "members": {
+        "is_secret": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyValue"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyMap",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultValue": {
+      "type": "structure",
+      "members": {
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_secret": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value is null for secret environment variables"
+          }
+        }
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultValue"
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsert": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/builds/triggers/{trigger_uuid}/environment_variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create or update environment variables for a trigger"
+      }
+    },
+    "com.cloudflare.workers_builds#WorkersBuilds": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.workers_builds#GetAccountLimits"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersion"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#GetLatestBuilds"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#BuildsCancel"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#BuildsGet"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#BuildsList"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#BuildsLogsGet"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeployHooksCreate"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeployHooksDelete"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeployHooksGet"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeployHooksList"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeployHooksTrigger"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeployHooksUpdate"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGet"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#ReposConnectionsDelete"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#ReposConnectionsUpsert"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TokensCreate"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TokensDelete"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TokensList"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersCreate"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersCreateBuild"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersDelete"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersList"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersPurgeCache"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersUpdate"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDelete"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesList"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsert"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare WorkersBuilds",
+        "smithy.api#documentation": "Cloudflare API — workers_builds resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

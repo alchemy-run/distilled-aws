@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#RankingInternetServicesTop with distilled cloudflare/radar topRankingInternetService",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingInternetServicesTop",
+      "path": "/shapes/com.cloudflare.radar#TopRankingInternetService"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingInternetServicesTopRequest",
+      "path": "/shapes/com.cloudflare.radar#TopRankingInternetServiceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TopRankingInternetService/input/target",
+      "value": "com.cloudflare.radar#TopRankingInternetServiceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingInternetServicesTopResponse",
+      "path": "/shapes/com.cloudflare.radar#TopRankingInternetServiceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TopRankingInternetService/output/target",
+      "value": "com.cloudflare.radar#TopRankingInternetServiceResponse"
+    }
+  ]
+}

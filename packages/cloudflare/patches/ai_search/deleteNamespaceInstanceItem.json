@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_search#NamespacesInstancesItemsDelete with distilled cloudflare/aisearch deleteNamespaceInstanceItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsDelete",
+      "path": "/shapes/com.cloudflare.ai_search#DeleteNamespaceInstanceItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_search#DeleteNamespaceInstanceItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#DeleteNamespaceInstanceItem/input/target",
+      "value": "com.cloudflare.ai_search#DeleteNamespaceInstanceItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsDeleteResponse",
+      "path": "/shapes/com.cloudflare.ai_search#DeleteNamespaceInstanceItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#DeleteNamespaceInstanceItem/output/target",
+      "value": "com.cloudflare.ai_search#DeleteNamespaceInstanceItemResponse"
+    }
+  ]
+}

@@ -1,0 +1,773 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "chromeuxreport",
+    "version": "v1",
+    "title": "Chrome UX Report API",
+    "baseUrl": "https://chromeuxreport.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.chromeuxreport_v1#QueryHistoryResponse": {
+      "type": "structure",
+      "members": {
+        "record": {
+          "target": "com.gcp.chromeuxreport_v1#HistoryRecord",
+          "traits": {
+            "smithy.api#documentation": "The record that was found."
+          }
+        },
+        "urlNormalizationDetails": {
+          "target": "com.gcp.chromeuxreport_v1#UrlNormalization",
+          "traits": {
+            "smithy.api#documentation": "These are details about automated normalization actions that were taken in order to make the requested `url_pattern` valid."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response payload sent back to a physical web client. This response contains the record found based on the identiers present in a `QueryHistoryRequest`. The returned response will have a history record, and sometimes details on normalization actions taken on the request that were necessary to make the request successful."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Bin": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Start is the beginning of the data bin."
+          }
+        },
+        "density": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The proportion of users that experienced this bin's value for the given metric."
+          }
+        },
+        "end": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "End is the end of the data bin. If end is not populated, then the bin has no end and is valid from start to +inf."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A bin is a discrete portion of data spanning from start to end, or if no end is given, then from start to +inf. A bin's start and end values are given in the value type of the metric it represents. For example, \"first contentful paint\" is measured in milliseconds and exposed as ints, therefore its metric bins will use int32s for its start and end types. However, \"cumulative layout shift\" is measured in unitless decimals and is exposed as a decimal encoded as a string, therefore its metric bins will use strings for its value type."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Percentiles": {
+      "type": "structure",
+      "members": {
+        "p75": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "75% of users experienced the given metric at or below this value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Percentiles contains synthetic values of a metric at a given statistical percentile. These are used for estimating a metric's value as experienced by a percentage of users out of the total number of users."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#MetricTimeseries": {
+      "type": "structure",
+      "members": {
+        "percentilesTimeseries": {
+          "target": "com.gcp.chromeuxreport_v1#TimeseriesPercentiles",
+          "traits": {
+            "smithy.api#documentation": "Commonly useful percentiles of the Metric. The value type for the percentiles will be the same as the value types given for the Histogram bins."
+          }
+        },
+        "fractionTimeseries": {
+          "target": "com.gcp.chromeuxreport_v1#FractionTimeseriesMap",
+          "traits": {
+            "smithy.api#documentation": "Mapping from labels to timeseries of fractions attributed to this label."
+          }
+        },
+        "histogramTimeseries": {
+          "target": "com.gcp.chromeuxreport_v1#TimeseriesBinList",
+          "traits": {
+            "smithy.api#documentation": "The histogram of user experiences for a metric. The histogram will have at least one bin and the densities of all bins will add up to ~1, for each timeseries entry."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A `metric timeseries` is a set of user experience data for a single web performance metric, like \"first contentful paint\". It contains a summary histogram of real world Chrome usage as a series of `bins`, where each bin has density values for a particular time period."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#FractionTimeseriesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.chromeuxreport_v1#FractionTimeseries"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#TimeseriesBinList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromeuxreport_v1#TimeseriesBin"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#HistoryKey": {
+      "type": "structure",
+      "members": {
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin specifies the origin that this record is for. Note: When specifying an origin, data for loads under this origin over all pages are aggregated into origin level user experience data."
+          }
+        },
+        "formFactor": {
+          "target": "com.gcp.chromeuxreport_v1#HistoryKeyFormFactorEnum",
+          "traits": {
+            "smithy.api#documentation": "The form factor is the device class that all users used to access the site for this record. If the form factor is unspecified, then aggregated data over all form factors will be returned."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url specifies a specific url that this record is for. This url should be normalized, following the normalization actions taken in the request to increase the chances of successful lookup. Note: When specifying a \"url\" only data for that specific url will be aggregated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key defines all the dimensions that identify this record as unique."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#HistoryKeyFormFactorEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_FORM_FACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_FORM_FACTORS"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHONE"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "TABLET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TABLET"
+          }
+        }
+      }
+    },
+    "com.gcp.chromeuxreport_v1#FractionTimeseries": {
+      "type": "structure",
+      "members": {
+        "fractions": {
+          "target": "com.gcp.chromeuxreport_v1#DoubleList",
+          "traits": {
+            "smithy.api#documentation": "Values between 0.0 and 1.0 (inclusive) and NaN."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "For enum metrics, provides fraction timeseries which add up to approximately 1.0 per entry (k-th element into the repeated fractions field for any k <= len) across fraction_timeseries."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#DoubleList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Chromeuxreport_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Key": {
+      "type": "structure",
+      "members": {
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin specifies the origin that this record is for. Note: When specifying an origin, data for loads under this origin over all pages are aggregated into origin level user experience data."
+          }
+        },
+        "formFactor": {
+          "target": "com.gcp.chromeuxreport_v1#KeyFormFactorEnum",
+          "traits": {
+            "smithy.api#documentation": "The form factor is the device class that all users used to access the site for this record. If the form factor is unspecified, then aggregated data over all form factors will be returned."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url specifies a specific url that this record is for. Note: When specifying a \"url\" only data for that specific url will be aggregated."
+          }
+        },
+        "effectiveConnectionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective connection type is the general connection class that all users experienced for this record. This field uses the values [\"offline\", \"slow-2G\", \"2G\", \"3G\", \"4G\"] as specified in: https://wicg.github.io/netinfo/#effective-connection-types If the effective connection type is unspecified, then aggregated data over all effective connection types will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key defines all the dimensions that identify this record as unique."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#KeyFormFactorEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_FORM_FACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_FORM_FACTORS"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHONE"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "TABLET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TABLET"
+          }
+        }
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Chromeuxreport_Record": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "com.gcp.chromeuxreport_v1#Key",
+          "traits": {
+            "smithy.api#documentation": "Key defines all of the unique querying parameters needed to look up a user experience record."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.chromeuxreport_v1#MetricMap",
+          "traits": {
+            "smithy.api#documentation": "Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\", \"experimental_time_to_first_byte\", \"experimental_interaction_to_next_paint\"]"
+          }
+        },
+        "collectionPeriod": {
+          "target": "com.gcp.chromeuxreport_v1#CollectionPeriod",
+          "traits": {
+            "smithy.api#documentation": "The collection period indicates when the data reflected in this record was collected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Record is a single Chrome UX report data record. It contains use experience statistics for a single url pattern and set of dimensions."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#MetricMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.chromeuxreport_v1#Metric"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#TimeseriesBin": {
+      "type": "structure",
+      "members": {
+        "end": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "End is the end of the data bin. If end is not populated, then the bin has no end and is valid from start to +inf."
+          }
+        },
+        "densities": {
+          "target": "com.gcp.chromeuxreport_v1#DoubleList",
+          "traits": {
+            "smithy.api#documentation": "The proportion of users that experienced this bin's value for the given metric in a given collection period; the index for each of these entries corresponds to an entry in the CollectionPeriods field in the HistoryRecord message, which describes when the density was observed in the field. Thus, the length of this list of densities is equal to the length of the CollectionPeriods field in the HistoryRecord message."
+          }
+        },
+        "start": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Start is the beginning of the data bin."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A bin is a discrete portion of data spanning from start to end, or if no end is given, then from start to +inf. A bin's start and end values are given in the value type of the metric it represents. For example, \"first contentful paint\" is measured in milliseconds and exposed as ints, therefore its metric bins will use int32s for its start and end types. However, \"cumulative layout shift\" is measured in unitless decimals and is exposed as a decimal encoded as a string, therefore its metric bins will use strings for its value type."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryHistoryRequest": {
+      "type": "structure",
+      "members": {
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url pattern \"origin\" refers to a url pattern that is the origin of a website. Examples: \"https://example.com\", \"https://cloud.google.com\""
+          }
+        },
+        "formFactor": {
+          "target": "com.gcp.chromeuxreport_v1#QueryHistoryRequestFormFactorEnum",
+          "traits": {
+            "smithy.api#documentation": "The form factor is a query dimension that specifies the device class that the record's data should belong to. Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.chromeuxreport_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\", \"experimental_time_to_first_byte\", \"experimental_interaction_to_next_paint\"]"
+          }
+        },
+        "collectionPeriodCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of collection periods to return. If not specified, the default is 25. If present, must be in the range [1, 40]."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url pattern \"url\" refers to a url pattern that is any arbitrary url. Examples: \"https://example.com/\", \"https://cloud.google.com/why-google-cloud/\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request payload sent by a physical web client. This request includes all necessary context to load a particular user experience history record."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryHistoryRequestFormFactorEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_FORM_FACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_FORM_FACTORS"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHONE"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "TABLET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TABLET"
+          }
+        }
+      }
+    },
+    "com.gcp.chromeuxreport_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Metric": {
+      "type": "structure",
+      "members": {
+        "fractions": {
+          "target": "com.gcp.chromeuxreport_v1#DoubleMap",
+          "traits": {
+            "smithy.api#documentation": "For enum metrics, provides fractions which add up to approximately 1.0."
+          }
+        },
+        "percentiles": {
+          "target": "com.gcp.chromeuxreport_v1#Percentiles",
+          "traits": {
+            "smithy.api#documentation": "Commonly useful percentiles of the Metric. The value type for the percentiles will be the same as the value types given for the Histogram bins."
+          }
+        },
+        "histogram": {
+          "target": "com.gcp.chromeuxreport_v1#BinList",
+          "traits": {
+            "smithy.api#documentation": "The histogram of user experiences for a metric. The histogram will have at least one bin and the densities of all bins will add up to ~1."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A `metric` is a set of user experience data for a single web performance metric, like \"first contentful paint\". It contains a summary histogram of real world Chrome usage as a series of `bins`."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#DoubleMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#BinList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromeuxreport_v1#Bin"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryResponse": {
+      "type": "structure",
+      "members": {
+        "urlNormalizationDetails": {
+          "target": "com.gcp.chromeuxreport_v1#UrlNormalization",
+          "traits": {
+            "smithy.api#documentation": "These are details about automated normalization actions that were taken in order to make the requested `url_pattern` valid."
+          }
+        },
+        "record": {
+          "target": "com.gcp.chromeuxreport_v1#Chromeuxreport_Record",
+          "traits": {
+            "smithy.api#documentation": "The record that was found."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response payload sent back to a physical web client. This response contains the record found based on the identiers present in a `QueryRequest`. The returned response will have a record, and sometimes details on normalization actions taken on the request that were necessary to make the request successful."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#TimeseriesPercentiles": {
+      "type": "structure",
+      "members": {
+        "p75s": {
+          "target": "com.gcp.chromeuxreport_v1#DocumentList",
+          "traits": {
+            "smithy.api#documentation": "75% of users experienced the given metric at or below this value. The length of this list of densities is equal to the length of the CollectionPeriods field in the HistoryRecord message, which describes when the density was observed in the field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Percentiles contains synthetic values of a metric at a given statistical percentile. These are used for estimating a metric's value as experienced by a percentage of users out of the total number of users."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#DocumentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryRequest": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url pattern \"url\" refers to a url pattern that is any arbitrary url. Examples: \"https://example.com/\", \"https://cloud.google.com/why-google-cloud/\""
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url pattern \"origin\" refers to a url pattern that is the origin of a website. Examples: \"https://example.com\", \"https://cloud.google.com\""
+          }
+        },
+        "formFactor": {
+          "target": "com.gcp.chromeuxreport_v1#QueryRequestFormFactorEnum",
+          "traits": {
+            "smithy.api#documentation": "The form factor is a query dimension that specifies the device class that the record's data should belong to. Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned."
+          }
+        },
+        "effectiveConnectionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective connection type is a query dimension that specifies the effective network class that the record's data should belong to. This field uses the values [\"offline\", \"slow-2G\", \"2G\", \"3G\", \"4G\"] as specified in: https://wicg.github.io/netinfo/#effective-connection-types Note: If no effective connection type is specified, then a special record with aggregated data over all effective connection types will be returned."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.chromeuxreport_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\", \"experimental_time_to_first_byte\", \"experimental_interaction_to_next_paint\"]"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request payload sent by a physical web client. This request includes all necessary context to load a particular user experience record."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryRequestFormFactorEnum": {
+      "type": "enum",
+      "members": {
+        "ALL_FORM_FACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_FORM_FACTORS"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHONE"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "TABLET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TABLET"
+          }
+        }
+      }
+    },
+    "com.gcp.chromeuxreport_v1#CollectionPeriod": {
+      "type": "structure",
+      "members": {
+        "firstDate": {
+          "target": "com.gcp.chromeuxreport_v1#Chromeuxreport_Date",
+          "traits": {
+            "smithy.api#documentation": "The first day in the collection period, inclusive."
+          }
+        },
+        "lastDate": {
+          "target": "com.gcp.chromeuxreport_v1#Chromeuxreport_Date",
+          "traits": {
+            "smithy.api#documentation": "The last day in the collection period, inclusive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection period is a date range which includes the `first` and `last` day."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#UrlNormalization": {
+      "type": "structure",
+      "members": {
+        "normalizedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL after any normalization actions. This is a valid user experience URL that could reasonably be looked up."
+          }
+        },
+        "originalUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original requested URL prior to any normalization actions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object representing the normalization actions taken to normalize a url to achieve a higher chance of successful lookup. These are simple automated changes that are taken when looking up the provided `url_patten` would be known to fail. Complex actions like following redirects are not handled."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#HistoryRecord": {
+      "type": "structure",
+      "members": {
+        "collectionPeriods": {
+          "target": "com.gcp.chromeuxreport_v1#CollectionPeriodList",
+          "traits": {
+            "smithy.api#documentation": "The collection periods indicate when each of the data points reflected in the time series data in metrics was collected. Note that all the time series share the same collection periods, and it is enforced in the CrUX pipeline that every time series has the same number of data points."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.chromeuxreport_v1#MetricTimeseriesMap",
+          "traits": {
+            "smithy.api#documentation": "Metrics is the map of user experience time series data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\", \"experimental_time_to_first_byte\", \"experimental_interaction_to_next_paint\"]"
+          }
+        },
+        "key": {
+          "target": "com.gcp.chromeuxreport_v1#HistoryKey",
+          "traits": {
+            "smithy.api#documentation": "Key defines all of the unique querying parameters needed to look up a user experience history record."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HistoryRecord is a timeseries of Chrome UX Report data. It contains user experience statistics for a single url pattern and a set of dimensions."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#CollectionPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromeuxreport_v1#CollectionPeriod"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#MetricTimeseriesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.chromeuxreport_v1#MetricTimeseries"
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryHistoryRecordRecordsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.chromeuxreport_v1#QueryHistoryRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromeuxreport_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.chromeuxreport_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.chromeuxreport_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryHistoryRecordRecords": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromeuxreport_v1#QueryHistoryRecordRecordsRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromeuxreport_v1#QueryHistoryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromeuxreport_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromeuxreport_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromeuxreport_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromeuxreport_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/records:queryHistoryRecord"
+        },
+        "smithy.api#documentation": "Queries the Chrome User Experience Report for a timeseries `history record` for a given site. Returns a `history record` that contains one or more `metric timeseries` corresponding to performance data about the requested site."
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryRecordRecordsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.chromeuxreport_v1#QueryRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromeuxreport_v1#QueryRecordRecords": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromeuxreport_v1#QueryRecordRecordsRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromeuxreport_v1#QueryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromeuxreport_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromeuxreport_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromeuxreport_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromeuxreport_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/records:queryRecord"
+        },
+        "smithy.api#documentation": "Queries the Chrome User Experience for a single `record` for a given site. Returns a `record` that contains one or more `metrics` corresponding to performance data about the requested site."
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align d1#DatabaseCreate with distilled cloudflare/d1 createDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseCreate",
+      "path": "/shapes/com.cloudflare.d1#CreateDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseCreateRequest",
+      "path": "/shapes/com.cloudflare.d1#CreateDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#CreateDatabase/input/target",
+      "value": "com.cloudflare.d1#CreateDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseCreateResponse",
+      "path": "/shapes/com.cloudflare.d1#CreateDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#CreateDatabase/output/target",
+      "value": "com.cloudflare.d1#CreateDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#CreateDatabase/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InvalidProperty"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align origin_tls_client_auth#HostnamesGet with distilled cloudflare/origin-tls-client-auth getHostname",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnamesGet",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostname"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnamesGetRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostname/input/target",
+      "value": "com.cloudflare.origin_tls_client_auth#GetHostnameRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnamesGetResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostnameResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostname/output/target",
+      "value": "com.cloudflare.origin_tls_client_auth#GetHostnameResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetHostname/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameAssociationNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

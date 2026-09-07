@@ -1,0 +1,15 @@
+{
+  "description": "Key dictionary / op aliases for managed_transforms (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "conflictsWith": "conflicts_with",
+        "hasConflict": "has_conflict",
+        "managedRequestHeaders": "managed_request_headers",
+        "managedResponseHeaders": "managed_response_headers"
+      }
+    }
+  ]
+}

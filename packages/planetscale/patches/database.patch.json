@@ -1,0 +1,79 @@
+{
+  "description": "Fix Database schema: make many fields optional that aren't always returned, and make nullable fields (data_import, migration_table_name, migration_framework) nullable",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/definitions/Database/required",
+      "value": [
+        "id",
+        "url",
+        "branches_url",
+        "region",
+        "html_url",
+        "name",
+        "state",
+        "created_at",
+        "updated_at",
+        "kind",
+        "ready"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Database/properties/data_import/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Database/properties/migration_table_name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Database/properties/migration_framework/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Database/properties/automatic_migrations/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedDatabase/properties/data/items/required",
+      "value": [
+        "id",
+        "url",
+        "branches_url",
+        "region",
+        "html_url",
+        "name",
+        "state",
+        "created_at",
+        "updated_at",
+        "kind",
+        "ready"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/data/items/properties/data_import/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/data/items/properties/migration_table_name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/data/items/properties/migration_framework/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/data/items/properties/automatic_migrations/x-nullable",
+      "value": true
+    }
+  ]
+}

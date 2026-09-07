@@ -1,0 +1,50 @@
+{
+  "description": "Align hostnames#SettingsTlsGet with distilled cloudflare/hostnames getSettingTls",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsGet",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTls"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsGetRequest",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTlsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTls/input/target",
+      "value": "com.cloudflare.hostnames#GetSettingTlsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsGetResponse",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTlsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTls/output/target",
+      "value": "com.cloudflare.hostnames#GetSettingTlsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTls/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hostnames#GetSettingTls/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.hostnames#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.hostnames#Forbidden"
+        }
+      ]
+    }
+  ]
+}

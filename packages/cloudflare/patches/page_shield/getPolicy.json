@@ -1,0 +1,42 @@
+{
+  "description": "Align page_shield#PoliciesGet with distilled cloudflare/page-shield getPolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesGet",
+      "path": "/shapes/com.cloudflare.page_shield#GetPolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesGetRequest",
+      "path": "/shapes/com.cloudflare.page_shield#GetPolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetPolicy/input/target",
+      "value": "com.cloudflare.page_shield#GetPolicyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesGetResponse",
+      "path": "/shapes/com.cloudflare.page_shield#GetPolicyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetPolicy/output/target",
+      "value": "com.cloudflare.page_shield#GetPolicyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_shield#GetPolicy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_shield#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    }
+  ]
+}

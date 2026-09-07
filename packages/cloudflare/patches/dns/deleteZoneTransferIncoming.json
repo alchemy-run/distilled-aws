@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#ZoneTransfersIncomingDelete with distilled cloudflare/dns deleteZoneTransferIncoming",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersIncomingDelete",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferIncoming"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersIncomingDeleteRequest",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferIncomingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferIncoming/input/target",
+      "value": "com.cloudflare.dns#DeleteZoneTransferIncomingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersIncomingDeleteResponse",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferIncomingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferIncoming/output/target",
+      "value": "com.cloudflare.dns#DeleteZoneTransferIncomingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferIncoming/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#IncomingZoneTransferNotFound"
+        }
+      ]
+    }
+  ]
+}

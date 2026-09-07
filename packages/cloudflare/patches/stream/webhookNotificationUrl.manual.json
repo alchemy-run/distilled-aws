@@ -1,0 +1,17 @@
+{
+  "description": "The stream webhook shapes carry BOTH `notification_url` and `notificationUrl` wire keys (the API is mid-rename; the docs list both with the identical description and the response returns both with the same value). They camel-collide into `notificationUrl`/`notificationUrl2`. Keep ONE member bound to the camelCase wire key — the form v0 distilled used and runtime-verified — and drop the snake_case duplicate.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.stream#PutWebhookRequest/members/notification_url"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.stream#PutWebhookResponse/members/notification_url"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.stream#GetWebhookResponse/members/notification_url"
+    }
+  ]
+}

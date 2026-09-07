@@ -1,0 +1,3152 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.agent_tasks#ListTasksForRepoRequestSort": {
+      "type": "enum",
+      "members": {
+        "UPDATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated_at"
+          }
+        },
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksForRepoRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksForRepoRequestCreatorIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch."
+          }
+        },
+        "sort": {
+          "target": "com.github.agent_tasks#ListTasksForRepoRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "The field to sort results by. Can be `updated_at` or `created_at`."
+          }
+        },
+        "direction": {
+          "target": "com.github.agent_tasks#ListTasksForRepoRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort results. Can be `asc` or `desc`."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Comma-separated list of task states to filter by. Can be any combination of: `queued`, `in_progress`, `completed`, `failed`, `idle`, `waiting_for_user`, `timed_out`, `cancelled`."
+          }
+        },
+        "is_archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "is_archived",
+            "smithy.api#documentation": "Filter by archived status. When `true`, returns only archived tasks. When `false` or omitted, returns only non-archived tasks. Defaults to `false`."
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show tasks updated at or after this time (ISO 8601 timestamp)"
+          }
+        },
+        "creator_id": {
+          "target": "com.github.agent_tasks#ListTasksForRepoRequestCreatorIdList",
+          "traits": {
+            "smithy.api#httpQuery": "creator_id",
+            "smithy.api#documentation": "Filter tasks by creator user ID. Accepts one or more user IDs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemCreator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemCreatorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the task creator"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemUserCollaboratorsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemUserCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemUserCollaboratorsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "User objects of collaborators on this task"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this task belongs to"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of the task, derived from its most recent session"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemProvider": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider namespace"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemType": {
+      "type": "enum",
+      "members": {
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemDataCase0": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub resource ID",
+            "smithy.api#required": {}
+          }
+        },
+        "global_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GraphQL global ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub resource (pull request, issue, etc.)"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemDataCase1": {
+      "type": "structure",
+      "members": {
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name",
+            "smithy.api#required": {}
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Git branch reference"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemDataCase0"
+        },
+        "Case1": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemDataCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource data (shape depends on type)"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItem": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemProvider",
+          "traits": {
+            "smithy.api#documentation": "Provider namespace",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItemData",
+          "traits": {
+            "smithy.api#documentation": "Resource data (shape depends on type)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource generated by the task"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItemCustomAgent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom agent's filename without the extension - for example, `performance-optimizer` for a `.github/agents/performance-optimizer.agent.md` custom agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom agent metadata associated with this task"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique task identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API URL for this task"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Web URL for this task"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name derived from the task prompt"
+          }
+        },
+        "creator": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemCreator",
+          "traits": {
+            "smithy.api#documentation": "The entity who created this task"
+          }
+        },
+        "creator_type": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemCreatorType",
+          "traits": {
+            "smithy.api#documentation": "Type of the task creator"
+          }
+        },
+        "user_collaborators": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemUserCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "User objects of collaborators on this task"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this task belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the task, derived from its most recent session",
+            "smithy.api#required": {}
+          }
+        },
+        "session_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of sessions in this task"
+          }
+        },
+        "artifacts": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was archived, null if not archived",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent update"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was created",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_agent": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItemCustomAgent",
+          "traits": {
+            "smithy.api#documentation": "Custom agent metadata associated with this task"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponseTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of tasks"
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "tasks": {
+          "target": "com.github.agent_tasks#ListTasksForRepoResponseTasksList",
+          "traits": {
+            "smithy.api#documentation": "List of tasks",
+            "smithy.api#required": {}
+          }
+        },
+        "total_active_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of active (non-archived) tasks"
+          }
+        },
+        "total_archived_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of archived tasks"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agent_tasks#ListTasksForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agent_tasks#ListTasksForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.agent_tasks#ListTasksForRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.agent_tasks#BadRequest"
+        },
+        {
+          "target": "com.github.agent_tasks#Forbidden"
+        },
+        {
+          "target": "com.github.agent_tasks#NotFound"
+        },
+        {
+          "target": "com.github.agent_tasks#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/agents/repos/{owner}/{repo}/tasks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List tasks for repository\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nReturns a list of tasks for a specific repository\n\n**Fine-grained access tokens for \"List tasks for repository\"**\n\nThis endpoint works with the following fine-grained token types:\n\n* [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app)\n* [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)\n\nThe fine-grained token must have the following permission set:\n\n* \"Agent tasks\" repository permissions (read)\n\nGitHub App installation access tokens are not supported for this endpoint."
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository. The name is not case sensitive."
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's prompt for the agent",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model to use for this task. The allowed models may change over time and depend on the user's GitHub Copilot plan and organization policies. Currently supported values: `claude-sonnet-4.6`, `claude-opus-4.6`, `gpt-5.2-codex`, `gpt-5.3-codex`, `gpt-5.4`, `claude-sonnet-4.5`, `claude-opus-4.5`"
+          }
+        },
+        "custom_agent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional identifier for a custom agent to use for this task. Use the custom agent's filename without the extension - for example, for a `.github/agents/performance-optimizer.agent.md` custom agent, use `performance-optimizer`."
+          }
+        },
+        "create_pull_request": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to create a PR."
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base ref for new branch/PR"
+          }
+        },
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head ref for existing branch/PR. If provided with `base_ref`, the agent looks up open PR context for `head_ref` targeting `base_ref` and commits to `head_ref` instead of creating a new branch."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseCreator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseCreatorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the task creator"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseUserCollaboratorsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseUserCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#CreateTaskInRepoResponseUserCollaboratorsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "User objects of collaborators on this task"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this task belongs to"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of the task, derived from its most recent session"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemProvider": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider namespace"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemType": {
+      "type": "enum",
+      "members": {
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemDataCase0": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub resource ID",
+            "smithy.api#required": {}
+          }
+        },
+        "global_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GraphQL global ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub resource (pull request, issue, etc.)"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemDataCase1": {
+      "type": "structure",
+      "members": {
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name",
+            "smithy.api#required": {}
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Git branch reference"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemDataCase0"
+        },
+        "Case1": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemDataCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource data (shape depends on type)"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItem": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemProvider",
+          "traits": {
+            "smithy.api#documentation": "Provider namespace",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItemData",
+          "traits": {
+            "smithy.api#documentation": "Resource data (shape depends on type)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource generated by the task"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponseCustomAgent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom agent's filename without the extension - for example, `performance-optimizer` for a `.github/agents/performance-optimizer.agent.md` custom agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom agent metadata associated with this task"
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepoResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique task identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API URL for this task"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Web URL for this task"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name derived from the task prompt"
+          }
+        },
+        "creator": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseCreator",
+          "traits": {
+            "smithy.api#documentation": "The entity who created this task"
+          }
+        },
+        "creator_type": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseCreatorType",
+          "traits": {
+            "smithy.api#documentation": "Type of the task creator"
+          }
+        },
+        "user_collaborators": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseUserCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "User objects of collaborators on this task"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this task belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the task, derived from its most recent session",
+            "smithy.api#required": {}
+          }
+        },
+        "session_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of sessions in this task"
+          }
+        },
+        "artifacts": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was archived, null if not archived",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent update"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was created",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_agent": {
+          "target": "com.github.agent_tasks#CreateTaskInRepoResponseCustomAgent",
+          "traits": {
+            "smithy.api#documentation": "Custom agent metadata associated with this task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agent_tasks#CreateTaskInRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agent_tasks#CreateTaskInRepoRequest"
+      },
+      "output": {
+        "target": "com.github.agent_tasks#CreateTaskInRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.agent_tasks#BadRequest"
+        },
+        {
+          "target": "com.github.agent_tasks#Forbidden"
+        },
+        {
+          "target": "com.github.agent_tasks#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/agents/repos/{owner}/{repo}/tasks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start a task\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nStarts a new Copilot cloud agent task for a repository.\n\nThis endpoint is only available to users with a Copilot Business or Copilot Enterprise subscription.\n\n**Fine-grained access tokens for \"Start a task\"**\n\nThis endpoint works with the following fine-grained token types:\n\n* [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app)\n* [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)\n\nThe fine-grained token must have the following permission set:\n\n* \"Agent tasks\" repository permissions (read and write)\n\nGitHub App installation access tokens are not supported for this endpoint."
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository. The name is not case sensitive."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the task."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseCreator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseCreatorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the task creator"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseUserCollaboratorsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseUserCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseUserCollaboratorsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "User objects of collaborators on this task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this task belongs to"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of the task, derived from its most recent session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemProvider": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider namespace"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemType": {
+      "type": "enum",
+      "members": {
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemDataCase0": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub resource ID",
+            "smithy.api#required": {}
+          }
+        },
+        "global_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GraphQL global ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub resource (pull request, issue, etc.)"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemDataCase1": {
+      "type": "structure",
+      "members": {
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name",
+            "smithy.api#required": {}
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Git branch reference"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemDataCase0"
+        },
+        "Case1": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemDataCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource data (shape depends on type)"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItem": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemProvider",
+          "traits": {
+            "smithy.api#documentation": "Provider namespace",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItemData",
+          "traits": {
+            "smithy.api#documentation": "Resource data (shape depends on type)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource generated by the task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseCustomAgent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom agent's filename without the extension - for example, `performance-optimizer` for a `.github/agents/performance-optimizer.agent.md` custom agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom agent metadata associated with this task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemUser": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The user who created this session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this session belongs to"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of a session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemUsageType": {
+      "type": "enum",
+      "members": {
+        "AI_CREDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai_credits"
+          }
+        },
+        "PREMIUM_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "premium_requests"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older sessions use `premium_requests`."
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemUsage": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemUsageType",
+          "traits": {
+            "smithy.api#documentation": "Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older sessions use `premium_requests`.",
+            "smithy.api#required": {}
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of billing units used by this session. When the `type` is `ai_credits`, the value is a whole number, expressed in nano units. When presenting this to a human, divide by 1,000,000,000 and round to one decimal place. When aggregating (for example, summing usage across sessions), sum the nano values first, and divide once at the end before presenting to a human to avoid losing precision. When the `type` is `premium_requests`, the value may be fractional (for example `1.5`).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured information about billing units consumed by the session."
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemError": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error details for a failed session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session ID",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session name"
+          }
+        },
+        "user": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemUser",
+          "traits": {
+            "smithy.api#documentation": "The user who created this session"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this session belongs to"
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Task ID this session belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemState",
+          "traits": {
+            "smithy.api#documentation": "Current state of a session",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update timestamp"
+          }
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Completion timestamp"
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content of the triggering event"
+          }
+        },
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name"
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name"
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model used for this session"
+          }
+        },
+        "usage": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemUsage",
+          "traits": {
+            "smithy.api#documentation": "Structured information about billing units consumed by the session."
+          }
+        },
+        "error": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error details for a failed session"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Full session details within a task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Sessions associated with this task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique task identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API URL for this task"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Web URL for this task"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name derived from the task prompt"
+          }
+        },
+        "creator": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseCreator",
+          "traits": {
+            "smithy.api#documentation": "The entity who created this task"
+          }
+        },
+        "creator_type": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseCreatorType",
+          "traits": {
+            "smithy.api#documentation": "Type of the task creator"
+          }
+        },
+        "user_collaborators": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseUserCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "User objects of collaborators on this task"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this task belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the task, derived from its most recent session",
+            "smithy.api#required": {}
+          }
+        },
+        "session_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of sessions in this task"
+          }
+        },
+        "artifacts": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was archived, null if not archived",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent update"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was created",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_agent": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseCustomAgent",
+          "traits": {
+            "smithy.api#documentation": "Custom agent metadata associated with this task"
+          }
+        },
+        "sessions": {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponseSessionsList",
+          "traits": {
+            "smithy.api#documentation": "Sessions associated with this task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agent_tasks#GetTaskByRepoAndId": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agent_tasks#GetTaskByRepoAndIdRequest"
+      },
+      "output": {
+        "target": "com.github.agent_tasks#GetTaskByRepoAndIdResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.agent_tasks#BadRequest"
+        },
+        {
+          "target": "com.github.agent_tasks#Forbidden"
+        },
+        {
+          "target": "com.github.agent_tasks#NotFound"
+        },
+        {
+          "target": "com.github.agent_tasks#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/agents/repos/{owner}/{repo}/tasks/{task_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a task by repo\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nReturns a task by ID scoped to an owner/repo path\n\n**Fine-grained access tokens for \"Get a task by repo\"**\n\nThis endpoint works with the following fine-grained token types:\n\n* [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app)\n* [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)\n\nThe fine-grained token must have the following permission set:\n\n* \"Agent tasks\" repository permissions (read)\n\nGitHub App installation access tokens are not supported for this endpoint."
+      }
+    },
+    "com.github.agent_tasks#ListTasksRequestSort": {
+      "type": "enum",
+      "members": {
+        "UPDATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated_at"
+          }
+        },
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100)."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch."
+          }
+        },
+        "sort": {
+          "target": "com.github.agent_tasks#ListTasksRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "The field to sort results by. Can be `updated_at` or `created_at`."
+          }
+        },
+        "direction": {
+          "target": "com.github.agent_tasks#ListTasksRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort results. Can be `asc` or `desc`."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Comma-separated list of task states to filter by. Can be any combination of: `queued`, `in_progress`, `completed`, `failed`, `idle`, `waiting_for_user`, `timed_out`, `cancelled`."
+          }
+        },
+        "is_archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "is_archived",
+            "smithy.api#documentation": "Filter by archived status. When `true`, returns only archived tasks. When `false` or omitted, returns only non-archived tasks. Defaults to `false`."
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show tasks updated at or after this time (ISO 8601 timestamp)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemCreator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemCreatorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the task creator"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemUserCollaboratorsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemUserCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#ListTasksResponseTasksItemUserCollaboratorsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "User objects of collaborators on this task"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this task belongs to"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of the task, derived from its most recent session"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemProvider": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider namespace"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemType": {
+      "type": "enum",
+      "members": {
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemDataCase0": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub resource ID",
+            "smithy.api#required": {}
+          }
+        },
+        "global_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GraphQL global ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub resource (pull request, issue, etc.)"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemDataCase1": {
+      "type": "structure",
+      "members": {
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name",
+            "smithy.api#required": {}
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Git branch reference"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemDataCase0"
+        },
+        "Case1": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemDataCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource data (shape depends on type)"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItem": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemProvider",
+          "traits": {
+            "smithy.api#documentation": "Provider namespace",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItemData",
+          "traits": {
+            "smithy.api#documentation": "Resource data (shape depends on type)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource generated by the task"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItemCustomAgent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom agent's filename without the extension - for example, `performance-optimizer` for a `.github/agents/performance-optimizer.agent.md` custom agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom agent metadata associated with this task"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique task identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API URL for this task"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Web URL for this task"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name derived from the task prompt"
+          }
+        },
+        "creator": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemCreator",
+          "traits": {
+            "smithy.api#documentation": "The entity who created this task"
+          }
+        },
+        "creator_type": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemCreatorType",
+          "traits": {
+            "smithy.api#documentation": "Type of the task creator"
+          }
+        },
+        "user_collaborators": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemUserCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "User objects of collaborators on this task"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this task belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the task, derived from its most recent session",
+            "smithy.api#required": {}
+          }
+        },
+        "session_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of sessions in this task"
+          }
+        },
+        "artifacts": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was archived, null if not archived",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent update"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was created",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_agent": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksItemCustomAgent",
+          "traits": {
+            "smithy.api#documentation": "Custom agent metadata associated with this task"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agent_tasks#ListTasksResponseTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#ListTasksResponseTasksItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of tasks"
+      }
+    },
+    "com.github.agent_tasks#ListTasksResponse": {
+      "type": "structure",
+      "members": {
+        "tasks": {
+          "target": "com.github.agent_tasks#ListTasksResponseTasksList",
+          "traits": {
+            "smithy.api#documentation": "List of tasks",
+            "smithy.api#required": {}
+          }
+        },
+        "total_active_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of active (non-archived) tasks"
+          }
+        },
+        "total_archived_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of archived tasks"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agent_tasks#ListTasks": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agent_tasks#ListTasksRequest"
+      },
+      "output": {
+        "target": "com.github.agent_tasks#ListTasksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.agent_tasks#BadRequest"
+        },
+        {
+          "target": "com.github.agent_tasks#Forbidden"
+        },
+        {
+          "target": "com.github.agent_tasks#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/agents/tasks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List tasks\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nReturns a list of tasks for the authenticated user\n\n**Fine-grained access tokens for \"List tasks\"**\n\nThis endpoint works with the following fine-grained token types:\n\n* [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app)\n* [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)\n\nThe fine-grained token must have the following permission set:\n\n* \"Agent tasks\" repository permissions (read)\n\nGitHub App installation access tokens are not supported for this endpoint."
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdRequest": {
+      "type": "structure",
+      "members": {
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the task."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseCreator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseCreatorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the task creator"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseUserCollaboratorsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseUserCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#GetTaskByIdResponseUserCollaboratorsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "User objects of collaborators on this task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this task belongs to"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of the task, derived from its most recent session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemProvider": {
+      "type": "enum",
+      "members": {
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider namespace"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemType": {
+      "type": "enum",
+      "members": {
+        "PULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemDataCase0": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub resource ID",
+            "smithy.api#required": {}
+          }
+        },
+        "global_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GraphQL global ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub resource (pull request, issue, etc.)"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemDataCase1": {
+      "type": "structure",
+      "members": {
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name",
+            "smithy.api#required": {}
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Git branch reference"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemDataCase0"
+        },
+        "Case1": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemDataCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource data (shape depends on type)"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsItem": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemProvider",
+          "traits": {
+            "smithy.api#documentation": "Provider namespace",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of artifact. Available Values: `pull`, `branch`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsItemData",
+          "traits": {
+            "smithy.api#documentation": "Resource data (shape depends on type)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource generated by the task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseCustomAgent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom agent's filename without the extension - for example, `performance-optimizer` for a `.github/agents/performance-optimizer.agent.md` custom agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom agent metadata associated with this task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemUser": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The user who created this session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemOwner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The owner of the repository"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The repository this session belongs to"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "WAITING_FOR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting_for_user"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timed_out"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of a session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemUsageType": {
+      "type": "enum",
+      "members": {
+        "AI_CREDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai_credits"
+          }
+        },
+        "PREMIUM_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "premium_requests"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older sessions use `premium_requests`."
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemUsage": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemUsageType",
+          "traits": {
+            "smithy.api#documentation": "Billing unit used for this session. New sessions since June 1, 2026 use `ai_credits`, but older sessions use `premium_requests`.",
+            "smithy.api#required": {}
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of billing units used by this session. When the `type` is `ai_credits`, the value is a whole number, expressed in nano units. When presenting this to a human, divide by 1,000,000,000 and round to one decimal place. When aggregating (for example, summing usage across sessions), sum the nano values first, and divide once at the end before presenting to a human to avoid losing precision. When the `type` is `premium_requests`, the value may be fractional (for example `1.5`).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured information about billing units consumed by the session."
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItemError": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error details for a failed session"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session ID",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session name"
+          }
+        },
+        "user": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemUser",
+          "traits": {
+            "smithy.api#documentation": "The user who created this session"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this session belongs to"
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Task ID this session belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemState",
+          "traits": {
+            "smithy.api#documentation": "Current state of a session",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update timestamp"
+          }
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Completion timestamp"
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content of the triggering event"
+          }
+        },
+        "head_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Head branch name"
+          }
+        },
+        "base_ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base branch name"
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model used for this session"
+          }
+        },
+        "usage": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemUsage",
+          "traits": {
+            "smithy.api#documentation": "Structured information about billing units consumed by the session."
+          }
+        },
+        "error": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error details for a failed session"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Full session details within a task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponseSessionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Sessions associated with this task"
+      }
+    },
+    "com.github.agent_tasks#GetTaskByIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique task identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API URL for this task"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Web URL for this task"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name derived from the task prompt"
+          }
+        },
+        "creator": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseCreator",
+          "traits": {
+            "smithy.api#documentation": "The entity who created this task"
+          }
+        },
+        "creator_type": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseCreatorType",
+          "traits": {
+            "smithy.api#documentation": "Type of the task creator"
+          }
+        },
+        "user_collaborators": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseUserCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "User objects of collaborators on this task"
+          }
+        },
+        "owner": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseOwner",
+          "traits": {
+            "smithy.api#documentation": "The owner of the repository"
+          }
+        },
+        "repository": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseRepository",
+          "traits": {
+            "smithy.api#documentation": "The repository this task belongs to"
+          }
+        },
+        "state": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseState",
+          "traits": {
+            "smithy.api#documentation": "Current state of the task, derived from its most recent session",
+            "smithy.api#required": {}
+          }
+        },
+        "session_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of sessions in this task"
+          }
+        },
+        "artifacts": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Resources created by this task (PRs, branches, etc.)"
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was archived, null if not archived",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent update"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the task was created",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_agent": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseCustomAgent",
+          "traits": {
+            "smithy.api#documentation": "Custom agent metadata associated with this task"
+          }
+        },
+        "sessions": {
+          "target": "com.github.agent_tasks#GetTaskByIdResponseSessionsList",
+          "traits": {
+            "smithy.api#documentation": "Sessions associated with this task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agent_tasks#GetTaskById": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agent_tasks#GetTaskByIdRequest"
+      },
+      "output": {
+        "target": "com.github.agent_tasks#GetTaskByIdResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.agent_tasks#BadRequest"
+        },
+        {
+          "target": "com.github.agent_tasks#Forbidden"
+        },
+        {
+          "target": "com.github.agent_tasks#NotFound"
+        },
+        {
+          "target": "com.github.agent_tasks#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/agents/tasks/{task_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a task by ID\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nReturns a task by ID with its associated sessions\n\n**Fine-grained access tokens for \"Get a task by ID\"**\n\nThis endpoint works with the following fine-grained token types:\n\n* [GitHub App user access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app)\n* [Fine-grained personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)\n\nThe fine-grained token must have the following permission set:\n\n* \"Agent tasks\" repository permissions (read)\n\nGitHub App installation access tokens are not supported for this endpoint."
+      }
+    },
+    "com.github.agent_tasks#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.agent_tasks#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.agent_tasks#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.agent_tasks#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.agent_tasks#AgentTasks": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.agent_tasks#ListTasksForRepo"
+        },
+        {
+          "target": "com.github.agent_tasks#CreateTaskInRepo"
+        },
+        {
+          "target": "com.github.agent_tasks#GetTaskByRepoAndId"
+        },
+        {
+          "target": "com.github.agent_tasks#ListTasks"
+        },
+        {
+          "target": "com.github.agent_tasks#GetTaskById"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

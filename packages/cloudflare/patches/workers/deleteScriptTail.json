@@ -1,0 +1,29 @@
+{
+  "description": "Align workers#ScriptsTailDelete with distilled cloudflare/workers deleteScriptTail",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsTailDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptTail"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsTailDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptTailRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptTail/input/target",
+      "value": "com.cloudflare.workers#DeleteScriptTailRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptTail/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

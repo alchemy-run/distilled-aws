@@ -1,0 +1,25 @@
+{
+  "description": "Fix PaginatedAuditLogEvent schema: make cursor_start, cursor_end, location, and remote_ip nullable",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedAuditLogEvent/properties/cursor_start/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedAuditLogEvent/properties/cursor_end/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedAuditLogEvent/properties/data/items/properties/location/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedAuditLogEvent/properties/data/items/properties/remote_ip/x-nullable",
+      "value": true
+    }
+  ]
+}

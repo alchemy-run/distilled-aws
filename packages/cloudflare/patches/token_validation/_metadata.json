@@ -1,0 +1,20 @@
+{
+  "description": "Key dictionary / op aliases for token_validation (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdAt": "created_at",
+        "documentationUrl": "documentation_url",
+        "lastUpdated": "last_updated",
+        "operationIds": "operation_ids",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "tokenSources": "token_sources",
+        "tokenType": "token_type",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align addressing#PrefixesDelegationsDelete with distilled cloudflare/addressing deletePrefixDelegation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesDelegationsDelete",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixDelegation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesDelegationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixDelegationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixDelegation/input/target",
+      "value": "com.cloudflare.addressing#DeletePrefixDelegationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesDelegationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixDelegationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixDelegation/output/target",
+      "value": "com.cloudflare.addressing#DeletePrefixDelegationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixDelegation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#DelegationNotFound"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

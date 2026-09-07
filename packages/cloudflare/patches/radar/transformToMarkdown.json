@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AiToMarkdownCreate with distilled cloudflare/ai transformToMarkdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiToMarkdownCreate",
+      "path": "/shapes/com.cloudflare.radar#TransformToMarkdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiToMarkdownCreateRequest",
+      "path": "/shapes/com.cloudflare.radar#TransformToMarkdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TransformToMarkdown/input/target",
+      "value": "com.cloudflare.radar#TransformToMarkdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiToMarkdownCreateResponse",
+      "path": "/shapes/com.cloudflare.radar#TransformToMarkdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TransformToMarkdown/output/target",
+      "value": "com.cloudflare.radar#TransformToMarkdownResponse"
+    }
+  ]
+}

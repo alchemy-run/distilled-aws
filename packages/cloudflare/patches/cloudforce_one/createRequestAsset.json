@@ -1,0 +1,38 @@
+{
+  "description": "Align cloudforce_one#RequestsAssetsCreate with distilled cloudflare/cloudforce-one createRequestAsset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsAssetsCreate",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateRequestAsset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsAssetsCreateRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateRequestAssetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateRequestAsset/input/target",
+      "value": "com.cloudflare.cloudforce_one#CreateRequestAssetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsAssetsCreateResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateRequestAssetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateRequestAsset/output/target",
+      "value": "com.cloudflare.cloudforce_one#CreateRequestAssetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateRequestAsset/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

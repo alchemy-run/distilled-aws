@@ -1,0 +1,41 @@
+{
+  "description": "Align ai_search#InstancesJobsList with distilled cloudflare/aisearch listInstanceJobs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#InstancesJobsList",
+      "path": "/shapes/com.cloudflare.ai_search#ListInstanceJobs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#InstancesJobsListRequest",
+      "path": "/shapes/com.cloudflare.ai_search#ListInstanceJobsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#ListInstanceJobs/input/target",
+      "value": "com.cloudflare.ai_search#ListInstanceJobsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#InstancesJobsListResponse",
+      "path": "/shapes/com.cloudflare.ai_search#ListInstanceJobsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#ListInstanceJobs/output/target",
+      "value": "com.cloudflare.ai_search#ListInstanceJobsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#ListInstanceJobs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTimeseriesGroupsCacheHit with distilled cloudflare/radar cacheHitDnsTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsCacheHit",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsCacheHitRequest",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#CacheHitDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsCacheHitResponse",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#CacheHitDnsTimeseriesGroupResponse"
+    }
+  ]
+}

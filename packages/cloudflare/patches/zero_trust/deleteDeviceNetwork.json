@@ -1,0 +1,50 @@
+{
+  "description": "Align zero_trust#DevicesNetworksDelete with distilled cloudflare/zero-trust deleteDeviceNetwork",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetwork"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetworkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetwork/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceNetworkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetworkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetwork/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceNetworkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetwork/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceNetwork/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DeviceNetworkNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

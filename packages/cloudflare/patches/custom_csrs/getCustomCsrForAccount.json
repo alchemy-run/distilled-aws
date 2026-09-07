@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_csrs#GetForAccount with distilled cloudflare/custom-csrs getCustomCsrForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#GetForAccount",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#GetForAccountRequest",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForAccount/input/target",
+      "value": "com.cloudflare.custom_csrs#GetCustomCsrForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#GetForAccountResponse",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForAccount/output/target",
+      "value": "com.cloudflare.custom_csrs#GetCustomCsrForAccountResponse"
+    }
+  ]
+}

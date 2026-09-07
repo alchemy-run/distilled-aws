@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessLogsAccessRequestsList with distilled cloudflare/zero-trust listAccessLogAccessRequests",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessLogsAccessRequestsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessLogAccessRequests"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessLogsAccessRequestsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessLogAccessRequestsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessLogAccessRequests/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessLogAccessRequestsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessLogsAccessRequestsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessLogAccessRequestsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessLogAccessRequests/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessLogAccessRequestsResponse"
+    }
+  ]
+}

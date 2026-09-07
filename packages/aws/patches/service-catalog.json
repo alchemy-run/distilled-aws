@@ -1,0 +1,15 @@
+{
+  "operations": {
+    "executeProvisionedProductServiceAction": {
+      "syntheticErrors": [
+        {
+          "name": "ProvisionedProductNotFound",
+          "from": "ValidationException",
+          "message": {
+            "includes": "Provisioned product not found"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align security_center#InsightsTypeGetForZone with distilled cloudflare/security-center getInsightTypeForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsTypeGetForZone",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightTypeForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsTypeGetForZoneRequest",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightTypeForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightTypeForZone/input/target",
+      "value": "com.cloudflare.security_center#GetInsightTypeForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsTypeGetForZoneResponse",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightTypeForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightTypeForZone/output/target",
+      "value": "com.cloudflare.security_center#GetInsightTypeForZoneResponse"
+    }
+  ]
+}

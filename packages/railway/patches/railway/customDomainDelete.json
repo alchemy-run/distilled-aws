@@ -1,0 +1,10 @@
+{
+  "description": "customDomainDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#CustomDomainDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation customDomainDelete($id: String!) {\n  customDomainDelete(id: $id)\n}"
+    }
+  ]
+}

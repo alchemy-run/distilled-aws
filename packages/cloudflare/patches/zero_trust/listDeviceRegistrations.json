@@ -1,0 +1,41 @@
+{
+  "description": "Align zero_trust#DevicesRegistrationsList with distilled cloudflare/zero-trust listDeviceRegistrations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceRegistrations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceRegistrationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceRegistrations/input/target",
+      "value": "com.cloudflare.zero_trust#ListDeviceRegistrationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceRegistrationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceRegistrations/output/target",
+      "value": "com.cloudflare.zero_trust#ListDeviceRegistrationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceRegistrations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

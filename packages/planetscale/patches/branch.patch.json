@@ -1,0 +1,141 @@
+{
+  "description": "Fix DatabaseBranch and PaginatedDatabaseBranch schemas: make many fields optional that aren't always returned, and make nullable fields (deleted_at, restore_checklist_completed_at, cluster_iops, restored_from_branch, parent_branch)",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/definitions/DatabaseBranch/required",
+      "value": [
+        "id",
+        "name",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "restore_checklist_completed_at",
+        "schema_last_updated_at",
+        "kind",
+        "state",
+        "cluster_name",
+        "cluster_iops",
+        "ready",
+        "metal",
+        "production",
+        "safe_migrations",
+        "stale_schema",
+        "actor",
+        "restored_from_branch",
+        "private_edge_connectivity",
+        "has_replicas",
+        "has_read_only_replicas",
+        "html_url",
+        "url",
+        "region",
+        "parent_branch"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/restore_checklist_completed_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/cluster_iops/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/cluster_architecture",
+      "value": {
+        "type": "string"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/restored_from_branch/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/parent_branch/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranch/properties/restored_from_branch/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/required",
+      "value": [
+        "id",
+        "name",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "restore_checklist_completed_at",
+        "schema_last_updated_at",
+        "kind",
+        "state",
+        "cluster_name",
+        "cluster_iops",
+        "ready",
+        "metal",
+        "production",
+        "safe_migrations",
+        "stale_schema",
+        "actor",
+        "restored_from_branch",
+        "private_edge_connectivity",
+        "has_replicas",
+        "has_read_only_replicas",
+        "html_url",
+        "url",
+        "region",
+        "parent_branch"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/restore_checklist_completed_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/cluster_iops/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/cluster_architecture",
+      "value": {
+        "type": "string"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/restored_from_branch/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/parent_branch/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/data/items/properties/restored_from_branch/properties/deleted_at/x-nullable",
+      "value": true
+    }
+  ]
+}

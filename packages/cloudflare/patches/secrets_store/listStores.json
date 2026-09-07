@@ -1,0 +1,50 @@
+{
+  "description": "Align secrets_store#StoresList with distilled cloudflare/secrets-store listStores",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresList",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStores"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresListRequest",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStoresRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStores/input/target",
+      "value": "com.cloudflare.secrets_store#ListStoresRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresListResponse",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStoresResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStores/output/target",
+      "value": "com.cloudflare.secrets_store#ListStoresResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStores/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.secrets_store#ListStores/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.secrets_store#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

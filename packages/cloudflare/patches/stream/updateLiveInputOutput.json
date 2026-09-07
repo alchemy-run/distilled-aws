@@ -1,0 +1,42 @@
+{
+  "description": "Align stream#LiveInputsOutputsUpdate with distilled cloudflare/stream updateLiveInputOutput",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsUpdate",
+      "path": "/shapes/com.cloudflare.stream#UpdateLiveInputOutput"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsUpdateRequest",
+      "path": "/shapes/com.cloudflare.stream#UpdateLiveInputOutputRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#UpdateLiveInputOutput/input/target",
+      "value": "com.cloudflare.stream#UpdateLiveInputOutputRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsUpdateResponse",
+      "path": "/shapes/com.cloudflare.stream#UpdateLiveInputOutputResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#UpdateLiveInputOutput/output/target",
+      "value": "com.cloudflare.stream#UpdateLiveInputOutputResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#UpdateLiveInputOutput/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#OutputNotFound"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

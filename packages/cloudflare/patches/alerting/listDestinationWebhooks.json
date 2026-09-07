@@ -1,0 +1,38 @@
+{
+  "description": "Align alerting#DestinationsWebhooksList with distilled cloudflare/alerting listDestinationWebhooks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksList",
+      "path": "/shapes/com.cloudflare.alerting#ListDestinationWebhooks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksListRequest",
+      "path": "/shapes/com.cloudflare.alerting#ListDestinationWebhooksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListDestinationWebhooks/input/target",
+      "value": "com.cloudflare.alerting#ListDestinationWebhooksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksListResponse",
+      "path": "/shapes/com.cloudflare.alerting#ListDestinationWebhooksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListDestinationWebhooks/output/target",
+      "value": "com.cloudflare.alerting#ListDestinationWebhooksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#ListDestinationWebhooks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

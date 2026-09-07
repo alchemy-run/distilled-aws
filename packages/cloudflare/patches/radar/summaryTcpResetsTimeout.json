@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#TcpResetsTimeoutsSummary with distilled cloudflare/radar summaryTcpResetsTimeout",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TcpResetsTimeoutsSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryTcpResetsTimeout"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TcpResetsTimeoutsSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryTcpResetsTimeoutRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryTcpResetsTimeout/input/target",
+      "value": "com.cloudflare.radar#SummaryTcpResetsTimeoutRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TcpResetsTimeoutsSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryTcpResetsTimeoutResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryTcpResetsTimeout/output/target",
+      "value": "com.cloudflare.radar#SummaryTcpResetsTimeoutResponse"
+    }
+  ]
+}

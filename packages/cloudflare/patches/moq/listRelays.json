@@ -1,0 +1,38 @@
+{
+  "description": "Align moq#RelaysList with distilled cloudflare/moq listRelays",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysList",
+      "path": "/shapes/com.cloudflare.moq#ListRelays"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysListRequest",
+      "path": "/shapes/com.cloudflare.moq#ListRelaysRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#ListRelays/input/target",
+      "value": "com.cloudflare.moq#ListRelaysRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysListResponse",
+      "path": "/shapes/com.cloudflare.moq#ListRelaysResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#ListRelays/output/target",
+      "value": "com.cloudflare.moq#ListRelaysResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.moq#ListRelays/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

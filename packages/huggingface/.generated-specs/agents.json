@@ -1,0 +1,143 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.agents#GetAgentHarnessesResponseStandardEnvVarsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Standard environment variables that any agent can set to identify itself. Their value is matched against the harness ids."
+      }
+    },
+    "com.huggingface.agents#GetAgentHarnessesResponseHarnessesValueEnvVarsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Environment variable(s) identifying this harness, mapped to the value pattern they must match: \"*\" (set to any non-empty value), an exact value, or a \"<prefix>*\" fuzzy match. Detection matches if ANY entry matches."
+      }
+    },
+    "com.huggingface.agents#GetAgentHarnessesResponseHarnessesValue": {
+      "type": "structure",
+      "members": {
+        "prettyLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the harness",
+            "smithy.api#required": {}
+          }
+        },
+        "repoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the harness's code repository"
+          }
+        },
+        "docsUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the harness's documentation or website"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of the harness"
+          }
+        },
+        "envVars": {
+          "target": "com.huggingface.agents#GetAgentHarnessesResponseHarnessesValueEnvVarsMap",
+          "traits": {
+            "smithy.api#documentation": "Environment variable(s) identifying this harness, mapped to the value pattern they must match: \"*\" (set to any non-empty value), an exact value, or a \"<prefix>*\" fuzzy match. Detection matches if ANY entry matches."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agents#GetAgentHarnessesResponseHarnessesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.huggingface.agents#GetAgentHarnessesResponseHarnessesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "Registered harnesses, keyed by id and ordered by detection priority: the first match wins"
+      }
+    },
+    "com.huggingface.agents#GetAgentHarnessesResponse": {
+      "type": "structure",
+      "members": {
+        "standardEnvVars": {
+          "target": "com.huggingface.agents#GetAgentHarnessesResponseStandardEnvVarsList",
+          "traits": {
+            "smithy.api#documentation": "Standard environment variables that any agent can set to identify itself. Their value is matched against the harness ids.",
+            "smithy.api#required": {}
+          }
+        },
+        "harnesses": {
+          "target": "com.huggingface.agents#GetAgentHarnessesResponseHarnessesMap",
+          "traits": {
+            "smithy.api#documentation": "Registered harnesses, keyed by id and ordered by detection priority: the first match wins",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agents#GetAgentHarnesses": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.agents#GetAgentHarnessesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/agent-harnesses",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get agent harnesses\n\nGet the registry of AI agents / harnesses known to the Hub, along with the standard environment variables used to detect them. Clients use this registry to identify which agent they are running in when reporting Hub activity."
+      }
+    },
+    "com.huggingface.agents#Agents": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.agents#GetAgentHarnesses"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

@@ -1,0 +1,606 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.groups#GroupsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Pagination cursor returned in the `next` URL of a previous response"
+          }
+        },
+        "group_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "group_key",
+            "smithy.api#documentation": "Filter groups whose key contains this string (case-insensitive)"
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "group_type_index",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the group type to list"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search the group name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#Group": {
+      "type": "structure",
+      "members": {
+        "group_type_index": {
+          "target": "smithy.api#Integer"
+        },
+        "group_key": {
+          "target": "smithy.api#String"
+        },
+        "group_properties": {
+          "target": "smithy.api#Document"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.groups#GroupsListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.groups#Group"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups#GroupsListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.groups#GroupsListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.groups#GroupsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups#GroupsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all groups of a specific group type. You must pass ?group_type_index= in the URL.\nTo get a list of valid group types, call /api/:project_id/groups_types/.\n\nUses forward-only keyset pagination via the `cursor` parameter.\nThe `previous` field in the response envelope is always null."
+      }
+    },
+    "com.posthog.groups#GroupsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer"
+        },
+        "group_key": {
+          "target": "smithy.api#String"
+        },
+        "group_properties": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups#Group"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/groups/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#GroupsActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "group_type_index",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the group type to find"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the id of the user to find groups for"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups/activity/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#GroupsDeletePropertyCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "group_key",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the key of the group to find"
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "group_type_index",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the group type to find"
+          }
+        },
+        "group_properties": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsDeletePropertyCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsDeletePropertyCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/groups/delete_property/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#GroupsFindRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "group_key",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the key of the group to find"
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "group_type_index",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the group type to find"
+          }
+        },
+        "skip_create_notebook": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "skip_create_notebook",
+            "smithy.api#documentation": "When true, do not lazily create the group's CRM notebook. Use for read-only lookups (e.g. resolving a group's display name) that should not have side effects."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsFindRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsFindRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups/find/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#GroupsPropertyValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsPropertyValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsPropertyValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups/property_values/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#GroupsRelatedRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "group_type_index",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the group type to find"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the id of the user to find groups for"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsRelatedRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsRelatedRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups/related/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#GroupsUpdatePropertyCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "group_key",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the key of the group to find"
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "group_type_index",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Specify the group type to find"
+          }
+        },
+        "group_properties": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups#GroupsUpdatePropertyCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups#GroupsUpdatePropertyCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/groups/update_property/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.groups#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.groups#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.groups#Groups": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.groups#GroupsList"
+        },
+        {
+          "target": "com.posthog.groups#GroupsCreate"
+        },
+        {
+          "target": "com.posthog.groups#GroupsActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.groups#GroupsDeletePropertyCreate"
+        },
+        {
+          "target": "com.posthog.groups#GroupsFindRetrieve"
+        },
+        {
+          "target": "com.posthog.groups#GroupsPropertyValuesRetrieve"
+        },
+        {
+          "target": "com.posthog.groups#GroupsRelatedRetrieve"
+        },
+        {
+          "target": "com.posthog.groups#GroupsUpdatePropertyCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,1153 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "trafficdirector",
+    "version": "v2",
+    "title": "Traffic Director API",
+    "baseUrl": "https://trafficdirector.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.trafficdirector_v2#GoogleRE2": {
+      "type": "structure",
+      "members": {
+        "maxProgramSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "This field controls the RE2 \"program size\" which is a rough estimate of how complex a compiled regex is to evaluate. A regex that has a program size greater than the configured value will fail to compile. In this case, the configured max program size can be increased or the regex can be simplified. If not specified, the default is 100. This field is deprecated; regexp validation should be performed on the management server instead of being done by each individual client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Google's `RE2 `_ regex engine. The regex string must adhere to the documented `syntax `_. The engine is designed to complete execution in linear time as well as limit the amount of memory used. Envoy supports program size checking via runtime. The runtime keys ``re2.max_program_size.error_level`` and ``re2.max_program_size.warn_level`` can be set to integers as the maximum program size or complexity that a compiled regex can have before an exception is thrown or a warning is logged, respectively. ``re2.max_program_size.error_level`` defaults to 100, and ``re2.max_program_size.warn_level`` has no default if unset (will not check/log a warning). Envoy emits two stats for tracking the program size of regexes: the histogram `re2.program_size`, which records the program size, and the counter `re2.exceeded_warn_level`, which is incremented each time the program size exceeds the warn level threshold."
+      }
+    },
+    "com.gcp.trafficdirector_v2#UpdateFailureState": {
+      "type": "structure",
+      "members": {
+        "failedConfiguration": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "What the component configuration would have been if the update had succeeded."
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Details about the last failed update attempt."
+          }
+        },
+        "lastUpdateAttempt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time of the latest failed update attempt."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.trafficdirector_v2#SocketAddress": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.gcp.trafficdirector_v2#SocketAddressProtocolEnum"
+        },
+        "resolverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the custom resolver. This must have been registered with Envoy. If this is empty, a context dependent default applies. If the address is a concrete IP address, no resolution will occur. If address is a hostname this should be set for resolution other than DNS. Specifying a custom resolver with *STRICT_DNS* or *LOGICAL_DNS* will generate an error at runtime."
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The address for this socket. :ref:`Listeners ` will bind to the address. An empty address is not allowed. Specify ``0.0.0.0`` or ``::`` to bind to any address. [#comment:TODO(zuercher) reinstate when implemented: It is possible to distinguish a Listener address via the prefix/suffix matching in :ref:`FilterChainMatch `.] When used within an upstream :ref:`BindConfig `, the address controls the source address of outbound connections. For :ref:`clusters `, the cluster type determines whether the address must be an IP (*STATIC* or *EDS* clusters) or a hostname resolved by DNS (*STRICT_DNS* or *LOGICAL_DNS* clusters). Address resolution can be customized via :ref:`resolver_name `."
+          }
+        },
+        "namedPort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is only valid if :ref:`resolver_name ` is specified below and the named resolver is capable of named port resolution."
+          }
+        },
+        "ipv4Compat": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When binding to an IPv6 address above, this enables `IPv4 compatibility `_. Binding to ``::`` will allow both IPv4 and IPv6 connections, with peer IPv4 addresses mapped into IPv6 space as ``::FFFF:``."
+          }
+        },
+        "portValue": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[#next-free-field: 7]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#SocketAddressProtocolEnum": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TCP"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UDP"
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#ScopedRoutesConfigDump": {
+      "type": "structure",
+      "members": {
+        "inlineScopedRouteConfigs": {
+          "target": "com.gcp.trafficdirector_v2#InlineScopedRouteConfigsList",
+          "traits": {
+            "smithy.api#documentation": "The statically loaded scoped route configs."
+          }
+        },
+        "dynamicScopedRouteConfigs": {
+          "target": "com.gcp.trafficdirector_v2#DynamicScopedRouteConfigsList",
+          "traits": {
+            "smithy.api#documentation": "The dynamically loaded scoped route configs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Envoy's scoped RDS implementation fills this message with all currently loaded route configuration scopes (defined via ScopedRouteConfigurationsSet protos). This message lists both the scopes defined inline with the higher order object (i.e., the HttpConnectionManager) and the dynamically obtained scopes via the SRDS API."
+      }
+    },
+    "com.gcp.trafficdirector_v2#InlineScopedRouteConfigsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#InlineScopedRouteConfigs"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicScopedRouteConfigsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#DynamicScopedRouteConfigs"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicListener": {
+      "type": "structure",
+      "members": {
+        "drainingState": {
+          "target": "com.gcp.trafficdirector_v2#DynamicListenerState",
+          "traits": {
+            "smithy.api#documentation": "The listener state for any draining listener by this name. These are listeners that are currently undergoing draining in preparation to stop servicing data plane traffic. Note that if attempting to recreate an Envoy configuration from a configuration dump, the draining listeners should generally be discarded."
+          }
+        },
+        "warmingState": {
+          "target": "com.gcp.trafficdirector_v2#DynamicListenerState",
+          "traits": {
+            "smithy.api#documentation": "The listener state for any warming listener by this name. These are listeners that are currently undergoing warming in preparation to service data plane traffic. Note that if attempting to recreate an Envoy configuration from a configuration dump, the warming listeners should generally be discarded."
+          }
+        },
+        "activeState": {
+          "target": "com.gcp.trafficdirector_v2#DynamicListenerState",
+          "traits": {
+            "smithy.api#documentation": "The listener state for any active listener by this name. These are listeners that are available to service data plane traffic."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name or unique id of this listener, pulled from the DynamicListenerState config."
+          }
+        },
+        "errorState": {
+          "target": "com.gcp.trafficdirector_v2#UpdateFailureState",
+          "traits": {
+            "smithy.api#documentation": "Set if the last update failed, cleared after the next successful update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a dynamically loaded listener via the LDS API. [#next-free-field: 6]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DoubleMatcher": {
+      "type": "structure",
+      "members": {
+        "range": {
+          "target": "com.gcp.trafficdirector_v2#DoubleRange",
+          "traits": {
+            "smithy.api#documentation": "If specified, the input double value must be in the range specified here. Note: The range is using half-open interval semantics [start, end)."
+          }
+        },
+        "exact": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "If specified, the input double value must be equal to the value specified here."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the way to match a double value."
+      }
+    },
+    "com.gcp.trafficdirector_v2#ListMatcher": {
+      "type": "structure",
+      "members": {
+        "oneOf": {
+          "target": "com.gcp.trafficdirector_v2#ValueMatcher",
+          "traits": {
+            "smithy.api#documentation": "If specified, at least one of the values in the list must match the value specified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the way to match a list value."
+      }
+    },
+    "com.gcp.trafficdirector_v2#BuildVersion": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "com.gcp.trafficdirector_v2#SemanticVersion",
+          "traits": {
+            "smithy.api#documentation": "SemVer version of extension."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Free-form build information. Envoy defines several well known keys in the source/common/version/version.h file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "BuildVersion combines SemVer version of extension with free-form build information (i.e. 'alpha', 'private-build') as a set of strings."
+      }
+    },
+    "com.gcp.trafficdirector_v2#Address": {
+      "type": "structure",
+      "members": {
+        "socketAddress": {
+          "target": "com.gcp.trafficdirector_v2#SocketAddress"
+        },
+        "pipe": {
+          "target": "com.gcp.trafficdirector_v2#Pipe"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Addresses specify either a logical or physical address and port, which are used to tell Envoy where to bind/listen, connect to upstream and find management servers."
+      }
+    },
+    "com.gcp.trafficdirector_v2#ClustersConfigDump": {
+      "type": "structure",
+      "members": {
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the :ref:`version_info ` in the last processed CDS discovery response. If there are only static bootstrap clusters, this field will be \"\"."
+          }
+        },
+        "staticClusters": {
+          "target": "com.gcp.trafficdirector_v2#StaticClusterList",
+          "traits": {
+            "smithy.api#documentation": "The statically loaded cluster configs."
+          }
+        },
+        "dynamicActiveClusters": {
+          "target": "com.gcp.trafficdirector_v2#DynamicClusterList",
+          "traits": {
+            "smithy.api#documentation": "The dynamically loaded active clusters. These are clusters that are available to service data plane traffic."
+          }
+        },
+        "dynamicWarmingClusters": {
+          "target": "com.gcp.trafficdirector_v2#DynamicClusterList",
+          "traits": {
+            "smithy.api#documentation": "The dynamically loaded warming clusters. These are clusters that are currently undergoing warming in preparation to service data plane traffic. Note that if attempting to recreate an Envoy configuration from a configuration dump, the warming clusters should generally be discarded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Envoy's cluster manager fills this message with all currently known clusters. Cluster configuration information can be used to recreate an Envoy configuration by populating all clusters as static clusters or by returning them in a CDS response."
+      }
+    },
+    "com.gcp.trafficdirector_v2#StaticClusterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#StaticCluster"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicClusterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#DynamicCluster"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicScopedRouteConfigs": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name assigned to the scoped route configurations."
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the scoped routes configuration was loaded."
+          }
+        },
+        "scopedRouteConfigs": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "The scoped route configurations."
+          }
+        },
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the scoped route config set was last updated."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#DocumentMap"
+      }
+    },
+    "com.gcp.trafficdirector_v2#Pipe": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unix Domain Socket path. On Linux, paths starting with '@' will use the abstract namespace. The starting '@' is replaced by a null byte by Envoy. Paths starting with '@' will result in an error in environments other than Linux."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The mode for the Pipe. Not applicable for abstract sockets."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#Locality": {
+      "type": "structure",
+      "members": {
+        "zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the local service zone where Envoy is running. Though optional, it should be set if discovery service routing is used and the discovery service exposes :ref:`zone data `, either in this message or via :option:`--service-zone`. The meaning of zone is context dependent, e.g. `Availability Zone (AZ) `_ on AWS, `Zone `_ on GCP, etc."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region this :ref:`zone ` belongs to."
+          }
+        },
+        "subZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When used for locality of upstream hosts, this field further splits zone into smaller chunks of sub-zones so they can be load balanced independently."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies location of where either Envoy runs or where upstream hosts run."
+      }
+    },
+    "com.gcp.trafficdirector_v2#RegexMatcher": {
+      "type": "structure",
+      "members": {
+        "googleRe2": {
+          "target": "com.gcp.trafficdirector_v2#GoogleRE2",
+          "traits": {
+            "smithy.api#documentation": "Google's RE2 regex engine."
+          }
+        },
+        "regex": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The regex match string. The string must be supported by the configured engine."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A regex matcher designed for safety when used with untrusted input."
+      }
+    },
+    "com.gcp.trafficdirector_v2#StringMatcher": {
+      "type": "structure",
+      "members": {
+        "safeRegex": {
+          "target": "com.gcp.trafficdirector_v2#RegexMatcher",
+          "traits": {
+            "smithy.api#documentation": "The input string must match the regular expression specified here."
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The input string must have the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * *abc* matches the value *abc.xyz*"
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * *abc* matches the value *xyz.abc*"
+          }
+        },
+        "regex": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The input string must match the regular expression specified here. The regex grammar is defined `here `_. Examples: * The regex ``\\d{3}`` matches the value *123* * The regex ``\\d{3}`` does not match the value *1234* * The regex ``\\d{3}`` does not match the value *123.456* .. attention:: This field has been deprecated in favor of `safe_regex` as it is not safe for use with untrusted input in all cases."
+          }
+        },
+        "exact": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The input string must match exactly the string specified here. Examples: * *abc* only matches the value *abc*."
+          }
+        },
+        "ignoreCase": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, indicates the exact/prefix/suffix matching should be case insensitive. This has no effect for the safe_regex match. For example, the matcher *data* will match both input string *Data* and *data* if set to true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the way to match a string. [#next-free-field: 7]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#StaticListener": {
+      "type": "structure",
+      "members": {
+        "listener": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The listener config."
+          }
+        },
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the Listener was last successfully updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a statically loaded listener."
+      }
+    },
+    "com.gcp.trafficdirector_v2#StructMatcher": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "com.gcp.trafficdirector_v2#PathSegmentList",
+          "traits": {
+            "smithy.api#documentation": "The path to retrieve the Value from the Struct."
+          }
+        },
+        "value": {
+          "target": "com.gcp.trafficdirector_v2#ValueMatcher",
+          "traits": {
+            "smithy.api#documentation": "The StructMatcher is matched if the value retrieved by path is matched to this value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "StructMatcher provides a general interface to check if a given value is matched in google.protobuf.Struct. It uses `path` to retrieve the value from the struct and then check if it's matched to the specified value. For example, for the following Struct: .. code-block:: yaml fields: a: struct_value: fields: b: struct_value: fields: c: string_value: pro t: list_value: values: - string_value: m - string_value: n The following MetadataMatcher is matched as the path [a, b, c] will retrieve a string value \"pro\" from the Metadata which is matched to the specified prefix match. .. code-block:: yaml path: - key: a - key: b - key: c value: string_match: prefix: pr The following StructMatcher is matched as the code will match one of the string values in the list at the path [a, t]. .. code-block:: yaml path: - key: a - key: t value: list_match: one_of: string_match: exact: m An example use of StructMatcher is to match metadata in envoy.v*.core.Node."
+      }
+    },
+    "com.gcp.trafficdirector_v2#PathSegmentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#PathSegment"
+      }
+    },
+    "com.gcp.trafficdirector_v2#ClientConfig": {
+      "type": "structure",
+      "members": {
+        "node": {
+          "target": "com.gcp.trafficdirector_v2#Node",
+          "traits": {
+            "smithy.api#documentation": "Node for a particular client."
+          }
+        },
+        "xdsConfig": {
+          "target": "com.gcp.trafficdirector_v2#PerXdsConfigList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All xds configs for a particular client."
+      }
+    },
+    "com.gcp.trafficdirector_v2#PerXdsConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#PerXdsConfig"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicCluster": {
+      "type": "structure",
+      "members": {
+        "cluster": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The cluster config."
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the cluster was loaded. In the future, discrete per-cluster versions may be supported by the API."
+          }
+        },
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the Cluster was last updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a dynamically loaded cluster via the CDS API."
+      }
+    },
+    "com.gcp.trafficdirector_v2#ClientStatusRequest": {
+      "type": "structure",
+      "members": {
+        "nodeMatchers": {
+          "target": "com.gcp.trafficdirector_v2#NodeMatcherList",
+          "traits": {
+            "smithy.api#documentation": "Management server can use these match criteria to identify clients. The match follows OR semantics."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for client status of clients identified by a list of NodeMatchers."
+      }
+    },
+    "com.gcp.trafficdirector_v2#NodeMatcherList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#NodeMatcher"
+      }
+    },
+    "com.gcp.trafficdirector_v2#InlineScopedRouteConfigs": {
+      "type": "structure",
+      "members": {
+        "scopedRouteConfigs": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "The scoped route configurations."
+          }
+        },
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the scoped route config set was last updated."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name assigned to the scoped route configurations."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#ListenersConfigDump": {
+      "type": "structure",
+      "members": {
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the :ref:`version_info ` in the last processed LDS discovery response. If there are only static bootstrap listeners, this field will be \"\"."
+          }
+        },
+        "dynamicListeners": {
+          "target": "com.gcp.trafficdirector_v2#DynamicListenerList",
+          "traits": {
+            "smithy.api#documentation": "State for any warming, active, or draining listeners."
+          }
+        },
+        "staticListeners": {
+          "target": "com.gcp.trafficdirector_v2#StaticListenerList",
+          "traits": {
+            "smithy.api#documentation": "The statically loaded listener configs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Envoy's listener manager fills this message with all currently known listeners. Listener configuration information can be used to recreate an Envoy configuration by populating all listeners as static listeners or by returning them in a LDS response."
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicListenerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#DynamicListener"
+      }
+    },
+    "com.gcp.trafficdirector_v2#StaticListenerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#StaticListener"
+      }
+    },
+    "com.gcp.trafficdirector_v2#SemanticVersion": {
+      "type": "structure",
+      "members": {
+        "minorNumber": {
+          "target": "smithy.api#Integer"
+        },
+        "majorNumber": {
+          "target": "smithy.api#Integer"
+        },
+        "patch": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Envoy uses SemVer (https://semver.org/). Major/minor versions indicate expected behaviors and APIs, the patch version field is used only for security fixes and can be generally ignored."
+      }
+    },
+    "com.gcp.trafficdirector_v2#ValueMatcher": {
+      "type": "structure",
+      "members": {
+        "presentMatch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If specified, value match will be performed based on whether the path is referring to a valid primitive value in the metadata. If the path is referring to a non-primitive value, the result is always not matched."
+          }
+        },
+        "listMatch": {
+          "target": "com.gcp.trafficdirector_v2#ListMatcher",
+          "traits": {
+            "smithy.api#documentation": "If specified, a match occurs if and only if the target value is a list value and is matched to this field."
+          }
+        },
+        "nullMatch": {
+          "target": "com.gcp.trafficdirector_v2#NullMatch",
+          "traits": {
+            "smithy.api#documentation": "If specified, a match occurs if and only if the target value is a NullValue."
+          }
+        },
+        "doubleMatch": {
+          "target": "com.gcp.trafficdirector_v2#DoubleMatcher",
+          "traits": {
+            "smithy.api#documentation": "If specified, a match occurs if and only if the target value is a double value and is matched to this field."
+          }
+        },
+        "stringMatch": {
+          "target": "com.gcp.trafficdirector_v2#StringMatcher",
+          "traits": {
+            "smithy.api#documentation": "If specified, a match occurs if and only if the target value is a string value and is matched to this field."
+          }
+        },
+        "boolMatch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If specified, a match occurs if and only if the target value is a bool value and is equal to this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the way to match a Protobuf::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 7]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#StaticRouteConfig": {
+      "type": "structure",
+      "members": {
+        "routeConfig": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The route config."
+          }
+        },
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the Route was last updated."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicRouteConfig": {
+      "type": "structure",
+      "members": {
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the Route was last updated."
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the route configuration was loaded."
+          }
+        },
+        "routeConfig": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The route config."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicListenerState": {
+      "type": "structure",
+      "members": {
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the listener was loaded. In the future, discrete per-listener versions may be supported by the API."
+          }
+        },
+        "listener": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The listener config."
+          }
+        },
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the Listener was last successfully updated."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#NodeMatcher": {
+      "type": "structure",
+      "members": {
+        "nodeId": {
+          "target": "com.gcp.trafficdirector_v2#StringMatcher",
+          "traits": {
+            "smithy.api#documentation": "Specifies match criteria on the node id."
+          }
+        },
+        "nodeMetadatas": {
+          "target": "com.gcp.trafficdirector_v2#StructMatcherList",
+          "traits": {
+            "smithy.api#documentation": "Specifies match criteria on the node metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the way to match a Node. The match follows AND semantics."
+      }
+    },
+    "com.gcp.trafficdirector_v2#StructMatcherList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#StructMatcher"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DoubleRange": {
+      "type": "structure",
+      "members": {
+        "end": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "end of the range (exclusive)"
+          }
+        },
+        "start": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "start of the range (inclusive)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the double start and end of the range using half-open interval semantics [start, end)."
+      }
+    },
+    "com.gcp.trafficdirector_v2#Node": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Opaque metadata extending the node identifier. Envoy will pass this directly to the management server."
+          }
+        },
+        "listeningAddresses": {
+          "target": "com.gcp.trafficdirector_v2#AddressList",
+          "traits": {
+            "smithy.api#documentation": "Known listening ports on the node as a generic hint to the management server for filtering :ref:`listeners ` to be returned. For example, if there is a listener bound to port 80, the list can optionally contain the SocketAddress `(0.0.0.0,80)`. The field is optional and just a hint."
+          }
+        },
+        "locality": {
+          "target": "com.gcp.trafficdirector_v2#Locality",
+          "traits": {
+            "smithy.api#documentation": "Locality specifying where the Envoy instance is running."
+          }
+        },
+        "userAgentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form string that identifies the entity requesting config. E.g. \"envoy\" or \"grpc\""
+          }
+        },
+        "userAgentBuildVersion": {
+          "target": "com.gcp.trafficdirector_v2#BuildVersion",
+          "traits": {
+            "smithy.api#documentation": "Structured version of the entity requesting config."
+          }
+        },
+        "cluster": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the local service cluster name where Envoy is running. Though optional, it should be set if any of the following features are used: :ref:`statsd `, :ref:`health check cluster verification `, :ref:`runtime override directory `, :ref:`user agent addition `, :ref:`HTTP global rate limiting `, :ref:`CDS `, and :ref:`HTTP tracing `, either in this message or via :option:`--service-cluster`."
+          }
+        },
+        "buildVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is motivated by informing a management server during canary which version of Envoy is being tested in a heterogeneous fleet. This will be set by Envoy in management server RPCs. This field is deprecated in favor of the user_agent_name and user_agent_version values."
+          }
+        },
+        "extensions": {
+          "target": "com.gcp.trafficdirector_v2#ExtensionList",
+          "traits": {
+            "smithy.api#documentation": "List of extensions and their versions supported by the node."
+          }
+        },
+        "userAgentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form string that identifies the version of the entity requesting config. E.g. \"1.12.2\" or \"abcd1234\", or \"SpecialEnvoyBuild\""
+          }
+        },
+        "clientFeatures": {
+          "target": "com.gcp.trafficdirector_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Client feature support list. These are well known features described in the Envoy API repository for a given major version of an API. Client features use reverse DNS naming scheme, for example `com.acme.feature`. See :ref:`the list of features ` that xDS client may support."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An opaque node identifier for the Envoy node. This also provides the local service node name. It should be set if any of the following features are used: :ref:`statsd `, :ref:`CDS `, and :ref:`HTTP tracing `, either in this message or via :option:`--service-node`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies a specific Envoy instance. The node identifier is presented to the management server, which may use this identifier to distinguish per Envoy configuration for serving. [#next-free-field: 12]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#AddressList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#Address"
+      }
+    },
+    "com.gcp.trafficdirector_v2#ExtensionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#Extension"
+      }
+    },
+    "com.gcp.trafficdirector_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.trafficdirector_v2#Extension": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the name of the Envoy filter as specified in the Envoy configuration, e.g. envoy.filters.http.router, com.acme.widget."
+          }
+        },
+        "version": {
+          "target": "com.gcp.trafficdirector_v2#BuildVersion",
+          "traits": {
+            "smithy.api#documentation": "The version is a property of the extension and maintained independently of other extensions and the Envoy API. This field is not set when extension did not provide version information."
+          }
+        },
+        "typeDescriptor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[#not-implemented-hide:] Type descriptor of extension configuration proto. [#comment:"
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Category of the extension. Extension category names use reverse DNS notation. For instance \"envoy.filters.listener\" for Envoy's built-in listener filters or \"com.acme.filters.http\" for HTTP filters from acme.com vendor. [#comment:"
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the extension is present but was disabled via dynamic configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Version and identification for an Envoy extension. [#next-free-field: 6]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#StaticCluster": {
+      "type": "structure",
+      "members": {
+        "lastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the Cluster was last updated."
+          }
+        },
+        "cluster": {
+          "target": "com.gcp.trafficdirector_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The cluster config."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a statically loaded cluster."
+      }
+    },
+    "com.gcp.trafficdirector_v2#PathSegment": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, use the key to retrieve the value in a Struct."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the segment in a path to retrieve value from Struct."
+      }
+    },
+    "com.gcp.trafficdirector_v2#RoutesConfigDump": {
+      "type": "structure",
+      "members": {
+        "staticRouteConfigs": {
+          "target": "com.gcp.trafficdirector_v2#StaticRouteConfigList",
+          "traits": {
+            "smithy.api#documentation": "The statically loaded route configs."
+          }
+        },
+        "dynamicRouteConfigs": {
+          "target": "com.gcp.trafficdirector_v2#DynamicRouteConfigList",
+          "traits": {
+            "smithy.api#documentation": "The dynamically loaded route configs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Envoy's RDS implementation fills this message with all currently loaded routes, as described by their RouteConfiguration objects. Static routes that are either defined in the bootstrap configuration or defined inline while configuring listeners are separated from those configured dynamically via RDS. Route configuration information can be used to recreate an Envoy configuration by populating all routes as static routes or by returning them in RDS responses."
+      }
+    },
+    "com.gcp.trafficdirector_v2#StaticRouteConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#StaticRouteConfig"
+      }
+    },
+    "com.gcp.trafficdirector_v2#DynamicRouteConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#DynamicRouteConfig"
+      }
+    },
+    "com.gcp.trafficdirector_v2#NullMatch": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "NullMatch is an empty message to specify a null value."
+      }
+    },
+    "com.gcp.trafficdirector_v2#ClientStatusResponse": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.gcp.trafficdirector_v2#ClientConfigList",
+          "traits": {
+            "smithy.api#documentation": "Client configs for the clients specified in the ClientStatusRequest."
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#ClientConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.trafficdirector_v2#ClientConfig"
+      }
+    },
+    "com.gcp.trafficdirector_v2#PerXdsConfig": {
+      "type": "structure",
+      "members": {
+        "routeConfig": {
+          "target": "com.gcp.trafficdirector_v2#RoutesConfigDump"
+        },
+        "listenerConfig": {
+          "target": "com.gcp.trafficdirector_v2#ListenersConfigDump"
+        },
+        "scopedRouteConfig": {
+          "target": "com.gcp.trafficdirector_v2#ScopedRoutesConfigDump"
+        },
+        "status": {
+          "target": "com.gcp.trafficdirector_v2#PerXdsConfigStatusEnum"
+        },
+        "clusterConfig": {
+          "target": "com.gcp.trafficdirector_v2#ClustersConfigDump"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed config (per xDS) with status. [#next-free-field: 6]"
+      }
+    },
+    "com.gcp.trafficdirector_v2#PerXdsConfigStatusEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "SYNCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYNCED"
+          }
+        },
+        "NOT_SENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_SENT"
+          }
+        },
+        "STALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STALE"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#Client_statusDiscoveryRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.trafficdirector_v2#ClientStatusRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.trafficdirector_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.trafficdirector_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.trafficdirector_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.trafficdirector_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.trafficdirector_v2#Client_statusDiscovery": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.trafficdirector_v2#Client_statusDiscoveryRequest"
+      },
+      "output": {
+        "target": "com.gcp.trafficdirector_v2#ClientStatusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.trafficdirector_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.trafficdirector_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.trafficdirector_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.trafficdirector_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/discovery:client_status"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Align magic_cloud_networking#CloudIntegrationsList with distilled cloudflare/magic-cloud-networking listCloudIntegrations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsList",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsListRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrations/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListCloudIntegrationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsListResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrations/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListCloudIntegrationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListCloudIntegrations/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_cloud_networking#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#Forbidden"
+        }
+      ]
+    }
+  ]
+}

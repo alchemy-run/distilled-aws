@@ -1,0 +1,20 @@
+{
+  "description": "Align browser_rendering#ScreenshotCreate with distilled cloudflare/browser-rendering createScreenshot",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#ScreenshotCreate",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateScreenshot"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#ScreenshotCreateRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateScreenshotRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateScreenshot/input/target",
+      "value": "com.cloudflare.browser_rendering#CreateScreenshotRequest"
+    }
+  ]
+}

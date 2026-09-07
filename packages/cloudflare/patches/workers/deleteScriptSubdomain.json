@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#ScriptsSubdomainDelete with distilled cloudflare/workers deleteScriptSubdomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSubdomainDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptSubdomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSubdomainDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptSubdomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptSubdomain/input/target",
+      "value": "com.cloudflare.workers#DeleteScriptSubdomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSubdomainDeleteResponse",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptSubdomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptSubdomain/output/target",
+      "value": "com.cloudflare.workers#DeleteScriptSubdomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteScriptSubdomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

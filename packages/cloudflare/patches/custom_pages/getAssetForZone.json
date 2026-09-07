@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_pages#AssetsGetForZone with distilled cloudflare/custom-pages getAssetForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsGetForZone",
+      "path": "/shapes/com.cloudflare.custom_pages#GetAssetForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsGetForZoneRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#GetAssetForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#GetAssetForZone/input/target",
+      "value": "com.cloudflare.custom_pages#GetAssetForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsGetForZoneResponse",
+      "path": "/shapes/com.cloudflare.custom_pages#GetAssetForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#GetAssetForZone/output/target",
+      "value": "com.cloudflare.custom_pages#GetAssetForZoneResponse"
+    }
+  ]
+}

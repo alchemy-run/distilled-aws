@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksRoutesEdit with distilled cloudflare/zero-trust patchNetworkRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkRoute/input/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkRoute/output/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkRouteResponse"
+    }
+  ]
+}

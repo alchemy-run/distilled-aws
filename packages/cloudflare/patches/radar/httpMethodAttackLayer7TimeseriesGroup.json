@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7TimeseriesGroupsHttpMethod with distilled cloudflare/radar httpMethodAttackLayer7TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsHttpMethod",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsHttpMethodRequest",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsHttpMethodResponse",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#HttpMethodAttackLayer7TimeseriesGroupResponse"
+    }
+  ]
+}

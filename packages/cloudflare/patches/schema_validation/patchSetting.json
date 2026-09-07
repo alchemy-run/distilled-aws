@@ -1,0 +1,30 @@
+{
+  "description": "Align schema_validation#SettingsEdit with distilled cloudflare/schema-validation patchSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsEdit",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsEditRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSetting/input/target",
+      "value": "com.cloudflare.schema_validation#PatchSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsEditResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSetting/output/target",
+      "value": "com.cloudflare.schema_validation#PatchSettingResponse"
+    }
+  ]
+}

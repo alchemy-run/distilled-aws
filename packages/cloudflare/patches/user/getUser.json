@@ -1,0 +1,20 @@
+{
+  "description": "Align user#Get with distilled cloudflare/user getUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#Get",
+      "path": "/shapes/com.cloudflare.user#GetUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#GetResponse",
+      "path": "/shapes/com.cloudflare.user#GetUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#GetUser/output/target",
+      "value": "com.cloudflare.user#GetUserResponse"
+    }
+  ]
+}

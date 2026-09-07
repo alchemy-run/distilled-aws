@@ -1,0 +1,1852 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.networkfunction#CollectorPoliciesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#CollectorPoliciesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Deletes a specified Collector Policy resource.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        },
+        "collectorPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Collector Policy Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesUpdateTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#CollectorPoliciesUpdateTagsRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#CollectorPoliciesUpdateTagsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified Collector Policy tags.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesUpdateTagsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#CollectorPolicyPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Collector Policy."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#CollectorPoliciesUpdateTagsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesUpdateTagsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#CollectorPolicyPropertiesFormat": {
+      "type": "structure",
+      "members": {
+        "ingestionPolicy": {
+          "target": "com.azure.networkfunction#IngestionPolicyPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Ingestion policies."
+          }
+        },
+        "emissionPolicies": {
+          "target": "com.azure.networkfunction#CollectorPolicyPropertiesFormatEmissionPoliciesList",
+          "traits": {
+            "smithy.api#documentation": "Emission policies."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.networkfunction#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection policy properties."
+      }
+    },
+    "com.azure.networkfunction#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.networkfunction#CollectorPolicyPropertiesFormatEmissionPoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#EmissionPoliciesPropertiesFormat"
+      },
+      "traits": {
+        "smithy.api#documentation": "Emission policies."
+      }
+    },
+    "com.azure.networkfunction#EmissionPoliciesPropertiesFormat": {
+      "type": "structure",
+      "members": {
+        "emissionType": {
+          "target": "com.azure.networkfunction#EmissionType",
+          "traits": {
+            "smithy.api#documentation": "Emission format type."
+          }
+        },
+        "emissionDestinations": {
+          "target": "com.azure.networkfunction#EmissionPoliciesPropertiesFormatEmissionDestinationsList",
+          "traits": {
+            "smithy.api#documentation": "Emission policy destinations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Emission policy properties."
+      }
+    },
+    "com.azure.networkfunction#EmissionPoliciesPropertiesFormatEmissionDestinationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#EmissionPolicyDestination"
+      },
+      "traits": {
+        "smithy.api#documentation": "Emission policy destinations."
+      }
+    },
+    "com.azure.networkfunction#EmissionPolicyDestination": {
+      "type": "structure",
+      "members": {
+        "destinationType": {
+          "target": "com.azure.networkfunction#DestinationType",
+          "traits": {
+            "smithy.api#documentation": "Emission destination type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Emission policy destination properties."
+      }
+    },
+    "com.azure.networkfunction#DestinationType": {
+      "type": "enum",
+      "members": {
+        "AZUREMONITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureMonitor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Emission destination type."
+      }
+    },
+    "com.azure.networkfunction#EmissionType": {
+      "type": "enum",
+      "members": {
+        "IPFIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IPFIX"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Emission format type."
+      }
+    },
+    "com.azure.networkfunction#IngestionPolicyPropertiesFormat": {
+      "type": "structure",
+      "members": {
+        "ingestionType": {
+          "target": "com.azure.networkfunction#IngestionType",
+          "traits": {
+            "smithy.api#documentation": "The ingestion type."
+          }
+        },
+        "ingestionSources": {
+          "target": "com.azure.networkfunction#IngestionPolicyPropertiesFormatIngestionSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Ingestion Sources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingestion Policy properties."
+      }
+    },
+    "com.azure.networkfunction#IngestionPolicyPropertiesFormatIngestionSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#IngestionSourcesPropertiesFormat"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingestion Sources."
+      }
+    },
+    "com.azure.networkfunction#IngestionSourcesPropertiesFormat": {
+      "type": "structure",
+      "members": {
+        "sourceType": {
+          "target": "com.azure.networkfunction#SourceType",
+          "traits": {
+            "smithy.api#documentation": "Ingestion source type."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingestion policy properties."
+      }
+    },
+    "com.azure.networkfunction#SourceType": {
+      "type": "enum",
+      "members": {
+        "RESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingestion source type."
+      }
+    },
+    "com.azure.networkfunction#IngestionType": {
+      "type": "enum",
+      "members": {
+        "IPFIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IPFIX"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ingestion type."
+      }
+    },
+    "com.azure.networkfunction#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.networkfunction#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.networkfunction#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.networkfunction#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.networkfunction#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesUpdateTagsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        },
+        "collectorPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Collector Policy Name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#CollectorPoliciesUpdateTagsRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesUpdateTagsRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Creates or updates a Collector Policy resource",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#CollectorPolicyPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Collector Policy."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        },
+        "collectorPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Collector Policy Name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#CollectorPolicyPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Collector Policy."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#CollectorPoliciesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#CollectorPoliciesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Gets the collector policy in a specified Traffic Collector",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#CollectorPolicyPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Collector Policy."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#CollectorPoliciesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        },
+        "collectorPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Collector Policy Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#CollectorPoliciesListRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#CollectorPolicyListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Return list of Collector policies in a Azure Traffic Collector",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#CollectorPolicyListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.networkfunction#CollectorPolicyListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CollectorPolicy items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CollectorPolicy list operation."
+      }
+    },
+    "com.azure.networkfunction#CollectorPolicyListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#CollectorPolicy"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CollectorPolicy items on this page"
+      }
+    },
+    "com.azure.networkfunction#CollectorPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#CollectorPolicyPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Collector Policy."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#CollectorPolicyTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collector policy resource."
+      }
+    },
+    "com.azure.networkfunction#CollectorPolicyTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#CollectorPoliciesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Deletes a specified Azure Traffic Collector resource.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsUpdateTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified Azure Traffic Collector tags.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Traffic Collector."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormat": {
+      "type": "structure",
+      "members": {
+        "collectorPolicies": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormatCollectorPoliciesList",
+          "traits": {
+            "smithy.api#documentation": "Collector Policies for Azure Traffic Collector."
+          }
+        },
+        "virtualHub": {
+          "target": "com.azure.networkfunction#ResourceReference",
+          "traits": {
+            "smithy.api#documentation": "The virtualHub to which the Azure Traffic Collector belongs."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.networkfunction#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the application rule collection resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Traffic Collector resource properties."
+      }
+    },
+    "com.azure.networkfunction#ResourceReference": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource reference properties."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormatCollectorPoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#ResourceReference"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collector Policies for Azure Traffic Collector."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsUpdateTagsRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Creates or updates a Azure Traffic Collector resource",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Traffic Collector."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormatInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Traffic Collector."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormatInput": {
+      "type": "structure",
+      "members": {
+        "virtualHub": {
+          "target": "com.azure.networkfunction#ResourceReferenceInput",
+          "traits": {
+            "smithy.api#documentation": "The virtualHub to which the Azure Traffic Collector belongs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Traffic Collector resource properties."
+      }
+    },
+    "com.azure.networkfunction#ResourceReferenceInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource reference properties."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Gets the specified Azure Traffic Collector in a specified resource group",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Traffic Collector."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureTrafficCollectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Traffic Collector name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsByResourceGroupList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsByResourceGroupListRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Return list of Azure Traffic Collectors in a Resource Group",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The AzureTrafficCollector items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a AzureTrafficCollector list operation."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#AzureTrafficCollector"
+      },
+      "traits": {
+        "smithy.api#documentation": "The AzureTrafficCollector items on this page"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.networkfunction#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Traffic Collector."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique read-only string that changes whenever the resource is updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Traffic Collector resource."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsByResourceGroupListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsBySubscriptionList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorsBySubscriptionListRequest"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#AzureTrafficCollectorListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkFunction/azureTrafficCollectors",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Return list of Azure Traffic Collectors in a subscription",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#AzureTrafficCollectorsBySubscriptionListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.networkfunction#NetworkFunctionListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.networkfunction#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.NetworkFunction/operations",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Lists all of the available NetworkFunction Rest API operations.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.networkfunction#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.networkfunction#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Operation items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of Operation items"
+      }
+    },
+    "com.azure.networkfunction#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.networkfunction#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Operation items on this page"
+      }
+    },
+    "com.azure.networkfunction#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "display": {
+          "target": "com.azure.networkfunction#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display metadata associated with the operation."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Traffic Collector REST API operation definition."
+      }
+    },
+    "com.azure.networkfunction#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft NetworkFunction."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed etc."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of operation: get, read, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display metadata associated with the operation."
+      }
+    },
+    "com.azure.networkfunction#Networkfunction": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.networkfunction#CollectorPoliciesDelete"
+        },
+        {
+          "target": "com.azure.networkfunction#CollectorPoliciesUpdateTags"
+        },
+        {
+          "target": "com.azure.networkfunction#CollectorPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkfunction#CollectorPoliciesGet"
+        },
+        {
+          "target": "com.azure.networkfunction#CollectorPoliciesList"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsDelete"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsUpdateTags"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsGet"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsByResourceGroupList"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsBySubscriptionList"
+        },
+        {
+          "target": "com.azure.networkfunction#NetworkFunctionListOperations"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Networkfunction",
+        "smithy.api#documentation": "Azure Networkfunction API — merged from the networkfunction resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpSummaryHttpProtocol with distilled cloudflare/radar httpProtocolHttpSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryHttpProtocol",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryHttpProtocolRequest",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpSummary/input/target",
+      "value": "com.cloudflare.radar#HttpProtocolHttpSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryHttpProtocolResponse",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpSummary/output/target",
+      "value": "com.cloudflare.radar#HttpProtocolHttpSummaryResponse"
+    }
+  ]
+}

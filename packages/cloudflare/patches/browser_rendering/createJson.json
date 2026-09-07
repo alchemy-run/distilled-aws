@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#JsonCreate with distilled cloudflare/browser-rendering createJson",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#JsonCreate",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateJson"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#JsonCreateRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateJsonRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateJson/input/target",
+      "value": "com.cloudflare.browser_rendering#CreateJsonRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#JsonCreateResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateJsonResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateJson/output/target",
+      "value": "com.cloudflare.browser_rendering#CreateJsonResponse"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "description": "serviceInstanceDeployV2 returns String! (deployment id) so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ServiceInstanceDeployV2Request/traits/com.railway.graphql#operation/query",
+      "value": "mutation serviceInstanceDeployV2($commitSha: String, $environmentId: String!, $serviceId: String!) {\n  serviceInstanceDeployV2(commitSha: $commitSha, environmentId: $environmentId, serviceId: $serviceId)\n}"
+    }
+  ]
+}

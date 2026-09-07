@@ -1,0 +1,50 @@
+{
+  "description": "Align logpush#JobsListForZone with distilled cloudflare/logpush listJobsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsListForZone",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsListForZoneRequest",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZone/input/target",
+      "value": "com.cloudflare.logpush#ListJobsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsListForZoneResponse",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZone/output/target",
+      "value": "com.cloudflare.logpush#ListJobsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#ListJobsForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logpush#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.logpush#NotFound"
+        }
+      ]
+    }
+  ]
+}

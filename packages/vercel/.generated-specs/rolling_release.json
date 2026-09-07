@@ -1,0 +1,4141 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase0AvailableSlots": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase0Reason": {
+      "type": "enum",
+      "members": {
+        "PLAN_NOT_SUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan_not_supported"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "availableSlots": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase0AvailableSlots",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase0Reason",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase1AvailableSlots": {
+      "type": "enum",
+      "members": {
+        "UNLIMITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unlimited"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase1Reason": {
+      "type": "enum",
+      "members": {
+        "UNLIMITED_SLOTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unlimited_slots"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "availableSlots": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase1AvailableSlots",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase1Reason",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2AvailableSlots": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2Reason": {
+      "type": "enum",
+      "members": {
+        "NO_AVAILABLE_SLOTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_available_slots"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2EnabledProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2": {
+      "type": "structure",
+      "members": {
+        "availableSlots": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2AvailableSlots",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2Reason",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enabledProjects": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2EnabledProjectsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase3Reason": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE_SLOTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available_slots"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase3": {
+      "type": "structure",
+      "members": {
+        "availableSlots": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase3Reason",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBodyCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseBillingStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/projects/{idOrName}/rolling-release/billing",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get rolling release billing status\n\nGet the Rolling Releases billing status for a project. The team level billing status is used to determine if the project can be configured for rolling releases."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseStagesItem": {
+      "type": "structure",
+      "members": {
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed"
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in minutes for automatic advancement to the next stage"
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseStagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItemType": {
+      "type": "enum",
+      "members": {
+        "ERROR_RATE_5XX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error-rate-5xx"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metric this check evaluates."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItemExcludeStatusCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "Response status codes to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItemExcludePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Request paths to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItemType",
+          "traits": {
+            "smithy.api#documentation": "The metric this check evaluates.",
+            "smithy.api#required": {}
+          }
+        },
+        "minSampleSize": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Minimum number of requests required in the window before the check can fail. Below this, the check is inconclusive rather than failing, so low-traffic stages don't gate on noise. Defaults to `100` when omitted."
+          }
+        },
+        "excludeStatusCodes": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItemExcludeStatusCodesList",
+          "traits": {
+            "smithy.api#documentation": "Response status codes to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted."
+          }
+        },
+        "excludePaths": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItemExcludePathsList",
+          "traits": {
+            "smithy.api#documentation": "Request paths to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted."
+          }
+        },
+        "ingestWatermarkSeconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Seconds of ingest lag to allow for: the query's upper bound is `now() - this value`, so the check never reads a window that is still filling. Defaults to `30` when omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The checks to evaluate. An empty array means nothing is evaluated."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The checks to evaluate. An empty array means nothing is evaluated."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateAction": {
+      "type": "enum",
+      "members": {
+        "PAUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pause"
+          }
+        },
+        "ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rollback"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "What to do when the gate trips: pause the rollout, or roll it back."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGate": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether automated gating is enabled for this project's rollouts.",
+            "smithy.api#required": {}
+          }
+        },
+        "checks": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateChecksList",
+          "traits": {
+            "smithy.api#documentation": "The checks to evaluate. An empty array means nothing is evaluated.",
+            "smithy.api#required": {}
+          }
+        },
+        "failureThreshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many failing evaluations within {@link windowSize} trip the gate. Defaults to `3` when omitted."
+          }
+        },
+        "windowSize": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many of the most recent evaluations {@link failureThreshold} is counted against. Defaults to `5` when omitted."
+          }
+        },
+        "action": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGateAction",
+          "traits": {
+            "smithy.api#documentation": "What to do when the gate trips: pause the rollout, or roll it back.",
+            "smithy.api#required": {}
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, a tripped gate is only reported — {@link action} is not taken.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to `enabled: false`."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingRelease": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The environment that the release targets, currently only supports production. Adding in case we want to configure with alias groups or custom environments.",
+            "smithy.api#required": {}
+          }
+        },
+        "stages": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseStagesList",
+          "traits": {
+            "smithy.api#documentation": "An array of all the stages required during a deployment release. Each stage defines a target percentage and advancement rules. The final stage must always have targetPercentage: 100.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "canaryResponseHeader": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the request served by a canary deployment should return a header indicating a canary was served. Defaults to `false` when omitted."
+          }
+        },
+        "gate": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingReleaseGate",
+          "traits": {
+            "smithy.api#documentation": "Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to `enabled: false`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Project-level rolling release configuration that defines how deployments should be gradually rolled out"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfigResponse": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponseRollingRelease",
+          "traits": {
+            "smithy.api#documentation": "Project-level rolling release configuration that defines how deployments should be gradually rolled out",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseConfigRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseConfigResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/projects/{idOrName}/rolling-release/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get rolling release configuration\n\nGet the Rolling Releases configuration for a project. The project-level config is simply a template that will be used for any future rolling release, and not the configuration for any active rolling release."
+      }
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1RollingReleaseStagesItem": {
+      "type": "structure",
+      "members": {
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed"
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in minutes for automatic advancement to the next stage"
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A stage object configured for a rolling release once a new deployment is triggered the first stage will be read in the proxy for first time visitors, and if a RNG < targetPercentage then it will serve the new deployment. Upon approval the next stage will be read, etc."
+      }
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1RollingReleaseStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1RollingReleaseStagesItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1RollingRelease": {
+      "type": "structure",
+      "members": {
+        "stages": {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1RollingReleaseStagesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1RollingRelease",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfigResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#UpdateRollingReleaseConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#UpdateRollingReleaseConfigResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/projects/{idOrName}/rolling-release/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the rolling release settings for the project\n\nUpdate (or disable) Rolling Releases for a project. When disabling with the resolve-on-disable feature flag enabled, any active rolling release document is resolved using the disableRolloutAction parameter: \"abort\" to roll back (default), or \"complete\" to promote the canary to production. When enabling or updating config, changes only affect the next production deployment and do not alter a rollout that's already in-flight. Note: Enabling Rolling Releases automatically enables skew protection on the project with the default value if it wasn't configured already."
+      }
+    },
+    "com.vercel.rolling_release#DeleteRollingReleaseConfigRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#DeleteRollingReleaseConfigResponse": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#DeleteRollingReleaseConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#DeleteRollingReleaseConfigRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#DeleteRollingReleaseConfigResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/projects/{idOrName}/rolling-release/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete rolling release configuration\n\nDisable Rolling Releases for a project means that future deployments will not undergo a rolling release. Changing the config never alters a rollout that's already in-flight—it only affects the next production deployment. If you want to also stop the current rollout, call this endpoint to disable the feature, and then call either the /complete or /abort endpoint."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseRequestState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter by rolling release state"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "state": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Filter by rolling release state"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseState": {
+      "type": "enum",
+      "members": {
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseSubstate": {
+      "type": "enum",
+      "members": {
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment receiving production traffic"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The canary deployment being rolled out"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseAdvancementType": {
+      "type": "enum",
+      "members": {
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automatic"
+          }
+        },
+        "MANUAL_APPROVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual-approval"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The advancement type of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseStagesItem": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseStagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseActiveStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currently active stage, null if the rollout is aborted"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseNextStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponseRollingRelease": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "substate": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseSubstate",
+          "traits": {
+            "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "currentDeployment": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCurrentDeployment",
+          "traits": {
+            "smithy.api#documentation": "The current deployment receiving production traffic",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "canaryDeployment": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseCanaryDeployment",
+          "traits": {
+            "smithy.api#documentation": "The canary deployment being rolled out",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "queuedDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of a deployment queued for the next rolling release",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "advancementType": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseAdvancementType",
+          "traits": {
+            "smithy.api#documentation": "The advancement type of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "stages": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseStagesList",
+          "traits": {
+            "smithy.api#documentation": "All stages configured for this rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "activeStage": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseActiveStage",
+          "traits": {
+            "smithy.api#documentation": "The currently active stage, null if the rollout is aborted",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nextStage": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingReleaseNextStage",
+          "traits": {
+            "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release started",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release was last updated",
+            "smithy.api#required": {}
+          }
+        },
+        "currentCanaryPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists"
+      }
+    },
+    "com.vercel.rolling_release#GetRollingReleaseResponse": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "com.vercel.rolling_release#GetRollingReleaseResponseRollingRelease",
+          "traits": {
+            "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#GetRollingRelease": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#GetRollingReleaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/projects/{idOrName}/rolling-release",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the active rolling release information for a project\n\nReturn the Rolling Release for a project, regardless of whether the rollout is active, aborted, or completed. If the feature is enabled but no deployment has occurred yet, null will be returned."
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "nextStageIndex": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The index of the stage to transition to",
+            "smithy.api#required": {}
+          }
+        },
+        "canaryDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the canary deployment to approve for the next stage",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseState": {
+      "type": "enum",
+      "members": {
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseSubstate": {
+      "type": "enum",
+      "members": {
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued."
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment receiving production traffic"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The canary deployment being rolled out"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseAdvancementType": {
+      "type": "enum",
+      "members": {
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automatic"
+          }
+        },
+        "MANUAL_APPROVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual-approval"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The advancement type of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseStagesItem": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseStagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseActiveStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currently active stage, null if the rollout is aborted"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseNextStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingRelease": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "substate": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseSubstate",
+          "traits": {
+            "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "currentDeployment": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment",
+          "traits": {
+            "smithy.api#documentation": "The current deployment receiving production traffic",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "canaryDeployment": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment",
+          "traits": {
+            "smithy.api#documentation": "The canary deployment being rolled out",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "queuedDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of a deployment queued for the next rolling release",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "advancementType": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseAdvancementType",
+          "traits": {
+            "smithy.api#documentation": "The advancement type of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "stages": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseStagesList",
+          "traits": {
+            "smithy.api#documentation": "All stages configured for this rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "activeStage": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseActiveStage",
+          "traits": {
+            "smithy.api#documentation": "The currently active stage, null if the rollout is aborted",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nextStage": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingReleaseNextStage",
+          "traits": {
+            "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release started",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release was last updated",
+            "smithy.api#required": {}
+          }
+        },
+        "currentCanaryPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists"
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStageResponse": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponseRollingRelease",
+          "traits": {
+            "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#ApproveRollingReleaseStage": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#ApproveRollingReleaseStageRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#ApproveRollingReleaseStageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/projects/{idOrName}/rolling-release/approve-stage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the active rolling release to the next stage for a project\n\nAdvance a rollout to the next stage. This is only needed when rolling releases is configured to require manual approval."
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "canaryDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the canary deployment to start the rolling release for",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseState": {
+      "type": "enum",
+      "members": {
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseSubstate": {
+      "type": "enum",
+      "members": {
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued."
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment receiving production traffic"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The canary deployment being rolled out"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseAdvancementType": {
+      "type": "enum",
+      "members": {
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automatic"
+          }
+        },
+        "MANUAL_APPROVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual-approval"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The advancement type of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseStagesItem": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseStagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseActiveStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currently active stage, null if the rollout is aborted"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseNextStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponseRollingRelease": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "substate": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseSubstate",
+          "traits": {
+            "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "currentDeployment": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCurrentDeployment",
+          "traits": {
+            "smithy.api#documentation": "The current deployment receiving production traffic",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "canaryDeployment": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseCanaryDeployment",
+          "traits": {
+            "smithy.api#documentation": "The canary deployment being rolled out",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "queuedDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of a deployment queued for the next rolling release",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "advancementType": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseAdvancementType",
+          "traits": {
+            "smithy.api#documentation": "The advancement type of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "stages": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseStagesList",
+          "traits": {
+            "smithy.api#documentation": "All stages configured for this rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "activeStage": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseActiveStage",
+          "traits": {
+            "smithy.api#documentation": "The currently active stage, null if the rollout is aborted",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nextStage": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingReleaseNextStage",
+          "traits": {
+            "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release started",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release was last updated",
+            "smithy.api#required": {}
+          }
+        },
+        "currentCanaryPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists"
+      }
+    },
+    "com.vercel.rolling_release#StartRollingReleaseResponse": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "com.vercel.rolling_release#StartRollingReleaseResponseRollingRelease",
+          "traits": {
+            "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#StartRollingRelease": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#StartRollingReleaseRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#StartRollingReleaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        },
+        {
+          "target": "com.vercel.rolling_release#Conflict"
+        },
+        {
+          "target": "com.vercel.rolling_release#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/projects/{idOrName}/rolling-release/start",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start a rolling release for the project\n\nStart a rolling release for a deployment. If a rolling release is already active for the same canary deployment, returns the current state without side effects."
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID or project name (URL-encoded)"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "canaryDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the canary deployment to complete",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseState": {
+      "type": "enum",
+      "members": {
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseSubstate": {
+      "type": "enum",
+      "members": {
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued."
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment receiving production traffic"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState": {
+      "type": "enum",
+      "members": {
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILDING"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment."
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource": {
+      "type": "enum",
+      "members": {
+        "API_TRIGGER_GIT_DEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-trigger-git-deploy"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "CLONE_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clone/repo"
+          }
+        },
+        "DROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "drop"
+          }
+        },
+        "GIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git"
+          }
+        },
+        "GIT_DEPLOY_HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git-deploy-hook"
+          }
+        },
+        "IMPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import"
+          }
+        },
+        "IMPORT_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "import/repo"
+          }
+        },
+        "REDEPLOY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redeploy"
+          }
+        },
+        "V0_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0-web"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project associated with the deployment at the time that the deployment was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the deployment was created in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "readyState": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState",
+          "traits": {
+            "smithy.api#documentation": "The state of the deployment depending on the process of deploying, or if it is ready or in an error state",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string holding the unique ID of the deployment",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget",
+          "traits": {
+            "smithy.api#documentation": "If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the \"preview\" deployment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "readyStateAt": {
+          "target": "smithy.api#Double"
+        },
+        "source": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource",
+          "traits": {
+            "smithy.api#documentation": "Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the unique URL of the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The canary deployment being rolled out"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseAdvancementType": {
+      "type": "enum",
+      "members": {
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automatic"
+          }
+        },
+        "MANUAL_APPROVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual-approval"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The advancement type of the rolling release"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseStagesItem": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseStagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "All stages configured for this rolling release"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseActiveStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currently active stage, null if the rollout is aborted"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseNextStage": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zero-based index of the stage",
+            "smithy.api#required": {}
+          }
+        },
+        "isFinalStage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage is the final stage (targetPercentage === 100)",
+            "smithy.api#required": {}
+          }
+        },
+        "targetPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of traffic to serve to the canary deployment (0-100)",
+            "smithy.api#required": {}
+          }
+        },
+        "requireApproval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this stage requires manual approval to proceed",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Duration in seconds for automatic advancement, null for manual stages or the final stage",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linearShift": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to linearly shift traffic over the duration of this stage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingRelease": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "substate": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseSubstate",
+          "traits": {
+            "smithy.api#documentation": "When set to `PAUSED`, the rollout is frozen at the current percentage until continued.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "currentDeployment": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCurrentDeployment",
+          "traits": {
+            "smithy.api#documentation": "The current deployment receiving production traffic",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "canaryDeployment": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseCanaryDeployment",
+          "traits": {
+            "smithy.api#documentation": "The canary deployment being rolled out",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "queuedDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of a deployment queued for the next rolling release",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "advancementType": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseAdvancementType",
+          "traits": {
+            "smithy.api#documentation": "The advancement type of the rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "stages": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseStagesList",
+          "traits": {
+            "smithy.api#documentation": "All stages configured for this rolling release",
+            "smithy.api#required": {}
+          }
+        },
+        "activeStage": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseActiveStage",
+          "traits": {
+            "smithy.api#documentation": "The currently active stage, null if the rollout is aborted",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nextStage": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingReleaseNextStage",
+          "traits": {
+            "smithy.api#documentation": "The next stage to be activated, null if not in ACTIVE state",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release started",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Unix timestamp in milliseconds when the rolling release was last updated",
+            "smithy.api#required": {}
+          }
+        },
+        "currentCanaryPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists"
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingReleaseResponse": {
+      "type": "structure",
+      "members": {
+        "rollingRelease": {
+          "target": "com.vercel.rolling_release#CompleteRollingReleaseResponseRollingRelease",
+          "traits": {
+            "smithy.api#documentation": "Rolling release information including configuration and document details, or null if no rolling release exists",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.rolling_release#CompleteRollingRelease": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.rolling_release#CompleteRollingReleaseRequest"
+      },
+      "output": {
+        "target": "com.vercel.rolling_release#CompleteRollingReleaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.rolling_release#BadRequest"
+        },
+        {
+          "target": "com.vercel.rolling_release#Forbidden"
+        },
+        {
+          "target": "com.vercel.rolling_release#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/projects/{idOrName}/rolling-release/complete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Complete the rolling release for the project\n\nForce-complete a Rolling Release. The canary deployment will begin serving 100% of the traffic."
+      }
+    },
+    "com.vercel.rolling_release#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.rolling_release#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.rolling_release#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.rolling_release#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.rolling_release#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.vercel.rolling_release#RollingRelease": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatus"
+        },
+        {
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfig"
+        },
+        {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfig"
+        },
+        {
+          "target": "com.vercel.rolling_release#DeleteRollingReleaseConfig"
+        },
+        {
+          "target": "com.vercel.rolling_release#GetRollingRelease"
+        },
+        {
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStage"
+        },
+        {
+          "target": "com.vercel.rolling_release#StartRollingRelease"
+        },
+        {
+          "target": "com.vercel.rolling_release#CompleteRollingRelease"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

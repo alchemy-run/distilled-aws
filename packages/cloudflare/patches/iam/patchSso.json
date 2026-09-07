@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#SsoUpdate with distilled cloudflare/iam patchSso",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoUpdate",
+      "path": "/shapes/com.cloudflare.iam#PatchSso"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoUpdateRequest",
+      "path": "/shapes/com.cloudflare.iam#PatchSsoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#PatchSso/input/target",
+      "value": "com.cloudflare.iam#PatchSsoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoUpdateResponse",
+      "path": "/shapes/com.cloudflare.iam#PatchSsoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#PatchSso/output/target",
+      "value": "com.cloudflare.iam#PatchSsoResponse"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "description": "typed RumSiteQuotaExceeded (code 10014) on site creation (port of distilled#392)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#CreateSiteInfo/errors/-",
+      "value": {
+        "target": "com.cloudflare.rum#RumSiteQuotaExceeded"
+      }
+    }
+  ]
+}

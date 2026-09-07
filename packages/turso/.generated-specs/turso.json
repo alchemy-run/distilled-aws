@@ -1,0 +1,5023 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.turso.api#ListDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "group",
+            "smithy.api#documentation": "Filter databases by group name."
+          }
+        },
+        "schema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "schema",
+            "smithy.api#documentation": "The schema database name that can be used to get databases that belong to that parent schema."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "parent",
+            "smithy.api#documentation": "Filter database branches by using their parent database ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#Database": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The database name, **unique** across your organization."
+          }
+        },
+        "DbId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The database universal unique identifier (UUID)."
+          }
+        },
+        "Hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS hostname used for client libSQL and HTTP connections."
+          }
+        },
+        "block_reads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for blocked reads."
+          }
+        },
+        "block_writes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for blocked writes."
+          }
+        },
+        "regions": {
+          "target": "com.turso.api#DatabaseRegionsList",
+          "traits": {
+            "smithy.api#documentation": "A list of regions for the group the database belongs to."
+          }
+        },
+        "primaryRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary region location code the group the database belongs to."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the group the database belongs to."
+          }
+        },
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for delete protection. If enabled, the database cannot be deleted."
+          }
+        },
+        "parent": {
+          "target": "com.turso.api#DatabaseParent",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#DatabaseRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of regions for the group the database belongs to."
+      }
+    },
+    "com.turso.api#DatabaseParent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The parent database identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the parent database."
+          }
+        },
+        "branched_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the database was branched from the parent."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListDatabasesResponseDatabasesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#Database"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListDatabasesResponse": {
+      "type": "structure",
+      "members": {
+        "databases": {
+          "target": "com.turso.api#ListDatabasesResponseDatabasesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListDatabasesRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListDatabasesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Databases\n\nReturns a list of databases belonging to the organization or user."
+      }
+    },
+    "com.turso.api#CreateDatabaseRequestSeedType": {
+      "type": "enum",
+      "members": {
+        "DATABASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "database"
+          }
+        },
+        "DATABASE_UPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "database_upload"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of seed to be used to create a new database. Use `database` to copy from an existing database, or `database_upload` to [upload a SQLite database file](/api-reference/databases/upload)."
+      }
+    },
+    "com.turso.api#CreateDatabaseRequestSeed": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.turso.api#CreateDatabaseRequestSeedType",
+          "traits": {
+            "smithy.api#documentation": "The type of seed to be used to create a new database. Use `database` to copy from an existing database, or `database_upload` to [upload a SQLite database file](/api-reference/databases/upload)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the existing database when `database` is used as a seed type."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A formatted [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) recovery point to create a database from. This must be within the last 24 hours, or 30 days on the scaler plan."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateDatabaseRequestRemoteEncryptionEncryptionCipher": {
+      "type": "enum",
+      "members": {
+        "AES256GCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aes256gcm"
+          }
+        },
+        "AES128GCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aes128gcm"
+          }
+        },
+        "CHACHA20POLY1305": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "chacha20poly1305"
+          }
+        },
+        "AEGIS128L": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aegis128l"
+          }
+        },
+        "AEGIS128X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aegis128x2"
+          }
+        },
+        "AEGIS128X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aegis128x4"
+          }
+        },
+        "AEGIS256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aegis256"
+          }
+        },
+        "AEGIS256X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aegis256x2"
+          }
+        },
+        "AEGIS256X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aegis256x4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The encryption cipher to use."
+      }
+    },
+    "com.turso.api#CreateDatabaseRequestRemoteEncryption": {
+      "type": "structure",
+      "members": {
+        "encryption_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64-encoded encryption key. Key size depends on cipher: 32 bytes for aes256gcm, chacha20poly1305, aegis256 variants; 16 bytes for aes128gcm, aegis128l variants."
+          }
+        },
+        "encryption_cipher": {
+          "target": "com.turso.api#CreateDatabaseRequestRemoteEncryptionEncryptionCipher",
+          "traits": {
+            "smithy.api#documentation": "The encryption cipher to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption configuration for the database. Can be used when creating a new encrypted database, creating a encrypted database from upload (`seed.type = \"database_upload\"`), or forking from an encrypted database (required when the source database is encrypted)."
+      }
+    },
+    "com.turso.api#CreateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the new database. Must contain only lowercase letters, numbers, dashes. No longer than 64 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the group where the database should be created. **The group must already exist.**",
+            "smithy.api#required": {}
+          }
+        },
+        "seed": {
+          "target": "com.turso.api#CreateDatabaseRequestSeed"
+        },
+        "size_limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum size of the database in bytes. Values with units are also accepted, e.g. 1mb, 256mb, 1gb."
+          }
+        },
+        "remote_encryption": {
+          "target": "com.turso.api#CreateDatabaseRequestRemoteEncryption",
+          "traits": {
+            "smithy.api#documentation": "Encryption configuration for the database. Can be used when creating a new encrypted database, creating a encrypted database from upload (`seed.type = \"database_upload\"`), or forking from an encrypted database (required when the source database is encrypted)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#CreateDatabaseOutput": {
+      "type": "structure",
+      "members": {
+        "DbId": {
+          "target": "smithy.api#String"
+        },
+        "Hostname": {
+          "target": "smithy.api#String"
+        },
+        "Name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "com.turso.api#CreateDatabaseOutput",
+          "traits": {
+            "smithy.api#documentation": "The newly created database"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#CreateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#CreateDatabaseRequest"
+      },
+      "output": {
+        "target": "com.turso.api#CreateDatabaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create Database\n\nCreates a new database in a group for the organization or user."
+      }
+    },
+    "com.turso.api#GetDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "com.turso.api#Database"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetDatabaseRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetDatabaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Database\n\nReturns a database belonging to the organization or user."
+      }
+    },
+    "com.turso.api#DeleteDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#DeleteDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the database that was deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#DeleteDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#DeleteDatabaseRequest"
+      },
+      "output": {
+        "target": "com.turso.api#DeleteDatabaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Database\n\nDelete a database belonging to the organization or user."
+      }
+    },
+    "com.turso.api#GetDatabaseConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#DatabaseConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "size_limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum size of the database in bytes. Values with units are also accepted, e.g. 1mb, 256mb, 1gb."
+          }
+        },
+        "allow_attach": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Allow or disallow attaching databases to the current database."
+          }
+        },
+        "block_reads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for blocked reads."
+          }
+        },
+        "block_writes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for blocked writes."
+          }
+        },
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the database from being deleted."
+          }
+        },
+        "allowed_ips": {
+          "target": "com.turso.api#DatabaseConfigurationResponseAllowedIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of allowed IP addresses and CIDR blocks. Empty means no IP restriction."
+          }
+        },
+        "allowed_aws_vpc_ids": {
+          "target": "com.turso.api#DatabaseConfigurationResponseAllowedAwsVpcIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of allowed AWS VPC endpoint IDs. Empty means no VPC endpoint restriction."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#DatabaseConfigurationResponseAllowedIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of allowed IP addresses and CIDR blocks. Empty means no IP restriction."
+      }
+    },
+    "com.turso.api#DatabaseConfigurationResponseAllowedAwsVpcIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of allowed AWS VPC endpoint IDs. Empty means no VPC endpoint restriction."
+      }
+    },
+    "com.turso.api#GetDatabaseConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetDatabaseConfigurationRequest"
+      },
+      "output": {
+        "target": "com.turso.api#DatabaseConfigurationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/configuration",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Database Configuration\n\nRetrieve an individual database configuration belonging to the organization or user."
+      }
+    },
+    "com.turso.api#UpdateDatabaseConfigurationRequestAllowedIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of allowed IP addresses and CIDR blocks. Only connections from these sources are accepted. Pass an empty array to clear the list. Omit to leave unchanged."
+      }
+    },
+    "com.turso.api#UpdateDatabaseConfigurationRequestAllowedAwsVpcIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of allowed AWS VPC endpoint IDs (vpce-...). Only connections arriving through these endpoints are accepted. Pass an empty array to clear the list. Omit to leave unchanged."
+      }
+    },
+    "com.turso.api#UpdateDatabaseConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        },
+        "size_limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum size of the database in bytes. Values with units are also accepted, e.g. 1mb, 256mb, 1gb."
+          }
+        },
+        "allow_attach": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Allow or disallow attaching databases to the current database."
+          }
+        },
+        "block_reads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Block all database reads."
+          }
+        },
+        "block_writes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Block all database writes."
+          }
+        },
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the database from being deleted."
+          }
+        },
+        "allowed_ips": {
+          "target": "com.turso.api#UpdateDatabaseConfigurationRequestAllowedIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of allowed IP addresses and CIDR blocks. Only connections from these sources are accepted. Pass an empty array to clear the list. Omit to leave unchanged."
+          }
+        },
+        "allowed_aws_vpc_ids": {
+          "target": "com.turso.api#UpdateDatabaseConfigurationRequestAllowedAwsVpcIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of allowed AWS VPC endpoint IDs (vpce-...). Only connections arriving through these endpoints are accepted. Pass an empty array to clear the list. Omit to leave unchanged."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#UpdateDatabaseConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#UpdateDatabaseConfigurationRequest"
+      },
+      "output": {
+        "target": "com.turso.api#DatabaseConfigurationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/configuration",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Database Configuration\n\nUpdate a database configuration belonging to the organization or user."
+      }
+    },
+    "com.turso.api#ListDatabaseInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#Instance": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The instance universal unique identifier (UUID)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the instance (location code)."
+          }
+        },
+        "type": {
+          "target": "com.turso.api#InstanceType",
+          "traits": {
+            "smithy.api#documentation": "The type of database instance this, will be `primary` or `replica`."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location code for the region this instance is located."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS hostname used for client libSQL and HTTP connections (specific to this instance only)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#InstanceType": {
+      "type": "enum",
+      "members": {
+        "PRIMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "primary"
+          }
+        },
+        "REPLICA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replica"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of database instance this, will be `primary` or `replica`."
+      }
+    },
+    "com.turso.api#ListDatabaseInstancesResponseInstancesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#Instance"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListDatabaseInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "instances": {
+          "target": "com.turso.api#ListDatabaseInstancesResponseInstancesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListDatabaseInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListDatabaseInstancesRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListDatabaseInstancesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/instances",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Database Instances\n\nReturns a list of instances of a database. Instances are the individual primary or replica databases in each region defined by the group."
+      }
+    },
+    "com.turso.api#GetDatabaseInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        },
+        "instanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the instance (location code)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetDatabaseInstanceResponse": {
+      "type": "structure",
+      "members": {
+        "instance": {
+          "target": "com.turso.api#Instance"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetDatabaseInstance": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetDatabaseInstanceRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetDatabaseInstanceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/instances/{instanceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Database Instance\n\nReturn the individual database instance by name."
+      }
+    },
+    "com.turso.api#CreateDatabaseTokenRequestAuthorization": {
+      "type": "enum",
+      "members": {
+        "FULL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full-access"
+          }
+        },
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-only"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateDatabaseTokenRequestPermissionsReadAttachDatabasesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateDatabaseTokenRequestPermissionsReadAttach": {
+      "type": "structure",
+      "members": {
+        "databases": {
+          "target": "com.turso.api#CreateDatabaseTokenRequestPermissionsReadAttachDatabasesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Read `ATTACH` permission for the token."
+      }
+    },
+    "com.turso.api#CreateDatabaseTokenRequestPermissions": {
+      "type": "structure",
+      "members": {
+        "read_attach": {
+          "target": "com.turso.api#CreateDatabaseTokenRequestPermissionsReadAttach",
+          "traits": {
+            "smithy.api#documentation": "Read `ATTACH` permission for the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The permissions for the token."
+      }
+    },
+    "com.turso.api#CreateDatabaseTokenRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "expiration",
+            "smithy.api#documentation": "Expiration time for the token (e.g., 2w1d30m)."
+          }
+        },
+        "authorization": {
+          "target": "com.turso.api#CreateDatabaseTokenRequestAuthorization",
+          "traits": {
+            "smithy.api#httpQuery": "authorization",
+            "smithy.api#documentation": "Authorization level for the token (full-access or read-only)."
+          }
+        },
+        "permissions": {
+          "target": "com.turso.api#CreateDatabaseTokenRequestPermissions",
+          "traits": {
+            "smithy.api#documentation": "The permissions for the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#CreateDatabaseTokenResponse": {
+      "type": "structure",
+      "members": {
+        "jwt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generated authorization token (JWT)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#CreateDatabaseToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#CreateDatabaseTokenRequest"
+      },
+      "output": {
+        "target": "com.turso.api#CreateDatabaseTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/auth/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate Database Auth Token\n\nGenerates an authorization token for the specified database."
+      }
+    },
+    "com.turso.api#GetDatabaseUsageRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#documentation": "The datetime to retrieve usage **from** in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Defaults to the current calendar month if not provided. Example: `2023-01-01T00:00:00Z`"
+          }
+        },
+        "to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "to",
+            "smithy.api#documentation": "The datetime to retrieve usage **to** in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Defaults to the current calendar month if not provided. Example: `2023-02-01T00:00:00Z`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#DatabaseUsageOutput": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "instances": {
+          "target": "com.turso.api#DatabaseUsageOutputInstancesList",
+          "traits": {
+            "smithy.api#documentation": "The usage objects for instances of the current database."
+          }
+        },
+        "total": {
+          "target": "com.turso.api#DatabaseUsageObject",
+          "traits": {
+            "smithy.api#documentation": "The total usage for the database."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#DatabaseUsageObject": {
+      "type": "structure",
+      "members": {
+        "rows_read": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total rows read in the time period."
+          }
+        },
+        "rows_written": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total rows written in the time period."
+          }
+        },
+        "storage_bytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total storage used."
+          }
+        },
+        "bytes_synced": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total bytes synced."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#DatabaseUsageOutputInstancesItem": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The instance universal unique identifier (UUID)."
+          }
+        },
+        "usage": {
+          "target": "com.turso.api#DatabaseUsageObject",
+          "traits": {
+            "smithy.api#documentation": "The usage for the current database instance."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#DatabaseUsageOutputInstancesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#DatabaseUsageOutputInstancesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The usage objects for instances of the current database."
+      }
+    },
+    "com.turso.api#GetDatabaseUsageResponse": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "com.turso.api#DatabaseUsageOutput",
+          "traits": {
+            "smithy.api#documentation": "The database usage object, containg the total and individual instance usage for rows read and written, as well as the total storage size (in bytes)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetDatabaseUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetDatabaseUsageRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetDatabaseUsageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Database Usage\n\nFetch activity usage for a database in a given time period."
+      }
+    },
+    "com.turso.api#GetDatabaseStatsRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#DatabaseStatsOutput": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string representing the SQL query executed."
+          }
+        },
+        "rows_read": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "An integer indicating the number of rows read by the query, which reflects the volume of data the query processed from the database."
+          }
+        },
+        "rows_written": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "An integer indicating the number of rows written (inserted, updated, or deleted) by the query, which reflects the impact of the query on the database data."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#GetDatabaseStatsResponseTopQueriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#DatabaseStatsOutput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The top queries performed on the given database as well as the total rows read and written."
+      }
+    },
+    "com.turso.api#GetDatabaseStatsResponse": {
+      "type": "structure",
+      "members": {
+        "top_queries": {
+          "target": "com.turso.api#GetDatabaseStatsResponseTopQueriesList",
+          "traits": {
+            "smithy.api#documentation": "The top queries performed on the given database as well as the total rows read and written.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetDatabaseStats": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetDatabaseStatsRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetDatabaseStatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/stats",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Database Stats\n\nFetch the top queries of a database, including the count of rows read and written."
+      }
+    },
+    "com.turso.api#InvalidateDatabaseTokensRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#InvalidateDatabaseTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#InvalidateDatabaseTokensRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/databases/{databaseName}/auth/rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invalidate All Database Auth Tokens\n\nInvalidates all authorization tokens for the specified database."
+      }
+    },
+    "com.turso.api#ListGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#Group": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group name, unique across your organization."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current libSQL server version the databases in that group are running."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group universal unique identifier (UUID)."
+          }
+        },
+        "locations": {
+          "target": "com.turso.api#GroupLocationsList",
+          "traits": {
+            "smithy.api#documentation": "An array of location keys the group is located."
+          }
+        },
+        "primary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary location key."
+          }
+        },
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for delete protection. If enabled, the group and all its databases cannot be deleted."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#GroupLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of location keys the group is located."
+      }
+    },
+    "com.turso.api#ListGroupsResponseGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#Group"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "groups": {
+          "target": "com.turso.api#ListGroupsResponseGroupsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListGroupsRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListGroupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Groups\n\nReturns a list of groups belonging to the organization or user."
+      }
+    },
+    "com.turso.api#Extensions": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.turso.api#ExtensionsCase0"
+        },
+        "Case1": {
+          "target": "com.turso.api#ExtensionsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The extensions to enable for new databases created in this group. Users looking to enable vector extensions should instead use the native [libSQL vector datatype](/features/ai-and-embeddings)."
+      }
+    },
+    "com.turso.api#ExtensionsCase0": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Set to `all` to enable all extensions."
+      }
+    },
+    "com.turso.api#ExtensionsCase1Item": {
+      "type": "enum",
+      "members": {
+        "VECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vector"
+          }
+        },
+        "CRYPTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crypto"
+          }
+        },
+        "FUZZY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fuzzy"
+          }
+        },
+        "MATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "math"
+          }
+        },
+        "STATS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stats"
+          }
+        },
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "UNICODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unicode"
+          }
+        },
+        "UUID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uuid"
+          }
+        },
+        "REGEXP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regexp"
+          }
+        },
+        "VEC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vec"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ExtensionsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#ExtensionsCase1Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of extensions to enable."
+      }
+    },
+    "com.turso.api#CreateGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the new group.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location key for the new group.",
+            "smithy.api#required": {}
+          }
+        },
+        "extensions": {
+          "target": "com.turso.api#Extensions"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#CreateGroupResponse": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.turso.api#Group",
+          "traits": {
+            "smithy.api#documentation": "The newly created group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#CreateGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#CreateGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#CreateGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create Group\n\nCreates a new group for the organization or user."
+      }
+    },
+    "com.turso.api#GetGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetGroupResponse": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.turso.api#Group"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Group\n\nReturns a group belonging to the organization or user."
+      }
+    },
+    "com.turso.api#DeleteGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#DeleteGroupResponse": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.turso.api#Group"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#DeleteGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#DeleteGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#DeleteGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Group\n\nDelete a group belonging to the organization or user."
+      }
+    },
+    "com.turso.api#GetGroupConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GroupConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the group from being deleted."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#GetGroupConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetGroupConfigurationRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GroupConfigurationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/configuration",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Group Configuration\n\nRetrieve an individual group configuration belonging to the organization or user."
+      }
+    },
+    "com.turso.api#UpdateGroupConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        },
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the group from being deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#UpdateGroupConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#UpdateGroupConfigurationRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GroupConfigurationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/configuration",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Group Configuration\n\nUpdate a group configuration belonging to the organization or user."
+      }
+    },
+    "com.turso.api#TransferGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The slug of the organization to transfer the group to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#TransferGroupResponseLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of location keys the group is located."
+      }
+    },
+    "com.turso.api#TransferGroupResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group name, unique across your organization."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current libSQL server version the databases in that group are running."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group universal unique identifier (UUID)."
+          }
+        },
+        "locations": {
+          "target": "com.turso.api#TransferGroupResponseLocationsList",
+          "traits": {
+            "smithy.api#documentation": "An array of location keys the group is located."
+          }
+        },
+        "primary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary location key."
+          }
+        },
+        "delete_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The current status for delete protection. If enabled, the group and all its databases cannot be deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#TransferGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#TransferGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#TransferGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/transfer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Transfer Group\n\nTransfer a group to another organization that you own or a member of."
+      }
+    },
+    "com.turso.api#UnarchiveGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#UnarchiveGroupResponse": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.turso.api#Group",
+          "traits": {
+            "smithy.api#documentation": "The group that was unarchived"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#UnarchiveGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#UnarchiveGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#UnarchiveGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/unarchive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unarchive Group\n\nUnarchive a group that has been archived due to inactivity."
+      }
+    },
+    "com.turso.api#AddLocationToGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The location code to add to the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#AddLocationToGroupResponse": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.turso.api#Group",
+          "traits": {
+            "smithy.api#documentation": "The group with the added location"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#AddLocationToGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#AddLocationToGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#AddLocationToGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/locations/{location}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Location to Group\n\nAdds a location to the specified group."
+      }
+    },
+    "com.turso.api#RemoveLocationFromGroupRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The location code to remove from the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#RemoveLocationFromGroupResponse": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.turso.api#Group",
+          "traits": {
+            "smithy.api#documentation": "The group with the removed location"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#RemoveLocationFromGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#RemoveLocationFromGroupRequest"
+      },
+      "output": {
+        "target": "com.turso.api#RemoveLocationFromGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/locations/{location}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove Location from Group\n\nRemoves a location from the specified group."
+      }
+    },
+    "com.turso.api#UpdateGroupDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#UpdateGroupDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#UpdateGroupDatabasesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Databases in a Group\n\nUpdates all databases in the group to the latest libSQL version."
+      }
+    },
+    "com.turso.api#CreateGroupTokenRequestAuthorization": {
+      "type": "enum",
+      "members": {
+        "FULL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full-access"
+          }
+        },
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-only"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateGroupTokenRequestPermissionsReadAttachDatabasesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateGroupTokenRequestPermissionsReadAttach": {
+      "type": "structure",
+      "members": {
+        "databases": {
+          "target": "com.turso.api#CreateGroupTokenRequestPermissionsReadAttachDatabasesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Read `ATTACH` permission for the token."
+      }
+    },
+    "com.turso.api#CreateGroupTokenRequestPermissions": {
+      "type": "structure",
+      "members": {
+        "read_attach": {
+          "target": "com.turso.api#CreateGroupTokenRequestPermissionsReadAttach",
+          "traits": {
+            "smithy.api#documentation": "Read `ATTACH` permission for the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The permissions for the token."
+      }
+    },
+    "com.turso.api#CreateGroupTokenRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "expiration",
+            "smithy.api#documentation": "Expiration time for the token (e.g., 2w1d30m)."
+          }
+        },
+        "authorization": {
+          "target": "com.turso.api#CreateGroupTokenRequestAuthorization",
+          "traits": {
+            "smithy.api#httpQuery": "authorization",
+            "smithy.api#documentation": "Authorization level for the token (full-access or read-only)."
+          }
+        },
+        "permissions": {
+          "target": "com.turso.api#CreateGroupTokenRequestPermissions",
+          "traits": {
+            "smithy.api#documentation": "The permissions for the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#CreateGroupTokenResponse": {
+      "type": "structure",
+      "members": {
+        "jwt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generated authorization token (JWT)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#CreateGroupToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#CreateGroupTokenRequest"
+      },
+      "output": {
+        "target": "com.turso.api#CreateGroupTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/auth/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create Group Auth Token\n\nGenerates an authorization token for the specified group."
+      }
+    },
+    "com.turso.api#InvalidateGroupTokensRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#InvalidateGroupTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#InvalidateGroupTokensRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/groups/{groupName}/auth/rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invalidate All Group Auth Tokens\n\nInvalidates all authorization tokens for the specified group."
+      }
+    },
+    "com.turso.api#ListLocationsResponseLocationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A mapping of location codes to location names."
+      }
+    },
+    "com.turso.api#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.turso.api#ListLocationsResponseLocationsMap",
+          "traits": {
+            "smithy.api#documentation": "A mapping of location codes to location names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListLocations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.turso.api#ListLocationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/locations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Locations\n\nReturns a list of locations where you can create or replicate databases."
+      }
+    },
+    "com.turso.api#Organization": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization name. Every user has a `personal` organization for their own account."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization slug. This will be your username for `personal` accounts."
+          }
+        },
+        "type": {
+          "target": "com.turso.api#OrganizationType",
+          "traits": {
+            "smithy.api#documentation": "The type of account this organization is. Will always be `personal` or `team`."
+          }
+        },
+        "overages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The name of the organization. Every user has a `personal` organization for their own account."
+          }
+        },
+        "require_mfa": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether all members of the organization are required to have multi-factor authentication enabled."
+          }
+        },
+        "blocked_reads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Returns the current status for blocked reads."
+          }
+        },
+        "blocked_writes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Returns the current status for blocked writes."
+          }
+        },
+        "plan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pricing plan identifier this organization is subscribed to."
+          }
+        },
+        "plan_timeline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The billing cycle for the paid plan, if any."
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The external platform this organization is managed by. Will be empty for Turso managed organizations."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#OrganizationType": {
+      "type": "enum",
+      "members": {
+        "PERSONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "personal"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of account this organization is. Will always be `personal` or `team`."
+      }
+    },
+    "com.turso.api#ListOrganizationsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#Organization"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.turso.api#ListOrganizationsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Organizations\n\nReturns a list of organizations the authenticated user owns or is a member of."
+      }
+    },
+    "com.turso.api#GetOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "organization": {
+          "target": "com.turso.api#Organization"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetOrganizationRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Organization\n\nRetrieve details of a specific organization."
+      }
+    },
+    "com.turso.api#UpdateOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "overages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable overages for the organization."
+          }
+        },
+        "require_mfa": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Require all members of the organization to have multi-factor authentication enabled. The requesting user must have MFA enabled on their own account before enabling this requirement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#UpdateOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "organization": {
+          "target": "com.turso.api#Organization",
+          "traits": {
+            "smithy.api#documentation": "The updated organization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#UpdateOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#UpdateOrganizationRequest"
+      },
+      "output": {
+        "target": "com.turso.api#UpdateOrganizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/organizations/{organizationSlug}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Organization\n\nUpdate an organization you own or are a member of."
+      }
+    },
+    "com.turso.api#ListOrganizationPlansRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#OrganizationPlan": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the plan."
+          }
+        },
+        "price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The monthly price of the plan."
+          }
+        },
+        "prices": {
+          "target": "com.turso.api#OrganizationPlanPricesList"
+        },
+        "quotas": {
+          "target": "com.turso.api#PlanQuotas"
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#PlanPrice": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price of the available plan."
+          }
+        },
+        "timeline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Payment regularity."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#OrganizationPlanPricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#PlanPrice"
+      },
+      "traits": {}
+    },
+    "com.turso.api#PlanQuotas": {
+      "type": "structure",
+      "members": {
+        "rowsRead": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of rows read allowed for the specific plan."
+          }
+        },
+        "rowsWritten": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of rows written allowed for the specific plan."
+          }
+        },
+        "databases": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of databases allowed for the specific plan.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "locations": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of locations allowed for the specific plan."
+          }
+        },
+        "storage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of storage allowed for the specific plan, in bytes."
+          }
+        },
+        "groups": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of groups allowed for the specific plan."
+          }
+        },
+        "bytesSynced": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of bytes synced allowed for the specific plan, in bytes."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationPlansResponsePlansList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#OrganizationPlan"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of available plans."
+      }
+    },
+    "com.turso.api#ListOrganizationPlansResponse": {
+      "type": "structure",
+      "members": {
+        "plans": {
+          "target": "com.turso.api#ListOrganizationPlansResponsePlansList",
+          "traits": {
+            "smithy.api#documentation": "List of available plans."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizationPlans": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListOrganizationPlansRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationPlansResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/plans",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Plans\n\nReturns a list of available plans and their quotas."
+      }
+    },
+    "com.turso.api#ListOrganizationInvoicesRequestType": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "UPCOMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "upcoming"
+          }
+        },
+        "ISSUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issued"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationInvoicesRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "type": {
+          "target": "com.turso.api#ListOrganizationInvoicesRequestType",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "The type of invoice to retrieve."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#ListOrganizationInvoicesResponseInvoicesItem": {
+      "type": "structure",
+      "members": {
+        "invoice_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for the invoice."
+          }
+        },
+        "amount_due": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The formatted price in USD for the invoice."
+          }
+        },
+        "due_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The due date for the invoice."
+          }
+        },
+        "paid_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date the invoice was paid."
+          }
+        },
+        "payment_failed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date the invoice payment last failed."
+          }
+        },
+        "invoice_pdf": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the invoice PDF you can download."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationInvoicesResponseInvoicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#ListOrganizationInvoicesResponseInvoicesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of invoices for the organization."
+      }
+    },
+    "com.turso.api#ListOrganizationInvoicesResponse": {
+      "type": "structure",
+      "members": {
+        "invoices": {
+          "target": "com.turso.api#ListOrganizationInvoicesResponseInvoicesList",
+          "traits": {
+            "smithy.api#documentation": "The list of invoices for the organization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizationInvoices": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListOrganizationInvoicesRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationInvoicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/invoices",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Invoices\n\nReturns a list of invoices for the organization."
+      }
+    },
+    "com.turso.api#GetOrganizationSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetOrganizationSubscriptionResponseSubscription": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the plan for the current subscription."
+          }
+        },
+        "overages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether overages are enabled for the organization."
+          }
+        },
+        "plan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the plan for the current subscription."
+          }
+        },
+        "timeline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether the plan is billed monthly or yearly."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#GetOrganizationSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "subscription": {
+          "target": "com.turso.api#GetOrganizationSubscriptionResponseSubscription"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetOrganizationSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetOrganizationSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetOrganizationSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/subscription",
+          "code": 200
+        },
+        "smithy.api#documentation": "Current Subscription\n\nReturns the current subscription details for the organization."
+      }
+    },
+    "com.turso.api#GetOrganizationUsageRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetOrganizationUsageResponseOrganizationUsage": {
+      "type": "structure",
+      "members": {
+        "rows_read": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of rows read allowed for the specific plan."
+          }
+        },
+        "rows_written": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of rows written allowed for the specific plan."
+          }
+        },
+        "databases": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of databases allowed for the specific plan."
+          }
+        },
+        "locations": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of locations allowed for the specific plan."
+          }
+        },
+        "storage_bytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of storage allowed for the specific plan, in bytes."
+          }
+        },
+        "groups": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of groups allowed for the specific plan."
+          }
+        },
+        "bytes_synced": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of bytes synced allowed for the specific plan, in bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The usage object for the organization."
+      }
+    },
+    "com.turso.api#GetOrganizationUsageResponseOrganizationDatabasesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#DatabaseUsageOutput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The databases for the organization and their usage."
+      }
+    },
+    "com.turso.api#GetOrganizationUsageResponseOrganization": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UUID of the organization."
+          }
+        },
+        "usage": {
+          "target": "com.turso.api#GetOrganizationUsageResponseOrganizationUsage",
+          "traits": {
+            "smithy.api#documentation": "The usage object for the organization."
+          }
+        },
+        "databases": {
+          "target": "com.turso.api#GetOrganizationUsageResponseOrganizationDatabasesList",
+          "traits": {
+            "smithy.api#documentation": "The databases for the organization and their usage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organization usage object, containing the total usage for rows read and written, as well as the total storage size (in bytes)."
+      }
+    },
+    "com.turso.api#GetOrganizationUsageResponse": {
+      "type": "structure",
+      "members": {
+        "organization": {
+          "target": "com.turso.api#GetOrganizationUsageResponseOrganization",
+          "traits": {
+            "smithy.api#documentation": "The organization usage object, containing the total usage for rows read and written, as well as the total storage size (in bytes)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetOrganizationUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetOrganizationUsageRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetOrganizationUsageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Organization Usage\n\nFetch current billing cycle usage for an organization."
+      }
+    },
+    "com.turso.api#ListOrganizationMembersRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#Member": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username for the member."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#MemberRole",
+          "traits": {
+            "smithy.api#documentation": "The role assigned to the member."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email for the member."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#MemberRole": {
+      "type": "enum",
+      "members": {
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role assigned to the member."
+      }
+    },
+    "com.turso.api#ListOrganizationMembersResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#Member"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationMembersResponse": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.turso.api#ListOrganizationMembersResponseMembersList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizationMembers": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListOrganizationMembersRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationMembersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/members",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Members\n\nReturns a list of members part of the organization."
+      }
+    },
+    "com.turso.api#AddOrganizationMemberRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role given to the user."
+      }
+    },
+    "com.turso.api#AddOrganizationMemberRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of an existing Turso user."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#AddOrganizationMemberRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The role given to the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#Role": {
+      "type": "enum",
+      "members": {
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role assigned to the member."
+      }
+    },
+    "com.turso.api#AddOrganizationMemberResponse": {
+      "type": "structure",
+      "members": {
+        "member": {
+          "target": "smithy.api#String"
+        },
+        "role": {
+          "target": "com.turso.api#Role"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#AddOrganizationMember": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#AddOrganizationMemberRequest"
+      },
+      "output": {
+        "target": "com.turso.api#AddOrganizationMemberResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        },
+        {
+          "target": "com.turso.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/organizations/{organizationSlug}/members",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Member\n\nAdd an existing Turso user to an organization."
+      }
+    },
+    "com.turso.api#GetOrganizationMemberRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username of a Turso user or organization member."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#GetOrganizationMemberResponse": {
+      "type": "structure",
+      "members": {
+        "member": {
+          "target": "com.turso.api#Member"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetOrganizationMember": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#GetOrganizationMemberRequest"
+      },
+      "output": {
+        "target": "com.turso.api#GetOrganizationMemberResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/members/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Member\n\nRetrieve details of a specific member in the organization."
+      }
+    },
+    "com.turso.api#UpdateMemberRoleRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new role to assign to the member."
+      }
+    },
+    "com.turso.api#UpdateMemberRoleRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username of a Turso user or organization member."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#UpdateMemberRoleRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The new role to assign to the member.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#UpdateMemberRoleResponseMemberRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new role of the updated member."
+      }
+    },
+    "com.turso.api#UpdateMemberRoleResponseMember": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the updated member."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the updated member."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#UpdateMemberRoleResponseMemberRole",
+          "traits": {
+            "smithy.api#documentation": "The new role of the updated member."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#UpdateMemberRoleResponse": {
+      "type": "structure",
+      "members": {
+        "member": {
+          "target": "com.turso.api#UpdateMemberRoleResponseMember"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#UpdateMemberRole": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#UpdateMemberRoleRequest"
+      },
+      "output": {
+        "target": "com.turso.api#UpdateMemberRoleResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        },
+        {
+          "target": "com.turso.api#Forbidden"
+        },
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/organizations/{organizationSlug}/members/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Member Role\n\nUpdate the role of an organization member. Only organization admins or owners can perform this action."
+      }
+    },
+    "com.turso.api#RemoveOrganizationMemberRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username of a Turso user or organization member."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#RemoveOrganizationMemberResponse": {
+      "type": "structure",
+      "members": {
+        "member": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#RemoveOrganizationMember": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#RemoveOrganizationMemberRequest"
+      },
+      "output": {
+        "target": "com.turso.api#RemoveOrganizationMemberResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/organizations/{organizationSlug}/members/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove Member\n\nRemove a user from the organization by username."
+      }
+    },
+    "com.turso.api#ValidateAPITokenResponse": {
+      "type": "structure",
+      "members": {
+        "exp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The time of expiration for the provided token in unix epoch seconds, or `-1` if there is no expiration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ValidateAPIToken": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.turso.api#ValidateAPITokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/auth/validate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Validate API Token\n\nValidates an API token belonging to a user."
+      }
+    },
+    "com.turso.api#APIToken": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name given to the API Token."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID generated by Turso for the API Token."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization slug this token is restricted to. Omitted if the token has access to all organizations."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group name this token is pinned to. Present only for group-scoped tokens."
+          }
+        },
+        "scopes": {
+          "target": "com.turso.api#APITokenScopesList",
+          "traits": {
+            "smithy.api#documentation": "The expanded list of scopes granted to this token. Present only for group-scoped tokens. Presets passed at creation time (`read-only`, `full-access`) are stored as the underlying individual scopes and are returned in that form."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date the token was created, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#APITokenScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The expanded list of scopes granted to this token. Present only for group-scoped tokens. Presets passed at creation time (`read-only`, `full-access`) are stored as the underlying individual scopes and are returned in that form."
+      }
+    },
+    "com.turso.api#ListAPITokensResponseTokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#APIToken"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListAPITokensResponse": {
+      "type": "structure",
+      "members": {
+        "tokens": {
+          "target": "com.turso.api#ListAPITokensResponseTokensList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListAPITokens": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.turso.api#ListAPITokensResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/auth/api-tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List API Tokens\n\nReturns a list of API tokens belonging to a user."
+      }
+    },
+    "com.turso.api#CreateAPITokenRequestScopesItem": {
+      "type": "enum",
+      "members": {
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "DB_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db:create"
+          }
+        },
+        "DB_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db:delete"
+          }
+        },
+        "DB_CONFIGURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db:configure"
+          }
+        },
+        "DB_MINT_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db:mint-token"
+          }
+        },
+        "DB_ROTATE_CREDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db:rotate-creds"
+          }
+        },
+        "GROUP_CONFIGURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group:configure"
+          }
+        },
+        "GROUP_MINT_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group:mint-token"
+          }
+        },
+        "GROUP_ROTATE_CREDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group:rotate-creds"
+          }
+        },
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-only"
+          }
+        },
+        "FULL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full-access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#CreateAPITokenRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#CreateAPITokenRequestScopesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions to grant a group-scoped token. Each entry is either an individual scope or one of the presets `read-only` (expands to `read`) and `full-access` (expands to every scope). Required and must be non-empty when `group` is set. `db:mint-token` lets the token issue new SQL credentials; `db:rotate-creds` invalidates every existing SQL token for the database — they are deliberately separate because rotation is destructive."
+      }
+    },
+    "com.turso.api#CreateAPITokenRequest": {
+      "type": "structure",
+      "members": {
+        "tokenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the api token."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization slug to restrict this token to. Required when `group` is set."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group name (inside `organization`) to restrict this token to. Requires `organization` and a non-empty `scopes` list."
+          }
+        },
+        "scopes": {
+          "target": "com.turso.api#CreateAPITokenRequestScopesList",
+          "traits": {
+            "smithy.api#documentation": "Permissions to grant a group-scoped token. Each entry is either an individual scope or one of the presets `read-only` (expands to `read`) and `full-access` (expands to every scope). Required and must be non-empty when `group` is set. `db:mint-token` lets the token issue new SQL credentials; `db:rotate-creds` invalidates every existing SQL token for the database — they are deliberately separate because rotation is destructive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#CreateAPITokenResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actual token contents as a JWT. This is used with the `Bearer` header, see [Authentication](/authentication) for more details. **This token is never revealed again.**"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#CreateAPIToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#CreateAPITokenRequest"
+      },
+      "output": {
+        "target": "com.turso.api#CreateAPITokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/auth/api-tokens/{tokenName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create API Token\n\nReturns a new API token belonging to a user.\n\nThe token can be minted at three levels of restriction, in increasing order of narrowness:\n\n- **Organization-scoped** — pass `organization`. The token can only act on resources inside that organization.\n- **Group-scoped** — pass `organization`, `group`, and `scopes`. The token is pinned to a single group inside the organization and only the operations listed in `scopes` are allowed. The caller must be an admin or owner of the organization.\n- **Unrestricted** *(deprecated)* — no request body. The token can act on every organization the caller belongs to. **Unrestricted tokens are deprecated and will be removed in a future release.** Always pass `organization` for new tokens and rotate existing unrestricted tokens to scoped tokens.\n\nGroup-scoped tokens are designed for automations that should be able to provision and manage databases inside a single group without being able to touch the rest of the organization."
+      }
+    },
+    "com.turso.api#RevokeAPITokenRequest": {
+      "type": "structure",
+      "members": {
+        "tokenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the api token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#RevokeAPITokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The revoked token name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#RevokeAPIToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#RevokeAPITokenRequest"
+      },
+      "output": {
+        "target": "com.turso.api#RevokeAPITokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/auth/api-tokens/{tokenName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke API Token\n\nRevokes the provided API token belonging to a user."
+      }
+    },
+    "com.turso.api#ListOrganizationAPITokensRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#ListOrganizationAPITokensResponseTokensItemScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The expanded scope list. Present only for group-scoped tokens."
+      }
+    },
+    "com.turso.api#ListOrganizationAPITokensResponseTokensItemOwner": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The user who minted the token. Returned to admins and owners so they can see who provisioned each token."
+      }
+    },
+    "com.turso.api#ListOrganizationAPITokensResponseTokensItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token name."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token ID. Pass this to the revoke endpoint."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization slug. Always equal to the path parameter for tokens returned here."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group name. Present only for group-scoped tokens."
+          }
+        },
+        "scopes": {
+          "target": "com.turso.api#ListOrganizationAPITokensResponseTokensItemScopesList",
+          "traits": {
+            "smithy.api#documentation": "The expanded scope list. Present only for group-scoped tokens."
+          }
+        },
+        "owner": {
+          "target": "com.turso.api#ListOrganizationAPITokensResponseTokensItemOwner",
+          "traits": {
+            "smithy.api#documentation": "The user who minted the token. Returned to admins and owners so they can see who provisioned each token."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date the token was created."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationAPITokensResponseTokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#ListOrganizationAPITokensResponseTokensItem"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationAPITokensResponse": {
+      "type": "structure",
+      "members": {
+        "tokens": {
+          "target": "com.turso.api#ListOrganizationAPITokensResponseTokensList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizationAPITokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListOrganizationAPITokensRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationAPITokensResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/api-tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Organization API Tokens\n\nReturns the API tokens scoped to this organization (both organization-scoped and group-scoped). Unrestricted tokens are not returned here — manage those via [`GET /v1/auth/api-tokens`](/api-reference/tokens/list).\n\nAuthorization is symmetric with the revoke endpoint:\n\n- **Admins and owners** see every token scoped to the organization, with the minting user attached in the `owner` field.\n- **Members and viewers** see only tokens they minted themselves.\n\nThis mirrors the personal-access-token model used in GitHub organization settings: admins get the full attribution list; everyone else sees their own access."
+      }
+    },
+    "com.turso.api#RevokeOrganizationAPITokenRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "tokenId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the token to revoke (from the list endpoint)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#RevokeOrganizationAPITokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the revoked token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#RevokeOrganizationAPIToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#RevokeOrganizationAPITokenRequest"
+      },
+      "output": {
+        "target": "com.turso.api#RevokeOrganizationAPITokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/organizations/{organizationSlug}/api-tokens/{tokenId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke Organization API Token\n\nRevokes a token scoped to this organization.\n\nThe path takes a token **ID**, not a name, because names are unique per user but not across users — an admin revoking a member's token can't disambiguate by name alone.\n\nAuthorization is symmetric with the list endpoint:\n\n- **Admins and owners** can revoke any token scoped to the organization (org-scoped or group-scoped, regardless of who minted it).\n- **Members and viewers** can revoke only tokens they minted themselves.\n\nA token scoped to a different organization returns `404`, not `403`, so the endpoint does not leak the existence of cross-org token IDs. Unrestricted tokens are also unreachable here and must be revoked via [`DELETE /v1/auth/api-tokens/{tokenName}`](/api-reference/tokens/revoke)."
+      }
+    },
+    "com.turso.api#ListOrganizationAuditLogsRequest": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The limit of items to return per page. Defaults to 100."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number to return. Defaults to 1."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#AuditLog": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.turso.api#AuditLogCode",
+          "traits": {
+            "smithy.api#documentation": "The code associated to the action taken."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional context from the performed action."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Where this action was performed. Will be either `cli` or `web` depending on the `User-Agent` sent to the API."
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user who performed the action."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A formatted [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp this action was performed."
+          }
+        },
+        "data": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The payload of the action performed."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#AuditLogCode": {
+      "type": "enum",
+      "members": {
+        "USER_SIGNUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user-signup"
+          }
+        },
+        "DB_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db-create"
+          }
+        },
+        "DB_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db-delete"
+          }
+        },
+        "DB_PROTECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db-protect"
+          }
+        },
+        "DB_UNPROTECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db-unprotect"
+          }
+        },
+        "DB_TOKEN_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db-token-create"
+          }
+        },
+        "GROUP_TOKEN_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group-token-create"
+          }
+        },
+        "USER_TOKEN_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user-token-create"
+          }
+        },
+        "INSTANCE_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "instance-create"
+          }
+        },
+        "INSTANCE_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "instance-delete"
+          }
+        },
+        "ORG_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-create"
+          }
+        },
+        "ORG_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-delete"
+          }
+        },
+        "ORG_MEMBER_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-member-add"
+          }
+        },
+        "ORG_MEMBER_RM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-member-rm"
+          }
+        },
+        "ORG_MEMBER_LEAVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-member-leave"
+          }
+        },
+        "ORG_PLAN_UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-plan-update"
+          }
+        },
+        "ORG_SET_OVERAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org-set-overages"
+          }
+        },
+        "GROUP_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group-create"
+          }
+        },
+        "GROUP_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group-delete"
+          }
+        },
+        "GROUP_UNARCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group-unarchive"
+          }
+        },
+        "GROUP_PROTECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group-protect"
+          }
+        },
+        "GROUP_UNPROTECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group-unprotect"
+          }
+        },
+        "DB_AUNRCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "db-aunrchive"
+          }
+        },
+        "USER_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user-delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The code associated to the action taken."
+      }
+    },
+    "com.turso.api#ListOrganizationAuditLogsResponseAuditLogsList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#AuditLog"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationAuditLogsResponsePagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current page number."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages."
+          }
+        },
+        "total_rows": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationAuditLogsResponse": {
+      "type": "structure",
+      "members": {
+        "audit_logs": {
+          "target": "com.turso.api#ListOrganizationAuditLogsResponseAuditLogsList"
+        },
+        "pagination": {
+          "target": "com.turso.api#ListOrganizationAuditLogsResponsePagination"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizationAuditLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListOrganizationAuditLogsRequest"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationAuditLogsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/organizations/{organizationSlug}/audit-logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Audit Logs\n\nReturn the audit logs for the given organization, ordered by the `created_at` field in descending order."
+      }
+    },
+    "com.turso.api#ListOrganizationInvitesV2Request": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#InviteV2": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for the invite."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the person invited."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#InviteV2Role",
+          "traits": {
+            "smithy.api#documentation": "The assigned role for the invited user."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The datetime the invite was created in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#InviteV2Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The assigned role for the invited user."
+      }
+    },
+    "com.turso.api#ListOrganizationInvitesV2ResponseInvitesList": {
+      "type": "list",
+      "member": {
+        "target": "com.turso.api#InviteV2"
+      },
+      "traits": {}
+    },
+    "com.turso.api#ListOrganizationInvitesV2Response": {
+      "type": "structure",
+      "members": {
+        "invites": {
+          "target": "com.turso.api#ListOrganizationInvitesV2ResponseInvitesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#ListOrganizationInvitesV2": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#ListOrganizationInvitesV2Request"
+      },
+      "output": {
+        "target": "com.turso.api#ListOrganizationInvitesV2Response"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/organizations/{organizationSlug}/invites",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Invites\n\nReturns a list of pending invites for the organization."
+      }
+    },
+    "com.turso.api#InviteOrganizationMemberV2RequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role given to the user."
+      }
+    },
+    "com.turso.api#InviteOrganizationMemberV2Request": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user you want to invite. Exactly one of email or username must be provided."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of an existing Turso user you want to invite. Exactly one of email or username must be provided."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#InviteOrganizationMemberV2RequestRole",
+          "traits": {
+            "smithy.api#documentation": "The role given to the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#InviteCreatedV2": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the person invited."
+          }
+        },
+        "role": {
+          "target": "com.turso.api#InviteCreatedV2Role",
+          "traits": {
+            "smithy.api#documentation": "The assigned role for the invited user."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the organization the user was invited to."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#InviteCreatedV2Role": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "member"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "viewer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The assigned role for the invited user."
+      }
+    },
+    "com.turso.api#InviteOrganizationMemberV2Response": {
+      "type": "structure",
+      "members": {
+        "invited": {
+          "target": "com.turso.api#InviteCreatedV2"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#InviteOrganizationMemberV2": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#InviteOrganizationMemberV2Request"
+      },
+      "output": {
+        "target": "com.turso.api#InviteOrganizationMemberV2Response"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/organizations/{organizationSlug}/invites",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invite Organization Member\n\nInvite a user to an organization. If the user isn't already registered with Turso, they will receive a signup link. If an existing pending invite exists for the same email, it will be replaced."
+      }
+    },
+    "com.turso.api#DeleteOrganizationInviteByEmailV2Request": {
+      "type": "structure",
+      "members": {
+        "organizationSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the organization or user account."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.turso.api#DeleteOrganizationInviteByEmailV2": {
+      "type": "operation",
+      "input": {
+        "target": "com.turso.api#DeleteOrganizationInviteByEmailV2Request"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.turso.api#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/organizations/{organizationSlug}/invites/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Invite\n\nDelete a pending invite for the organization by email."
+      }
+    },
+    "com.turso.api#GetCurrentUserResponseUser": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the user."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary email address of the user."
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's avatar image."
+          }
+        },
+        "plan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's current plan."
+          }
+        },
+        "mfa": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user has multi-factor authentication enabled."
+          }
+        },
+        "has_pending_invites": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user has pending organization invites waiting to be accepted or declined."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.turso.api#GetCurrentUserResponse": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "com.turso.api#GetCurrentUserResponseUser"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.turso.api#GetCurrentUser": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.turso.api#GetCurrentUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Current User\n\nReturns information about the currently authenticated user."
+      }
+    },
+    "com.turso.api#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.turso.api#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.turso.api#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.turso.api#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.turso.api#Turso": {
+      "type": "service",
+      "version": "0.1.0",
+      "operations": [
+        {
+          "target": "com.turso.api#ListDatabases"
+        },
+        {
+          "target": "com.turso.api#CreateDatabase"
+        },
+        {
+          "target": "com.turso.api#GetDatabase"
+        },
+        {
+          "target": "com.turso.api#DeleteDatabase"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseConfiguration"
+        },
+        {
+          "target": "com.turso.api#UpdateDatabaseConfiguration"
+        },
+        {
+          "target": "com.turso.api#ListDatabaseInstances"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseInstance"
+        },
+        {
+          "target": "com.turso.api#CreateDatabaseToken"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseUsage"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseStats"
+        },
+        {
+          "target": "com.turso.api#InvalidateDatabaseTokens"
+        },
+        {
+          "target": "com.turso.api#ListGroups"
+        },
+        {
+          "target": "com.turso.api#CreateGroup"
+        },
+        {
+          "target": "com.turso.api#GetGroup"
+        },
+        {
+          "target": "com.turso.api#DeleteGroup"
+        },
+        {
+          "target": "com.turso.api#GetGroupConfiguration"
+        },
+        {
+          "target": "com.turso.api#UpdateGroupConfiguration"
+        },
+        {
+          "target": "com.turso.api#TransferGroup"
+        },
+        {
+          "target": "com.turso.api#UnarchiveGroup"
+        },
+        {
+          "target": "com.turso.api#AddLocationToGroup"
+        },
+        {
+          "target": "com.turso.api#RemoveLocationFromGroup"
+        },
+        {
+          "target": "com.turso.api#UpdateGroupDatabases"
+        },
+        {
+          "target": "com.turso.api#CreateGroupToken"
+        },
+        {
+          "target": "com.turso.api#InvalidateGroupTokens"
+        },
+        {
+          "target": "com.turso.api#ListLocations"
+        },
+        {
+          "target": "com.turso.api#ListOrganizations"
+        },
+        {
+          "target": "com.turso.api#GetOrganization"
+        },
+        {
+          "target": "com.turso.api#UpdateOrganization"
+        },
+        {
+          "target": "com.turso.api#ListOrganizationPlans"
+        },
+        {
+          "target": "com.turso.api#ListOrganizationInvoices"
+        },
+        {
+          "target": "com.turso.api#GetOrganizationSubscription"
+        },
+        {
+          "target": "com.turso.api#GetOrganizationUsage"
+        },
+        {
+          "target": "com.turso.api#ListOrganizationMembers"
+        },
+        {
+          "target": "com.turso.api#AddOrganizationMember"
+        },
+        {
+          "target": "com.turso.api#GetOrganizationMember"
+        },
+        {
+          "target": "com.turso.api#UpdateMemberRole"
+        },
+        {
+          "target": "com.turso.api#RemoveOrganizationMember"
+        },
+        {
+          "target": "com.turso.api#ValidateAPIToken"
+        },
+        {
+          "target": "com.turso.api#ListAPITokens"
+        },
+        {
+          "target": "com.turso.api#CreateAPIToken"
+        },
+        {
+          "target": "com.turso.api#RevokeAPIToken"
+        },
+        {
+          "target": "com.turso.api#ListOrganizationAPITokens"
+        },
+        {
+          "target": "com.turso.api#RevokeOrganizationAPIToken"
+        },
+        {
+          "target": "com.turso.api#ListOrganizationAuditLogs"
+        },
+        {
+          "target": "com.turso.api#ListOrganizationInvitesV2"
+        },
+        {
+          "target": "com.turso.api#InviteOrganizationMemberV2"
+        },
+        {
+          "target": "com.turso.api#DeleteOrganizationInviteByEmailV2"
+        },
+        {
+          "target": "com.turso.api#GetCurrentUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Turso Platform API",
+        "smithy.api#documentation": "API description here"
+      }
+    }
+  }
+}

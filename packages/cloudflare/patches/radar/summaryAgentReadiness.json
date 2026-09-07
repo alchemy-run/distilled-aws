@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AgentReadinessSummary with distilled cloudflare/radar summaryAgentReadiness",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AgentReadinessSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryAgentReadiness"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AgentReadinessSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryAgentReadinessRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryAgentReadiness/input/target",
+      "value": "com.cloudflare.radar#SummaryAgentReadinessRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AgentReadinessSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryAgentReadinessResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryAgentReadiness/output/target",
+      "value": "com.cloudflare.radar#SummaryAgentReadinessResponse"
+    }
+  ]
+}

@@ -1,0 +1,3336 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "appengine",
+    "version": "v1alpha",
+    "title": "App Engine Admin API",
+    "baseUrl": "https://appengine.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.appengine_v1alpha#LocationMetadata": {
+      "type": "structure",
+      "members": {
+        "standardEnvironmentAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "App Engine standard environment is available in the given location.@OutputOnly"
+          }
+        },
+        "searchApiAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location."
+          }
+        },
+        "flexibleEnvironmentAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "App Engine flexible environment is available in the given location.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.cloud.location.Location."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAuthorizedCertificatesResponse": {
+      "type": "structure",
+      "members": {
+        "certificates": {
+          "target": "com.gcp.appengine_v1alpha#AuthorizedCertificateList",
+          "traits": {
+            "smithy.api#documentation": "The SSL certificates the user is authorized to administer."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for AuthorizedCertificates.ListAuthorizedCertificates."
+      }
+    },
+    "com.gcp.appengine_v1alpha#AuthorizedCertificateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      }
+    },
+    "com.gcp.appengine_v1alpha#ResourceRecord": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative name of the object affected by this record. Only applicable for CNAME records. Example: 'www'."
+          }
+        },
+        "type": {
+          "target": "com.gcp.appengine_v1alpha#ResourceRecordTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Resource record type. Example: AAAA."
+          }
+        },
+        "rrdata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data for this record. Values vary by record type, as defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A DNS resource record."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ResourceRecordTypeEnum": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#AuthorizedDomain": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full path to the AuthorizedDomain resource in the API. Example: apps/myapp/authorizedDomains/example.com.@OutputOnly"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified domain name of the domain authorized for use. Example: example.com."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via Search Console (https://search.google.com/search-console/welcome)."
+      }
+    },
+    "com.gcp.appengine_v1alpha#GoogleAppengineV1betaLocationMetadata": {
+      "type": "structure",
+      "members": {
+        "standardEnvironmentAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "App Engine standard environment is available in the given location.@OutputOnly"
+          }
+        },
+        "searchApiAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location."
+          }
+        },
+        "flexibleEnvironmentAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "App Engine flexible environment is available in the given location.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.cloud.location.Location."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ProjectEvent": {
+      "type": "structure",
+      "members": {
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for this project event. CLHs can use this value to dedup repeated calls. required"
+          }
+        },
+        "projectMetadata": {
+          "target": "com.gcp.appengine_v1alpha#ProjectsMetadata",
+          "traits": {
+            "smithy.api#documentation": "The projects metadata for this project. required"
+          }
+        },
+        "phase": {
+          "target": "com.gcp.appengine_v1alpha#ProjectEventPhaseEnum",
+          "traits": {
+            "smithy.api#documentation": "Phase indicates when in the container event propagation this event is being communicated. Events are sent before and after the per-resource events are propagated. required"
+          }
+        },
+        "state": {
+          "target": "com.gcp.appengine_v1alpha#ContainerState",
+          "traits": {
+            "smithy.api#documentation": "The state of the organization that led to this event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request sent to CLHs during project events."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ProjectEventPhaseEnum": {
+      "type": "enum",
+      "members": {
+        "CONTAINER_EVENT_PHASE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTAINER_EVENT_PHASE_UNSPECIFIED"
+          }
+        },
+        "BEFORE_RESOURCE_HANDLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEFORE_RESOURCE_HANDLING"
+          }
+        },
+        "AFTER_RESOURCE_HANDLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AFTER_RESOURCE_HANDLING"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ProjectsMetadata": {
+      "type": "structure",
+      "members": {
+        "consumerProjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The consumer project id."
+          }
+        },
+        "consumerProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The consumer project number."
+          }
+        },
+        "producerProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The producer project number."
+          }
+        },
+        "consumerProjectState": {
+          "target": "com.gcp.appengine_v1alpha#ProjectsMetadataConsumerProjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The CCFE state of the consumer project. It is the same state that is communicated to the CLH during project events. Notice that this field is not set in the DB, it is only set in this proto when communicated to CLH in the side channel."
+          }
+        },
+        "gceTag": {
+          "target": "com.gcp.appengine_v1alpha#GceTagList",
+          "traits": {
+            "smithy.api#documentation": "The GCE tags associated with the consumer project and those inherited due to their ancestry, if any. Not supported by CCFE."
+          }
+        },
+        "tenantProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant project number."
+          }
+        },
+        "p4ServiceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH."
+          }
+        },
+        "tenantProjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant project id."
+          }
+        },
+        "producerProjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The producer project id."
+          }
+        },
+        "isGceProjectDeprovisioning": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED: Indicates whether the GCE project is in the DEPROVISIONING state. This field is a temporary workaround (see b/475310865) to allow GCE extensions to bypass certain checks during deprovisioning. It will be replaced by a permanent solution in the future."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ProjectsMetadata is the metadata CCFE stores about the all the relevant projects (tenant, consumer, producer)."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ProjectsMetadataConsumerProjectStateEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_STATE"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GceTagList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#GceTag"
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListDomainMappingsResponse": {
+      "type": "structure",
+      "members": {
+        "domainMappings": {
+          "target": "com.gcp.appengine_v1alpha#DomainMappingList",
+          "traits": {
+            "smithy.api#documentation": "The domain mappings for the application."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for DomainMappings.ListDomainMappings."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DomainMappingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#DomainMapping"
+      }
+    },
+    "com.gcp.appengine_v1alpha#Operation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.appengine_v1alpha#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.appengine_v1alpha#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id}."
+          }
+        },
+        "response": {
+          "target": "com.gcp.appengine_v1alpha#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.appengine_v1alpha#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: \"us-east1\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: \"projects/example-project/locations/us-east1\""
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.appengine_v1alpha#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.appengine_v1alpha#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"} "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.appengine_v1alpha#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateVersionMetadataV1Alpha": {
+      "type": "structure",
+      "members": {
+        "cloudBuildId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Build ID if one was created as part of the version create. @OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.longrunning.Operation during a google.appengine.v1alpha.CreateVersionRequest."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DomainMapping": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative name of the domain serving the application. Example: example.com."
+          }
+        },
+        "resourceRecords": {
+          "target": "com.gcp.appengine_v1alpha#ResourceRecordList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.@OutputOnly"
+          }
+        },
+        "sslSettings": {
+          "target": "com.gcp.appengine_v1alpha#SslSettings",
+          "traits": {
+            "smithy.api#documentation": "SSL configuration for this domain. If unconfigured, this domain will not serve with SSL."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A domain serving an App Engine application."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ResourceRecordList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#ResourceRecord"
+      }
+    },
+    "com.gcp.appengine_v1alpha#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.appengine_v1alpha#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#DocumentMap"
+      }
+    },
+    "com.gcp.appengine_v1alpha#ManagedCertificate": {
+      "type": "structure",
+      "members": {
+        "lastRenewalTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which the certificate was last renewed. The renewal process is fully managed. Certificate renewal will automatically occur before the certificate expires. Renewal errors can be tracked via ManagementStatus.@OutputOnly"
+          }
+        },
+        "status": {
+          "target": "com.gcp.appengine_v1alpha#ManagedCertificateStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of certificate management. Refers to the most recent certificate acquisition or renewal attempt.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A certificate managed by App Engine."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ManagedCertificateStatusEnum": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED_STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_STATUS"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OK"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "FAILED_RETRYING_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_RETRYING_INTERNAL"
+          }
+        },
+        "FAILED_RETRYING_NOT_VISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_RETRYING_NOT_VISIBLE"
+          }
+        },
+        "FAILED_PERMANENTLY_NOT_VISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_PERMANENTLY_NOT_VISIBLE"
+          }
+        },
+        "FAILED_RETRYING_CAA_FORBIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_RETRYING_CAA_FORBIDDEN"
+          }
+        },
+        "FAILED_RETRYING_CAA_CHECKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_RETRYING_CAA_CHECKING"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateVersionMetadataV1Beta": {
+      "type": "structure",
+      "members": {
+        "cloudBuildId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Build ID if one was created as part of the version create. @OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.longrunning.Operation during a google.appengine.v1beta.CreateVersionRequest."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.appengine_v1alpha#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.appengine_v1alpha#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#Location"
+      }
+    },
+    "com.gcp.appengine_v1alpha#Reasons": {
+      "type": "structure",
+      "members": {
+        "serviceActivation": {
+          "target": "com.gcp.appengine_v1alpha#ReasonsServiceActivationEnum",
+          "traits": {
+            "smithy.api#documentation": "Consumer Container denotes if the service is active within a project or not. This information could be used to clean up resources in case service in DISABLED_FULL i.e. Service is inactive > 30 days."
+          }
+        },
+        "serviceManagement": {
+          "target": "com.gcp.appengine_v1alpha#ReasonsServiceManagementEnum"
+        },
+        "dataGovernance": {
+          "target": "com.gcp.appengine_v1alpha#ReasonsDataGovernanceEnum"
+        },
+        "billing": {
+          "target": "com.gcp.appengine_v1alpha#ReasonsBillingEnum"
+        },
+        "abuse": {
+          "target": "com.gcp.appengine_v1alpha#ReasonsAbuseEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Containers transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API) Service Activation (Service Controller)"
+      }
+    },
+    "com.gcp.appengine_v1alpha#ReasonsServiceActivationEnum": {
+      "type": "enum",
+      "members": {
+        "SERVICE_ACTIVATION_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_ACTIVATION_STATUS_UNSPECIFIED"
+          }
+        },
+        "SERVICE_ACTIVATION_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_ACTIVATION_ENABLED"
+          }
+        },
+        "SERVICE_ACTIVATION_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_ACTIVATION_DISABLED"
+          }
+        },
+        "SERVICE_ACTIVATION_DISABLED_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_ACTIVATION_DISABLED_FULL"
+          }
+        },
+        "SERVICE_ACTIVATION_UNKNOWN_REASON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_ACTIVATION_UNKNOWN_REASON"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ReasonsServiceManagementEnum": {
+      "type": "enum",
+      "members": {
+        "SERVICE_MANAGEMENT_UNKNOWN_REASON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_MANAGEMENT_UNKNOWN_REASON"
+          }
+        },
+        "SERVICE_MANAGEMENT_CONTROL_PLANE_SYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_MANAGEMENT_CONTROL_PLANE_SYNC"
+          }
+        },
+        "ACTIVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVATION"
+          }
+        },
+        "PREPARE_DEACTIVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREPARE_DEACTIVATION"
+          }
+        },
+        "ABORT_DEACTIVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORT_DEACTIVATION"
+          }
+        },
+        "COMMIT_DEACTIVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMIT_DEACTIVATION"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ReasonsDataGovernanceEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_GOVERNANCE_UNKNOWN_REASON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_GOVERNANCE_UNKNOWN_REASON"
+          }
+        },
+        "DATA_GOVERNANCE_CONTROL_PLANE_SYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_GOVERNANCE_CONTROL_PLANE_SYNC"
+          }
+        },
+        "HIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDE"
+          }
+        },
+        "UNHIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNHIDE"
+          }
+        },
+        "PURGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PURGE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ReasonsBillingEnum": {
+      "type": "enum",
+      "members": {
+        "BILLING_UNKNOWN_REASON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING_UNKNOWN_REASON"
+          }
+        },
+        "BILLING_CONTROL_PLANE_SYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING_CONTROL_PLANE_SYNC"
+          }
+        },
+        "PROBATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROBATION"
+          }
+        },
+        "CLOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOSE"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ReasonsAbuseEnum": {
+      "type": "enum",
+      "members": {
+        "ABUSE_UNKNOWN_REASON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABUSE_UNKNOWN_REASON"
+          }
+        },
+        "ABUSE_CONTROL_PLANE_SYNC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABUSE_CONTROL_PLANE_SYNC"
+          }
+        },
+        "SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPEND"
+          }
+        },
+        "REINSTATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REINSTATE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#OperationMetadataV1Beta": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that this operation completed.@OutputOnly"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User who requested this operation.@OutputOnly"
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly"
+          }
+        },
+        "createVersionMetadata": {
+          "target": "com.gcp.appengine_v1alpha#CreateVersionMetadataV1Beta"
+        },
+        "insertTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that this operation was created.@OutputOnly"
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API method that initiated this operation. Example: google.appengine.v1beta.Versions.CreateVersion.@OutputOnly"
+          }
+        },
+        "ephemeralMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ephemeral message that may change every time the operation is polled. @OutputOnly"
+          }
+        },
+        "warning": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Durable messages that persist on every operation poll. @OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.longrunning.Operation."
+      }
+    },
+    "com.gcp.appengine_v1alpha#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.appengine_v1alpha#CertificateRawData": {
+      "type": "structure",
+      "members": {
+        "publicCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "PEM encoded x.509 public key certificate. This field is set once on certificate creation. Must include the header and footer. Example: -----BEGIN CERTIFICATE----- -----END CERTIFICATE----- "
+          }
+        },
+        "privateKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unencrypted PEM encoded RSA private key. This field is set once on certificate creation and then encrypted. The key size must be 2048 bits or fewer. Must include the header and footer. Example: -----BEGIN RSA PRIVATE KEY----- -----END RSA PRIVATE KEY----- @InputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An SSL certificate obtained from a certificate authority."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ContainerState": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.appengine_v1alpha#ContainerStateStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current state of the container. This state is the culmination of all of the opinions from external systems that CCFE knows about of the container."
+          }
+        },
+        "previousReasons": {
+          "target": "com.gcp.appengine_v1alpha#Reasons",
+          "traits": {
+            "smithy.api#documentation": "The previous and current reasons for a container state will be sent for a container event. CLHs that need to know the signal that caused the container event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state."
+          }
+        },
+        "currentReasons": {
+          "target": "com.gcp.appengine_v1alpha#Reasons"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ContainerState contains the externally-visible container state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the container state."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ContainerStateStateEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_STATE"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFF"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } "
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAuthorizedDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "domains": {
+          "target": "com.gcp.appengine_v1alpha#AuthorizedDomainList",
+          "traits": {
+            "smithy.api#documentation": "The authorized domains belonging to the user."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for AuthorizedDomains.ListAuthorizedDomains."
+      }
+    },
+    "com.gcp.appengine_v1alpha#AuthorizedDomainList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedDomain"
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.appengine_v1alpha#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.appengine_v1alpha#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateVersionMetadataV1": {
+      "type": "structure",
+      "members": {
+        "cloudBuildId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Build ID if one was created as part of the version create. @OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.longrunning.Operation during a google.appengine.v1.CreateVersionRequest."
+      }
+    },
+    "com.gcp.appengine_v1alpha#SslSettings": {
+      "type": "structure",
+      "members": {
+        "certificateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will remove SSL support.By default, a managed certificate is automatically created for every domain mapping. To omit SSL support or to configure SSL manually, specify no_managed_certificate on a CREATE or UPDATE request. You must be authorized to administer the AuthorizedCertificate resource to manually map it to a DomainMapping resource. Example: 12345."
+          }
+        },
+        "isManagedCertificate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the mapped certificate is an App Engine managed certificate. Managed certificates are created by default with a domain mapping. To opt out, specify no_managed_certificate on a CREATE or UPDATE request.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SSL configuration for a DomainMapping resource."
+      }
+    },
+    "com.gcp.appengine_v1alpha#OperationMetadataV1Alpha": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that this operation completed.@OutputOnly"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User who requested this operation.@OutputOnly"
+          }
+        },
+        "insertTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that this operation was created.@OutputOnly"
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API method that initiated this operation. Example: google.appengine.v1alpha.Versions.CreateVersion.@OutputOnly"
+          }
+        },
+        "ephemeralMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ephemeral message that may change every time the operation is polled. @OutputOnly"
+          }
+        },
+        "warning": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Durable messages that persist on every operation poll. @OutputOnly"
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly"
+          }
+        },
+        "createVersionMetadata": {
+          "target": "com.gcp.appengine_v1alpha#CreateVersionMetadataV1Alpha"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.longrunning.Operation."
+      }
+    },
+    "com.gcp.appengine_v1alpha#OperationMetadataV1": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly"
+          }
+        },
+        "createVersionMetadata": {
+          "target": "com.gcp.appengine_v1alpha#CreateVersionMetadataV1"
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API method that initiated this operation. Example: google.appengine.v1.Versions.CreateVersion.@OutputOnly"
+          }
+        },
+        "ephemeralMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ephemeral message that may change every time the operation is polled. @OutputOnly"
+          }
+        },
+        "warning": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Durable messages that persist on every operation poll. @OutputOnly"
+          }
+        },
+        "insertTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that this operation was created.@OutputOnly"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that this operation completed.@OutputOnly"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User who requested this operation.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the given google.longrunning.Operation."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ResourceEvent": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.appengine_v1alpha#ContainerState",
+          "traits": {
+            "smithy.api#documentation": "The state of the project that led to this event."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource for which this event is. required"
+          }
+        },
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for this per-resource event. CLHs can use this value to dedup repeated calls. required"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request that is passed to CLH during per-resource events. The request will be sent with update semantics in all cases except for data governance purge events. These events will be sent with delete semantics and the CLH is expected to delete the resource receiving this event."
+      }
+    },
+    "com.gcp.appengine_v1alpha#AuthorizedCertificate": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-specified display name of the certificate. This is not guaranteed to be unique. Example: My Certificate."
+          }
+        },
+        "domainMappingsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Aggregate count of the domain mappings with this certificate mapped. This count includes domain mappings on applications for which the user does not have VIEWER permissions.Only returned by GET or LIST requests when specifically requested by the view=FULL_CERTIFICATE option.@OutputOnly"
+          }
+        },
+        "visibleDomainMappings": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The full paths to user visible Domain Mapping resources that have this certificate mapped. Example: apps/myapp/domainMappings/example.com.This may not represent the full list of mapped domain mappings if the user does not have VIEWER permissions on all of the applications that have this certificate mapped. See domain_mappings_count for a complete count.Only returned by GET or LIST requests when specifically requested by the view=FULL_CERTIFICATE option.@OutputOnly"
+          }
+        },
+        "certificateRawData": {
+          "target": "com.gcp.appengine_v1alpha#CertificateRawData",
+          "traits": {
+            "smithy.api#documentation": "The SSL certificate serving the AuthorizedCertificate resource. This must be obtained independently from a certificate authority."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Relative name of the certificate. This is a unique value autogenerated on AuthorizedCertificate resource creation. Example: 12345.@OutputOnly"
+          }
+        },
+        "domainNames": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Topmost applicable domains of this certificate. This certificate applies to these domains and their subdomains. Example: example.com.@OutputOnly"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Full path to the AuthorizedCertificate resource in the API. Example: apps/myapp/authorizedCertificates/12345.@OutputOnly"
+          }
+        },
+        "managedCertificate": {
+          "target": "com.gcp.appengine_v1alpha#ManagedCertificate",
+          "traits": {
+            "smithy.api#documentation": "Only applicable if this certificate is managed by App Engine. Managed certificates are tied to the lifecycle of a DomainMapping and cannot be updated or deleted via the AuthorizedCertificates API. If this certificate is manually administered by the user, this field will be empty.@OutputOnly"
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when this certificate expires. To update the renewal time on this certificate, upload an SSL certificate with a different expiration time using AuthorizedCertificates.UpdateAuthorizedCertificate.@OutputOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An SSL certificate that a user has been authorized to administer. A user is authorized to administer any certificate that applies to one of their authorized domains."
+      }
+    },
+    "com.gcp.appengine_v1alpha#GceTag": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The administrative_tag name."
+          }
+        },
+        "parent": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "The parents(s) of the tag. Eg. projects/123, folders/456 It usually contains only one parent. But, in some corner cases, it can contain multiple parents. Currently, organizations are not supported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "For use only by GCE. GceTag is a wrapper around the GCE administrative tag with parent info."
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchAppsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "authorizedCertificatesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.appengine_v1alpha#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.appengine_v1alpha#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.appengine_v1alpha#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchAppsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#PatchAppsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}"
+        },
+        "smithy.api#documentation": "Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteAppsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "authorizedCertificatesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteAppsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#DeleteAppsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}"
+        },
+        "smithy.api#documentation": "Deletes the specified SSL certificate."
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsAuthorizedCertificatesViewEnum": {
+      "type": "enum",
+      "members": {
+        "BASIC_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC_CERTIFICATE"
+          }
+        },
+        "FULL_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_CERTIFICATE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "authorizedCertificatesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "view": {
+          "target": "com.gcp.appengine_v1alpha#GetAppsAuthorizedCertificatesViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Controls the set of fields returned in the GET response.",
+            "smithy.api#httpQuery": "view"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetAppsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/authorizedCertificates/{authorizedCertificatesId}"
+        },
+        "smithy.api#documentation": "Gets the specified SSL certificate."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsAuthorizedCertificatesViewEnum": {
+      "type": "enum",
+      "members": {
+        "BASIC_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC_CERTIFICATE"
+          }
+        },
+        "FULL_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_CERTIFICATE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "view": {
+          "target": "com.gcp.appengine_v1alpha#ListAppsAuthorizedCertificatesViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Controls the set of fields returned in the LIST response.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum results to return per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListAppsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListAuthorizedCertificatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/authorizedCertificates"
+        },
+        "smithy.api#documentation": "Lists all SSL certificates the user is authorized to administer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateAppsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateAppsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#CreateAppsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/apps/{appsId}/authorizedCertificates"
+        },
+        "smithy.api#documentation": "Uploads the specified SSL certificate."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsAuthorizedDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum results to return per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsAuthorizedDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListAppsAuthorizedDomainsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListAuthorizedDomainsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/authorizedDomains"
+        },
+        "smithy.api#documentation": "Lists all domains the user is authorized to administer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListAppsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service.This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: Global locations: If name is empty, the method lists the public locations available to all projects. Project-specific locations: If name follows the format projects/{project}, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project.For gRPC and client library implementations, the resource name is passed as the name field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetAppsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/locations/{locationsId}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "operationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetAppsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/operations/{operationsId}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum results to return per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListAppsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListAppsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListDomainMappingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/domainMappings"
+        },
+        "smithy.api#documentation": "Lists the domain mappings on an application.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateAppsDomainMappingsOverrideStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY"
+          }
+        },
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRICT"
+          }
+        },
+        "OVERRIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVERRIDE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateAppsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "noManagedCertificate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.",
+            "smithy.api#httpQuery": "noManagedCertificate"
+          }
+        },
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "overrideStrategy": {
+          "target": "com.gcp.appengine_v1alpha#CreateAppsDomainMappingsOverrideStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.",
+            "smithy.api#httpQuery": "overrideStrategy"
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#DomainMapping",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateAppsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#CreateAppsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/apps/{appsId}/domainMappings"
+        },
+        "smithy.api#documentation": "Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains."
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchAppsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domainMappingsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Standard field mask for the set of fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "noManagedCertificate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.",
+            "smithy.api#httpQuery": "noManagedCertificate"
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#DomainMapping",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchAppsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#PatchAppsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha/apps/{appsId}/domainMappings/{domainMappingsId}"
+        },
+        "smithy.api#documentation": "Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteAppsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domainMappingsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteAppsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#DeleteAppsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha/apps/{appsId}/domainMappings/{domainMappingsId}"
+        },
+        "smithy.api#documentation": "Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource."
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "appsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domainMappingsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `appsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetAppsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetAppsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#DomainMapping"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{appsId}/domainMappings/{domainMappingsId}"
+        },
+        "smithy.api#documentation": "Gets the specified domain mapping."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.appengine_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service.This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: Global locations: If name is empty, the method lists the public locations available to all projects. Project-specific locations: If name follows the format projects/{project}, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project.For gRPC and client library implementations, the resource name is passed as the name field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "operationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates"
+        },
+        "smithy.api#documentation": "Uploads the specified SSL certificate."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedCertificatesViewEnum": {
+      "type": "enum",
+      "members": {
+        "BASIC_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC_CERTIFICATE"
+          }
+        },
+        "FULL_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_CERTIFICATE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum results to return per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "view": {
+          "target": "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedCertificatesViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Controls the set of fields returned in the LIST response.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListAuthorizedCertificatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates"
+        },
+        "smithy.api#documentation": "Lists all SSL certificates the user is authorized to administer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsAuthorizedCertificatesViewEnum": {
+      "type": "enum",
+      "members": {
+        "BASIC_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC_CERTIFICATE"
+          }
+        },
+        "FULL_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_CERTIFICATE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "authorizedCertificatesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "view": {
+          "target": "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsAuthorizedCertificatesViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Controls the set of fields returned in the GET response.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}"
+        },
+        "smithy.api#documentation": "Gets the specified SSL certificate."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteProjectsLocationsApplicationsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "authorizedCertificatesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteProjectsLocationsApplicationsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#DeleteProjectsLocationsApplicationsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}"
+        },
+        "smithy.api#documentation": "Deletes the specified SSL certificate."
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchProjectsLocationsApplicationsAuthorizedCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "authorizedCertificatesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchProjectsLocationsApplicationsAuthorizedCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#PatchProjectsLocationsApplicationsAuthorizedCertificatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#AuthorizedCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}"
+        },
+        "smithy.api#documentation": "Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated."
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsDomainMappingsOverrideStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY"
+          }
+        },
+        "STRICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRICT"
+          }
+        },
+        "OVERRIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVERRIDE"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "noManagedCertificate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.",
+            "smithy.api#httpQuery": "noManagedCertificate"
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "overrideStrategy": {
+          "target": "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsDomainMappingsOverrideStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.",
+            "smithy.api#httpQuery": "overrideStrategy"
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#DomainMapping",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#CreateProjectsLocationsApplicationsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings"
+        },
+        "smithy.api#documentation": "Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum results to return per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListDomainMappingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings"
+        },
+        "smithy.api#documentation": "Lists the domain mappings on an application.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "domainMappingsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#GetProjectsLocationsApplicationsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#DomainMapping"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}"
+        },
+        "smithy.api#documentation": "Gets the specified domain mapping."
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchProjectsLocationsApplicationsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "domainMappingsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Standard field mask for the set of fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "noManagedCertificate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.",
+            "smithy.api#httpQuery": "noManagedCertificate"
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.appengine_v1alpha#DomainMapping",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#PatchProjectsLocationsApplicationsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#PatchProjectsLocationsApplicationsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}"
+        },
+        "smithy.api#documentation": "Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource."
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteProjectsLocationsApplicationsDomainMappingsRequest": {
+      "type": "structure",
+      "members": {
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domainMappingsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `name`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#DeleteProjectsLocationsApplicationsDomainMappings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#DeleteProjectsLocationsApplicationsDomainMappingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}"
+        },
+        "smithy.api#documentation": "Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource."
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "projectsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum results to return per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "applicationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "locationsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Part of `parent`. See documentation of `projectsId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for fetching the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.appengine_v1alpha#ListProjectsLocationsApplicationsAuthorizedDomainsRequest"
+      },
+      "output": {
+        "target": "com.gcp.appengine_v1alpha#ListAuthorizedDomainsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.appengine_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.appengine_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains"
+        },
+        "smithy.api#documentation": "Lists all domains the user is authorized to administer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

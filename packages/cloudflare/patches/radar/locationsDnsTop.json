@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTopLocations with distilled cloudflare/radar locationsDnsTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTopLocations",
+      "path": "/shapes/com.cloudflare.radar#LocationsDnsTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTopLocationsRequest",
+      "path": "/shapes/com.cloudflare.radar#LocationsDnsTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsDnsTop/input/target",
+      "value": "com.cloudflare.radar#LocationsDnsTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTopLocationsResponse",
+      "path": "/shapes/com.cloudflare.radar#LocationsDnsTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsDnsTop/output/target",
+      "value": "com.cloudflare.radar#LocationsDnsTopResponse"
+    }
+  ]
+}

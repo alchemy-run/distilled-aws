@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#LinksCreate with distilled cloudflare/browser-rendering createLink",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#LinksCreate",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateLink"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#LinksCreateRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateLinkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateLink/input/target",
+      "value": "com.cloudflare.browser_rendering#CreateLinkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#LinksCreateResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateLinkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateLink/output/target",
+      "value": "com.cloudflare.browser_rendering#CreateLinkResponse"
+    }
+  ]
+}

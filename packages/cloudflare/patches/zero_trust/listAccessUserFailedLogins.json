@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#AccessUsersFailedLoginsList with distilled cloudflare/zero-trust listAccessUserFailedLogins",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersFailedLoginsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserFailedLogins"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersFailedLoginsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserFailedLoginsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserFailedLogins/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessUserFailedLoginsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersFailedLoginsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserFailedLoginsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserFailedLogins/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessUserFailedLoginsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserFailedLogins/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

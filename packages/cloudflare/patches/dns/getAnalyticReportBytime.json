@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#AnalyticsReportsBytimesGet with distilled cloudflare/dns getAnalyticReportBytime",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#AnalyticsReportsBytimesGet",
+      "path": "/shapes/com.cloudflare.dns#GetAnalyticReportBytime"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#AnalyticsReportsBytimesGetRequest",
+      "path": "/shapes/com.cloudflare.dns#GetAnalyticReportBytimeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetAnalyticReportBytime/input/target",
+      "value": "com.cloudflare.dns#GetAnalyticReportBytimeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#AnalyticsReportsBytimesGetResponse",
+      "path": "/shapes/com.cloudflare.dns#GetAnalyticReportBytimeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetAnalyticReportBytime/output/target",
+      "value": "com.cloudflare.dns#GetAnalyticReportBytimeResponse"
+    }
+  ]
+}

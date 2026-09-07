@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#TunnelsCloudflaredDelete with distilled cloudflare/zero-trust deleteTunnelCloudflared",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelCloudflared"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelCloudflaredRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelCloudflared/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteTunnelCloudflaredRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelCloudflaredResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelCloudflared/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteTunnelCloudflaredResponse"
+    }
+  ]
+}

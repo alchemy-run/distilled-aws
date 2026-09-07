@@ -1,0 +1,39 @@
+{
+  "description": "Align ssl#UniversalSettingsEdit with distilled cloudflare/ssl patchUniversalSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#UniversalSettingsEdit",
+      "path": "/shapes/com.cloudflare.ssl#PatchUniversalSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#UniversalSettingsEditRequest",
+      "path": "/shapes/com.cloudflare.ssl#PatchUniversalSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchUniversalSetting/input/target",
+      "value": "com.cloudflare.ssl#PatchUniversalSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#UniversalSettingsEditResponse",
+      "path": "/shapes/com.cloudflare.ssl#PatchUniversalSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchUniversalSetting/output/target",
+      "value": "com.cloudflare.ssl#PatchUniversalSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ssl#PatchUniversalSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ssl#Forbidden"
+        }
+      ]
+    }
+  ]
+}

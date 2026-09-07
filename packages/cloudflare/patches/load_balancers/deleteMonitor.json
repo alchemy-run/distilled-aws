@@ -1,0 +1,45 @@
+{
+  "description": "Align load_balancers#MonitorsDelete with distilled cloudflare/load-balancers deleteMonitor",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsDelete",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteMonitor"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsDeleteRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteMonitorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteMonitor/input/target",
+      "value": "com.cloudflare.load_balancers#DeleteMonitorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsDeleteResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteMonitorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteMonitor/output/target",
+      "value": "com.cloudflare.load_balancers#DeleteMonitorResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteMonitor/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#MonitorNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#MonitorInUse"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align email_sending#SubdomainsDnsGet with distilled cloudflare/email-sending getSubdomainDns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsDnsGet",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainDns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsDnsGetRequest",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainDnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainDns/input/target",
+      "value": "com.cloudflare.email_sending#GetSubdomainDnsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsDnsGetResponse",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainDnsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainDns/output/target",
+      "value": "com.cloudflare.email_sending#GetSubdomainDnsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainDns/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

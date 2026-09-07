@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEmailRulesDelete with distilled cloudflare/zero-trust deleteDlpEmailRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEmailRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEmailRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEmailRule/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpEmailRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEmailRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEmailRule/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpEmailRuleResponse"
+    }
+  ]
+}

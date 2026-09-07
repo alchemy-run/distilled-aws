@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#OauthClientsUpdate with distilled cloudflare/iam patchOauthClient",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsUpdate",
+      "path": "/shapes/com.cloudflare.iam#PatchOauthClient"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsUpdateRequest",
+      "path": "/shapes/com.cloudflare.iam#PatchOauthClientRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#PatchOauthClient/input/target",
+      "value": "com.cloudflare.iam#PatchOauthClientRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsUpdateResponse",
+      "path": "/shapes/com.cloudflare.iam#PatchOauthClientResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#PatchOauthClient/output/target",
+      "value": "com.cloudflare.iam#PatchOauthClientResponse"
+    }
+  ]
+}

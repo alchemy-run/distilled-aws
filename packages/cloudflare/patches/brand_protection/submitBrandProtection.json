@@ -1,0 +1,30 @@
+{
+  "description": "Align brand_protection#Submit with distilled cloudflare/brand-protection submitBrandProtection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#Submit",
+      "path": "/shapes/com.cloudflare.brand_protection#SubmitBrandProtection"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#SubmitRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#SubmitBrandProtectionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#SubmitBrandProtection/input/target",
+      "value": "com.cloudflare.brand_protection#SubmitBrandProtectionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#SubmitResponse",
+      "path": "/shapes/com.cloudflare.brand_protection#SubmitBrandProtectionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#SubmitBrandProtection/output/target",
+      "value": "com.cloudflare.brand_protection#SubmitBrandProtectionResponse"
+    }
+  ]
+}

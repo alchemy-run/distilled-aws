@@ -1,0 +1,17 @@
+{
+  "description": "Docs bug: cloudflared tunnel configuration ingress items mark `hostname` required, but Cloudflare REQUIRES the trailing catch-all ingress rule to omit hostname (configs whose last rule has one are rejected) — required-hostname makes every valid config inexpressible. Make it optional on the update request and both response shapes.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConfigurationsUpdateRequestConfigIngressItem/members/hostname/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConfigurationsUpdateResponseConfigIngressItem/members/hostname/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConfigurationsGetResponseConfigIngressItem/members/hostname/traits/smithy.api#required"
+    }
+  ]
+}

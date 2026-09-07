@@ -1,0 +1,23 @@
+{
+  "description": "Docs gap: the gateway proxy-endpoint CREATE body omits `ips`, but the wire API requires a CIDR string list when creating an ip-kind endpoint (v0 modeled ips: string[]; PATCH documents it). Optional here because the flattened create body also covers identity-kind endpoints, which take no ips.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGatewayProxyEndpointRequestIpsList",
+      "value": {
+        "type": "list",
+        "member": { "target": "smithy.api#String" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGatewayProxyEndpointRequest/members/ips",
+      "value": {
+        "target": "com.cloudflare.zero_trust#CreateGatewayProxyEndpointRequestIpsList",
+        "traits": {
+          "smithy.api#documentation": "Specify the list of CIDRs to restrict ingress connections. Required when creating an ip-kind proxy endpoint."
+        }
+      }
+    }
+  ]
+}

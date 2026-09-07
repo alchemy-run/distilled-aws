@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#CustomProvidersDelete with distilled cloudflare/ai-gateway deleteCustomProvider",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CustomProvidersDelete",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteCustomProvider"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CustomProvidersDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteCustomProviderRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteCustomProvider/input/target",
+      "value": "com.cloudflare.ai_gateway#DeleteCustomProviderRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CustomProvidersDeleteResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteCustomProviderResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteCustomProvider/output/target",
+      "value": "com.cloudflare.ai_gateway#DeleteCustomProviderResponse"
+    }
+  ]
+}

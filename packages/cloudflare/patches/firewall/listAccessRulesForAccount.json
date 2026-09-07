@@ -1,0 +1,50 @@
+{
+  "description": "Align firewall#AccessRulesListForAccount with distilled cloudflare/firewall listAccessRulesForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesListForAccount",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesListForAccountRequest",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccount/input/target",
+      "value": "com.cloudflare.firewall#ListAccessRulesForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesListForAccountResponse",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccount/output/target",
+      "value": "com.cloudflare.firewall#ListAccessRulesForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#ListAccessRulesForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

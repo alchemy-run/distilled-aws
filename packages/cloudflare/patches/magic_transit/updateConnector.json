@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#ConnectorsUpdate with distilled cloudflare/magic-transit updateConnector",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateConnector"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateConnectorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateConnector/input/target",
+      "value": "com.cloudflare.magic_transit#UpdateConnectorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateConnectorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateConnector/output/target",
+      "value": "com.cloudflare.magic_transit#UpdateConnectorResponse"
+    }
+  ]
+}

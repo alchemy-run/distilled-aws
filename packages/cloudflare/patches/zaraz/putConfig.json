@@ -1,0 +1,30 @@
+{
+  "description": "Align zaraz#ConfigUpdate with distilled cloudflare/zaraz putConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ConfigUpdate",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ConfigUpdateRequest",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfig/input/target",
+      "value": "com.cloudflare.zaraz#PutConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ConfigUpdateResponse",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfig/output/target",
+      "value": "com.cloudflare.zaraz#PutConfigResponse"
+    }
+  ]
+}

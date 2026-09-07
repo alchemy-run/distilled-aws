@@ -1,0 +1,30 @@
+{
+  "description": "Align email_routing#DnsCreate with distilled cloudflare/email-routing createDns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsCreate",
+      "path": "/shapes/com.cloudflare.email_routing#CreateDns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsCreateRequest",
+      "path": "/shapes/com.cloudflare.email_routing#CreateDnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#CreateDns/input/target",
+      "value": "com.cloudflare.email_routing#CreateDnsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsCreateResponse",
+      "path": "/shapes/com.cloudflare.email_routing#CreateDnsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#CreateDns/output/target",
+      "value": "com.cloudflare.email_routing#CreateDnsResponse"
+    }
+  ]
+}

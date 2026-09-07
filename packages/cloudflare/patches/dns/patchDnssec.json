@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#DnssecEdit with distilled cloudflare/dns patchDnssec",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#DnssecEdit",
+      "path": "/shapes/com.cloudflare.dns#PatchDnssec"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#DnssecEditRequest",
+      "path": "/shapes/com.cloudflare.dns#PatchDnssecRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchDnssec/input/target",
+      "value": "com.cloudflare.dns#PatchDnssecRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#DnssecEditResponse",
+      "path": "/shapes/com.cloudflare.dns#PatchDnssecResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchDnssec/output/target",
+      "value": "com.cloudflare.dns#PatchDnssecResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#PatchDnssec/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#Forbidden"
+        }
+      ]
+    }
+  ]
+}

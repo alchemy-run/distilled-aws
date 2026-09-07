@@ -1,0 +1,50 @@
+{
+  "description": "Align workers#ScriptsVersionsList with distilled cloudflare/workers listScriptVersions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsVersionsList",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsVersionsListRequest",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersions/input/target",
+      "value": "com.cloudflare.workers#ListScriptVersionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsVersionsListResponse",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersions/output/target",
+      "value": "com.cloudflare.workers#ListScriptVersionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListScriptVersions/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

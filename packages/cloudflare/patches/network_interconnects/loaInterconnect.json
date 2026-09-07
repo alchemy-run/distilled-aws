@@ -1,0 +1,20 @@
+{
+  "description": "Align network_interconnects#InterconnectsLoa with distilled cloudflare/network-interconnects loaInterconnect",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsLoa",
+      "path": "/shapes/com.cloudflare.network_interconnects#LoaInterconnect"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsLoaRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#LoaInterconnectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#LoaInterconnect/input/target",
+      "value": "com.cloudflare.network_interconnects#LoaInterconnectRequest"
+    }
+  ]
+}

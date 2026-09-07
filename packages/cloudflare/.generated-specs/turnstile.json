@@ -1,0 +1,1726 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.turnstile#WidgetsCreateRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "SITEKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sitekey"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "CREATED_ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_on"
+          }
+        },
+        "MODIFIED_ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "modified_on"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateRequestDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateRequestMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateRequestClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateRequestRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to order widgets.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter widgets by field using case-insensitive substring matching.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Field to order widgets by.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateRequestDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateRequestMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally"
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateRequestClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,"
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only)."
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only)."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateResponseClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateResponseDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateResponseMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateResponseRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally",
+            "smithy.api#required": {}
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateResponseClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateResponseDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateResponseMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsCreateResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret key for this widget.",
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.turnstile#WidgetsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.turnstile#WidgetsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/challenges/widgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists challenge widgets."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDeleteResponseClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDeleteResponseDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDeleteResponseMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDeleteResponseRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally",
+            "smithy.api#required": {}
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsDeleteResponseClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsDeleteResponseDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsDeleteResponseMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsDeleteResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret key for this widget.",
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.turnstile#WidgetsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.turnstile#WidgetsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/challenges/widgets/{sitekey}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Destroy a Turnstile Widget.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGetResponseClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGetResponseDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGetResponseMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGetResponseRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGetResponse": {
+      "type": "structure",
+      "members": {
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally",
+            "smithy.api#required": {}
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsGetResponseClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsGetResponseDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsGetResponseMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsGetResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret key for this widget.",
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.turnstile#WidgetsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.turnstile#WidgetsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/challenges/widgets/{sitekey}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show a single challenge widget configuration.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "SITEKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sitekey"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "CREATED_ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_on"
+          }
+        },
+        "MODIFIED_ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "modified_on"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.turnstile#WidgetsListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to order widgets.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter widgets by field using case-insensitive substring matching.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.turnstile#WidgetsListRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Field to order widgets by.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResultItemClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResultItemDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResultItemMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResultItemRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResultItem": {
+      "type": "structure",
+      "members": {
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally",
+            "smithy.api#required": {}
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsListResultItemClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsListResultItemDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsListResultItemMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsListResultItemRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation.",
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.turnstile#WidgetsListResultItem"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.turnstile#WidgetsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.turnstile#WidgetsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.turnstile#WidgetsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/challenges/widgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all turnstile widgets of an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecretRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "invalidate_immediately": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `invalidate_immediately` is set to `false`, the previous secret will"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecretResponseClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecretResponseDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecretResponseMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecretResponseRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecretResponse": {
+      "type": "structure",
+      "members": {
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally",
+            "smithy.api#required": {}
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsRotateSecretResponseClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsRotateSecretResponseDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsRotateSecretResponseMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsRotateSecretResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret key for this widget.",
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsRotateSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.turnstile#WidgetsRotateSecretRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.turnstile#WidgetsRotateSecretResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a new secret key for this widget. If `invalidate_immediately` is set to `false`, the previous secret remains valid for 2 hours. Note that secrets cannot be rotated again during the grace period."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateRequestDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateRequestMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateRequestClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateRequestRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateRequestDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateRequestMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally"
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateRequestClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,"
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only)."
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only)."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateResponseClearanceLevel": {
+      "type": "enum",
+      "members": {
+        "NO_CLEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_clearance"
+          }
+        },
+        "JSCHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jschallenge"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateResponseDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateResponseMode": {
+      "type": "enum",
+      "members": {
+        "NON_INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non-interactive"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invisible"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateResponseRegion": {
+      "type": "enum",
+      "members": {
+        "WORLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "world"
+          }
+        },
+        "CHINA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "china"
+          }
+        }
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "bot_fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If bot_fight_mode is set to `true`, Cloudflare issues computationally",
+            "smithy.api#required": {}
+          }
+        },
+        "clearance_level": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateResponseClearanceLevel",
+          "traits": {
+            "smithy.api#documentation": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateResponseDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ephemeral_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return the Ephemeral ID in /siteverify (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateResponseMode",
+          "traits": {
+            "smithy.api#documentation": "Widget Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the widget was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable widget name. Not unique. Cloudflare suggests that you",
+            "smithy.api#required": {}
+          }
+        },
+        "offlabel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not show any Cloudflare branding on the widget (ENT only).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.turnstile#WidgetsUpdateResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "Region where this widget can be used. This cannot be changed after creation.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret key for this widget.",
+            "smithy.api#required": {}
+          }
+        },
+        "sitekey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Widget item identifier tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.turnstile#WidgetsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.turnstile#WidgetsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.turnstile#WidgetsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/challenges/widgets/{sitekey}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the configuration of a widget.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.turnstile#Turnstile": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.turnstile#WidgetsCreate"
+        },
+        {
+          "target": "com.cloudflare.turnstile#WidgetsDelete"
+        },
+        {
+          "target": "com.cloudflare.turnstile#WidgetsGet"
+        },
+        {
+          "target": "com.cloudflare.turnstile#WidgetsList"
+        },
+        {
+          "target": "com.cloudflare.turnstile#WidgetsRotateSecret"
+        },
+        {
+          "target": "com.cloudflare.turnstile#WidgetsUpdate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Turnstile",
+        "smithy.api#documentation": "Cloudflare API — turnstile resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Key dictionary / op aliases for custom_pages (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdOn": "created_on",
+        "lastUpdated": "last_updated",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "previewTarget": "preview_target",
+        "requiredTokens": "required_tokens",
+        "resultInfo": "result_info",
+        "sizeBytes": "size_bytes",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

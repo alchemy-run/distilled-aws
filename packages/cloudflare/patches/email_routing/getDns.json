@@ -1,0 +1,30 @@
+{
+  "description": "Align email_routing#DnsGet with distilled cloudflare/email-routing getDns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsGet",
+      "path": "/shapes/com.cloudflare.email_routing#GetDns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsGetRequest",
+      "path": "/shapes/com.cloudflare.email_routing#GetDnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#GetDns/input/target",
+      "value": "com.cloudflare.email_routing#GetDnsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsGetResponse",
+      "path": "/shapes/com.cloudflare.email_routing#GetDnsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#GetDns/output/target",
+      "value": "com.cloudflare.email_routing#GetDnsResponse"
+    }
+  ]
+}

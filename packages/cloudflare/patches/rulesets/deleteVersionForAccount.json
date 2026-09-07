@@ -1,0 +1,20 @@
+{
+  "description": "Align rulesets#VersionsDeleteForAccount with distilled cloudflare/rulesets deleteVersionForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsDeleteForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteVersionForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteVersionForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteVersionForAccount/input/target",
+      "value": "com.cloudflare.rulesets#DeleteVersionForAccountRequest"
+    }
+  ]
+}

@@ -1,0 +1,1596 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "firebasedynamiclinks",
+    "version": "v1",
+    "title": "Firebase Dynamic Links API",
+    "baseUrl": "https://firebasedynamiclinks.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.firebasedynamiclinks_v1#CreateShortDynamicLinkRequest": {
+      "type": "structure",
+      "members": {
+        "longDynamicLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full long Dynamic Link URL with desired query parameters specified. For example, \"https://sample.app.goo.gl/?link=http://www.google.com&apn=com.sample\", [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener)."
+          }
+        },
+        "suffix": {
+          "target": "com.gcp.firebasedynamiclinks_v1#Suffix",
+          "traits": {
+            "smithy.api#documentation": "Short Dynamic Link suffix. Optional."
+          }
+        },
+        "dynamicLinkInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the Dynamic Link to be shortened. [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener)."
+          }
+        },
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google SDK version. Version takes the form \"$major.$minor.$patch\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create a short Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStat": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of times this event occurred."
+          }
+        },
+        "event": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStatEventEnum",
+          "traits": {
+            "smithy.api#documentation": "Link event."
+          }
+        },
+        "platform": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStatPlatformEnum",
+          "traits": {
+            "smithy.api#documentation": "Requested platform."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dynamic Link event stat."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStatEventEnum": {
+      "type": "enum",
+      "members": {
+        "DYNAMIC_LINK_EVENT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DYNAMIC_LINK_EVENT_UNSPECIFIED"
+          }
+        },
+        "CLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICK"
+          }
+        },
+        "REDIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDIRECT"
+          }
+        },
+        "APP_INSTALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_INSTALL"
+          }
+        },
+        "APP_FIRST_OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_FIRST_OPEN"
+          }
+        },
+        "APP_RE_OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_RE_OPEN"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStatPlatformEnum": {
+      "type": "enum",
+      "members": {
+        "DYNAMIC_LINK_PLATFORM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DYNAMIC_LINK_PLATFORM_UNSPECIFIED"
+          }
+        },
+        "ANDROID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID"
+          }
+        },
+        "IOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ManagedShortLink": {
+      "type": "structure",
+      "members": {
+        "visibility": {
+          "target": "com.gcp.firebasedynamiclinks_v1#ManagedShortLinkVisibilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Visibility status of link."
+          }
+        },
+        "info": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkInfo",
+          "traits": {
+            "smithy.api#documentation": "Full Dyamic Link info"
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short durable link url, for example, \"https://sample.app.goo.gl/xyz123\". Required."
+          }
+        },
+        "flaggedAttribute": {
+          "target": "com.gcp.firebasedynamiclinks_v1#ManagedShortLinkFlaggedAttributeItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Attributes that have been flagged about this short url."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp of the short link."
+          }
+        },
+        "linkName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link name defined by the creator. Required."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed Short Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ManagedShortLinkVisibilityEnum": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED_VISIBILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_VISIBILITY"
+          }
+        },
+        "UNARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNARCHIVED"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHIVED"
+          }
+        },
+        "NEVER_SHOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEVER_SHOWN"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ManagedShortLinkFlaggedAttributeItemEnum": {
+      "type": "enum",
+      "members": {
+        "UNSPECIFIED_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_ATTRIBUTE"
+          }
+        },
+        "SPAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPAM"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ManagedShortLinkFlaggedAttributeItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasedynamiclinks_v1#ManagedShortLinkFlaggedAttributeItemEnum"
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#IosInfo": {
+      "type": "structure",
+      "members": {
+        "iosIpadBundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iPad bundle ID of the app."
+          }
+        },
+        "iosBundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iOS bundle ID of the app."
+          }
+        },
+        "iosIpadFallbackLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, this overrides the ios_fallback_link value on iPads."
+          }
+        },
+        "iosAppStoreId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iOS App Store ID."
+          }
+        },
+        "iosMinimumVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iOS minimum version."
+          }
+        },
+        "iosFallbackLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to open on iOS if the app is not installed."
+          }
+        },
+        "iosCustomScheme": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom (destination) scheme to use for iOS. By default, we’ll use the bundle ID as the custom scheme. Developer can override this behavior using this param."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "iOS related attributes to the Dynamic Link.."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ITunesConnectAnalytics": {
+      "type": "structure",
+      "members": {
+        "at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Affiliate token used to create affiliate-coded links."
+          }
+        },
+        "ct": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign text that developers can optionally add to any link in order to track sales from a specific marketing campaign."
+          }
+        },
+        "mt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iTune media types, including music, podcasts, audiobooks and so on."
+          }
+        },
+        "pt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider token that enables analytics for Dynamic Links from within iTunes Connect."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters for iTunes Connect App Analytics."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateShortDynamicLinkResponse": {
+      "type": "structure",
+      "members": {
+        "shortLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short Dynamic Link value. e.g. https://abcd.app.goo.gl/wxyz"
+          }
+        },
+        "warning": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningList",
+          "traits": {
+            "smithy.api#documentation": "Information about potential warnings on link creation."
+          }
+        },
+        "previewLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Preview link to show the link flow chart. (debug info.)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to create a short Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarning"
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#NavigationInfo": {
+      "type": "structure",
+      "members": {
+        "enableForcedRedirect": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If this option is on, FDL click will be forced to redirect rather than show an interstitial page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information of navigation behavior."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarning": {
+      "type": "structure",
+      "members": {
+        "warningCode": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningWarningCodeEnum",
+          "traits": {
+            "smithy.api#documentation": "The warning code."
+          }
+        },
+        "warningDocumentLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The document describing the warning, and helps resolve."
+          }
+        },
+        "warningMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The warning message to help developers improve their requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dynamic Links warning messages."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningWarningCodeEnum": {
+      "type": "enum",
+      "members": {
+        "CODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CODE_UNSPECIFIED"
+          }
+        },
+        "NOT_IN_PROJECT_ANDROID_PACKAGE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IN_PROJECT_ANDROID_PACKAGE_NAME"
+          }
+        },
+        "NOT_INTEGER_ANDROID_PACKAGE_MIN_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_INTEGER_ANDROID_PACKAGE_MIN_VERSION"
+          }
+        },
+        "UNNECESSARY_ANDROID_PACKAGE_MIN_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNNECESSARY_ANDROID_PACKAGE_MIN_VERSION"
+          }
+        },
+        "NOT_URI_ANDROID_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_URI_ANDROID_LINK"
+          }
+        },
+        "UNNECESSARY_ANDROID_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNNECESSARY_ANDROID_LINK"
+          }
+        },
+        "NOT_URI_ANDROID_FALLBACK_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_URI_ANDROID_FALLBACK_LINK"
+          }
+        },
+        "BAD_URI_SCHEME_ANDROID_FALLBACK_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_URI_SCHEME_ANDROID_FALLBACK_LINK"
+          }
+        },
+        "NOT_IN_PROJECT_IOS_BUNDLE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IN_PROJECT_IOS_BUNDLE_ID"
+          }
+        },
+        "NOT_IN_PROJECT_IPAD_BUNDLE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IN_PROJECT_IPAD_BUNDLE_ID"
+          }
+        },
+        "UNNECESSARY_IOS_URL_SCHEME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNNECESSARY_IOS_URL_SCHEME"
+          }
+        },
+        "NOT_NUMERIC_IOS_APP_STORE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NUMERIC_IOS_APP_STORE_ID"
+          }
+        },
+        "UNNECESSARY_IOS_APP_STORE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNNECESSARY_IOS_APP_STORE_ID"
+          }
+        },
+        "NOT_URI_IOS_FALLBACK_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_URI_IOS_FALLBACK_LINK"
+          }
+        },
+        "BAD_URI_SCHEME_IOS_FALLBACK_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_URI_SCHEME_IOS_FALLBACK_LINK"
+          }
+        },
+        "NOT_URI_IPAD_FALLBACK_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_URI_IPAD_FALLBACK_LINK"
+          }
+        },
+        "BAD_URI_SCHEME_IPAD_FALLBACK_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_URI_SCHEME_IPAD_FALLBACK_LINK"
+          }
+        },
+        "BAD_DEBUG_PARAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_DEBUG_PARAM"
+          }
+        },
+        "BAD_AD_PARAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_AD_PARAM"
+          }
+        },
+        "DEPRECATED_PARAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED_PARAM"
+          }
+        },
+        "UNRECOGNIZED_PARAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRECOGNIZED_PARAM"
+          }
+        },
+        "TOO_LONG_PARAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_LONG_PARAM"
+          }
+        },
+        "NOT_URI_SOCIAL_IMAGE_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_URI_SOCIAL_IMAGE_LINK"
+          }
+        },
+        "BAD_URI_SCHEME_SOCIAL_IMAGE_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_URI_SCHEME_SOCIAL_IMAGE_LINK"
+          }
+        },
+        "NOT_URI_SOCIAL_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_URI_SOCIAL_URL"
+          }
+        },
+        "BAD_URI_SCHEME_SOCIAL_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAD_URI_SCHEME_SOCIAL_URL"
+          }
+        },
+        "LINK_LENGTH_TOO_LONG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK_LENGTH_TOO_LONG"
+          }
+        },
+        "LINK_WITH_FRAGMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK_WITH_FRAGMENTS"
+          }
+        },
+        "NOT_MATCHING_IOS_BUNDLE_ID_AND_STORE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_MATCHING_IOS_BUNDLE_ID_AND_STORE_ID"
+          }
+        },
+        "API_DEPRECATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_DEPRECATED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkStats": {
+      "type": "structure",
+      "members": {
+        "warnings": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningList",
+          "traits": {
+            "smithy.api#documentation": "Optional warnings associated this API request."
+          }
+        },
+        "linkEventStats": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStatList",
+          "traits": {
+            "smithy.api#documentation": "Dynamic Link event stats."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Analytics stats of a Dynamic Link for a given timeframe."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStatList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkEventStat"
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosReopenAttributionResponse": {
+      "type": "structure",
+      "members": {
+        "resolvedLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entire FDL, expanded from a short link. It is the same as the requested_link, if it is long."
+          }
+        },
+        "warning": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningList",
+          "traits": {
+            "smithy.api#documentation": "Optional warnings associated this API request."
+          }
+        },
+        "iosMinAppVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FDL input value of the \"&imv=\" parameter, minimum app version to be returned to Google Firebase SDK running on iOS-9."
+          }
+        },
+        "utmCampaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion campaign value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "deepLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deep-link attributed the app universal link open. For both regular FDL links and invite FDL links."
+          }
+        },
+        "utmTerm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion term value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "utmContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion content value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "utmSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion source value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "utmMedium": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion medium value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "invitationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional invitation ID, for only invite typed requested FDL links."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for iSDK to get reopen attribution for app universal link open deeplinking. This endpoint is meant for only iOS requests."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionRequest": {
+      "type": "structure",
+      "members": {
+        "bundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APP bundle ID."
+          }
+        },
+        "visualStyle": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionRequestVisualStyleEnum",
+          "traits": {
+            "smithy.api#documentation": "Strong match page information. Disambiguates between default UI and custom page to present when strong match succeeds/fails to find cookie."
+          }
+        },
+        "retrievalMethod": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionRequestRetrievalMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "App post install attribution retrieval information. Disambiguates mechanism (iSDK or developer invoked) to retrieve payload from clicked link."
+          }
+        },
+        "iosVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iOS version, ie: 9.3.5. Consider adding \"build\"."
+          }
+        },
+        "appInstallationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "App installation epoch time (https://en.wikipedia.org/wiki/Unix_time). This is a client signal for a more accurate weak match."
+          }
+        },
+        "uniqueMatchLinkToCheck": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Possible unique matched link that server need to check before performing device heuristics match. If passed link is short server need to expand the link. If link is long server need to vslidate the link."
+          }
+        },
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google SDK version. Version takes the form \"$major.$minor.$patch\""
+          }
+        },
+        "device": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DeviceInfo",
+          "traits": {
+            "smithy.api#documentation": "Device information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for iSDK to execute strong match flow for post-install attribution. This is meant for iOS requests only. Requests from other platforms will not be honored."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionRequestVisualStyleEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_VISUAL_STYLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_VISUAL_STYLE"
+          }
+        },
+        "DEFAULT_STYLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT_STYLE"
+          }
+        },
+        "CUSTOM_STYLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_STYLE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionRequestRetrievalMethodEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_PAYLOAD_RETRIEVAL_METHOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_PAYLOAD_RETRIEVAL_METHOD"
+          }
+        },
+        "IMPLICIT_WEAK_MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPLICIT_WEAK_MATCH"
+          }
+        },
+        "EXPLICIT_WEAK_MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLICIT_WEAK_MATCH"
+          }
+        },
+        "EXPLICIT_STRONG_AFTER_WEAK_MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLICIT_STRONG_AFTER_WEAK_MATCH"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GooglePlayAnalytics": {
+      "type": "structure",
+      "members": {
+        "utmCampaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign name; used for keyword analysis to identify a specific product promotion or strategic campaign."
+          }
+        },
+        "gclid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated; FDL SDK does not process nor log it."
+          }
+        },
+        "utmTerm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign term; used with paid search to supply the keywords for ads."
+          }
+        },
+        "utmMedium": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign medium; used to identify a medium such as email or cost-per-click."
+          }
+        },
+        "utmSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign source; used to identify a search engine, newsletter, or other source."
+          }
+        },
+        "utmContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign content; used for A/B testing and content-targeted ads to differentiate ads or links that point to the same URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters for Google Play Campaign Measurements. [Learn more](https://developers.google.com/analytics/devguides/collection/android/v4/campaigns#campaign-params)"
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#SocialMetaTagInfo": {
+      "type": "structure",
+      "members": {
+        "socialDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the link. Optional."
+          }
+        },
+        "socialTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title to be displayed. Optional."
+          }
+        },
+        "socialImageLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An image url string. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters for social meta tag params. Used to set meta tag data for link previews on social sites."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#Suffix": {
+      "type": "structure",
+      "members": {
+        "option": {
+          "target": "com.gcp.firebasedynamiclinks_v1#SuffixOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Suffix option."
+          }
+        },
+        "customSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only applies to Option.CUSTOM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Short Dynamic Link suffix."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#SuffixOptionEnum": {
+      "type": "enum",
+      "members": {
+        "OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTION_UNSPECIFIED"
+          }
+        },
+        "UNGUESSABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNGUESSABLE"
+          }
+        },
+        "SHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHORT"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DeviceInfo": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device language code setting."
+          }
+        },
+        "screenResolutionWidth": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device display resolution width."
+          }
+        },
+        "languageCodeFromWebview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device language code setting obtained by executing JavaScript code in WebView."
+          }
+        },
+        "screenResolutionHeight": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device display resolution height."
+          }
+        },
+        "languageCodeRaw": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device language code raw setting. iOS does returns language code in different format than iOS WebView. For example WebView returns en_US, but iOS returns en-US. Field below will return raw value returned by iOS."
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device timezone setting."
+          }
+        },
+        "deviceModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device model name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Signals associated with the device making the request."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionResponse": {
+      "type": "structure",
+      "members": {
+        "requestedLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Entire FDL (short or long) attributed post-install via one of several techniques (device heuristics, copy unique)."
+          }
+        },
+        "invitationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invitation ID attributed post-install via one of several techniques (device heuristics, copy unique)."
+          }
+        },
+        "utmSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion source value to be propagated by iSDK to Scion at post-install."
+          }
+        },
+        "externalBrowserDestinationLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-agent specific custom-scheme URIs for iSDK to open. This will be set according to the user-agent tha the click was originally made in. There is no Safari-equivalent custom-scheme open URLs. ie: googlechrome://www.example.com ie: firefox://open-url?url=http://www.example.com ie: opera-http://example.com"
+          }
+        },
+        "resolvedLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entire FDL, expanded from a short link. It is the same as the requested_link, if it is long. Parameters from this should not be used directly (ie: server can default utm_[campaign|medium|source] to a value when requested_link lack them, server determine the best fallback_link when requested_link specifies >1 fallback links)."
+          }
+        },
+        "attributionConfidence": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionResponseAttributionConfidenceEnum",
+          "traits": {
+            "smithy.api#documentation": "The confidence of the returned attribution."
+          }
+        },
+        "appMinimumVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum version for app, specified by dev through ?imv= parameter. Return to iSDK to allow app to evaluate if current version meets this."
+          }
+        },
+        "utmMedium": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion medium value to be propagated by iSDK to Scion at post-install."
+          }
+        },
+        "matchMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes why match failed, ie: \"discarded due to low confidence\". This message will be publicly visible."
+          }
+        },
+        "isStrongMatchExecutable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Instruction for iSDK to attemmpt to perform strong match. For instance, if browser does not support/allow cookie or outside of support browsers, this will be false."
+          }
+        },
+        "utmContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion content value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "deepLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deep-link attributed post-install via one of several techniques (device heuristics, copy unique)."
+          }
+        },
+        "utmTerm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion term value to be propagated by iSDK to Scion at app-reopen."
+          }
+        },
+        "utmCampaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scion campaign value to be propagated by iSDK to Scion at post-install."
+          }
+        },
+        "fallbackLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to navigate to update the app if min version is not met. This is either (in order): 1) fallback link (from ?ifl= parameter, if specified by developer) or 2) AppStore URL (from ?isi= parameter, if specified), or 3) the payload link (from required link= parameter)."
+          }
+        },
+        "requestIpVersion": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionResponseRequestIpVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "Which IP version the request was made from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for iSDK to execute strong match flow for post-install attribution. Information of the resolved FDL link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionResponseAttributionConfidenceEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_ATTRIBUTION_CONFIDENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_ATTRIBUTION_CONFIDENCE"
+          }
+        },
+        "WEAK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEAK"
+          }
+        },
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT"
+          }
+        },
+        "UNIQUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNIQUE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionResponseRequestIpVersionEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_IP_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_IP_VERSION"
+          }
+        },
+        "IP_V4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IP_V4"
+          }
+        },
+        "IP_V6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IP_V6"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinkRequest": {
+      "type": "structure",
+      "members": {
+        "dynamicLinkInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the Dynamic Link to be shortened. [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link name to associate with the link. It's used for marketer to identify manually-created links in the Firebase console (https://console.firebase.google.com/). Links must be named to be tracked."
+          }
+        },
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google SDK version. Version takes the form \"$major.$minor.$patch\""
+          }
+        },
+        "longDynamicLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full long Dynamic Link URL with desired query parameters specified. For example, \"https://sample.app.goo.gl/?link=http://www.google.com&apn=com.sample\", [Learn more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener)."
+          }
+        },
+        "suffix": {
+          "target": "com.gcp.firebasedynamiclinks_v1#Suffix",
+          "traits": {
+            "smithy.api#documentation": "Short Dynamic Link suffix. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to create a managed Short Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinkResponse": {
+      "type": "structure",
+      "members": {
+        "managedShortLink": {
+          "target": "com.gcp.firebasedynamiclinks_v1#ManagedShortLink",
+          "traits": {
+            "smithy.api#documentation": "Short Dynamic Link value. e.g. https://abcd.app.goo.gl/wxyz"
+          }
+        },
+        "warning": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkWarningList",
+          "traits": {
+            "smithy.api#documentation": "Information about potential warnings on link creation."
+          }
+        },
+        "previewLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Preview link to show the link flow chart. (debug info.)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to create a short Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DynamicLinkInfo": {
+      "type": "structure",
+      "members": {
+        "desktopInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#DesktopInfo",
+          "traits": {
+            "smithy.api#documentation": "Desktop related information. See desktop related parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually)."
+          }
+        },
+        "socialMetaTagInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#SocialMetaTagInfo",
+          "traits": {
+            "smithy.api#documentation": "Parameters for social meta tag params. Used to set meta tag data for link previews on social sites."
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link your app will open, You can specify any URL your app can handle. This link must be a well-formatted URL, be properly URL-encoded, and use the HTTP or HTTPS scheme. See 'link' parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually). Required."
+          }
+        },
+        "navigationInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#NavigationInfo",
+          "traits": {
+            "smithy.api#documentation": "Information of navigation behavior of a Firebase Dynamic Links."
+          }
+        },
+        "domainUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps More examples can be found in description of getNormalizedUriPrefix in j/c/g/firebase/dynamiclinks/uri/DdlDomain.java Will fallback to dynamic_link_domain is this field is missing"
+          }
+        },
+        "androidInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#AndroidInfo",
+          "traits": {
+            "smithy.api#documentation": "Android related information. See Android related parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually)."
+          }
+        },
+        "analyticsInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#AnalyticsInfo",
+          "traits": {
+            "smithy.api#documentation": "Parameters used for tracking. See all tracking parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually)."
+          }
+        },
+        "dynamicLinkDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn more](https://firebase.google.com/docs/dynamic-links/android/receive) on how to set up Dynamic Link domain associated with your Firebase project. Required if missing domain_uri_prefix."
+          }
+        },
+        "iosInfo": {
+          "target": "com.gcp.firebasedynamiclinks_v1#IosInfo",
+          "traits": {
+            "smithy.api#documentation": "iOS related information. See iOS related parameters in the [documentation](https://firebase.google.com/docs/dynamic-links/create-manually)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#AndroidInfo": {
+      "type": "structure",
+      "members": {
+        "androidFallbackLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to open on Android if the app is not installed."
+          }
+        },
+        "androidPackageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Android package name of the app."
+          }
+        },
+        "androidLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, this overrides the ‘link’ parameter on Android."
+          }
+        },
+        "androidMinPackageVersionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum version code for the Android app. If the installed app’s version code is lower, then the user is taken to the Play Store."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Android related attributes to the Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#DesktopInfo": {
+      "type": "structure",
+      "members": {
+        "desktopFallbackLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to open on desktop."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Desktop related attributes to the Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetIosReopenAttributionRequest": {
+      "type": "structure",
+      "members": {
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google SDK version. Version takes the form \"$major.$minor.$patch\""
+          }
+        },
+        "requestedLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FDL link to be verified from an app universal link open. The FDL link can be one of: 1) short FDL. e.g. .page.link/, or 2) long FDL. e.g. .page.link/?{query params}, or 3) Invite FDL. e.g. .page.link/i/"
+          }
+        },
+        "bundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APP bundle ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for iSDK to get reopen attribution for app universal link open deeplinking. This endpoint is meant for only iOS requests."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#AnalyticsInfo": {
+      "type": "structure",
+      "members": {
+        "itunesConnectAnalytics": {
+          "target": "com.gcp.firebasedynamiclinks_v1#ITunesConnectAnalytics",
+          "traits": {
+            "smithy.api#documentation": "iTunes Connect App Analytics."
+          }
+        },
+        "googlePlayAnalytics": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GooglePlayAnalytics",
+          "traits": {
+            "smithy.api#documentation": "Google Play Campaign Measurements."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tracking parameters supported by Dynamic Link."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ReopenAttributionV1Request": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GetIosReopenAttributionRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#ReopenAttributionV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedynamiclinks_v1#ReopenAttributionV1Request"
+      },
+      "output": {
+        "target": "com.gcp.firebasedynamiclinks_v1#GetIosReopenAttributionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/reopenAttribution"
+        },
+        "smithy.api#documentation": "Get iOS reopen attribution for app universal link open deeplinking."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetLinkStatsV1Request": {
+      "type": "structure",
+      "members": {
+        "sdkVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google SDK version. Version takes the form \"$major.$minor.$patch\"",
+            "smithy.api#httpQuery": "sdkVersion"
+          }
+        },
+        "dynamicLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "durationDays": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The span of time requested in days.",
+            "smithy.api#httpQuery": "durationDays"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#GetLinkStatsV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedynamiclinks_v1#GetLinkStatsV1Request"
+      },
+      "output": {
+        "target": "com.gcp.firebasedynamiclinks_v1#DynamicLinkStats"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{dynamicLink}/linkStats"
+        },
+        "smithy.api#documentation": "Fetches analytics stats of a short Dynamic Link for a given duration. Metrics include number of clicks, redirects, installs, app first opens, and app reopens."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#InstallAttributionV1Request": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#InstallAttributionV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedynamiclinks_v1#InstallAttributionV1Request"
+      },
+      "output": {
+        "target": "com.gcp.firebasedynamiclinks_v1#GetIosPostInstallAttributionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/installAttribution"
+        },
+        "smithy.api#documentation": "Get iOS strong/weak-match info for post-install attribution."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateShortLinksRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.firebasedynamiclinks_v1#CreateShortDynamicLinkRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateShortLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedynamiclinks_v1#CreateShortLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasedynamiclinks_v1#CreateShortDynamicLinkResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/shortLinks"
+        },
+        "smithy.api#documentation": "Creates a short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. Repeated calls with the same long Dynamic Link or Dynamic Link information will produce the same short Dynamic Link. The Dynamic Link domain in the request must be owned by requester's Firebase project."
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinksRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinkRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasedynamiclinks_v1#CreateManagedShortLinkResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasedynamiclinks_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/managedShortLinks:create"
+        },
+        "smithy.api#documentation": "Creates a managed short Dynamic Link given either a valid long Dynamic Link or details such as Dynamic Link domain, Android and iOS app information. The created short Dynamic Link will not expire. This differs from CreateShortDynamicLink in the following ways: - The request will also contain a name for the link (non unique name for the front end). - The response must be authenticated with an auth token (generated with the admin service account). - The link will appear in the FDL list of links in the console front end. The Dynamic Link domain in the request must be owned by requester's Firebase project."
+      }
+    }
+  }
+}

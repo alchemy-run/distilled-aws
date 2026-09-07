@@ -1,0 +1,2694 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.persons#PersonsListRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#Property": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.persons#PropertyGroupOperator",
+          "traits": {
+            "smithy.api#documentation": "\n You can use a simplified version:\n```json\n{\n    \"properties\": [\n        {\n            \"key\": \"email\",\n            \"value\": \"x@y.com\",\n            \"operator\": \"exact\",\n            \"type\": \"event\"\n        }\n    ]\n}\n```\n\nOr you can create more complicated queries with AND and OR:\n```json\n{\n    \"properties\": {\n        \"type\": \"AND\",\n        \"values\": [\n            {\n                \"type\": \"OR\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            },\n            {\n                \"type\": \"AND\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            }\n        ]\n    ]\n}\n```\n\n\n* `AND` - AND\n* `OR` - OR"
+          }
+        },
+        "values": {
+          "target": "com.posthog.persons#PropertyValuesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyGroupOperator": {
+      "type": "enum",
+      "members": {
+        "AND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AND"
+          }
+        },
+        "OR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OR"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyItem": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key of the property you're filtering on. For example `email` or `$current_url`"
+          }
+        },
+        "value": {
+          "target": "com.posthog.persons#PropertyItemValue",
+          "traits": {
+            "smithy.api#documentation": "Value of your filter. For example `test@example.com` or `https://example.com/test/`. Can be an array for an OR query, like `[\"test@example.com\",\"ok@example.com\"]`"
+          }
+        },
+        "operator": {
+          "target": "com.posthog.persons#PropertyItemOperator",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.persons#PropertyItemType"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyItemValueCase3Item": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyItemValueCase3List": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.persons#PropertyItemValueCase3Item"
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyItemValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case3": {
+          "target": "com.posthog.persons#PropertyItemValueCase3List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Value of your filter. For example `test@example.com` or `https://example.com/test/`. Can be an array for an OR query, like `[\"test@example.com\",\"ok@example.com\"]`"
+      }
+    },
+    "com.posthog.persons#PropertyItemOperatorEnum": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "IS_NOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not"
+          }
+        },
+        "ICONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icontains"
+          }
+        },
+        "NOT_ICONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_icontains"
+          }
+        },
+        "REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regex"
+          }
+        },
+        "NOT_REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_regex"
+          }
+        },
+        "GT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gt"
+          }
+        },
+        "LT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lt"
+          }
+        },
+        "GTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gte"
+          }
+        },
+        "LTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lte"
+          }
+        },
+        "IS_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_set"
+          }
+        },
+        "IS_NOT_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not_set"
+          }
+        },
+        "IS_DATE_EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_date_exact"
+          }
+        },
+        "IS_DATE_AFTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_date_after"
+          }
+        },
+        "IS_DATE_BEFORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_date_before"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "NOT_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_in"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `exact` - exact\n* `is_not` - is_not\n* `icontains` - icontains\n* `not_icontains` - not_icontains\n* `regex` - regex\n* `not_regex` - not_regex\n* `gt` - gt\n* `lt` - lt\n* `gte` - gte\n* `lte` - lte\n* `is_set` - is_set\n* `is_not_set` - is_not_set\n* `is_date_exact` - is_date_exact\n* `is_date_after` - is_date_after\n* `is_date_before` - is_date_before\n* `in` - in\n* `not_in` - not_in"
+      }
+    },
+    "com.posthog.persons#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyItemOperator": {
+      "type": "union",
+      "members": {
+        "PropertyItemOperatorEnum": {
+          "target": "com.posthog.persons#PropertyItemOperatorEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.persons#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyFilterTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event"
+          }
+        },
+        "EVENT_METADATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event_metadata"
+          }
+        },
+        "FEATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature"
+          }
+        },
+        "PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "person"
+          }
+        },
+        "COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cohort"
+          }
+        },
+        "ELEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "element"
+          }
+        },
+        "STATIC_COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "static-cohort"
+          }
+        },
+        "DYNAMIC_COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dynamic-cohort"
+          }
+        },
+        "PRECALCULATED_COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "precalculated-cohort"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group"
+          }
+        },
+        "RECORDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording"
+          }
+        },
+        "LOG_ENTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log_entry"
+          }
+        },
+        "BEHAVIORAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "behavioral"
+          }
+        },
+        "SESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session"
+          }
+        },
+        "HOGQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hogql"
+          }
+        },
+        "DATA_WAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data_warehouse"
+          }
+        },
+        "DATA_WAREHOUSE_PERSON_PROPERTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data_warehouse_person_property"
+          }
+        },
+        "ERROR_TRACKING_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_tracking_issue"
+          }
+        },
+        "LOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log"
+          }
+        },
+        "LOG_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log_attribute"
+          }
+        },
+        "LOG_RESOURCE_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log_resource_attribute"
+          }
+        },
+        "SPAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "span"
+          }
+        },
+        "SPAN_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "span_attribute"
+          }
+        },
+        "SPAN_RESOURCE_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "span_resource_attribute"
+          }
+        },
+        "REVENUE_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "revenue_analytics"
+          }
+        },
+        "FLAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag"
+          }
+        },
+        "WORKFLOW_VARIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "workflow_variable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `event` - event\n* `event_metadata` - event_metadata\n* `feature` - feature\n* `person` - person\n* `cohort` - cohort\n* `element` - element\n* `static-cohort` - static-cohort\n* `dynamic-cohort` - dynamic-cohort\n* `precalculated-cohort` - precalculated-cohort\n* `group` - group\n* `recording` - recording\n* `log_entry` - log_entry\n* `behavioral` - behavioral\n* `session` - session\n* `hogql` - hogql\n* `data_warehouse` - data_warehouse\n* `data_warehouse_person_property` - data_warehouse_person_property\n* `error_tracking_issue` - error_tracking_issue\n* `log` - log\n* `log_attribute` - log_attribute\n* `log_resource_attribute` - log_resource_attribute\n* `span` - span\n* `span_attribute` - span_attribute\n* `span_resource_attribute` - span_resource_attribute\n* `revenue_analytics` - revenue_analytics\n* `flag` - flag\n* `workflow_variable` - workflow_variable"
+      }
+    },
+    "com.posthog.persons#PropertyItemType": {
+      "type": "union",
+      "members": {
+        "PropertyFilterTypeEnum": {
+          "target": "com.posthog.persons#PropertyFilterTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.persons#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PropertyValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.persons#PropertyItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsListRequestPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.persons#Property"
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "distinct_id",
+            "smithy.api#documentation": "Filter list by distinct id."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "email",
+            "smithy.api#documentation": "Filter persons by email (exact match)"
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsListRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "properties": {
+          "target": "com.posthog.persons#PersonsListRequestPropertiesList",
+          "traits": {
+            "smithy.api#httpQuery": "properties",
+            "smithy.api#documentation": "Filter Persons by person properties."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search persons, either by email (full text search) or distinct_id (exact match)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PaginatedPersonRecordList": {
+      "type": "structure",
+      "members": {
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "results": {
+          "target": "com.posthog.persons#PaginatedPersonRecordListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonRecord": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Numeric person ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name derived from person properties (email, name, or username)."
+          }
+        },
+        "distinct_ids": {
+          "target": "com.posthog.persons#PersonRecordDistinctIdsList"
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this person was first seen (ISO 8601)."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier (UUID) for this person."
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the last event from this person, or null.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonRecordDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PaginatedPersonRecordListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.persons#PersonRecord"
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PaginatedPersonRecordList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique value identifying this person. Accepts both numeric ID and UUID."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PersonRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsUpdateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique value identifying this person. Accepts both numeric ID and UUID."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsUpdateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PersonRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/persons/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Only for setting properties on the person. \"properties\" from the request data will be updated via a \"$set\" event.\nThis means that only the properties listed will be updated, but other properties won't be removed nor updated.\nIf you would like to remove a property use the `delete_property` endpoint."
+      }
+    },
+    "com.posthog.persons#PersonsPartialUpdateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique value identifying this person. Accepts both numeric ID and UUID."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsPartialUpdateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PersonRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/persons/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsActivityRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this person."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsActivityRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/{id}/activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsDeletePropertyCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsDeletePropertyCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique value identifying this person. Accepts both numeric ID and UUID."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsDeletePropertyCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "_unset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The property key to remove from this person.",
+            "smithy.api#jsonName": "$unset"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsDeletePropertyCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsDeletePropertyCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/{id}/delete_property/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this person."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsPropertiesTimelineRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/{id}/properties_timeline/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsSplitCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsSplitCreateRequestDistinctIdsToSplitList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`."
+      }
+    },
+    "com.posthog.persons#PersonsSplitCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique value identifying this person. Accepts both numeric ID and UUID."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsSplitCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "main_distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The distinct_id to **keep** on this person; every *other* distinct_id is moved to its own new single-id person. If omitted, the first distinct_id on the person is kept. The original person always retains its properties; to clear individual properties afterward, use the delete_property endpoint. To surgically *remove* one or more distinct_ids while leaving the merge intact, use `distinct_ids_to_split` instead — these parameters are inverses of each other and cannot be combined.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "distinct_ids_to_split": {
+          "target": "com.posthog.persons#PersonsSplitCreateRequestDistinctIdsToSplitList",
+          "traits": {
+            "smithy.api#documentation": "List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonSplitResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` when the split task was enqueued. The split itself runs asynchronously — a 201 response means the task was accepted, not that the merge state has already been updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsSplitCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsSplitCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PersonSplitResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/{id}/split/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Split distinct_ids off a merged person. Two mutually exclusive modes:\n\n- **`distinct_ids_to_split`** (recommended for surgical edits): moves only the listed distinct_ids off this person onto new single-id persons. The original person keeps every other distinct_id and its properties.\n- **`main_distinct_id`**: keeps only the specified distinct_id on this person; moves every *other* distinct_id off onto its own new person. If omitted, the first distinct_id is kept.\n\nThe original person always retains its properties. To clear individual properties afterward, use the `delete_property` endpoint.\n\nThe split runs asynchronously: a 201 response means the task was enqueued. Newly-created split-off persons get a deterministic UUID derived from `(team_id, distinct_id)`, so they can be located client-side without polling. If you need to delete a split-off person after this call, prefer looking it up by that deterministic UUID rather than by distinct_id, since the latter still resolves to the original merged person until the async task completes."
+      }
+    },
+    "com.posthog.persons#PersonsUpdatePropertyCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsUpdatePropertyCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique value identifying this person. Accepts both numeric ID and UUID."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsUpdatePropertyCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The property key to set."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The property value. Can be a string, number, boolean, or object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsUpdatePropertyCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsUpdatePropertyCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/{id}/update_property/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsAllActivityRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsAllActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsAllActivityRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsAllActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsAllActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsBatchByDistinctIdsCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsBatchByDistinctIdsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsBatchByDistinctIdsCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsBatchByDistinctIdsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsBatchByDistinctIdsCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/batch_by_distinct_ids/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsBatchByUuidsCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsBatchByUuidsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsBatchByUuidsCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsBatchByUuidsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsBatchByUuidsCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/batch_by_uuids/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsBulkDeleteCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsBulkDeleteCreateRequestIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of PostHog person UUIDs to delete (max 1000)."
+      }
+    },
+    "com.posthog.persons#PersonsBulkDeleteCreateRequestDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of distinct IDs whose associated persons will be deleted (max 1000)."
+      }
+    },
+    "com.posthog.persons#PersonsBulkDeleteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsBulkDeleteCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "ids": {
+          "target": "com.posthog.persons#PersonsBulkDeleteCreateRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of PostHog person UUIDs to delete (max 1000)."
+          }
+        },
+        "distinct_ids": {
+          "target": "com.posthog.persons#PersonsBulkDeleteCreateRequestDistinctIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of distinct IDs whose associated persons will be deleted (max 1000)."
+          }
+        },
+        "delete_events": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, queue deletion of all events associated with these persons."
+          }
+        },
+        "delete_recordings": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, queue deletion of all recordings associated with these persons."
+          }
+        },
+        "keep_person": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, keep the person records but delete their events and recordings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsBulkDeleteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsBulkDeleteCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/bulk_delete/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint allows you to bulk delete persons, either by the PostHog person IDs or by distinct IDs. You can pass in a maximum of 1000 IDs per call. Only events captured before the request will be deleted."
+      }
+    },
+    "com.posthog.persons#PersonsCohortsRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsCohortsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsCohortsRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "person_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "person_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The person ID or UUID to get cohorts for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsCohortsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsCohortsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/cohorts/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsDeletionStatusListRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsDeletionStatusListRequestStatus": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsDeletionStatusListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsDeletionStatusListRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "person_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "person_uuid",
+            "smithy.api#documentation": "Filter by a specific person UUID."
+          }
+        },
+        "status": {
+          "target": "com.posthog.persons#PersonsDeletionStatusListRequestStatus",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter by deletion status: 'pending', 'completed', or 'all'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PaginatedAsyncDeletionStatusList": {
+      "type": "structure",
+      "members": {
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "results": {
+          "target": "com.posthog.persons#PaginatedAsyncDeletionStatusListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#AsyncDeletionStatus": {
+      "type": "structure",
+      "members": {
+        "person_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UUID of the person whose events are queued for deletion."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the deletion was requested."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current status: 'pending' or 'completed'."
+          }
+        },
+        "delete_verified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the deletion was verified complete. Null if still pending.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PaginatedAsyncDeletionStatusListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.persons#AsyncDeletionStatus"
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsDeletionStatusList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsDeletionStatusListRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PaginatedAsyncDeletionStatusList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/deletion_status/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the status of queued event deletions for persons. When you delete a person with `delete_events=true`, an async deletion is queued. Use this endpoint to check whether those deletions are still pending or have been completed."
+      }
+    },
+    "com.posthog.persons#PersonsFunnelRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsFunnelRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsFunnelRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsFunnelRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsFunnelRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/funnel/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsFunnelCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsFunnelCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsFunnelCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsFunnelCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsFunnelCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/funnel/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsLifecycleRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsLifecycleRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsLifecycleRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsLifecycleRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsLifecycleRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/lifecycle/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "distinct_id",
+            "smithy.api#documentation": "The distinct_id of the person (mutually exclusive with person_id)"
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "include_set_once": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_set_once",
+            "smithy.api#documentation": "Whether to handle $set_once operations (default: false)"
+          }
+        },
+        "person_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "person_id",
+            "smithy.api#documentation": "The person_id (UUID) to build properties for (mutually exclusive with distinct_id)"
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timestamp",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ISO datetime string for the point in time (e.g., '2023-06-15T14:30:00Z')"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonPropertiesAtTimeResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The person ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's display name"
+          }
+        },
+        "distinct_ids": {
+          "target": "com.posthog.persons#PersonPropertiesAtTimeResponseDistinctIdsList",
+          "traits": {
+            "smithy.api#documentation": "All distinct IDs associated with this person"
+          }
+        },
+        "properties": {
+          "target": "com.posthog.persons#PersonPropertiesAtTimeResponsePropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "Person properties as they existed at the specified time"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the person was first created"
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person's UUID"
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the person was last seen",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "point_in_time_metadata": {
+          "target": "com.posthog.persons#PersonPropertiesAtTimeMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the point-in-time query"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer for the point-in-time person properties response."
+      }
+    },
+    "com.posthog.persons#PersonPropertiesAtTimeResponseDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "All distinct IDs associated with this person"
+      }
+    },
+    "com.posthog.persons#PersonPropertiesAtTimeResponsePropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Person properties as they existed at the specified time"
+      }
+    },
+    "com.posthog.persons#PersonPropertiesAtTimeMetadata": {
+      "type": "structure",
+      "members": {
+        "queried_timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp that was queried in ISO format"
+          }
+        },
+        "include_set_once": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether $set_once operations were included"
+          }
+        },
+        "distinct_id_used": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The distinct_id parameter used in the request",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "person_id_used": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person_id parameter used in the request",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query_mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether the query used 'distinct_id' or 'person_id' mode"
+          }
+        },
+        "distinct_ids_queried": {
+          "target": "com.posthog.persons#PersonPropertiesAtTimeMetadataDistinctIdsQueriedList",
+          "traits": {
+            "smithy.api#documentation": "All distinct_ids that were queried for this person"
+          }
+        },
+        "distinct_ids_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of distinct_ids associated with this person"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer for the point-in-time query metadata."
+      }
+    },
+    "com.posthog.persons#PersonPropertiesAtTimeMetadataDistinctIdsQueriedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "All distinct_ids that were queried for this person"
+      }
+    },
+    "com.posthog.persons#PersonsPropertiesAtTimeRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.persons#PersonPropertiesAtTimeResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/properties_at_time/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get person properties as they existed at a specific point in time.\n\nThis endpoint reconstructs person properties by querying ClickHouse events\nfor $set and $set_once operations up to the specified timestamp.\n\nQuery parameters:\n- distinct_id: The distinct_id of the person\n- timestamp: ISO datetime string for the point in time (e.g., \"2023-06-15T14:30:00Z\")\n- include_set_once: Whether to handle $set_once operations (default: false)"
+      }
+    },
+    "com.posthog.persons#PersonsResetPersonDistinctIdCreateRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsResetPersonDistinctIdCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreateRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Key-value map of person properties set via $set and $set_once operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsResetPersonDistinctIdCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/persons/reset_person_distinct_id/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reset a distinct_id for a deleted person. This allows the distinct_id to be used again."
+      }
+    },
+    "com.posthog.persons#PersonsTrendsRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsTrendsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsTrendsRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsTrendsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsTrendsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/trends/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#PersonsValuesRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.persons#PersonsValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.persons#PersonsValuesRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "key",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The person property key to get values for (e.g., 'email', 'plan', 'role')."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "value",
+            "smithy.api#documentation": "Optional search string to filter values (case-insensitive substring match)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.persons#PersonsValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.persons#PersonsValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.persons#BadRequest"
+        },
+        {
+          "target": "com.posthog.persons#Forbidden"
+        },
+        {
+          "target": "com.posthog.persons#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/persons/values/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
+      }
+    },
+    "com.posthog.persons#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.persons#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.persons#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.persons#Persons": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.persons#PersonsList"
+        },
+        {
+          "target": "com.posthog.persons#PersonsRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsUpdate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsDeletePropertyCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsPropertiesTimelineRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsSplitCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsUpdatePropertyCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsAllActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsBatchByDistinctIdsCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsBatchByUuidsCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsBulkDeleteCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsCohortsRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsDeletionStatusList"
+        },
+        {
+          "target": "com.posthog.persons#PersonsFunnelRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsFunnelCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsLifecycleRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsPropertiesAtTimeRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreate"
+        },
+        {
+          "target": "com.posthog.persons#PersonsTrendsRetrieve"
+        },
+        {
+          "target": "com.posthog.persons#PersonsValuesRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

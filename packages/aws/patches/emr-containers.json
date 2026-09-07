@@ -1,0 +1,54 @@
+{
+  "errorCategories": {
+    "TooManyRequestsException": ["ThrottlingError", "RetryableError"]
+  },
+  "operations": {
+    "cancelJobRun": { "errors": ["TooManyRequestsException"] },
+    "createJobTemplate": { "errors": ["TooManyRequestsException"] },
+    "createManagedEndpoint": { "errors": ["TooManyRequestsException"] },
+    "createSecurityConfiguration": { "errors": ["TooManyRequestsException"] },
+    "createVirtualCluster": { "errors": ["TooManyRequestsException"] },
+    "deleteJobTemplate": { "errors": ["TooManyRequestsException"] },
+    "deleteManagedEndpoint": { "errors": ["TooManyRequestsException"] },
+    "deleteVirtualCluster": { "errors": ["TooManyRequestsException"] },
+    "describeJobRun": { "errors": ["TooManyRequestsException"] },
+    "describeJobTemplate": { "errors": ["TooManyRequestsException"] },
+    "describeManagedEndpoint": { "errors": ["TooManyRequestsException"] },
+    "describeSecurityConfiguration": { "errors": ["TooManyRequestsException"] },
+    "describeVirtualCluster": { "errors": ["TooManyRequestsException"] },
+    "getManagedEndpointSessionCredentials": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listJobRuns": { "errors": ["TooManyRequestsException"] },
+    "listJobTemplates": { "errors": ["TooManyRequestsException"] },
+    "listManagedEndpoints": { "errors": ["TooManyRequestsException"] },
+    "listSecurityConfigurations": { "errors": ["TooManyRequestsException"] },
+    "listTagsForResource": { "errors": ["TooManyRequestsException"] },
+    "listVirtualClusters": { "errors": ["TooManyRequestsException"] },
+    "startJobRun": { "errors": ["TooManyRequestsException"] },
+    "tagResource": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "InvalidResourceArn",
+          "from": "BadRequestException",
+          "message": {
+            "includes": "Invalid input resource arn"
+          }
+        }
+      ]
+    },
+    "untagResource": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "InvalidResourceArn",
+          "from": "BadRequestException",
+          "message": {
+            "includes": "Invalid input resource arn"
+          }
+        }
+      ]
+    }
+  }
+}

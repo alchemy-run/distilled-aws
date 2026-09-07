@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#CacheReserveClear with distilled cloudflare/cache clearCacheReserve",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveClear",
+      "path": "/shapes/com.cloudflare.cache#ClearCacheReserve"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveClearRequest",
+      "path": "/shapes/com.cloudflare.cache#ClearCacheReserveRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#ClearCacheReserve/input/target",
+      "value": "com.cloudflare.cache#ClearCacheReserveRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveClearResponse",
+      "path": "/shapes/com.cloudflare.cache#ClearCacheReserveResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#ClearCacheReserve/output/target",
+      "value": "com.cloudflare.cache#ClearCacheReserveResponse"
+    }
+  ]
+}

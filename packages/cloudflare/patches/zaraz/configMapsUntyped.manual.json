@@ -1,0 +1,108 @@
+{
+  "description": "zaraz config tools/triggers/variables are freeform id-keyed maps (v0 parity: Record<string, unknown>) — the docs' per-component tool schemas don't model user tool configs on the wire",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zaraz#UntypedConfigMap",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfigResponse/members/tools/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfigResponse/members/triggers/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfigResponse/members/variables/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigRequest/members/tools/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigRequest/members/triggers/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigRequest/members/variables/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigResponse/members/tools/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigResponse/members/triggers/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutConfigResponse/members/variables/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetDefaultResponse/members/tools/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetDefaultResponse/members/triggers/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetDefaultResponse/members/variables/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistoryResponse/members/tools/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistoryResponse/members/triggers/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistoryResponse/members/variables/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#HistoryConfigsGetResultValueConfig/members/tools/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#HistoryConfigsGetResultValueConfig/members/triggers/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#HistoryConfigsGetResultValueConfig/members/variables/target",
+      "value": "com.cloudflare.zaraz#UntypedConfigMap"
+    }
+  ]
+}

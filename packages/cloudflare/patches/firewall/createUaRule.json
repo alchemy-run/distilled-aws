@@ -1,0 +1,42 @@
+{
+  "description": "Align firewall#UaRulesCreate with distilled cloudflare/firewall createUaRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesCreate",
+      "path": "/shapes/com.cloudflare.firewall#CreateUaRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesCreateRequest",
+      "path": "/shapes/com.cloudflare.firewall#CreateUaRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#CreateUaRule/input/target",
+      "value": "com.cloudflare.firewall#CreateUaRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesCreateResponse",
+      "path": "/shapes/com.cloudflare.firewall#CreateUaRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#CreateUaRule/output/target",
+      "value": "com.cloudflare.firewall#CreateUaRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#CreateUaRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#DuplicateUaRule"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

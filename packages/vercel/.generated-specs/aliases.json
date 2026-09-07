@@ -1,0 +1,2346 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.aliases#ListDeploymentAliasesRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the deployment the aliases should be listed for"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0Scope": {
+      "type": "enum",
+      "members": {
+        "SHAREABLE_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shareable-link"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Access": {
+      "type": "enum",
+      "members": {
+        "GRANTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "granted"
+          }
+        },
+        "REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requested"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Scope": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "access": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Access",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2Scope": {
+      "type": "enum",
+      "members": {
+        "ALIAS_PROTECTION_OVERRIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alias-protection-override"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3Scope": {
+      "type": "enum",
+      "members": {
+        "EMAIL_INVITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email_invite"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItem": {
+      "type": "structure",
+      "members": {
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alias name, it could be a `.vercel.app` subdomain or a custom domain",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was created",
+            "smithy.api#required": {}
+          }
+        },
+        "redirect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target destination domain for redirect when the alias is a redirect",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "protectionBypass": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItemProtectionBypassMap",
+          "traits": {
+            "smithy.api#documentation": "The protection bypass for the alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the aliases assigned to the deployment"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponseAliasesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the aliases assigned to the deployment"
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliasesResponse": {
+      "type": "structure",
+      "members": {
+        "aliases": {
+          "target": "com.vercel.aliases#ListDeploymentAliasesResponseAliasesList",
+          "traits": {
+            "smithy.api#documentation": "A list of the aliases assigned to the deployment",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.aliases#ListDeploymentAliases": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.aliases#ListDeploymentAliasesRequest"
+      },
+      "output": {
+        "target": "com.vercel.aliases#ListDeploymentAliasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.aliases#BadRequest"
+        },
+        {
+          "target": "com.vercel.aliases#Forbidden"
+        },
+        {
+          "target": "com.vercel.aliases#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/deployments/{id}/aliases",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Deployment Aliases\n\nRetrieves all Aliases for the Deployment with the given ID. The authenticated user or team must own the deployment."
+      }
+    },
+    "com.vercel.aliases#AssignAliasRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The deployment or alias ID or URL to assign from"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alias we want to assign to the deployment defined in the URL"
+          }
+        },
+        "redirect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The redirect property will take precedence over the deployment id from the URL and consists of a hostname (like test.com) to which the alias should redirect using status code 307",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.aliases#AssignAliasResponse": {
+      "type": "structure",
+      "members": {
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The assigned alias name",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was created",
+            "smithy.api#required": {}
+          }
+        },
+        "oldDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the previously aliased deployment, only received when the alias was used before",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.aliases#AssignAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.aliases#AssignAliasRequest"
+      },
+      "output": {
+        "target": "com.vercel.aliases#AssignAliasResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.aliases#BadRequest"
+        },
+        {
+          "target": "com.vercel.aliases#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.aliases#Forbidden"
+        },
+        {
+          "target": "com.vercel.aliases#NotFound"
+        },
+        {
+          "target": "com.vercel.aliases#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/deployments/{id}/aliases",
+          "code": 200
+        },
+        "smithy.api#documentation": "Assign an Alias\n\nCreates a new alias for the deployment resolved from the given deployment or alias ID or URL. The authenticated user or team must own this deployment. If the desired alias is already assigned to another deployment, then it will be removed from the old deployment and assigned to the new one."
+      }
+    },
+    "com.vercel.aliases#ListAliasesRequestDomainCase0List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesRequestDomain": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#ListAliasesRequestDomainCase0List"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Get only aliases of the given domain name"
+      }
+    },
+    "com.vercel.aliases#ListAliasesRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "com.vercel.aliases#ListAliasesRequestDomain",
+          "traits": {
+            "smithy.api#httpQuery": "domain",
+            "smithy.api#documentation": "Get only aliases of the given domain name"
+          }
+        },
+        "from": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#documentation": "Get only aliases created after the provided timestamp"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of aliases to list from a request"
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#documentation": "Filter aliases from the given `projectId`"
+          }
+        },
+        "since": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Get aliases created after this JavaScript timestamp"
+          }
+        },
+        "until": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "until",
+            "smithy.api#documentation": "Get aliases created before this JavaScript timestamp"
+          }
+        },
+        "rollbackDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "rollbackDeploymentId",
+            "smithy.api#documentation": "Get aliases that would be rolled back for the given deployment"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemCreator": {
+      "type": "structure",
+      "members": {
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who created the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the user who created the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the user who created the alias",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information of the user who created the alias"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemDeployment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment unique identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment unique URL",
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment metadata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A map with the deployment ID, URL and metadata"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemRedirectStatusCode": {
+      "type": "intEnum",
+      "members": {
+        "_301": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 301
+          }
+        },
+        "_302": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 302
+          }
+        },
+        "_307": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 307
+          }
+        },
+        "_308": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 308
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status code to be used on redirect"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase0Scope": {
+      "type": "enum",
+      "members": {
+        "SHAREABLE_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shareable-link"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase0": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase0Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase1Access": {
+      "type": "enum",
+      "members": {
+        "GRANTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "granted"
+          }
+        },
+        "REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requested"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase1Scope": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase1": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "access": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase1Access",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase1Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase2Scope": {
+      "type": "enum",
+      "members": {
+        "ALIAS_PROTECTION_OVERRIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alias-protection-override"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase2": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase2Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase3Scope": {
+      "type": "enum",
+      "members": {
+        "EMAIL_INVITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email_invite"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase3": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase3Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValueCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsDefaultApp": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase0Item": {
+      "type": "structure",
+      "members": {
+        "fallbackHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is always set. In production it is used as a pointer to each apps production deployment. For pre-production, it's used as the fallback if there is no deployment for the branch.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the microfrontends application.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase0Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase1Item": {
+      "type": "structure",
+      "members": {
+        "fallbackHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is always set. For branch aliases, it's used as the fallback if there is no deployment for the branch.",
+            "smithy.api#required": {}
+          }
+        },
+        "branchAlias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Could point to a branch without a deployment if the project was never deployed. The proxy will fallback to the fallbackHost if there is no deployment.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the microfrontends application.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase1Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase2Item": {
+      "type": "structure",
+      "members": {
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the deployment for the same commit, it could be a cancelled deployment. The proxy will fallback to the branchDeploymentId and then the fallbackDeploymentId."
+          }
+        },
+        "branchDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the latest non-cancelled deployment of the branch alias at the time the commit alias was created. It is possible there is no deployment for the branch, or this was set before the deployment was canceled, in which case this will point to a cancelled deployment, in either case the proxy will fallback to the fallbackDeploymentId."
+          }
+        },
+        "fallbackDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the deployment of the fallback host at the time the commit alias was created. It is possible for this to be a deleted deployment, in which case the proxy will show that the deployment is deleted. It will not use the fallbackHost, as a future deployment on the fallback host could be invalid for this deployment, and it could lead to confusion / incorrect behavior for the commit alias."
+          }
+        },
+        "fallbackHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary for backwards compatibility. Can remove when metadata change is released"
+          }
+        },
+        "branchAlias": {
+          "target": "smithy.api#String"
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the microfrontends application.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase2List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase2Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplications": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase0List"
+        },
+        "Case1": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase1List"
+        },
+        "Case2": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase2List"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontends": {
+      "type": "structure",
+      "members": {
+        "defaultApp": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsDefaultApp",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "applications": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontendsApplications",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The microfrontends for the alias including the routing configuration"
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesItem": {
+      "type": "structure",
+      "members": {
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alias name, it could be a `.vercel.app` subdomain or a custom domain",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was created in milliseconds since the UNIX epoch"
+          }
+        },
+        "creator": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemCreator",
+          "traits": {
+            "smithy.api#documentation": "Information of the user who created the alias"
+          }
+        },
+        "deletedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was deleted in milliseconds since the UNIX epoch",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deployment": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemDeployment",
+          "traits": {
+            "smithy.api#documentation": "A map with the deployment ID, URL and metadata"
+          }
+        },
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment ID",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the project",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "redirect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target destination domain for redirect when the alias is a redirect",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "redirectStatusCode": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemRedirectStatusCode",
+          "traits": {
+            "smithy.api#documentation": "Status code to be used on redirect",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was updated in milliseconds since the UNIX epoch"
+          }
+        },
+        "protectionBypass": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemProtectionBypassMap",
+          "traits": {
+            "smithy.api#documentation": "The protection bypass for the alias"
+          }
+        },
+        "microfrontends": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesItemMicrofrontends",
+          "traits": {
+            "smithy.api#documentation": "The microfrontends for the alias including the routing configuration"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#ListAliasesResponseAliasesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#ListAliasesResponseAliasesItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#Pagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Amount of items in the current page.",
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp that must be used to request the next page.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prev": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp that must be used to request the previous page.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object contains information related to the pagination of the current request, including the necessary parameters to get the next or previous page of data."
+      }
+    },
+    "com.vercel.aliases#ListAliasesResponse": {
+      "type": "structure",
+      "members": {
+        "aliases": {
+          "target": "com.vercel.aliases#ListAliasesResponseAliasesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.aliases#Pagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.aliases#ListAliases": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.aliases#ListAliasesRequest"
+      },
+      "output": {
+        "target": "com.vercel.aliases#ListAliasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.aliases#BadRequest"
+        },
+        {
+          "target": "com.vercel.aliases#Forbidden"
+        },
+        {
+          "target": "com.vercel.aliases#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v4/aliases",
+          "code": 200
+        },
+        "smithy.api#documentation": "List aliases\n\nRetrieves a list of aliases for the authenticated User or Team. When `domain` is provided, only aliases for that domain will be returned. When `projectId` is provided, it will only return the given project aliases."
+      }
+    },
+    "com.vercel.aliases#GetAliasRequest": {
+      "type": "structure",
+      "members": {
+        "idOrAlias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The alias or alias ID to be retrieved"
+          }
+        },
+        "from": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#documentation": "Get the alias only if it was created after the provided timestamp"
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#documentation": "Get the alias only if it is assigned to the provided project ID"
+          }
+        },
+        "since": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Get the alias only if it was created after this JavaScript timestamp"
+          }
+        },
+        "until": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "until",
+            "smithy.api#documentation": "Get the alias only if it was created before this JavaScript timestamp"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseCreator": {
+      "type": "structure",
+      "members": {
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who created the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the user who created the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the user who created the alias",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information of the user who created the alias"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseDeployment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment unique identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment unique URL",
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment metadata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A map with the deployment ID, URL and metadata"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseRedirectStatusCode": {
+      "type": "intEnum",
+      "members": {
+        "_301": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 301
+          }
+        },
+        "_302": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 302
+          }
+        },
+        "_307": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 307
+          }
+        },
+        "_308": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 308
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status code to be used on redirect"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase0Scope": {
+      "type": "enum",
+      "members": {
+        "SHAREABLE_LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shareable-link"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase0": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase0Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase1Access": {
+      "type": "enum",
+      "members": {
+        "GRANTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "granted"
+          }
+        },
+        "REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requested"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase1Scope": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase1": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "access": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase1Access",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase1Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase2Scope": {
+      "type": "enum",
+      "members": {
+        "ALIAS_PROTECTION_OVERRIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alias-protection-override"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase2": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase2Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase3Scope": {
+      "type": "enum",
+      "members": {
+        "EMAIL_INVITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email_invite"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase3": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastUpdatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase3Scope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValueCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseProtectionBypassMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.aliases#GetAliasResponseProtectionBypassValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The protection bypass for the alias"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsDefaultApp": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase0Item": {
+      "type": "structure",
+      "members": {
+        "fallbackHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is always set. In production it is used as a pointer to each apps production deployment. For pre-production, it's used as the fallback if there is no deployment for the branch.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the microfrontends application.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase0Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase1Item": {
+      "type": "structure",
+      "members": {
+        "fallbackHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is always set. For branch aliases, it's used as the fallback if there is no deployment for the branch.",
+            "smithy.api#required": {}
+          }
+        },
+        "branchAlias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Could point to a branch without a deployment if the project was never deployed. The proxy will fallback to the fallbackHost if there is no deployment.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the microfrontends application.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase1Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase2Item": {
+      "type": "structure",
+      "members": {
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the deployment for the same commit, it could be a cancelled deployment. The proxy will fallback to the branchDeploymentId and then the fallbackDeploymentId."
+          }
+        },
+        "branchDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the latest non-cancelled deployment of the branch alias at the time the commit alias was created. It is possible there is no deployment for the branch, or this was set before the deployment was canceled, in which case this will point to a cancelled deployment, in either case the proxy will fallback to the fallbackDeploymentId."
+          }
+        },
+        "fallbackDeploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the deployment of the fallback host at the time the commit alias was created. It is possible for this to be a deleted deployment, in which case the proxy will show that the deployment is deleted. It will not use the fallbackHost, as a future deployment on the fallback host could be invalid for this deployment, and it could lead to confusion / incorrect behavior for the commit alias."
+          }
+        },
+        "fallbackHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary for backwards compatibility. Can remove when metadata change is released"
+          }
+        },
+        "branchAlias": {
+          "target": "smithy.api#String"
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the microfrontends application.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase2List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase2Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the deployment routing information for each project."
+      }
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontendsApplications": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase0List"
+        },
+        "Case1": {
+          "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase1List"
+        },
+        "Case2": {
+          "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplicationsCase2List"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#GetAliasResponseMicrofrontends": {
+      "type": "structure",
+      "members": {
+        "defaultApp": {
+          "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsDefaultApp",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "applications": {
+          "target": "com.vercel.aliases#GetAliasResponseMicrofrontendsApplications",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The microfrontends for the alias including the routing configuration"
+      }
+    },
+    "com.vercel.aliases#GetAliasResponse": {
+      "type": "structure",
+      "members": {
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alias name, it could be a `.vercel.app` subdomain or a custom domain",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was created",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was created in milliseconds since the UNIX epoch",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creator": {
+          "target": "com.vercel.aliases#GetAliasResponseCreator",
+          "traits": {
+            "smithy.api#documentation": "Information of the user who created the alias"
+          }
+        },
+        "deletedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was deleted in milliseconds since the UNIX epoch",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deployment": {
+          "target": "com.vercel.aliases#GetAliasResponseDeployment",
+          "traits": {
+            "smithy.api#documentation": "A map with the deployment ID, URL and metadata"
+          }
+        },
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment ID",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the project",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "redirect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target destination domain for redirect when the alias is a redirect",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "redirectStatusCode": {
+          "target": "com.vercel.aliases#GetAliasResponseRedirectStatusCode",
+          "traits": {
+            "smithy.api#documentation": "Status code to be used on redirect",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the alias",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The date when the alias was updated in milliseconds since the UNIX epoch",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "protectionBypass": {
+          "target": "com.vercel.aliases#GetAliasResponseProtectionBypassMap",
+          "traits": {
+            "smithy.api#documentation": "The protection bypass for the alias"
+          }
+        },
+        "microfrontends": {
+          "target": "com.vercel.aliases#GetAliasResponseMicrofrontends",
+          "traits": {
+            "smithy.api#documentation": "The microfrontends for the alias including the routing configuration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.aliases#GetAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.aliases#GetAliasRequest"
+      },
+      "output": {
+        "target": "com.vercel.aliases#GetAliasResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.aliases#BadRequest"
+        },
+        {
+          "target": "com.vercel.aliases#Forbidden"
+        },
+        {
+          "target": "com.vercel.aliases#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v4/aliases/{idOrAlias}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an Alias\n\nRetrieves an Alias for the given host name or alias ID."
+      }
+    },
+    "com.vercel.aliases#DeleteAliasRequest": {
+      "type": "structure",
+      "members": {
+        "aliasId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or alias that will be removed"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.aliases#DeleteAliasResponseStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#DeleteAliasResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.vercel.aliases#DeleteAliasResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.aliases#DeleteAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.aliases#DeleteAliasRequest"
+      },
+      "output": {
+        "target": "com.vercel.aliases#DeleteAliasResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.aliases#BadRequest"
+        },
+        {
+          "target": "com.vercel.aliases#Forbidden"
+        },
+        {
+          "target": "com.vercel.aliases#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/aliases/{aliasId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an Alias\n\nDelete an Alias with the specified ID."
+      }
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase0Revoke": {
+      "type": "structure",
+      "members": {
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sharebale link to revoked",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "regenerate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not a new shareable link should be created after the provided secret is revoked",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional instructions for revoking and regenerating a shareable link"
+      }
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase0": {
+      "type": "structure",
+      "members": {
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional time the shareable link is valid for in seconds. If not provided, the shareable link will never expire."
+          }
+        },
+        "revoke": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase0Revoke",
+          "traits": {
+            "smithy.api#documentation": "Optional instructions for revoking and regenerating a shareable link"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase1ScopeAccess": {
+      "type": "enum",
+      "members": {
+        "DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "denied"
+          }
+        },
+        "GRANTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "granted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Invitation status for the user scoped bypass."
+      }
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase1Scope": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specified user id for the scoped bypass."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specified email for the scoped bypass."
+          }
+        },
+        "access": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase1ScopeAccess",
+          "traits": {
+            "smithy.api#documentation": "Invitation status for the user scoped bypass.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Instructions for creating a user scoped protection bypass"
+      }
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase1": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase1Scope",
+          "traits": {
+            "smithy.api#documentation": "Instructions for creating a user scoped protection bypass",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2OverrideScope": {
+      "type": "enum",
+      "members": {
+        "ALIAS_PROTECTION_OVERRIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alias-protection-override"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2OverrideAction": {
+      "type": "enum",
+      "members": {
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "create"
+          }
+        },
+        "REVOKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "revoke"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2Override": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2OverrideScope",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2OverrideAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2": {
+      "type": "structure",
+      "members": {
+        "override": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2Override",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequestBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBodyCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The alias or deployment ID"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "body": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypassResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypassResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.aliases#PatchUrlProtectionBypass": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.aliases#PatchUrlProtectionBypassRequest"
+      },
+      "output": {
+        "target": "com.vercel.aliases#PatchUrlProtectionBypassResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.aliases#BadRequest"
+        },
+        {
+          "target": "com.vercel.aliases#Forbidden"
+        },
+        {
+          "target": "com.vercel.aliases#NotFound"
+        },
+        {
+          "target": "com.vercel.aliases#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/aliases/{id}/protection-bypass",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the protection bypass for a URL\n\nUpdate the protection bypass for the alias or deployment URL (used for user access & comment access for deployments). Used as shareable links and user scoped access for Vercel Authentication and also to allow external (logged in) people to comment on previews for Preview Comments (next-live-mode)."
+      }
+    },
+    "com.vercel.aliases#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.aliases#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.aliases#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.aliases#PaymentRequired": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 402,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 402
+          }
+        ]
+      }
+    },
+    "com.vercel.aliases#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.aliases#Aliases": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.aliases#ListDeploymentAliases"
+        },
+        {
+          "target": "com.vercel.aliases#AssignAlias"
+        },
+        {
+          "target": "com.vercel.aliases#ListAliases"
+        },
+        {
+          "target": "com.vercel.aliases#GetAlias"
+        },
+        {
+          "target": "com.vercel.aliases#DeleteAlias"
+        },
+        {
+          "target": "com.vercel.aliases#PatchUrlProtectionBypass"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

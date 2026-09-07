@@ -1,0 +1,20 @@
+{
+  "description": "Align zero_trust#AccessInfrastructureTargetsBulkDeleteV2 with distilled cloudflare/zero-trust bulkDeleteV2AccessInfrastructureTargets",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsBulkDeleteV2",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkDeleteV2AccessInfrastructureTargets"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsBulkDeleteV2Request",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkDeleteV2AccessInfrastructureTargetsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkDeleteV2AccessInfrastructureTargets/input/target",
+      "value": "com.cloudflare.zero_trust#BulkDeleteV2AccessInfrastructureTargetsRequest"
+    }
+  ]
+}

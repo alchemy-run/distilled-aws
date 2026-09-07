@@ -1,0 +1,45 @@
+{
+  "description": "Align connectivity#DirectoryServicesCreate with distilled cloudflare/connectivity createDirectoryService",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesCreate",
+      "path": "/shapes/com.cloudflare.connectivity#CreateDirectoryService"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesCreateRequest",
+      "path": "/shapes/com.cloudflare.connectivity#CreateDirectoryServiceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#CreateDirectoryService/input/target",
+      "value": "com.cloudflare.connectivity#CreateDirectoryServiceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesCreateResponse",
+      "path": "/shapes/com.cloudflare.connectivity#CreateDirectoryServiceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#CreateDirectoryService/output/target",
+      "value": "com.cloudflare.connectivity#CreateDirectoryServiceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#CreateDirectoryService/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.connectivity#VpcServiceNameAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.connectivity#VpcTunnelNotFound"
+        },
+        {
+          "target": "com.cloudflare.connectivity#Forbidden"
+        }
+      ]
+    }
+  ]
+}

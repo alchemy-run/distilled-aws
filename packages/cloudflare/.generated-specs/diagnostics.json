@@ -1,0 +1,847 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.diagnostics#EndpointHealthchecksCreateRequestCheckType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "check_type": {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksCreateRequestCheckType",
+          "traits": {
+            "smithy.api#documentation": "type of check to perform",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the IP address of the host to perform checks against",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name associated with this check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksCreateResponseCheckType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksCreateResponse": {
+      "type": "structure",
+      "members": {
+        "check_type": {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksCreateResponseCheckType",
+          "traits": {
+            "smithy.api#documentation": "type of check to perform",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the IP address of the host to perform checks against",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name associated with this check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/diagnostics/endpoint-healthchecks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create Endpoint Health Check."
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/diagnostics/endpoint-healthchecks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Endpoint Health Check.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksGetResponseCheckType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksGetResponse": {
+      "type": "structure",
+      "members": {
+        "check_type": {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksGetResponseCheckType",
+          "traits": {
+            "smithy.api#documentation": "type of check to perform",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the IP address of the host to perform checks against",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name associated with this check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/diagnostics/endpoint-healthchecks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a single Endpoint Health Check.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksListResponseCheckType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksListResponse": {
+      "type": "structure",
+      "members": {
+        "check_type": {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksListResponseCheckType",
+          "traits": {
+            "smithy.api#documentation": "type of check to perform",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the IP address of the host to perform checks against",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name associated with this check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/diagnostics/endpoint-healthchecks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Endpoint Health Checks.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksUpdateRequestCheckType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "check_type": {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksUpdateRequestCheckType",
+          "traits": {
+            "smithy.api#documentation": "type of check to perform",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the IP address of the host to perform checks against",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name associated with this check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksUpdateResponseCheckType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "check_type": {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksUpdateResponseCheckType",
+          "traits": {
+            "smithy.api#documentation": "type of check to perform",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the IP address of the host to perform checks against",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name associated with this check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.diagnostics#EndpointHealthchecksUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.diagnostics#EndpointHealthchecksUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/diagnostics/endpoint-healthchecks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Endpoint Health Check.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateRequestTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateRequestColosList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateRequestOptionsPacketType": {
+      "type": "enum",
+      "members": {
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        },
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "udp"
+          }
+        },
+        "GRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre"
+          }
+        },
+        "GRE_ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre+icmp"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateRequestOptions": {
+      "type": "structure",
+      "members": {
+        "max_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Max TTL."
+          }
+        },
+        "packet_type": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateRequestOptionsPacketType",
+          "traits": {
+            "smithy.api#documentation": "Type of packet sent."
+          }
+        },
+        "packets_per_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of packets sent at each TTL."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "For UDP and TCP, specifies the destination port. For ICMP, specifies the initial ICMP sequence value. Default value 0 will choose the best value to use for each protocol."
+          }
+        },
+        "wait_time": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Set the time (in seconds) to wait for a response to a probe."
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "targets": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateRequestTargetsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "colos": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateRequestColosList",
+          "traits": {
+            "smithy.api#documentation": "If no source colo names specified, all colos will be used. China colos are unavailable for traceroutes."
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateRequestOptions"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemColo": {
+      "type": "structure",
+      "members": {
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source colo city."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source colo name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemError": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        },
+        "COULD_NOT_GATHER_TRACEROUTE_DATA_CODE_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Could not gather traceroute data: Code 1"
+          }
+        },
+        "COULD_NOT_GATHER_TRACEROUTE_DATA_CODE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Could not gather traceroute data: Code 2"
+          }
+        },
+        "COULD_NOT_GATHER_TRACEROUTE_DATA_CODE_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Could not gather traceroute data: Code 3"
+          }
+        },
+        "COULD_NOT_GATHER_TRACEROUTE_DATA_CODE_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Could not gather traceroute data: Code 4"
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItemNodesItemLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItemNodesItem": {
+      "type": "structure",
+      "members": {
+        "asn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AS number associated with the node object."
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address of the node."
+          }
+        },
+        "labels": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItemNodesItemLabelsList",
+          "traits": {
+            "smithy.api#documentation": "Field appears if there is an additional annotation printed when the probe returns. Field also appears when running a GRE+ICMP traceroute to denote which traceroute a node comes from."
+          }
+        },
+        "max_rtt_ms": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum RTT in ms."
+          }
+        },
+        "mean_rtt_ms": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Mean RTT in ms."
+          }
+        },
+        "min_rtt_ms": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Minimum RTT in ms."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host name of the address, this may be the same as the IP address."
+          }
+        },
+        "packet_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of packets with a response from this node."
+          }
+        },
+        "std_dev_rtt_ms": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Standard deviation of the RTTs in ms."
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItemNodesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItemNodesItem"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItem": {
+      "type": "structure",
+      "members": {
+        "nodes": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItemNodesList",
+          "traits": {
+            "smithy.api#documentation": "An array of node objects."
+          }
+        },
+        "packets_lost": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of packets where no response was received."
+          }
+        },
+        "packets_sent": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of packets sent with specified TTL."
+          }
+        },
+        "packets_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time to live (TTL)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsItem"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItem": {
+      "type": "structure",
+      "members": {
+        "colo": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemColo"
+        },
+        "error": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemError",
+          "traits": {
+            "smithy.api#documentation": "Errors resulting from collecting traceroute from colo to target."
+          }
+        },
+        "hops": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItemHopsList"
+        },
+        "target_summary": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Aggregated statistics from all hops about the target."
+          }
+        },
+        "traceroute_time_ms": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total time of traceroute in ms."
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosItem"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultItem": {
+      "type": "structure",
+      "members": {
+        "colos": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItemColosList"
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target hostname, IPv6, or IPv6 address."
+          }
+        }
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.diagnostics#TraceroutesCreateResultItem"
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreateResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.diagnostics#TraceroutesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.diagnostics#TraceroutesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.diagnostics#TraceroutesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/diagnostics/traceroute",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run traceroutes from Cloudflare colos."
+      }
+    },
+    "com.cloudflare.diagnostics#Diagnostics": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksCreate"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksDelete"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksGet"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksList"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthchecksUpdate"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#TraceroutesCreate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Diagnostics",
+        "smithy.api#documentation": "Cloudflare API — diagnostics resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

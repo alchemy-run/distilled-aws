@@ -1,0 +1,35 @@
+{
+  "description": "preset plugin config is freeform JSON (unknown in alchemy props)",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsCreateRequestPermissionsPlugins/members/config/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsCreateResponseDataPermissionsPlugins/members/config/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsDeleteResponseDataPermissionsPlugins/members/config/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsGetPresetByIdResponseDataPermissionsPlugins/members/config/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsUpdateRequestPermissionsPlugins/members/config/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsUpdateResponseDataPermissionsPlugins/members/config/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

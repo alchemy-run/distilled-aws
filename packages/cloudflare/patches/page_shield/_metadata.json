@@ -1,0 +1,38 @@
+{
+  "description": "Key dictionary / op aliases for page_shield (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "addedAt": "added_at",
+        "cryptominingScore": "cryptomining_score",
+        "dataflowScore": "dataflow_score",
+        "domainAttribute": "domain_attribute",
+        "domainReportedMalicious": "domain_reported_malicious",
+        "expiresAttribute": "expires_attribute",
+        "fetchedAt": "fetched_at",
+        "firstPageUrl": "first_page_url",
+        "firstSeenAt": "first_seen_at",
+        "httpOnlyAttribute": "http_only_attribute",
+        "jsIntegrityScore": "js_integrity_score",
+        "lastSeenAt": "last_seen_at",
+        "magecartScore": "magecart_score",
+        "maliciousDomainCategories": "malicious_domain_categories",
+        "maliciousUrlCategories": "malicious_url_categories",
+        "malwareScore": "malware_score",
+        "maxAgeAttribute": "max_age_attribute",
+        "obfuscationScore": "obfuscation_score",
+        "pageUrls": "page_urls",
+        "pathAttribute": "path_attribute",
+        "sameSiteAttribute": "same_site_attribute",
+        "secureAttribute": "secure_attribute",
+        "updatedAt": "updated_at",
+        "urlContainsCdnCgiPath": "url_contains_cdn_cgi_path",
+        "urlReportedMalicious": "url_reported_malicious",
+        "useCloudflareReportingEndpoint": "use_cloudflare_reporting_endpoint",
+        "useConnectionUrlPath": "use_connection_url_path"
+      }
+    }
+  ]
+}

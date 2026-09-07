@@ -1,0 +1,39 @@
+{
+  "description": "Align email_routing#Disable with distilled cloudflare/email-routing disableEmailRouting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#Disable",
+      "path": "/shapes/com.cloudflare.email_routing#DisableEmailRouting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DisableRequest",
+      "path": "/shapes/com.cloudflare.email_routing#DisableEmailRoutingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DisableEmailRouting/input/target",
+      "value": "com.cloudflare.email_routing#DisableEmailRoutingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DisableResponse",
+      "path": "/shapes/com.cloudflare.email_routing#DisableEmailRoutingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DisableEmailRouting/output/target",
+      "value": "com.cloudflare.email_routing#DisableEmailRoutingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#DisableEmailRouting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DevicesNetworksGet with distilled cloudflare/zero-trust getDeviceNetwork",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceNetwork"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceNetworkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceNetwork/input/target",
+      "value": "com.cloudflare.zero_trust#GetDeviceNetworkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceNetworkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceNetwork/output/target",
+      "value": "com.cloudflare.zero_trust#GetDeviceNetworkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceNetwork/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DeviceNetworkNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

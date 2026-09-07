@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessApplicationsDeleteForAccount with distilled cloudflare/zero-trust deleteAccessApplicationForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsDeleteForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessApplicationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessApplicationForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessApplicationForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessApplicationForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessApplicationNotFound"
+        }
+      ]
+    }
+  ]
+}

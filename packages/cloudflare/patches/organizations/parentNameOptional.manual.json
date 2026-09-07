@@ -1,0 +1,13 @@
+{
+  "description": "organization create/update accept a parent by id alone — name is not part of the payload contract (consumer-proven)",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.organizations#CreateRequestParent/members/name/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.organizations#UpdateRequestParent/members/name/traits/smithy.api#required"
+    }
+  ]
+}

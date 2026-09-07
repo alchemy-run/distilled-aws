@@ -1,0 +1,30 @@
+{
+  "description": "Align waiting_rooms#EventsDelete with distilled cloudflare/waiting-rooms deleteEvent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsDelete",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteEvent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsDeleteRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteEventRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteEvent/input/target",
+      "value": "com.cloudflare.waiting_rooms#DeleteEventRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsDeleteResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteEventResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteEvent/output/target",
+      "value": "com.cloudflare.waiting_rooms#DeleteEventResponse"
+    }
+  ]
+}

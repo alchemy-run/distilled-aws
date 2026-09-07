@@ -1,0 +1,13 @@
+{
+  "description": "Key dictionary / op aliases for security_txt (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "documentationUrl": "documentation_url",
+        "preferredLanguages": "preferred_languages"
+      }
+    }
+  ]
+}

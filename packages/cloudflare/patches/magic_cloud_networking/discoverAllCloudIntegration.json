@@ -1,0 +1,20 @@
+{
+  "description": "Align magic_cloud_networking#CloudIntegrationsDiscoverAll with distilled cloudflare/magic-cloud-networking discoverAllCloudIntegration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsDiscoverAll",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DiscoverAllCloudIntegration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsDiscoverAllRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DiscoverAllCloudIntegrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DiscoverAllCloudIntegration/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#DiscoverAllCloudIntegrationRequest"
+    }
+  ]
+}

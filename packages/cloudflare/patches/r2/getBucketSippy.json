@@ -1,0 +1,50 @@
+{
+  "description": "Align r2#BucketsSippyGet with distilled cloudflare/r2 getBucketSippy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsSippyGet",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsSippyGetRequest",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippy/input/target",
+      "value": "com.cloudflare.r2#GetBucketSippyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsSippyGetResponse",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippy/output/target",
+      "value": "com.cloudflare.r2#GetBucketSippyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.r2#Forbidden"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#GetBucketSippyRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#GetBucketSippyRequest/members/jurisdiction"
+    }
+  ]
+}

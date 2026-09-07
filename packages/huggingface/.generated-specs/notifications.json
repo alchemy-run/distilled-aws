@@ -1,0 +1,1388 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.notifications#ListNotificationsRequestReadStatus": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "UNREAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unread"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsRequestRepoType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsRequestMention": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PARTICIPATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "participating"
+          }
+        },
+        "MENTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mentions"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsRequest": {
+      "type": "structure",
+      "members": {
+        "p": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "p"
+          }
+        },
+        "readStatus": {
+          "target": "com.huggingface.notifications#ListNotificationsRequestReadStatus",
+          "traits": {
+            "smithy.api#httpQuery": "readStatus"
+          }
+        },
+        "repoType": {
+          "target": "com.huggingface.notifications#ListNotificationsRequestRepoType",
+          "traits": {
+            "smithy.api#httpQuery": "repoType"
+          }
+        },
+        "repoName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repoName"
+          }
+        },
+        "postAuthor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "postAuthor"
+          }
+        },
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "paperId"
+          }
+        },
+        "articleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "articleId"
+          }
+        },
+        "mention": {
+          "target": "com.huggingface.notifications#ListNotificationsRequestMention",
+          "traits": {
+            "smithy.api#httpQuery": "mention"
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "lastUpdate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0Paper": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0PaperDiscussionParticipatingItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0PaperDiscussionParticipatingList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0PaperDiscussionParticipatingItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0PaperDiscussion": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "participating": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0PaperDiscussionParticipatingList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discussionEventId": {
+          "target": "smithy.api#String"
+        },
+        "paper": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0Paper",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paperDiscussion": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0PaperDiscussion",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#RepoId": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.notifications#RepoIdType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#RepoIdType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1DiscussionStatus": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "merged"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1DiscussionParticipatingItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1DiscussionParticipatingList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1DiscussionParticipatingItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1Discussion": {
+      "type": "structure",
+      "members": {
+        "num": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1DiscussionStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPullRequest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "participating": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1DiscussionParticipatingList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discussionEventId": {
+          "target": "smithy.api#String"
+        },
+        "repo": {
+          "target": "com.huggingface.notifications#RepoId",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discussion": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1Discussion",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2PostParticipatingItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2PostParticipatingList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2PostParticipatingItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2Post": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "participating": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2PostParticipatingList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discussionEventId": {
+          "target": "smithy.api#String"
+        },
+        "post": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2Post",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3BlogParticipatingItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3BlogParticipatingList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3BlogParticipatingItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3Blog": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "canonical": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authorName": {
+          "target": "smithy.api#String"
+        },
+        "participating": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3BlogParticipatingList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "read": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "discussionEventId": {
+          "target": "smithy.api#String"
+        },
+        "blog": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3Blog",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItemCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseNotificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponseCount": {
+      "type": "structure",
+      "members": {
+        "view": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unread": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "all": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ListNotificationsResponse": {
+      "type": "structure",
+      "members": {
+        "notifications": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseNotificationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "com.huggingface.notifications#ListNotificationsResponseCount",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "start": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.notifications#ListNotifications": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.notifications#ListNotificationsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.notifications#ListNotificationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "List notifications\n\nList notifications for the user"
+      }
+    },
+    "com.huggingface.notifications#DeleteNotificationsRequestReadStatus": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "UNREAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unread"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#DeleteNotificationsRequestRepoType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#DeleteNotificationsRequestMention": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PARTICIPATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "participating"
+          }
+        },
+        "MENTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mentions"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#DeleteNotificationsRequestDiscussionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#DeleteNotificationsRequest": {
+      "type": "structure",
+      "members": {
+        "p": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "p"
+          }
+        },
+        "readStatus": {
+          "target": "com.huggingface.notifications#DeleteNotificationsRequestReadStatus",
+          "traits": {
+            "smithy.api#httpQuery": "readStatus"
+          }
+        },
+        "repoType": {
+          "target": "com.huggingface.notifications#DeleteNotificationsRequestRepoType",
+          "traits": {
+            "smithy.api#httpQuery": "repoType"
+          }
+        },
+        "repoName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repoName"
+          }
+        },
+        "postAuthor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "postAuthor"
+          }
+        },
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "paperId"
+          }
+        },
+        "articleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "articleId"
+          }
+        },
+        "mention": {
+          "target": "com.huggingface.notifications#DeleteNotificationsRequestMention",
+          "traits": {
+            "smithy.api#httpQuery": "mention"
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "lastUpdate"
+          }
+        },
+        "applyToAll": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "applyToAll"
+          }
+        },
+        "discussionIds": {
+          "target": "com.huggingface.notifications#DeleteNotificationsRequestDiscussionIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.notifications#DeleteNotifications": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.notifications#DeleteNotificationsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete notifications\n\nDelete notifications, either by specifying discussionIds or by applying to all notifications with search parameters"
+      }
+    },
+    "com.huggingface.notifications#ChangeReadStatusRequestReadStatus": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "UNREAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unread"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ChangeReadStatusRequestRepoType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ChangeReadStatusRequestMention": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PARTICIPATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "participating"
+          }
+        },
+        "MENTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mentions"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ChangeReadStatusRequestDiscussionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#ChangeReadStatusRequest": {
+      "type": "structure",
+      "members": {
+        "p": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "p"
+          }
+        },
+        "readStatus": {
+          "target": "com.huggingface.notifications#ChangeReadStatusRequestReadStatus",
+          "traits": {
+            "smithy.api#httpQuery": "readStatus"
+          }
+        },
+        "repoType": {
+          "target": "com.huggingface.notifications#ChangeReadStatusRequestRepoType",
+          "traits": {
+            "smithy.api#httpQuery": "repoType"
+          }
+        },
+        "repoName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repoName"
+          }
+        },
+        "postAuthor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "postAuthor"
+          }
+        },
+        "paperId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "paperId"
+          }
+        },
+        "articleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "articleId"
+          }
+        },
+        "mention": {
+          "target": "com.huggingface.notifications#ChangeReadStatusRequestMention",
+          "traits": {
+            "smithy.api#httpQuery": "mention"
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "lastUpdate"
+          }
+        },
+        "applyToAll": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "applyToAll"
+          }
+        },
+        "discussionIds": {
+          "target": "com.huggingface.notifications#ChangeReadStatusRequestDiscussionIdsList"
+        },
+        "read": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.notifications#ChangeReadStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.notifications#ChangeReadStatusRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/notifications/mark-as-read",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change read status\n\nMark discussions as read or unread. If `applyToAll` is true, all notifications for the user matching the search parameters will be marked as read or unread."
+      }
+    },
+    "com.huggingface.notifications#UpdateNotificationSettingsRequestNotifications": {
+      "type": "structure",
+      "members": {
+        "announcements": {
+          "target": "smithy.api#Boolean"
+        },
+        "arxiv_paper_activity": {
+          "target": "smithy.api#Boolean"
+        },
+        "daily_papers_digest": {
+          "target": "smithy.api#Boolean"
+        },
+        "discussions_participating": {
+          "target": "smithy.api#Boolean"
+        },
+        "discussions_watched": {
+          "target": "smithy.api#Boolean"
+        },
+        "gated_user_access_request": {
+          "target": "smithy.api#Boolean"
+        },
+        "inference_endpoint_status": {
+          "target": "smithy.api#Boolean"
+        },
+        "job_status": {
+          "target": "smithy.api#Boolean"
+        },
+        "launch_autonlp": {
+          "target": "smithy.api#Boolean"
+        },
+        "launch_spaces": {
+          "target": "smithy.api#Boolean"
+        },
+        "launch_prepaid_credits": {
+          "target": "smithy.api#Boolean"
+        },
+        "launch_training_cluster": {
+          "target": "smithy.api#Boolean"
+        },
+        "org_request": {
+          "target": "smithy.api#Boolean"
+        },
+        "org_suggestions": {
+          "target": "smithy.api#Boolean"
+        },
+        "org_verified_suggestions": {
+          "target": "smithy.api#Boolean"
+        },
+        "org_suggestions_to_create": {
+          "target": "smithy.api#Boolean"
+        },
+        "posts_participating": {
+          "target": "smithy.api#Boolean"
+        },
+        "user_follows": {
+          "target": "smithy.api#Boolean"
+        },
+        "secret_detected": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_discussions_participating": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_discussions_watched": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_posts_participating": {
+          "target": "smithy.api#Boolean"
+        },
+        "product_updates_after": {
+          "target": "smithy.api#String"
+        },
+        "api_inference_sunset": {
+          "target": "smithy.api#Boolean"
+        },
+        "locked_out": {
+          "target": "smithy.api#Boolean"
+        },
+        "repo_release": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateNotificationSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "notifications": {
+          "target": "com.huggingface.notifications#UpdateNotificationSettingsRequestNotifications",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prepaidAmount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "To be provided when enabling launch_prepaid_credits"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.notifications#UpdateNotificationSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.notifications#UpdateNotificationSettingsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/settings/notifications",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update notification settings\n\nUpdate notification settings for the user"
+      }
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequestDeleteItemType": {
+      "type": "enum",
+      "members": {
+        "ORG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequestDeleteItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.notifications#UpdateWatchSettingsRequestDeleteItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequestDeleteList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#UpdateWatchSettingsRequestDeleteItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequestAddItemType": {
+      "type": "enum",
+      "members": {
+        "ORG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequestAddItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.notifications#UpdateWatchSettingsRequestAddItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequestAddList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.notifications#UpdateWatchSettingsRequestAddItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.notifications#UpdateWatchSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "com.huggingface.notifications#UpdateWatchSettingsRequestDeleteList"
+        },
+        "add": {
+          "target": "com.huggingface.notifications#UpdateWatchSettingsRequestAddList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.notifications#UpdateWatchSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.notifications#UpdateWatchSettingsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/settings/watch",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update watch settings\n\nUpdate watch settings for the user. Get notified when discussions happen on your watched items."
+      }
+    },
+    "com.huggingface.notifications#Notifications": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.notifications#ListNotifications"
+        },
+        {
+          "target": "com.huggingface.notifications#DeleteNotifications"
+        },
+        {
+          "target": "com.huggingface.notifications#ChangeReadStatus"
+        },
+        {
+          "target": "com.huggingface.notifications#UpdateNotificationSettings"
+        },
+        {
+          "target": "com.huggingface.notifications#UpdateWatchSettings"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

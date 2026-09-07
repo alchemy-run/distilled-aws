@@ -1,0 +1,10 @@
+{
+  "description": "loginSessionCreate returns String! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#LoginSessionCreateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation loginSessionCreate {\n  loginSessionCreate\n}"
+    }
+  ]
+}

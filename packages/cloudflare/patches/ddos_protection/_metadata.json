@@ -1,0 +1,20 @@
+{
+  "description": "Key dictionary / op aliases for ddos_protection (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "burstSensitivity": "burst_sensitivity",
+        "createdOn": "created_on",
+        "documentationUrl": "documentation_url",
+        "mitigationType": "mitigation_type",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "rateSensitivity": "rate_sensitivity",
+        "resultInfo": "result_info",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

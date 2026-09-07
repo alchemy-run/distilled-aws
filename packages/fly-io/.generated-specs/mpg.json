@@ -1,0 +1,1569 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.flyio.mpg#ListClustersRequest": {
+      "type": "structure",
+      "members": {
+        "org_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#ListClustersResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ListClustersResponseDataList"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ManagedCluster": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "engine": {
+          "target": "smithy.api#String"
+        },
+        "plan": {
+          "target": "smithy.api#String"
+        },
+        "region": {
+          "target": "smithy.api#String"
+        },
+        "organization": {
+          "target": "com.flyio.mpg#Organization"
+        },
+        "mpgd_cluster_id": {
+          "target": "smithy.api#String"
+        },
+        "disk": {
+          "target": "smithy.api#Integer"
+        },
+        "replicas": {
+          "target": "smithy.api#Integer"
+        },
+        "ip_assignments": {
+          "target": "com.flyio.mpg#IpAssignments"
+        },
+        "attached_apps": {
+          "target": "com.flyio.mpg#ManagedClusterAttachedAppsList"
+        },
+        "postgis_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "environment": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#Organization": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "slug": {
+          "target": "smithy.api#String"
+        },
+        "raw_slug": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#IpAssignments": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#AttachedApp": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ManagedClusterAttachedAppsList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#AttachedApp"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListClustersResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#ManagedCluster"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListClusters": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#ListClustersRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#ListClustersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#Forbidden"
+        },
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/organizations/{org_slug}/postgresv2",
+          "code": 200
+        },
+        "smithy.api#documentation": "List MPG v2 clusters in an organization"
+      }
+    },
+    "com.flyio.mpg#CreateClusterRequest": {
+      "type": "structure",
+      "members": {
+        "org_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pg_major_version": {
+          "target": "smithy.api#String"
+        },
+        "storage_in_gb": {
+          "target": "smithy.api#Integer"
+        },
+        "postgis_enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#CreateClusterResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean"
+        },
+        "data": {
+          "target": "com.flyio.mpg#ManagedCluster"
+        },
+        "errors": {
+          "target": "com.flyio.mpg#CreateClusterResponseErrorsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#CreateClusterResponseErrorsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#CreateCluster": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#CreateClusterRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#CreateClusterResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#Forbidden"
+        },
+        {
+          "target": "com.flyio.mpg#NotFound"
+        },
+        {
+          "target": "com.flyio.mpg#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/organizations/{org_slug}/postgresv2",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an MPG v2 cluster"
+      }
+    },
+    "com.flyio.mpg#GetClusterRequest": {
+      "type": "structure",
+      "members": {
+        "org_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#GetClusterResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ManagedCluster"
+        },
+        "credentials": {
+          "target": "com.flyio.mpg#ClusterCredentials"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ClusterCredentials": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "dbname": {
+          "target": "smithy.api#String"
+        },
+        "pgbouncer_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#GetCluster": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#GetClusterRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#GetClusterResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/organizations/{org_slug}/postgresv2/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an MPG v2 cluster by org and id"
+      }
+    },
+    "com.flyio.mpg#DestroyClusterRequest": {
+      "type": "structure",
+      "members": {
+        "org_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#DestroyCluster": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#DestroyClusterRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/v1/organizations/{org_slug}/postgresv2/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Destroy an MPG v2 cluster (async — poll 404)"
+      }
+    },
+    "com.flyio.mpg#ListRegionsRequest": {
+      "type": "structure",
+      "members": {
+        "org_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#ListRegionsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ListRegionsResponseDataList"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#Region": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "available": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListRegionsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#Region"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListRegions": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#ListRegionsRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#ListRegionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/organizations/{org_slug}/postgresv2/regions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List regions that support MPG for an organization"
+      }
+    },
+    "com.flyio.mpg#GetClusterByIdRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#GetClusterById": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#GetClusterByIdRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#GetClusterResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/postgresv2/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an MPG v2 cluster by id"
+      }
+    },
+    "com.flyio.mpg#ListUsersRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#ListUsersResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ListUsersResponseDataList"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#User": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "username": {
+          "target": "smithy.api#String"
+        },
+        "role": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListUsersResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#User"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#ListUsersRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#ListUsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/postgresv2/{id}/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "List cluster users"
+      }
+    },
+    "com.flyio.mpg#CreateUserRequestRole": {
+      "type": "enum",
+      "members": {
+        "SCHEMA_ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "schema_admin"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#CreateUserRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.flyio.mpg#CreateUserRequestRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#CreateUserResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#User"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#CreateUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#CreateUserRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#CreateUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        },
+        {
+          "target": "com.flyio.mpg#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/postgresv2/{id}/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a user with a role"
+      }
+    },
+    "com.flyio.mpg#UpdateUserRoleRequestRole": {
+      "type": "enum",
+      "members": {
+        "SCHEMA_ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "schema_admin"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#UpdateUserRoleRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.flyio.mpg#UpdateUserRoleRequestRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#UpdateUserRole": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#UpdateUserRoleRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/v1/postgresv2/{id}/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a user's role"
+      }
+    },
+    "com.flyio.mpg#DeleteUserRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#DeleteUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#DeleteUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/v1/postgresv2/{id}/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a user"
+      }
+    },
+    "com.flyio.mpg#GetUserCredentialsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#GetUserCredentialsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#GetUserCredentialsResponseData"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#GetUserCredentialsResponseData": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "smithy.api#String"
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#GetUserCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#GetUserCredentialsRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#GetUserCredentialsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/postgresv2/{id}/users/{username}/credentials",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a user's credentials"
+      }
+    },
+    "com.flyio.mpg#ListDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#ListDatabasesResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ListDatabasesResponseDataList"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#Database": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListDatabasesResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#Database"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#ListDatabasesRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#ListDatabasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/postgresv2/{id}/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "List databases (no DELETE API)"
+      }
+    },
+    "com.flyio.mpg#CreateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#CreateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#CreateDatabaseRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        },
+        {
+          "target": "com.flyio.mpg#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/postgresv2/{id}/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a database"
+      }
+    },
+    "com.flyio.mpg#ListExtensionsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#ListExtensionsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ListExtensionsResponseDataList"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#Extension": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "docs_url": {
+          "target": "smithy.api#String"
+        },
+        "default_version": {
+          "target": "smithy.api#String"
+        },
+        "is_system": {
+          "target": "smithy.api#Boolean"
+        },
+        "installed": {
+          "target": "com.flyio.mpg#InstalledExtension"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#InstalledExtension": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String"
+        },
+        "schema": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListExtensionsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#Extension"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListExtensions": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#ListExtensionsRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#ListExtensionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/postgresv2/{id}/databases/{database}/extensions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available/installed extensions"
+      }
+    },
+    "com.flyio.mpg#EnableExtensionRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "schema": {
+          "target": "smithy.api#String"
+        },
+        "create_schema_if_needed": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#EnableExtension": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#EnableExtensionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        },
+        {
+          "target": "com.flyio.mpg#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/postgresv2/{id}/databases/{database}/extensions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable an extension"
+      }
+    },
+    "com.flyio.mpg#DisableExtensionRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "force"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#DisableExtension": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#DisableExtensionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/v1/postgresv2/{id}/databases/{database}/extensions/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable an extension"
+      }
+    },
+    "com.flyio.mpg#CreateAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "app_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#CreateAttachmentResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#CreateAttachmentResponseData"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#CreateAttachmentResponseData": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "app_id": {
+          "target": "smithy.api#Integer"
+        },
+        "managed_service_id": {
+          "target": "smithy.api#Integer"
+        },
+        "attached_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#CreateAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#CreateAttachmentRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#CreateAttachmentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        },
+        {
+          "target": "com.flyio.mpg#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/postgresv2/{id}/attachments",
+          "code": 200
+        },
+        "smithy.api#documentation": "Attach a cluster to a Machines app"
+      }
+    },
+    "com.flyio.mpg#DeleteAttachmentRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "app_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#DeleteAttachmentResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#DeleteAttachmentResponseData"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#DeleteAttachmentResponseData": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#DeleteAttachment": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#DeleteAttachmentRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#DeleteAttachmentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/v1/postgresv2/{id}/attachments/{app_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Detach a cluster from a Machines app"
+      }
+    },
+    "com.flyio.mpg#ListBackupsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#ListBackupsResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ListBackupsResponseDataList"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ClusterBackup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "start": {
+          "target": "smithy.api#String"
+        },
+        "stop": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListBackupsResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.mpg#ClusterBackup"
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#ListBackups": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#ListBackupsRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#ListBackupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/v1/postgresv2/{id}/backups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List cluster backups"
+      }
+    },
+    "com.flyio.mpg#CreateBackupRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#CreateBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#CreateBackupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/postgresv2/{id}/backups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a backup"
+      }
+    },
+    "com.flyio.mpg#RestoreBackupRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "backup_id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "pitr_time": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.mpg#RestoreBackupResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.flyio.mpg#ManagedCluster"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.mpg#RestoreBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.mpg#RestoreBackupRequest"
+      },
+      "output": {
+        "target": "com.flyio.mpg#RestoreBackupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.mpg#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/v1/postgresv2/{id}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore a cluster from a backup (creates a new cluster)"
+      }
+    },
+    "com.flyio.mpg#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.flyio.mpg#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.flyio.mpg#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.flyio.mpg#FlyMpg": {
+      "type": "service",
+      "version": "v2",
+      "operations": [
+        {
+          "target": "com.flyio.mpg#ListClusters"
+        },
+        {
+          "target": "com.flyio.mpg#CreateCluster"
+        },
+        {
+          "target": "com.flyio.mpg#GetCluster"
+        },
+        {
+          "target": "com.flyio.mpg#DestroyCluster"
+        },
+        {
+          "target": "com.flyio.mpg#ListRegions"
+        },
+        {
+          "target": "com.flyio.mpg#GetClusterById"
+        },
+        {
+          "target": "com.flyio.mpg#ListUsers"
+        },
+        {
+          "target": "com.flyio.mpg#CreateUser"
+        },
+        {
+          "target": "com.flyio.mpg#UpdateUserRole"
+        },
+        {
+          "target": "com.flyio.mpg#DeleteUser"
+        },
+        {
+          "target": "com.flyio.mpg#GetUserCredentials"
+        },
+        {
+          "target": "com.flyio.mpg#ListDatabases"
+        },
+        {
+          "target": "com.flyio.mpg#CreateDatabase"
+        },
+        {
+          "target": "com.flyio.mpg#ListExtensions"
+        },
+        {
+          "target": "com.flyio.mpg#EnableExtension"
+        },
+        {
+          "target": "com.flyio.mpg#DisableExtension"
+        },
+        {
+          "target": "com.flyio.mpg#CreateAttachment"
+        },
+        {
+          "target": "com.flyio.mpg#DeleteAttachment"
+        },
+        {
+          "target": "com.flyio.mpg#ListBackups"
+        },
+        {
+          "target": "com.flyio.mpg#CreateBackup"
+        },
+        {
+          "target": "com.flyio.mpg#RestoreBackup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Fly Managed Postgres (MPG) UI-EX API",
+        "smithy.api#documentation": "flyctl UI-EX REST at https://api.fly.io. Auth is Authorization: Bearer $FLY_API_TOKEN (macaroon). Hand-authored from flyctl internal/uiex/mpg/v2."
+      }
+    }
+  }
+}

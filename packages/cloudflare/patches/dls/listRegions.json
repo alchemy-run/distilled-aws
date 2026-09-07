@@ -1,0 +1,41 @@
+{
+  "description": "Align dls#RegionsList with distilled cloudflare/dls listRegions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionsList",
+      "path": "/shapes/com.cloudflare.dls#ListRegions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionsListRequest",
+      "path": "/shapes/com.cloudflare.dls#ListRegionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#ListRegions/input/target",
+      "value": "com.cloudflare.dls#ListRegionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionsListResponse",
+      "path": "/shapes/com.cloudflare.dls#ListRegionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#ListRegions/output/target",
+      "value": "com.cloudflare.dls#ListRegionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dls#ListRegions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

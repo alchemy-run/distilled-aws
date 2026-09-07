@@ -1,0 +1,45 @@
+{
+  "description": "Align accounts#MembersCreate with distilled cloudflare/accounts createMember",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersCreate",
+      "path": "/shapes/com.cloudflare.accounts#CreateMember"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersCreateRequest",
+      "path": "/shapes/com.cloudflare.accounts#CreateMemberRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#CreateMember/input/target",
+      "value": "com.cloudflare.accounts#CreateMemberRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersCreateResponse",
+      "path": "/shapes/com.cloudflare.accounts#CreateMemberResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#CreateMember/output/target",
+      "value": "com.cloudflare.accounts#CreateMemberResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#CreateMember/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#ValidationError"
+        },
+        {
+          "target": "com.cloudflare.accounts#AccountMemberAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

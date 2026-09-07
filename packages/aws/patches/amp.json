@@ -1,0 +1,22 @@
+{
+  "structures": {
+    "RuleGroupsNamespaceDescription": {
+      "members": {
+        "data": {
+          "optional": true
+        }
+      }
+    },
+    "AlertManagerDefinitionDescription": {
+      "members": {
+        "data": {
+          "optional": true
+        }
+      }
+    }
+  },
+  "operations": {
+    "createLoggingConfiguration": { "errors": ["ConflictException"] },
+    "createQueryLoggingConfiguration": { "errors": ["ConflictException"] }
+  }
+}

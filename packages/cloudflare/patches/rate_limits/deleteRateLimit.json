@@ -1,0 +1,30 @@
+{
+  "description": "Align rate_limits#Delete with distilled cloudflare/rate-limits deleteRateLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#Delete",
+      "path": "/shapes/com.cloudflare.rate_limits#DeleteRateLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#DeleteRequest",
+      "path": "/shapes/com.cloudflare.rate_limits#DeleteRateLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#DeleteRateLimit/input/target",
+      "value": "com.cloudflare.rate_limits#DeleteRateLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#DeleteResponse",
+      "path": "/shapes/com.cloudflare.rate_limits#DeleteRateLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#DeleteRateLimit/output/target",
+      "value": "com.cloudflare.rate_limits#DeleteRateLimitResponse"
+    }
+  ]
+}

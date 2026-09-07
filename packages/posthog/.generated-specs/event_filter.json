@@ -1,0 +1,309 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.event_filter#EventFilterRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_filter#EventFilterConfig": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "mode": {
+          "target": "com.posthog.event_filter#EventFilterConfigModeEnum"
+        },
+        "filter_tree": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Boolean expression tree. Nodes: {\"type\": \"and\"|\"or\", \"children\": [...]}, {\"type\": \"not\", \"child\": {...}}, {\"type\": \"condition\", \"field\": \"event_name\"|\"distinct_id\", \"operator\": \"exact\"|\"contains\", \"value\": \"<string>\"}"
+          }
+        },
+        "test_cases": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Test events to validate the filter. Each: {\"event_name\": \"...\", \"distinct_id\": \"...\", \"expected_result\": \"drop\"|\"ingest\"}"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#EventFilterConfigModeEnum": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "DRY_RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dry_run"
+          }
+        },
+        "LIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "live"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `disabled` - Disabled\n* `dry_run` - Dry Run\n* `live` - Live"
+      }
+    },
+    "com.posthog.event_filter#EventFilterRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_filter#EventFilterRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_filter#EventFilterConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_filter/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the event filter config for the team, or null if not yet created."
+      }
+    },
+    "com.posthog.event_filter#EventFilterCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "mode": {
+          "target": "com.posthog.event_filter#EventFilterConfigModeEnum"
+        },
+        "filter_tree": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Boolean expression tree. Nodes: {\"type\": \"and\"|\"or\", \"children\": [...]}, {\"type\": \"not\", \"child\": {...}}, {\"type\": \"condition\", \"field\": \"event_name\"|\"distinct_id\", \"operator\": \"exact\"|\"contains\", \"value\": \"<string>\"}"
+          }
+        },
+        "test_cases": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Test events to validate the filter. Each: {\"event_name\": \"...\", \"distinct_id\": \"...\", \"expected_result\": \"drop\"|\"ingest\"}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_filter#EventFilterCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_filter#EventFilterCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_filter#EventFilterConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/event_filter/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create or update the event filter config."
+      }
+    },
+    "com.posthog.event_filter#EventFilterMetricsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_filter#AppMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.posthog.event_filter#AppMetricsResponseLabelsList"
+        },
+        "series": {
+          "target": "com.posthog.event_filter#AppMetricsResponseSeriesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#AppMetricsResponseLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#AppMetricSeries": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "values": {
+          "target": "com.posthog.event_filter#AppMetricSeriesValuesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#AppMetricSeriesValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#AppMetricsResponseSeriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.event_filter#AppMetricSeries"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#EventFilterMetricsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_filter#EventFilterMetricsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_filter#AppMetricsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_filter/metrics/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Single event filter per team.\nGET  /event_filter/ — returns the config (or null if not yet created)\nPOST /event_filter/ — creates or updates the config (upsert)\nGET  /event_filter/metrics/ — time-series metrics\nGET  /event_filter/metrics/totals/ — aggregate totals"
+      }
+    },
+    "com.posthog.event_filter#EventFilterMetricsTotalsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_filter#AppMetricsTotalsResponse": {
+      "type": "structure",
+      "members": {
+        "totals": {
+          "target": "com.posthog.event_filter#AppMetricsTotalsResponseTotalsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#AppMetricsTotalsResponseTotalsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_filter#EventFilterMetricsTotalsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_filter#EventFilterMetricsTotalsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_filter#AppMetricsTotalsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_filter/metrics/totals/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Single event filter per team.\nGET  /event_filter/ — returns the config (or null if not yet created)\nPOST /event_filter/ — creates or updates the config (upsert)\nGET  /event_filter/metrics/ — time-series metrics\nGET  /event_filter/metrics/totals/ — aggregate totals"
+      }
+    },
+    "com.posthog.event_filter#EventFilter": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.event_filter#EventFilterRetrieve"
+        },
+        {
+          "target": "com.posthog.event_filter#EventFilterCreate"
+        },
+        {
+          "target": "com.posthog.event_filter#EventFilterMetricsRetrieve"
+        },
+        {
+          "target": "com.posthog.event_filter#EventFilterMetricsTotalsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

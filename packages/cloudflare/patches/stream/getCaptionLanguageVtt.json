@@ -1,0 +1,20 @@
+{
+  "description": "Align stream#CaptionsLanguageVttGet with distilled cloudflare/stream getCaptionLanguageVtt",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageVttGet",
+      "path": "/shapes/com.cloudflare.stream#GetCaptionLanguageVtt"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageVttGetRequest",
+      "path": "/shapes/com.cloudflare.stream#GetCaptionLanguageVttRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetCaptionLanguageVtt/input/target",
+      "value": "com.cloudflare.stream#GetCaptionLanguageVttRequest"
+    }
+  ]
+}

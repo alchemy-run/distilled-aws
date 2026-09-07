@@ -1,0 +1,128 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.gitignore#GetAllTemplatesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.gitignore#GetAllTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gitignore#GetAllTemplatesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gitignore#GetAllTemplates": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.gitignore#GetAllTemplatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gitignore/templates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all gitignore templates\n\nList all templates available to pass as an option when [creating a repository](https://docs.github.com/rest/repos/repos#create-a-repository-for-the-authenticated-user)."
+      }
+    },
+    "com.github.gitignore#GetTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gitignore#GitignoreTemplate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gitignore Template"
+      }
+    },
+    "com.github.gitignore#GetTemplate": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gitignore#GetTemplateRequest"
+      },
+      "output": {
+        "target": "com.github.gitignore#GitignoreTemplate"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gitignore/templates/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a gitignore template\n\nGet the content of a gitignore template.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw .gitignore contents."
+      }
+    },
+    "com.github.gitignore#Gitignore": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.gitignore#GetAllTemplates"
+        },
+        {
+          "target": "com.github.gitignore#GetTemplate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

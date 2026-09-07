@@ -1,0 +1,30 @@
+{
+  "description": "Align botnet_feed#AsnDayReport with distilled cloudflare/botnet-feed dayReportAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#AsnDayReport",
+      "path": "/shapes/com.cloudflare.botnet_feed#DayReportAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#AsnDayReportRequest",
+      "path": "/shapes/com.cloudflare.botnet_feed#DayReportAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.botnet_feed#DayReportAsn/input/target",
+      "value": "com.cloudflare.botnet_feed#DayReportAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#AsnDayReportResponse",
+      "path": "/shapes/com.cloudflare.botnet_feed#DayReportAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.botnet_feed#DayReportAsn/output/target",
+      "value": "com.cloudflare.botnet_feed#DayReportAsnResponse"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DlpProfilesCustomUpdate with distilled cloudflare/zero-trust updateDlpProfileCustom",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustom"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustomRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustom/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateDlpProfileCustomRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustomResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustom/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateDlpProfileCustomResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustom/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DlpProfileNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

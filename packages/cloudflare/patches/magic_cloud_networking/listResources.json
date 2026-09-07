@@ -1,0 +1,41 @@
+{
+  "description": "Align magic_cloud_networking#ResourcesList with distilled cloudflare/magic-cloud-networking listResources",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesList",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListResources"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesListRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListResourcesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListResources/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListResourcesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesListResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListResourcesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListResources/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListResourcesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListResources/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

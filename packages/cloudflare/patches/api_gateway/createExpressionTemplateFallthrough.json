@@ -1,0 +1,39 @@
+{
+  "description": "Align api_gateway#ExpressionTemplateFallthroughCreate with distilled cloudflare/api-gateway createExpressionTemplateFallthrough",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#ExpressionTemplateFallthroughCreate",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateExpressionTemplateFallthrough"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#ExpressionTemplateFallthroughCreateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateExpressionTemplateFallthroughRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateExpressionTemplateFallthrough/input/target",
+      "value": "com.cloudflare.api_gateway#CreateExpressionTemplateFallthroughRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#ExpressionTemplateFallthroughCreateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateExpressionTemplateFallthroughResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateExpressionTemplateFallthrough/output/target",
+      "value": "com.cloudflare.api_gateway#CreateExpressionTemplateFallthroughResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateExpressionTemplateFallthrough/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

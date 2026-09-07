@@ -1,0 +1,72 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesScriptsUpdate with distilled cloudflare/workers-for-platforms putDispatchNamespaceScript",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsUpdate",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScript"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScript/input/target",
+      "value": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScript/output/target",
+      "value": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScript/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers_for_platforms#DispatchNamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#SecretsStoreBindingNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#KVNamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#R2BucketNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#D1DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#ServiceBindingNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#DurableObjectClassNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#VectorizeIndexNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#MtlsCertificateNotFound"
+        }
+      ]
+    }
+  ]
+}

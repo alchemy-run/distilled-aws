@@ -1,0 +1,24 @@
+{
+  "structures": {
+    "User": {
+      "members": {
+        "Password": { "sensitive": true }
+      }
+    },
+    "CreateUserRequest": {
+      "members": {
+        "Password": { "sensitive": true }
+      }
+    },
+    "UpdateUserRequest": {
+      "members": {
+        "Password": { "sensitive": true }
+      }
+    },
+    "LdapServerMetadataInput": {
+      "members": {
+        "ServiceAccountPassword": { "sensitive": true }
+      }
+    }
+  }
+}

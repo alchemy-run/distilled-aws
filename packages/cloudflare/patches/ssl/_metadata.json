@@ -1,0 +1,41 @@
+{
+  "description": "Key dictionary / op aliases for ssl (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "brandCheck": "brand_check",
+        "bundleMethod": "bundle_method",
+        "certPackUuid": "cert_pack_uuid",
+        "certificateAuthority": "certificate_authority",
+        "certificateStatus": "certificate_status",
+        "cloudflareBranding": "cloudflare_branding",
+        "cnameTarget": "cname_target",
+        "dcvDelegationRecords": "dcv_delegation_records",
+        "expiresOn": "expires_on",
+        "geoRestrictions": "geo_restrictions",
+        "httpBody": "http_body",
+        "httpUrl": "http_url",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "primaryCertificate": "primary_certificate",
+        "recordName": "record_name",
+        "recordTarget": "record_target",
+        "resultInfo": "result_info",
+        "totalCount": "total_count",
+        "txtName": "txt_name",
+        "txtValue": "txt_value",
+        "uploadedOn": "uploaded_on",
+        "validationErrors": "validation_errors",
+        "validationMethod": "validation_method",
+        "validationRecords": "validation_records",
+        "validityDays": "validity_days",
+        "verificationInfo": "verification_info",
+        "verificationStatus": "verification_status",
+        "verificationType": "verification_type",
+        "zoneId": "zone_id"
+      }
+    }
+  ]
+}

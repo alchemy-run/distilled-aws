@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexHttpTestsGet with distilled cloudflare/zero-trust getDexHttpTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexHttpTestsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexHttpTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexHttpTestsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexHttpTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexHttpTest/input/target",
+      "value": "com.cloudflare.zero_trust#GetDexHttpTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexHttpTestsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexHttpTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexHttpTest/output/target",
+      "value": "com.cloudflare.zero_trust#GetDexHttpTestResponse"
+    }
+  ]
+}

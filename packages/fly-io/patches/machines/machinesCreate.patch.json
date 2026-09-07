@@ -1,0 +1,12 @@
+{
+  "description": "Type Conflict (409) on machinesCreate so name-taken races are catchable.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines/post/responses/409",
+      "value": {
+        "description": "Conflict"
+      }
+    }
+  ]
+}

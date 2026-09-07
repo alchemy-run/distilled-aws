@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#ValidateDestinationExistsForAccount with distilled cloudflare/logpush destinationExistsValidateForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationExistsForAccount",
+      "path": "/shapes/com.cloudflare.logpush#DestinationExistsValidateForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationExistsForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#DestinationExistsValidateForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DestinationExistsValidateForAccount/input/target",
+      "value": "com.cloudflare.logpush#DestinationExistsValidateForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationExistsForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#DestinationExistsValidateForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DestinationExistsValidateForAccount/output/target",
+      "value": "com.cloudflare.logpush#DestinationExistsValidateForAccountResponse"
+    }
+  ]
+}

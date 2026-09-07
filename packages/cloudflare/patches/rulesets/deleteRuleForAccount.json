@@ -1,0 +1,30 @@
+{
+  "description": "Align rulesets#RulesDeleteForAccount with distilled cloudflare/rulesets deleteRuleForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesDeleteForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForAccount/input/target",
+      "value": "com.cloudflare.rulesets#DeleteRuleForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteRuleForAccount/output/target",
+      "value": "com.cloudflare.rulesets#DeleteRuleForAccountResponse"
+    }
+  ]
+}

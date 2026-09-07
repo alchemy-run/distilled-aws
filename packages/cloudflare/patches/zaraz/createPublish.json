@@ -1,0 +1,30 @@
+{
+  "description": "Align zaraz#PublishCreate with distilled cloudflare/zaraz createPublish",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#PublishCreate",
+      "path": "/shapes/com.cloudflare.zaraz#CreatePublish"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#PublishCreateRequest",
+      "path": "/shapes/com.cloudflare.zaraz#CreatePublishRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#CreatePublish/input/target",
+      "value": "com.cloudflare.zaraz#CreatePublishRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#PublishCreateResponse",
+      "path": "/shapes/com.cloudflare.zaraz#CreatePublishResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#CreatePublish/output/target",
+      "value": "com.cloudflare.zaraz#CreatePublishResponse"
+    }
+  ]
+}

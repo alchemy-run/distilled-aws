@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#JobsUpdateForZone with distilled cloudflare/logpush updateJobForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForZone",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneRequest",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForZone/input/target",
+      "value": "com.cloudflare.logpush#UpdateJobForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneResponse",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForZone/output/target",
+      "value": "com.cloudflare.logpush#UpdateJobForZoneResponse"
+    }
+  ]
+}

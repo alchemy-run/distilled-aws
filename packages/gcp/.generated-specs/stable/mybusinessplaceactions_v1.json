@@ -1,0 +1,649 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "mybusinessplaceactions",
+    "version": "v1",
+    "title": "My Business Place Actions API",
+    "baseUrl": "https://mybusinessplaceactions.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.mybusinessplaceactions_v1#ListPlaceActionLinksResponse": {
+      "type": "structure",
+      "members": {
+        "placeActionLinks": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLinkList",
+          "traits": {
+            "smithy.api#documentation": "The returned list of place action links."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there are more place action links than the requested page size, then this field is populated with a token to fetch the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for PlaceActions.ListPlaceActionLinks."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLink"
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#ListPlaceActionTypeMetadataResponse": {
+      "type": "structure",
+      "members": {
+        "placeActionTypeMetadata": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionTypeMetadataList",
+          "traits": {
+            "smithy.api#documentation": "A collection of metadata for the available place action types."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the number of action types exceeded the requested page size, this field will be populated with a token to fetch the next page on a subsequent call to `placeActionTypeMetadata.list`. If there are no more results, this field will not be present in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for PlaceActions.ListPlaceActionTypeMetadata."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionTypeMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionTypeMetadata"
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionLink": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name, in the format `locations/{location_id}/placeActionLinks/{place_action_link_id}`. The name field will only be considered in UpdatePlaceActionLink and DeletePlaceActionLink requests for updating and deleting links respectively. However, it will be ignored in CreatePlaceActionLink request, where `place_action_link_id` will be assigned by the server on successful creation of a new link and returned as part of the response."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the place action link was created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the place action link was last modified."
+          }
+        },
+        "isEditable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether this link can be edited by the client."
+          }
+        },
+        "placeActionType": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLinkPlaceActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of place action that can be performed using this link."
+          }
+        },
+        "providerType": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLinkProviderTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies the provider type."
+          }
+        },
+        "isPreferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether this link is preferred by the merchant. Only one link can be marked as preferred per place action type at a location. If a future request marks a different link as preferred for the same place action type, then the current preferred link (if any exists) will lose its preference."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The link uri. The same uri can be reused for different action types across different locations. However, only one place action link is allowed for each unique combination of (uri, place action type, location)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a place action link and its attributes."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionLinkPlaceActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PLACE_ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLACE_ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "APPOINTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPOINTMENT"
+          }
+        },
+        "ONLINE_APPOINTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_APPOINTMENT"
+          }
+        },
+        "DINING_RESERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DINING_RESERVATION"
+          }
+        },
+        "FOOD_ORDERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_ORDERING"
+          }
+        },
+        "FOOD_DELIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_DELIVERY"
+          }
+        },
+        "FOOD_TAKEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_TAKEOUT"
+          }
+        },
+        "SHOP_ONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOP_ONLINE"
+          }
+        },
+        "SOLOPRENEUR_APPOINTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOLOPRENEUR_APPOINTMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionLinkProviderTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PROVIDER_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROVIDER_TYPE_UNSPECIFIED"
+          }
+        },
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "AGGREGATOR_3P": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGGREGATOR_3P"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionTypeMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized display name for the attribute, if available; otherwise, the English display name."
+          }
+        },
+        "placeActionType": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionTypeMetadataPlaceActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The place action type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for supported place action types."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PlaceActionTypeMetadataPlaceActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PLACE_ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLACE_ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "APPOINTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPOINTMENT"
+          }
+        },
+        "ONLINE_APPOINTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_APPOINTMENT"
+          }
+        },
+        "DINING_RESERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DINING_RESERVATION"
+          }
+        },
+        "FOOD_ORDERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_ORDERING"
+          }
+        },
+        "FOOD_DELIVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_DELIVERY"
+          }
+        },
+        "FOOD_TAKEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_TAKEOUT"
+          }
+        },
+        "SHOP_ONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOP_ONLINE"
+          }
+        },
+        "SOLOPRENEUR_APPOINTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOLOPRENEUR_APPOINTMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#CreateLocationsPlaceActionLinksRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the location where to create this place action link. `locations/{location_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLink",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#CreateLocationsPlaceActionLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessplaceactions_v1#CreateLocationsPlaceActionLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLink"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/placeActionLinks"
+        },
+        "smithy.api#documentation": "Creates a place action link associated with the specified location, and returns it. The request is considered duplicate if the `parent`, `place_action_link.uri` and `place_action_link.place_action_type` are the same as a previous request."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#ListLocationsPlaceActionLinksRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter constraining the place action links to return. The response includes entries that match the filter. We support only the following filter: 1. place_action_type=XYZ where XYZ is a valid PlaceActionType.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many place action links to return per page. Default of 10. The minimum is 1.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If specified, returns the next page of place action links.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the location whose place action links will be listed. `locations/{location_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#ListLocationsPlaceActionLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessplaceactions_v1#ListLocationsPlaceActionLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessplaceactions_v1#ListPlaceActionLinksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/placeActionLinks"
+        },
+        "smithy.api#documentation": "Lists the place action links for the specified location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#GetLocationsPlaceActionLinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the place action link to fetch.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#GetLocationsPlaceActionLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessplaceactions_v1#GetLocationsPlaceActionLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLink"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the specified place action link."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PatchLocationsPlaceActionLinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name, in the format `locations/{location_id}/placeActionLinks/{place_action_link_id}`. The name field will only be considered in UpdatePlaceActionLink and DeletePlaceActionLink requests for updating and deleting links respectively. However, it will be ignored in CreatePlaceActionLink request, where `place_action_link_id` will be assigned by the server on successful creation of a new link and returned as part of the response.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific fields to update. The only editable fields are `uri`, `place_action_type` and `is_preferred`. If the updated link already exists at the same location with the same `place_action_type` and `uri`, fails with an `ALREADY_EXISTS` error.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLink",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#PatchLocationsPlaceActionLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessplaceactions_v1#PatchLocationsPlaceActionLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessplaceactions_v1#PlaceActionLink"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the specified place action link and returns it."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#DeleteLocationsPlaceActionLinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the place action link to remove from the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#DeleteLocationsPlaceActionLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessplaceactions_v1#DeleteLocationsPlaceActionLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessplaceactions_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a place action link from the specified location."
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#ListPlaceActionTypeMetadataRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many action types to include per page. Default is 10, minimum is 1.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If specified, the next page of place action type metadata is retrieved. The `pageToken` is returned when a call to `placeActionTypeMetadata.list` returns more results than can fit into the requested page size.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter constraining the place action types to return metadata for. The response includes entries that match the filter. We support only the following filters: 1. location=XYZ where XYZ is a string indicating the resource name of a location, in the format `locations/{location_id}`. 2. region_code=XYZ where XYZ is a Unicode CLDR region code to find available action types. If no filter is provided, all place action types are returned.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IETF BCP-47 code of language to get display names in. If this language is not available, they will be provided in English.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessplaceactions_v1#ListPlaceActionTypeMetadata": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessplaceactions_v1#ListPlaceActionTypeMetadataRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessplaceactions_v1#ListPlaceActionTypeMetadataResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessplaceactions_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/placeActionTypeMetadata"
+        },
+        "smithy.api#documentation": "Returns the list of available place action types for a location or country.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

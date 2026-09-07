@@ -1,0 +1,20 @@
+{
+  "description": "Docs gap: PATCH /workers/scripts/{script_name}/settings requires multipart/form-data with the settings JSON as a `settings` form part (the docs model it as a plain JSON PATCH with no body member, and the live API rejects that with ContentTypeRequired). Transcribed from the distilled SDK's patchScriptScriptAndVersionSetting; the settings object is opaque (Document) with the service key dictionary handling wire naming.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSettingRequest/members/settings",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#documentation": "Worker settings to patch (bindings, tags, tail consumers, ...), JSON-encoded as the multipart `settings` part."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSetting/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    }
+  ]
+}

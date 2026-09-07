@@ -1,0 +1,38 @@
+{
+  "description": "Align alerting#PoliciesList with distilled cloudflare/alerting listPolicies",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesList",
+      "path": "/shapes/com.cloudflare.alerting#ListPolicies"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesListRequest",
+      "path": "/shapes/com.cloudflare.alerting#ListPoliciesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListPolicies/input/target",
+      "value": "com.cloudflare.alerting#ListPoliciesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesListResponse",
+      "path": "/shapes/com.cloudflare.alerting#ListPoliciesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListPolicies/output/target",
+      "value": "com.cloudflare.alerting#ListPoliciesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#ListPolicies/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

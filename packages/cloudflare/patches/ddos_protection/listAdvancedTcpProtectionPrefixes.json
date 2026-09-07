@@ -1,0 +1,41 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionPrefixesList with distilled cloudflare/ddos-protection listAdvancedTcpProtectionPrefixes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesList",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixes/input/target",
+      "value": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixes/output/target",
+      "value": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionPrefixes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

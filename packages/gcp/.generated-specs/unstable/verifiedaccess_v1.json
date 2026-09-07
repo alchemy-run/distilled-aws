@@ -1,0 +1,252 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "verifiedaccess",
+    "version": "v1",
+    "title": "Chrome Verified Access API",
+    "baseUrl": "https://verifiedaccess.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.verifiedaccess_v1#SignedData": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data to be signed."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The signature of the data field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The wrapper message of any data and its signature."
+      }
+    },
+    "com.gcp.verifiedaccess_v1#VerifyChallengeResponseResult": {
+      "type": "structure",
+      "members": {
+        "deviceEnrollmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device enrollment id is returned in this field (for the machine response only)."
+          }
+        },
+        "attestedDeviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Attested device id (ADID) of the device, read from the verified data."
+          }
+        },
+        "verificationOutput": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For EMCert check, device permanent id is returned here. For EUCert check, signed_public_key_and_challenge [base64 encoded] is returned if present, otherwise empty string is returned. This field is deprecated, please use device_permanent_id or signed_public_key_and_challenge fields."
+          }
+        },
+        "devicePermanentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device permanent id is returned in this field (for the machine response only)."
+          }
+        },
+        "signedPublicKeyAndChallenge": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result message for VerifiedAccess.VerifyChallengeResponse."
+      }
+    },
+    "com.gcp.verifiedaccess_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.verifiedaccess_v1#Challenge": {
+      "type": "structure",
+      "members": {
+        "challenge": {
+          "target": "com.gcp.verifiedaccess_v1#SignedData",
+          "traits": {
+            "smithy.api#documentation": "Generated challenge"
+          }
+        },
+        "alternativeChallenge": {
+          "target": "com.gcp.verifiedaccess_v1#SignedData",
+          "traits": {
+            "smithy.api#documentation": "Challenge generated with the old signing key (this will only be present during key rotation)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result message for VerifiedAccess.CreateChallenge."
+      }
+    },
+    "com.gcp.verifiedaccess_v1#VerifyChallengeResponseRequest": {
+      "type": "structure",
+      "members": {
+        "expectedIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service can optionally provide identity information about the device or user associated with the key. For an EMK, this value is the enrolled domain. For an EUK, this value is the user's email address. If present, this value will be checked against contents of the response, and verification will fail if there is no match."
+          }
+        },
+        "challengeResponse": {
+          "target": "com.gcp.verifiedaccess_v1#SignedData",
+          "traits": {
+            "smithy.api#documentation": "The generated response to the challenge"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "signed ChallengeResponse"
+      }
+    },
+    "com.gcp.verifiedaccess_v1#CreateChallengeRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.verifiedaccess_v1#Empty",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.verifiedaccess_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.verifiedaccess_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.verifiedaccess_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.verifiedaccess_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.verifiedaccess_v1#CreateChallenge": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.verifiedaccess_v1#CreateChallengeRequest"
+      },
+      "output": {
+        "target": "com.gcp.verifiedaccess_v1#Challenge"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.verifiedaccess_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.verifiedaccess_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.verifiedaccess_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.verifiedaccess_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/challenge"
+        },
+        "smithy.api#documentation": "CreateChallenge API"
+      }
+    },
+    "com.gcp.verifiedaccess_v1#VerifyChallengeRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.verifiedaccess_v1#VerifyChallengeResponseRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.verifiedaccess_v1#VerifyChallenge": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.verifiedaccess_v1#VerifyChallengeRequest"
+      },
+      "output": {
+        "target": "com.gcp.verifiedaccess_v1#VerifyChallengeResponseResult"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.verifiedaccess_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.verifiedaccess_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.verifiedaccess_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.verifiedaccess_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/challenge:verify"
+        },
+        "smithy.api#documentation": "VerifyChallengeResponse API"
+      }
+    }
+  }
+}

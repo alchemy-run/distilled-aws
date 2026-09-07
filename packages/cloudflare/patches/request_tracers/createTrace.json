@@ -1,0 +1,30 @@
+{
+  "description": "Align request_tracers#TracesCreate with distilled cloudflare/request-tracers createTrace",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.request_tracers#TracesCreate",
+      "path": "/shapes/com.cloudflare.request_tracers#CreateTrace"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.request_tracers#TracesCreateRequest",
+      "path": "/shapes/com.cloudflare.request_tracers#CreateTraceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.request_tracers#CreateTrace/input/target",
+      "value": "com.cloudflare.request_tracers#CreateTraceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.request_tracers#TracesCreateResponse",
+      "path": "/shapes/com.cloudflare.request_tracers#CreateTraceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.request_tracers#CreateTrace/output/target",
+      "value": "com.cloudflare.request_tracers#CreateTraceResponse"
+    }
+  ]
+}

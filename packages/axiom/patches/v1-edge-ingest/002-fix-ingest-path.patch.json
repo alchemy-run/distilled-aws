@@ -1,0 +1,10 @@
+{
+  "description": "The v1 edge-ingest spec lists the ingest endpoint at /ingest/{dataset-id}, but the canonical Axiom Cloud API (api.axiom.co) exposes it at /datasets/{dataset-id}/ingest. Probe: `curl -X POST /v1/ingest/test` returns 404 'path not found', while `/v1/datasets/test/ingest` returns 404 'dataset not found' (i.e. the route exists). Rewrite the spec path so the generated operation hits the real route. Note: patches run after the generate script prefixes every path with /v1/, so the JSON Pointer targets reflect that.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/paths/~1v1~1ingest~1{dataset-id}",
+      "path": "/paths/~1v1~1datasets~1{dataset-id}~1ingest"
+    }
+  ]
+}

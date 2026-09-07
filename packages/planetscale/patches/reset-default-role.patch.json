@@ -1,0 +1,12 @@
+{
+  "description": "reset-default returns the full role document (same PostgresRole shape as the other role endpoints, credentials included), not just {username, password, access_host_url} — observed on the wire; the inline three-field schema loses id/name/expires_at/ttl/database_name/inherited_roles",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/paths/~1organizations~1{organization}~1databases~1{database}~1branches~1{branch}~1roles~1reset-default/post/responses/200/schema",
+      "value": {
+        "$ref": "#/definitions/PostgresRole"
+      }
+    }
+  ]
+}

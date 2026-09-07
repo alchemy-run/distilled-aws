@@ -1,0 +1,15 @@
+{
+  "description": "Docs gap: the preset `ui` object omits `config_diff`, which the API returns (v0 typed it as unknown under configDiff -> config_diff).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.realtime_kit#PresetsGetPresetByIdResponseDataUi/members/config_diff",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#documentation": "Difference between the preset's UI config and the defaults."
+        }
+      }
+    }
+  ]
+}

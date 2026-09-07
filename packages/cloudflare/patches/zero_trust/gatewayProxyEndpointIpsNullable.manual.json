@@ -1,0 +1,21 @@
+{
+  "description": "Wire drift (observed 2026-08-01): identity-kind proxy endpoints now include `ips: null` in responses instead of omitting the key, so the key-presence union discrimination decodes them as the IP variant with a null ips. Make `ips` optional/nullable on the IP result shapes so the type is honest about the wire.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsCreateResultIP/members/ips/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsGetResultIP/members/ips/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsEditResultIP/members/ips/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsListResultItemIP/members/ips/traits/smithy.api#required"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Align addressing#AddressMapsAccountsDelete with distilled cloudflare/addressing deleteAddressMapAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsAccountsDelete",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsAccountsDeleteRequest",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccount/input/target",
+      "value": "com.cloudflare.addressing#DeleteAddressMapAccountRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.addressing#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

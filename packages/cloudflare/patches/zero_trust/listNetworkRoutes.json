@@ -1,0 +1,41 @@
+{
+  "description": "Align zero_trust#NetworksRoutesList with distilled cloudflare/zero-trust listNetworkRoutes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkRoutes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkRoutesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkRoutes/input/target",
+      "value": "com.cloudflare.zero_trust#ListNetworkRoutesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkRoutesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkRoutes/output/target",
+      "value": "com.cloudflare.zero_trust#ListNetworkRoutesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkRoutes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

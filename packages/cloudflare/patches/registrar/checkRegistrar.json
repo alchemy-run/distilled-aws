@@ -1,0 +1,30 @@
+{
+  "description": "Align registrar#Check with distilled cloudflare/registrar checkRegistrar",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#Check",
+      "path": "/shapes/com.cloudflare.registrar#CheckRegistrar"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#CheckRequest",
+      "path": "/shapes/com.cloudflare.registrar#CheckRegistrarRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#CheckRegistrar/input/target",
+      "value": "com.cloudflare.registrar#CheckRegistrarRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#CheckResponse",
+      "path": "/shapes/com.cloudflare.registrar#CheckRegistrarResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#CheckRegistrar/output/target",
+      "value": "com.cloudflare.registrar#CheckRegistrarResponse"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "description": "Align content_scanning#SettingsGet with distilled cloudflare/content-scanning getContentScanning (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.content_scanning#SettingsGet/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7SummaryHttpVersion with distilled cloudflare/radar httpVersionAttackLayer7Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryHttpVersion",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionAttackLayer7Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryHttpVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionAttackLayer7SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionAttackLayer7Summary/input/target",
+      "value": "com.cloudflare.radar#HttpVersionAttackLayer7SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryHttpVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionAttackLayer7SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionAttackLayer7Summary/output/target",
+      "value": "com.cloudflare.radar#HttpVersionAttackLayer7SummaryResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#NetflowsTimeseries with distilled cloudflare/radar timeseriesNetflow",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTimeseries",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesNetflow"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTimeseriesRequest",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesNetflowRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesNetflow/input/target",
+      "value": "com.cloudflare.radar#TimeseriesNetflowRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTimeseriesResponse",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesNetflowResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesNetflow/output/target",
+      "value": "com.cloudflare.radar#TimeseriesNetflowResponse"
+    }
+  ]
+}

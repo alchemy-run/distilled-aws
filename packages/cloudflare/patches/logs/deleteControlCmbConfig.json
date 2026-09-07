@@ -1,0 +1,45 @@
+{
+  "description": "Align logs#ControlCmbConfigDelete with distilled cloudflare/logs deleteControlCmbConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigDelete",
+      "path": "/shapes/com.cloudflare.logs#DeleteControlCmbConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigDeleteRequest",
+      "path": "/shapes/com.cloudflare.logs#DeleteControlCmbConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#DeleteControlCmbConfig/input/target",
+      "value": "com.cloudflare.logs#DeleteControlCmbConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigDeleteResponse",
+      "path": "/shapes/com.cloudflare.logs#DeleteControlCmbConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#DeleteControlCmbConfig/output/target",
+      "value": "com.cloudflare.logs#DeleteControlCmbConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logs#DeleteControlCmbConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logs#LogsControlNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.logs#CmbConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.logs#Forbidden"
+        }
+      ]
+    }
+  ]
+}

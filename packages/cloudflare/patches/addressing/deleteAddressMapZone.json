@@ -1,0 +1,35 @@
+{
+  "description": "Align addressing#AddressMapsZonesDelete with distilled cloudflare/addressing deleteAddressMapZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsZonesDelete",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsZonesDeleteRequest",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapZone/input/target",
+      "value": "com.cloudflare.addressing#DeleteAddressMapZoneRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.addressing#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

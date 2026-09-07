@@ -1,0 +1,1217 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.event_definitions#EventDefinitionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "exclude_hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "exclude_hidden",
+            "smithy.api#documentation": "When true, omit events that have been explicitly hidden by a team admin (Enterprise only)."
+          }
+        },
+        "exclude_stale": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "exclude_stale",
+            "smithy.api#documentation": "When true, omit events whose last ingested occurrence is older than 30 days. Events that have never been seen (`last_seen_at` is null) are kept so newly-defined events remain discoverable. Default false. If a search returns zero results with this filter on, retry with `exclude_stale=false` and tell the user the matches are stale."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#PaginatedEnterpriseEventDefinitionList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.event_definitions#PaginatedEnterpriseEventDefinitionListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EnterpriseEventDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.event_definitions#EnterpriseEventDefinitionTagsList"
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_by": {
+          "target": "com.posthog.event_definitions#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_updated_at": {
+          "target": "smithy.api#String"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        },
+        "verified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "verified_by": {
+          "target": "com.posthog.event_definitions#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enforcement_mode": {
+          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+        },
+        "primary_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_action": {
+          "target": "smithy.api#Boolean"
+        },
+        "action_id": {
+          "target": "smithy.api#Integer"
+        },
+        "is_calculating": {
+          "target": "smithy.api#Boolean"
+        },
+        "last_calculated_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.event_definitions#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "post_to_slack": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_columns": {
+          "target": "com.posthog.event_definitions#EnterpriseEventDefinitionDefaultColumnsList"
+        },
+        "media_preview_urls": {
+          "target": "com.posthog.event_definitions#EnterpriseEventDefinitionMediaPreviewUrlsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer mixin that handles tags for objects."
+      }
+    },
+    "com.posthog.event_definitions#EnterpriseEventDefinitionTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.event_definitions#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.event_definitions#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.event_definitions#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.event_definitions#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.event_definitions#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EnforcementModeEnum": {
+      "type": "enum",
+      "members": {
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "allow"
+          }
+        },
+        "REJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reject"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `allow` - Allow\n* `reject` - Reject"
+      }
+    },
+    "com.posthog.event_definitions#EnterpriseEventDefinitionDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EnterpriseEventDefinitionMediaPreviewUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#PaginatedEnterpriseEventDefinitionListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#PaginatedEnterpriseEventDefinitionList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#BadRequest"
+        },
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsCreateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsCreateRequestDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.event_definitions#EventDefinitionsCreateRequestTagsList"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enforcement_mode": {
+          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+        },
+        "primary_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "post_to_slack": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_columns": {
+          "target": "com.posthog.event_definitions#EventDefinitionsCreateRequestDefaultColumnsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#BadRequest"
+        },
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/event_definitions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this event definition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsUpdateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsUpdateRequestDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this event definition."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.event_definitions#EventDefinitionsUpdateRequestTagsList"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enforcement_mode": {
+          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+        },
+        "primary_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "post_to_slack": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_columns": {
+          "target": "com.posthog.event_definitions#EventDefinitionsUpdateRequestDefaultColumnsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#BadRequest"
+        },
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/event_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this event definition."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestTagsList"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        },
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enforcement_mode": {
+          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+        },
+        "primary_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "post_to_slack": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_columns": {
+          "target": "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestDefaultColumnsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#BadRequest"
+        },
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/event_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this event definition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/event_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsByNameRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The exact event name to look up"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionRecord": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_updated_at": {
+          "target": "smithy.api#String"
+        },
+        "tags": {
+          "target": "com.posthog.event_definitions#EventDefinitionRecordTagsList"
+        },
+        "enforcement_mode": {
+          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+        },
+        "primary_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_action": {
+          "target": "smithy.api#Boolean"
+        },
+        "action_id": {
+          "target": "smithy.api#Integer"
+        },
+        "is_calculating": {
+          "target": "smithy.api#Boolean"
+        },
+        "last_calculated_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.event_definitions#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "post_to_slack": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer mixin that handles tags for objects."
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionRecordTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsByNameRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsByNameRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#EventDefinitionRecord"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#BadRequest"
+        },
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/by_name/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get event definition by exact name"
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsGolangRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsGolangRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsGolangRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/golang/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "names": {
+          "target": "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList",
+          "traits": {
+            "smithy.api#httpQuery": "names",
+            "smithy.api#documentation": "Optional: restrict the response to these event names. Repeat the parameter for multiple names (e.g. `?names=a&names=b`). When omitted, returns every team-configured primary property."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#PrimaryPropertiesResponse": {
+      "type": "structure",
+      "members": {
+        "primary_properties": {
+          "target": "com.posthog.event_definitions#PrimaryPropertiesResponsePrimaryPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "Mapping from event name to the team-configured primary property for that event. Names without a configured primary property are omitted; callers should fall back to the core taxonomy defaults for those.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.event_definitions#PrimaryPropertiesResponsePrimaryPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Mapping from event name to the team-configured primary property for that event. Names without a configured primary property are omitted; callers should fall back to the core taxonomy defaults for those."
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.event_definitions#PrimaryPropertiesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/primary_properties/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resolve team-configured primary properties for event definitions.\n\nThe response only contains entries where a non-null primary_property is set on the\nEventDefinition. Callers should fall back to the core taxonomy defaults client-side\nfor names not present in the response."
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsPythonRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsPythonRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsPythonRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/python/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.event_definitions#Forbidden"
+        },
+        {
+          "target": "com.posthog.event_definitions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/event_definitions/typescript/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.event_definitions#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.event_definitions#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.event_definitions#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.event_definitions#EventDefinitions": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsList"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsCreate"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsRetrieve"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsUpdate"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsDestroy"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsByNameRetrieve"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsGolangRetrieve"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieve"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsPythonRetrieve"
+        },
+        {
+          "target": "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

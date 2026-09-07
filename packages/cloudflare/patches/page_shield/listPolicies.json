@@ -1,0 +1,47 @@
+{
+  "description": "Align page_shield#PoliciesList with distilled cloudflare/page-shield listPolicies",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesList",
+      "path": "/shapes/com.cloudflare.page_shield#ListPolicies"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesListRequest",
+      "path": "/shapes/com.cloudflare.page_shield#ListPoliciesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#ListPolicies/input/target",
+      "value": "com.cloudflare.page_shield#ListPoliciesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesListResponse",
+      "path": "/shapes/com.cloudflare.page_shield#ListPoliciesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#ListPolicies/output/target",
+      "value": "com.cloudflare.page_shield#ListPoliciesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_shield#ListPolicies/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_shield#ListPolicies/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    }
+  ]
+}

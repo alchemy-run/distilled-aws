@@ -1,0 +1,38 @@
+{
+  "description": "Align email_security#InvestigateReleaseBulk with distilled cloudflare/email-security bulkInvestigateRelease",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateReleaseBulk",
+      "path": "/shapes/com.cloudflare.email_security#BulkInvestigateRelease"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateReleaseBulkRequest",
+      "path": "/shapes/com.cloudflare.email_security#BulkInvestigateReleaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#BulkInvestigateRelease/input/target",
+      "value": "com.cloudflare.email_security#BulkInvestigateReleaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateReleaseBulkResponse",
+      "path": "/shapes/com.cloudflare.email_security#BulkInvestigateReleaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#BulkInvestigateRelease/output/target",
+      "value": "com.cloudflare.email_security#BulkInvestigateReleaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#BulkInvestigateRelease/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

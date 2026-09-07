@@ -1,0 +1,18 @@
+{
+  "description": "Select environment.config so Bucket can observe which buckets are deployed in an environment (EnvironmentConfig.buckets).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentResponse/members/config",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": { "smithy.api#required": {} }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#EnvironmentRequest/traits/com.railway.graphql#operation/query",
+      "value": "query environment($id: String!, $projectId: String) {\n  environment(id: $id, projectId: $projectId) {\n    canAccess\n    canvasGroupRefs\n    config\n    configEtag\n    createdAt\n    deletedAt\n    id\n    isEphemeral\n    meta {\n      baseBranch\n      branch\n      latestSuccessfulGitHubDeploymentId\n      prCommentId\n      prNumber\n      prRepo\n      prTitle\n      skippedResourceIds\n    }\n    name\n    projectId\n    unmergedChangesCount\n    updatedAt\n    volumeInstances(first: 200) {\n      edges {\n        node {\n          createdAt\n          currentSizeMB\n          deletedAt\n          environmentId\n          id\n          isPendingDeletion\n          mountPath\n          region\n          serviceId\n          sizeMB\n          state\n          volume {\n            createdAt\n            id\n            name\n            projectId\n          }\n          volumeId\n        }\n      }\n    }\n  }\n}"
+    }
+  ]
+}

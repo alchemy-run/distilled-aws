@@ -1,0 +1,30 @@
+{
+  "description": "Align api_gateway#OperationsLabelsDelete with distilled cloudflare/api-gateway deleteOperationLabel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsDelete",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteOperationLabel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsDeleteRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteOperationLabelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteOperationLabel/input/target",
+      "value": "com.cloudflare.api_gateway#DeleteOperationLabelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsDeleteResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteOperationLabelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteOperationLabel/output/target",
+      "value": "com.cloudflare.api_gateway#DeleteOperationLabelResponse"
+    }
+  ]
+}

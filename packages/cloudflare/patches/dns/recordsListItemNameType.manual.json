@@ -1,0 +1,782 @@
+{
+  "description": "Docs bug: the record list result variants render only the response-extras half of the RecordResponse allOf, dropping the shared record fields \u2014 the wire returns the full record. Restore `name` and `type` (the fields consumers narrow on to find a record) on every per-type list item variant.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemARecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "A": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "A"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemARecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemARecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemARecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemAAAARecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "AAAA": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "AAAA"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemAAAARecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemAAAARecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemAAAARecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCNAMERecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "CNAME": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "CNAME"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCNAMERecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCNAMERecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemCNAMERecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemMXRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "MX": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "MX"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemMXRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemMXRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemMXRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemNSRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "NS": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "NS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemNSRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemNSRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemNSRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemOpenpgpkeyRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "OPENPGPKEY": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "OPENPGPKEY"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemOpenpgpkeyRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemOpenpgpkeyRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemOpenpgpkeyRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemPTRRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "PTR": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "PTR"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemPTRRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemPTRRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemPTRRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemTXTRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "TXT": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "TXT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemTXTRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemTXTRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemTXTRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCAARecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "CAA": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "CAA"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCAARecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCAARecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemCAARecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCERTRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "CERT": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "CERT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCERTRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemCERTRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemCERTRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemDNSKEYRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "DNSKEY": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "DNSKEY"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemDNSKEYRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemDNSKEYRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemDNSKEYRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemDSRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "DS": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "DS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemDSRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemDSRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemDSRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemHTTPSRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "HTTPS": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "HTTPS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemHTTPSRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemHTTPSRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemHTTPSRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemLOCRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "LOC": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "LOC"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemLOCRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemLOCRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemLOCRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemNAPTRRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "NAPTR": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "NAPTR"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemNAPTRRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemNAPTRRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemNAPTRRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSMIMEARecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "SMIMEA": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "SMIMEA"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSMIMEARecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSMIMEARecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemSMIMEARecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSRVRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "SRV": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "SRV"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSRVRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSRVRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemSRVRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSSHFPRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "SSHFP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "SSHFP"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSSHFPRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSSHFPRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemSSHFPRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSVCBRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "SVCB": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "SVCB"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSVCBRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemSVCBRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemSVCBRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemTLSARecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "TLSA": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "TLSA"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemTLSARecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemTLSARecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemTLSARecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemURIRecordType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "URI": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "URI"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemURIRecord/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Complete DNS record name, including the zone name, in Punycode.",
+          "smithy.api#required": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#RecordsListResultItemURIRecord/members/type",
+      "value": {
+        "target": "com.cloudflare.dns#RecordsListResultItemURIRecordType",
+        "traits": {
+          "smithy.api#documentation": "Record type.",
+          "smithy.api#required": {}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "description": "zones/{zone_id}/workers/edge-preview is absent from the API docs (docs-absent endpoint): the zone-scoped twin of createSubdomainEdgePreviewSession — GET answers a preview-session token used as cf-preview-upload-config-token when uploading a preview worker, plus an optional exchange URL, for previews routed through a zone rather than workers.dev. Shapes transcribed from the distilled SDK's createZoneEdgePreviewSession.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateZoneEdgePreviewSessionRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "zone_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Identifier.",
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#input": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateZoneEdgePreviewSessionResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "token": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Session token used as cf-preview-upload-config-token when uploading a preview worker.",
+              "smithy.api#required": {}
+            }
+          },
+          "exchange_url": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Optional URL to exchange the token for a re-encoded version."
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateZoneEdgePreviewSession",
+      "value": {
+        "type": "operation",
+        "input": {
+          "target": "com.cloudflare.workers#CreateZoneEdgePreviewSessionRequest"
+        },
+        "output": {
+          "target": "com.cloudflare.workers#CreateZoneEdgePreviewSessionResponse"
+        },
+        "errors": [
+          {
+            "target": "com.cloudflare.workers#InvalidRoute"
+          }
+        ],
+        "traits": {
+          "smithy.api#http": {
+            "method": "GET",
+            "uri": "/zones/{zone_id}/workers/edge-preview",
+            "code": 200
+          },
+          "smithy.api#documentation": "Create an edge-preview session scoped to a zone (undocumented endpoint)."
+        }
+      }
+    }
+  ]
+}

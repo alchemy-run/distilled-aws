@@ -1,0 +1,848 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.calls#SfuCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#SfuCreateResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bearer token"
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#SfuCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#SfuCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#SfuCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/calls/apps",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new Cloudflare calls app. An app is an unique enviroment where each Session can access all Tracks within the app."
+      }
+    },
+    "com.cloudflare.calls#SfuDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#SfuDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#SfuDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#SfuDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#SfuDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/calls/apps/{app_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an app from Cloudflare Calls",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.calls#SfuGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#SfuGetResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#SfuGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#SfuGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#SfuGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/calls/apps/{app_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches details for a single Calls app.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.calls#SfuListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#SfuListResultItem": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      }
+    },
+    "com.cloudflare.calls#SfuListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.calls#SfuListResultItem"
+      }
+    },
+    "com.cloudflare.calls#SfuListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.calls#SfuListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.calls#SfuList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#SfuListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#SfuListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/calls/apps",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all apps in the Cloudflare account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.calls#SfuUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#SfuUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#SfuUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#SfuUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#SfuUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/calls/apps/{app_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit details for a single app.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.calls#TurnCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of a TURN key, not shown to end users."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#TurnCreateResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bearer token"
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of a TURN key, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#TurnCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#TurnCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#TurnCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/calls/turn_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new Cloudflare Calls TURN key."
+      }
+    },
+    "com.cloudflare.calls#TurnDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#TurnDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#TurnDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#TurnDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#TurnDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/calls/turn_keys/{key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a TURN key from Cloudflare Calls",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.calls#TurnGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#TurnGetResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#TurnGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#TurnGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#TurnGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/calls/turn_keys/{key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches details for a single TURN key.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.calls#TurnListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#TurnListResultItem": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      }
+    },
+    "com.cloudflare.calls#TurnListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.calls#TurnListResultItem"
+      }
+    },
+    "com.cloudflare.calls#TurnListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.calls#TurnListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.calls#TurnList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#TurnListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#TurnListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/calls/turn_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all TURN keys in the Cloudflare account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.calls#TurnUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of a TURN key, not shown to end users."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.calls#TurnUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the item was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of Calls app, not shown to end users."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare-generated unique identifier for a item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.calls#TurnUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.calls#TurnUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.calls#TurnUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/calls/turn_keys/{key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit details for a single TURN key.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.calls#Calls": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.calls#SfuCreate"
+        },
+        {
+          "target": "com.cloudflare.calls#SfuDelete"
+        },
+        {
+          "target": "com.cloudflare.calls#SfuGet"
+        },
+        {
+          "target": "com.cloudflare.calls#SfuList"
+        },
+        {
+          "target": "com.cloudflare.calls#SfuUpdate"
+        },
+        {
+          "target": "com.cloudflare.calls#TurnCreate"
+        },
+        {
+          "target": "com.cloudflare.calls#TurnDelete"
+        },
+        {
+          "target": "com.cloudflare.calls#TurnGet"
+        },
+        {
+          "target": "com.cloudflare.calls#TurnList"
+        },
+        {
+          "target": "com.cloudflare.calls#TurnUpdate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Calls",
+        "smithy.api#documentation": "Cloudflare API — calls resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

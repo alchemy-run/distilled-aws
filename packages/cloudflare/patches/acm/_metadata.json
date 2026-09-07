@@ -1,0 +1,29 @@
+{
+  "description": "Key dictionary / op aliases for acm (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "certificateAuthority": "certificate_authority",
+        "expiresOn": "expires_on",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "totalCount": "total_count",
+        "updatedAt": "updated_at",
+        "uploadedOn": "uploaded_on",
+        "validityPeriod": "validity_period"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "editTotalTl",
+          "target": "updateTotalTl"
+        }
+      ]
+    }
+  ]
+}

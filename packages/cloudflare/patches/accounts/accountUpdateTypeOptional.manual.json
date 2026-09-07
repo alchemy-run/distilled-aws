@@ -1,0 +1,9 @@
+{
+  "description": "Docs bug: account update (PUT) marks `type` required on the request body, but the account type is immutable and set at creation — the API accepts a PUT without it (observed on the wire; v0 did not require it on update). Make it optional.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccountRequest/members/type/traits/smithy.api#required"
+    }
+  ]
+}

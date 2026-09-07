@@ -1,0 +1,3901 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "bigquerydatatransfer",
+    "version": "v1",
+    "title": "BigQuery Data Transfer API",
+    "baseUrl": "https://bigquerydatatransfer.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.bigquerydatatransfer_v1#TransferRun": {
+      "type": "structure",
+      "members": {
+        "destinationDatasetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The BigQuery target dataset id."
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. Unique ID of the user on whose behalf transfer is done."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when transfer run was started. Parameter ignored by server for input requests."
+          }
+        },
+        "state": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferRunStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Data transfer run state. Ignored for input requests."
+          }
+        },
+        "emailPreferences": {
+          "target": "com.gcp.bigquerydatatransfer_v1#EmailPreferences",
+          "traits": {
+            "smithy.api#documentation": "Output only. Email notifications will be sent according to these preferences to the email address of the user who owns the transfer config this run was derived from."
+          }
+        },
+        "runTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For batch transfer runs, specifies the date and time of the data should be ingested."
+          }
+        },
+        "schedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Describes the schedule of this transfer run if it was created as part of a regular schedule. For batch transfer runs that are scheduled manually, this is empty. NOTE: the system might choose to delay the schedule depending on the current load, so `schedule_time` doesn't always match this."
+          }
+        },
+        "metadataDestination": {
+          "target": "com.gcp.bigquerydatatransfer_v1#MetadataDestination",
+          "traits": {
+            "smithy.api#documentation": "Output only. The metadata destination of the transfer run."
+          }
+        },
+        "errorStatus": {
+          "target": "com.gcp.bigquerydatatransfer_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Status of the transfer run."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when transfer run ended. Parameter ignored by server for input requests."
+          }
+        },
+        "params": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`. The name is ignored when creating a transfer run."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Last time the data transfer run state was updated."
+          }
+        },
+        "notificationPubsubTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project_id}/topics/{topic_id}`"
+          }
+        },
+        "scheduleTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum time after which a transfer run can be started."
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Data source id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a data transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferRunStateEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListTransferConfigsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The next-pagination token. For multiple-page list results, this token can be used as the `ListTransferConfigsRequest.page_token` to request the next page of list results."
+          }
+        },
+        "transferConfigs": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfigList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The stored pipeline transfer configurations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The returned list of pipelines in the project."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ManualSchedule": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Options customizing manual transfers schedule."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferStatusSummary": {
+      "type": "structure",
+      "members": {
+        "metrics": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferStatusMetricList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of transfer status metrics."
+          }
+        },
+        "progressUnit": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferStatusSummaryProgressUnitEnum",
+          "traits": {
+            "smithy.api#documentation": "Input only. Unit based on which transfer status progress should be calculated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status summary of the resource being transferred."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferStatusMetricList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferStatusMetric"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferStatusSummaryProgressUnitEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_STATUS_UNIT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATUS_UNIT_UNSPECIFIED"
+          }
+        },
+        "TRANSFER_STATUS_UNIT_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATUS_UNIT_BYTES"
+          }
+        },
+        "TRANSFER_STATUS_UNIT_OBJECTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATUS_UNIT_OBJECTS"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StartManualTransferRunsRequest": {
+      "type": "structure",
+      "members": {
+        "requestedTimeRange": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TimeRange",
+          "traits": {
+            "smithy.api#documentation": "A time_range start and end timestamp for historical data files or reports that are scheduled to be transferred by the scheduled transfer run. requested_time_range must be a past time and cannot include future time values."
+          }
+        },
+        "requestedRunTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A run_time timestamp for historical data files or reports that are scheduled to be transferred by the scheduled transfer run. requested_run_time must be a past time and cannot include future time values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to start manual transfer runs."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TimeRange": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time of the range of transfer runs. For example, `\"2017-05-25T00:00:00+00:00\"`. The start_time must be strictly less than the end_time. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive)."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time of the range of transfer runs. For example, `\"2017-05-30T00:00:00+00:00\"`. The end_time must not be in the future. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A specification for a time range, this will request transfer runs with run_time between start_time (inclusive) and end_time (exclusive)."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "dataSourceIds": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Data sources that are enrolled. It is required to provide at least one data source id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to enroll a set of data sources so they are visible in the BigQuery UI's `Transfer` tab."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#HierarchyDetail": {
+      "type": "structure",
+      "members": {
+        "tableDetail": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TableDetail",
+          "traits": {
+            "smithy.api#documentation": "Optional. Table details related to hierarchy."
+          }
+        },
+        "partitionDetail": {
+          "target": "com.gcp.bigquerydatatransfer_v1#PartitionDetail",
+          "traits": {
+            "smithy.api#documentation": "Optional. Partition details related to hierarchy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the hierarchy."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EventDrivenSchedule": {
+      "type": "structure",
+      "members": {
+        "pubsubSubscription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pub/Sub subscription name used to receive events. Only Google Cloud Storage data source support this option. Format: projects/{project}/subscriptions/{subscription}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options customizing EventDriven transfers schedule."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleOptionsV2": {
+      "type": "structure",
+      "members": {
+        "eventDrivenSchedule": {
+          "target": "com.gcp.bigquerydatatransfer_v1#EventDrivenSchedule",
+          "traits": {
+            "smithy.api#documentation": "Event driven transfer schedule options. If set, the transfer will be scheduled upon events arrial."
+          }
+        },
+        "timeBasedSchedule": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TimeBasedSchedule",
+          "traits": {
+            "smithy.api#documentation": "Time based transfer schedule options. This is the default schedule option."
+          }
+        },
+        "manualSchedule": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ManualSchedule",
+          "traits": {
+            "smithy.api#documentation": "Manual transfer schedule. If set, the transfer run will not be auto-scheduled by the system, unless the client invokes StartManualTransferRuns. This is equivalent to disable_auto_scheduling = true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "V2 options customizing different types of data transfer schedule. This field supports existing time-based and manual transfer schedule. Also supports Event-Driven transfer schedule. ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.bigquerydatatransfer_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Location"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleTransferRunsRequest": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Start time of the range of transfer runs. For example, `\"2017-05-25T00:00:00+00:00\"`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. End time of the range of transfer runs. For example, `\"2017-05-30T00:00:00+00:00\"`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to schedule transfer runs for a time range."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#Status": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DocumentMap"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CheckValidCredsRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A request to determine whether the user has valid credentials. This method is used to limit the number of OAuth popups in the user interface. The user id is inferred from the API call context. If the data source has the Google+ authorization type, this method returns false, as it cannot be determined whether the credentials are already valid merely based on the user id."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListTransferResourcesResponse": {
+      "type": "structure",
+      "members": {
+        "transferResources": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferResourceList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The transfer resources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the `ListTransferResources` RPC."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferResourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferResource"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TimeBasedSchedule": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines time to stop scheduling transfer runs. A transfer run cannot be scheduled at or after the end time. The end time can be changed at any moment."
+          }
+        },
+        "schedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data transfer schedule. If the data source does not support a custom schedule, this should be empty. If it is empty, the default value for the data source will be used. The specified times are in UTC. Examples of valid format: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`. See more explanation about the format here: https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format NOTE: The minimum interval time between recurring transfers depends on the data source; refer to the documentation for your data source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options customizing the time based transfer schedule. Options are migrated from the original ScheduleOptions message."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StartManualTransferRunsResponse": {
+      "type": "structure",
+      "members": {
+        "runs": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferRunList",
+          "traits": {
+            "smithy.api#documentation": "The transfer runs that were created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A response to start manual transfer runs."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferRunList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferRun"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferMessage": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferMessageSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Message severity."
+          }
+        },
+        "messageTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time when message was logged."
+          }
+        },
+        "messageText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message text."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a user facing message for a particular data transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferMessageSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "MESSAGE_SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MESSAGE_SEVERITY_UNSPECIFIED"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EmailPreferences": {
+      "type": "structure",
+      "members": {
+        "enableFailureEmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, email notifications will be sent on transfer run failures."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents preferences for sending email notifications for transfer run events."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListDataSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "dataSources": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceList",
+          "traits": {
+            "smithy.api#documentation": "List of supported data sources and their transfer settings."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The next-pagination token. For multiple-page list results, this token can be used as the `ListDataSourcesRequest.page_token` to request the next page of list results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns list of supported data sources and their metadata."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DataSource"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#Location": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#UserInfo": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "E-mail address of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a user."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataplexConfiguration": {
+      "type": "structure",
+      "members": {
+        "entryGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Dataplex Universal Catalog entry group for importing the metadata. entry_group has the format of `projects/{project_id}/locations/{region}/entryGroups/{entry_group_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for Dataplex destination."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferRunBrief": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Start time of the transfer run."
+          }
+        },
+        "run": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Run URI. The format must be: `projects/{project}/locations/{location}/transferConfigs/{transfer_config}/run/{run}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Basic information about a transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListTransferLogsResponse": {
+      "type": "structure",
+      "members": {
+        "transferMessages": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferMessageList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The stored pipeline transfer messages."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The next-pagination token. For multiple-page list results, this token can be used as the `GetTransferRunLogRequest.page_token` to request the next page of list results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The returned list transfer run messages."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferMessageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferMessage"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSource": {
+      "type": "structure",
+      "members": {
+        "supportsCustomSchedule": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether the data source supports a user defined schedule, or operates on the default schedule. When set to `true`, user can override default schedule."
+          }
+        },
+        "defaultSchedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default data transfer schedule. Examples of valid schedules include: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`."
+          }
+        },
+        "helpUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url for the help document for this data source."
+          }
+        },
+        "dataRefreshType": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceDataRefreshTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether the data source supports automatic data refresh for the past few days, and how it's supported. For some data sources, data might not be complete until a few days later, so it's useful to refresh data automatically."
+          }
+        },
+        "supportsMultipleTransfers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. This field has no effect."
+          }
+        },
+        "manualRunsDisabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Disables backfilling and manual run scheduling for the data source."
+          }
+        },
+        "authorizationType": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceAuthorizationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates the type of authorization."
+          }
+        },
+        "minimumScheduleInterval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum interval for scheduler to schedule runs."
+          }
+        },
+        "scopes": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Api auth scopes for which refresh token needs to be obtained. These are scopes needed by a data source to prepare data and ingest them into BigQuery, e.g., https://www.googleapis.com/auth/bigquery"
+          }
+        },
+        "updateDeadlineSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of seconds to wait for an update from the data source before the Data Transfer Service marks the transfer as FAILED."
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data source id."
+          }
+        },
+        "parameters": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceParameterList",
+          "traits": {
+            "smithy.api#documentation": "Data source parameters."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User friendly data source name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User friendly data source description string."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data source client id which should be used to receive refresh token."
+          }
+        },
+        "defaultDataRefreshWindowDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Default data refresh window on days. Only meaningful when `data_refresh_type` = `SLIDING_WINDOW`."
+          }
+        },
+        "transferType": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceTransferTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. This field has no effect."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Data source resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the properties and custom parameters for a data source."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceDataRefreshTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_REFRESH_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_REFRESH_TYPE_UNSPECIFIED"
+          }
+        },
+        "SLIDING_WINDOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SLIDING_WINDOW"
+          }
+        },
+        "CUSTOM_SLIDING_WINDOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_SLIDING_WINDOW"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceAuthorizationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTHORIZATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "AUTHORIZATION_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZATION_CODE"
+          }
+        },
+        "GOOGLE_PLUS_AUTHORIZATION_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_PLUS_AUTHORIZATION_CODE"
+          }
+        },
+        "FIRST_PARTY_OAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_PARTY_OAUTH"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceParameterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DataSourceParameter"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceTransferTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_TYPE_UNSPECIFIED"
+          }
+        },
+        "BATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BATCH"
+          }
+        },
+        "STREAMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STREAMING"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TableDetail": {
+      "type": "structure",
+      "members": {
+        "partitionCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Total number of partitions being tracked within the table."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Table details related to hierarchy."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferResourceStatusDetail": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferResourceStatusDetailStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Transfer state of the resource."
+          }
+        },
+        "error": {
+          "target": "com.gcp.bigquerydatatransfer_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Optional. Transfer error details for the resource."
+          }
+        },
+        "summary": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferStatusSummary",
+          "traits": {
+            "smithy.api#documentation": "Optional. Transfer status summary of the resource."
+          }
+        },
+        "completedPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Percentage of the transfer completed. Valid values: 0-100."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status details of the resource being transferred."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferResourceStatusDetailStateEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_TRANSFER_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TRANSFER_STATE_UNSPECIFIED"
+          }
+        },
+        "RESOURCE_TRANSFER_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TRANSFER_PENDING"
+          }
+        },
+        "RESOURCE_TRANSFER_RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TRANSFER_RUNNING"
+          }
+        },
+        "RESOURCE_TRANSFER_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TRANSFER_SUCCEEDED"
+          }
+        },
+        "RESOURCE_TRANSFER_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TRANSFER_FAILED"
+          }
+        },
+        "RESOURCE_TRANSFER_CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TRANSFER_CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleOptions": {
+      "type": "structure",
+      "members": {
+        "disableAutoScheduling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, automatic scheduling of data transfer runs for this configuration will be disabled. The runs can be started on ad-hoc basis using StartManualTransferRuns API. When automatic scheduling is disabled, the TransferConfig.schedule field will be ignored."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment. The time when a data transfer can be triggered manually is not limited by this option."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines time to stop scheduling transfer runs. A transfer run cannot be scheduled at or after the end time. The end time can be changed at any moment. The time when a data transfer can be triggered manually is not limited by this option."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options customizing the data transfer schedule."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CheckValidCredsResponse": {
+      "type": "structure",
+      "members": {
+        "hasValidCreds": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to `true`, the credentials exist and are valid."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A response indicating whether the credentials exist and are valid."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceParameter": {
+      "type": "structure",
+      "members": {
+        "maxListSize": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For list parameters, the max size of the list."
+          }
+        },
+        "paramId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parameter identifier."
+          }
+        },
+        "repeated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. This field has no effect."
+          }
+        },
+        "recurse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. This field has no effect."
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, it should not be used in new transfers, and it should not be visible to users."
+          }
+        },
+        "immutable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Cannot be changed after initial creation."
+          }
+        },
+        "validationHelpUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to a help document to further explain the naming requirements."
+          }
+        },
+        "minValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "For integer and double values specifies minimum allowed value."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is parameter required."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parameter description."
+          }
+        },
+        "allowedValues": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "All possible values for the parameter."
+          }
+        },
+        "validationDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the requirements for this field, in case the user input does not fulfill the regex pattern or min/max values."
+          }
+        },
+        "type": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceParameterTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Parameter type."
+          }
+        },
+        "fields": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataSourceParameterList",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. This field has no effect."
+          }
+        },
+        "validationRegex": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Regular expression which can be used for parameter validation."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parameter display name in the user interface."
+          }
+        },
+        "maxValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "For integer and double values specifies maximum allowed value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A parameter used to define custom fields in a data source definition."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DataSourceParameterTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRING"
+          }
+        },
+        "INTEGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEGER"
+          }
+        },
+        "DOUBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOUBLE"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOLEAN"
+          }
+        },
+        "RECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECORD"
+          }
+        },
+        "PLUS_PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLUS_PAGE"
+          }
+        },
+        "LIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIST"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EncryptionConfiguration": {
+      "type": "structure",
+      "members": {
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the KMS key used for encrypting BigQuery data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the encryption configuration for a transfer."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferConfig": {
+      "type": "structure",
+      "members": {
+        "datasetRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Region in which BigQuery dataset is located."
+          }
+        },
+        "nextRunTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Next time when data transfer will run."
+          }
+        },
+        "metadataDestination": {
+          "target": "com.gcp.bigquerydatatransfer_v1#MetadataDestination",
+          "traits": {
+            "smithy.api#documentation": "The metadata destination of the transfer config."
+          }
+        },
+        "schedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data transfer schedule. If the data source does not support a custom schedule, this should be empty. If it is empty, the default value for the data source will be used. The specified times are in UTC. Examples of valid format: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`. See more explanation about the format here: https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format NOTE: The minimum interval time between recurring transfers depends on the data source; refer to the documentation for your data source."
+          }
+        },
+        "managedTableType": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfigManagedTableTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The classification of the destination table."
+          }
+        },
+        "destinationDatasetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BigQuery target dataset id."
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. Unique ID of the user on whose behalf transfer is done."
+          }
+        },
+        "error": {
+          "target": "com.gcp.bigquerydatatransfer_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Output only. Error code with detailed information about reason of the latest config failure."
+          }
+        },
+        "state": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfigStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the most recently updated transfer run."
+          }
+        },
+        "emailPreferences": {
+          "target": "com.gcp.bigquerydatatransfer_v1#EmailPreferences",
+          "traits": {
+            "smithy.api#documentation": "Email notifications will be sent according to these preferences to the email address of the user who owns this transfer config."
+          }
+        },
+        "dataRefreshWindowDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of days to look back to automatically refresh the data. For example, if `data_refresh_window_days = 10`, then every day BigQuery reingests data for [today-10, today-1], rather than ingesting data for just [today-1]. Only valid if the data source supports the feature. Set the value to 0 to use the default value."
+          }
+        },
+        "scheduleOptions": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ScheduleOptions",
+          "traits": {
+            "smithy.api#documentation": "Options customizing the data transfer schedule."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User specified display name for the data transfer."
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data source ID. This cannot be changed once data transfer is created. The full list of available data source IDs can be returned through an API call: https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list"
+          }
+        },
+        "scheduleOptionsV2": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ScheduleOptionsV2",
+          "traits": {
+            "smithy.api#documentation": "Options customizing different types of data transfer schedule. This field replaces \"schedule\" and \"schedule_options\" fields. ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule."
+          }
+        },
+        "ownerInfo": {
+          "target": "com.gcp.bigquerydatatransfer_v1#UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information about the user whose credentials are used to transfer data. Populated only for `transferConfigs.get` requests. In case the user information is not available, this field will not be populated."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or `projects/{project_id}/transferConfigs/{config_id}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config."
+          }
+        },
+        "params": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Data transfer modification time. Ignored by server on input."
+          }
+        },
+        "notificationPubsubTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish. The format for specifying a pubsub topic is: `projects/{project_id}/topics/{topic_id}`"
+          }
+        },
+        "encryptionConfiguration": {
+          "target": "com.gcp.bigquerydatatransfer_v1#EncryptionConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The encryption configuration part. Currently, it is only used for the optional KMS key name. The BigQuery service account of your project must be granted permissions to use the key. Read methods will return the key name applied in effect. Write methods will apply the key if it is present, or otherwise try to apply project default keys if it is absent."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is this config disabled. When set to true, no runs will be scheduled for this transfer config."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a data transfer configuration. A transfer configuration contains all metadata needed to perform a data transfer. For example, `destination_dataset_id` specifies where data should be stored. When a new transfer configuration is created, the specified `destination_dataset_id` is created when needed and shared with the appropriate data source service account."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferConfigManagedTableTypeEnum": {
+      "type": "enum",
+      "members": {
+        "MANAGED_TABLE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANAGED_TABLE_TYPE_UNSPECIFIED"
+          }
+        },
+        "NATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NATIVE"
+          }
+        },
+        "BIGLAKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIGLAKE"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferConfigStateEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListTransferRunsResponse": {
+      "type": "structure",
+      "members": {
+        "transferRuns": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferRunList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The stored pipeline transfer runs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The next-pagination token. For multiple-page list results, this token can be used as the `ListTransferRunsRequest.page_token` to request the next page of list results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The returned list of pipelines in the project."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#PartitionDetail": {
+      "type": "structure",
+      "members": {
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the table which has the partitions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition details related to hierarchy."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#UnenrollDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "dataSourceIds": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Data sources that are unenrolled. It is required to provide at least one data source id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to unenroll a set of data sources so they are no longer visible in the BigQuery UI's `Transfer` tab."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferResource": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferResourceDestinationEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resource destination."
+          }
+        },
+        "latestRun": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferRunBrief",
+          "traits": {
+            "smithy.api#documentation": "Optional. Run details for the latest run."
+          }
+        },
+        "latestStatusDetail": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferResourceStatusDetail",
+          "traits": {
+            "smithy.api#documentation": "Optional. Status details for the latest run."
+          }
+        },
+        "lastSuccessfulRun": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferRunBrief",
+          "traits": {
+            "smithy.api#documentation": "Output only. Run details for the last successful run."
+          }
+        },
+        "type": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resource type."
+          }
+        },
+        "hierarchyDetail": {
+          "target": "com.gcp.bigquerydatatransfer_v1#HierarchyDetail",
+          "traits": {
+            "smithy.api#documentation": "Optional. Details about the hierarchy."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Resource name."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the resource was last updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource (table/partition) that is being transferred."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferResourceDestinationEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_DESTINATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DESTINATION_UNSPECIFIED"
+          }
+        },
+        "RESOURCE_DESTINATION_BIGQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DESTINATION_BIGQUERY"
+          }
+        },
+        "RESOURCE_DESTINATION_DATAPROC_METASTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DESTINATION_DATAPROC_METASTORE"
+          }
+        },
+        "RESOURCE_DESTINATION_BIGLAKE_METASTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DESTINATION_BIGLAKE_METASTORE"
+          }
+        },
+        "RESOURCE_DESTINATION_BIGLAKE_REST_CATALOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DESTINATION_BIGLAKE_REST_CATALOG"
+          }
+        },
+        "RESOURCE_DESTINATION_BIGLAKE_HIVE_CATALOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_DESTINATION_BIGLAKE_HIVE_CATALOG"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "RESOURCE_TYPE_TABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TYPE_TABLE"
+          }
+        },
+        "RESOURCE_TYPE_PARTITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TYPE_PARTITION"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleTransferRunsResponse": {
+      "type": "structure",
+      "members": {
+        "runs": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferRunList",
+          "traits": {
+            "smithy.api#documentation": "The transfer runs that were scheduled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A response to schedule transfer runs for a time range."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#MetadataDestination": {
+      "type": "structure",
+      "members": {
+        "dataplexConfiguration": {
+          "target": "com.gcp.bigquerydatatransfer_v1#DataplexConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The Dataplex Universal Catalog configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata destination of the transfer config."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferStatusMetric": {
+      "type": "structure",
+      "members": {
+        "pending": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of units pending transfer."
+          }
+        },
+        "failed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of units that failed to transfer."
+          }
+        },
+        "total": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Total number of units for the transfer."
+          }
+        },
+        "completed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of units transferred successfully."
+          }
+        },
+        "unit": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferStatusMetricUnitEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Unit for measuring progress (e.g., BYTES)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metrics for tracking the transfer status."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#TransferStatusMetricUnitEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_STATUS_UNIT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATUS_UNIT_UNSPECIFIED"
+          }
+        },
+        "TRANSFER_STATUS_UNIT_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATUS_UNIT_BYTES"
+          }
+        },
+        "TRANSFER_STATUS_UNIT_OBJECTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATUS_UNIT_OBJECTS"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project resource in the form: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:enrollDataSources"
+        },
+        "smithy.api#documentation": "Enroll data sources in a user project. This allows users to create transfer configurations for these data sources. They will also appear in the ListDataSources RPC and as such, will appear in the [BigQuery UI](https://console.cloud.google.com/bigquery), and the documents can be found in the public guide for [BigQuery Web UI](https://cloud.google.com/bigquery/bigquery-web-ui) and [Data Transfer Service](https://cloud.google.com/bigquery/docs/working-with-transfers)."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CheckValidCredsProjectsDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the data source. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/dataSources/{data_source_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#CheckValidCredsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CheckValidCredsProjectsDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#CheckValidCredsProjectsDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#CheckValidCredsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:checkValidCreds"
+        },
+        "smithy.api#documentation": "Returns true if valid credentials exist for the given data source and requesting user."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListDataSourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/dataSources"
+        },
+        "smithy.api#documentation": "Lists supported data sources and returns their settings.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/dataSources/{data_source_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DataSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves a supported data source and returns its settings."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "dataSourceIds": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "When specified, only configurations of requested data sources are returned.",
+            "smithy.api#httpQuery": "dataSourceIds"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BigQuery project id for which transfer configs should be returned. If you are using the regionless method, the location must be `US` and `parent` should be in the following form: * `projects/{project_id} If you are using the regionalized method, `parent` should be in the following form: * `projects/{project_id}/locations/{location_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/transferConfigs"
+        },
+        "smithy.api#documentation": "Returns information about all transfer configs owned by a project in the specified location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to delete. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DeleteProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a data transfer configuration, including any associated transfer runs and logs."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StartManualRunsProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StartManualTransferRunsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StartManualRunsProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#StartManualRunsProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#StartManualTransferRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:startManualRuns"
+        },
+        "smithy.api#documentation": "Manually initiates transfer runs. You can schedule these runs in two ways: 1. For a specific point in time using the 'requested_run_time' parameter. 2. For a period between 'start_time' (inclusive) and 'end_time' (exclusive). If scheduling a single run, it is set to execute immediately (schedule_time equals the current time). When scheduling multiple runs within a time range, the first run starts now, and subsequent runs are delayed by 15 seconds each."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#PatchProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or `projects/{project_id}/transferConfigs/{config_id}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "authorizationCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to update the transfer config.",
+            "smithy.api#httpQuery": "authorizationCode"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Required list of fields to be updated in this request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "serviceAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional service account email. If this field is set, the transfer config will be created with this service account's credentials. It requires that the requesting user calling this API has permissions to act as this service account. Note that not all data sources support service account credentials when creating a transfer config. For the latest list of data sources, read about [using service accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).",
+            "smithy.api#httpQuery": "serviceAccountName"
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional version info. This parameter replaces `authorization_code` which is no longer used in any data sources. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain version info, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to update the transfer config.",
+            "smithy.api#httpQuery": "versionInfo"
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#PatchProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#PatchProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a data transfer configuration. All fields must be set, even if they are not updated."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns information about a data transfer config."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CreateProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "authorizationCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to create the transfer config.",
+            "smithy.api#httpQuery": "authorizationCode"
+          }
+        },
+        "serviceAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional service account email. If this field is set, the transfer config will be created with this service account's credentials. It requires that the requesting user calling this API has permissions to act as this service account. Note that not all data sources support service account credentials when creating a transfer config. For the latest list of data sources, read about [using service accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).",
+            "smithy.api#httpQuery": "serviceAccountName"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional version info. This parameter replaces `authorization_code` which is no longer used in any data sources. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain version info, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to create the transfer config.",
+            "smithy.api#httpQuery": "versionInfo"
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CreateProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#CreateProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/transferConfigs"
+        },
+        "smithy.api#documentation": "Creates a new data transfer configuration."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleRunsProjectsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ScheduleTransferRunsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleRunsProjectsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ScheduleRunsProjectsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ScheduleTransferRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:scheduleRuns"
+        },
+        "smithy.api#documentation": "Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferRun"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns information about the particular transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsTransferConfigsRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsTransferConfigsRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DeleteProjectsTransferConfigsRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsRunAttemptEnum": {
+      "type": "enum",
+      "members": {
+        "RUN_ATTEMPT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN_ATTEMPT_UNSPECIFIED"
+          }
+        },
+        "LATEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LATEST"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsStatesEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsStatesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsStatesEnum"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of transfer configuration for which transfer runs should be retrieved. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "runAttempt": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsRunAttemptEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates how run attempts are to be pulled.",
+            "smithy.api#httpQuery": "runAttempt"
+          }
+        },
+        "states": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsStatesEnumList",
+          "traits": {
+            "smithy.api#documentation": "When specified, only transfer runs with requested states are returned.",
+            "smithy.api#httpQuery": "states"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/runs"
+        },
+        "smithy.api#documentation": "Returns information about running and completed transfer runs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnum": {
+      "type": "enum",
+      "members": {
+        "MESSAGE_SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MESSAGE_SEVERITY_UNSPECIFIED"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnum"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "messageTypes": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.",
+            "smithy.api#httpQuery": "messageTypes"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Transfer run name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsRunsTransferLogsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferLogsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/transferLogs"
+        },
+        "smithy.api#documentation": "Returns log messages for the transfer run.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsTransferResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the transfer resource in the form of: * `projects/{project}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}` * `projects/{project}/locations/{location}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsTransferResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsTransferConfigsTransferResourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferResource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a transfer resource."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsTransferResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following forms: * `projects/{project}/transferConfigs/{transfer_config}` * `projects/{project}/locations/{location_id}/transferConfigs/{transfer_config}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name=\"*123\" AND (type=\"TABLE\" OR latest_status_detail.state=\"SUCCEEDED\")` * `update_time >= \"2012-04-21T11:30:00-04:00\"` * `hierarchy_detail.partition_detail.table = \"table1\"`",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsTransferResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsTransferConfigsTransferResourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferResourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/transferResources"
+        },
+        "smithy.api#documentation": "Returns information about transfer resources.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project resource in the form: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#EnrollDataSourcesProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:enrollDataSources"
+        },
+        "smithy.api#documentation": "Enroll data sources in a user project. This allows users to create transfer configurations for these data sources. They will also appear in the ListDataSources RPC and as such, will appear in the [BigQuery UI](https://console.cloud.google.com/bigquery), and the documents can be found in the public guide for [BigQuery Web UI](https://cloud.google.com/bigquery/bigquery-web-ui) and [Data Transfer Service](https://cloud.google.com/bigquery/docs/working-with-transfers)."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#UnenrollDataSourcesProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project resource in the form: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#UnenrollDataSourcesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#UnenrollDataSourcesProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#UnenrollDataSourcesProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:unenrollDataSources"
+        },
+        "smithy.api#documentation": "Unenroll data sources in a user project. This allows users to remove transfer configurations for these data sources. They will no longer appear in the ListDataSources RPC and will also no longer appear in the [BigQuery UI](https://console.cloud.google.com/bigquery). Data transfers configurations of unenrolled data sources will not be scheduled."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/dataSources/{data_source_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DataSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves a supported data source and returns its settings."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CheckValidCredsProjectsLocationsDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the data source. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/dataSources/{data_source_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#CheckValidCredsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CheckValidCredsProjectsLocationsDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#CheckValidCredsProjectsLocationsDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#CheckValidCredsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:checkValidCreds"
+        },
+        "smithy.api#documentation": "Returns true if valid credentials exist for the given data source and requesting user."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListDataSourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/dataSources"
+        },
+        "smithy.api#documentation": "Lists supported data sources and returns their settings.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to delete. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DeleteProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a data transfer configuration, including any associated transfer runs and logs."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BigQuery project id for which transfer configs should be returned. If you are using the regionless method, the location must be `US` and `parent` should be in the following form: * `projects/{project_id} If you are using the regionalized method, `parent` should be in the following form: * `projects/{project_id}/locations/{location_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "dataSourceIds": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "When specified, only configurations of requested data sources are returned.",
+            "smithy.api#httpQuery": "dataSourceIds"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/transferConfigs"
+        },
+        "smithy.api#documentation": "Returns information about all transfer configs owned by a project in the specified location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#PatchProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "authorizationCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to update the transfer config.",
+            "smithy.api#httpQuery": "authorizationCode"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Required list of fields to be updated in this request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "serviceAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional service account email. If this field is set, the transfer config will be created with this service account's credentials. It requires that the requesting user calling this API has permissions to act as this service account. Note that not all data sources support service account credentials when creating a transfer config. For the latest list of data sources, read about [using service accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).",
+            "smithy.api#httpQuery": "serviceAccountName"
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional version info. This parameter replaces `authorization_code` which is no longer used in any data sources. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain version info, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to update the transfer config.",
+            "smithy.api#httpQuery": "versionInfo"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or `projects/{project_id}/transferConfigs/{config_id}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#PatchProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#PatchProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a data transfer configuration. All fields must be set, even if they are not updated."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns information about a data transfer config."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StartManualRunsProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#StartManualTransferRunsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#StartManualRunsProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#StartManualRunsProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#StartManualTransferRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:startManualRuns"
+        },
+        "smithy.api#documentation": "Manually initiates transfer runs. You can schedule these runs in two ways: 1. For a specific point in time using the 'requested_run_time' parameter. 2. For a period between 'start_time' (inclusive) and 'end_time' (exclusive). If scheduling a single run, it is set to execute immediately (schedule_time equals the current time). When scheduling multiple runs within a time range, the first run starts now, and subsequent runs are delayed by 15 seconds each."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CreateProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional version info. This parameter replaces `authorization_code` which is no longer used in any data sources. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain version info, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to create the transfer config.",
+            "smithy.api#httpQuery": "versionInfo"
+          }
+        },
+        "authorizationCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: Authorization code was required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used in any data sources. Use `version_info` instead. Optional OAuth2 authorization code to use with this transfer configuration. This is required only if `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, make a request to the following URL: https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=client_id&scope=data_source_scopes * The client_id is the OAuth client_id of the data source as returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. Note that this should not be set when `service_account_name` is used to create the transfer config.",
+            "smithy.api#httpQuery": "authorizationCode"
+          }
+        },
+        "serviceAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional service account email. If this field is set, the transfer config will be created with this service account's credentials. It requires that the requesting user calling this API has permissions to act as this service account. Note that not all data sources support service account credentials when creating a transfer config. For the latest list of data sources, read about [using service accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-accounts).",
+            "smithy.api#httpQuery": "serviceAccountName"
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#CreateProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#CreateProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/transferConfigs"
+        },
+        "smithy.api#documentation": "Creates a new data transfer configuration."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleRunsProjectsLocationsTransferConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Transfer configuration name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ScheduleTransferRunsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ScheduleRunsProjectsLocationsTransferConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ScheduleRunsProjectsLocationsTransferConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ScheduleTransferRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}:scheduleRuns"
+        },
+        "smithy.api#documentation": "Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsLocationsTransferConfigsRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#DeleteProjectsLocationsTransferConfigsRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#DeleteProjectsLocationsTransferConfigsRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsStatesEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSFER_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsStatesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsStatesEnum"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsRunAttemptEnum": {
+      "type": "enum",
+      "members": {
+        "RUN_ATTEMPT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN_ATTEMPT_UNSPECIFIED"
+          }
+        },
+        "LATEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LATEST"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsRequest": {
+      "type": "structure",
+      "members": {
+        "states": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsStatesEnumList",
+          "traits": {
+            "smithy.api#documentation": "When specified, only transfer runs with requested states are returned.",
+            "smithy.api#httpQuery": "states"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "runAttempt": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsRunAttemptEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates how run attempts are to be pulled.",
+            "smithy.api#httpQuery": "runAttempt"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of transfer configuration for which transfer runs should be retrieved. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/runs"
+        },
+        "smithy.api#documentation": "Returns information about running and completed transfer runs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsRunsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource requested. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsRunsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferRun"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns information about the particular transfer run."
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnum": {
+      "type": "enum",
+      "members": {
+        "MESSAGE_SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MESSAGE_SEVERITY_UNSPECIFIED"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnum"
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Transfer run name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "messageTypes": {
+          "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnumList",
+          "traits": {
+            "smithy.api#documentation": "Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.",
+            "smithy.api#httpQuery": "messageTypes"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsRunsTransferLogsRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferLogsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/transferLogs"
+        },
+        "smithy.api#documentation": "Returns log messages for the transfer run.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsTransferResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following forms: * `projects/{project}/transferConfigs/{transfer_config}` * `projects/{project}/locations/{location_id}/transferConfigs/{transfer_config}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name=\"*123\" AND (type=\"TABLE\" OR latest_status_detail.state=\"SUCCEEDED\")` * `update_time >= \"2012-04-21T11:30:00-04:00\"` * `hierarchy_detail.partition_detail.table = \"table1\"`",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsTransferResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListProjectsLocationsTransferConfigsTransferResourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#ListTransferResourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/transferResources"
+        },
+        "smithy.api#documentation": "Returns information about transfer resources.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsTransferResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the transfer resource in the form of: * `projects/{project}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}` * `projects/{project}/locations/{location}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsTransferResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.bigquerydatatransfer_v1#GetProjectsLocationsTransferConfigsTransferResourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.bigquerydatatransfer_v1#TransferResource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.bigquerydatatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a transfer resource."
+      }
+    }
+  }
+}

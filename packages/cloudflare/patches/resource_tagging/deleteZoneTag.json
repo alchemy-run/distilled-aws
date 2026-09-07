@@ -1,0 +1,34 @@
+{
+  "description": "Align resource_tagging#ZoneTagsDelete with distilled cloudflare/resource-tagging deleteZoneTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ZoneTagsDelete",
+      "path": "/shapes/com.cloudflare.resource_tagging#DeleteZoneTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ZoneTagsDeleteRequest",
+      "path": "/shapes/com.cloudflare.resource_tagging#DeleteZoneTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#DeleteZoneTag/input/target",
+      "value": "com.cloudflare.resource_tagging#DeleteZoneTagRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_tagging#DeleteZoneTag/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#DeleteZoneTagRequest/members/If_Match",
+      "path": "/shapes/com.cloudflare.resource_tagging#DeleteZoneTagRequest/members/ifMatch"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+name: CI
+
+# Typecheck gate for PRs and pushes to main.
+#
+# `tsconfig.base.json` sets `noCheck: true` so day-to-day `tsc -b` (and
+# every editor/intellisense engine) only EMITS the generated SDKs instead
+# of checking them — checking 20 generated SDKs costs minutes and GBs.
+# CI is where that cost is worth paying: `typecheck:ci` re-enables
+# checking (`tsc -b --noCheck false`) across every package, so a
+# generator or patch bug can't reach npm.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    # `labeled` so adding the `force-ci` label re-triggers the run.
+    types: [opened, synchronize, reopened, labeled]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  typecheck:
+    name: Typecheck (all packages, generated code included)
+    runs-on: blacksmith-8vcpu-ubuntu-2404
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup pnpm & Bun
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Install Node 24
+        run: pnpm runtime set node 24 -g
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Typecheck
+        run: pnpm typecheck:ci
+
+  format:
+    name: Check formatting
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup pnpm & Bun
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Install Node 24
+        run: pnpm runtime set node 24 -g
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check

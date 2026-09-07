@@ -1,0 +1,45 @@
+{
+  "description": "Align d1#DatabaseEdit with distilled cloudflare/d1 patchDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseEdit",
+      "path": "/shapes/com.cloudflare.d1#PatchDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseEditRequest",
+      "path": "/shapes/com.cloudflare.d1#PatchDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#PatchDatabase/input/target",
+      "value": "com.cloudflare.d1#PatchDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseEditResponse",
+      "path": "/shapes/com.cloudflare.d1#PatchDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#PatchDatabase/output/target",
+      "value": "com.cloudflare.d1#PatchDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#PatchDatabase/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InternalError"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    }
+  ]
+}

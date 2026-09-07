@@ -1,0 +1,266 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "mybusinessnotifications",
+    "version": "v1",
+    "title": "My Business Notifications API",
+    "baseUrl": "https://mybusinessnotifications.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.mybusinessnotifications_v1#NotificationSetting": {
+      "type": "structure",
+      "members": {
+        "notificationTypes": {
+          "target": "com.gcp.mybusinessnotifications_v1#NotificationSettingNotificationTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The types of notifications that will be sent to the Pub/Sub topic. To stop receiving notifications entirely, use NotificationSettings.UpdateNotificationSetting with an empty notification_types or set the pubsub_topic to an empty string."
+          }
+        },
+        "pubsubTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Google Pub/Sub topic that will receive notifications when locations managed by this account are updated. If unset, no notifications will be posted. The account mybusiness-api-pubsub@system.gserviceaccount.com must have at least Publish permissions on the Pub/Sub topic."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notificationSetting`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Google Pub/Sub topic where notifications can be published when a location is updated or has a new review. There will be only one notification setting resource per-account."
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#NotificationSettingNotificationTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTIFICATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "GOOGLE_UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_UPDATE"
+          }
+        },
+        "NEW_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_REVIEW"
+          }
+        },
+        "UPDATED_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATED_REVIEW"
+          }
+        },
+        "NEW_CUSTOMER_MEDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_CUSTOMER_MEDIA"
+          }
+        },
+        "NEW_QUESTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_QUESTION"
+          }
+        },
+        "UPDATED_QUESTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATED_QUESTION"
+          }
+        },
+        "NEW_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_ANSWER"
+          }
+        },
+        "UPDATED_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATED_ANSWER"
+          }
+        },
+        "DUPLICATE_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DUPLICATE_LOCATION"
+          }
+        },
+        "LOSS_OF_VOICE_OF_MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOSS_OF_VOICE_OF_MERCHANT"
+          }
+        },
+        "VOICE_OF_MERCHANT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOICE_OF_MERCHANT_UPDATED"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#NotificationSettingNotificationTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessnotifications_v1#NotificationSettingNotificationTypesItemEnum"
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#GetNotificationSettingAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the notification setting we are trying to fetch.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#GetNotificationSettingAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessnotifications_v1#GetNotificationSettingAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessnotifications_v1#NotificationSetting"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessnotifications_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessnotifications_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns the pubsub notification settings for the account."
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#UpdateNotificationSettingAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific fields that should be updated. The only editable field is notification_setting.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notificationSetting`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessnotifications_v1#NotificationSetting",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessnotifications_v1#UpdateNotificationSettingAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessnotifications_v1#UpdateNotificationSettingAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessnotifications_v1#NotificationSetting"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessnotifications_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessnotifications_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessnotifications_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessnotifications_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Sets the pubsub notification setting for the account informing Google which topic to send pubsub notifications for. Use the notification_types field within notification_setting to manipulate the events an account wants to subscribe to. An account will only have one notification setting resource, and only one pubsub topic can be set. To delete the setting, update with an empty notification_types"
+      }
+    }
+  }
+}

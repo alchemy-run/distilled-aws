@@ -1,0 +1,20 @@
+{
+  "description": "Align zero_trust#AccessSamlCertificatesGetPem with distilled cloudflare/zero-trust getPemAccessSamlCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessSamlCertificatesGetPem",
+      "path": "/shapes/com.cloudflare.zero_trust#GetPemAccessSamlCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessSamlCertificatesGetPemRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetPemAccessSamlCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetPemAccessSamlCertificate/input/target",
+      "value": "com.cloudflare.zero_trust#GetPemAccessSamlCertificateRequest"
+    }
+  ]
+}

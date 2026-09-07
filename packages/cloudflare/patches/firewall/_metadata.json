@@ -1,0 +1,24 @@
+{
+  "description": "Key dictionary / op aliases for firewall (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "allowedModes": "allowed_modes",
+        "contentType": "content_type",
+        "createdOn": "created_on",
+        "defaultMode": "default_mode",
+        "documentationUrl": "documentation_url",
+        "modifiedOn": "modified_on",
+        "modifiedRulesCount": "modified_rules_count",
+        "packageId": "package_id",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "rewriteAction": "rewrite_action",
+        "rulesCount": "rules_count",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

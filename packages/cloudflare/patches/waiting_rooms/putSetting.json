@@ -1,0 +1,42 @@
+{
+  "description": "Align waiting_rooms#SettingsUpdate with distilled cloudflare/waiting-rooms putSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#SettingsUpdate",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PutSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#SettingsUpdateRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PutSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PutSetting/input/target",
+      "value": "com.cloudflare.waiting_rooms#PutSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#SettingsUpdateResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PutSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PutSetting/output/target",
+      "value": "com.cloudflare.waiting_rooms#PutSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PutSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.waiting_rooms#ZoneNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.waiting_rooms#Forbidden"
+        }
+      ]
+    }
+  ]
+}

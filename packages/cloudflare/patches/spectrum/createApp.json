@@ -1,0 +1,42 @@
+{
+  "description": "Align spectrum#AppsCreate with distilled cloudflare/spectrum createApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsCreate",
+      "path": "/shapes/com.cloudflare.spectrum#CreateApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsCreateRequest",
+      "path": "/shapes/com.cloudflare.spectrum#CreateAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#CreateApp/input/target",
+      "value": "com.cloudflare.spectrum#CreateAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsCreateResponse",
+      "path": "/shapes/com.cloudflare.spectrum#CreateAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#CreateApp/output/target",
+      "value": "com.cloudflare.spectrum#CreateAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.spectrum#CreateApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.spectrum#SpectrumProtocolNotAvailable"
+        },
+        {
+          "target": "com.cloudflare.spectrum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

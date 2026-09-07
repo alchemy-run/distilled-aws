@@ -1,0 +1,25 @@
+{
+  "description": "hold include_subdomains: the API returns both booleans and \"true\"/\"false\" strings, so responses are untyped (v0 parity: unknown); requests stay boolean",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateHoldResponse/members/include_subdomains/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteHoldResponse/members/include_subdomains/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchHoldResponse/members/include_subdomains/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetHoldResponse/members/include_subdomains/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align stream#CaptionsGet with distilled cloudflare/stream getCaption",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsGet",
+      "path": "/shapes/com.cloudflare.stream#GetCaption"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsGetRequest",
+      "path": "/shapes/com.cloudflare.stream#GetCaptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetCaption/input/target",
+      "value": "com.cloudflare.stream#GetCaptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsGetResponse",
+      "path": "/shapes/com.cloudflare.stream#GetCaptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetCaption/output/target",
+      "value": "com.cloudflare.stream#GetCaptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#GetCaption/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

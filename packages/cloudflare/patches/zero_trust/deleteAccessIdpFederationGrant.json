@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessIdpFederationGrantsDelete with distilled cloudflare/zero-trust deleteAccessIdpFederationGrant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessIdpFederationGrantsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessIdpFederationGrant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessIdpFederationGrantsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessIdpFederationGrantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessIdpFederationGrant/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessIdpFederationGrantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessIdpFederationGrantsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessIdpFederationGrantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessIdpFederationGrant/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessIdpFederationGrantResponse"
+    }
+  ]
+}

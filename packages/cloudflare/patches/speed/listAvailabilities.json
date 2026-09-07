@@ -1,0 +1,30 @@
+{
+  "description": "Align speed#AvailabilitiesList with distilled cloudflare/speed listAvailabilities",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#AvailabilitiesList",
+      "path": "/shapes/com.cloudflare.speed#ListAvailabilities"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#AvailabilitiesListRequest",
+      "path": "/shapes/com.cloudflare.speed#ListAvailabilitiesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#ListAvailabilities/input/target",
+      "value": "com.cloudflare.speed#ListAvailabilitiesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#AvailabilitiesListResponse",
+      "path": "/shapes/com.cloudflare.speed#ListAvailabilitiesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#ListAvailabilities/output/target",
+      "value": "com.cloudflare.speed#ListAvailabilitiesResponse"
+    }
+  ]
+}

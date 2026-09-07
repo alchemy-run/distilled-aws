@@ -1,0 +1,38 @@
+{
+  "description": "Align tenants#AccountTypesList with distilled cloudflare/tenants listAccountTypes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#AccountTypesList",
+      "path": "/shapes/com.cloudflare.tenants#ListAccountTypes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#AccountTypesListRequest",
+      "path": "/shapes/com.cloudflare.tenants#ListAccountTypesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#ListAccountTypes/input/target",
+      "value": "com.cloudflare.tenants#ListAccountTypesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#AccountTypesListResponse",
+      "path": "/shapes/com.cloudflare.tenants#ListAccountTypesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#ListAccountTypes/output/target",
+      "value": "com.cloudflare.tenants#ListAccountTypesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.tenants#ListAccountTypes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

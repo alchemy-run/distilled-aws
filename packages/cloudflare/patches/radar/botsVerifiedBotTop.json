@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#VerifiedBotsTopBots with distilled cloudflare/radar botsVerifiedBotTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#VerifiedBotsTopBots",
+      "path": "/shapes/com.cloudflare.radar#BotsVerifiedBotTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#VerifiedBotsTopBotsRequest",
+      "path": "/shapes/com.cloudflare.radar#BotsVerifiedBotTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BotsVerifiedBotTop/input/target",
+      "value": "com.cloudflare.radar#BotsVerifiedBotTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#VerifiedBotsTopBotsResponse",
+      "path": "/shapes/com.cloudflare.radar#BotsVerifiedBotTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BotsVerifiedBotTop/output/target",
+      "value": "com.cloudflare.radar#BotsVerifiedBotTopResponse"
+    }
+  ]
+}

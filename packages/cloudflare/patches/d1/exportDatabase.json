@@ -1,0 +1,45 @@
+{
+  "description": "Align d1#DatabaseExport with distilled cloudflare/d1 exportDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseExport",
+      "path": "/shapes/com.cloudflare.d1#ExportDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseExportRequest",
+      "path": "/shapes/com.cloudflare.d1#ExportDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#ExportDatabase/input/target",
+      "value": "com.cloudflare.d1#ExportDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseExportResponse",
+      "path": "/shapes/com.cloudflare.d1#ExportDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#ExportDatabase/output/target",
+      "value": "com.cloudflare.d1#ExportDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#ExportDatabase/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InvalidRequest"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    }
+  ]
+}

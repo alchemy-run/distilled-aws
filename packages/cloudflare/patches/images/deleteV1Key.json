@@ -1,0 +1,42 @@
+{
+  "description": "Align images#V1KeysDelete with distilled cloudflare/images deleteV1Key",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1KeysDelete",
+      "path": "/shapes/com.cloudflare.images#DeleteV1Key"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1KeysDeleteRequest",
+      "path": "/shapes/com.cloudflare.images#DeleteV1KeyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#DeleteV1Key/input/target",
+      "value": "com.cloudflare.images#DeleteV1KeyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1KeysDeleteResponse",
+      "path": "/shapes/com.cloudflare.images#DeleteV1KeyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#DeleteV1Key/output/target",
+      "value": "com.cloudflare.images#DeleteV1KeyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.images#DeleteV1Key/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.images#ImagesAccessNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.images#KeyNotFound"
+        }
+      ]
+    }
+  ]
+}

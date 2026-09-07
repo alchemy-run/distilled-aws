@@ -1,0 +1,38 @@
+{
+  "description": "Align load_balancers#PoolsBulkEdit with distilled cloudflare/load-balancers bulkPatchPools",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsBulkEdit",
+      "path": "/shapes/com.cloudflare.load_balancers#BulkPatchPools"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsBulkEditRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#BulkPatchPoolsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#BulkPatchPools/input/target",
+      "value": "com.cloudflare.load_balancers#BulkPatchPoolsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsBulkEditResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#BulkPatchPoolsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#BulkPatchPools/output/target",
+      "value": "com.cloudflare.load_balancers#BulkPatchPoolsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#BulkPatchPools/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

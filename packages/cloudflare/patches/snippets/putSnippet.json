@@ -1,0 +1,30 @@
+{
+  "description": "Align snippets#Update with distilled cloudflare/snippets putSnippet",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#Update",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippet"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#UpdateRequest",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippet/input/target",
+      "value": "com.cloudflare.snippets#PutSnippetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#UpdateResponse",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippet/output/target",
+      "value": "com.cloudflare.snippets#PutSnippetResponse"
+    }
+  ]
+}

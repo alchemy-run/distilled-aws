@@ -1,0 +1,50 @@
+{
+  "description": "Align healthchecks#List with distilled cloudflare/healthchecks listHealthchecks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#List",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#ListRequest",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecks/input/target",
+      "value": "com.cloudflare.healthchecks#ListHealthchecksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#ListResponse",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecks/output/target",
+      "value": "com.cloudflare.healthchecks#ListHealthchecksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.healthchecks#ListHealthchecks/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.healthchecks#Forbidden"
+        }
+      ]
+    }
+  ]
+}

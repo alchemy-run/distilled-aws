@@ -1,0 +1,230 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "indexing",
+    "version": "v3",
+    "title": "Web Search Indexing API",
+    "baseUrl": "https://indexing.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.indexing_v3#UrlNotification": {
+      "type": "structure",
+      "members": {
+        "notifyTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp for this notification. Users should _not_ specify it, the field is ignored at the request time."
+          }
+        },
+        "type": {
+          "target": "com.gcp.indexing_v3#UrlNotificationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The URL life cycle event that Google is being notified about."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The object of this notification. The URL must be owned by the publisher of this notification and, in case of `URL_UPDATED` notifications, it _must_ be crawlable by Google."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`UrlNotification` is the resource used in all Indexing API calls. It describes one event in the life cycle of a Web Document."
+      }
+    },
+    "com.gcp.indexing_v3#UrlNotificationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "URL_NOTIFICATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_NOTIFICATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "URL_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_UPDATED"
+          }
+        },
+        "URL_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.indexing_v3#UrlNotificationMetadata": {
+      "type": "structure",
+      "members": {
+        "latestUpdate": {
+          "target": "com.gcp.indexing_v3#UrlNotification",
+          "traits": {
+            "smithy.api#documentation": "Latest notification received with type `URL_UPDATED`."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to which this metadata refers."
+          }
+        },
+        "latestRemove": {
+          "target": "com.gcp.indexing_v3#UrlNotification",
+          "traits": {
+            "smithy.api#documentation": "Latest notification received with type `URL_REMOVED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Summary of the most recent Indexing API notifications successfully received, for a given URL."
+      }
+    },
+    "com.gcp.indexing_v3#PublishUrlNotificationResponse": {
+      "type": "structure",
+      "members": {
+        "urlNotificationMetadata": {
+          "target": "com.gcp.indexing_v3#UrlNotificationMetadata",
+          "traits": {
+            "smithy.api#documentation": "Description of the notification events received for this URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output for PublishUrlNotification"
+      }
+    },
+    "com.gcp.indexing_v3#PublishUrlNotificationsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.indexing_v3#UrlNotification",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.indexing_v3#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.indexing_v3#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.indexing_v3#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.indexing_v3#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.indexing_v3#PublishUrlNotifications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.indexing_v3#PublishUrlNotificationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.indexing_v3#PublishUrlNotificationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.indexing_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.indexing_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.indexing_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.indexing_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v3/urlNotifications:publish"
+        },
+        "smithy.api#documentation": "Notifies that a URL has been updated or deleted."
+      }
+    },
+    "com.gcp.indexing_v3#GetMetadataUrlNotificationsRequest": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL that is being queried.",
+            "smithy.api#httpQuery": "url"
+          }
+        }
+      }
+    },
+    "com.gcp.indexing_v3#GetMetadataUrlNotifications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.indexing_v3#GetMetadataUrlNotificationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.indexing_v3#UrlNotificationMetadata"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.indexing_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.indexing_v3#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v3/urlNotifications/metadata"
+        },
+        "smithy.api#documentation": "Gets metadata about a Web Document. This method can _only_ be used to query URLs that were previously seen in successful Indexing API notifications. Includes the latest `UrlNotification` received via this API."
+      }
+    }
+  }
+}

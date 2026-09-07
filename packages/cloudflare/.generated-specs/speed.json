@@ -1,0 +1,4375 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.speed#AvailabilitiesListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseQuotaQuotasPerPlanValue": {
+      "type": "structure",
+      "members": {
+        "business": {
+          "target": "smithy.api#Double"
+        },
+        "enterprise": {
+          "target": "smithy.api#Double"
+        },
+        "free": {
+          "target": "smithy.api#Double"
+        },
+        "pro": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseQuotaQuotasPerPlan": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseQuotaQuotasPerPlanValue",
+          "traits": {
+            "smithy.api#documentation": "Counts per account plan."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseQuotaScheduleQuotasPerPlanValue": {
+      "type": "structure",
+      "members": {
+        "business": {
+          "target": "smithy.api#Double"
+        },
+        "enterprise": {
+          "target": "smithy.api#Double"
+        },
+        "free": {
+          "target": "smithy.api#Double"
+        },
+        "pro": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseQuotaScheduleQuotasPerPlan": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseQuotaScheduleQuotasPerPlanValue",
+          "traits": {
+            "smithy.api#documentation": "Counts per account plan."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseQuota": {
+      "type": "structure",
+      "members": {
+        "plan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare plan."
+          }
+        },
+        "quotasPerPlan": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseQuotaQuotasPerPlan",
+          "traits": {
+            "smithy.api#documentation": "The number of tests available per plan."
+          }
+        },
+        "remainingSchedules": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of remaining schedules available."
+          }
+        },
+        "remainingTests": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of remaining tests available."
+          }
+        },
+        "scheduleQuotasPerPlan": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseQuotaScheduleQuotasPerPlan",
+          "traits": {
+            "smithy.api#documentation": "The number of schedules available per plan."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsItemValue": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsItemValue",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsItem"
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanBusinessItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanBusinessList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanBusinessItem"
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanEnterpriseItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanEnterpriseList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanEnterpriseItem"
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanFreeItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanFreeList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanFreeItem"
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanProItem": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanProList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanProItem"
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlan": {
+      "type": "structure",
+      "members": {
+        "business": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanBusinessList"
+        },
+        "enterprise": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanEnterpriseList"
+        },
+        "free": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanFreeList"
+        },
+        "pro": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlanProList"
+        }
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesListResponse": {
+      "type": "structure",
+      "members": {
+        "quota": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseQuota"
+        },
+        "regions": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsList"
+        },
+        "regionsPerPlan": {
+          "target": "com.cloudflare.speed#AvailabilitiesListResponseRegionsPerPlan",
+          "traits": {
+            "smithy.api#documentation": "Available regions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#AvailabilitiesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#AvailabilitiesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#AvailabilitiesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/speed_api/availabilities",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves quota for all plans, as well as the current zone quota.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.speed#PagesListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemRegionValue": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemRegion": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.cloudflare.speed#PagesListResultItemRegionValue",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportDeviceType": {
+      "type": "enum",
+      "members": {
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportErrorCode": {
+      "type": "enum",
+      "members": {
+        "NOT_REACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REACHABLE"
+          }
+        },
+        "DNS_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNS_FAILURE"
+          }
+        },
+        "NOT_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HTML"
+          }
+        },
+        "LIGHTHOUSE_TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIGHTHOUSE_TIMEOUT"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportErrorCode",
+          "traits": {
+            "smithy.api#documentation": "The error code of the Lighthouse result."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed error message."
+          }
+        },
+        "finalDisplayedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The final URL displayed to the user."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReport": {
+      "type": "structure",
+      "members": {
+        "cls": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative Layout Shift."
+          }
+        },
+        "deviceType": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportDeviceType",
+          "traits": {
+            "smithy.api#documentation": "The type of device."
+          }
+        },
+        "error": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportError"
+        },
+        "fcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "First Contentful Paint."
+          }
+        },
+        "jsonReportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the full Lighthouse JSON report."
+          }
+        },
+        "lcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Largest Contentful Paint."
+          }
+        },
+        "performanceScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse performance score."
+          }
+        },
+        "si": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Speed Index."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReportState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Lighthouse report."
+          }
+        },
+        "tbt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total Blocking Time."
+          }
+        },
+        "ttfb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To First Byte."
+          }
+        },
+        "tti": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To Interactive."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItemScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "desktopReport": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "mobileReport": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesListResultItemRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region with a label."
+          }
+        },
+        "scheduleFrequency": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsItemScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItemTestsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#PagesListResultItemTestsItem"
+      }
+    },
+    "com.cloudflare.speed#PagesListResultItem": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "com.cloudflare.speed#PagesListResultItemRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region with a label."
+          }
+        },
+        "scheduleFrequency": {
+          "target": "com.cloudflare.speed#PagesListResultItemScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "tests": {
+          "target": "com.cloudflare.speed#PagesListResultItemTestsList"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#PagesListResultItem"
+      }
+    },
+    "com.cloudflare.speed#PagesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.speed#PagesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.speed#PagesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#PagesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#PagesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/speed_api/pages",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all webpages which have been tested.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTrendRequestDeviceType": {
+      "type": "enum",
+      "members": {
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTrendRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTrendRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deviceType": {
+          "target": "com.cloudflare.speed#PagesTrendRequestDeviceType",
+          "traits": {
+            "smithy.api#documentation": "The type of device.",
+            "smithy.api#httpQuery": "deviceType",
+            "smithy.api#required": {}
+          }
+        },
+        "metrics": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of metrics to include in the results.",
+            "smithy.api#httpQuery": "metrics",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTrendRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region.",
+            "smithy.api#httpQuery": "region",
+            "smithy.api#required": {}
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start",
+            "smithy.api#required": {}
+          }
+        },
+        "tz": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timezone of the start and end timestamps.",
+            "smithy.api#httpQuery": "tz",
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "end"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseClsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseFcpList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseLcpList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponsePerformanceScoreList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseSiList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseTbtList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseTtfbList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponseTtiList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.speed#PagesTrendResponse": {
+      "type": "structure",
+      "members": {
+        "cls": {
+          "target": "com.cloudflare.speed#PagesTrendResponseClsList",
+          "traits": {
+            "smithy.api#documentation": "Cumulative Layout Shift trend."
+          }
+        },
+        "fcp": {
+          "target": "com.cloudflare.speed#PagesTrendResponseFcpList",
+          "traits": {
+            "smithy.api#documentation": "First Contentful Paint trend."
+          }
+        },
+        "lcp": {
+          "target": "com.cloudflare.speed#PagesTrendResponseLcpList",
+          "traits": {
+            "smithy.api#documentation": "Largest Contentful Paint trend."
+          }
+        },
+        "performanceScore": {
+          "target": "com.cloudflare.speed#PagesTrendResponsePerformanceScoreList",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse score trend."
+          }
+        },
+        "si": {
+          "target": "com.cloudflare.speed#PagesTrendResponseSiList",
+          "traits": {
+            "smithy.api#documentation": "Speed Index trend."
+          }
+        },
+        "tbt": {
+          "target": "com.cloudflare.speed#PagesTrendResponseTbtList",
+          "traits": {
+            "smithy.api#documentation": "Total Blocking Time trend."
+          }
+        },
+        "ttfb": {
+          "target": "com.cloudflare.speed#PagesTrendResponseTtfbList",
+          "traits": {
+            "smithy.api#documentation": "Time To First Byte trend."
+          }
+        },
+        "tti": {
+          "target": "com.cloudflare.speed#PagesTrendResponseTtiList",
+          "traits": {
+            "smithy.api#documentation": "Time To Interactive trend."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#PagesTrend": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#PagesTrendRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#PagesTrendResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/speed_api/pages/{url}/trend",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists the core web vital metrics trend over time for a specific page.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTestsCreateRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportDeviceType": {
+      "type": "enum",
+      "members": {
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportErrorCode": {
+      "type": "enum",
+      "members": {
+        "NOT_REACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REACHABLE"
+          }
+        },
+        "DNS_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNS_FAILURE"
+          }
+        },
+        "NOT_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HTML"
+          }
+        },
+        "LIGHTHOUSE_TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIGHTHOUSE_TIMEOUT"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportErrorCode",
+          "traits": {
+            "smithy.api#documentation": "The error code of the Lighthouse result."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed error message."
+          }
+        },
+        "finalDisplayedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The final URL displayed to the user."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseDesktopReport": {
+      "type": "structure",
+      "members": {
+        "cls": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative Layout Shift."
+          }
+        },
+        "deviceType": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportDeviceType",
+          "traits": {
+            "smithy.api#documentation": "The type of device."
+          }
+        },
+        "error": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportError"
+        },
+        "fcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "First Contentful Paint."
+          }
+        },
+        "jsonReportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the full Lighthouse JSON report."
+          }
+        },
+        "lcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Largest Contentful Paint."
+          }
+        },
+        "performanceScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse performance score."
+          }
+        },
+        "si": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Speed Index."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseDesktopReportState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Lighthouse report."
+          }
+        },
+        "tbt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total Blocking Time."
+          }
+        },
+        "ttfb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To First Byte."
+          }
+        },
+        "tti": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To Interactive."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseRegionValue": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseRegion": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseRegionValue",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponseScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "desktopReport": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "mobileReport": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region with a label."
+          }
+        },
+        "scheduleFrequency": {
+          "target": "com.cloudflare.speed#PagesTestsCreateResponseScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#PagesTestsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#PagesTestsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#PagesTestsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/speed_api/pages/{url}/tests",
+          "code": 200
+        },
+        "smithy.api#documentation": "Starts a test for a specific webpage, in a specific region."
+      }
+    },
+    "com.cloudflare.speed#PagesTestsDeleteRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTestsDeleteRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region.",
+            "smithy.api#httpQuery": "region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items affected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#PagesTestsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#PagesTestsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#PagesTestsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/speed_api/pages/{url}/tests",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes all tests for a specific webpage from a specific region. Deleted tests are still counted as part of the quota.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "test_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseDesktopReportDeviceType": {
+      "type": "enum",
+      "members": {
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseDesktopReportErrorCode": {
+      "type": "enum",
+      "members": {
+        "NOT_REACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REACHABLE"
+          }
+        },
+        "DNS_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNS_FAILURE"
+          }
+        },
+        "NOT_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HTML"
+          }
+        },
+        "LIGHTHOUSE_TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIGHTHOUSE_TIMEOUT"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseDesktopReportError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseDesktopReportErrorCode",
+          "traits": {
+            "smithy.api#documentation": "The error code of the Lighthouse result."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed error message."
+          }
+        },
+        "finalDisplayedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The final URL displayed to the user."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseDesktopReportState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseDesktopReport": {
+      "type": "structure",
+      "members": {
+        "cls": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative Layout Shift."
+          }
+        },
+        "deviceType": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseDesktopReportDeviceType",
+          "traits": {
+            "smithy.api#documentation": "The type of device."
+          }
+        },
+        "error": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseDesktopReportError"
+        },
+        "fcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "First Contentful Paint."
+          }
+        },
+        "jsonReportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the full Lighthouse JSON report."
+          }
+        },
+        "lcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Largest Contentful Paint."
+          }
+        },
+        "performanceScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse performance score."
+          }
+        },
+        "si": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Speed Index."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseDesktopReportState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Lighthouse report."
+          }
+        },
+        "tbt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total Blocking Time."
+          }
+        },
+        "ttfb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To First Byte."
+          }
+        },
+        "tti": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To Interactive."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseRegionValue": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseRegion": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseRegionValue",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponseScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "desktopReport": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "mobileReport": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region with a label."
+          }
+        },
+        "scheduleFrequency": {
+          "target": "com.cloudflare.speed#PagesTestsGetResponseScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#PagesTestsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#PagesTestsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#PagesTestsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/speed_api/pages/{url}/tests/{test_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the result of a specific test.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTestsListRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region.",
+            "smithy.api#httpQuery": "region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemDesktopReportDeviceType": {
+      "type": "enum",
+      "members": {
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemDesktopReportErrorCode": {
+      "type": "enum",
+      "members": {
+        "NOT_REACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REACHABLE"
+          }
+        },
+        "DNS_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNS_FAILURE"
+          }
+        },
+        "NOT_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HTML"
+          }
+        },
+        "LIGHTHOUSE_TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIGHTHOUSE_TIMEOUT"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemDesktopReportError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemDesktopReportErrorCode",
+          "traits": {
+            "smithy.api#documentation": "The error code of the Lighthouse result."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed error message."
+          }
+        },
+        "finalDisplayedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The final URL displayed to the user."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemDesktopReportState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemDesktopReport": {
+      "type": "structure",
+      "members": {
+        "cls": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative Layout Shift."
+          }
+        },
+        "deviceType": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemDesktopReportDeviceType",
+          "traits": {
+            "smithy.api#documentation": "The type of device."
+          }
+        },
+        "error": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemDesktopReportError"
+        },
+        "fcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "First Contentful Paint."
+          }
+        },
+        "jsonReportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the full Lighthouse JSON report."
+          }
+        },
+        "lcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Largest Contentful Paint."
+          }
+        },
+        "performanceScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse performance score."
+          }
+        },
+        "si": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Speed Index."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemDesktopReportState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Lighthouse report."
+          }
+        },
+        "tbt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total Blocking Time."
+          }
+        },
+        "ttfb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To First Byte."
+          }
+        },
+        "tti": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To Interactive."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemRegionValue": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemRegion": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemRegionValue",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItemScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "desktopReport": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "mobileReport": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region with a label."
+          }
+        },
+        "scheduleFrequency": {
+          "target": "com.cloudflare.speed#PagesTestsListResultItemScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.speed#PagesTestsListResultItem"
+      }
+    },
+    "com.cloudflare.speed#PagesTestsListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.speed#PagesTestsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.speed#PagesTestsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#PagesTestsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#PagesTestsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/speed_api/pages/{url}/tests",
+          "code": 200
+        },
+        "smithy.api#documentation": "Test history (list of tests) for a specific webpage.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateRequestFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "frequency": {
+          "target": "com.cloudflare.speed#ScheduleCreateRequestFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the scheduled test. Defaults to WEEKLY for free plans, DAILY for paid plans.",
+            "smithy.api#httpQuery": "frequency"
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#ScheduleCreateRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region.",
+            "smithy.api#httpQuery": "region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseScheduleRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseSchedule": {
+      "type": "structure",
+      "members": {
+        "frequency": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseScheduleRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportDeviceType": {
+      "type": "enum",
+      "members": {
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportErrorCode": {
+      "type": "enum",
+      "members": {
+        "NOT_REACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REACHABLE"
+          }
+        },
+        "DNS_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNS_FAILURE"
+          }
+        },
+        "NOT_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_HTML"
+          }
+        },
+        "LIGHTHOUSE_TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIGHTHOUSE_TIMEOUT"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportErrorCode",
+          "traits": {
+            "smithy.api#documentation": "The error code of the Lighthouse result."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed error message."
+          }
+        },
+        "finalDisplayedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The final URL displayed to the user."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReport": {
+      "type": "structure",
+      "members": {
+        "cls": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative Layout Shift."
+          }
+        },
+        "deviceType": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportDeviceType",
+          "traits": {
+            "smithy.api#documentation": "The type of device."
+          }
+        },
+        "error": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportError"
+        },
+        "fcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "First Contentful Paint."
+          }
+        },
+        "jsonReportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the full Lighthouse JSON report."
+          }
+        },
+        "lcp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Largest Contentful Paint."
+          }
+        },
+        "performanceScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse performance score."
+          }
+        },
+        "si": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Speed Index."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReportState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Lighthouse report."
+          }
+        },
+        "tbt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total Blocking Time."
+          }
+        },
+        "ttfb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To First Byte."
+          }
+        },
+        "tti": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time To Interactive."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestRegionValue": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestRegion": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestRegionValue",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTestScheduleFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponseTest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "desktopReport": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "mobileReport": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestDesktopReport",
+          "traits": {
+            "smithy.api#documentation": "The Lighthouse report."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region with a label."
+          }
+        },
+        "scheduleFrequency": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTestScheduleFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreateResponse": {
+      "type": "structure",
+      "members": {
+        "schedule": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseSchedule",
+          "traits": {
+            "smithy.api#documentation": "The test schedule."
+          }
+        },
+        "test": {
+          "target": "com.cloudflare.speed#ScheduleCreateResponseTest"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#ScheduleCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#ScheduleCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#ScheduleCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/speed_api/schedule/{url}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a scheduled test for a page."
+      }
+    },
+    "com.cloudflare.speed#ScheduleDeleteRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#ScheduleDeleteRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region.",
+            "smithy.api#httpQuery": "region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#ScheduleDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items affected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#ScheduleDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#ScheduleDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#ScheduleDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/speed_api/schedule/{url}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a scheduled test for a page.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.speed#ScheduleGetRequestRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#ScheduleGetRequestRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region.",
+            "smithy.api#httpQuery": "region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.speed#ScheduleGetResponseFrequency": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAILY"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleGetResponseRegion": {
+      "type": "enum",
+      "members": {
+        "ASIA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-east1"
+          }
+        },
+        "ASIA_NORTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast1"
+          }
+        },
+        "ASIA_NORTHEAST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-northeast2"
+          }
+        },
+        "ASIA_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-south1"
+          }
+        },
+        "ASIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asia-southeast1"
+          }
+        },
+        "AUSTRALIA_SOUTHEAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "australia-southeast1"
+          }
+        },
+        "EUROPE_NORTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-north1"
+          }
+        },
+        "EUROPE_SOUTHWEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-southwest1"
+          }
+        },
+        "EUROPE_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west1"
+          }
+        },
+        "EUROPE_WEST2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west2"
+          }
+        },
+        "EUROPE_WEST3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west3"
+          }
+        },
+        "EUROPE_WEST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west4"
+          }
+        },
+        "EUROPE_WEST8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west8"
+          }
+        },
+        "EUROPE_WEST9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "europe-west9"
+          }
+        },
+        "ME_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "me-west1"
+          }
+        },
+        "SOUTHAMERICA_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southamerica-east1"
+          }
+        },
+        "US_CENTRAL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-central1"
+          }
+        },
+        "US_EAST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east1"
+          }
+        },
+        "US_EAST4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-east4"
+          }
+        },
+        "US_SOUTH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-south1"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us-west1"
+          }
+        }
+      }
+    },
+    "com.cloudflare.speed#ScheduleGetResponse": {
+      "type": "structure",
+      "members": {
+        "frequency": {
+          "target": "com.cloudflare.speed#ScheduleGetResponseFrequency",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the test."
+          }
+        },
+        "region": {
+          "target": "com.cloudflare.speed#ScheduleGetResponseRegion",
+          "traits": {
+            "smithy.api#documentation": "A test region."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.speed#ScheduleGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.speed#ScheduleGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.speed#ScheduleGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/speed_api/schedule/{url}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the test schedule for a page in a specific region.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.speed#Speed": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.speed#AvailabilitiesList"
+        },
+        {
+          "target": "com.cloudflare.speed#PagesList"
+        },
+        {
+          "target": "com.cloudflare.speed#PagesTrend"
+        },
+        {
+          "target": "com.cloudflare.speed#PagesTestsCreate"
+        },
+        {
+          "target": "com.cloudflare.speed#PagesTestsDelete"
+        },
+        {
+          "target": "com.cloudflare.speed#PagesTestsGet"
+        },
+        {
+          "target": "com.cloudflare.speed#PagesTestsList"
+        },
+        {
+          "target": "com.cloudflare.speed#ScheduleCreate"
+        },
+        {
+          "target": "com.cloudflare.speed#ScheduleDelete"
+        },
+        {
+          "target": "com.cloudflare.speed#ScheduleGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Speed",
+        "smithy.api#documentation": "Cloudflare API — speed resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

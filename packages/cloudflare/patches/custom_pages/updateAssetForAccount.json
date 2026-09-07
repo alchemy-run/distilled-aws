@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_pages#AssetsUpdateForAccount with distilled cloudflare/custom-pages updateAssetForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsUpdateForAccount",
+      "path": "/shapes/com.cloudflare.custom_pages#UpdateAssetForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#UpdateAssetForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#UpdateAssetForAccount/input/target",
+      "value": "com.cloudflare.custom_pages#UpdateAssetForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsUpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.custom_pages#UpdateAssetForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#UpdateAssetForAccount/output/target",
+      "value": "com.cloudflare.custom_pages#UpdateAssetForAccountResponse"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align dns#ZoneTransfersTsigsList with distilled cloudflare/dns listZoneTransferTsigs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersTsigsList",
+      "path": "/shapes/com.cloudflare.dns#ListZoneTransferTsigs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersTsigsListRequest",
+      "path": "/shapes/com.cloudflare.dns#ListZoneTransferTsigsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ListZoneTransferTsigs/input/target",
+      "value": "com.cloudflare.dns#ListZoneTransferTsigsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersTsigsListResponse",
+      "path": "/shapes/com.cloudflare.dns#ListZoneTransferTsigsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ListZoneTransferTsigs/output/target",
+      "value": "com.cloudflare.dns#ListZoneTransferTsigsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#ListZoneTransferTsigs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

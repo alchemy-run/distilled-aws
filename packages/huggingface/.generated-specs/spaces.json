@@ -1,0 +1,6048 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.spaces#GetFolderSizeRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#GetFolderSizeResponse": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The normalized path of the subtree, starting with a slash",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total size in bytes of all files under the subtree",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GetFolderSize": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#GetFolderSizeRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GetFolderSizeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/treesize/{rev}/{path}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get folder size\n\nGet the total size of a repository at a given revision, optionally under a specific subpath. Returns the total size in bytes of all files under the specified path (recursively). If a file is stored via Xet/LFS, the LFS file size is used."
+      }
+    },
+    "com.huggingface.spaces#ListLargeFilesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "xet": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "xet"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusherPrimaryOrgPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusherPrimaryOrgUserRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusherPrimaryOrg": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "plan": {
+          "target": "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusherPrimaryOrgPlan"
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "hasPrivateMembersList": {
+          "target": "smithy.api#Boolean"
+        },
+        "userRole": {
+          "target": "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusherPrimaryOrgUserRole"
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusher": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "primaryOrg": {
+          "target": "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusherPrimaryOrg"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListLargeFilesResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "pusher": {
+          "target": "com.huggingface.spaces#ListLargeFilesResponseBodyItemPusher"
+        },
+        "ref": {
+          "target": "smithy.api#String"
+        },
+        "fileOid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "oid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pushedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Potential filename of the LFS file"
+          }
+        },
+        "xetHash": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListLargeFilesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListLargeFilesResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListLargeFilesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListLargeFilesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListLargeFiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListLargeFilesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListLargeFilesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/lfs-files",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Large files\n\nList Xet/LFS files for a repo"
+      }
+    },
+    "com.huggingface.spaces#DeleteLargeFilesRequestDeletionsShaList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DeleteLargeFilesRequestDeletions": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "com.huggingface.spaces#DeleteLargeFilesRequestDeletionsShaList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "rewriteHistory": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DeleteLargeFilesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deletions": {
+          "target": "com.huggingface.spaces#DeleteLargeFilesRequestDeletions",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteLargeFiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteLargeFilesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/lfs-files/batch",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Large files\n\nDelete Xet/LFS files in batch"
+      }
+    },
+    "com.huggingface.spaces#DeleteLargeFileRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rewriteHistory": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "rewriteHistory"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteLargeFile": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteLargeFileRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/spaces/{namespace}/{repo}/lfs-files/{sha}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Large file\n\nDelete a Xet/LFS file"
+      }
+    },
+    "com.huggingface.spaces#DuplicateXetFilesRequestTargetType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DuplicateXetFilesRequestTarget": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.spaces#DuplicateXetFilesRequestTargetType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DuplicateXetFilesRequestFilesItem": {
+      "type": "structure",
+      "members": {
+        "xetHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DuplicateXetFilesRequestFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#DuplicateXetFilesRequestFilesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DuplicateXetFilesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.huggingface.spaces#DuplicateXetFilesRequestTarget",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.huggingface.spaces#DuplicateXetFilesRequestFilesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DuplicateXetFilesResponseFailedItem": {
+      "type": "structure",
+      "members": {
+        "xetHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Xet content hash of the file that failed",
+            "smithy.api#required": {}
+          }
+        },
+        "sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sha256 of the file that failed",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#DuplicateXetFilesResponseFailedList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#DuplicateXetFilesResponseFailedItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-file failures"
+      }
+    },
+    "com.huggingface.spaces#DuplicateXetFilesResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if all requested files were duplicated (or already present)",
+            "smithy.api#required": {}
+          }
+        },
+        "processed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of unique files processed",
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of files duplicated or already present in the target",
+            "smithy.api#required": {}
+          }
+        },
+        "failed": {
+          "target": "com.huggingface.spaces#DuplicateXetFilesResponseFailedList",
+          "traits": {
+            "smithy.api#documentation": "Per-file failures",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#DuplicateXetFiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DuplicateXetFilesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#DuplicateXetFilesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/lfs-files/duplicate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Duplicate xet files\n\nDuplicate xet-stored files from this repo (source) into another repo (target) by xet hash, without re-uploading file bytes. The caller must then commit the files with their sha256/size as usual."
+      }
+    },
+    "com.huggingface.spaces#ListCommitsRequestExpandItem": {
+      "type": "enum",
+      "members": {
+        "FORMATTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "formatted"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListCommitsRequestExpandList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListCommitsRequestExpandItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListCommitsRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "p": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "p"
+          }
+        },
+        "expand": {
+          "target": "com.huggingface.spaces#ListCommitsRequestExpandList",
+          "traits": {
+            "smithy.api#httpQuery": "expand"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListCommitsResponseBodyItemAuthorsItem": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListCommitsResponseBodyItemAuthorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListCommitsResponseBodyItemAuthorsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListCommitsResponseBodyItemFormatted": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available if expand includes formatted"
+      }
+    },
+    "com.huggingface.spaces#ListCommitsResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authors": {
+          "target": "com.huggingface.spaces#ListCommitsResponseBodyItemAuthorsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "com.huggingface.spaces#ListCommitsResponseBodyItemFormatted",
+          "traits": {
+            "smithy.api#documentation": "Available if expand includes formatted"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListCommitsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListCommitsResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListCommitsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListCommitsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListCommits": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListCommitsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListCommitsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/commits/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List commits"
+      }
+    },
+    "com.huggingface.spaces#ListReferencesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "include_prs": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "include_prs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListReferencesResponseTagsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "targetCommit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponseTagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListReferencesResponseTagsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponseBranchesItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "targetCommit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponseBranchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListReferencesResponseBranchesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponseConvertsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "targetCommit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponseConvertsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListReferencesResponseConvertsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponsePullRequestsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "targetCommit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponsePullRequestsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListReferencesResponsePullRequestsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListReferencesResponse": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.huggingface.spaces#ListReferencesResponseTagsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches": {
+          "target": "com.huggingface.spaces#ListReferencesResponseBranchesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "converts": {
+          "target": "com.huggingface.spaces#ListReferencesResponseConvertsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pullRequests": {
+          "target": "com.huggingface.spaces#ListReferencesResponsePullRequestsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListReferences": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListReferencesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListReferencesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/refs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List references"
+      }
+    },
+    "com.huggingface.spaces#GetCompareRevRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "compare": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "raw": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "raw"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#GetCompareRevResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GetCompareRev": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#GetCompareRevRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GetCompareRevResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/compare/{compare}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a compare rev"
+      }
+    },
+    "com.huggingface.spaces#ListPathsInfoRequestPathsCase0List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoRequestPaths": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.spaces#ListPathsInfoRequestPathsCase0List"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoRequestExpand": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Expand the response with the last commit and security file status"
+      }
+    },
+    "com.huggingface.spaces#ListPathsInfoRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "paths": {
+          "target": "com.huggingface.spaces#ListPathsInfoRequestPaths",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expand": {
+          "target": "com.huggingface.spaces#ListPathsInfoRequestExpand",
+          "traits": {
+            "smithy.api#documentation": "Expand the response with the last commit and security file status",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemType": {
+      "type": "enum",
+      "members": {
+        "FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file"
+          }
+        },
+        "DIRECTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "directory"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemLfs": {
+      "type": "structure",
+      "members": {
+        "pointerSize": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemLastCommit": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatus": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "jFrogScan": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScan"
+        },
+        "protectAiScan": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScan"
+        },
+        "avScan": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusAvScan",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pickleImportScan": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScan",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "virusTotalScan": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScan"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "oid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lfs": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemLfs"
+        },
+        "xetHash": {
+          "target": "smithy.api#String"
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastCommit": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemLastCommit"
+        },
+        "securityFileStatus": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItemSecurityFileStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListPathsInfoResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListPathsInfoResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListPathsInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListPathsInfoRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListPathsInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/paths-info/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List paths info"
+      }
+    },
+    "com.huggingface.spaces#CheckUploadMethodRequestFilesItem": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sample": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#CheckUploadMethodRequestFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#CheckUploadMethodRequestFilesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#CheckUploadMethodRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.huggingface.spaces#CheckUploadMethodRequestFilesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gitAttributes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide this parameter if you plan to modify `.gitattributes` yourself at the same time as uploading LFS files. Note that this is not needed if you solely rely on automatic LFS detection from HF: the commit endpoint will automatically edit the `.gitattributes` file to track the files passed to its `lfsFiles` param."
+          }
+        },
+        "gitIgnore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content of the .gitignore file for the revision. Optional, otherwise takes the existing content of `.gitignore` for the revision."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#CheckUploadMethodResponseFilesItemUploadMode": {
+      "type": "enum",
+      "members": {
+        "LFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lfs"
+          }
+        },
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regular"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#CheckUploadMethodResponseFilesItem": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uploadMode": {
+          "target": "com.huggingface.spaces#CheckUploadMethodResponseFilesItemUploadMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "shouldIgnore": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "oid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The oid of the blob if it already exists in the repository. If the blob is a LFS file, it'll be the lfs oid."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#CheckUploadMethodResponseFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#CheckUploadMethodResponseFilesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#CheckUploadMethodResponse": {
+      "type": "structure",
+      "members": {
+        "files": {
+          "target": "com.huggingface.spaces#CheckUploadMethodResponseFilesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commitOid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#CheckUploadMethod": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#CheckUploadMethodRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#CheckUploadMethodResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/preupload/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check upload method\n\nCheck if a file should be uploaded through the Large File mechanism or directly."
+      }
+    },
+    "com.huggingface.spaces#XetWriteTokenRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#XetWriteTokenResponse": {
+      "type": "structure",
+      "members": {
+        "casUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#XetWriteToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#XetWriteTokenRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#XetWriteTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/xet-write-token/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Xet write token\n\nGet a write short-lived access token for XET upload"
+      }
+    },
+    "com.huggingface.spaces#XetReadTokenRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#XetReadTokenResponse": {
+      "type": "structure",
+      "members": {
+        "casUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#XetReadToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#XetReadTokenRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#XetReadTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/xet-read-token/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Xet read token\n\nGet a read short-lived access token for XET"
+      }
+    },
+    "com.huggingface.spaces#CommitRequestContentType": {
+      "type": "enum",
+      "members": {
+        "APPLICATION_JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "application/json"
+          }
+        },
+        "APPLICATION_X_NDJSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "application/x-ndjson"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`application/x-ndjson` if you to commit by json lines"
+      }
+    },
+    "com.huggingface.spaces#CommitRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "create_pr": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "create_pr"
+          }
+        },
+        "hot_reload": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "hot_reload"
+          }
+        },
+        "contentType": {
+          "target": "com.huggingface.spaces#CommitRequestContentType",
+          "traits": {
+            "smithy.api#httpHeader": "Content-Type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#CommitResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the commit was successful",
+            "smithy.api#required": {}
+          }
+        },
+        "pullRequestUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the pull request"
+          }
+        },
+        "commitOid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OID of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "commitUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "hookOutput": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The output of the git hook",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#Commit": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#CommitRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#CommitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/commit/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Commit\n\nFor legacy reason, we support both `application/json` and `application/x-ndjson` but we recommend using `application/x-ndjson` to create a commit.\n\nJSON-lines payload:\n```json\n{\n  \"key\": \"header\",\n  \"value\": {\n    \"summary\": \"string (REQUIRED)\",\n    \"description\": \"string (OPTIONAL - defaults to empty string)\",\n    \"parentCommit\": \"string (OPTIONAL - 40-character hex SHA)\"\n  }\n}\n{\n  \"key\": \"file\",\n  \"value\": {\n    \"path\": \"string (REQUIRED)\",\n    \"content\": \"string (OPTIONAL - required if oldPath not set)\",\n    \"encoding\": \"utf-8 | base64 (OPTIONAL - defaults to utf-8)\",\n    \"oldPath\": \"string (OPTIONAL - for move/rename operations)\"\n  }\n}\n{\n  \"key\": \"deletedEntry\",\n  \"value\": {\n    \"path\": \"string (REQUIRED)\"\n  }\n}\n{\n  \"key\": \"lfsFile\",\n  \"value\": {\n    \"path\": \"string (REQUIRED - max 1000 chars)\",\n    \"oid\": \"string (OPTIONAL - required if oldPath not set, 64 hex chars)\",\n    \"algo\": \"sha256 (OPTIONAL - only sha256 supported)\",\n    \"size\": \"number (OPTIONAL - required if oldPath is set)\",\n    \"oldPath\": \"string (OPTIONAL - for move/rename operations)\"\n  }\n}\n```\n\nJSON payload:\n```json\n{\n  \"summary\": \"string (REQUIRED)\",\n  \"description\": \"string (OPTIONAL - defaults to empty string)\",\n  \"parentCommit\": \"string (OPTIONAL - 40-character hex SHA)\"\n  \"files\": [\n    {\n      \"path\": \"string (REQUIRED)\",\n      \"content\": \"string (OPTIONAL - required if oldPath not set)\",\n      \"encoding\": \"utf-8 | base64 (OPTIONAL - defaults to utf-8)\",\n      \"oldPath\": \"string (OPTIONAL - for move/rename operations)\"\n    }\n  ],\n  \"deletedEntries\": [\n    {\n      \"path\": \"string (REQUIRED)\"\n    }\n  ],\n  \"lfsFiles\": [\n    {\n      \"path\": \"string (REQUIRED - max 1000 chars)\",\n      \"oid\": \"string (OPTIONAL - required if oldPath not set, 64 hex chars)\",\n      \"algo\": \"sha256 (OPTIONAL - only sha256 supported)\",\n      \"size\": \"number (OPTIONAL - required if oldPath is set)\",\n      \"oldPath\": \"string (OPTIONAL - for move/rename operations)\"\n    }\n  ]\n}\n```"
+      }
+    },
+    "com.huggingface.spaces#CreateTagRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#CreateTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#CreateTagRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/tag/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create tag"
+      }
+    },
+    "com.huggingface.spaces#DeleteTagRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteTagRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/spaces/{namespace}/{repo}/tag/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a tag"
+      }
+    },
+    "com.huggingface.spaces#CreateBranchRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startingPoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The commit to start from"
+          }
+        },
+        "emptyBranch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Create an empty branch"
+          }
+        },
+        "overwrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Overwrite the branch if it already exists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#CreateBranch": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#CreateBranchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/branch/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create branch"
+      }
+    },
+    "com.huggingface.spaces#DeleteBranchRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteBranch": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteBranchRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/spaces/{namespace}/{repo}/branch/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a branch"
+      }
+    },
+    "com.huggingface.spaces#GetResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#GetResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GetResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#GetResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GetResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/resource-group",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get resource group"
+      }
+    },
+    "com.huggingface.spaces#AddResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource group to add the repository to, if null, the repository will be removed from the resource group",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#AddResourceGroupResponseType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#AddResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.spaces#AddResourceGroupResponseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "addedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#AddResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#AddResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#AddResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/resource-group",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add resource group\n\nAdd the repository to a resource group"
+      }
+    },
+    "com.huggingface.spaces#SquashRefRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#SquashRefResponse": {
+      "type": "structure",
+      "members": {
+        "commitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new commit ID after the squash",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#SquashRef": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#SquashRefRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#SquashRefResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/super-squash/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Squash ref\n\nSquash all commits in the current ref into a single commit with the given message. Action is irreversible."
+      }
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PROTECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "protected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repository visibility. `protected` is only supported for Spaces."
+      }
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsRequestDiscussionsSorting": {
+      "type": "enum",
+      "members": {
+        "RECENTLY_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recently-created"
+          }
+        },
+        "TRENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trending"
+          }
+        },
+        "REACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsRequestGatedCase1": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsRequestGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsRequestGatedCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsRequestGatedNotificationsMode": {
+      "type": "enum",
+      "members": {
+        "BULK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bulk"
+          }
+        },
+        "REAL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "real-time"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "Repository visibility. `protected` is only supported for Spaces."
+          }
+        },
+        "discussionsDisabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "discussionsSorting": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsRequestDiscussionsSorting"
+        },
+        "gated": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsRequestGated"
+        },
+        "orgMembersGated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, members of the owning org (except admins) must also go through the gated access-request flow."
+          }
+        },
+        "gatedNotificationsEmail": {
+          "target": "smithy.api#String"
+        },
+        "gatedNotificationsMode": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsRequestGatedNotificationsMode"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsResponseVisibility": {
+      "type": "enum",
+      "members": {
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PROTECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "protected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repository visibility. `protected` is only supported for Spaces."
+      }
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsResponseDiscussionsSorting": {
+      "type": "enum",
+      "members": {
+        "RECENTLY_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recently-created"
+          }
+        },
+        "TRENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trending"
+          }
+        },
+        "REACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsResponseGatedCase1": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsResponseGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsResponseGatedCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsResponseGatedNotificationsMode": {
+      "type": "enum",
+      "members": {
+        "BULK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bulk"
+          }
+        },
+        "REAL_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "real-time"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#UpdateRepoSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsResponseVisibility",
+          "traits": {
+            "smithy.api#documentation": "Repository visibility. `protected` is only supported for Spaces."
+          }
+        },
+        "discussionsDisabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "discussionsSorting": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsResponseDiscussionsSorting"
+        },
+        "gated": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsResponseGated"
+        },
+        "orgMembersGated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, members of the owning org (except admins) must also go through the gated access-request flow."
+          }
+        },
+        "gatedNotificationsEmail": {
+          "target": "smithy.api#String"
+        },
+        "gatedNotificationsMode": {
+          "target": "com.huggingface.spaces#UpdateRepoSettingsResponseGatedNotificationsMode"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#UpdateRepoSettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#UpdateRepoSettingsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#UpdateRepoSettingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/spaces/{namespace}/{repo}/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update repo settings\n\nUpdate the settings of a repo"
+      }
+    },
+    "com.huggingface.spaces#ListFolderContentRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expand": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "expand"
+          }
+        },
+        "recursive": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "recursive"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemType": {
+      "type": "enum",
+      "members": {
+        "FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file"
+          }
+        },
+        "DIRECTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "directory"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemLfs": {
+      "type": "structure",
+      "members": {
+        "oid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pointerSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemLastCommit": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanStatus": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety": {
+      "type": "enum",
+      "members": {
+        "INNOCUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "innocuous"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "DANGEROUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dangerous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItem": {
+      "type": "structure",
+      "members": {
+        "module": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "safety": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScan": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "reportLink": {
+          "target": "smithy.api#String"
+        },
+        "reportLabel": {
+          "target": "smithy.api#String"
+        },
+        "pickleImports": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsList"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatus": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "jFrogScan": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusJFrogScan"
+        },
+        "protectAiScan": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScan"
+        },
+        "avScan": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusAvScan",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pickleImportScan": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScan",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "virusTotalScan": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScan"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "oid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the file is a LFS pointer, it'll return the size of the remote file"
+          }
+        },
+        "lfs": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemLfs"
+        },
+        "xetHash": {
+          "target": "smithy.api#String"
+        },
+        "lastCommit": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemLastCommit"
+        },
+        "securityFileStatus": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyItemSecurityFileStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListFolderContentResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListFolderContentResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListFolderContentResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListFolderContent": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListFolderContentRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListFolderContentResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/tree/{rev}/{path}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List folder content\n\nList the content of a repository tree, with pagination support."
+      }
+    },
+    "com.huggingface.spaces#GetNotebookUrlRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#GetNotebookUrlResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetNotebookUrlResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "notInCache": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetNotebookUrlResponseBodyCase2": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetNotebookUrlResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.spaces#GetNotebookUrlResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.spaces#GetNotebookUrlResponseBodyCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.spaces#GetNotebookUrlResponseBodyCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetNotebookUrlResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#GetNotebookUrlResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GetNotebookUrl": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#GetNotebookUrlRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GetNotebookUrlResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/notebook/{rev}/{path}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get notebook URL\n\nGet a jupyter notebook URL for the requested file"
+      }
+    },
+    "com.huggingface.spaces#GetSecurityStatusRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#GetSecurityStatusResponseFilesWithIssuesItemLevel": {
+      "type": "enum",
+      "members": {
+        "UNSCANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unscanned"
+          }
+        },
+        "SAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safe"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "CAUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "caution"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspicious"
+          }
+        },
+        "UNSAFE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsafe"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetSecurityStatusResponseFilesWithIssuesItem": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "level": {
+          "target": "com.huggingface.spaces#GetSecurityStatusResponseFilesWithIssuesItemLevel",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetSecurityStatusResponseFilesWithIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#GetSecurityStatusResponseFilesWithIssuesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#GetSecurityStatusResponse": {
+      "type": "structure",
+      "members": {
+        "scansDone": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filesWithIssues": {
+          "target": "com.huggingface.spaces#GetSecurityStatusResponseFilesWithIssuesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GetSecurityStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#GetSecurityStatusRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GetSecurityStatusResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/scan",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get security status\n\nGet the security status of a repo"
+      }
+    },
+    "com.huggingface.spaces#GenerateJwtRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "write": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "write"
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "expiration"
+          }
+        },
+        "encrypted": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "encrypted"
+          }
+        },
+        "inference_api": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "inference_api"
+          }
+        },
+        "include_pro_status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "include_pro_status"
+          }
+        },
+        "billing_details": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "billing_details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#GenerateJwtResponseEncryptedToken": {
+      "type": "structure",
+      "members": {
+        "encrypted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encrypted JWT token",
+            "smithy.api#required": {}
+          }
+        },
+        "keyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key ID used to encrypt the token",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encrypted JWT token and key ID (only if encrypted=true was requested)"
+      }
+    },
+    "com.huggingface.spaces#GenerateJwtResponse": {
+      "type": "structure",
+      "members": {
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JWT token with Bearer prefix",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "exp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Token expiration timestamp in seconds (JWT standard)"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JWT token",
+            "smithy.api#required": {}
+          }
+        },
+        "encryptedToken": {
+          "target": "com.huggingface.spaces#GenerateJwtResponseEncryptedToken",
+          "traits": {
+            "smithy.api#documentation": "Encrypted JWT token and key ID (only if encrypted=true was requested)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GenerateJwt": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#GenerateJwtRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GenerateJwtResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/jwt",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate JWT\n\nGenerate a JWT token for accessing a repository. Supports optional write access for spaces in dev mode, custom expiration, and encryption."
+      }
+    },
+    "com.huggingface.spaces#ListSpaceHardwareResponseBodyItemAcceleratorType": {
+      "type": "enum",
+      "members": {
+        "GPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gpu"
+          }
+        },
+        "NEURON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "neuron"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceHardwareResponseBodyItemAcceleratorManufacturer": {
+      "type": "enum",
+      "members": {
+        "NVIDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Nvidia"
+          }
+        },
+        "AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AWS"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceHardwareResponseBodyItemAccelerator": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.spaces#ListSpaceHardwareResponseBodyItemAcceleratorType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "vram": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "manufacturer": {
+          "target": "com.huggingface.spaces#ListSpaceHardwareResponseBodyItemAcceleratorManufacturer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceHardwareResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prettyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "cpu": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ram": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accelerator": {
+          "target": "com.huggingface.spaces#ListSpaceHardwareResponseBodyItemAccelerator",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "unitCostMicroUSD": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unitCostUSD": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unitLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceHardwareResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListSpaceHardwareResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceHardwareResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListSpaceHardwareResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListSpaceHardware": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListSpaceHardwareResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/hardware",
+          "code": 200
+        },
+        "smithy.api#documentation": "List space hardware\n\nGet available space hardware"
+      }
+    },
+    "com.huggingface.spaces#ListSpaceTemplatesResponseTemplatesItemSdk": {
+      "type": "enum",
+      "members": {
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "STATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "static"
+          }
+        },
+        "GRADIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gradio"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceTemplatesResponseTemplatesItem": {
+      "type": "structure",
+      "members": {
+        "sdk": {
+          "target": "com.huggingface.spaces#ListSpaceTemplatesResponseTemplatesItemSdk",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-friendly name of the template (e.g. `JupyterLab`).",
+            "smithy.api#required": {}
+          }
+        },
+        "repoId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repo id of the template Space, to pass as `template` on create.",
+            "smithy.api#required": {}
+          }
+        },
+        "preferredPrivate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the created Space is expected to be private.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceTemplatesResponseTemplatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#ListSpaceTemplatesResponseTemplatesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSpaceTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "templates": {
+          "target": "com.huggingface.spaces#ListSpaceTemplatesResponseTemplatesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListSpaceTemplates": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListSpaceTemplatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/templates",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Space templates\n\nReturns the catalog of official Space templates. The `repoId` of a template can be passed as `template` when creating a Space through the create-repo endpoint."
+      }
+    },
+    "com.huggingface.spaces#GetZeroGPUQuotaResponseRuns": {
+      "type": "structure",
+      "members": {
+        "used": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Executions used in the current runs window",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of executions allowed in the runs window",
+            "smithy.api#required": {}
+          }
+        },
+        "remaining": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Executions left before the runs limit is reached",
+            "smithy.api#required": {}
+          }
+        },
+        "resetsAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp when the runs window resets, or null if no run has happened yet. Independent of resetsAt.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Execution (runs) accounting, or omitted for visitors without a runs limit"
+      }
+    },
+    "com.huggingface.spaces#GetZeroGPUQuotaResponse": {
+      "type": "structure",
+      "members": {
+        "base": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total quota in GPU-seconds",
+            "smithy.api#required": {}
+          }
+        },
+        "current": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Remaining quota in GPU-seconds",
+            "smithy.api#required": {}
+          }
+        },
+        "resetsAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp when the quota resets, or null if the quota has not been used yet",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "overquotaUsed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Overquota (paid) GPU-seconds consumed"
+          }
+        },
+        "runs": {
+          "target": "com.huggingface.spaces#GetZeroGPUQuotaResponseRuns",
+          "traits": {
+            "smithy.api#documentation": "Execution (runs) accounting, or omitted for visitors without a runs limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#GetZeroGPUQuota": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#GetZeroGPUQuotaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/zero-gpu/quota",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get ZeroGPU quota\n\nGet the authenticated user's current ZeroGPU quota usage and limits"
+      }
+    },
+    "com.huggingface.spaces#ListSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListSecretsResponseBodyValue": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSecretsResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.huggingface.spaces#ListSecretsResponseBodyValue"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListSecretsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListSecretsResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListSecretsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListSecretsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List secrets\n\nList a Space's secret keys. Values are never returned."
+      }
+    },
+    "com.huggingface.spaces#UpsertSecretRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#UpsertSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#UpsertSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upsert secret\n\nUpsert Spaces's secret"
+      }
+    },
+    "com.huggingface.spaces#DeleteSecretRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/spaces/{namespace}/{repo}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete secret\n\nDelete Spaces's secret"
+      }
+    },
+    "com.huggingface.spaces#ListVariablesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ListVariablesResponseBodyValue": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListVariablesResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.huggingface.spaces#ListVariablesResponseBodyValue"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#ListVariablesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.spaces#ListVariablesResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ListVariables": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ListVariablesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ListVariablesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "List variables\n\nList a Space's variables with their values."
+      }
+    },
+    "com.huggingface.spaces#UpsertVariableRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#UpsertVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#UpsertVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/spaces/{namespace}/{repo}/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upsert variable\n\nUpsert Spaces's variable"
+      }
+    },
+    "com.huggingface.spaces#DeleteVariableRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/spaces/{namespace}/{repo}/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete variable\n\nDelete Spaces's variable"
+      }
+    },
+    "com.huggingface.spaces#ResolveFileRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "Range"
+          }
+        },
+        "accept": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpHeader": "Accept"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ResolveFileResponse": {
+      "type": "structure",
+      "members": {
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The XET hash of the file",
+            "smithy.api#required": {}
+          }
+        },
+        "refreshUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The XET auth URL for the file",
+            "smithy.api#required": {}
+          }
+        },
+        "reconstructionUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The XET reconstruction URL for the file",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ETag of the file",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The size of the file",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ResolveFile": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ResolveFileRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ResolveFileResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/spaces/{namespace}/{repo}/resolve/{rev}/{path}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resolve a file\n\nThis endpoint requires to follow redirection"
+      }
+    },
+    "com.huggingface.spaces#ResolveFileCachedRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "Range"
+          }
+        },
+        "accept": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpHeader": "Accept"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#ResolveFileCachedResponse": {
+      "type": "structure",
+      "members": {
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The XET hash of the file",
+            "smithy.api#required": {}
+          }
+        },
+        "refreshUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The XET auth URL for the file",
+            "smithy.api#required": {}
+          }
+        },
+        "reconstructionUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The XET reconstruction URL for the file",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ETag of the file",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The size of the file",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.spaces#ResolveFileCached": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#ResolveFileCachedRequest"
+      },
+      "output": {
+        "target": "com.huggingface.spaces#ResolveFileCachedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/resolve-cache/spaces/{namespace}/{repo}/{rev}/{path}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resolve a file\n\nThis endpoint requires to follow redirection"
+      }
+    },
+    "com.huggingface.spaces#SetSpaceVolumesRequestVolumesItemType": {
+      "type": "enum",
+      "members": {
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#SetSpaceVolumesRequestVolumesItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.spaces#SetSpaceVolumesRequestVolumesItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source identifier, e.g. 'username/my-bucket' or 'username/my-model'",
+            "smithy.api#required": {}
+          }
+        },
+        "mountPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mount path inside the container, e.g. '/data'",
+            "smithy.api#required": {}
+          }
+        },
+        "revision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git revision (only for repos, defaults to 'main')"
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Read-only mount (true for repos, false default for buckets)"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subfolder prefix inside the bucket/repo to mount, e.g. 'path/to/dir'"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#SetSpaceVolumesRequestVolumesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.spaces#SetSpaceVolumesRequestVolumesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#SetSpaceVolumesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "volumes": {
+          "target": "com.huggingface.spaces#SetSpaceVolumesRequestVolumesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#SetSpaceVolumes": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#SetSpaceVolumesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/spaces/{namespace}/{repo}/volumes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set Space volumes"
+      }
+    },
+    "com.huggingface.spaces#DeleteSpaceVolumesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#DeleteSpaceVolumes": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#DeleteSpaceVolumesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/spaces/{namespace}/{repo}/volumes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Space volumes"
+      }
+    },
+    "com.huggingface.spaces#StreamLogsRequestLogType": {
+      "type": "enum",
+      "members": {
+        "BUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "build"
+          }
+        },
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "run"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.spaces#StreamLogsRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "logType": {
+          "target": "com.huggingface.spaces#StreamLogsRequestLogType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tail": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "tail"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#StreamLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#StreamLogsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/logs/{logType}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stream logs\n\nGet logs for a specific Space in a streaming fashion, with SSE protocol"
+      }
+    },
+    "com.huggingface.spaces#StreamEventsRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "session_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "session_uuid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#StreamEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#StreamEventsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/events",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stream events\n\nGet status updates for a specific Space in a streaming fashion, with SSE protocol"
+      }
+    },
+    "com.huggingface.spaces#StreamMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.spaces#StreamMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.spaces#StreamMetricsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/spaces/{namespace}/{repo}/metrics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stream metrics\n\nGet live metrics for a specific Space in a streaming fashion, with SSE protocol, such as current Zero-GPU usage"
+      }
+    },
+    "com.huggingface.spaces#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.huggingface.spaces#Spaces": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.spaces#GetFolderSize"
+        },
+        {
+          "target": "com.huggingface.spaces#ListLargeFiles"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteLargeFiles"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteLargeFile"
+        },
+        {
+          "target": "com.huggingface.spaces#DuplicateXetFiles"
+        },
+        {
+          "target": "com.huggingface.spaces#ListCommits"
+        },
+        {
+          "target": "com.huggingface.spaces#ListReferences"
+        },
+        {
+          "target": "com.huggingface.spaces#GetCompareRev"
+        },
+        {
+          "target": "com.huggingface.spaces#ListPathsInfo"
+        },
+        {
+          "target": "com.huggingface.spaces#CheckUploadMethod"
+        },
+        {
+          "target": "com.huggingface.spaces#XetWriteToken"
+        },
+        {
+          "target": "com.huggingface.spaces#XetReadToken"
+        },
+        {
+          "target": "com.huggingface.spaces#Commit"
+        },
+        {
+          "target": "com.huggingface.spaces#CreateTag"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteTag"
+        },
+        {
+          "target": "com.huggingface.spaces#CreateBranch"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteBranch"
+        },
+        {
+          "target": "com.huggingface.spaces#GetResourceGroup"
+        },
+        {
+          "target": "com.huggingface.spaces#AddResourceGroup"
+        },
+        {
+          "target": "com.huggingface.spaces#SquashRef"
+        },
+        {
+          "target": "com.huggingface.spaces#UpdateRepoSettings"
+        },
+        {
+          "target": "com.huggingface.spaces#ListFolderContent"
+        },
+        {
+          "target": "com.huggingface.spaces#GetNotebookUrl"
+        },
+        {
+          "target": "com.huggingface.spaces#GetSecurityStatus"
+        },
+        {
+          "target": "com.huggingface.spaces#GenerateJwt"
+        },
+        {
+          "target": "com.huggingface.spaces#ListSpaceHardware"
+        },
+        {
+          "target": "com.huggingface.spaces#ListSpaceTemplates"
+        },
+        {
+          "target": "com.huggingface.spaces#GetZeroGPUQuota"
+        },
+        {
+          "target": "com.huggingface.spaces#ListSecrets"
+        },
+        {
+          "target": "com.huggingface.spaces#UpsertSecret"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteSecret"
+        },
+        {
+          "target": "com.huggingface.spaces#ListVariables"
+        },
+        {
+          "target": "com.huggingface.spaces#UpsertVariable"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteVariable"
+        },
+        {
+          "target": "com.huggingface.spaces#ResolveFile"
+        },
+        {
+          "target": "com.huggingface.spaces#ResolveFileCached"
+        },
+        {
+          "target": "com.huggingface.spaces#SetSpaceVolumes"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteSpaceVolumes"
+        },
+        {
+          "target": "com.huggingface.spaces#StreamLogs"
+        },
+        {
+          "target": "com.huggingface.spaces#StreamEvents"
+        },
+        {
+          "target": "com.huggingface.spaces#StreamMetrics"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

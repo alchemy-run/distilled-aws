@@ -1,0 +1,30 @@
+{
+  "structures": {
+    "OtaaV1_1": {
+      "members": {
+        "AppKey": { "sensitive": true },
+        "NwkKey": { "sensitive": true }
+      }
+    },
+    "OtaaV1_0_x": {
+      "members": {
+        "AppKey": { "sensitive": true },
+        "GenAppKey": { "sensitive": true }
+      }
+    },
+    "SessionKeysAbpV1_1": {
+      "members": {
+        "FNwkSIntKey": { "sensitive": true },
+        "SNwkSIntKey": { "sensitive": true },
+        "NwkSEncKey": { "sensitive": true },
+        "AppSKey": { "sensitive": true }
+      }
+    },
+    "SessionKeysAbpV1_0_x": {
+      "members": {
+        "NwkSKey": { "sensitive": true },
+        "AppSKey": { "sensitive": true }
+      }
+    }
+  }
+}

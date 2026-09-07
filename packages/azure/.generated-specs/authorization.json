@@ -1,0 +1,2752 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.authorization#DenyAssignmentsListForScope": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#DenyAssignmentsListForScopeRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#DenyAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Authorization/denyAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets deny assignments for a scope.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.authorization#DenyAssignmentListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Deny assignment list."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny assignment list operation result."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#DenyAssignment"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny assignment list."
+      }
+    },
+    "com.azure.authorization#DenyAssignment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deny assignment ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deny assignment name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deny assignment type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#DenyAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Deny assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny Assignment"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentProperties": {
+      "type": "structure",
+      "members": {
+        "denyAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the deny assignment."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the deny assignment."
+          }
+        },
+        "permissions": {
+          "target": "com.azure.authorization#DenyAssignmentPropertiesPermissionsList",
+          "traits": {
+            "smithy.api#documentation": "An array of permissions that are denied by the deny assignment."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deny assignment scope."
+          }
+        },
+        "doNotApplyToChildScopes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if the deny assignment applies to child scopes. Default value is false."
+          }
+        },
+        "principals": {
+          "target": "com.azure.authorization#DenyAssignmentPropertiesPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of principals to which the deny assignment applies."
+          }
+        },
+        "excludePrincipals": {
+          "target": "com.azure.authorization#DenyAssignmentPropertiesExcludePrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of principals to which the deny assignment does not apply."
+          }
+        },
+        "isSystemProtected": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether this deny assignment was created by Azure and cannot be edited or deleted."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The conditions on the deny assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container'"
+          }
+        },
+        "conditionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the condition."
+          }
+        },
+        "createdOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time it was created"
+          }
+        },
+        "updatedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time it was updated"
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who created the assignment"
+          }
+        },
+        "updatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who updated the assignment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny assignment properties."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPropertiesExcludePrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#DenyAssignmentPropertiesExcludePrincipalsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of principals to which the deny assignment does not apply."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPropertiesExcludePrincipalsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the principal made changes"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the principal made changes"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of principal such as user , group etc"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of principal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the entity last modified it"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPropertiesPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#DenyAssignmentPropertiesPrincipalsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of principals to which the deny assignment applies."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPropertiesPrincipalsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the principal made changes"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the principal made changes"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of principal such as user , group etc"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of principal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the entity last modified it"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPropertiesPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#DenyAssignmentPermission"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of permissions that are denied by the deny assignment."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPermission": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "com.azure.authorization#DenyAssignmentPermissionActionsList",
+          "traits": {
+            "smithy.api#documentation": "Actions to which the deny assignment does not grant access."
+          }
+        },
+        "notActions": {
+          "target": "com.azure.authorization#DenyAssignmentPermissionNotActionsList",
+          "traits": {
+            "smithy.api#documentation": "Actions to exclude from that the deny assignment does not grant access."
+          }
+        },
+        "dataActions": {
+          "target": "com.azure.authorization#DenyAssignmentPermissionDataActionsList",
+          "traits": {
+            "smithy.api#documentation": "Data actions to which the deny assignment does not grant access."
+          }
+        },
+        "notDataActions": {
+          "target": "com.azure.authorization#DenyAssignmentPermissionNotDataActionsList",
+          "traits": {
+            "smithy.api#documentation": "Data actions to exclude from that the deny assignment does not grant access."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The conditions on the Deny assignment permission. This limits the resources it applies to."
+          }
+        },
+        "conditionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the condition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny assignment permissions."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPermissionNotDataActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Data actions to exclude from that the deny assignment does not grant access."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPermissionDataActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Data actions to which the deny assignment does not grant access."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPermissionNotActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions to exclude from that the deny assignment does not grant access."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentPermissionActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions to which the deny assignment does not grant access."
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsListForScopeRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope of the deny assignments."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsGetById": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#DenyAssignmentsGetByIdRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#DenyAssignment"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{denyAssignmentId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets a deny assignment by ID.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsGetByIdRequest": {
+      "type": "structure",
+      "members": {
+        "denyAssignmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified deny assignment ID. For example, use the format, /subscriptions/{guid}/providers/Microsoft.Authorization/denyAssignments/{denyAssignmentId} for subscription level deny assignments, or /providers/Microsoft.Authorization/denyAssignments/{denyAssignmentId} for tenant level deny assignments."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#DenyAssignmentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#DenyAssignment"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Authorization/denyAssignments/{denyAssignmentId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Get the specified deny assignment.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope of the deny assignment."
+          }
+        },
+        "denyAssignmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the deny assignment to get."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#DenyAssignmentsListRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#DenyAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/denyAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets all deny assignments for the subscription.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsListForResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#DenyAssignmentsListForResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#DenyAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/denyAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets deny assignments for a resource group.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsListForResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsListForResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#DenyAssignmentsListForResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#DenyAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/denyAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets deny assignments for a resource.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#DenyAssignmentsListForResourceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The namespace of the resource provider."
+          }
+        },
+        "parentResourcePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource identity."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource to get deny assignments for."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#ProviderOperationsMetadataGetRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#ProviderOperationsMetadataGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Authorization/providerOperations/{resourceProviderNamespace}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets provider operations metadata for the specified resource provider.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider type."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider display name."
+          }
+        },
+        "resourceTypes": {
+          "target": "com.azure.authorization#ProviderOperationsMetadataGetResponseResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "The provider resource types"
+          }
+        },
+        "operations": {
+          "target": "com.azure.authorization#ProviderOperationsMetadataGetResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The provider operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataGetResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#ProviderOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The provider operations."
+      }
+    },
+    "com.azure.authorization#ProviderOperation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation display name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation description."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation origin."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The operation properties."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The dataAction flag to specify the operation type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation"
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataGetResponseResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#ResourceType"
+      },
+      "traits": {
+        "smithy.api#documentation": "The provider resource types"
+      }
+    },
+    "com.azure.authorization#ResourceType": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type display name."
+          }
+        },
+        "operations": {
+          "target": "com.azure.authorization#ResourceTypeOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The resource type operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource Type"
+      }
+    },
+    "com.azure.authorization#ResourceTypeOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#ProviderOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource type operations."
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The namespace of the resource provider."
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Specifies whether to expand the values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#ProviderOperationsMetadataListRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#ProviderOperationsMetadataListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Authorization/providerOperations",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets provider operations metadata for all resource providers.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.authorization#ProviderOperationsMetadataListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ProviderOperationsMetadata items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ProviderOperationsMetadata list operation."
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#ProviderOperationsMetadata"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ProviderOperationsMetadata items on this page"
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadata": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider type."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider display name."
+          }
+        },
+        "resourceTypes": {
+          "target": "com.azure.authorization#ProviderOperationsMetadataResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "The provider resource types"
+          }
+        },
+        "operations": {
+          "target": "com.azure.authorization#ProviderOperationsMetadataOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The provider operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider Operations metadata"
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#ProviderOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The provider operations."
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#ResourceType"
+      },
+      "traits": {
+        "smithy.api#documentation": "The provider resource types"
+      }
+    },
+    "com.azure.authorization#ProviderOperationsMetadataListRequest": {
+      "type": "structure",
+      "members": {
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Specifies whether to expand the values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsListForResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/roleAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "List all role assignments that apply to a resource group.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.authorization#RoleAssignmentListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The RoleAssignment items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role assignment list operation result."
+      }
+    },
+    "com.azure.authorization#RoleAssignmentListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#RoleAssignment"
+      },
+      "traits": {
+        "smithy.api#documentation": "The RoleAssignment items on this page"
+      }
+    },
+    "com.azure.authorization#RoleAssignment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role Assignments"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentProperties": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role assignment scope."
+          }
+        },
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "principalType": {
+          "target": "com.azure.authorization#RoleAssignmentPropertiesPrincipalType",
+          "traits": {
+            "smithy.api#documentation": "The principal type of the assigned principal ID."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of role assignment"
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container'"
+          }
+        },
+        "conditionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the condition. Currently the only accepted value is '2.0'"
+          }
+        },
+        "createdOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time it was created"
+          }
+        },
+        "updatedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time it was updated"
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who created the assignment"
+          }
+        },
+        "updatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who updated the assignment"
+          }
+        },
+        "delegatedManagedIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the delegated managed identity resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role assignment properties."
+      }
+    },
+    "com.azure.authorization#RoleAssignmentPropertiesPrincipalType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        },
+        "SERVICEPRINCIPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServicePrincipal"
+          }
+        },
+        "FOREIGNGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ForeignGroup"
+          }
+        },
+        "DEVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Device"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The principal type of the assigned principal ID."
+      }
+    },
+    "com.azure.authorization#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.authorization#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.authorization#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.authorization#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.authorization#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsListForResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/roleAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "List all role assignments that apply to a resource.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForResourceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The namespace of the resource provider."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource to get role assignments for."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsListForSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/roleAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "List all role assignments that apply to a subscription.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsDeleteRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Delete a role assignment by scope and name.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "roleAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the role assignment. It can be any valid GUID."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Create or update a role assignment by scope and name.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "roleAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the role assignment. It can be any valid GUID."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "principalType": {
+          "target": "com.azure.authorization#RoleAssignmentPropertiesInputPrincipalType",
+          "traits": {
+            "smithy.api#documentation": "The principal type of the assigned principal ID."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of role assignment"
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container'"
+          }
+        },
+        "conditionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the condition. Currently the only accepted value is '2.0'"
+          }
+        },
+        "delegatedManagedIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the delegated managed identity resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role assignment properties."
+      }
+    },
+    "com.azure.authorization#RoleAssignmentPropertiesInputPrincipalType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        },
+        "SERVICEPRINCIPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServicePrincipal"
+          }
+        },
+        "FOREIGNGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ForeignGroup"
+          }
+        },
+        "DEVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Device"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The principal type of the assigned principal ID."
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Get a role assignment by scope and name.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "roleAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the role assignment. It can be any valid GUID."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForScope": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsListForScopeRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleAssignments",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "List all role assignments that apply to a scope.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsListForScopeRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "The skipToken to apply on the operation. Use $skipToken={skiptoken} to return paged role assignments following the skipToken passed. Only supported on provider level calls."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsDeleteById": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsDeleteByIdRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentsDeleteByIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{roleAssignmentId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Delete a role assignment by ID.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsDeleteByIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsDeleteByIdRequest": {
+      "type": "structure",
+      "members": {
+        "roleAssignmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME>"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsCreateById": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsCreateByIdRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentsCreateByIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{roleAssignmentId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Create or update a role assignment by ID.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsCreateByIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsCreateByIdRequest": {
+      "type": "structure",
+      "members": {
+        "roleAssignmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME>"
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsGetById": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleAssignmentsGetByIdRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleAssignmentsGetByIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{roleAssignmentId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Get a role assignment by ID.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsGetByIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.authorization#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.authorization#RoleAssignmentsGetByIdRequest": {
+      "type": "structure",
+      "members": {
+        "roleAssignmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME>"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tenantId",
+            "smithy.api#documentation": "Tenant ID for cross-tenant request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleDefinitionsListRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleDefinitionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleDefinitions",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Get all role definitions that are applicable at scope and above.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleDefinitionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.authorization#RoleDefinitionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Role definition list."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition list operation result."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#RoleDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition list."
+      }
+    },
+    "com.azure.authorization#RoleDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleDefinitionProperties",
+          "traits": {
+            "smithy.api#documentation": "Role definition properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionProperties": {
+      "type": "structure",
+      "members": {
+        "roleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition description."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role type."
+          }
+        },
+        "permissions": {
+          "target": "com.azure.authorization#RoleDefinitionPropertiesPermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Role definition permissions."
+          }
+        },
+        "assignableScopes": {
+          "target": "com.azure.authorization#RoleDefinitionPropertiesAssignableScopesList",
+          "traits": {
+            "smithy.api#documentation": "Role definition assignable scopes."
+          }
+        },
+        "createdOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time it was created"
+          }
+        },
+        "updatedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time it was updated"
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who created the assignment"
+          }
+        },
+        "updatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who updated the assignment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition properties."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionPropertiesAssignableScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition assignable scopes."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionPropertiesPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#Permission"
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition permissions."
+      }
+    },
+    "com.azure.authorization#Permission": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "com.azure.authorization#PermissionActionsList",
+          "traits": {
+            "smithy.api#documentation": "Allowed actions."
+          }
+        },
+        "notActions": {
+          "target": "com.azure.authorization#PermissionNotActionsList",
+          "traits": {
+            "smithy.api#documentation": "Denied actions."
+          }
+        },
+        "dataActions": {
+          "target": "com.azure.authorization#PermissionDataActionsList",
+          "traits": {
+            "smithy.api#documentation": "Allowed Data actions."
+          }
+        },
+        "notDataActions": {
+          "target": "com.azure.authorization#PermissionNotDataActionsList",
+          "traits": {
+            "smithy.api#documentation": "Denied Data actions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition permissions."
+      }
+    },
+    "com.azure.authorization#PermissionNotDataActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Denied Data actions."
+      }
+    },
+    "com.azure.authorization#PermissionDataActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed Data actions."
+      }
+    },
+    "com.azure.authorization#PermissionNotActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Denied actions."
+      }
+    },
+    "com.azure.authorization#PermissionActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed actions."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope of the role definition."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. Use atScopeAndBelow filter to search below the given scope as well."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleDefinitionsDeleteRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Deletes a role definition.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope of the role definition."
+          }
+        },
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the role definition to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleDefinitionsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Creates or updates a role definition.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope of the role definition."
+          }
+        },
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the role definition."
+          }
+        },
+        "properties": {
+          "target": "com.azure.authorization#RoleDefinitionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Role definition properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#RoleDefinitionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "roleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role definition description."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role type."
+          }
+        },
+        "permissions": {
+          "target": "com.azure.authorization#RoleDefinitionPropertiesInputPermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Role definition permissions."
+          }
+        },
+        "assignableScopes": {
+          "target": "com.azure.authorization#RoleDefinitionPropertiesInputAssignableScopesList",
+          "traits": {
+            "smithy.api#documentation": "Role definition assignable scopes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition properties."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionPropertiesInputAssignableScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition assignable scopes."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionPropertiesInputPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#Permission"
+      },
+      "traits": {
+        "smithy.api#documentation": "Role definition permissions."
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#RoleDefinitionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#RoleDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Get role definition by name (GUID).",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#RoleDefinitionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope of the role definition."
+          }
+        },
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the role definition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#PermissionsListForResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#PermissionsListForResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#PermissionGetResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/permissions",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets all permissions the caller has for a resource.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#PermissionGetResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.authorization#PermissionGetResultValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of permissions."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions information."
+      }
+    },
+    "com.azure.authorization#PermissionGetResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.authorization#Permission"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of permissions."
+      }
+    },
+    "com.azure.authorization#PermissionsListForResourceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The namespace of the resource provider."
+          }
+        },
+        "parentResourcePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource identity."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource to get the permissions for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#PermissionsListForResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.authorization#PermissionsListForResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.authorization#PermissionGetResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Authorization/permissions",
+          "code": 200,
+          "apiVersion": "2022-04-01"
+        },
+        "smithy.api#documentation": "Gets all permissions the caller has for a resource group.",
+        "com.distilled.openapi#apiVersion": "2022-04-01"
+      }
+    },
+    "com.azure.authorization#PermissionsListForResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.authorization#Authorization": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.authorization#DenyAssignmentsListForScope"
+        },
+        {
+          "target": "com.azure.authorization#DenyAssignmentsGetById"
+        },
+        {
+          "target": "com.azure.authorization#DenyAssignmentsGet"
+        },
+        {
+          "target": "com.azure.authorization#DenyAssignmentsList"
+        },
+        {
+          "target": "com.azure.authorization#DenyAssignmentsListForResourceGroup"
+        },
+        {
+          "target": "com.azure.authorization#DenyAssignmentsListForResource"
+        },
+        {
+          "target": "com.azure.authorization#ProviderOperationsMetadataGet"
+        },
+        {
+          "target": "com.azure.authorization#ProviderOperationsMetadataList"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsListForResourceGroup"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsListForResource"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsListForSubscription"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsDelete"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsCreate"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsGet"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsListForScope"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsDeleteById"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsCreateById"
+        },
+        {
+          "target": "com.azure.authorization#RoleAssignmentsGetById"
+        },
+        {
+          "target": "com.azure.authorization#RoleDefinitionsList"
+        },
+        {
+          "target": "com.azure.authorization#RoleDefinitionsDelete"
+        },
+        {
+          "target": "com.azure.authorization#RoleDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.authorization#RoleDefinitionsGet"
+        },
+        {
+          "target": "com.azure.authorization#PermissionsListForResource"
+        },
+        {
+          "target": "com.azure.authorization#PermissionsListForResourceGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Authorization",
+        "smithy.api#documentation": "Azure Authorization API — merged from the authorization resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align brand_protection#V2LogosDelete with distilled cloudflare/brand-protection deleteV2Logo",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#V2LogosDelete",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteV2Logo"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#V2LogosDeleteRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteV2LogoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteV2Logo/input/target",
+      "value": "com.cloudflare.brand_protection#DeleteV2LogoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#V2LogosDeleteResponse",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteV2LogoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteV2Logo/output/target",
+      "value": "com.cloudflare.brand_protection#DeleteV2LogoResponse"
+    }
+  ]
+}

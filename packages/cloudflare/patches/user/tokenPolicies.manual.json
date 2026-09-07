@@ -1,0 +1,18 @@
+{
+  "description": "Docs bug: TokenPolicy marks `id` required on user token create/update REQUEST bodies, but policy ids are server-generated — create payloads have none. Drop the member from the request-side policy items. Also docs gap: CreateTokenResponse.value is untyped in the docs but is the plaintext token string on the wire; v0 typed it string.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.user#TokensCreateRequestPoliciesItem/members/id"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.user#TokensUpdateRequestPoliciesItem/members/id"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#CreateTokenResponse/members/value/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

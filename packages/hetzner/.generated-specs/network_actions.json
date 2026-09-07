@@ -1,0 +1,2358 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.network_actions#ListNetworksActionsRequestIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "COMMAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command"
+          }
+        },
+        "COMMAND_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:asc"
+          }
+        },
+        "COMMAND_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:desc"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "STATUS_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:asc"
+          }
+        },
+        "STATUS_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:desc"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started"
+          }
+        },
+        "STARTED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:asc"
+          }
+        },
+        "STARTED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:desc"
+          }
+        },
+        "FINISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished"
+          }
+        },
+        "FINISHED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:asc"
+          }
+        },
+        "FINISHED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworksActionsRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsRequestStatusItem": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActionsRequestStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworksActionsRequestStatusItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsRequestIdList",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "Filter the actions by ID. May be used multiple times.\n\nThe response will only contain actions matching the specified IDs.\n"
+          }
+        },
+        "sort": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort actions by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsRequestStatusList",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the actions by status. May be used multiple times.\n\nThe response will only contain actions matching the specified statuses.\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseActionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsResponseActionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworksActionsResponseActionsItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworksActionsResponse": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsResponseActionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.network_actions#ListNetworksActionsResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#ListNetworksActions": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#ListNetworksActionsRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#ListNetworksActionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/networks/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Actions\n\nLists multiple [Actions](#tag/actions).\n\nUse the provided URI parameters to modify the result.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "actions",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.network_actions#GetNetworksActionRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#GetNetworksActionResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#GetNetworksActionResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#GetNetworksActionResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#GetNetworksActionResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#GetNetworksActionResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#GetNetworksActionResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#GetNetworksActionResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#GetNetworksActionResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#GetNetworksActionResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#GetNetworksActionResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#GetNetworksActionResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#GetNetworksAction": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#GetNetworksActionRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#GetNetworksActionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/networks/actions/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an Action\n\nReturns a single [Action](#tag/actions)."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "COMMAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command"
+          }
+        },
+        "COMMAND_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:asc"
+          }
+        },
+        "COMMAND_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:desc"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "STATUS_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:asc"
+          }
+        },
+        "STATUS_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:desc"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started"
+          }
+        },
+        "STARTED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:asc"
+          }
+        },
+        "STARTED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:desc"
+          }
+        },
+        "FINISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished"
+          }
+        },
+        "FINISHED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:asc"
+          }
+        },
+        "FINISHED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworkActionsRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsRequestStatusItem": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsRequestStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworkActionsRequestStatusItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "sort": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort actions by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsRequestStatusList",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the actions by status. May be used multiple times.\n\nThe response will only contain actions matching the specified statuses.\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseActionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsResponseActionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ListNetworkActionsResponseActionsItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ListNetworkActionsResponse": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsResponseActionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.network_actions#ListNetworkActionsResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#ListNetworkActions": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#ListNetworkActionsRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#ListNetworkActionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/networks/{id}/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Actions for a Network\n\nLists [Actions](#tag/actions) for a [Network](#tag/networks).\n\nUse the provided URI parameters to modify the result.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "actions",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkRouteRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkRouteResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkRouteResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#AddNetworkRouteResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#AddNetworkRouteResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkRouteResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkRouteResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#AddNetworkRouteResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#AddNetworkRouteResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#AddNetworkRouteResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#AddNetworkRouteResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#AddNetworkRouteResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkRoute": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#AddNetworkRouteRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#AddNetworkRouteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks/{id}/actions/add_route",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a route to a Network\n\nAdds a route entry to a [Network](#tag/networks).\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetRequestType": {
+      "type": "enum",
+      "members": {
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "VSWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vswitch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of subnet.\n"
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "type": {
+          "target": "com.hetzner.network_actions#AddNetworkSubnetRequestType",
+          "traits": {
+            "smithy.api#documentation": "Type of subnet.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the subnet.\n\nUses CIDR notation.\n\nMust be a subnet of the parent [Networks](#tag/networks) `ip_range`.\n\nMust not overlap with any other subnets or with any destinations in routes.\n\nMinimum network size is /30. We highly recommend that you pick a larger subnet with a /24 netmask.\n"
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network Zone](#tag/network-zones).\n\nThe [Location](#tag/locations) contains the `network_zone` it belongs to.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "vswitch_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the robot vSwitch.\n\nMust be supplied if the subnet is of type `vswitch`.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#AddNetworkSubnetResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#AddNetworkSubnetResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#AddNetworkSubnetResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#AddNetworkSubnetResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#AddNetworkSubnetResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#AddNetworkSubnetResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#AddNetworkSubnet": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#AddNetworkSubnetRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#AddNetworkSubnetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks/{id}/actions/add_subnet",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a subnet to a Network\n\nAdds a new subnet to the [Network](#tag/networks).\n\nIf the subnet `ip_range` is not provided, the first available `/24` IP range will be used.\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the [Network](#tag/networks).\n\nUses CIDR notation.\n\nMust span all included subnets. Must be one of the private IPv4 ranges of RFC1918.\n\nMinimum network size is /24. We highly recommend that you pick a larger [Network](#tag/networks) with a /16 netmask.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#ChangeNetworkIpRangeResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRangeResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#ChangeNetworkIpRangeResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkIpRange": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#ChangeNetworkIpRangeRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#ChangeNetworkIpRangeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks/{id}/actions/change_ip_range",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change IP range of a Network\n\nChanges the IP range of a [Network](#tag/networks).\n\nThe following restrictions apply to changing the IP range:\n- IP ranges can only be extended and never shrunk.\n- IPs can only be added to the end of the existing range, therefore only the netmask is allowed to be changed.\n\nTo update the routes on the connected [Servers](#tag/servers), they need to be rebooted or the routes to be updated manually.\n\nFor example if the [Network](#tag/networks) has a range of `10.0.0.0/16` to extend it the new range has to start with the IP `10.0.0.0` as well. The netmask `/16` can be changed to a smaller one then `16` therefore increasing the IP range. A valid entry would be `10.0.0.0/15`, `10.0.0.0/14` or `10.0.0.0/13` and so on.\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Delete protection setting.\n\nIf true, prevents the [Network](#tag/networks) from being deleted.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#ChangeNetworkProtectionResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtectionResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#ChangeNetworkProtectionResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#ChangeNetworkProtection": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#ChangeNetworkProtectionRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#ChangeNetworkProtectionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks/{id}/actions/change_protection",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change Network Protection\n\nChanges the protection settings of a [Network](#tag/networks).\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#DeleteNetworkRouteResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#DeleteNetworkRouteResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#DeleteNetworkRouteResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#DeleteNetworkRouteResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#DeleteNetworkRouteResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#DeleteNetworkRouteResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkRoute": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#DeleteNetworkRouteRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#DeleteNetworkRouteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks/{id}/actions/delete_route",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a route from a Network\n\nDelete a route entry from a [Network](#tag/networks).\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range in CIDR block notation of the subnet to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.network_actions#DeleteNetworkSubnetResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnetResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.network_actions#DeleteNetworkSubnetResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.network_actions#DeleteNetworkSubnet": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.network_actions#DeleteNetworkSubnetRequest"
+      },
+      "output": {
+        "target": "com.hetzner.network_actions#DeleteNetworkSubnetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks/{id}/actions/delete_subnet",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a subnet from a Network\n\nDeletes a single subnet entry from a [Network](#tag/networks).\n\nSubnets containing attached resources can not be deleted, they must be detached beforehand.\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.network_actions#NetworkActions": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.network_actions#ListNetworksActions"
+        },
+        {
+          "target": "com.hetzner.network_actions#GetNetworksAction"
+        },
+        {
+          "target": "com.hetzner.network_actions#ListNetworkActions"
+        },
+        {
+          "target": "com.hetzner.network_actions#AddNetworkRoute"
+        },
+        {
+          "target": "com.hetzner.network_actions#AddNetworkSubnet"
+        },
+        {
+          "target": "com.hetzner.network_actions#ChangeNetworkIpRange"
+        },
+        {
+          "target": "com.hetzner.network_actions#ChangeNetworkProtection"
+        },
+        {
+          "target": "com.hetzner.network_actions#DeleteNetworkRoute"
+        },
+        {
+          "target": "com.hetzner.network_actions#DeleteNetworkSubnet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

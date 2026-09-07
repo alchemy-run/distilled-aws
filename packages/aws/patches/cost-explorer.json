@@ -1,0 +1,41 @@
+{
+  "operations": {
+    "createAnomalyMonitor": {
+      "syntheticErrors": [
+        {
+          "name": "AnomalyMonitorAlreadyExists",
+          "from": "ValidationException",
+          "message": {
+            "includes": "same monitor name as an existing monitor"
+          }
+        }
+      ]
+    },
+    "createAnomalySubscription": {
+      "syntheticErrors": [
+        {
+          "name": "AnomalySubscriptionAlreadyExists",
+          "from": "ValidationException",
+          "message": {
+            "includes": "same subscription name as an existing subscription"
+          }
+        }
+      ]
+    },
+    "getRightsizingRecommendation": {
+      "syntheticErrors": [
+        {
+          "name": "RightsizingRecommendationNotEnabled",
+          "from": "AccessDeniedException",
+          "message": {
+            "includes": "opt-in only feature"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "AnomalyMonitorAlreadyExists": ["AlreadyExistsError", "ConflictError"],
+    "AnomalySubscriptionAlreadyExists": ["AlreadyExistsError", "ConflictError"]
+  }
+}

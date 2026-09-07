@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummarySpam with distilled cloudflare/radar spamEmailSecuritySummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummarySpam",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecuritySummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummarySpamRequest",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecuritySummary/input/target",
+      "value": "com.cloudflare.radar#SpamEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummarySpamResponse",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecuritySummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecuritySummary/output/target",
+      "value": "com.cloudflare.radar#SpamEmailSecuritySummaryResponse"
+    }
+  ]
+}

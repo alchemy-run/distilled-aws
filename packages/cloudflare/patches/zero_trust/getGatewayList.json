@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#GatewayListsGet with distilled cloudflare/zero-trust getGatewayList",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayList"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayListRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayList/input/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayListRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayListResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayList/output/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayListResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#GatewayListNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

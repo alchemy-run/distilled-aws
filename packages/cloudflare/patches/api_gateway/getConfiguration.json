@@ -1,0 +1,45 @@
+{
+  "description": "Align api_gateway#ConfigurationsGet with distilled cloudflare/api-gateway getConfiguration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#ConfigurationsGet",
+      "path": "/shapes/com.cloudflare.api_gateway#GetConfiguration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#ConfigurationsGetRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#GetConfigurationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetConfiguration/input/target",
+      "value": "com.cloudflare.api_gateway#GetConfigurationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#ConfigurationsGetResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#GetConfigurationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetConfiguration/output/target",
+      "value": "com.cloudflare.api_gateway#GetConfigurationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#GetConfiguration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#NotEntitled"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

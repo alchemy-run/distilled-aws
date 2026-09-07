@@ -1,0 +1,59 @@
+{
+  "description": "Self-hosted Access applications accept inline (application-owned) policies on create/update — `{ decision, include, ... }` items without an id create policies exclusive to the application; items with an id update them in place. The API docs only model the inline arm for infrastructure applications, but the live API accepts it for self_hosted (it is how the Workers-protected-by-Access flow creates applications). Member targets reuse the reusable-policy request shapes so rule unions stay a single definition.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#InlineAccessPolicy",
+      "value": {
+        "type": "structure",
+        "members": {
+          "id": { "target": "smithy.api#String" },
+          "decision": {
+            "target": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestDecision",
+            "traits": { "smithy.api#required": {} }
+          },
+          "include": {
+            "target": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestIncludeList",
+            "traits": { "smithy.api#required": {} }
+          },
+          "exclude": {
+            "target": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestExcludeList"
+          },
+          "require": {
+            "target": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestRequireList"
+          },
+          "name": { "target": "smithy.api#String" },
+          "precedence": { "target": "smithy.api#Integer" },
+          "approval_groups": {
+            "target": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestApprovalGroupsList"
+          },
+          "approval_required": { "target": "smithy.api#Boolean" },
+          "isolation_required": { "target": "smithy.api#Boolean" },
+          "purpose_justification_prompt": { "target": "smithy.api#String" },
+          "purpose_justification_required": { "target": "smithy.api#Boolean" },
+          "session_duration": { "target": "smithy.api#String" }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCreateForAccountRequestPoliciesSelfHostedApplicationItem/members/InlineAccessPolicy",
+      "value": { "target": "com.cloudflare.zero_trust#InlineAccessPolicy" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUpdateForAccountRequestPoliciesSelfHostedApplicationItem/members/InlineAccessPolicy",
+      "value": { "target": "com.cloudflare.zero_trust#InlineAccessPolicy" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCreateForZoneRequestPoliciesSelfHostedApplicationItem/members/InlineAccessPolicy",
+      "value": { "target": "com.cloudflare.zero_trust#InlineAccessPolicy" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUpdateForZoneRequestPoliciesSelfHostedApplicationItem/members/InlineAccessPolicy",
+      "value": { "target": "com.cloudflare.zero_trust#InlineAccessPolicy" }
+    }
+  ]
+}

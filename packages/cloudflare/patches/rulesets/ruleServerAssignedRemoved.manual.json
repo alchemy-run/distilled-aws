@@ -1,0 +1,1173 @@
+{
+  "description": "rule last_updated/version are server-assigned — not part of PUT payloads",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemBlockRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemBlockRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemCompressResponseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemCompressResponseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemDDoSDynamicRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemDDoSDynamicRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemExecuteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemExecuteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemForceConnectionCloseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemForceConnectionCloseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemJSChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemJSChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemLogRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemLogRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemLogCustomFieldRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemLogCustomFieldRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemManagedChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemManagedChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemRedirectRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemRedirectRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemRewriteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemRewriteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemRouteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemRouteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemScoreRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemScoreRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemServeErrorRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemServeErrorRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetCacheControl/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetCacheControl/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetCacheSettingsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetCacheSettingsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetCacheTags/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetCacheTags/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetConfigRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSetConfigRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSkipRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemSkipRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemTransformResponseHTML/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForAccountRequestRulesItemTransformResponseHTML/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemBlockRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemBlockRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemCompressResponseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemCompressResponseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemDDoSDynamicRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemDDoSDynamicRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemExecuteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemExecuteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemForceConnectionCloseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemForceConnectionCloseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemJSChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemJSChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemLogRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemLogRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemLogCustomFieldRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemLogCustomFieldRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemManagedChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemManagedChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemRedirectRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemRedirectRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemRewriteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemRewriteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemRouteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemRouteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemScoreRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemScoreRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemServeErrorRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemServeErrorRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetCacheControl/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetCacheControl/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetCacheSettingsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetCacheSettingsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetCacheTags/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetCacheTags/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetConfigRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSetConfigRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSkipRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemSkipRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemTransformResponseHTML/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#CreateForZoneRequestRulesItemTransformResponseHTML/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemBlockRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemBlockRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemCompressResponseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemCompressResponseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemDDoSDynamicRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemDDoSDynamicRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemExecuteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemExecuteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemForceConnectionCloseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemForceConnectionCloseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemJSChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemJSChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemLogRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemLogRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemLogCustomFieldRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemLogCustomFieldRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemManagedChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemManagedChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemRedirectRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemRedirectRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemRewriteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemRewriteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemRouteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemRouteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemScoreRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemScoreRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemServeErrorRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemServeErrorRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetCacheControl/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetCacheControl/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetCacheSettingsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetCacheSettingsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetCacheTags/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetCacheTags/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetConfigRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSetConfigRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSkipRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemSkipRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemTransformResponseHTML/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForAccountRequestRulesItemTransformResponseHTML/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemBlockRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemBlockRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemCompressResponseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemCompressResponseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemDDoSDynamicRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemDDoSDynamicRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemExecuteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemExecuteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemForceConnectionCloseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemForceConnectionCloseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemJSChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemJSChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemLogRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemLogRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemLogCustomFieldRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemLogCustomFieldRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemManagedChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemManagedChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemRedirectRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemRedirectRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemRewriteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemRewriteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemRouteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemRouteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemScoreRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemScoreRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemServeErrorRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemServeErrorRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetCacheControl/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetCacheControl/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetCacheSettingsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetCacheSettingsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetCacheTags/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetCacheTags/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetConfigRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSetConfigRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSkipRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemSkipRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemTransformResponseHTML/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequestRulesItemTransformResponseHTML/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemBlockRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemBlockRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemCompressResponseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemCompressResponseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemDDoSDynamicRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemDDoSDynamicRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemExecuteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemExecuteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemForceConnectionCloseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemForceConnectionCloseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemJSChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemJSChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemLogRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemLogRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemLogCustomFieldRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemLogCustomFieldRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemManagedChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemManagedChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemRedirectRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemRedirectRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemRewriteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemRewriteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemRouteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemRouteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemScoreRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemScoreRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemServeErrorRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemServeErrorRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetCacheControl/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetCacheControl/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetCacheSettingsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetCacheSettingsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetCacheTags/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetCacheTags/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetConfigRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSetConfigRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSkipRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemSkipRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemTransformResponseHTML/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForAccountRequestRulesItemTransformResponseHTML/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemBlockRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemBlockRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemCompressResponseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemCompressResponseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemDDoSDynamicRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemDDoSDynamicRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemExecuteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemExecuteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemForceConnectionCloseRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemForceConnectionCloseRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemJSChallenge/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemJSChallenge/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemLogRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemLogRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemLogCustomFieldRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemLogCustomFieldRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemManagedChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemManagedChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemRedirectRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemRedirectRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemRewriteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemRewriteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemRouteRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemRouteRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemScoreRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemScoreRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemServeErrorRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemServeErrorRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetCacheControl/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetCacheControl/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetCacheSettingsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetCacheSettingsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetCacheTags/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetCacheTags/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetConfigRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSetConfigRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSkipRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemSkipRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemTransformResponseHTML/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#PhasesUpdateForZoneRequestRulesItemTransformResponseHTML/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodyChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodyChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodyJavaScriptChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodyJavaScriptChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodySetCacheControlRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodySetCacheControlRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodySetCacheTagsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodySetCacheTagsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodyTransformResponseHTMLRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequestBodyTransformResponseHTMLRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodyChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodyChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodyJavaScriptChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodyJavaScriptChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodySetCacheControlRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodySetCacheControlRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodySetCacheTagsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodySetCacheTagsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodyTransformResponseHTMLRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesCreateForZoneRequestBodyTransformResponseHTMLRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodyChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodyChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodyJavaScriptChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodyJavaScriptChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodySetCacheControlRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodySetCacheControlRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodySetCacheTagsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodySetCacheTagsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodyTransformResponseHTMLRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForAccountRequestBodyTransformResponseHTMLRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodyChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodyChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodyJavaScriptChallengeRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodyJavaScriptChallengeRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodySetCacheControlRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodySetCacheControlRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodySetCacheTagsRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodySetCacheTagsRule/members/version"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodyTransformResponseHTMLRule/members/last_updated"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequestBodyTransformResponseHTMLRule/members/version"
+    }
+  ]
+}

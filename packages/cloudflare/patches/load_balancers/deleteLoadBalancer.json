@@ -1,0 +1,42 @@
+{
+  "description": "Align load_balancers#Delete with distilled cloudflare/load-balancers deleteLoadBalancer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#Delete",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteLoadBalancer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#DeleteRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteLoadBalancerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteLoadBalancer/input/target",
+      "value": "com.cloudflare.load_balancers#DeleteLoadBalancerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#DeleteResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteLoadBalancerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteLoadBalancer/output/target",
+      "value": "com.cloudflare.load_balancers#DeleteLoadBalancerResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#DeleteLoadBalancer/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#LoadBalancerNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

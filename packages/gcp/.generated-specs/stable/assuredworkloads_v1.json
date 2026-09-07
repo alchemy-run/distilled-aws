@@ -1,0 +1,4028 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "assuredworkloads",
+    "version": "v1",
+    "title": "Assured Workloads API",
+    "baseUrl": "https://assuredworkloads.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsGcloud": {
+      "type": "structure",
+      "members": {
+        "steps": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Steps to resolve violation via gcloud cli"
+          }
+        },
+        "additionalLinks": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional urls for more information about steps"
+          }
+        },
+        "gcloudCommands": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Gcloud command to resolve violation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remediation instructions to resolve violation via gcloud cli"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveAnalysisResult": {
+      "type": "structure",
+      "members": {
+        "warnings": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveImpactList",
+          "traits": {
+            "smithy.api#documentation": "List of warnings. These are risks that may or may not result in compliance violations."
+          }
+        },
+        "blockers": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveImpactList",
+          "traits": {
+            "smithy.api#documentation": "List of blockers. If not resolved, these will result in compliance violations in the target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the successful move analysis results for a group."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveImpactList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveImpact"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummary": {
+      "type": "structure",
+      "members": {
+        "findingCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The category of the finding."
+          }
+        },
+        "findingClass": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummaryFindingClassEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The class of the finding."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummarySeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The severity of the finding."
+          }
+        },
+        "relatedFrameworks": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of compliance frameworks that the finding belongs to."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last updated time of the finding."
+          }
+        },
+        "findingCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The count of the finding."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the finding summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details for a finding."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummaryFindingClassEnum": {
+      "type": "enum",
+      "members": {
+        "FINDING_CLASS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINDING_CLASS_UNSPECIFIED"
+          }
+        },
+        "THREAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT"
+          }
+        },
+        "VULNERABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VULNERABILITY"
+          }
+        },
+        "MISCONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISCONFIGURATION"
+          }
+        },
+        "OBSERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OBSERVATION"
+          }
+        },
+        "SCC_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCC_ERROR"
+          }
+        },
+        "POSTURE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTURE_VIOLATION"
+          }
+        },
+        "TOXIC_COMBINATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOXIC_COMBINATION"
+          }
+        },
+        "SENSITIVE_DATA_RISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENSITIVE_DATA_RISK"
+          }
+        },
+        "CHOKEPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHOKEPOINT"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummarySeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleRpcStatus": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.assuredworkloads_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#DocumentMap"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceSettings": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceSettingsResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-assigned resource display name. If not empty it will be used to create a resource with the specified name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent the custom settings for the resources to be created."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceSettingsResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "CONSUMER_PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER_PROJECT"
+          }
+        },
+        "CONSUMER_FOLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER_FOLDER"
+          }
+        },
+        "ENCRYPTION_KEYS_PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENCRYPTION_KEYS_PROJECT"
+          }
+        },
+        "KEYRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEYRING"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
+      "type": "structure",
+      "members": {
+        "acknowledgeType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequestAcknowledgeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Acknowledge type of specified violation."
+          }
+        },
+        "nonCompliantOrgPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}"
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Business justification explaining the need for violation acknowledgement"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for acknowledging the violation"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequestAcknowledgeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACKNOWLEDGE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACKNOWLEDGE_TYPE_UNSPECIFIED"
+          }
+        },
+        "SINGLE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SINGLE_VIOLATION"
+          }
+        },
+        "EXISTING_CHILD_RESOURCE_VIOLATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXISTING_CHILD_RESOURCE_VIOLATIONS"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "appliedUpdate": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdate",
+          "traits": {
+            "smithy.api#documentation": "The update that was applied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ApplyWorkloadUpdate endpoint."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for violation acknowledgement"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse": {
+      "type": "structure",
+      "members": {
+        "movedEventsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of events successfully moved to the original table."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for reverting archived resource events."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadKMSSettings": {
+      "type": "structure",
+      "members": {
+        "nextRotationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. Immutable. The time at which the Key Management Service will automatically create a new version of the crypto key and mark it as the primary."
+          }
+        },
+        "rotationPeriod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key Management Service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings specific to the Key Management Service."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse": {
+      "type": "structure",
+      "members": {
+        "ekmProvisioningState": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponseEkmProvisioningStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates Ekm enrollment Provisioning of a given workload."
+          }
+        },
+        "ekmProvisioningErrorDomain": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponseEkmProvisioningErrorDomainEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates Ekm provisioning error if any."
+          }
+        },
+        "ekmProvisioningErrorMapping": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponseEkmProvisioningErrorMappingEnum",
+          "traits": {
+            "smithy.api#documentation": "Detailed error message if Ekm provisioning fails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "External key management systems(EKM) Provisioning response"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponseEkmProvisioningStateEnum": {
+      "type": "enum",
+      "members": {
+        "EKM_PROVISIONING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONING_STATE_UNSPECIFIED"
+          }
+        },
+        "EKM_PROVISIONING_STATE_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONING_STATE_PENDING"
+          }
+        },
+        "EKM_PROVISIONING_STATE_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONING_STATE_FAILED"
+          }
+        },
+        "EKM_PROVISIONING_STATE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONING_STATE_COMPLETED"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponseEkmProvisioningErrorDomainEnum": {
+      "type": "enum",
+      "members": {
+        "EKM_PROVISIONING_ERROR_DOMAIN_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONING_ERROR_DOMAIN_UNSPECIFIED"
+          }
+        },
+        "UNSPECIFIED_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_ERROR"
+          }
+        },
+        "GOOGLE_SERVER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_SERVER_ERROR"
+          }
+        },
+        "EXTERNAL_USER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTERNAL_USER_ERROR"
+          }
+        },
+        "EXTERNAL_PARTNER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTERNAL_PARTNER_ERROR"
+          }
+        },
+        "TIMEOUT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIMEOUT_ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponseEkmProvisioningErrorMappingEnum": {
+      "type": "enum",
+      "members": {
+        "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED"
+          }
+        },
+        "INVALID_SERVICE_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_SERVICE_ACCOUNT"
+          }
+        },
+        "MISSING_METRICS_SCOPE_ADMIN_PERMISSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_METRICS_SCOPE_ADMIN_PERMISSION"
+          }
+        },
+        "MISSING_EKM_CONNECTION_ADMIN_PERMISSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Violation": {
+      "type": "structure",
+      "members": {
+        "nonCompliantOrgPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time when the Violation record was updated."
+          }
+        },
+        "acknowledged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean that indicates if the violation is acknowledged"
+          }
+        },
+        "auditLogLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. Audit Log Link for violated resource Format: https://console.cloud.google.com/logs/query;query={logName}{protoPayload.resourceName}{timeRange}{folder}"
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. Name of the Violation. Format: organizations/{organization}/locations/{location}/workloads/{workload_id}/violations/{violations_id}"
+          }
+        },
+        "exceptionContexts": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationExceptionContextList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of all the exception detail added for the violation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value."
+          }
+        },
+        "orgPolicyConstraint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation."
+          }
+        },
+        "parentProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. Parent project number where resource is present. Empty for org-policy violations."
+          }
+        },
+        "state": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the violation"
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations."
+          }
+        },
+        "remediation": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediation",
+          "traits": {
+            "smithy.api#documentation": "Output only. Compliance violation remediation"
+          }
+        },
+        "acknowledgementTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false."
+          }
+        },
+        "resolveTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty."
+          }
+        },
+        "beginTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time of the event which triggered the Violation."
+          }
+        },
+        "violationType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationViolationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Type of the violation"
+          }
+        },
+        "exceptionAuditLogLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. Audit Log link to find business justification provided for violation exception. Format: https://console.cloud.google.com/logs/query;query={logName}{protoPayload.resourceName}{protoPayload.methodName}{timeRange}{organization}"
+          }
+        },
+        "associatedOrgPolicyViolationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workload monitoring Violation."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationExceptionContextList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationExceptionContext"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLVED"
+          }
+        },
+        "UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRESOLVED"
+          }
+        },
+        "EXCEPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXCEPTION"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationViolationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "VIOLATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIOLATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ORG_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORG_POLICY"
+          }
+        },
+        "RESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus": {
+      "type": "structure",
+      "members": {
+        "acknowledgedViolationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of current orgPolicy violations which are acknowledged."
+          }
+        },
+        "activeResourceViolationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of current resource violations which are acknowledged."
+          }
+        },
+        "activeViolationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of current orgPolicy violations which are not acknowledged."
+          }
+        },
+        "acknowledgedResourceViolationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of current resource violations which are not acknowledged."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the Compliance Status of this workload"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The organization ID for which to revert events."
+          }
+        },
+        "archiveEndTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Only events within this time range will be reverted. This helps prevent reverting everything when something goes wrong."
+          }
+        },
+        "maxEventsMove": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The maximum total number of events to move in this request."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The region of the workload(s) whose events should be reverted. This is used to filter workloads based on AssurantWorkloadData.region."
+          }
+        },
+        "batchSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The number of events to process in a single transaction batch."
+          }
+        },
+        "archiveStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Only events within this time range will be reverted. This helps prevent reverting everything when something goes wrong."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for reverting archived resource events."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicy": {
+      "type": "structure",
+      "members": {
+        "inherit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `inherit` is true, policy rules of the lowest ancestor in the resource hierarchy chain are inherited. If it is false, policy rules are not inherited."
+          }
+        },
+        "reset": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Ignores policies set above this resource and restores to the `constraint_default` value. `reset` can only be true when `rules` is empty and `inherit` is false."
+          }
+        },
+        "rule": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule",
+          "traits": {
+            "smithy.api#documentation": "The rule of the OrgPolicy."
+          }
+        },
+        "constraint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The constraint name of the OrgPolicy. e.g. \"constraints/gcp.resourceLocations\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource that the OrgPolicy attaches to. Format: folders/123\" projects/123\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This assured workload service object is used to represent the org policy attached to a resource. It servces the same purpose as the orgpolicy.v2.Policy object but with functionality that is limited to what is supported by Assured Workloads(e.g. only one rule under one OrgPolicy object, no conditions, etc)."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The organization ID for which to archive events."
+          }
+        },
+        "archiveTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Time to set as ArchiveTime in the archive table. If not provided, the current time is used."
+          }
+        },
+        "batchSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The number of events to process in a single transaction batch."
+          }
+        },
+        "maxEventsMove": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The maximum total number of events to move in this request."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The region of the workload(s) whose events should be archived. This is used to filter workloads based on AssurantWorkloadData.region."
+          }
+        },
+        "eventCutoffTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Only events with EventTime earlier than this cutoff will be archived."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for archiving resource events."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse": {
+      "type": "structure",
+      "members": {
+        "dbFindingSummaries": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummaryList",
+          "traits": {
+            "smithy.api#documentation": "List of finding summary by category."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The token to retrieve the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for ListDbFindingSummaries."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummaryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1DbFindingSummary"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediation": {
+      "type": "structure",
+      "members": {
+        "remediationType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationRemediationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reemediation type based on the type of org policy values violated"
+          }
+        },
+        "compliantValues": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Values that can resolve the violation For example: for list org policy violations, this will either be the list of allowed or denied values"
+          }
+        },
+        "instructions": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationInstructions",
+          "traits": {
+            "smithy.api#documentation": "Required. Remediation instructions to resolve violations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents remediation guidance to resolve compliance violation for AssuredWorkload"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationRemediationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "REMEDIATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION"
+          }
+        },
+        "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION"
+          }
+        },
+        "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION"
+          }
+        },
+        "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION"
+          }
+        },
+        "REMEDIATION_RESOURCE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_RESOURCE_VIOLATION"
+          }
+        },
+        "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsResponse": {
+      "type": "structure",
+      "members": {
+        "acknowledgedViolationsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of acknowledged violations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for batch violation acknowledgement"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveImpact": {
+      "type": "structure",
+      "members": {
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Explanation of the impact."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the impact of moving the asset to the target."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsConsole": {
+      "type": "structure",
+      "members": {
+        "consoleUris": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Link to console page where violations can be resolved"
+          }
+        },
+        "steps": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Steps to resolve violation via cloud console"
+          }
+        },
+        "additionalLinks": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional urls for more information about steps"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remediation instructions to resolve violation via cloud console"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "updateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the update"
+          }
+        },
+        "action": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateOperationMetadataActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time the operation was created."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. The time the operation was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation metadata to give request details of ApplyWorkloadUpdate."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateOperationMetadataActionEnum": {
+      "type": "enum",
+      "members": {
+        "WORKLOAD_UPDATE_ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKLOAD_UPDATE_ACTION_UNSPECIFIED"
+          }
+        },
+        "APPLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLY"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicyUpdate": {
+      "type": "structure",
+      "members": {
+        "appliedPolicy": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicy",
+          "traits": {
+            "smithy.api#documentation": "The org policy currently applied on the assured workload resource."
+          }
+        },
+        "suggestedPolicy": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicy",
+          "traits": {
+            "smithy.api#documentation": "The suggested org policy that replaces the applied policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an update for an org policy control applied on an Assured Workload resource. The inherited org policy is not considered."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AssetMoveAnalysis": {
+      "type": "structure",
+      "members": {
+        "assetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types)."
+          }
+        },
+        "analysisGroups": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveAnalysisGroupList",
+          "traits": {
+            "smithy.api#documentation": "List of eligible analyses performed for the asset."
+          }
+        },
+        "asset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resource name of the asset being analyzed. Example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents move analysis results for an asset."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveAnalysisGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveAnalysisGroup"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for EnableComplianceUpdates endpoint."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveAnalysisGroup": {
+      "type": "structure",
+      "members": {
+        "analysisResult": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MoveAnalysisResult",
+          "traits": {
+            "smithy.api#documentation": "Result of a successful analysis."
+          }
+        },
+        "error": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleRpcStatus",
+          "traits": {
+            "smithy.api#documentation": "Error details for a failed analysis."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the analysis group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a logical group of checks performed for an asset. If successful, the group contains the analysis result, otherwise it contains an error with the failure reason."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleLongrunningListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleLongrunningOperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleLongrunningOperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleLongrunningOperation"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationExceptionContext": {
+      "type": "structure",
+      "members": {
+        "acknowledgementTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the violation was acknowledged."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Business justification provided towards the acknowledgement of the violation."
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the user (or service account) who acknowledged the violation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Violation exception detail."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues",
+          "traits": {
+            "smithy.api#documentation": "ListPolicy only when custom values are specified."
+          }
+        },
+        "enforce": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "BooleanPolicy only."
+          }
+        },
+        "allowAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "ListPolicy only when all values are allowed."
+          }
+        },
+        "denyAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "ListPolicy only when all values are denied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A rule used to express this policy."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleLongrunningOperation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.assuredworkloads_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "response": {
+          "target": "com.gcp.assuredworkloads_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleRpcStatus",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions": {
+      "type": "structure",
+      "members": {
+        "dataLogsViewer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allow the partner to view inspectability logs and monitoring violations."
+          }
+        },
+        "assuredWorkloadsMonitoring": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allow partner to view violation alerts."
+          }
+        },
+        "accessTransparencyLogsSupportCaseViewer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allow partner to view support case details for an AXT log"
+          }
+        },
+        "serviceAccessApprover": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allow partner to view access approval logs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions granted to the AW Partner SA account for the customer workload"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions": {
+      "type": "structure",
+      "members": {
+        "kajEnrollmentType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptionsKajEnrollmentTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies type of KAJ Enrollment if provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options to be set for the given created workload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptionsKajEnrollmentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "KAJ_ENROLLMENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KAJ_ENROLLMENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "KEY_ACCESS_TRANSPARENCY_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEY_ACCESS_TRANSPARENCY_OFF"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse": {
+      "type": "structure",
+      "members": {
+        "setupStatus": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponseSetupStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates SAA enrollment status of a given workload."
+          }
+        },
+        "setupErrors": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponseSetupErrorsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Indicates SAA enrollment setup error if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Signed Access Approvals (SAA) enrollment response."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponseSetupStatusEnum": {
+      "type": "enum",
+      "members": {
+        "SETUP_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SETUP_STATE_UNSPECIFIED"
+          }
+        },
+        "STATUS_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_PENDING"
+          }
+        },
+        "STATUS_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponseSetupErrorsItemEnum": {
+      "type": "enum",
+      "members": {
+        "SETUP_ERROR_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SETUP_ERROR_UNSPECIFIED"
+          }
+        },
+        "ERROR_INVALID_BASE_SETUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_INVALID_BASE_SETUP"
+          }
+        },
+        "ERROR_MISSING_EXTERNAL_SIGNING_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_MISSING_EXTERNAL_SIGNING_KEY"
+          }
+        },
+        "ERROR_NOT_ALL_SERVICES_ENROLLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_NOT_ALL_SERVICES_ENROLLED"
+          }
+        },
+        "ERROR_SETUP_CHECK_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_SETUP_CHECK_FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponseSetupErrorsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponseSetupErrorsItemEnum"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequestActionEnum",
+          "traits": {
+            "smithy.api#documentation": "The action to be performed on the update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to apply update to a workload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequestActionEnum": {
+      "type": "enum",
+      "members": {
+        "WORKLOAD_UPDATE_ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKLOAD_UPDATE_ACTION_UNSPECIFIED"
+          }
+        },
+        "APPLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLY"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. Identifier. Resource name of the WorkloadUpdate. Format: organizations/{organization}/locations/{location}/workloads/{workload}/updates/{update}"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the update was last updated."
+          }
+        },
+        "state": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdateStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the update."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the update was created."
+          }
+        },
+        "details": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1UpdateDetails",
+          "traits": {
+            "smithy.api#documentation": "The details of the update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A workload update is a change to the workload's compliance configuration."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdateStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVAILABLE"
+          }
+        },
+        "APPLIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLIED"
+          }
+        },
+        "WITHDRAWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WITHDRAWN"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The parent of the workload."
+          }
+        },
+        "complianceRegime": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadataComplianceRegimeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Compliance controls that should be applied to the resources managed by the workload."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Time when the operation was created."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The display name of the workload."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation metadata to give request details of CreateWorkload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadataComplianceRegimeEnum": {
+      "type": "enum",
+      "members": {
+        "COMPLIANCE_REGIME_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLIANCE_REGIME_UNSPECIFIED"
+          }
+        },
+        "ASSURED_WORKLOADS_FOR_PARTNERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASSURED_WORKLOADS_FOR_PARTNERS"
+          }
+        },
+        "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "CANADA_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANADA_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS"
+          }
+        },
+        "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B"
+          }
+        },
+        "DATA_BOUNDARY_FOR_CJIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_CJIS"
+          }
+        },
+        "DATA_BOUNDARY_FOR_FEDRAMP_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_FEDRAMP_HIGH"
+          }
+        },
+        "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IL2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IL2"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IL4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IL4"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IL5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IL5"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075"
+          }
+        },
+        "DATA_BOUNDARY_FOR_ITAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_ITAR"
+          }
+        },
+        "EU_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "ISRAEL_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISRAEL_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "JAPAN_DATA_BOUNDARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JAPAN_DATA_BOUNDARY"
+          }
+        },
+        "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS"
+          }
+        },
+        "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS"
+          }
+        },
+        "REGIONAL_DATA_BOUNDARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGIONAL_DATA_BOUNDARY"
+          }
+        },
+        "US_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES"
+          }
+        },
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT"
+          }
+        },
+        "AU_REGIONS_AND_US_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AU_REGIONS_AND_US_SUPPORT"
+          }
+        },
+        "CA_PROTECTED_B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_PROTECTED_B"
+          }
+        },
+        "CA_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_REGIONS_AND_SUPPORT"
+          }
+        },
+        "CANADA_CONTROLLED_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANADA_CONTROLLED_GOODS"
+          }
+        },
+        "CJIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJIS"
+          }
+        },
+        "EU_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU_REGIONS_AND_SUPPORT"
+          }
+        },
+        "FEDRAMP_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDRAMP_HIGH"
+          }
+        },
+        "FEDRAMP_MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDRAMP_MODERATE"
+          }
+        },
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS"
+          }
+        },
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT"
+          }
+        },
+        "HIPAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPAA"
+          }
+        },
+        "HITRUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HITRUST"
+          }
+        },
+        "IL2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL2"
+          }
+        },
+        "IL4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL4"
+          }
+        },
+        "IL5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL5"
+          }
+        },
+        "IRS_1075": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IRS_1075"
+          }
+        },
+        "ISR_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISR_REGIONS"
+          }
+        },
+        "ISR_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISR_REGIONS_AND_SUPPORT"
+          }
+        },
+        "ITAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITAR"
+          }
+        },
+        "JP_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JP_REGIONS_AND_SUPPORT"
+          }
+        },
+        "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
+          }
+        },
+        "REGIONAL_CONTROLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGIONAL_CONTROLS"
+          }
+        },
+        "US_REGIONAL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_REGIONAL_ACCESS"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse": {
+      "type": "structure",
+      "members": {
+        "assetMoveAnalyses": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AssetMoveAnalysisList",
+          "traits": {
+            "smithy.api#documentation": "List of analysis results for each asset in scope."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token. Is empty if the last page is reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the analysis results for the hypothetical resource move."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AssetMoveAnalysisList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AssetMoveAnalysis"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse": {
+      "type": "structure",
+      "members": {
+        "movedEventsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of events successfully moved to the archive table."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for archiving resource events."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The etag of the workload. If this is provided, it must match the server's etag."
+          }
+        },
+        "partnerPermissions": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
+          "traits": {
+            "smithy.api#documentation": "Required. The partner permissions to be updated."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of fields to be updated. E.g. update_mask { paths: \"partner_permissions.data_logs_viewer\"}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for updating permission settings for a partner workload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues": {
+      "type": "structure",
+      "members": {
+        "allowedValues": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of values allowed at this resource."
+          }
+        },
+        "deniedValues": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of values denied at this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The values allowed for a ListPolicy."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload": {
+      "type": "structure",
+      "members": {
+        "compliantButDisallowedServices": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Urls for services which are compliant for this Assured Workload, but which are currently disallowed by the ResourceUsageRestriction org policy. Invoke RestrictAllowedResources endpoint to allow your project developers to use these services in their environment."
+          }
+        },
+        "ekmProvisioningResponse": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents the Ekm Provisioning State of the given workload."
+          }
+        },
+        "saaEnrollmentResponse": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.assuredworkloads_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Labels applied to the workload."
+          }
+        },
+        "partner": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadPartnerEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Partner regime associated with this workload."
+          }
+        },
+        "billingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`."
+          }
+        },
+        "complianceStatus": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. Count of active Violations in the Workload."
+          }
+        },
+        "partnerServicesBillingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN/CNTXT/Telefonica partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user-assigned display name of the Workload. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, and spaces. Example: My Workload"
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The Workload creation timestamp."
+          }
+        },
+        "kajEnrollmentState": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadKajEnrollmentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents the KAJ enrollment state of the given workload."
+          }
+        },
+        "resourceSettings": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceSettingsList",
+          "traits": {
+            "smithy.api#documentation": "Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations."
+          }
+        },
+        "resources": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceInfoList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only."
+          }
+        },
+        "complianceRegime": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadComplianceRegimeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. Compliance Regime associated with this workload."
+          }
+        },
+        "resourceMonitoringEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether resource monitoring is enabled for workload or not. It is true when Resource feed is subscribed to AWM topic and AWM Service Agent Role is binded to AW Service Account for resource Assured workload."
+          }
+        },
+        "provisionedResourcesParent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id}"
+          }
+        },
+        "enableSovereignControls": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers."
+          }
+        },
+        "violationNotificationsEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload."
+          }
+        },
+        "kmsSettings": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadKMSSettings",
+          "traits": {
+            "smithy.api#documentation": "Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field."
+          }
+        },
+        "workloadOptions": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Options to be set for the given created workload."
+          }
+        },
+        "partnerPermissions": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Permissions granted to the AW Partner SA account for the customer workload"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Workload object for managing highly regulated workloads of cloud customers."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadPartnerEnum": {
+      "type": "enum",
+      "members": {
+        "PARTNER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTNER_UNSPECIFIED"
+          }
+        },
+        "LOCAL_CONTROLS_BY_S3NS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CONTROLS_BY_S3NS"
+          }
+        },
+        "SOVEREIGN_CONTROLS_BY_T_SYSTEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOVEREIGN_CONTROLS_BY_T_SYSTEMS"
+          }
+        },
+        "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT"
+          }
+        },
+        "SOVEREIGN_CONTROLS_BY_PSN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOVEREIGN_CONTROLS_BY_PSN"
+          }
+        },
+        "SOVEREIGN_CONTROLS_BY_CNTXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOVEREIGN_CONTROLS_BY_CNTXT"
+          }
+        },
+        "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM"
+          }
+        },
+        "SPAIN_DATA_BOUNDARY_BY_TELEFONICA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPAIN_DATA_BOUNDARY_BY_TELEFONICA"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadKajEnrollmentStateEnum": {
+      "type": "enum",
+      "members": {
+        "KAJ_ENROLLMENT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KAJ_ENROLLMENT_STATE_UNSPECIFIED"
+          }
+        },
+        "KAJ_ENROLLMENT_STATE_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KAJ_ENROLLMENT_STATE_PENDING"
+          }
+        },
+        "KAJ_ENROLLMENT_STATE_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KAJ_ENROLLMENT_STATE_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceSettings"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceInfo"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadComplianceRegimeEnum": {
+      "type": "enum",
+      "members": {
+        "COMPLIANCE_REGIME_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLIANCE_REGIME_UNSPECIFIED"
+          }
+        },
+        "ASSURED_WORKLOADS_FOR_PARTNERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASSURED_WORKLOADS_FOR_PARTNERS"
+          }
+        },
+        "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "CANADA_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANADA_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS"
+          }
+        },
+        "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B"
+          }
+        },
+        "DATA_BOUNDARY_FOR_CJIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_CJIS"
+          }
+        },
+        "DATA_BOUNDARY_FOR_FEDRAMP_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_FEDRAMP_HIGH"
+          }
+        },
+        "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IL2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IL2"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IL4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IL4"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IL5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IL5"
+          }
+        },
+        "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075"
+          }
+        },
+        "DATA_BOUNDARY_FOR_ITAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_BOUNDARY_FOR_ITAR"
+          }
+        },
+        "EU_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "ISRAEL_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISRAEL_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "JAPAN_DATA_BOUNDARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JAPAN_DATA_BOUNDARY"
+          }
+        },
+        "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS"
+          }
+        },
+        "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS"
+          }
+        },
+        "REGIONAL_DATA_BOUNDARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGIONAL_DATA_BOUNDARY"
+          }
+        },
+        "US_DATA_BOUNDARY_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_DATA_BOUNDARY_AND_SUPPORT"
+          }
+        },
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES"
+          }
+        },
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT"
+          }
+        },
+        "AU_REGIONS_AND_US_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AU_REGIONS_AND_US_SUPPORT"
+          }
+        },
+        "CA_PROTECTED_B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_PROTECTED_B"
+          }
+        },
+        "CA_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA_REGIONS_AND_SUPPORT"
+          }
+        },
+        "CANADA_CONTROLLED_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANADA_CONTROLLED_GOODS"
+          }
+        },
+        "CJIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CJIS"
+          }
+        },
+        "EU_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU_REGIONS_AND_SUPPORT"
+          }
+        },
+        "FEDRAMP_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDRAMP_HIGH"
+          }
+        },
+        "FEDRAMP_MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEDRAMP_MODERATE"
+          }
+        },
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS"
+          }
+        },
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT"
+          }
+        },
+        "HIPAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPAA"
+          }
+        },
+        "HITRUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HITRUST"
+          }
+        },
+        "IL2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL2"
+          }
+        },
+        "IL4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL4"
+          }
+        },
+        "IL5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL5"
+          }
+        },
+        "IRS_1075": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IRS_1075"
+          }
+        },
+        "ISR_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISR_REGIONS"
+          }
+        },
+        "ISR_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISR_REGIONS_AND_SUPPORT"
+          }
+        },
+        "ITAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITAR"
+          }
+        },
+        "JP_REGIONS_AND_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JP_REGIONS_AND_SUPPORT"
+          }
+        },
+        "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS"
+          }
+        },
+        "REGIONAL_CONTROLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGIONAL_CONTROLS"
+          }
+        },
+        "US_REGIONAL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_REGIONAL_ACCESS"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse": {
+      "type": "structure",
+      "members": {
+        "workloadUpdates": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdateList",
+          "traits": {
+            "smithy.api#documentation": "The list of workload updates for a given workload."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token. Return empty if reached the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of listing the compliance updates per workload with pagination."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadUpdate"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for restricting the list of allowed resources."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1UpdateDetails": {
+      "type": "structure",
+      "members": {
+        "orgPolicyUpdate": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1OrgPolicyUpdate",
+          "traits": {
+            "smithy.api#documentation": "Update to one org policy, e.g. gcp.resourceLocation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the update."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceInfo": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource identifier. For a project this represents project_number."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceInfoResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates the type of resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent the resources that are children of this Workload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadResourceInfoResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "CONSUMER_PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER_PROJECT"
+          }
+        },
+        "CONSUMER_FOLDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER_FOLDER"
+          }
+        },
+        "ENCRYPTION_KEYS_PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENCRYPTION_KEYS_PROJECT"
+          }
+        },
+        "KEYRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEYRING"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsRequest": {
+      "type": "structure",
+      "members": {
+        "acknowledgeType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsRequestAcknowledgeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Acknowledge type of specified violations."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Business justification explaining the need for violations acknowledgement"
+          }
+        },
+        "names": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource names of the Violations to acknowledge. Format for each name: organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for acknowledging the violations in a batch"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsRequestAcknowledgeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACKNOWLEDGE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACKNOWLEDGE_TYPE_UNSPECIFIED"
+          }
+        },
+        "SINGLE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SINGLE_VIOLATION"
+          }
+        },
+        "EXISTING_CHILD_RESOURCE_VIOLATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXISTING_CHILD_RESOURCE_VIOLATIONS"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationInstructions": {
+      "type": "structure",
+      "members": {
+        "consoleInstructions": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsConsole",
+          "traits": {
+            "smithy.api#documentation": "Remediation instructions to resolve violation via cloud console"
+          }
+        },
+        "gcloudInstructions": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsGcloud",
+          "traits": {
+            "smithy.api#documentation": "Remediation instructions to resolve violation via gcloud cli"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Instructions to remediate violation"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListWorkloadsResponse": {
+      "type": "structure",
+      "members": {
+        "workloads": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadList",
+          "traits": {
+            "smithy.api#documentation": "List of Workloads under a given parent."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token. Return empty if reached the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of ListWorkloads endpoint."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1WorkloadList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for EnableResourceMonitoring endpoint."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListViolationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token. Returns empty if reached the last page."
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of violations."
+          }
+        },
+        "violations": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationList",
+          "traits": {
+            "smithy.api#documentation": "List of Violations under a Workload."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of ListViolations endpoint."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ViolationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Violation"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "restrictionType": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequestRestrictionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of restriction for using gcp products in the Workload environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for restricting list of available resources in Workload environment."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequestRestrictionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESTRICTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTRICTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ALLOW_ALL_GCP_RESOURCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW_ALL_GCP_RESOURCES"
+          }
+        },
+        "ALLOW_COMPLIANT_RESOURCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW_COMPLIANT_RESOURCES"
+          }
+        },
+        "APPEND_COMPLIANT_RESOURCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPEND_COMPLIANT_RESOURCES"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.assuredworkloads_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleLongrunningListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#RestrictAllowedResourcesOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as \"organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}\". For example, \"organizations/123/locations/us-east1/workloads/assured-workload-1\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.assuredworkloads_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.assuredworkloads_v1#RestrictAllowedResourcesOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#RestrictAllowedResourcesOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:restrictAllowedResources"
+        },
+        "smithy.api#documentation": "Restrict the list of resources allowed in the Workload environment. The current list of allowed products can be found at https://cloud.google.com/assured-workloads/docs/supported-products In addition to assuredworkloads.workload.update permission, the user should also have orgpolicy.policy.set permission on the folder resource to use this functionality."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#EnableComplianceUpdatesOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#EnableComplianceUpdatesOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#EnableComplianceUpdatesOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v1/{+name}:enableComplianceUpdates"
+        },
+        "smithy.api#documentation": "This endpoint enables Assured Workloads service to offer compliance updates for the folder based assured workload. It sets up an Assured Workloads Service Agent, having permissions to read compliance controls (for example: Org Policies) applied on the workload. The caller must have `resourcemanager.folders.getIamPolicy` and `resourcemanager.folders.setIamPolicy` permissions on the assured workload folder."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListWorkloadsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/workloads"
+        },
+        "smithy.api#documentation": "Lists Assured Workloads under a CRM Node.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#PatchOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#PatchOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#PatchOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing workload. Currently allows updating of workload display_name and labels. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#CreateOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id}/locations/{location_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A identifier associated with the workload and underlying projects which allows for the break down of billing costs for a workload. The value provided for the identifier will add a label to the workload and contained projects with the identifier as the value.",
+            "smithy.api#httpQuery": "externalId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#CreateOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#CreateOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/workloads"
+        },
+        "smithy.api#documentation": "Creates Assured Workload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#MutatePartnerPermissionsOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#MutatePartnerPermissionsOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#MutatePartnerPermissionsOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}:mutatePartnerPermissions"
+        },
+        "smithy.api#documentation": "Update the permissions settings for an existing partner workload. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#AnalyzeWorkloadMoveOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The page token from the previous response. It needs to be passed in the second and following requests.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-2\"",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: \"projects/{PROJECT_NUMBER}\" or \"projects/{PROJECT_ID}\" For example: \"projects/951040570662\" when specifying a project number, or \"projects/my-project-123\" when specifying a project ID.",
+            "smithy.api#httpQuery": "project"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size. If a value is not specified, the default value of 10 is used. The maximum value is 50.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "assetTypes": {
+          "target": "com.gcp.assuredworkloads_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types).",
+            "smithy.api#httpQuery": "assetTypes"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#AnalyzeWorkloadMoveOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#AnalyzeWorkloadMoveOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+target}:analyzeWorkloadMove"
+        },
+        "smithy.api#documentation": "Analyzes a hypothetical move of a source resource to a target workload to surface compliance risks. The analysis is best effort and is not guaranteed to be exhaustive.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as \"organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}\". For example, \"organizations/123/locations/us-east1/workloads/assured-workload-1\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Workload"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets Assured Workload associated with a CRM Node"
+      }
+    },
+    "com.gcp.assuredworkloads_v1#DeleteOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The etag of the workload. If this is provided, it must match the server's etag.",
+            "smithy.api#httpQuery": "etag"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#DeleteOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#DeleteOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error. In addition to assuredworkloads.workload.delete permission, the user should also have orgpolicy.policy.set permission on the deleted folder to remove Assured Workloads OrgPolicies."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#EnableResourceMonitoringOrganizationsLocationsWorkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#EnableResourceMonitoringOrganizationsLocationsWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#EnableResourceMonitoringOrganizationsLocationsWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:enableResourceMonitoring"
+        },
+        "smithy.api#documentation": "Enable resource violation monitoring for a workload."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#BatchAcknowledgeViolationsOrganizationsLocationsWorkloadsViolationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization}/locations/{location}/workloads/{workload}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#BatchAcknowledgeViolationsOrganizationsLocationsWorkloadsViolations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#BatchAcknowledgeViolationsOrganizationsLocationsWorkloadsViolationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1BatchAcknowledgeViolationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/violations:batchAcknowledgeViolations"
+        },
+        "smithy.api#documentation": "Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsViolationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token returned from previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A custom filter for filtering by the Violations properties.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "interval.startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start of the time window.",
+            "smithy.api#httpQuery": "interval.startTime"
+          }
+        },
+        "interval.endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of the time window.",
+            "smithy.api#httpQuery": "interval.endTime"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Workload name. Format `organizations/{org_id}/locations/{location}/workloads/{workload}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Actionable sorting delegation.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsViolations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsViolationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListViolationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/violations"
+        },
+        "smithy.api#documentation": "Lists the Violations in the AssuredWorkload Environment. Callers may also choose to read across multiple Workloads as per [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash character) as a wildcard character instead of workload-id in the parent. Format `organizations/{org_id}/locations/{location}/workloads/-`",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsWorkloadsViolationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsWorkloadsViolations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#GetOrganizationsLocationsWorkloadsViolationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1Violation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves Assured Workload Violation based on ID."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#AcknowledgeOrganizationsLocationsWorkloadsViolationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Violation to acknowledge. Format: organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#AcknowledgeOrganizationsLocationsWorkloadsViolations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#AcknowledgeOrganizationsLocationsWorkloadsViolationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:acknowledge"
+        },
+        "smithy.api#documentation": "Acknowledges an existing violation. By acknowledging a violation, users acknowledge the existence of a compliance violation in their workload and decide to ignore it due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsUpdatesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size. The default value is 20 and the max allowed value is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token returned from previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsUpdates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsWorkloadsUpdatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/updates"
+        },
+        "smithy.api#documentation": "This endpoint lists all updates for the given workload.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ApplyOrganizationsLocationsWorkloadsUpdatesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the update. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}/updates/{update_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ApplyOrganizationsLocationsWorkloadsUpdates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ApplyOrganizationsLocationsWorkloadsUpdatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:apply"
+        },
+        "smithy.api#documentation": "This endpoint creates a new operation to apply the given update."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsDbFindingSummariesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token that identifies the page of results that the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The filtering results.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsDbFindingSummaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListOrganizationsLocationsDbFindingSummariesRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/dbFindingSummaries"
+        },
+        "smithy.api#documentation": "Lists the finding summary by category for a given scope.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListFoldersLocationsDbFindingSummariesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token that identifies the page of results that the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The filtering results.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListFoldersLocationsDbFindingSummaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListFoldersLocationsDbFindingSummariesRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/dbFindingSummaries"
+        },
+        "smithy.api#documentation": "Lists the finding summary by category for a given scope.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListProjectsLocationsDbFindingSummariesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token that identifies the page of results that the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The filtering results.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ListProjectsLocationsDbFindingSummaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ListProjectsLocationsDbFindingSummariesRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ListDbFindingSummariesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/dbFindingSummaries"
+        },
+        "smithy.api#documentation": "Lists the finding summary by category for a given scope.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ArchiveResourceEventsAssuredworkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#ArchiveResourceEventsAssuredworkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#ArchiveResourceEventsAssuredworkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/assuredworkloads:archiveResourceEvents"
+        },
+        "smithy.api#documentation": "Finds orphan ResourceEvents matching the criteria and moves them to the ArchivedResourceEvents table."
+      }
+    },
+    "com.gcp.assuredworkloads_v1#RevertArchivedResourceEventsAssuredworkloadsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.assuredworkloads_v1#RevertArchivedResourceEventsAssuredworkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.assuredworkloads_v1#RevertArchivedResourceEventsAssuredworkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.assuredworkloads_v1#GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.assuredworkloads_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.assuredworkloads_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/assuredworkloads:revertArchivedResourceEvents"
+        },
+        "smithy.api#documentation": "Finds matching ArchivedResourceEvents and moves them back to the ResourceEvents table."
+      }
+    }
+  }
+}

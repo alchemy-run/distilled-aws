@@ -1,0 +1,30 @@
+{
+  "description": "Align billing#UsageGet with distilled cloudflare/billing getUsage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.billing#UsageGet",
+      "path": "/shapes/com.cloudflare.billing#GetUsage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.billing#UsageGetRequest",
+      "path": "/shapes/com.cloudflare.billing#GetUsageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.billing#GetUsage/input/target",
+      "value": "com.cloudflare.billing#GetUsageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.billing#UsageGetResponse",
+      "path": "/shapes/com.cloudflare.billing#GetUsageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.billing#GetUsage/output/target",
+      "value": "com.cloudflare.billing#GetUsageResponse"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Align waiting_rooms#ListForZone with distilled cloudflare/waiting-rooms listWaitingRoomsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#ListForZone",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#ListForZoneRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZone/input/target",
+      "value": "com.cloudflare.waiting_rooms#ListWaitingRoomsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#ListForZoneResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZone/output/target",
+      "value": "com.cloudflare.waiting_rooms#ListWaitingRoomsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListWaitingRoomsForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.waiting_rooms#Forbidden"
+        }
+      ]
+    }
+  ]
+}

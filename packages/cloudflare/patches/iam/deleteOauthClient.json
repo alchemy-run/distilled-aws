@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#OauthClientsDelete with distilled cloudflare/iam deleteOauthClient",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsDelete",
+      "path": "/shapes/com.cloudflare.iam#DeleteOauthClient"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsDeleteRequest",
+      "path": "/shapes/com.cloudflare.iam#DeleteOauthClientRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteOauthClient/input/target",
+      "value": "com.cloudflare.iam#DeleteOauthClientRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsDeleteResponse",
+      "path": "/shapes/com.cloudflare.iam#DeleteOauthClientResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteOauthClient/output/target",
+      "value": "com.cloudflare.iam#DeleteOauthClientResponse"
+    }
+  ]
+}

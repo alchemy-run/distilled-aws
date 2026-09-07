@@ -1,0 +1,42 @@
+{
+  "description": "Align alerting#SilencesGet with distilled cloudflare/alerting getSilence",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesGet",
+      "path": "/shapes/com.cloudflare.alerting#GetSilence"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesGetRequest",
+      "path": "/shapes/com.cloudflare.alerting#GetSilenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#GetSilence/input/target",
+      "value": "com.cloudflare.alerting#GetSilenceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesGetResponse",
+      "path": "/shapes/com.cloudflare.alerting#GetSilenceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#GetSilence/output/target",
+      "value": "com.cloudflare.alerting#GetSilenceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#GetSilence/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#SilenceNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align dls#RegionalServicesPrefixBindingsCreate with distilled cloudflare/dls createRegionalServicePrefixBinding",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsCreate",
+      "path": "/shapes/com.cloudflare.dls#CreateRegionalServicePrefixBinding"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsCreateRequest",
+      "path": "/shapes/com.cloudflare.dls#CreateRegionalServicePrefixBindingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#CreateRegionalServicePrefixBinding/input/target",
+      "value": "com.cloudflare.dls#CreateRegionalServicePrefixBindingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsCreateResponse",
+      "path": "/shapes/com.cloudflare.dls#CreateRegionalServicePrefixBindingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#CreateRegionalServicePrefixBinding/output/target",
+      "value": "com.cloudflare.dls#CreateRegionalServicePrefixBindingResponse"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "description": "cloudAgentStateReport returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#CloudAgentStateReportRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation cloudAgentStateReport($input: CloudAgentStateReportInput!) {\n  cloudAgentStateReport(input: $input)\n}"
+    }
+  ]
+}

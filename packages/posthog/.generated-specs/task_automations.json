@@ -1,0 +1,639 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.task_automations#TaskAutomationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_automations#PaginatedTaskAutomationDTOList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.task_automations#PaginatedTaskAutomationDTOListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_automations#TaskAutomationDTO": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "github_integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_run_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_task_run_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detail/create/update/run response for a task automation."
+      }
+    },
+    "com.posthog.task_automations#PaginatedTaskAutomationDTOListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_automations#TaskAutomationDTO"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_automations#TaskAutomationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_automations#TaskAutomationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_automations#PaginatedTaskAutomationDTOList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_automations#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_automations#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_automations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/task_automations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing scheduled task automations."
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name (stored as the backing task's title).",
+            "smithy.api#required": {}
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The automation prompt (stored as the backing task's description).",
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target repository in the format organization/repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "github_integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub integration to run as. Defaults to the team's GitHub integration when omitted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Standard 5-field cron expression (minute hour day month weekday).",
+            "smithy.api#required": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone the schedule runs in."
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional template identifier this automation was created from.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the schedule is active; paused when false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_automations#TaskAutomationsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_automations#TaskAutomationDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_automations#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_automations#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_automations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/task_automations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing scheduled task automations."
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_automations#TaskAutomationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_automations#TaskAutomationDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_automations#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_automations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/task_automations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing scheduled task automations."
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name (stored as the backing task's title)."
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The automation prompt (stored as the backing task's description)."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target repository in the format organization/repository."
+          }
+        },
+        "github_integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub integration to run as. Defaults to the team's GitHub integration when omitted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Standard 5-field cron expression (minute hour day month weekday)."
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone the schedule runs in."
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional template identifier this automation was created from.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the schedule is active; paused when false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_automations#TaskAutomationsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_automations#TaskAutomationDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_automations#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_automations#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_automations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/task_automations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing scheduled task automations."
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_automations#TaskAutomationsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_automations#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_automations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/task_automations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing scheduled task automations."
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsRunCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_automations#TaskAutomationsRunCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_automations#TaskAutomationsRunCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_automations#TaskAutomationDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_automations#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_automations#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_automations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/task_automations/{id}/run/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing scheduled task automations."
+      }
+    },
+    "com.posthog.task_automations#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.task_automations#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.task_automations#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.task_automations#TaskAutomations": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.task_automations#TaskAutomationsList"
+        },
+        {
+          "target": "com.posthog.task_automations#TaskAutomationsCreate"
+        },
+        {
+          "target": "com.posthog.task_automations#TaskAutomationsRetrieve"
+        },
+        {
+          "target": "com.posthog.task_automations#TaskAutomationsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.task_automations#TaskAutomationsDestroy"
+        },
+        {
+          "target": "com.posthog.task_automations#TaskAutomationsRunCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

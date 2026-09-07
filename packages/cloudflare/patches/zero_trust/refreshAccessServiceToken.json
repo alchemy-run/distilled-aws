@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessServiceTokensRefresh with distilled cloudflare/zero-trust refreshAccessServiceToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensRefresh",
+      "path": "/shapes/com.cloudflare.zero_trust#RefreshAccessServiceToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensRefreshRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RefreshAccessServiceTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RefreshAccessServiceToken/input/target",
+      "value": "com.cloudflare.zero_trust#RefreshAccessServiceTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensRefreshResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RefreshAccessServiceTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RefreshAccessServiceToken/output/target",
+      "value": "com.cloudflare.zero_trust#RefreshAccessServiceTokenResponse"
+    }
+  ]
+}

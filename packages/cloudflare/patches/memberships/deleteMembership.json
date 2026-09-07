@@ -1,0 +1,30 @@
+{
+  "description": "Align memberships#Delete with distilled cloudflare/memberships deleteMembership",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#Delete",
+      "path": "/shapes/com.cloudflare.memberships#DeleteMembership"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#DeleteRequest",
+      "path": "/shapes/com.cloudflare.memberships#DeleteMembershipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#DeleteMembership/input/target",
+      "value": "com.cloudflare.memberships#DeleteMembershipRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#DeleteResponse",
+      "path": "/shapes/com.cloudflare.memberships#DeleteMembershipResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#DeleteMembership/output/target",
+      "value": "com.cloudflare.memberships#DeleteMembershipResponse"
+    }
+  ]
+}

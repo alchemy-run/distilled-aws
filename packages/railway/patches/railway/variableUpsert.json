@@ -1,0 +1,10 @@
+{
+  "description": "variableUpsert returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VariableUpsertRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation variableUpsert($input: VariableUpsertInput!) {\n  variableUpsert(input: $input)\n}"
+    }
+  ]
+}

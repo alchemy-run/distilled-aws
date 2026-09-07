@@ -1,0 +1,30 @@
+{
+  "description": "Align rules#ListsItemsDelete with distilled cloudflare/rules deleteListItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsItemsDelete",
+      "path": "/shapes/com.cloudflare.rules#DeleteListItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsItemsDeleteRequest",
+      "path": "/shapes/com.cloudflare.rules#DeleteListItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#DeleteListItem/input/target",
+      "value": "com.cloudflare.rules#DeleteListItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsItemsDeleteResponse",
+      "path": "/shapes/com.cloudflare.rules#DeleteListItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#DeleteListItem/output/target",
+      "value": "com.cloudflare.rules#DeleteListItemResponse"
+    }
+  ]
+}

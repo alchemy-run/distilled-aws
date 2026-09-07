@@ -1,0 +1,613 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "licensing",
+    "version": "v1",
+    "title": "Enterprise License Manager API",
+    "baseUrl": "https://licensing.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.licensing_v1#LicenseAssignment": {
+      "type": "structure",
+      "members": {
+        "etags": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag of the resource."
+          }
+        },
+        "selfLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to this page."
+          }
+        },
+        "skuName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display Name of the sku of the product."
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Product and SKU IDs."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the resource as a LicenseAssignment, which is `licensing#licenseAssignment`."
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes."
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a license assignment."
+      }
+    },
+    "com.gcp.licensing_v1#LicenseAssignmentList": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.gcp.licensing_v1#LicenseAssignmentList_",
+          "traits": {
+            "smithy.api#documentation": "The LicenseAssignments in this page of results."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The `maxResults` query string is related to the `nextPageToken` since `maxResults` determines how many entries are returned on each next page."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the resource as a collection of LicenseAssignments."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag of the resource."
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#LicenseAssignmentList_": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.licensing_v1#LicenseAssignment"
+      }
+    },
+    "com.gcp.licensing_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.licensing_v1#LicenseAssignmentInsert": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email id of the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a license assignment."
+      }
+    },
+    "com.gcp.licensing_v1#InsertLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.licensing_v1#LicenseAssignmentInsert",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.licensing_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.licensing_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.licensing_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.licensing_v1#InsertLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#InsertLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#LicenseAssignment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.licensing_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "apps/licensing/v1/product/{productId}/sku/{skuId}/user"
+        },
+        "smithy.api#documentation": "Assign a license."
+      }
+    },
+    "com.gcp.licensing_v1#GetLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#GetLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#GetLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#LicenseAssignment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}"
+        },
+        "smithy.api#documentation": "Get a specific user's license by product SKU."
+      }
+    },
+    "com.gcp.licensing_v1#ListForProductAndSkuLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.",
+            "smithy.api#httpQuery": "customerId",
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#ListForProductAndSkuLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#ListForProductAndSkuLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#LicenseAssignmentList"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "apps/licensing/v1/product/{productId}/sku/{skuId}/users"
+        },
+        "smithy.api#documentation": "List all users assigned licenses for a specific product SKU.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.licensing_v1#DeleteLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#DeleteLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#DeleteLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.licensing_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}"
+        },
+        "smithy.api#documentation": "Revoke a license."
+      }
+    },
+    "com.gcp.licensing_v1#ListForProductLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error.",
+            "smithy.api#httpQuery": "customerId",
+            "smithy.api#required": {}
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#ListForProductLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#ListForProductLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#LicenseAssignmentList"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "apps/licensing/v1/product/{productId}/users"
+        },
+        "smithy.api#documentation": "List all users assigned licenses for a specific product SKU.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.licensing_v1#PatchLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.licensing_v1#LicenseAssignment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#PatchLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#PatchLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#LicenseAssignment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.licensing_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}"
+        },
+        "smithy.api#documentation": "Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics."
+      }
+    },
+    "com.gcp.licensing_v1#UpdateLicenseAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.licensing_v1#LicenseAssignment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.licensing_v1#UpdateLicenseAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.licensing_v1#UpdateLicenseAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.licensing_v1#LicenseAssignment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.licensing_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.licensing_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.licensing_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}"
+        },
+        "smithy.api#documentation": "Reassign a user's product SKU with a different SKU in the same product."
+      }
+    }
+  }
+}

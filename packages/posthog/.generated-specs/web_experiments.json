@@ -1,0 +1,478 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.web_experiments#WebExperimentsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_experiments#PaginatedWebExperimentsAPIList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.web_experiments#PaginatedWebExperimentsAPIListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_experiments#WebExperimentsAPI": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "feature_flag_key": {
+          "target": "smithy.api#String"
+        },
+        "variants": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variants for the web experiment. Example:\n\n        {\n            \"control\": {\n                \"transforms\": [\n                    {\n                        \"text\": \"Here comes Superman!\",\n                        \"html\": \"\",\n                        \"selector\": \"#page > #body > .header h1\"\n                    }\n                ],\n                \"conditions\": \"None\",\n                \"rollout_percentage\": 50\n            },\n        }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer for the exposed /api/web_experiments endpoint, to be used in posthog-js and for headless APIs."
+      }
+    },
+    "com.posthog.web_experiments#PaginatedWebExperimentsAPIListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_experiments#WebExperimentsAPI"
+      },
+      "traits": {}
+    },
+    "com.posthog.web_experiments#WebExperimentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_experiments#WebExperimentsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_experiments#PaginatedWebExperimentsAPIList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.web_experiments#BadRequest"
+        },
+        {
+          "target": "com.posthog.web_experiments#Forbidden"
+        },
+        {
+          "target": "com.posthog.web_experiments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/web_experiments/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "variants": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variants for the web experiment. Example:\n\n        {\n            \"control\": {\n                \"transforms\": [\n                    {\n                        \"text\": \"Here comes Superman!\",\n                        \"html\": \"\",\n                        \"selector\": \"#page > #body > .header h1\"\n                    }\n                ],\n                \"conditions\": \"None\",\n                \"rollout_percentage\": 50\n            },\n        }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_experiments#WebExperimentsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_experiments#WebExperimentsAPI"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.web_experiments#BadRequest"
+        },
+        {
+          "target": "com.posthog.web_experiments#Forbidden"
+        },
+        {
+          "target": "com.posthog.web_experiments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/web_experiments/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this web experiment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_experiments#WebExperimentsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_experiments#WebExperimentsAPI"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.web_experiments#Forbidden"
+        },
+        {
+          "target": "com.posthog.web_experiments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/web_experiments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this web experiment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "variants": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variants for the web experiment. Example:\n\n        {\n            \"control\": {\n                \"transforms\": [\n                    {\n                        \"text\": \"Here comes Superman!\",\n                        \"html\": \"\",\n                        \"selector\": \"#page > #body > .header h1\"\n                    }\n                ],\n                \"conditions\": \"None\",\n                \"rollout_percentage\": 50\n            },\n        }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_experiments#WebExperimentsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_experiments#WebExperimentsAPI"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.web_experiments#BadRequest"
+        },
+        {
+          "target": "com.posthog.web_experiments#Forbidden"
+        },
+        {
+          "target": "com.posthog.web_experiments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/web_experiments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this web experiment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "variants": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variants for the web experiment. Example:\n\n        {\n            \"control\": {\n                \"transforms\": [\n                    {\n                        \"text\": \"Here comes Superman!\",\n                        \"html\": \"\",\n                        \"selector\": \"#page > #body > .header h1\"\n                    }\n                ],\n                \"conditions\": \"None\",\n                \"rollout_percentage\": 50\n            },\n        }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_experiments#WebExperimentsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_experiments#WebExperimentsAPI"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.web_experiments#BadRequest"
+        },
+        {
+          "target": "com.posthog.web_experiments#Forbidden"
+        },
+        {
+          "target": "com.posthog.web_experiments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/web_experiments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this web experiment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_experiments#WebExperimentsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_experiments#WebExperimentsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.web_experiments#Forbidden"
+        },
+        {
+          "target": "com.posthog.web_experiments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/web_experiments/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.web_experiments#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.web_experiments#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.web_experiments#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.web_experiments#WebExperiments": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.web_experiments#WebExperimentsList"
+        },
+        {
+          "target": "com.posthog.web_experiments#WebExperimentsCreate"
+        },
+        {
+          "target": "com.posthog.web_experiments#WebExperimentsRetrieve"
+        },
+        {
+          "target": "com.posthog.web_experiments#WebExperimentsUpdate"
+        },
+        {
+          "target": "com.posthog.web_experiments#WebExperimentsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.web_experiments#WebExperimentsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

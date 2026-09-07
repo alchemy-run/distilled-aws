@@ -1,0 +1,10 @@
+{
+  "description": "Explicit null is the API's only way to clear a previously-set namespace description (v0 modeled string|null); the docs type tree drops the null.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespaceRequest/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    }
+  ]
+}

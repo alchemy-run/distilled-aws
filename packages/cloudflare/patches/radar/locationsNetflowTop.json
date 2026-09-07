@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#NetflowsTopLocations with distilled cloudflare/radar locationsNetflowTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTopLocations",
+      "path": "/shapes/com.cloudflare.radar#LocationsNetflowTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTopLocationsRequest",
+      "path": "/shapes/com.cloudflare.radar#LocationsNetflowTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsNetflowTop/input/target",
+      "value": "com.cloudflare.radar#LocationsNetflowTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#NetflowsTopLocationsResponse",
+      "path": "/shapes/com.cloudflare.radar#LocationsNetflowTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsNetflowTop/output/target",
+      "value": "com.cloudflare.radar#LocationsNetflowTopResponse"
+    }
+  ]
+}

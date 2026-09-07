@@ -1,0 +1,42 @@
+{
+  "description": "Align logs#ControlRetentionCreate with distilled cloudflare/logs createControlRetention",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlRetentionCreate",
+      "path": "/shapes/com.cloudflare.logs#CreateControlRetention"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlRetentionCreateRequest",
+      "path": "/shapes/com.cloudflare.logs#CreateControlRetentionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#CreateControlRetention/input/target",
+      "value": "com.cloudflare.logs#CreateControlRetentionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlRetentionCreateResponse",
+      "path": "/shapes/com.cloudflare.logs#CreateControlRetentionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#CreateControlRetention/output/target",
+      "value": "com.cloudflare.logs#CreateControlRetentionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logs#CreateControlRetention/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logs#LogsControlNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.logs#Forbidden"
+        }
+      ]
+    }
+  ]
+}

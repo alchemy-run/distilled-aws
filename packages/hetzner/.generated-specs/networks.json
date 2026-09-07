@@ -1,0 +1,1531 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.networks#ListNetworksRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "NAME_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:asc"
+          }
+        },
+        "NAME_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:desc"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "CREATED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:asc"
+          }
+        },
+        "CREATED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#ListNetworksRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksRequest": {
+      "type": "structure",
+      "members": {
+        "sort": {
+          "target": "com.hetzner.networks#ListNetworksRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort resources by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter resources by their name.\n\nThe response will only contain the resources\nmatching exactly the specified name.\n"
+          }
+        },
+        "label_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "label_selector",
+            "smithy.api#documentation": "Filter resources by labels.\n\nThe response will only contain resources matching the label selector.\nFor more information, see \"[Label Selector](#description/label-selector)\".\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemSubnetsItemType": {
+      "type": "enum",
+      "members": {
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "VSWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vswitch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of subnet.\n"
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemSubnetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemSubnetsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of subnet.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the subnet.\n\nUses CIDR notation.\n"
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network Zone](#tag/network-zones).\n\nThe [Location](#tag/locations) contains the `network_zone` property it belongs to.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway for [Servers](#tag/servers) attached to this subnet.\n\nFor subnets of type `server` this is always the first IP of the subnets IP range.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "vswitch_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the robot vSwitch if the subnet is of type `vswitch`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#ListNetworksResponseNetworksItemSubnetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemRoutesItem": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemRoutesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#ListNetworksResponseNetworksItemRoutesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemLoadBalancersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItemLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the [Network](#tag/networks).\n\nUses CIDR notation.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "subnets": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "routes": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemRoutesList",
+          "traits": {
+            "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "servers": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemServersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancers": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemLoadBalancersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksItemLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "expose_routes_to_vswitch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the routes from this [Network](#tag/networks) should be exposed to the vSwitch connection.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksResponseNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#ListNetworksResponseNetworksItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.networks#ListNetworksResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.networks#ListNetworksResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#ListNetworksResponse": {
+      "type": "structure",
+      "members": {
+        "networks": {
+          "target": "com.hetzner.networks#ListNetworksResponseNetworksList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.networks#ListNetworksResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.networks#ListNetworks": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.networks#ListNetworksRequest"
+      },
+      "output": {
+        "target": "com.hetzner.networks#ListNetworksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/networks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Networks\n\nList multiple [Networks](#tag/networks).\n\nUse the provided URI parameters to modify the result.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "networks",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.networks#CreateNetworkRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.networks#CreateNetworkRequestSubnetsItemType": {
+      "type": "enum",
+      "members": {
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "VSWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vswitch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of subnet.\n"
+      }
+    },
+    "com.hetzner.networks#CreateNetworkRequestSubnetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.networks#CreateNetworkRequestSubnetsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of subnet.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the subnet.\n\nUses CIDR notation.\n\nMust be a subnet of the parent [Networks](#tag/networks) `ip_range`.\n\nMust not overlap with any other subnets or with any destinations in routes.\n\nMinimum network size is /30. We highly recommend that you pick a larger subnet with a /24 netmask.\n"
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network Zone](#tag/network-zones).\n\nThe [Location](#tag/locations) contains the `network_zone` property it belongs to.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "vswitch_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the robot vSwitch.\n\nMust only be supplied for subnets of type `vswitch`.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#CreateNetworkRequestSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#CreateNetworkRequestSubnetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of subnets to allocate."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkRequestRoutesItem": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#CreateNetworkRequestRoutesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#CreateNetworkRequestRoutesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the [Network](#tag/networks).\n\nUses CIDR notation.\n\nMust span all included subnets. Must be one of the private IPv4 ranges of RFC1918.\n\nMinimum network size is /24. We highly recommend that you pick a larger [Network](#tag/networks) with a /16 netmask.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.networks#CreateNetworkRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "subnets": {
+          "target": "com.hetzner.networks#CreateNetworkRequestSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "Array of subnets to allocate."
+          }
+        },
+        "routes": {
+          "target": "com.hetzner.networks#CreateNetworkRequestRoutesList",
+          "traits": {
+            "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks)."
+          }
+        },
+        "expose_routes_to_vswitch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle to expose routes to the [Networks](#tag/networks) vSwitch.\n\nIndicates if the routes from this [Network](#tag/networks) should be exposed to the vSwitch in this [Network](#tag/networks). Only takes effect if a [vSwitch is setup](https://docs.hetzner.com/cloud/networks/connect-dedi-vswitch) in this [Network](#tag/networks).\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkSubnetsItemType": {
+      "type": "enum",
+      "members": {
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "VSWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vswitch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of subnet.\n"
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkSubnetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkSubnetsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of subnet.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the subnet.\n\nUses CIDR notation.\n"
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network Zone](#tag/network-zones).\n\nThe [Location](#tag/locations) contains the `network_zone` property it belongs to.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway for [Servers](#tag/servers) attached to this subnet.\n\nFor subnets of type `server` this is always the first IP of the subnets IP range.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "vswitch_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the robot vSwitch if the subnet is of type `vswitch`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#CreateNetworkResponseNetworkSubnetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkRoutesItem": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkRoutesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#CreateNetworkResponseNetworkRoutesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkLoadBalancersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetworkLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.networks#CreateNetworkResponseNetwork": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the [Network](#tag/networks).\n\nUses CIDR notation.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "subnets": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "routes": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkRoutesList",
+          "traits": {
+            "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "servers": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkServersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancers": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkLoadBalancersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetworkLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "expose_routes_to_vswitch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the routes from this [Network](#tag/networks) should be exposed to the vSwitch connection.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#CreateNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "com.hetzner.networks#CreateNetworkResponseNetwork"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.networks#CreateNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.networks#CreateNetworkRequest"
+      },
+      "output": {
+        "target": "com.hetzner.networks#CreateNetworkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/networks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Network\n\nCreates a [Network](#tag/networks).\n\nThe provided `ip_range` can only be extended later on, but not reduced.\n\nSubnets can be added now or later on using the [add subnet action](#tag/network-actions/add_network_subnet). If you do not specify an `ip_range` for the subnet the first available /24 range will be used.\n\nRoutes can be added now or later by using the [add route action](#tag/network-actions/add_network_route)."
+      }
+    },
+    "com.hetzner.networks#GetNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkSubnetsItemType": {
+      "type": "enum",
+      "members": {
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "VSWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vswitch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of subnet.\n"
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkSubnetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkSubnetsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of subnet.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the subnet.\n\nUses CIDR notation.\n"
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network Zone](#tag/network-zones).\n\nThe [Location](#tag/locations) contains the `network_zone` property it belongs to.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway for [Servers](#tag/servers) attached to this subnet.\n\nFor subnets of type `server` this is always the first IP of the subnets IP range.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "vswitch_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the robot vSwitch if the subnet is of type `vswitch`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#GetNetworkResponseNetworkSubnetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkRoutesItem": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkRoutesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#GetNetworkResponseNetworkRoutesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkLoadBalancersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetworkLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.networks#GetNetworkResponseNetwork": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the [Network](#tag/networks).\n\nUses CIDR notation.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "subnets": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "routes": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkRoutesList",
+          "traits": {
+            "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "servers": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkServersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancers": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkLoadBalancersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetworkLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "expose_routes_to_vswitch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the routes from this [Network](#tag/networks) should be exposed to the vSwitch connection.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#GetNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "com.hetzner.networks#GetNetworkResponseNetwork"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.networks#GetNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.networks#GetNetworkRequest"
+      },
+      "output": {
+        "target": "com.hetzner.networks#GetNetworkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/networks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Network\n\nGet a specific [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New [Network](#tag/networks) name."
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.networks#UpdateNetworkRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "expose_routes_to_vswitch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle to expose routes to the [Networks](#tag/networks) vSwitch.\n\nIndicates if the routes from this [Network](#tag/networks) should be exposed to the vSwitch in this [Network](#tag/networks). Only takes effect if a [vSwitch is setup](https://docs.hetzner.com/cloud/networks/connect-dedi-vswitch) in this [Network](#tag/networks).\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkSubnetsItemType": {
+      "type": "enum",
+      "members": {
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "VSWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vswitch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of subnet.\n"
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkSubnetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkSubnetsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of subnet.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the subnet.\n\nUses CIDR notation.\n"
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network Zone](#tag/network-zones).\n\nThe [Location](#tag/locations) contains the `network_zone` property it belongs to.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway for [Servers](#tag/servers) attached to this subnet.\n\nFor subnets of type `server` this is always the first IP of the subnets IP range.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "vswitch_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the robot vSwitch if the subnet is of type `vswitch`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#UpdateNetworkResponseNetworkSubnetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkRoutesItem": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination network or host of the route.\n\nPackages addressed for IPs matching the destination IP prefix will be send to the specified gateway.\n\nMust be one of\n* private IPv4 ranges of RFC1918\n* or `0.0.0.0/0`.\n\nMust not overlap with\n* an existing ip_range in any subnets\n* or with any destinations in other routes\n* or with `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the route.\n\nPackages addressed for the specified destination will be send to this IP address.\n\nCannot be\n* the first IP of the networks ip_range,\n* an IP behind a vSwitch or\n* `172.31.1.1`.\n\n`172.31.1.1` is being used as a gateway for the public network interface of [Servers](#tag/servers).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkRoutesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.networks#UpdateNetworkResponseNetworkRoutesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkLoadBalancersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetworkLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.networks#UpdateNetworkResponseNetwork": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range of the [Network](#tag/networks).\n\nUses CIDR notation.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "subnets": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "List of subnets allocated in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "routes": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkRoutesList",
+          "traits": {
+            "smithy.api#documentation": "Array of routes set in this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "servers": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkServersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Servers](#tag/servers) attached to this [Network](#tag/networks).",
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancers": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkLoadBalancersList",
+          "traits": {
+            "smithy.api#documentation": "Array of IDs of [Load Balancers](#tag/load-balancers) attached to this [Network](#tag/networks)."
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetworkLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "expose_routes_to_vswitch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the routes from this [Network](#tag/networks) should be exposed to the vSwitch connection.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.networks#UpdateNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "com.hetzner.networks#UpdateNetworkResponseNetwork"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.networks#UpdateNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.networks#UpdateNetworkRequest"
+      },
+      "output": {
+        "target": "com.hetzner.networks#UpdateNetworkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/networks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Network\n\nUpdate a [Network](#tag/networks).\n\nIf a change is currently being performed on this [Network](#tag/networks), a error response with code `conflict` will be returned."
+      }
+    },
+    "com.hetzner.networks#DeleteNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Network."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.networks#DeleteNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.networks#DeleteNetworkRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/networks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Network\n\nDeletes a [Network](#tag/networks).\n\nAttached resources will be detached automatically."
+      }
+    },
+    "com.hetzner.networks#Networks": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.networks#ListNetworks"
+        },
+        {
+          "target": "com.hetzner.networks#CreateNetwork"
+        },
+        {
+          "target": "com.hetzner.networks#GetNetwork"
+        },
+        {
+          "target": "com.hetzner.networks#UpdateNetwork"
+        },
+        {
+          "target": "com.hetzner.networks#DeleteNetwork"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.web_vitals#WebVitalsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "pathname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pathname",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Filter web vitals by pathname"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_vitals#WebVitalsRetrieveResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.web_vitals#WebVitalsRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.web_vitals#WebVitalsRetrieveResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.web_vitals#WebVitalsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_vitals#WebVitalsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_vitals#WebVitalsRetrieveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/web_vitals/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get web vitals for a specific pathname.\nToolbar accesses this via OAuth (handled by TeamAndOrgViewSetMixin.get_authenticators)."
+      }
+    },
+    "com.posthog.web_vitals#WebVitals": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.web_vitals#WebVitalsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

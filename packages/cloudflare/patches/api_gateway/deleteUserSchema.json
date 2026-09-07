@@ -1,0 +1,35 @@
+{
+  "description": "Align api_gateway#UserSchemasDelete with distilled cloudflare/api-gateway deleteUserSchema",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasDelete",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteUserSchema"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasDeleteRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteUserSchemaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteUserSchema/input/target",
+      "value": "com.cloudflare.api_gateway#DeleteUserSchemaRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteUserSchema/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#SchemaNotFound"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

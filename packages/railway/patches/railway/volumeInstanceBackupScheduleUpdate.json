@@ -1,0 +1,10 @@
+{
+  "description": "volumeInstanceBackupScheduleUpdate returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VolumeInstanceBackupScheduleUpdateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation volumeInstanceBackupScheduleUpdate($kinds: [VolumeInstanceBackupScheduleKind!]!, $volumeInstanceId: String!) {\n  volumeInstanceBackupScheduleUpdate(kinds: $kinds, volumeInstanceId: $volumeInstanceId)\n}"
+    }
+  ]
+}

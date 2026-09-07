@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#GatewayCertificatesGet with distilled cloudflare/zero-trust getGatewayCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCertificatesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCertificatesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayCertificate/input/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCertificatesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayCertificate/output/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#GatewayCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

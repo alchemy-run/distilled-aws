@@ -1,0 +1,41 @@
+{
+  "description": "Align kv#NamespacesList with distilled cloudflare/kv listNamespaces",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesList",
+      "path": "/shapes/com.cloudflare.kv#ListNamespaces"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesListRequest",
+      "path": "/shapes/com.cloudflare.kv#ListNamespacesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#ListNamespaces/input/target",
+      "value": "com.cloudflare.kv#ListNamespacesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesListResponse",
+      "path": "/shapes/com.cloudflare.kv#ListNamespacesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#ListNamespaces/output/target",
+      "value": "com.cloudflare.kv#ListNamespacesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#ListNamespaces/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

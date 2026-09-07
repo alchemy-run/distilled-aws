@@ -1,0 +1,10 @@
+{
+  "description": "cloudAgentDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#CloudAgentDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation cloudAgentDelete($id: ID!) {\n  cloudAgentDelete(id: $id)\n}"
+    }
+  ]
+}

@@ -1,0 +1,621 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterpriseRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#OidcCustomPropertyInclusion": {
+      "type": "structure",
+      "members": {
+        "custom_property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the custom property that is included in the OIDC token",
+            "smithy.api#required": {}
+          }
+        },
+        "inclusion_source": {
+          "target": "com.github.oidc#OidcCustomPropertyInclusionInclusionSource",
+          "traits": {
+            "smithy.api#documentation": "Whether the inclusion was defined at the organization or enterprise level",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An OIDC custom property inclusion for repository properties"
+      }
+    },
+    "com.github.oidc#OidcCustomPropertyInclusionInclusionSource": {
+      "type": "enum",
+      "members": {
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the inclusion was defined at the organization or enterprise level"
+      }
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterpriseResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.oidc#OidcCustomPropertyInclusion"
+      },
+      "traits": {}
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterpriseResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterpriseResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterprise": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterpriseRequest"
+      },
+      "output": {
+        "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterpriseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/actions/oidc/customization/properties/repo",
+          "code": 200
+        },
+        "smithy.api#documentation": "List OIDC custom property inclusions for an enterprise\n\nLists the repository custom properties that are included in the OIDC token for repository actions in an enterprise.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#CreateOidcCustomPropertyInclusionForEnterpriseRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "custom_property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the custom property to include in the OIDC token",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#CreateOidcCustomPropertyInclusionForEnterprise": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForEnterpriseRequest"
+      },
+      "output": {
+        "target": "com.github.oidc#OidcCustomPropertyInclusion"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#BadRequest"
+        },
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/actions/oidc/customization/properties/repo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an OIDC custom property inclusion for an enterprise\n\nAdds a repository custom property to be included in the OIDC token for repository actions in an enterprise.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#DeleteOidcCustomPropertyInclusionForEnterpriseRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "custom_property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the custom property to remove from OIDC token inclusion"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#DeleteOidcCustomPropertyInclusionForEnterprise": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForEnterpriseRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#BadRequest"
+        },
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/enterprises/{enterprise}/actions/oidc/customization/properties/repo/{custom_property_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an OIDC custom property inclusion for an enterprise\n\nRemoves a repository custom property from being included in the OIDC token for repository actions in an enterprise.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:enterprise` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForOrgResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.oidc#OidcCustomPropertyInclusion"
+      },
+      "traits": {}
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForOrgResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.oidc#ListOidcCustomPropertyInclusionsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/actions/oidc/customization/properties/repo",
+          "code": 200
+        },
+        "smithy.api#documentation": "List OIDC custom property inclusions for an organization\n\nLists the repository custom properties that are included in the OIDC token for repository actions in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#CreateOidcCustomPropertyInclusionForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "custom_property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the custom property to include in the OIDC token",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#CreateOidcCustomPropertyInclusionForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.oidc#OidcCustomPropertyInclusion"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#BadRequest"
+        },
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/actions/oidc/customization/properties/repo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an OIDC custom property inclusion for an organization\n\nAdds a repository custom property to be included in the OIDC token for repository actions in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#DeleteOidcCustomPropertyInclusionForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "custom_property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the custom property to remove from OIDC token inclusion"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#DeleteOidcCustomPropertyInclusionForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#BadRequest"
+        },
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/actions/oidc/customization/properties/repo/{custom_property_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an OIDC custom property inclusion for an organization\n\nRemoves a repository custom property from being included in the OIDC token for repository actions in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#GetOidcCustomSubTemplateForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#OidcCustomSub": {
+      "type": "structure",
+      "members": {
+        "include_claim_keys": {
+          "target": "com.github.oidc#OidcCustomSubIncludeClaimKeysList",
+          "traits": {
+            "smithy.api#documentation": "Array of unique strings. Each claim key can only contain alphanumeric characters and underscores.",
+            "smithy.api#required": {}
+          }
+        },
+        "use_immutable_subject": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to opt in to the immutable OIDC subject claim format for the organization. When `true`, new OIDC tokens will use a stable, repository-ID-based `sub` claim instead of the name-based format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions OIDC Subject customization"
+      }
+    },
+    "com.github.oidc#OidcCustomSubIncludeClaimKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of unique strings. Each claim key can only contain alphanumeric characters and underscores."
+      }
+    },
+    "com.github.oidc#GetOidcCustomSubTemplateForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#GetOidcCustomSubTemplateForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.oidc#OidcCustomSub"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/actions/oidc/customization/sub",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the customization template for an OIDC subject claim for an organization\n\nGets the customization template for an OpenID Connect (OIDC) subject claim.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#UpdateOidcCustomSubTemplateForOrgRequestIncludeClaimKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of unique strings. Each claim key can only contain alphanumeric characters and underscores."
+      }
+    },
+    "com.github.oidc#UpdateOidcCustomSubTemplateForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "include_claim_keys": {
+          "target": "com.github.oidc#UpdateOidcCustomSubTemplateForOrgRequestIncludeClaimKeysList",
+          "traits": {
+            "smithy.api#documentation": "Array of unique strings. Each claim key can only contain alphanumeric characters and underscores."
+          }
+        },
+        "use_immutable_subject": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to opt in to the immutable OIDC subject claim format for the organization. When `true`, new OIDC tokens will use a stable, repository-ID-based `sub` claim instead of the name-based format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.oidc#UpdateOidcCustomSubTemplateForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.oidc#UpdateOidcCustomSubTemplateForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.oidc#UpdateOidcCustomSubTemplateForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.oidc#UpdateOidcCustomSubTemplateForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.oidc#Forbidden"
+        },
+        {
+          "target": "com.github.oidc#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/actions/oidc/customization/sub",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the customization template for an OIDC subject claim for an organization\n\nCreates or updates the customization template for an OpenID Connect (OIDC) subject claim.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint."
+      }
+    },
+    "com.github.oidc#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.oidc#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.oidc#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.oidc#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.oidc#Oidc": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterprise"
+        },
+        {
+          "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForEnterprise"
+        },
+        {
+          "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForEnterprise"
+        },
+        {
+          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForOrg"
+        },
+        {
+          "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForOrg"
+        },
+        {
+          "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForOrg"
+        },
+        {
+          "target": "com.github.oidc#GetOidcCustomSubTemplateForOrg"
+        },
+        {
+          "target": "com.github.oidc#UpdateOidcCustomSubTemplateForOrg"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

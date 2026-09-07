@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#EdgeCreate with distilled cloudflare/logpush createEdge",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#EdgeCreate",
+      "path": "/shapes/com.cloudflare.logpush#CreateEdge"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#EdgeCreateRequest",
+      "path": "/shapes/com.cloudflare.logpush#CreateEdgeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#CreateEdge/input/target",
+      "value": "com.cloudflare.logpush#CreateEdgeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#EdgeCreateResponse",
+      "path": "/shapes/com.cloudflare.logpush#CreateEdgeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#CreateEdge/output/target",
+      "value": "com.cloudflare.logpush#CreateEdgeResponse"
+    }
+  ]
+}

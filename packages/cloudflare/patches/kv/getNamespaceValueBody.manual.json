@@ -1,0 +1,41 @@
+{
+  "description": "Raw value GET: the response is the stored value's bytes as a byte stream plus the `expiration` response header — the docs model no response for this endpoint (output: Unit), which generated an empty struct and made every read decode to `{}`. Mirrors the r2 getObjectBody patch.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#GetNamespaceValueResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "body": {
+            "target": "smithy.api#Document",
+            "traits": {
+              "smithy.api#required": {},
+              "com.cloudflare.protocols#binaryResponseBody": {},
+              "smithy.api#documentation": "Raw value body as an Effect Stream."
+            }
+          },
+          "expiration": {
+            "target": "smithy.api#Long",
+            "traits": {
+              "smithy.api#httpHeader": "expiration",
+              "smithy.api#documentation": "Expiration time of the KV pair, seconds since the UNIX epoch (set when the pair is set to expire)."
+            }
+          },
+          "content_type": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "content-type",
+              "smithy.api#documentation": "MIME type the value was stored with."
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#GetNamespaceValue/output/target",
+      "value": "com.cloudflare.kv#GetNamespaceValueResponse"
+    }
+  ]
+}

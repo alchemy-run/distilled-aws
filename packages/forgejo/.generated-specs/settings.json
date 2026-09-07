@@ -1,0 +1,212 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.forgejo.settings#GeneralAPISettings": {
+      "type": "structure",
+      "members": {
+        "default_git_trees_per_page": {
+          "target": "smithy.api#Integer"
+        },
+        "default_max_blob_size": {
+          "target": "smithy.api#Integer"
+        },
+        "default_paging_num": {
+          "target": "smithy.api#Integer"
+        },
+        "max_response_items": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GeneralAPISettings contains global api settings exposed by it"
+      }
+    },
+    "com.forgejo.settings#GetGeneralAPISettings": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.settings#GeneralAPISettings"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/settings/api",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get instance's global settings for api"
+      }
+    },
+    "com.forgejo.settings#GeneralAttachmentSettings": {
+      "type": "structure",
+      "members": {
+        "allowed_types": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "max_files": {
+          "target": "smithy.api#Integer"
+        },
+        "max_size": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GeneralAttachmentSettings contains global Attachment settings exposed by API"
+      }
+    },
+    "com.forgejo.settings#GetGeneralAttachmentSettings": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.settings#GeneralAttachmentSettings"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/settings/attachment",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get instance's global settings for Attachment"
+      }
+    },
+    "com.forgejo.settings#GeneralRepoSettings": {
+      "type": "structure",
+      "members": {
+        "forks_disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "http_git_disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "lfs_disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "migrations_disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "mirrors_disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "stars_disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "time_tracking_disabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GeneralRepoSettings contains global repository settings exposed by API"
+      }
+    },
+    "com.forgejo.settings#GetGeneralRepositorySettings": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.settings#GeneralRepoSettings"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/settings/repository",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get instance's global settings for repositories"
+      }
+    },
+    "com.forgejo.settings#GeneralUISettings": {
+      "type": "structure",
+      "members": {
+        "allowed_reactions": {
+          "target": "com.forgejo.settings#GeneralUISettingsAllowedReactionsList"
+        },
+        "custom_emojis": {
+          "target": "com.forgejo.settings#GeneralUISettingsCustomEmojisList"
+        },
+        "default_theme": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GeneralUISettings contains global ui settings exposed by API"
+      }
+    },
+    "com.forgejo.settings#GeneralUISettingsAllowedReactionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.settings#GeneralUISettingsCustomEmojisList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.settings#GetGeneralUISettings": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.settings#GeneralUISettings"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/settings/ui",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get instance's global settings for ui"
+      }
+    },
+    "com.forgejo.settings#ForgejoSettings": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.settings#GetGeneralAPISettings"
+        },
+        {
+          "target": "com.forgejo.settings#GetGeneralAttachmentSettings"
+        },
+        {
+          "target": "com.forgejo.settings#GetGeneralRepositorySettings"
+        },
+        {
+          "target": "com.forgejo.settings#GetGeneralUISettings"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}

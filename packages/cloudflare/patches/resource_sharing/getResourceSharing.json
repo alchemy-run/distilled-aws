@@ -1,0 +1,42 @@
+{
+  "description": "Align resource_sharing#Get with distilled cloudflare/resource-sharing getResourceSharing",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#Get",
+      "path": "/shapes/com.cloudflare.resource_sharing#GetResourceSharing"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#GetRequest",
+      "path": "/shapes/com.cloudflare.resource_sharing#GetResourceSharingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_sharing#GetResourceSharing/input/target",
+      "value": "com.cloudflare.resource_sharing#GetResourceSharingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#GetResponse",
+      "path": "/shapes/com.cloudflare.resource_sharing#GetResourceSharingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_sharing#GetResourceSharing/output/target",
+      "value": "com.cloudflare.resource_sharing#GetResourceSharingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_sharing#GetResourceSharing/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    }
+  ]
+}

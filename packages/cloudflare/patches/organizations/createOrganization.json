@@ -1,0 +1,39 @@
+{
+  "description": "Align organizations#Create with distilled cloudflare/organizations createOrganization",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#Create",
+      "path": "/shapes/com.cloudflare.organizations#CreateOrganization"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#CreateRequest",
+      "path": "/shapes/com.cloudflare.organizations#CreateOrganizationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#CreateOrganization/input/target",
+      "value": "com.cloudflare.organizations#CreateOrganizationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#CreateResponse",
+      "path": "/shapes/com.cloudflare.organizations#CreateOrganizationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#CreateOrganization/output/target",
+      "value": "com.cloudflare.organizations#CreateOrganizationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.organizations#CreateOrganization/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.organizations#Forbidden"
+        }
+      ]
+    }
+  ]
+}

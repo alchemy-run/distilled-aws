@@ -1,0 +1,146 @@
+{
+  "operations": {
+    "getPlaybackConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "PlaybackConfigurationNotFound",
+          "from": "NotFoundException",
+          "message": { "includes": "not found" }
+        }
+      ]
+    },
+    "getPrefetchSchedule": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "PrefetchScheduleNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "deletePrefetchSchedule": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "PrefetchScheduleNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "createPrefetchSchedule": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "PlaybackConfigurationNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "listPrefetchSchedules": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "PlaybackConfigurationNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "listAlerts": {
+      "errors": ["BadRequestException"]
+    },
+    "getChannelSchedule": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ChannelNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "startChannel": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ChannelNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "stopChannel": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ChannelNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "createProgram": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ChannelNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "describeProgram": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ProgramNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "updateProgram": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ProgramNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    },
+    "deleteProgram": {
+      "errors": ["BadRequestException"],
+      "syntheticErrors": [
+        {
+          "name": "ProgramNotFound",
+          "from": "NotFoundException",
+          "message": { "matches": ".*" }
+        }
+      ]
+    }
+  },
+  "errors": {
+    "PlaybackConfigurationNotFound": {
+      "message": { "type": "string" }
+    },
+    "PrefetchScheduleNotFound": {
+      "message": { "type": "string" }
+    },
+    "ChannelNotFound": {
+      "message": { "type": "string" }
+    },
+    "ProgramNotFound": {
+      "message": { "type": "string" }
+    }
+  },
+  "errorCategories": {
+    "PlaybackConfigurationNotFound": ["NotFoundError"],
+    "PrefetchScheduleNotFound": ["NotFoundError"],
+    "ChannelNotFound": ["NotFoundError"],
+    "ProgramNotFound": ["NotFoundError"]
+  }
+}

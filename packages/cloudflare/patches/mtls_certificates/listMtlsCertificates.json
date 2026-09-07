@@ -1,0 +1,38 @@
+{
+  "description": "Align mtls_certificates#List with distilled cloudflare/mtls-certificates listMtlsCertificates",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#List",
+      "path": "/shapes/com.cloudflare.mtls_certificates#ListMtlsCertificates"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#ListRequest",
+      "path": "/shapes/com.cloudflare.mtls_certificates#ListMtlsCertificatesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.mtls_certificates#ListMtlsCertificates/input/target",
+      "value": "com.cloudflare.mtls_certificates#ListMtlsCertificatesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#ListResponse",
+      "path": "/shapes/com.cloudflare.mtls_certificates#ListMtlsCertificatesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.mtls_certificates#ListMtlsCertificates/output/target",
+      "value": "com.cloudflare.mtls_certificates#ListMtlsCertificatesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.mtls_certificates#ListMtlsCertificates/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

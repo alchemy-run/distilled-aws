@@ -1,0 +1,23 @@
+{
+  "structures": {
+    "AuthorizationData": {
+      "members": {
+        "authorizationToken": { "sensitive": true }
+      }
+    }
+  },
+  "errorCategories": {
+    "RepositoryAlreadyExistsException": ["ConflictError", "AlreadyExistsError"],
+    "RepositoryNotFoundException": ["NotFoundError"],
+    "RepositoryNotEmptyException": [
+      "ConflictError",
+      "DependencyViolationError"
+    ],
+    "LifecyclePolicyNotFoundException": ["NotFoundError"],
+    "RepositoryPolicyNotFoundException": ["NotFoundError"],
+    "LimitExceededException": ["QuotaError"],
+    "TooManyTagsException": ["QuotaError", "BadRequestError"],
+    "ServerException": ["ServerError", "RetryableError"],
+    "InvalidParameterException": ["BadRequestError"]
+  }
+}

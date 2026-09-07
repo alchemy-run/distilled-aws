@@ -1,0 +1,42 @@
+{
+  "description": "Align r2_data_catalog#Enable with distilled cloudflare/r2-data-catalog enableR2DataCatalog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2_data_catalog#Enable",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#EnableR2DataCatalog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2_data_catalog#EnableRequest",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#EnableR2DataCatalogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#EnableR2DataCatalog/input/target",
+      "value": "com.cloudflare.r2_data_catalog#EnableR2DataCatalogRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2_data_catalog#EnableResponse",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#EnableR2DataCatalogResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#EnableR2DataCatalog/output/target",
+      "value": "com.cloudflare.r2_data_catalog#EnableR2DataCatalogResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#EnableR2DataCatalog/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2_data_catalog#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

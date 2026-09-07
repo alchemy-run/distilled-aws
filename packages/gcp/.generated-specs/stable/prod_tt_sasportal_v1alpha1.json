@@ -1,0 +1,5688 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "prod_tt_sasportal",
+    "version": "v1alpha1",
+    "title": "SAS Portal API (Testing)",
+    "baseUrl": "https://prod-tt-sasportal.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSetupSasAnalyticsResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response returned by the long running operation for the SetupSasAnalytics rpc."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceModel": {
+      "type": "structure",
+      "members": {
+        "softwareVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The software version of the device."
+          }
+        },
+        "vendor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the device vendor."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the device model."
+          }
+        },
+        "firmwareVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The firmware version of the device."
+          }
+        },
+        "hardwareVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hardware version of the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the model of the device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The node's display name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name."
+          }
+        },
+        "sasUserIds": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "User ids used by the devices belonging to this node."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListCustomersResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListCustomers that indicates from where listing should continue. If the field is missing or empty, it means there are no more customers."
+          }
+        },
+        "customers": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomerList",
+          "traits": {
+            "smithy.api#documentation": "The list of customers that match the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for `ListCustomers`."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomer"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMigrateOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the SAS organization to be migrated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for [MigrateOrganization]. [spectrum.sas.portal.v1alpha1.Provisioning.MigrateOrganization]. GCP Project, Organization Info, and caller's GAIA ID should be retrieved from the RPC handler, and used to check authorization on SAS Portal organization and to create GCP Projects."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSetPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource for which the policy is being specified. This policy replaces any existing policy."
+          }
+        },
+        "disableNotification": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set the field as `true` to disable the onboarding notification."
+          }
+        },
+        "policy": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalPolicy",
+          "traits": {
+            "smithy.api#documentation": "Required. The policy to be applied to the `resource`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `SetPolicy` method."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGcpProjectDeployment": {
+      "type": "structure",
+      "members": {
+        "hasEnabledAnalytics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether SAS analytics has been enabled."
+          }
+        },
+        "deployment": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment",
+          "traits": {
+            "smithy.api#documentation": "Deployment associated with the GCP project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deployment associated with the GCP project. Includes whether SAS analytics has been enabled or not."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalUpdateSignedDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "encodedDevice": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the device. The user_id field must be set."
+          }
+        },
+        "installerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique installer ID (CPI ID) from the Certified Professional Installers database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for UpdateSignedDevice."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfig": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the configuration."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time the device configuration was edited."
+          }
+        },
+        "category": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "FCC category of the device."
+          }
+        },
+        "airInterface": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceAirInterface",
+          "traits": {
+            "smithy.api#documentation": "Information about this device's air interface."
+          }
+        },
+        "installationParams": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalInstallationParams",
+          "traits": {
+            "smithy.api#documentation": "Installation parameters for the device."
+          }
+        },
+        "measurementCapabilities": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigMeasurementCapabilitiesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Measurement reporting capabilities of the device."
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of a device user."
+          }
+        },
+        "model": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceModel",
+          "traits": {
+            "smithy.api#documentation": "Information about this device model."
+          }
+        },
+        "callSign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The call sign of the device operator."
+          }
+        },
+        "isSigned": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the configuration has been signed by a CPI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the device configuration."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigStateEnum": {
+      "type": "enum",
+      "members": {
+        "DEVICE_CONFIG_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_CONFIG_STATE_UNSPECIFIED"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAFT"
+          }
+        },
+        "FINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINAL"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "DEVICE_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "DEVICE_CATEGORY_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_CATEGORY_A"
+          }
+        },
+        "DEVICE_CATEGORY_B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_CATEGORY_B"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigMeasurementCapabilitiesItemEnum": {
+      "type": "enum",
+      "members": {
+        "MEASUREMENT_CAPABILITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEASUREMENT_CAPABILITY_UNSPECIFIED"
+          }
+        },
+        "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITH_GRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITH_GRANT"
+          }
+        },
+        "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITHOUT_GRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITHOUT_GRANT"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigMeasurementCapabilitiesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfigMeasurementCapabilitiesItemEnum"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSignDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "device": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#documentation": "Required. The device to sign. The device fields name, fcc_id and serial_number must be set. The user_id field must be set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for SignDevice."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "encodedDevice": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the device. The user_id field must be set."
+          }
+        },
+        "installerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique installer id (CPI ID) from the Certified Professional Installers database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for CreateSignedDevice."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDpaMoveList": {
+      "type": "structure",
+      "members": {
+        "dpaId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the DPA."
+          }
+        },
+        "frequencyRange": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRange",
+          "traits": {
+            "smithy.api#documentation": "The frequency range that the move list affects."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An entry in a DPA's move list."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalValidateInstallerRequest": {
+      "type": "structure",
+      "members": {
+        "encodedSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. JSON Web Token signed using a CPI private key. Payload must include a \"secret\" claim whose value is the secret."
+          }
+        },
+        "installerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique installer id (CPI ID) from the Certified Professional Installers database."
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Secret returned by the GenerateSecret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for ValidateInstaller."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSetupSasAnalyticsRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User id to setup analytics for, if not provided the user id associated with the project is used. optional"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for the SetupSasAnalytics rpc."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListGcpProjectDeploymentsResponse": {
+      "type": "structure",
+      "members": {
+        "deployments": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGcpProjectDeploymentList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Deployments associated with the GCP project"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for [ListGcpProjectDeployments]."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGcpProjectDeploymentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGcpProjectDeployment"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGenerateSecretResponse": {
+      "type": "structure",
+      "members": {
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The secret generated by the string and used by ValidateInstaller."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for GenerateSecret."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMigrateOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "deploymentAssociation": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeploymentAssociationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of deployment association that were created for the migration, or current associations if they already exist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for [MigrateOrganization]. [spectrum.sas.portal.v1alpha1.Provisioning.MigrateOrganization]."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeploymentAssociationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeploymentAssociation"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeploymentAssociation": {
+      "type": "structure",
+      "members": {
+        "gcpProjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project id of the associated project."
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User id of the deployment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Association between a gcp project and a SAS user id."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGenerateSecretRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request for GenerateSecret."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomer": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the customer."
+          }
+        },
+        "sasUserIds": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "User IDs used by the devices belonging to this customer."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the organization that the customer entity represents."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Entity representing a SAS customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalValidateInstallerResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for ValidateInstaller."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalChannelWithScore": {
+      "type": "structure",
+      "members": {
+        "frequencyRange": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRange",
+          "traits": {
+            "smithy.api#documentation": "The frequency range of the channel."
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The channel score, normalized to be in the range [0,100]."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The channel with score."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalStatus": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DocumentMap"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalPolicy": {
+      "type": "structure",
+      "members": {
+        "assignments": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalAssignmentList",
+          "traits": {
+            "smithy.api#documentation": "List of assignments"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to GetPolicy, and systems are expected to put that etag in the request to SetPolicy to ensure that their change will be applied to the same version of the policy. If no etag is provided in the call to GetPolicy, then the existing policy is overwritten blindly."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines an access control policy to the resources."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalAssignmentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalAssignment"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListNodesResponse": {
+      "type": "structure",
+      "members": {
+        "nodes": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNodeList",
+          "traits": {
+            "smithy.api#documentation": "The nodes that match the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListNodes that indicates from where listing should continue. If the field is missing or empty, it means there is no more nodes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListNodes."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNodeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceAirInterface": {
+      "type": "structure",
+      "members": {
+        "radioTechnology": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceAirInterfaceRadioTechnologyEnum",
+          "traits": {
+            "smithy.api#documentation": "Conditional. This field specifies the radio access technology that is used for the CBSD."
+          }
+        },
+        "supportedSpec": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. This field is related to the `radioTechnology` and provides the air interface specification that the CBSD is compliant with at the time of registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the device's air interface."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceAirInterfaceRadioTechnologyEnum": {
+      "type": "enum",
+      "members": {
+        "RADIO_TECHNOLOGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RADIO_TECHNOLOGY_UNSPECIFIED"
+          }
+        },
+        "E_UTRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E_UTRA"
+          }
+        },
+        "CAMBIUM_NETWORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMBIUM_NETWORKS"
+          }
+        },
+        "FOUR_G_BBW_SAA_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOUR_G_BBW_SAA_1"
+          }
+        },
+        "NR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NR"
+          }
+        },
+        "DOODLE_CBRS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOODLE_CBRS"
+          }
+        },
+        "CW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CW"
+          }
+        },
+        "REDLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDLINE"
+          }
+        },
+        "TARANA_WIRELESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARANA_WIRELESS"
+          }
+        },
+        "FAROS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAROS"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalAssignment": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Role that is assigned to `members`."
+          }
+        },
+        "members": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The identities the role is assigned to. It can have the following values: * `{user_email}`: An email address that represents a specific Google account. For example: `alice@gmail.com`. * `{group_email}`: An email address that represents a Google group. For example, `viewers@gmail.com`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Associates `members` with a `role`."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceMetadata": {
+      "type": "structure",
+      "members": {
+        "interferenceCoordinationGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interference Coordination Group (ICG). A group of CBSDs that manage their own interference with the group. For more details, see [CBRSA-TS-2001 V3.0.0](https://ongoalliance.org/wp-content/uploads/2020/02/CBRSA-TS-2001-V3.0.0_Approved-for-publication.pdf)."
+          }
+        },
+        "commonChannelGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Common Channel Group (CCG). A group of CBSDs in the same ICG requesting a common primary channel assignment. For more details, see [CBRSA-TS-2001 V3.0.0](https://ongoalliance.org/wp-content/uploads/2020/02/CBRSA-TS-2001-V3.0.0_Approved-for-publication.pdf)."
+          }
+        },
+        "antennaModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If populated, the Antenna Model Pattern to use. Format is: `RecordCreatorId:PatternId`"
+          }
+        },
+        "nrqzValidated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Set to `true` if a CPI has validated that they have coordinated with the National Quiet Zone office."
+          }
+        },
+        "nrqzValidation": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNrqzValidation",
+          "traits": {
+            "smithy.api#documentation": "Output only. National Radio Quiet Zone validation info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device data overridable by both SAS Portal and registration requests."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGetPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource for which the policy is being requested."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `GetPolicy` method."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMigrateOrganizationMetadata": {
+      "type": "structure",
+      "members": {
+        "operationState": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMigrateOrganizationMetadataOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current operation state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Long-running operation metadata message returned by the MigrateOrganization."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMigrateOrganizationMetadataOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "OPERATION_STATE_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_PENDING"
+          }
+        },
+        "OPERATION_STATE_RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_RUNNING"
+          }
+        },
+        "OPERATION_STATE_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_SUCCEEDED"
+          }
+        },
+        "OPERATION_STATE_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name."
+          }
+        },
+        "sasUserIds": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "User ID used by the devices belonging to this deployment. Each deployment should be associated with one unique user ID."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deployment's display name."
+          }
+        },
+        "frns": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The FCC Registration Numbers (FRNs) copied from its direct parent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalInstallationParams": {
+      "type": "structure",
+      "members": {
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Device antenna height in meters. When the `heightType` parameter value is \"AGL\", the antenna height should be given relative to ground level. When the `heightType` parameter value is \"AMSL\", it is given with respect to WGS84 datum."
+          }
+        },
+        "indoorDeployment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the device antenna is indoor or not. `true`: indoor. `false`: outdoor."
+          }
+        },
+        "cpeCbsdIndication": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If present, this parameter specifies whether the CBSD is a CPE-CBSD or not."
+          }
+        },
+        "heightType": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalInstallationParamsHeightTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how the height is measured."
+          }
+        },
+        "antennaAzimuth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Boresight direction of the horizontal plane of the antenna in degrees with respect to true north. The value of this parameter is an integer with a value between 0 and 359 inclusive. A value of 0 degrees means true north; a value of 90 degrees means east. This parameter is optional for Category A devices and conditional for Category B devices."
+          }
+        },
+        "antennaModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If an external antenna is used, the antenna model is optionally provided in this field. The string has a maximum length of 128 octets."
+          }
+        },
+        "antennaGain": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Peak antenna gain in dBi. This parameter is a double with a value between -127 and +128 (dBi) inclusive. Part of Release 2 to support floating-point value"
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Longitude of the device antenna location in degrees relative to the WGS 84 datum. The allowed range is from -180.000000 to +180.000000. Positive values represent longitudes east of the prime meridian; negative values west of the prime meridian."
+          }
+        },
+        "antennaDowntilt": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Antenna downtilt in degrees and is an integer with a value between -90 and +90 inclusive; a negative value means the antenna is tilted up (above horizontal). This parameter is optional for Category A devices and conditional for Category B devices."
+          }
+        },
+        "horizontalAccuracy": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A positive number in meters to indicate accuracy of the device antenna horizontal location. This optional parameter should only be present if its value is less than the FCC requirement of 50 meters."
+          }
+        },
+        "eirpCapability": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "This parameter is the maximum device EIRP in units of dBm/10MHz and is an integer with a value between -127 and +47 (dBm/10 MHz) inclusive. If not included, SAS interprets it as maximum allowable EIRP in units of dBm/10MHz for device category."
+          }
+        },
+        "antennaBeamwidth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "3-dB antenna beamwidth of the antenna in the horizontal-plane in degrees. This parameter is an unsigned integer having a value between 0 and 360 (degrees) inclusive; it is optional for Category A devices and conditional for Category B devices."
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Latitude of the device antenna location in degrees relative to the WGS 84 datum. The allowed range is from -90.000000 to +90.000000. Positive values represent latitudes north of the equator; negative values south of the equator."
+          }
+        },
+        "verticalAccuracy": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A positive number in meters to indicate accuracy of the device antenna vertical location. This optional parameter should only be present if its value is less than the FCC requirement of 3 meters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the device installation parameters."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalInstallationParamsHeightTypeEnum": {
+      "type": "enum",
+      "members": {
+        "HEIGHT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEIGHT_TYPE_UNSPECIFIED"
+          }
+        },
+        "HEIGHT_TYPE_AGL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEIGHT_TYPE_AGL"
+          }
+        },
+        "HEIGHT_TYPE_AMSL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEIGHT_TYPE_AMSL"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse": {
+      "type": "structure",
+      "members": {
+        "devices": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceList",
+          "traits": {
+            "smithy.api#documentation": "The devices that match the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListDevices."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalTestPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A set of permissions that the caller is allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TestPermissions` method."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDeploymentsResponse": {
+      "type": "structure",
+      "members": {
+        "deployments": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeploymentList",
+          "traits": {
+            "smithy.api#documentation": "The deployments that match the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDeployments that indicates from where listing should continue. If the field is missing or empty, it means there are no more deployments."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListDeployments."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeploymentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalProvisionDeploymentResponse": {
+      "type": "structure",
+      "members": {
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional error message if the provisioning request is not successful."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRange": {
+      "type": "structure",
+      "members": {
+        "highFrequencyMhz": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The highest frequency of the frequency range in MHz."
+          }
+        },
+        "lowFrequencyMhz": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The lowest frequency of the frequency range in MHz."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Frequency range from `low_frequency` to `high_frequency`."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListLegacyOrganizationsResponse": {
+      "type": "structure",
+      "members": {
+        "organizations": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOrganizationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Legacy SAS organizations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for [ListLegacyOrganizations]. [spectrum.sas.portal.v1alpha1.Provisioning.ListLegacyOrganizations]."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOrganizationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOrganization"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNrqzValidation": {
+      "type": "structure",
+      "members": {
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Device longitude that's associated with the validation."
+          }
+        },
+        "state": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNrqzValidationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the NRQZ validation info."
+          }
+        },
+        "caseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Validation case ID."
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Device latitude that's associated with the validation."
+          }
+        },
+        "cpiId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CPI who signed the validation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about National Radio Quiet Zone validation."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNrqzValidationStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAFT"
+          }
+        },
+        "FINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINAL"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the new parent resource node or customer to reparent the device under."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for MoveDevice."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeploymentRequest": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the new parent resource node or customer to reparent the deployment under."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for MoveDeployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrant": {
+      "type": "structure",
+      "members": {
+        "suspensionReason": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "If the grant is suspended, the reason(s) for suspension."
+          }
+        },
+        "state": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrantStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the grant."
+          }
+        },
+        "frequencyRange": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRange",
+          "traits": {
+            "smithy.api#documentation": "The transmission frequency range."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time of the grant."
+          }
+        },
+        "grantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Grant Id."
+          }
+        },
+        "channelType": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrantChannelTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of channel used."
+          }
+        },
+        "lastHeartbeatTransmitExpireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The transmit expiration time of the last heartbeat."
+          }
+        },
+        "moveList": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDpaMoveListList",
+          "traits": {
+            "smithy.api#documentation": "The DPA move lists on which this grant appears."
+          }
+        },
+        "maxEirp": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of `maxEirp` represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device grant. It is an authorization provided by the Spectrum Access System to a device to transmit using specified operating parameters after a successful heartbeat by the device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrantStateEnum": {
+      "type": "enum",
+      "members": {
+        "GRANT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRANT_STATE_UNSPECIFIED"
+          }
+        },
+        "GRANT_STATE_GRANTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRANT_STATE_GRANTED"
+          }
+        },
+        "GRANT_STATE_TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRANT_STATE_TERMINATED"
+          }
+        },
+        "GRANT_STATE_SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRANT_STATE_SUSPENDED"
+          }
+        },
+        "GRANT_STATE_AUTHORIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRANT_STATE_AUTHORIZED"
+          }
+        },
+        "GRANT_STATE_EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRANT_STATE_EXPIRED"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrantChannelTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CHANNEL_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHANNEL_TYPE_UNSPECIFIED"
+          }
+        },
+        "CHANNEL_TYPE_GAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHANNEL_TYPE_GAA"
+          }
+        },
+        "CHANNEL_TYPE_PAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHANNEL_TYPE_PAL"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDpaMoveListList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDpaMoveList"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOrganization": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of organization"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization details."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalProvisionDeploymentRequest": {
+      "type": "structure",
+      "members": {
+        "newOrganizationDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If this field is set, and a new SAS Portal Organization needs to be created, its display name will be set to the value of this field."
+          }
+        },
+        "newDeploymentDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If this field is set, and a new SAS Portal Deployment needs to be created, its display name will be set to the value of this field."
+          }
+        },
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If this field is set then a new deployment will be created under the organization specified by this id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for [ProvisionDeployment]. [spectrum.sas.portal.v1alpha1.Provisioning.ProvisionDeployment]. GCP Project, Organization Info, and caller’s GAIA ID should be retrieved from the RPC handler, and used as inputs to create a new SAS organization (if not exists) and a new SAS deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalTestPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource for which the permissions are being requested."
+          }
+        },
+        "permissions": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestPermissions` method."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSetupSasAnalyticsMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Metadata returned by the long running operation for the SetupSasAnalytics rpc."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice": {
+      "type": "structure",
+      "members": {
+        "fccId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FCC identifier of the device. Refer to https://www.fcc.gov/oet/ea/fccid for FccID format. Accept underscores and periods because some test-SAS customers use them."
+          }
+        },
+        "state": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Device state."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device display name."
+          }
+        },
+        "preloadedConfig": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration of the device, as specified via SAS Portal API."
+          }
+        },
+        "grants": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrantList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Grants held by the device."
+          }
+        },
+        "activeConfig": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceConfig",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current configuration of the device as registered to the SAS."
+          }
+        },
+        "deviceMetadata": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceMetadata",
+          "traits": {
+            "smithy.api#documentation": "Device parameters that can be overridden by both SAS Portal and SAS registration requests."
+          }
+        },
+        "currentChannels": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalChannelWithScoreList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current channels with scores."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name."
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A serial number assigned to the device by the device manufacturer."
+          }
+        },
+        "grantRangeAllowlists": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRangeList",
+          "traits": {
+            "smithy.api#documentation": "Only ranges that are within the allowlists are available for new grants."
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceStateEnum": {
+      "type": "enum",
+      "members": {
+        "DEVICE_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_STATE_UNSPECIFIED"
+          }
+        },
+        "RESERVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESERVED"
+          }
+        },
+        "REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGISTERED"
+          }
+        },
+        "DEREGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEREGISTERED"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrantList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeviceGrant"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalChannelWithScoreList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalChannelWithScore"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalFrequencyRange"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveNodeRequest": {
+      "type": "structure",
+      "members": {
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the new parent resource node or customer to reparent the node under."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for MoveNode."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalStatus",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Lists devices under a node or customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details about a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Creates a device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices:createSigned"
+        },
+        "smithy.api#documentation": "Creates a signed device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalUpdateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}:updateSigned"
+        },
+        "smithy.api#documentation": "Updates a signed device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a device under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSignDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:signDevice"
+        },
+        "smithy.api#documentation": "Signs a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeploymentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a deployment under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of deployments to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDeploymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Lists deployments.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Lists devices under a node or customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices:createSigned"
+        },
+        "smithy.api#documentation": "Creates a signed device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Creates a device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of nodes to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListNodesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Lists nodes.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the node is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Creates a new node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveNodeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a node under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Lists devices under a node or customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Creates a device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedNodesNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices:createSigned"
+        },
+        "smithy.api#documentation": "Creates a signed device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the deployment is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Creates a new deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of deployments to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDeploymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Lists deployments.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the node is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateNodesNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Creates a new node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of nodes to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListNodesNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListNodesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Lists nodes.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ValidateInstallerRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalValidateInstallerRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ValidateInstaller": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ValidateInstallerRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalValidateInstallerResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/installer:validate"
+        },
+        "smithy.api#documentation": "Validates the identity of a Certified Professional Installer (CPI)."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GenerateSecretInstallerRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGenerateSecretRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GenerateSecretInstaller": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GenerateSecretInstallerRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGenerateSecretResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/installer:generateSecret"
+        },
+        "smithy.api#documentation": "Generates a secret to be used with the ValidateInstaller."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a device under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSignDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:signDevice"
+        },
+        "smithy.api#documentation": "Signs a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details about a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalUpdateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}:updateSigned"
+        },
+        "smithy.api#documentation": "Updates a signed device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MigrateOrganizationCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMigrateOrganizationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MigrateOrganizationCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MigrateOrganizationCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/customers:migrateOrganization"
+        },
+        "smithy.api#documentation": "Migrates a SAS organization to the cloud. This will create GCP projects for each deployment and associate them. The SAS Organization is linked to the gcp project that called the command. go/sas-legacy-customer-migration"
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListGcpProjectDeploymentsCustomersRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListGcpProjectDeploymentsCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListGcpProjectDeploymentsCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListGcpProjectDeploymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/customers:listGcpProjectDeployments"
+        },
+        "smithy.api#documentation": "Returns a list of SAS deployments associated with current GCP project. Includes whether SAS analytics has been enabled or not."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the customer.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomer",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomer"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListLegacyOrganizationsCustomersRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListLegacyOrganizationsCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListLegacyOrganizationsCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListLegacyOrganizationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/customers:listLegacyOrganizations"
+        },
+        "smithy.api#documentation": "Returns a list of legacy organizations."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListCustomers that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of customers to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListCustomersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/customers"
+        },
+        "smithy.api#documentation": "Returns a list of requested customers.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the customer.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCustomer"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ProvisionDeploymentCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalProvisionDeploymentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ProvisionDeploymentCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ProvisionDeploymentCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalProvisionDeploymentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/customers:provisionDeployment"
+        },
+        "smithy.api#documentation": "Creates a new SAS deployment through the GCP workflow. Creates a SAS organization if an organization match is not found."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SetupSasAnalyticsCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSetupSasAnalyticsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SetupSasAnalyticsCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SetupSasAnalyticsCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/customers:setupSasAnalytics"
+        },
+        "smithy.api#documentation": "Setups the a GCP Project to receive SAS Analytics messages via GCP Pub/Sub with a subscription to BigQuery. All the Pub/Sub topics and BigQuery tables are created automatically as part of this service."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of nodes to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListNodesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Lists nodes.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the node is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Creates a new node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the node to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveNodeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a node under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Lists devices under a node or customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Creates a device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersNodesDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersNodesDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersNodesDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices:createSigned"
+        },
+        "smithy.api#documentation": "Creates a signed device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the deployment is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Creates a new deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of deployments to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDeploymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Lists deployments.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the node is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Creates a new node."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesNodesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of nodes to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersNodesNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListNodesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Lists nodes.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details about a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Lists devices under a node or customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Creates a device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices:createSigned"
+        },
+        "smithy.api#documentation": "Creates a signed device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalUpdateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#UpdateSignedCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}:updateSigned"
+        },
+        "smithy.api#documentation": "Updates a signed device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the device to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a device under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceCustomersDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource path name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSignDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceCustomersDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SignDeviceCustomersDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:signDevice"
+        },
+        "smithy.api#documentation": "Signs a device."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#PatchCustomersDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment to move.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalMoveDeploymentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#MoveCustomersDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:move"
+        },
+        "smithy.api#documentation": "Moves a deployment under another node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetCustomersDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a requested deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the deployment.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#DeleteCustomersDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of deployments to return in the response.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDeploymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Lists deployments.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name where the deployment is to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/deployments"
+        },
+        "smithy.api#documentation": "Creates a new deployment."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalCreateSignedDeviceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateSignedCustomersDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices:createSigned"
+        },
+        "smithy.api#documentation": "Creates a signed device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#CreateCustomersDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalDevice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Creates a device under a node or customer."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDeploymentsDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDeploymentsDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#ListCustomersDeploymentsDevicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalListDevicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/devices"
+        },
+        "smithy.api#documentation": "Lists devices under a node or customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SetPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalSetPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#SetPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SetPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/policies:set"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalGetPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#GetPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#GetPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/policies:get"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#TestPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalTestPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.prod_tt_sasportal_v1alpha1#TestPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#TestPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.prod_tt_sasportal_v1alpha1#SasPortalTestPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.prod_tt_sasportal_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/policies:test"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource."
+      }
+    }
+  }
+}

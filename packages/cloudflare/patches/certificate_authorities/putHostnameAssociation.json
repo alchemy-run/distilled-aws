@@ -1,0 +1,39 @@
+{
+  "description": "Align certificate_authorities#HostnameAssociationsUpdate with distilled cloudflare/certificate-authorities putHostnameAssociation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.certificate_authorities#HostnameAssociationsUpdate",
+      "path": "/shapes/com.cloudflare.certificate_authorities#PutHostnameAssociation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequest",
+      "path": "/shapes/com.cloudflare.certificate_authorities#PutHostnameAssociationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.certificate_authorities#PutHostnameAssociation/input/target",
+      "value": "com.cloudflare.certificate_authorities#PutHostnameAssociationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponse",
+      "path": "/shapes/com.cloudflare.certificate_authorities#PutHostnameAssociationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.certificate_authorities#PutHostnameAssociation/output/target",
+      "value": "com.cloudflare.certificate_authorities#PutHostnameAssociationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.certificate_authorities#PutHostnameAssociation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.certificate_authorities#Forbidden"
+        }
+      ]
+    }
+  ]
+}

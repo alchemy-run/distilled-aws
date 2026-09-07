@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayRulesDelete with distilled cloudflare/zero-trust deleteGatewayRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayRule/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayRule/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayRuleResponse"
+    }
+  ]
+}

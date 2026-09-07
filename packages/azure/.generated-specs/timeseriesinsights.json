@@ -1,0 +1,3292 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.timeseriesinsights#AccessPoliciesListByEnvironment": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesListByEnvironmentRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#AccessPolicyListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Lists all the available access policies associated with the environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Result of the List access policies operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of the List access policies operation."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#AccessPolicyResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the List access policies operation."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An access policy is used to grant users and applications access to the environment. Roles are assigned to service principals in Azure Active Directory. These roles define the actions the principal can perform through the Time Series Insights data plane APIs."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyResourceProperties": {
+      "type": "structure",
+      "members": {
+        "principalObjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The objectId of the principal in Azure Active Directory."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An description of the access policy."
+          }
+        },
+        "roles": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyResourcePropertiesRolesList",
+          "traits": {
+            "smithy.api#documentation": "The list of roles the principal is assigned on the environment."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.timeseriesinsights#AccessPolicyResourcePropertiesRolesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#AccessPolicyResourcePropertiesRolesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of roles the principal is assigned on the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyResourcePropertiesRolesItem": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reader"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Contributor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A role defining the data plane operations that a principal can perform on a Time Series Insights client."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesListByEnvironmentRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies/{accessPolicyName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Deletes the access policy with the specified name in the specified subscription, resource group, and environment",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "accessPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights access policy associated with the specified environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies/{accessPolicyName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Updates the access policy with the specified name in the specified subscription, resource group, and environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "accessPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights access policy associated with the specified environment."
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyMutableProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyMutableProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An description of the access policy."
+          }
+        },
+        "roles": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyMutablePropertiesRolesList",
+          "traits": {
+            "smithy.api#documentation": "The list of roles the principal is assigned on the environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a set of mutable access policy resource properties."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyMutablePropertiesRolesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#AccessPolicyMutablePropertiesRolesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of roles the principal is assigned on the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPolicyMutablePropertiesRolesItem": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reader"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Contributor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A role defining the data plane operations that a principal can perform on a Time Series Insights client."
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies/{accessPolicyName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Create or update an access policy in the specified environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "accessPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the access policy."
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyResourceProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#AccessPoliciesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies/{accessPolicyName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Gets the access policy with the specified name in the specified environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#AccessPolicyResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#AccessPoliciesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "accessPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights access policy associated with the specified environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsListByEnvironment": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsListByEnvironmentRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Lists all the available reference data sets associated with the subscription and within the specified resource group and environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Result of the List Reference Data Sets operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of the List Reference Data Sets operation."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the List Reference Data Sets operation."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A reference data set provides metadata about the events in an environment. Metadata in the reference data set will be joined with events as they are read from event sources. The metadata that makes up the reference data set is uploaded or modified through the Time Series Insights data plane APIs."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetResourceProperties": {
+      "type": "structure",
+      "members": {
+        "keyProperties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourcePropertiesKeyPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "The list of key properties for the reference data set.",
+            "smithy.api#required": {}
+          }
+        },
+        "dataStringComparisonBehavior": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourcePropertiesDataStringComparisonBehavior",
+          "traits": {
+            "smithy.api#documentation": "The reference data set key comparison behavior can be set using this property. By default, the value is 'Ordinal' - which means case sensitive key comparison will be performed while joining reference data with events or while adding new reference data. When 'OrdinalIgnoreCase' is set, case insensitive comparison will be used."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.timeseriesinsights#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the resource was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the reference data set."
+      }
+    },
+    "com.azure.timeseriesinsights#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the resource."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetResourcePropertiesDataStringComparisonBehavior": {
+      "type": "enum",
+      "members": {
+        "ORDINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Ordinal"
+          }
+        },
+        "ORDINALIGNORECASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OrdinalIgnoreCase"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reference data set key comparison behavior can be set using this property. By default, the value is 'Ordinal' - which means case sensitive key comparison will be performed while joining reference data with events or while adding new reference data. When 'OrdinalIgnoreCase' is set, case insensitive comparison will be used."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetResourcePropertiesKeyPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetKeyProperty"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of key properties for the reference data set."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetKeyProperty": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the key property."
+          }
+        },
+        "type": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetKeyPropertyType",
+          "traits": {
+            "smithy.api#documentation": "The type of the key property."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A key property for the reference data set. A reference data set can have multiple key properties."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetKeyPropertyType": {
+      "type": "enum",
+      "members": {
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "String"
+          }
+        },
+        "DOUBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Double"
+          }
+        },
+        "BOOL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Bool"
+          }
+        },
+        "DATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DateTime"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the key property."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsListByEnvironmentRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets/{referenceDataSetName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Deletes the reference data set with the specified name in the specified subscription, resource group, and environment",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "referenceDataSetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights reference data set associated with the specified environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets/{referenceDataSetName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Updates the reference data set with the specified name in the specified subscription, resource group, and environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "referenceDataSetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights reference data set associated with the specified environment."
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional properties for the reference data set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional properties for the reference data set."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets/{referenceDataSetName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Create or update a reference data set in the specified environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "referenceDataSetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the reference data set."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional properties for the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetCreationProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetCreationProperties": {
+      "type": "structure",
+      "members": {
+        "keyProperties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetCreationPropertiesKeyPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "The list of key properties for the reference data set.",
+            "smithy.api#required": {}
+          }
+        },
+        "dataStringComparisonBehavior": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetCreationPropertiesDataStringComparisonBehavior",
+          "traits": {
+            "smithy.api#documentation": "The reference data set key comparison behavior can be set using this property. By default, the value is 'Ordinal' - which means case sensitive key comparison will be performed while joining reference data with events or while adding new reference data. When 'OrdinalIgnoreCase' is set, case insensitive comparison will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties used to create a reference data set."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetCreationPropertiesDataStringComparisonBehavior": {
+      "type": "enum",
+      "members": {
+        "ORDINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Ordinal"
+          }
+        },
+        "ORDINALIGNORECASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OrdinalIgnoreCase"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reference data set key comparison behavior can be set using this property. By default, the value is 'Ordinal' - which means case sensitive key comparison will be performed while joining reference data with events or while adding new reference data. When 'OrdinalIgnoreCase' is set, case insensitive comparison will be used."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetCreationPropertiesKeyPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetKeyProperty"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of key properties for the reference data set."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional properties for the resource."
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#ReferenceDataSetsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets/{referenceDataSetName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Gets the reference data set with the specified name in the specified environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetResourceProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#ReferenceDataSetsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "referenceDataSetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights reference data set associated with the specified environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesListByEnvironment": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EventSourcesListByEnvironmentRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EventSourceListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/eventSources",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Lists all the available event sources associated with the subscription and within the specified resource group and environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourceListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.timeseriesinsights#EventSourceListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Result of the List EventSources operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of the List EventSources operation."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourceListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#EventSourceResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the List EventSources operation."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourceResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EventSourceResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EventSourceResourceKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the event source.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An environment receives data from one or more event sources. Each event source has associated connection info that allows the Time Series Insights ingress pipeline to connect to and pull data from the event source"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourceResourceKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_EVENTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.EventHub"
+          }
+        },
+        "MICROSOFT_IOTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.IoTHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourceResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesListByEnvironmentRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EventSourcesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/eventSources/{eventSourceName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Deletes the event source with the specified name in the specified subscription, resource group, and environment",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "eventSourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights event source associated with the specified environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EventSourcesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EventSourcesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/eventSources/{eventSourceName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Updates the event source with the specified name in the specified subscription, resource group, and environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EventSourcesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EventSourcesUpdateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the event source.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdateResponseKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_EVENTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.EventHub"
+          }
+        },
+        "MICROSOFT_IOTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.IoTHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "eventSourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights event source associated with the specified environment."
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EventSourcesUpdateRequestKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the event source.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EventSourcesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional properties for the event source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional properties for the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesUpdateRequestKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_EVENTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.EventHub"
+          }
+        },
+        "MICROSOFT_IOTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.IoTHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/eventSources/{eventSourceName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Create or update an event source under the specified environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the event source.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateResponseKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_EVENTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.EventHub"
+          }
+        },
+        "MICROSOFT_IOTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.IoTHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "eventSourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the event source."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional properties for the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateRequestKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the event source.",
+            "smithy.api#required": {}
+          }
+        },
+        "localTimestamp": {
+          "target": "com.azure.timeseriesinsights#LocalTimestamp",
+          "traits": {
+            "smithy.api#documentation": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#LocalTimestamp": {
+      "type": "structure",
+      "members": {
+        "format": {
+          "target": "com.azure.timeseriesinsights#LocalTimestampFormat",
+          "traits": {
+            "smithy.api#documentation": "An enum that represents the format of the local timestamp property that needs to be set."
+          }
+        },
+        "timeZoneOffset": {
+          "target": "com.azure.timeseriesinsights#LocalTimestampTimeZoneOffset",
+          "traits": {
+            "smithy.api#documentation": "An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."
+      }
+    },
+    "com.azure.timeseriesinsights#LocalTimestampTimeZoneOffset": {
+      "type": "structure",
+      "members": {
+        "propertyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The event property that will be contain the offset information to calculate the local timestamp. When the LocalTimestampFormat is Iana, the property name will contain the name of the column which contains IANA Timezone Name (eg: Americas/Los Angeles). When LocalTimestampFormat is Timespan, it contains the name of property which contains values representing the offset (eg: P1D or 1.00:00:00)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded."
+      }
+    },
+    "com.azure.timeseriesinsights#LocalTimestampFormat": {
+      "type": "enum",
+      "members": {
+        "EMBEDDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Embedded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An enum that represents the format of the local timestamp property that needs to be set."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateRequestKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_EVENTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.EventHub"
+          }
+        },
+        "MICROSOFT_IOTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.IoTHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional properties for the resource."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EventSourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EventSourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/eventSources/{eventSourceName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Gets the event source with the specified name in the specified environment.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EventSourcesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EventSourcesGetResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the event source.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesGetResponseKind": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_EVENTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.EventHub"
+          }
+        },
+        "MICROSOFT_IOTHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.IoTHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the event source."
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EventSourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "eventSourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights event source associated with the specified environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EnvironmentListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.TimeSeriesInsights/environments",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Lists all the available environments within a subscription, irrespective of the resource groups.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.timeseriesinsights#EnvironmentListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Result of the List Environments operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of the List Environments operation."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#EnvironmentResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the List Environments operation."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EnvironmentResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "sku": {
+          "target": "com.azure.timeseriesinsights#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EnvironmentResourceKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the environment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An environment is a set of time-series data available for query, and is the top level Azure Time Series Insights resource."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentResourceKind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.timeseriesinsights#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of this SKU.",
+            "smithy.api#required": {}
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The capacity of the sku. For Gen1 environments, this value can be changed to support scale out of environments after they have been created.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate."
+      }
+    },
+    "com.azure.timeseriesinsights#SkuName": {
+      "type": "enum",
+      "members": {
+        "S1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S1"
+          }
+        },
+        "S2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S2"
+          }
+        },
+        "P1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1"
+          }
+        },
+        "L1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "L1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of this SKU."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EnvironmentListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Lists all the available environments associated with the subscription and within the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Deletes the environment with the specified name in the specified subscription and resource group.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Updates the environment with the specified name in the specified subscription and resource group.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "sku": {
+          "target": "com.azure.timeseriesinsights#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the environment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdateResponseKind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateRequestKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the environment.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional properties for the environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional properties for the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsUpdateRequestKind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Create or update an environment in the specified subscription and resource group.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "sku": {
+          "target": "com.azure.timeseriesinsights#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the environment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateResponseKind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the environment"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional properties for the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateRequestKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the environment.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.timeseriesinsights#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateRequestKind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional properties for the resource."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#EnvironmentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Gets the environment with the specified name in the specified subscription and resource group.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "sku": {
+          "target": "com.azure.timeseriesinsights#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.timeseriesinsights#EnvironmentsGetResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the environment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsGetResponseKind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of the environment."
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.timeseriesinsights#EnvironmentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure Subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of an Azure Resource group."
+          }
+        },
+        "environmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Time Series Insights environment associated with the specified resource group."
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=status will include the status of the internal services of the environment in the Time Series Insights service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.timeseriesinsights#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.timeseriesinsights#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.TimeSeriesInsights/operations",
+          "code": 200,
+          "apiVersion": "2020-05-15"
+        },
+        "smithy.api#documentation": "Lists all of the available Time Series Insights related operations.",
+        "com.distilled.openapi#apiVersion": "2020-05-15"
+      }
+    },
+    "com.azure.timeseriesinsights#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.timeseriesinsights#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Time Series Insights operations supported by the Microsoft.TimeSeriesInsights resource provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the request to list Time Series Insights operations. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.timeseriesinsights#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Time Series Insights operations supported by the Microsoft.TimeSeriesInsights resource provider."
+      }
+    },
+    "com.azure.timeseriesinsights#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation being performed on this particular object."
+          }
+        },
+        "display": {
+          "target": "com.azure.timeseriesinsights#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Contains the localized display information for this particular operation / action."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String"
+        },
+        "properties": {
+          "target": "com.azure.timeseriesinsights#OperationProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Time Series Insights REST API operation"
+      }
+    },
+    "com.azure.timeseriesinsights#OperationProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.timeseriesinsights#ServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "One property of operation, include metric specifications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of operation, include metric specifications."
+      }
+    },
+    "com.azure.timeseriesinsights#ServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.timeseriesinsights#ServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Metric specifications of operation."
+          }
+        },
+        "logSpecifications": {
+          "target": "com.azure.timeseriesinsights#ServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "A list of Azure Monitoring log definitions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One property of operation, include metric specifications."
+      }
+    },
+    "com.azure.timeseriesinsights#ServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#LogSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Azure Monitoring log definitions."
+      }
+    },
+    "com.azure.timeseriesinsights#LogSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The specification of an Azure Monitoring log."
+      }
+    },
+    "com.azure.timeseriesinsights#ServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#MetricSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specifications of operation."
+      }
+    },
+    "com.azure.timeseriesinsights#MetricSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of metric specification."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of metric specification."
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display description of metric specification."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit could be Bytes or Count."
+          }
+        },
+        "dimensions": {
+          "target": "com.azure.timeseriesinsights#MetricSpecificationDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Dimensions of blobs, including blob type and access tier."
+          }
+        },
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation type could be Average."
+          }
+        },
+        "availabilities": {
+          "target": "com.azure.timeseriesinsights#MetricSpecificationAvailabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "Retention policies of a resource metric."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category this metric specification belong to, could be Capacity."
+          }
+        },
+        "resourceIdDimensionNameOverride": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account Resource Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specification of operation."
+      }
+    },
+    "com.azure.timeseriesinsights#MetricSpecificationAvailabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#MetricAvailability"
+      },
+      "traits": {
+        "smithy.api#documentation": "Retention policies of a resource metric."
+      }
+    },
+    "com.azure.timeseriesinsights#MetricAvailability": {
+      "type": "structure",
+      "members": {
+        "timeGrain": {
+          "target": "smithy.api#String"
+        },
+        "blobDuration": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Retention policy of a resource metric."
+      }
+    },
+    "com.azure.timeseriesinsights#MetricSpecificationDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.timeseriesinsights#Dimension"
+      },
+      "traits": {
+        "smithy.api#documentation": "Dimensions of blobs, including blob type and access tier."
+      }
+    },
+    "com.azure.timeseriesinsights#Dimension": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of dimension."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of dimension."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dimension of blobs, possibly be blob type or access tier."
+      }
+    },
+    "com.azure.timeseriesinsights#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource type related to this action/operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name for the operation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly description for the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the localized display information for this particular operation / action."
+      }
+    },
+    "com.azure.timeseriesinsights#Timeseriesinsights": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.timeseriesinsights#AccessPoliciesListByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#AccessPoliciesDelete"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#AccessPoliciesUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#AccessPoliciesGet"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsListByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsDelete"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsGet"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EventSourcesListByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EventSourcesDelete"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EventSourcesUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EventSourcesGet"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsListBySubscription"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsDelete"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsGet"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Timeseriesinsights",
+        "smithy.api#documentation": "Azure Timeseriesinsights API — merged from the timeseriesinsights resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

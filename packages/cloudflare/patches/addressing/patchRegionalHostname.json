@@ -1,0 +1,45 @@
+{
+  "description": "Align addressing#RegionalHostnamesEdit with distilled cloudflare/addressing patchRegionalHostname",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesEdit",
+      "path": "/shapes/com.cloudflare.addressing#PatchRegionalHostname"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesEditRequest",
+      "path": "/shapes/com.cloudflare.addressing#PatchRegionalHostnameRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PatchRegionalHostname/input/target",
+      "value": "com.cloudflare.addressing#PatchRegionalHostnameRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesEditResponse",
+      "path": "/shapes/com.cloudflare.addressing#PatchRegionalHostnameResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PatchRegionalHostname/output/target",
+      "value": "com.cloudflare.addressing#PatchRegionalHostnameResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#PatchRegionalHostname/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#InvalidZoneId"
+        },
+        {
+          "target": "com.cloudflare.addressing#RegionalHostnameNotFound"
+        },
+        {
+          "target": "com.cloudflare.addressing#RegionalHostnameEmpty"
+        }
+      ]
+    }
+  ]
+}

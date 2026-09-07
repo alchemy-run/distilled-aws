@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#BgpRoutesAses with distilled cloudflare/radar asesBgpRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRoutesAses",
+      "path": "/shapes/com.cloudflare.radar#AsesBgpRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRoutesAsesRequest",
+      "path": "/shapes/com.cloudflare.radar#AsesBgpRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesBgpRoute/input/target",
+      "value": "com.cloudflare.radar#AsesBgpRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRoutesAsesResponse",
+      "path": "/shapes/com.cloudflare.radar#AsesBgpRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesBgpRoute/output/target",
+      "value": "com.cloudflare.radar#AsesBgpRouteResponse"
+    }
+  ]
+}

@@ -1,0 +1,2530 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "searchconsole",
+    "version": "v1",
+    "title": "Google Search Console API",
+    "baseUrl": "https://searchconsole.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.searchconsole_v1#RunMobileFriendlyTestRequest": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for inspection."
+          }
+        },
+        "requestScreenshot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not screenshot is requested. Default is false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mobile-friendly test request."
+      }
+    },
+    "com.gcp.searchconsole_v1#InspectUrlIndexRequest": {
+      "type": "structure",
+      "members": {
+        "inspectionUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. URL to inspect. Must be under the property specified in \"site_url\"."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An [IETF BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) language code representing the requested language for translated issue messages, e.g. \"en-US\", \"or \"de-CH\". Default value is \"en-US\"."
+          }
+        },
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The URL of the property as defined in Search Console. **Examples:** `http://www.example.com/` for a URL-prefix property, or `sc-domain:example.com` for a Domain property."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Index inspection request."
+      }
+    },
+    "com.gcp.searchconsole_v1#DetectedItems": {
+      "type": "structure",
+      "members": {
+        "richResultType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rich Results type"
+          }
+        },
+        "items": {
+          "target": "com.gcp.searchconsole_v1#ItemList",
+          "traits": {
+            "smithy.api#documentation": "List of Rich Results items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rich Results items grouped by type."
+      }
+    },
+    "com.gcp.searchconsole_v1#ItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#Item"
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequest": {
+      "type": "structure",
+      "members": {
+        "startRow": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "[Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": " [Required] Start date of the requested date range, in YYYY-MM-DD format, in PST time (UTC - 8:00). Must be less than or equal to the end date. This value is included in the range."
+          }
+        },
+        "type": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Optional; Default is \\\"web\\\"] Type of report: search type, or either Discover or Gnews."
+          }
+        },
+        "dimensions": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestDimensionsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "[Optional] Zero or more dimensions to group results by. Dimensions are the group-by values in the Search Analytics page. Dimensions are combined to create a unique row key for each row. Results are grouped in the order that you supply these dimensions."
+          }
+        },
+        "rowLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "[Optional; Default is 1000] The maximum number of rows to return. Must be a number from 1 to 25,000 (inclusive)."
+          }
+        },
+        "dataState": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestDataStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The data state to be fetched, can be full or all, the latter including full and partial data."
+          }
+        },
+        "searchType": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestSearchTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "[Optional; Default is \\\"web\\\"] The search type to filter for."
+          }
+        },
+        "aggregationType": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestAggregationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "[Optional; Default is \\\"auto\\\"] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see the help documentation to learn how data is calculated differently by site versus by page. **Note:** If you group or filter by page, you cannot aggregate by property. If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid."
+          }
+        },
+        "dimensionFilterGroups": {
+          "target": "com.gcp.searchconsole_v1#ApiDimensionFilterGroupList",
+          "traits": {
+            "smithy.api#documentation": "[Optional] Zero or more filters to apply to the dimension grouping values; for example, 'query contains \\\"buy\\\"' to see only data where the query string contains the substring \\\"buy\\\" (not case-sensitive). You can filter by a dimension without grouping by it."
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Required] End date of the requested date range, in YYYY-MM-DD format, in PST (UTC - 8:00). Must be greater than or equal to the start date. This value is included in the range."
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestTypeEnum": {
+      "type": "enum",
+      "members": {
+        "WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB"
+          }
+        },
+        "IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMAGE"
+          }
+        },
+        "VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO"
+          }
+        },
+        "NEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWS"
+          }
+        },
+        "DISCOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVER"
+          }
+        },
+        "GOOGLE_NEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_NEWS"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestDimensionsItemEnum": {
+      "type": "enum",
+      "members": {
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATE"
+          }
+        },
+        "QUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUERY"
+          }
+        },
+        "PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY"
+          }
+        },
+        "DEVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE"
+          }
+        },
+        "SEARCH_APPEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEARCH_APPEARANCE"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOUR"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestDimensionsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestDimensionsItemEnum"
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestDataStateEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_STATE_UNSPECIFIED"
+          }
+        },
+        "FINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINAL"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "HOURLY_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOURLY_ALL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestSearchTypeEnum": {
+      "type": "enum",
+      "members": {
+        "WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB"
+          }
+        },
+        "IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMAGE"
+          }
+        },
+        "VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO"
+          }
+        },
+        "NEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWS"
+          }
+        },
+        "DISCOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVER"
+          }
+        },
+        "GOOGLE_NEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_NEWS"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequestAggregationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO"
+          }
+        },
+        "BY_PROPERTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_PROPERTY"
+          }
+        },
+        "BY_PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_PAGE"
+          }
+        },
+        "BY_NEWS_SHOWCASE_PANEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_NEWS_SHOWCASE_PANEL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilterGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#ApiDimensionFilterGroup"
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitemap": {
+      "type": "structure",
+      "members": {
+        "isSitemapsIndex": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the sitemap is a collection of sitemaps."
+          }
+        },
+        "warnings": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of warnings for the sitemap. These are generally non-critical issues with URLs in the sitemaps."
+          }
+        },
+        "contents": {
+          "target": "com.gcp.searchconsole_v1#WmxSitemapContentList",
+          "traits": {
+            "smithy.api#documentation": "The various content types in the sitemap."
+          }
+        },
+        "isPending": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the sitemap has not been processed."
+          }
+        },
+        "errors": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of errors in the sitemap. These are issues with the sitemap itself that need to be fixed before it can be processed correctly."
+          }
+        },
+        "lastSubmitted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date & time in which this sitemap was submitted. Date format is in RFC 3339 format (yyyy-mm-dd)."
+          }
+        },
+        "lastDownloaded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date & time in which this sitemap was last downloaded. Date format is in RFC 3339 format (yyyy-mm-dd)."
+          }
+        },
+        "type": {
+          "target": "com.gcp.searchconsole_v1#WmxSitemapTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of the sitemap. For example: `rssFeed`."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url of the sitemap."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains detailed information about a specific URL submitted as a [sitemap](https://support.google.com/webmasters/answer/156184)."
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitemapContentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#WmxSitemapContent"
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitemapTypeEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_SITEMAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_SITEMAP"
+          }
+        },
+        "URL_LIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_LIST"
+          }
+        },
+        "SITEMAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITEMAP"
+          }
+        },
+        "RSS_FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RSS_FEED"
+          }
+        },
+        "ATOM_FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATOM_FEED"
+          }
+        },
+        "PATTERN_SITEMAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATTERN_SITEMAP"
+          }
+        },
+        "OCEANFRONT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OCEANFRONT"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpIssue": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "com.gcp.searchconsole_v1#AmpIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Severity of this issue: WARNING or ERROR."
+          }
+        },
+        "issueMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brief description of this issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AMP issue."
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#ResourceIssue": {
+      "type": "structure",
+      "members": {
+        "blockedResource": {
+          "target": "com.gcp.searchconsole_v1#BlockedResource",
+          "traits": {
+            "smithy.api#documentation": "Describes a blocked resource issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a resource with issue."
+      }
+    },
+    "com.gcp.searchconsole_v1#Item": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-provided name of this item."
+          }
+        },
+        "issues": {
+          "target": "com.gcp.searchconsole_v1#RichResultsIssueList",
+          "traits": {
+            "smithy.api#documentation": "A list of zero or more rich result issues found for this instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A specific rich result found on the page."
+      }
+    },
+    "com.gcp.searchconsole_v1#RichResultsIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#RichResultsIssue"
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDataRow": {
+      "type": "structure",
+      "members": {
+        "position": {
+          "target": "smithy.api#Double"
+        },
+        "ctr": {
+          "target": "smithy.api#Double"
+        },
+        "clicks": {
+          "target": "smithy.api#Double"
+        },
+        "keys": {
+          "target": "com.gcp.searchconsole_v1#StringList"
+        },
+        "impressions": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.searchconsole_v1#Image": {
+      "type": "structure",
+      "members": {
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mime-type of the image data."
+          }
+        },
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image data in format determined by the mime type. Currently, the format will always be \"image/png\", but this might change in the future."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describe image data."
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilterGroup": {
+      "type": "structure",
+      "members": {
+        "groupType": {
+          "target": "com.gcp.searchconsole_v1#ApiDimensionFilterGroupGroupTypeEnum"
+        },
+        "filters": {
+          "target": "com.gcp.searchconsole_v1#ApiDimensionFilterList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of dimension value filters to test against each row. Only rows that pass all filter groups will be returned. All results within a filter group are either AND'ed or OR'ed together, depending on the group type selected. All filter groups are AND'ed together."
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilterGroupGroupTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AND"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#ApiDimensionFilter"
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryResponse": {
+      "type": "structure",
+      "members": {
+        "rows": {
+          "target": "com.gcp.searchconsole_v1#ApiDataRowList",
+          "traits": {
+            "smithy.api#documentation": "A list of rows grouped by the key values in the order given in the query."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.searchconsole_v1#Metadata",
+          "traits": {
+            "smithy.api#documentation": "An object that may be returned with your query results, providing context about the state of the data. See details in Metadata object documentation."
+          }
+        },
+        "responseAggregationType": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryResponseResponseAggregationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How the results were aggregated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of rows, one per result, grouped by key. Metrics in each row are aggregated for all data grouped by that key either by page or property, as specified by the aggregation type parameter."
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDataRowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#ApiDataRow"
+      }
+    },
+    "com.gcp.searchconsole_v1#SearchAnalyticsQueryResponseResponseAggregationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO"
+          }
+        },
+        "BY_PROPERTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_PROPERTY"
+          }
+        },
+        "BY_PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_PAGE"
+          }
+        },
+        "BY_NEWS_SHOWCASE_PANEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY_NEWS_SHOWCASE_PANEL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpInspectionResult": {
+      "type": "structure",
+      "members": {
+        "robotsTxtState": {
+          "target": "com.gcp.searchconsole_v1#AmpInspectionResultRobotsTxtStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the page is blocked to Google by a robots.txt rule."
+          }
+        },
+        "indexingState": {
+          "target": "com.gcp.searchconsole_v1#AmpInspectionResultIndexingStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the page blocks indexing through a noindex rule."
+          }
+        },
+        "ampIndexStatusVerdict": {
+          "target": "com.gcp.searchconsole_v1#AmpInspectionResultAmpIndexStatusVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "Index status of the AMP URL."
+          }
+        },
+        "pageFetchState": {
+          "target": "com.gcp.searchconsole_v1#AmpInspectionResultPageFetchStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether or not Google could fetch the AMP."
+          }
+        },
+        "issues": {
+          "target": "com.gcp.searchconsole_v1#AmpIssueList",
+          "traits": {
+            "smithy.api#documentation": "A list of zero or more AMP issues found for the inspected URL."
+          }
+        },
+        "lastCrawlTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this AMP version was crawled by Google. Absent if the URL was never crawled successfully."
+          }
+        },
+        "verdict": {
+          "target": "com.gcp.searchconsole_v1#AmpInspectionResultVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the most severe error on the page. If a page has both warnings and errors, the page status is error. Error status means the page cannot be shown in Search results."
+          }
+        },
+        "ampUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the AMP that was inspected. If the submitted URL is a desktop page that refers to an AMP version, the AMP version will be inspected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AMP inspection result of the live page or the current information from Google's index, depending on whether you requested a live inspection or not."
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpInspectionResultRobotsTxtStateEnum": {
+      "type": "enum",
+      "members": {
+        "ROBOTS_TXT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROBOTS_TXT_STATE_UNSPECIFIED"
+          }
+        },
+        "ALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOWED"
+          }
+        },
+        "DISALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISALLOWED"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpInspectionResultIndexingStateEnum": {
+      "type": "enum",
+      "members": {
+        "AMP_INDEXING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMP_INDEXING_STATE_UNSPECIFIED"
+          }
+        },
+        "AMP_INDEXING_ALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMP_INDEXING_ALLOWED"
+          }
+        },
+        "BLOCKED_DUE_TO_NOINDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_DUE_TO_NOINDEX"
+          }
+        },
+        "BLOCKED_DUE_TO_EXPIRED_UNAVAILABLE_AFTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_DUE_TO_EXPIRED_UNAVAILABLE_AFTER"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpInspectionResultAmpIndexStatusVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "VERDICT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERDICT_UNSPECIFIED"
+          }
+        },
+        "PASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASS"
+          }
+        },
+        "PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIAL"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAIL"
+          }
+        },
+        "NEUTRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEUTRAL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpInspectionResultPageFetchStateEnum": {
+      "type": "enum",
+      "members": {
+        "PAGE_FETCH_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_FETCH_STATE_UNSPECIFIED"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "SOFT_404": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOFT_404"
+          }
+        },
+        "BLOCKED_ROBOTS_TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_ROBOTS_TXT"
+          }
+        },
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        },
+        "ACCESS_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_DENIED"
+          }
+        },
+        "SERVER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVER_ERROR"
+          }
+        },
+        "REDIRECT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDIRECT_ERROR"
+          }
+        },
+        "ACCESS_FORBIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_FORBIDDEN"
+          }
+        },
+        "BLOCKED_4XX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_4XX"
+          }
+        },
+        "INTERNAL_CRAWL_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL_CRAWL_ERROR"
+          }
+        },
+        "INVALID_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_URL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#AmpIssue"
+      }
+    },
+    "com.gcp.searchconsole_v1#AmpInspectionResultVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "VERDICT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERDICT_UNSPECIFIED"
+          }
+        },
+        "PASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASS"
+          }
+        },
+        "PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIAL"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAIL"
+          }
+        },
+        "NEUTRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEUTRAL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileUsabilityIssue": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "com.gcp.searchconsole_v1#MobileUsabilityIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Not returned; reserved for future use."
+          }
+        },
+        "issueType": {
+          "target": "com.gcp.searchconsole_v1#MobileUsabilityIssueIssueTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Mobile-usability issue type."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information regarding the issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mobile-usability issue."
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileUsabilityIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileUsabilityIssueIssueTypeEnum": {
+      "type": "enum",
+      "members": {
+        "MOBILE_USABILITY_ISSUE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_USABILITY_ISSUE_TYPE_UNSPECIFIED"
+          }
+        },
+        "USES_INCOMPATIBLE_PLUGINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USES_INCOMPATIBLE_PLUGINS"
+          }
+        },
+        "CONFIGURE_VIEWPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIGURE_VIEWPORT"
+          }
+        },
+        "FIXED_WIDTH_VIEWPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED_WIDTH_VIEWPORT"
+          }
+        },
+        "SIZE_CONTENT_TO_VIEWPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIZE_CONTENT_TO_VIEWPORT"
+          }
+        },
+        "USE_LEGIBLE_FONT_SIZES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USE_LEGIBLE_FONT_SIZES"
+          }
+        },
+        "TAP_TARGETS_TOO_CLOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAP_TARGETS_TOO_CLOSE"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SitesListResponse": {
+      "type": "structure",
+      "members": {
+        "siteEntry": {
+          "target": "com.gcp.searchconsole_v1#WmxSiteList",
+          "traits": {
+            "smithy.api#documentation": "Contains permission level information about a Search Console site. For more information, see [Permissions in Search Console](https://support.google.com/webmasters/answer/2451999)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of sites with access level information."
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSiteList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#WmxSite"
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSite": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the site."
+          }
+        },
+        "permissionLevel": {
+          "target": "com.gcp.searchconsole_v1#WmxSitePermissionLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "The user's permission level for the site."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains permission level information about a Search Console site. For more information, see [Permissions in Search Console](https://support.google.com/webmasters/answer/2451999)."
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitePermissionLevelEnum": {
+      "type": "enum",
+      "members": {
+        "SITE_PERMISSION_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_PERMISSION_LEVEL_UNSPECIFIED"
+          }
+        },
+        "SITE_OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_OWNER"
+          }
+        },
+        "SITE_FULL_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_FULL_USER"
+          }
+        },
+        "SITE_RESTRICTED_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_RESTRICTED_USER"
+          }
+        },
+        "SITE_UNVERIFIED_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_UNVERIFIED_USER"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#UrlInspectionResult": {
+      "type": "structure",
+      "members": {
+        "richResultsResult": {
+          "target": "com.gcp.searchconsole_v1#RichResultsInspectionResult",
+          "traits": {
+            "smithy.api#documentation": "Result of the Rich Results analysis. Absent if there are no rich results found."
+          }
+        },
+        "ampResult": {
+          "target": "com.gcp.searchconsole_v1#AmpInspectionResult",
+          "traits": {
+            "smithy.api#documentation": "Result of the AMP analysis. Absent if the page is not an AMP page."
+          }
+        },
+        "inspectionResultLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to Search Console URL inspection."
+          }
+        },
+        "indexStatusResult": {
+          "target": "com.gcp.searchconsole_v1#IndexStatusInspectionResult",
+          "traits": {
+            "smithy.api#documentation": "Result of the index status analysis."
+          }
+        },
+        "mobileUsabilityResult": {
+          "target": "com.gcp.searchconsole_v1#MobileUsabilityInspectionResult",
+          "traits": {
+            "smithy.api#documentation": "Result of the Mobile usability analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "URL inspection result, including all inspection results."
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileUsabilityInspectionResult": {
+      "type": "structure",
+      "members": {
+        "verdict": {
+          "target": "com.gcp.searchconsole_v1#MobileUsabilityInspectionResultVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "High-level mobile-usability inspection result for this URL."
+          }
+        },
+        "issues": {
+          "target": "com.gcp.searchconsole_v1#MobileUsabilityIssueList",
+          "traits": {
+            "smithy.api#documentation": "A list of zero or more mobile-usability issues detected for this URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mobile-usability inspection results."
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileUsabilityInspectionResultVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "VERDICT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERDICT_UNSPECIFIED"
+          }
+        },
+        "PASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASS"
+          }
+        },
+        "PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIAL"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAIL"
+          }
+        },
+        "NEUTRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEUTRAL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileUsabilityIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#MobileUsabilityIssue"
+      }
+    },
+    "com.gcp.searchconsole_v1#RichResultsIssue": {
+      "type": "structure",
+      "members": {
+        "issueMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rich Results issue type."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.searchconsole_v1#RichResultsIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Severity of this issue: WARNING, or ERROR. Items with an issue of status ERROR cannot appear with rich result features in Google Search results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Severity and status of a single issue affecting a single rich result instance on a page."
+      }
+    },
+    "com.gcp.searchconsole_v1#RichResultsIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SitemapsListResponse": {
+      "type": "structure",
+      "members": {
+        "sitemap": {
+          "target": "com.gcp.searchconsole_v1#WmxSitemapList",
+          "traits": {
+            "smithy.api#documentation": "Contains detailed information about a specific URL submitted as a [sitemap](https://support.google.com/webmasters/answer/156184)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of sitemaps."
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitemapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#WmxSitemap"
+      }
+    },
+    "com.gcp.searchconsole_v1#RunMobileFriendlyTestResponse": {
+      "type": "structure",
+      "members": {
+        "resourceIssues": {
+          "target": "com.gcp.searchconsole_v1#ResourceIssueList",
+          "traits": {
+            "smithy.api#documentation": "Information about embedded resources issues."
+          }
+        },
+        "mobileFriendliness": {
+          "target": "com.gcp.searchconsole_v1#RunMobileFriendlyTestResponseMobileFriendlinessEnum",
+          "traits": {
+            "smithy.api#documentation": "Test verdict, whether the page is mobile friendly or not."
+          }
+        },
+        "screenshot": {
+          "target": "com.gcp.searchconsole_v1#Image",
+          "traits": {
+            "smithy.api#documentation": "Screenshot of the requested URL."
+          }
+        },
+        "mobileFriendlyIssues": {
+          "target": "com.gcp.searchconsole_v1#MobileFriendlyIssueList",
+          "traits": {
+            "smithy.api#documentation": "List of mobile-usability issues."
+          }
+        },
+        "testStatus": {
+          "target": "com.gcp.searchconsole_v1#TestStatus",
+          "traits": {
+            "smithy.api#documentation": "Final state of the test, can be either complete or an error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mobile-friendly test response, including mobile-friendly issues and resource issues."
+      }
+    },
+    "com.gcp.searchconsole_v1#ResourceIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#ResourceIssue"
+      }
+    },
+    "com.gcp.searchconsole_v1#RunMobileFriendlyTestResponseMobileFriendlinessEnum": {
+      "type": "enum",
+      "members": {
+        "MOBILE_FRIENDLY_TEST_RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_FRIENDLY_TEST_RESULT_UNSPECIFIED"
+          }
+        },
+        "MOBILE_FRIENDLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_FRIENDLY"
+          }
+        },
+        "NOT_MOBILE_FRIENDLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_MOBILE_FRIENDLY"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileFriendlyIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#MobileFriendlyIssue"
+      }
+    },
+    "com.gcp.searchconsole_v1#RichResultsInspectionResult": {
+      "type": "structure",
+      "members": {
+        "verdict": {
+          "target": "com.gcp.searchconsole_v1#RichResultsInspectionResultVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "High-level rich results inspection result for this URL."
+          }
+        },
+        "detectedItems": {
+          "target": "com.gcp.searchconsole_v1#DetectedItemsList",
+          "traits": {
+            "smithy.api#documentation": "A list of zero or more rich results detected on this page. Rich results that cannot even be parsed due to syntactic issues will not be listed here."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rich-Results inspection result, including any rich results found at this URL."
+      }
+    },
+    "com.gcp.searchconsole_v1#RichResultsInspectionResultVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "VERDICT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERDICT_UNSPECIFIED"
+          }
+        },
+        "PASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASS"
+          }
+        },
+        "PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIAL"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAIL"
+          }
+        },
+        "NEUTRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEUTRAL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#DetectedItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.searchconsole_v1#DetectedItems"
+      }
+    },
+    "com.gcp.searchconsole_v1#TestStatus": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.gcp.searchconsole_v1#TestStatusStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the test."
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error details if applicable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Final state of the test, including error details if necessary."
+      }
+    },
+    "com.gcp.searchconsole_v1#TestStatusStatusEnum": {
+      "type": "enum",
+      "members": {
+        "TEST_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEST_STATUS_UNSPECIFIED"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "INTERNAL_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL_ERROR"
+          }
+        },
+        "PAGE_UNREACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_UNREACHABLE"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#BlockedResource": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the blocked resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Blocked resource."
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilter": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String"
+        },
+        "operator": {
+          "target": "com.gcp.searchconsole_v1#ApiDimensionFilterOperatorEnum"
+        },
+        "dimension": {
+          "target": "com.gcp.searchconsole_v1#ApiDimensionFilterDimensionEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A filter test to be applied to each row in the data set, where a match can return the row. Filters are string comparisons, and values and dimension names are not case-sensitive. Individual filters are either AND'ed or OR'ed within their parent filter group, according to the group's group type. You do not need to group by a specified dimension to filter against it."
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilterOperatorEnum": {
+      "type": "enum",
+      "members": {
+        "EQUALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EQUALS"
+          }
+        },
+        "NOT_EQUALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_EQUALS"
+          }
+        },
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTAINS"
+          }
+        },
+        "NOT_CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_CONTAINS"
+          }
+        },
+        "INCLUDING_REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCLUDING_REGEX"
+          }
+        },
+        "EXCLUDING_REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXCLUDING_REGEX"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#ApiDimensionFilterDimensionEnum": {
+      "type": "enum",
+      "members": {
+        "QUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUERY"
+          }
+        },
+        "PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY"
+          }
+        },
+        "DEVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE"
+          }
+        },
+        "SEARCH_APPEARANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEARCH_APPEARANCE"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#Metadata": {
+      "type": "structure",
+      "members": {
+        "firstIncompleteDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first date for which the data is still being collected and processed, presented in `YYYY-MM-DD` format (ISO-8601 extended local date format). This field is populated only when the request's `dataState` is \"`all`\", data is grouped by \"`DATE`\", and the requested date range contains incomplete data points. All values after the `first_incomplete_date` may still change noticeably."
+          }
+        },
+        "firstIncompleteHour": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first hour for which the data is still being collected and processed, presented in `YYYY-MM-DDThh:mm:ss[+|-]hh:mm` format (ISO-8601 extended offset date-time format). This field is populated only when the request's `dataState` is \"`hourly_all`\", data is grouped by \"`HOUR`\" and the requested date range contains incomplete data points. All values after the `first_incomplete_hour` may still change noticeably."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that may be returned with your query results, providing context about the state of the data. When you request recent data (using `all` or `hourly_all` for `dataState`), some of the rows returned may represent data that is incomplete, which means that the data is still being collected and processed. This metadata object helps you identify exactly when this starts and ends. All dates and times provided in this object are in the `America/Los_Angeles` time zone. The specific field returned within this object depends on how you've grouped your data in the request. See details in inner fields."
+      }
+    },
+    "com.gcp.searchconsole_v1#InspectUrlIndexResponse": {
+      "type": "structure",
+      "members": {
+        "inspectionResult": {
+          "target": "com.gcp.searchconsole_v1#UrlInspectionResult",
+          "traits": {
+            "smithy.api#documentation": "URL inspection results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Index-Status inspection response."
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileFriendlyIssue": {
+      "type": "structure",
+      "members": {
+        "rule": {
+          "target": "com.gcp.searchconsole_v1#MobileFriendlyIssueRuleEnum",
+          "traits": {
+            "smithy.api#documentation": "Rule violated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mobile-friendly issue."
+      }
+    },
+    "com.gcp.searchconsole_v1#MobileFriendlyIssueRuleEnum": {
+      "type": "enum",
+      "members": {
+        "MOBILE_FRIENDLY_RULE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_FRIENDLY_RULE_UNSPECIFIED"
+          }
+        },
+        "USES_INCOMPATIBLE_PLUGINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USES_INCOMPATIBLE_PLUGINS"
+          }
+        },
+        "CONFIGURE_VIEWPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIGURE_VIEWPORT"
+          }
+        },
+        "FIXED_WIDTH_VIEWPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED_WIDTH_VIEWPORT"
+          }
+        },
+        "SIZE_CONTENT_TO_VIEWPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIZE_CONTENT_TO_VIEWPORT"
+          }
+        },
+        "USE_LEGIBLE_FONT_SIZES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USE_LEGIBLE_FONT_SIZES"
+          }
+        },
+        "TAP_TARGETS_TOO_CLOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAP_TARGETS_TOO_CLOSE"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#IndexStatusInspectionResult": {
+      "type": "structure",
+      "members": {
+        "pageFetchState": {
+          "target": "com.gcp.searchconsole_v1#IndexStatusInspectionResultPageFetchStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether or not Google could retrieve the page from your server. Equivalent to [\"page fetch\"](https://support.google.com/webmasters/answer/9012289#index_coverage) in the URL inspection report."
+          }
+        },
+        "indexingState": {
+          "target": "com.gcp.searchconsole_v1#IndexStatusInspectionResultIndexingStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the page blocks indexing through a noindex rule."
+          }
+        },
+        "verdict": {
+          "target": "com.gcp.searchconsole_v1#IndexStatusInspectionResultVerdictEnum",
+          "traits": {
+            "smithy.api#documentation": "High level verdict about whether the URL *is* indexed (indexed status), or *can be* indexed (live inspection)."
+          }
+        },
+        "coverageState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Could Google find and index the page. More details about page indexing appear in 'indexing_state'."
+          }
+        },
+        "userCanonical": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL that your page or site [declares as canonical](https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls?#define-canonical). If you did not declare a canonical URL, this field is absent."
+          }
+        },
+        "robotsTxtState": {
+          "target": "com.gcp.searchconsole_v1#IndexStatusInspectionResultRobotsTxtStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the page is blocked to Google by a robots.txt rule."
+          }
+        },
+        "referringUrls": {
+          "target": "com.gcp.searchconsole_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "URLs that link to the inspected URL, directly and indirectly."
+          }
+        },
+        "crawledAs": {
+          "target": "com.gcp.searchconsole_v1#IndexStatusInspectionResultCrawledAsEnum",
+          "traits": {
+            "smithy.api#documentation": "Primary crawler that was used by Google to crawl your site."
+          }
+        },
+        "googleCanonical": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the page that Google selected as canonical. If the page was not indexed, this field is absent."
+          }
+        },
+        "sitemap": {
+          "target": "com.gcp.searchconsole_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Any sitemaps that this URL was listed in, as known by Google. Not guaranteed to be an exhaustive list, especially if Google did not discover this URL through a sitemap. Absent if no sitemaps were found."
+          }
+        },
+        "lastCrawlTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this URL was crawled by Google using the [primary crawler](https://support.google.com/webmasters/answer/7440203#primary_crawler). Absent if the URL was never crawled successfully."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of index status inspection for either the live page or the version in Google's index, depending on whether you requested a live inspection or not. For more information, see the [Index coverage report documentation](https://support.google.com/webmasters/answer/7440203)."
+      }
+    },
+    "com.gcp.searchconsole_v1#IndexStatusInspectionResultPageFetchStateEnum": {
+      "type": "enum",
+      "members": {
+        "PAGE_FETCH_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_FETCH_STATE_UNSPECIFIED"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "SOFT_404": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOFT_404"
+          }
+        },
+        "BLOCKED_ROBOTS_TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_ROBOTS_TXT"
+          }
+        },
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        },
+        "ACCESS_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_DENIED"
+          }
+        },
+        "SERVER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVER_ERROR"
+          }
+        },
+        "REDIRECT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDIRECT_ERROR"
+          }
+        },
+        "ACCESS_FORBIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_FORBIDDEN"
+          }
+        },
+        "BLOCKED_4XX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_4XX"
+          }
+        },
+        "INTERNAL_CRAWL_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL_CRAWL_ERROR"
+          }
+        },
+        "INVALID_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_URL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#IndexStatusInspectionResultIndexingStateEnum": {
+      "type": "enum",
+      "members": {
+        "INDEXING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDEXING_STATE_UNSPECIFIED"
+          }
+        },
+        "INDEXING_ALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDEXING_ALLOWED"
+          }
+        },
+        "BLOCKED_BY_META_TAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_BY_META_TAG"
+          }
+        },
+        "BLOCKED_BY_HTTP_HEADER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_BY_HTTP_HEADER"
+          }
+        },
+        "BLOCKED_BY_ROBOTS_TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED_BY_ROBOTS_TXT"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#IndexStatusInspectionResultVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "VERDICT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERDICT_UNSPECIFIED"
+          }
+        },
+        "PASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASS"
+          }
+        },
+        "PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIAL"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAIL"
+          }
+        },
+        "NEUTRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEUTRAL"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#IndexStatusInspectionResultRobotsTxtStateEnum": {
+      "type": "enum",
+      "members": {
+        "ROBOTS_TXT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROBOTS_TXT_STATE_UNSPECIFIED"
+          }
+        },
+        "ALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOWED"
+          }
+        },
+        "DISALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISALLOWED"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#IndexStatusInspectionResultCrawledAsEnum": {
+      "type": "enum",
+      "members": {
+        "CRAWLING_USER_AGENT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRAWLING_USER_AGENT_UNSPECIFIED"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitemapContent": {
+      "type": "structure",
+      "members": {
+        "submitted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of URLs in the sitemap (of the content type)."
+          }
+        },
+        "indexed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "*Deprecated; do not use.*"
+          }
+        },
+        "type": {
+          "target": "com.gcp.searchconsole_v1#WmxSitemapContentTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The specific type of content in this sitemap. For example: `web`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the various content types in the sitemap."
+      }
+    },
+    "com.gcp.searchconsole_v1#WmxSitemapContentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB"
+          }
+        },
+        "IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMAGE"
+          }
+        },
+        "VIDEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO"
+          }
+        },
+        "NEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWS"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        },
+        "ANDROID_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID_APP"
+          }
+        },
+        "PATTERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATTERN"
+          }
+        },
+        "IOS_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS_APP"
+          }
+        },
+        "DATA_FEED_ELEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_FEED_ELEMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#DeleteSitemapsRequest": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The site's URL, including protocol. For example: `http://www.example.com/`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "feedpath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the actual sitemap. For example: `http://www.example.com/sitemap.xml`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.searchconsole_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.searchconsole_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.searchconsole_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.searchconsole_v1#DeleteSitemaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#DeleteSitemapsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}"
+        },
+        "smithy.api#documentation": "Deletes a sitemap from the Sitemaps report. Does not stop Google from crawling this sitemap or the URLs that were previously crawled in the deleted sitemap."
+      }
+    },
+    "com.gcp.searchconsole_v1#ListSitemapsRequest": {
+      "type": "structure",
+      "members": {
+        "sitemapIndex": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": " A URL of a site's sitemap index. For example: `http://www.example.com/sitemapindex.xml`.",
+            "smithy.api#httpQuery": "sitemapIndex"
+          }
+        },
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The site's URL, including protocol. For example: `http://www.example.com/`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#ListSitemaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#ListSitemapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#SitemapsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "webmasters/v3/sites/{siteUrl}/sitemaps"
+        },
+        "smithy.api#documentation": " Lists the [sitemaps-entries](/webmaster-tools/v3/sitemaps) submitted for this site, or included in the sitemap index file (if `sitemapIndex` is specified in the request)."
+      }
+    },
+    "com.gcp.searchconsole_v1#SubmitSitemapsRequest": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The site's URL, including protocol. For example: `http://www.example.com/`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "feedpath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the actual sitemap. For example: `http://www.example.com/sitemap.xml`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#SubmitSitemaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#SubmitSitemapsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}"
+        },
+        "smithy.api#documentation": "Submits a sitemap for a site."
+      }
+    },
+    "com.gcp.searchconsole_v1#GetSitemapsRequest": {
+      "type": "structure",
+      "members": {
+        "feedpath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the actual sitemap. For example: `http://www.example.com/sitemap.xml`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The site's URL, including protocol. For example: `http://www.example.com/`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#GetSitemaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#GetSitemapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#WmxSitemap"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}"
+        },
+        "smithy.api#documentation": "Retrieves information about a specific sitemap."
+      }
+    },
+    "com.gcp.searchconsole_v1#DeleteSitesRequest": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of the property as defined in Search Console. **Examples:** `http://www.example.com/` or `sc-domain:example.com`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#DeleteSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#DeleteSitesRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "webmasters/v3/sites/{siteUrl}"
+        },
+        "smithy.api#documentation": " Removes a site from the set of the user's Search Console sites."
+      }
+    },
+    "com.gcp.searchconsole_v1#ListSitesRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.searchconsole_v1#ListSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#ListSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#SitesListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "webmasters/v3/sites"
+        },
+        "smithy.api#documentation": " Lists the user's Search Console sites."
+      }
+    },
+    "com.gcp.searchconsole_v1#GetSitesRequest": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of the property as defined in Search Console. **Examples:** `http://www.example.com/` or `sc-domain:example.com`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#GetSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#GetSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#WmxSite"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "webmasters/v3/sites/{siteUrl}"
+        },
+        "smithy.api#documentation": " Retrieves information about specific site."
+      }
+    },
+    "com.gcp.searchconsole_v1#AddSitesRequest": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the site to add.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#AddSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#AddSitesRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "webmasters/v3/sites/{siteUrl}"
+        },
+        "smithy.api#documentation": " Adds a site to the set of the user's sites in Search Console."
+      }
+    },
+    "com.gcp.searchconsole_v1#QuerySearchanalyticsRequest": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The site's URL, including protocol. For example: `http://www.example.com/`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#QuerySearchanalytics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#QuerySearchanalyticsRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#SearchAnalyticsQueryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "webmasters/v3/sites/{siteUrl}/searchAnalytics/query"
+        },
+        "smithy.api#documentation": "Query your data with filters and parameters that you define. Returns zero or more rows grouped by the row keys that you define. You must define a date range of one or more days. When date is one of the group by values, any days without data are omitted from the result list. If you need to know which days have data, issue a broad date range query grouped by date for any metric, and see which day rows are returned."
+      }
+    },
+    "com.gcp.searchconsole_v1#InspectUrlInspectionIndexRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.searchconsole_v1#InspectUrlIndexRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#InspectUrlInspectionIndex": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#InspectUrlInspectionIndexRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#InspectUrlIndexResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/urlInspection/index:inspect"
+        },
+        "smithy.api#documentation": "Index inspection."
+      }
+    },
+    "com.gcp.searchconsole_v1#RunUrlTestingToolsMobileFriendlyTestRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.searchconsole_v1#RunMobileFriendlyTestRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.searchconsole_v1#RunUrlTestingToolsMobileFriendlyTest": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.searchconsole_v1#RunUrlTestingToolsMobileFriendlyTestRequest"
+      },
+      "output": {
+        "target": "com.gcp.searchconsole_v1#RunMobileFriendlyTestResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.searchconsole_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.searchconsole_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/urlTestingTools/mobileFriendlyTest:run"
+        },
+        "smithy.api#documentation": "Runs Mobile-Friendly Test for a given URL."
+      }
+    }
+  }
+}

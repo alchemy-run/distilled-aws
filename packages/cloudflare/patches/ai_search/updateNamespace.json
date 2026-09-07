@@ -1,0 +1,42 @@
+{
+  "description": "Align ai_search#NamespacesUpdate with distilled cloudflare/aisearch updateNamespace",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesUpdate",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespace"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesUpdateRequest",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespaceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespace/input/target",
+      "value": "com.cloudflare.ai_search#UpdateNamespaceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesUpdateResponse",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespaceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespace/output/target",
+      "value": "com.cloudflare.ai_search#UpdateNamespaceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#UpdateNamespace/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_search#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_search#Forbidden"
+        }
+      ]
+    }
+  ]
+}

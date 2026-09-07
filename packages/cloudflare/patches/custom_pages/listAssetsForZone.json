@@ -1,0 +1,41 @@
+{
+  "description": "Align custom_pages#AssetsListForZone with distilled cloudflare/custom-pages listAssetsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsListForZone",
+      "path": "/shapes/com.cloudflare.custom_pages#ListAssetsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsListForZoneRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#ListAssetsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#ListAssetsForZone/input/target",
+      "value": "com.cloudflare.custom_pages#ListAssetsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsListForZoneResponse",
+      "path": "/shapes/com.cloudflare.custom_pages#ListAssetsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#ListAssetsForZone/output/target",
+      "value": "com.cloudflare.custom_pages#ListAssetsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_pages#ListAssetsForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

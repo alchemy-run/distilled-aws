@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112TimeseriesGroupsProtocol with distilled cloudflare/radar protocolAs112TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsProtocol",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsProtocolRequest",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#ProtocolAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsProtocolResponse",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#ProtocolAs112TimeseriesGroupResponse"
+    }
+  ]
+}

@@ -1,0 +1,1420 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.product_tours#ProductToursListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Fuzzy match against product tour `name` and `description` using Postgres trigram word similarity. Supports typos and prefix-as-you-type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#PaginatedProductTourList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.product_tours#PaginatedProductTourListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductTour": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "internal_targeting_flag": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlag"
+        },
+        "linked_flag": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlag"
+        },
+        "targeting_flag_filters": {
+          "target": "com.posthog.product_tours#ProductTourTargetingFlagFiltersMap",
+          "traits": {
+            "smithy.api#documentation": "Return the targeting flag filters, excluding the base exclusion properties.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "draft_content": {
+          "target": "smithy.api#Document"
+        },
+        "has_draft": {
+          "target": "smithy.api#Boolean"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.product_tours#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "search_match_type": {
+          "target": "com.posthog.product_tours#SearchMatchTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of a searched field) or `similar` (a fuzzy trigram match only). Results are ordered exact-first. Null when the list is not filtered by `search`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Read-only serializer for ProductTour."
+      }
+    },
+    "com.posthog.product_tours#MinimalFeatureFlag": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "team_id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "filters": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlagFiltersMap"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "ensure_experience_continuity": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "evaluation_runtime": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlagEvaluationRuntime",
+          "traits": {
+            "smithy.api#documentation": "Specifies where this feature flag should be evaluated\n\n* `server` - Server\n* `client` - Client\n* `all` - All",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bucketing_identifier": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlagBucketingIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "evaluation_contexts": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlagEvaluationContextsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#MinimalFeatureFlagFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#EvaluationRuntimeEnum": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "CLIENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `server` - Server\n* `client` - Client\n* `all` - All"
+      }
+    },
+    "com.posthog.product_tours#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#MinimalFeatureFlagEvaluationRuntime": {
+      "type": "union",
+      "members": {
+        "EvaluationRuntimeEnum": {
+          "target": "com.posthog.product_tours#EvaluationRuntimeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.product_tours#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies where this feature flag should be evaluated\n\n* `server` - Server\n* `client` - Client\n* `all` - All"
+      }
+    },
+    "com.posthog.product_tours#BucketingIdentifierEnum": {
+      "type": "enum",
+      "members": {
+        "DISTINCT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "distinct_id"
+          }
+        },
+        "DEVICE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "device_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `distinct_id` - User ID (default)\n* `device_id` - Device ID"
+      }
+    },
+    "com.posthog.product_tours#MinimalFeatureFlagBucketingIdentifier": {
+      "type": "union",
+      "members": {
+        "BucketingIdentifierEnum": {
+          "target": "com.posthog.product_tours#BucketingIdentifierEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.product_tours#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID"
+      }
+    },
+    "com.posthog.product_tours#MinimalFeatureFlagEvaluationContextsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductTourTargetingFlagFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Return the targeting flag filters, excluding the base exclusion properties."
+      }
+    },
+    "com.posthog.product_tours#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.product_tours#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.product_tours#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.product_tours#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.product_tours#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.product_tours#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#SearchMatchTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SIMILAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "similar"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#PaginatedProductTourListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.product_tours#ProductTour"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductToursList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursListRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#PaginatedProductTourList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/product_tours/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyCreationContextEnum": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        },
+        "TOOLBAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toolbar"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `app` - app\n* `toolbar` - toolbar"
+      }
+    },
+    "com.posthog.product_tours#ProductToursCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "linked_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "targeting_flag_filters": {
+          "target": "smithy.api#Document"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "creation_context": {
+          "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyCreationContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Where the tour was created/updated from\n\n* `app` - app\n* `toolbar` - toolbar"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "internal_targeting_flag": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlag"
+        },
+        "linked_flag": {
+          "target": "com.posthog.product_tours#MinimalFeatureFlag"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.product_tours#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer for creating and updating ProductTour."
+      }
+    },
+    "com.posthog.product_tours#ProductToursCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/product_tours/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.product_tours#ProductToursRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTour"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.product_tours#ProductToursUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTour"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.product_tours#ProductToursPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "linked_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "targeting_flag_filters": {
+          "target": "smithy.api#Document"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "creation_context": {
+          "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyCreationContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Where the tour was created/updated from\n\n* `app` - app\n* `toolbar` - toolbar"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.product_tours#ProductToursDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.product_tours#ProductToursDiscardDraftDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursDiscardDraftDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursDiscardDraftDestroyRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTour"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/discard_draft/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Discard draft content."
+      }
+    },
+    "com.posthog.product_tours#ProductToursDraftPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "linked_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "targeting_flag_filters": {
+          "target": "smithy.api#Document"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "creation_context": {
+          "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyCreationContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Where the tour was created/updated from\n\n* `app` - app\n* `toolbar` - toolbar"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursDraftPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursDraftPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTour"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/draft/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Save draft content (server-side merge). No side effects triggered."
+      }
+    },
+    "com.posthog.product_tours#ProductToursDraftStatusRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#DraftStatusResponse": {
+      "type": "structure",
+      "members": {
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "has_draft": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductToursDraftStatusRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursDraftStatusRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#DraftStatusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/draft_status/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lightweight polling endpoint for draft change detection."
+      }
+    },
+    "com.posthog.product_tours#ProductToursGenerateCreateRequestStepsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductToursGenerateCreateRequestStepsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.product_tours#ProductToursGenerateCreateRequestStepsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductToursGenerateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "goal": {
+          "target": "smithy.api#String"
+        },
+        "steps": {
+          "target": "com.posthog.product_tours#ProductToursGenerateCreateRequestStepsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#GenerateResponse": {
+      "type": "structure",
+      "members": {
+        "steps": {
+          "target": "com.posthog.product_tours#GenerateResponseStepsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#GenerateStepResponse": {
+      "type": "structure",
+      "members": {
+        "step_id": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#GenerateResponseStepsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.product_tours#GenerateStepResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.product_tours#ProductToursGenerateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursGenerateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#GenerateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/generate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate tour step content using AI."
+      }
+    },
+    "com.posthog.product_tours#ProductToursPublishDraftCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this product tour."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "linked_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "targeting_flag_filters": {
+          "target": "smithy.api#Document"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "auto_launch": {
+          "target": "smithy.api#Boolean"
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "creation_context": {
+          "target": "com.posthog.product_tours#ProductTourSerializerCreateUpdateOnlyCreationContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Where the tour was created/updated from\n\n* `app` - app\n* `toolbar` - toolbar"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.product_tours#ProductToursPublishDraftCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.product_tours#ProductToursPublishDraftCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.product_tours#ProductTour"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.product_tours#BadRequest"
+        },
+        {
+          "target": "com.posthog.product_tours#Forbidden"
+        },
+        {
+          "target": "com.posthog.product_tours#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/product_tours/{id}/publish_draft/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Commit draft to live tour. Runs full validation and triggers side effects.\n\nAccepts an optional body payload. If provided, merges it into the draft\nbefore publishing so the caller can save + publish in a single request."
+      }
+    },
+    "com.posthog.product_tours#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.product_tours#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.product_tours#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.product_tours#ProductTours": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.product_tours#ProductToursList"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursCreate"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursRetrieve"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursUpdate"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursPartialUpdate"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursDestroy"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursDiscardDraftDestroy"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursDraftPartialUpdate"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursDraftStatusRetrieve"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursGenerateCreate"
+        },
+        {
+          "target": "com.posthog.product_tours#ProductToursPublishDraftCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

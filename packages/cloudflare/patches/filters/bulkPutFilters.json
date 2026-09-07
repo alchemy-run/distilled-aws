@@ -1,0 +1,38 @@
+{
+  "description": "Align filters#BulkUpdate with distilled cloudflare/filters bulkPutFilters",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#BulkUpdate",
+      "path": "/shapes/com.cloudflare.filters#BulkPutFilters"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#BulkUpdateRequest",
+      "path": "/shapes/com.cloudflare.filters#BulkPutFiltersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#BulkPutFilters/input/target",
+      "value": "com.cloudflare.filters#BulkPutFiltersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#BulkUpdateResponse",
+      "path": "/shapes/com.cloudflare.filters#BulkPutFiltersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#BulkPutFilters/output/target",
+      "value": "com.cloudflare.filters#BulkPutFiltersResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.filters#BulkPutFilters/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

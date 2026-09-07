@@ -1,0 +1,264 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.plugin_configs#PluginConfigsLogsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "plugin_config_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.plugin_configs#PaginatedPluginLogEntryList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.plugin_configs#PaginatedPluginLogEntryListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.plugin_configs#PluginLogEntry": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "team_id": {
+          "target": "smithy.api#Integer"
+        },
+        "plugin_id": {
+          "target": "smithy.api#Integer"
+        },
+        "plugin_config_id": {
+          "target": "smithy.api#Integer"
+        },
+        "timestamp": {
+          "target": "smithy.api#String"
+        },
+        "source": {
+          "target": "com.posthog.plugin_configs#PluginLogEntrySourceEnum"
+        },
+        "type": {
+          "target": "com.posthog.plugin_configs#PluginLogEntryTypeEnum"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        },
+        "instance_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.plugin_configs#PluginLogEntrySourceEnum": {
+      "type": "enum",
+      "members": {
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYSTEM"
+          }
+        },
+        "PLUGIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLUGIN"
+          }
+        },
+        "CONSOLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSOLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `SYSTEM` - SYSTEM\n* `PLUGIN` - PLUGIN\n* `CONSOLE` - CONSOLE"
+      }
+    },
+    "com.posthog.plugin_configs#PluginLogEntryTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEBUG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEBUG"
+          }
+        },
+        "LOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOG"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "WARN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARN"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `DEBUG` - DEBUG\n* `LOG` - LOG\n* `INFO` - INFO\n* `WARN` - WARN\n* `ERROR` - ERROR"
+      }
+    },
+    "com.posthog.plugin_configs#PaginatedPluginLogEntryListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.plugin_configs#PluginLogEntry"
+      },
+      "traits": {}
+    },
+    "com.posthog.plugin_configs#PluginConfigsLogsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.plugin_configs#PluginConfigsLogsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.plugin_configs#PaginatedPluginLogEntryList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.plugin_configs#BadRequest"
+        },
+        {
+          "target": "com.posthog.plugin_configs#Forbidden"
+        },
+        {
+          "target": "com.posthog.plugin_configs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/plugin_configs/{plugin_config_id}/logs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.plugin_configs#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.plugin_configs#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.plugin_configs#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.plugin_configs#PluginConfigs": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.plugin_configs#PluginConfigsLogsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

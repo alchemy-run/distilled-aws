@@ -1,0 +1,42 @@
+{
+  "description": "Align magic_network_monitoring#ConfigsDelete with distilled cloudflare/magic-network-monitoring deleteConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsDelete",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteConfig/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#DeleteConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsDeleteResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteConfig/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#DeleteConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_network_monitoring#MnmConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#Forbidden"
+        }
+      ]
+    }
+  ]
+}

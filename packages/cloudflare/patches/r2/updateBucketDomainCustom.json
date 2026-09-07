@@ -1,0 +1,44 @@
+{
+  "description": "Align r2#BucketsDomainsCustomUpdate with distilled cloudflare/r2 updateBucketDomainCustom",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsCustomUpdate",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustom"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsCustomUpdateRequest",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustomRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustom/input/target",
+      "value": "com.cloudflare.r2#UpdateBucketDomainCustomRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsCustomUpdateResponse",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustomResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustom/output/target",
+      "value": "com.cloudflare.r2#UpdateBucketDomainCustomResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustom/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustomRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#UpdateBucketDomainCustomRequest/members/jurisdiction"
+    }
+  ]
+}

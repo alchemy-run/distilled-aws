@@ -1,0 +1,42 @@
+{
+  "description": "Align hostnames#SettingsTlsUpdate with distilled cloudflare/hostnames putSettingTls",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsUpdate",
+      "path": "/shapes/com.cloudflare.hostnames#PutSettingTls"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsUpdateRequest",
+      "path": "/shapes/com.cloudflare.hostnames#PutSettingTlsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hostnames#PutSettingTls/input/target",
+      "value": "com.cloudflare.hostnames#PutSettingTlsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsUpdateResponse",
+      "path": "/shapes/com.cloudflare.hostnames#PutSettingTlsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hostnames#PutSettingTls/output/target",
+      "value": "com.cloudflare.hostnames#PutSettingTlsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hostnames#PutSettingTls/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.hostnames#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.hostnames#Forbidden"
+        }
+      ]
+    }
+  ]
+}

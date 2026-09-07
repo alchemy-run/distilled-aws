@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessTagsDelete with distilled cloudflare/zero-trust deleteAccessTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessTagsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessTagsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessTag/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessTagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessTagsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessTagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessTag/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessTagResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessTag/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessTagNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#RecordsGet with distilled cloudflare/dns getRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsGet",
+      "path": "/shapes/com.cloudflare.dns#GetRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsGetRequest",
+      "path": "/shapes/com.cloudflare.dns#GetRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetRecord/input/target",
+      "value": "com.cloudflare.dns#GetRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsGetResponse",
+      "path": "/shapes/com.cloudflare.dns#GetRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetRecord/output/target",
+      "value": "com.cloudflare.dns#GetRecordResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#GetRecord/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#Forbidden"
+        }
+      ]
+    }
+  ]
+}

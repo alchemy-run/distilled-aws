@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#SettingsAccountGet with distilled cloudflare/dns getSettingAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountGet",
+      "path": "/shapes/com.cloudflare.dns#GetSettingAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountGetRequest",
+      "path": "/shapes/com.cloudflare.dns#GetSettingAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetSettingAccount/input/target",
+      "value": "com.cloudflare.dns#GetSettingAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountGetResponse",
+      "path": "/shapes/com.cloudflare.dns#GetSettingAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetSettingAccount/output/target",
+      "value": "com.cloudflare.dns#GetSettingAccountResponse"
+    }
+  ]
+}

@@ -1,0 +1,852 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "note": "Hand-authored: classic Amazon SimpleDB (2009-04-15) predates Smithy and AWS never published a model for it (it survives only in botocore / SDK v2), so scripts/generate.ts cannot derive it from specs/api-models-aws. The published `simpledbv2` model covers ONLY the domain-export migration API. Shapes and wire names transcribed from the SimpleDB API reference and the botocore `sdb-2009-04-15` model; the protocol details (SigV2-only auth, EC2-style error envelope) were verified against the live endpoint.",
+    "httpErrorNote": "Errors returning 404 (AttributeDoesNotExist) or 409 (the Number*Exceeded quota errors) deliberately carry no `smithy.api#httpError`: the generator derives category decorators from that code, and 404 would add BadRequest while 409 would add Conflict — neither of which SimpleDB's error semantics warrant. Their categories come from patches/simpledb.json instead."
+  },
+  "shapes": {
+    "com.amazonaws.simpledb#AmazonSimpleDB": {
+      "type": "service",
+      "version": "2009-04-15",
+      "operations": [
+        { "target": "com.amazonaws.simpledb#CreateDomain" },
+        { "target": "com.amazonaws.simpledb#DeleteDomain" },
+        { "target": "com.amazonaws.simpledb#DomainMetadata" },
+        { "target": "com.amazonaws.simpledb#ListDomains" },
+        { "target": "com.amazonaws.simpledb#GetAttributes" },
+        { "target": "com.amazonaws.simpledb#PutAttributes" },
+        { "target": "com.amazonaws.simpledb#DeleteAttributes" },
+        { "target": "com.amazonaws.simpledb#BatchPutAttributes" },
+        { "target": "com.amazonaws.simpledb#BatchDeleteAttributes" },
+        { "target": "com.amazonaws.simpledb#Select" }
+      ],
+      "traits": {
+        "aws.api#service": {
+          "sdkId": "SimpleDB",
+          "arnNamespace": "sdb"
+        },
+        "aws.auth#sigv2": { "name": "sdb" },
+        "aws.protocols#awsQuery": {},
+        "smithy.api#xmlNamespace": {
+          "uri": "http://sdb.amazonaws.com/doc/2009-04-15/"
+        },
+        "smithy.api#documentation": "Amazon SimpleDB is a web service for running queries on structured data in real time.",
+        "smithy.rules#endpointRuleSet": {
+          "version": "1.0",
+          "parameters": {
+            "UseDualStack": {
+              "type": "Boolean",
+              "required": true,
+              "default": false,
+              "documentation": "When true, use the dual-stack endpoint."
+            },
+            "UseFIPS": {
+              "type": "Boolean",
+              "required": true,
+              "default": false,
+              "documentation": "When true, send this request to the FIPS-compliant regional endpoint."
+            },
+            "Endpoint": {
+              "type": "String",
+              "required": false,
+              "documentation": "Override the endpoint used to send this request."
+            },
+            "Region": {
+              "type": "String",
+              "required": false,
+              "documentation": "The AWS region used to dispatch the request."
+            }
+          },
+          "rules": [
+            {
+              "conditions": [
+                { "fn": "isSet", "argv": [{ "ref": "Endpoint" }] }
+              ],
+              "rules": [
+                {
+                  "conditions": [
+                    {
+                      "fn": "booleanEquals",
+                      "argv": [{ "ref": "UseFIPS" }, true]
+                    }
+                  ],
+                  "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                  "type": "error"
+                },
+                {
+                  "conditions": [
+                    {
+                      "fn": "booleanEquals",
+                      "argv": [{ "ref": "UseDualStack" }, true]
+                    }
+                  ],
+                  "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                  "type": "error"
+                },
+                {
+                  "conditions": [],
+                  "endpoint": {
+                    "url": { "ref": "Endpoint" },
+                    "properties": {},
+                    "headers": {}
+                  },
+                  "type": "endpoint"
+                }
+              ],
+              "type": "tree"
+            },
+            {
+              "conditions": [{ "fn": "isSet", "argv": [{ "ref": "Region" }] }],
+              "rules": [
+                {
+                  "conditions": [
+                    {
+                      "fn": "stringEquals",
+                      "argv": [{ "ref": "Region" }, "us-east-1"]
+                    }
+                  ],
+                  "endpoint": {
+                    "url": "https://sdb.amazonaws.com",
+                    "properties": {},
+                    "headers": {}
+                  },
+                  "type": "endpoint"
+                },
+                {
+                  "conditions": [],
+                  "endpoint": {
+                    "url": "https://sdb.{Region}.amazonaws.com",
+                    "properties": {},
+                    "headers": {}
+                  },
+                  "type": "endpoint"
+                }
+              ],
+              "type": "tree"
+            },
+            {
+              "conditions": [],
+              "error": "Invalid Configuration: Missing Region",
+              "type": "error"
+            }
+          ]
+        }
+      }
+    },
+
+    "com.amazonaws.simpledb#DomainName": { "type": "string" },
+
+    "com.amazonaws.simpledb#DomainNameList": {
+      "type": "list",
+      "member": { "target": "smithy.api#String" }
+    },
+    "com.amazonaws.simpledb#AttributeNameList": {
+      "type": "list",
+      "member": { "target": "smithy.api#String" }
+    },
+    "com.amazonaws.simpledb#AttributeList": {
+      "type": "list",
+      "member": { "target": "com.amazonaws.simpledb#Attribute" }
+    },
+    "com.amazonaws.simpledb#ReplaceableAttributeList": {
+      "type": "list",
+      "member": { "target": "com.amazonaws.simpledb#ReplaceableAttribute" }
+    },
+    "com.amazonaws.simpledb#DeletableAttributeList": {
+      "type": "list",
+      "member": { "target": "com.amazonaws.simpledb#DeletableAttribute" }
+    },
+    "com.amazonaws.simpledb#ReplaceableItemList": {
+      "type": "list",
+      "member": { "target": "com.amazonaws.simpledb#ReplaceableItem" }
+    },
+    "com.amazonaws.simpledb#DeletableItemList": {
+      "type": "list",
+      "member": { "target": "com.amazonaws.simpledb#DeletableItem" }
+    },
+    "com.amazonaws.simpledb#ItemList": {
+      "type": "list",
+      "member": { "target": "com.amazonaws.simpledb#Item" }
+    },
+
+    "com.amazonaws.simpledb#Attribute": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "AlternateNameEncoding": { "target": "smithy.api#String" },
+        "Value": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "AlternateValueEncoding": { "target": "smithy.api#String" }
+      }
+    },
+    "com.amazonaws.simpledb#ReplaceableAttribute": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Value": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Replace": { "target": "smithy.api#Boolean" }
+      }
+    },
+    "com.amazonaws.simpledb#DeletableAttribute": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Value": { "target": "smithy.api#String" }
+      }
+    },
+    "com.amazonaws.simpledb#UpdateCondition": {
+      "type": "structure",
+      "members": {
+        "Name": { "target": "smithy.api#String" },
+        "Value": { "target": "smithy.api#String" },
+        "Exists": { "target": "smithy.api#Boolean" }
+      }
+    },
+    "com.amazonaws.simpledb#ReplaceableItem": {
+      "type": "structure",
+      "members": {
+        "ItemName": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Attributes": {
+          "target": "com.amazonaws.simpledb#ReplaceableAttributeList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#xmlName": "Attribute",
+            "smithy.api#xmlFlattened": {}
+          }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#DeletableItem": {
+      "type": "structure",
+      "members": {
+        "ItemName": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Attributes": {
+          "target": "com.amazonaws.simpledb#DeletableAttributeList",
+          "traits": {
+            "smithy.api#xmlName": "Attribute",
+            "smithy.api#xmlFlattened": {}
+          }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#Item": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "AlternateNameEncoding": { "target": "smithy.api#String" },
+        "Attributes": {
+          "target": "com.amazonaws.simpledb#AttributeList",
+          "traits": {
+            "smithy.api#xmlName": "Attribute",
+            "smithy.api#xmlFlattened": {}
+          }
+        }
+      }
+    },
+
+    "com.amazonaws.simpledb#CreateDomainRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#CreateDomainResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.amazonaws.simpledb#DeleteDomainRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#DeleteDomainResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.amazonaws.simpledb#DomainMetadataRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#DomainMetadataResponse": {
+      "type": "structure",
+      "members": {
+        "ItemCount": { "target": "smithy.api#Integer" },
+        "ItemNamesSizeBytes": { "target": "smithy.api#Long" },
+        "AttributeNameCount": { "target": "smithy.api#Integer" },
+        "AttributeNamesSizeBytes": { "target": "smithy.api#Long" },
+        "AttributeValueCount": { "target": "smithy.api#Integer" },
+        "AttributeValuesSizeBytes": { "target": "smithy.api#Long" },
+        "Timestamp": { "target": "smithy.api#Integer" }
+      }
+    },
+    "com.amazonaws.simpledb#ListDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "MaxNumberOfDomains": { "target": "smithy.api#Integer" },
+        "NextToken": { "target": "smithy.api#String" }
+      }
+    },
+    "com.amazonaws.simpledb#ListDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "DomainNames": {
+          "target": "com.amazonaws.simpledb#DomainNameList",
+          "traits": {
+            "smithy.api#xmlName": "DomainName",
+            "smithy.api#xmlFlattened": {}
+          }
+        },
+        "NextToken": { "target": "smithy.api#String" }
+      }
+    },
+    "com.amazonaws.simpledb#GetAttributesRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        },
+        "ItemName": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "AttributeNames": {
+          "target": "com.amazonaws.simpledb#AttributeNameList",
+          "traits": {
+            "smithy.api#xmlName": "AttributeName",
+            "smithy.api#xmlFlattened": {}
+          }
+        },
+        "ConsistentRead": { "target": "smithy.api#Boolean" }
+      }
+    },
+    "com.amazonaws.simpledb#GetAttributesResponse": {
+      "type": "structure",
+      "members": {
+        "Attributes": {
+          "target": "com.amazonaws.simpledb#AttributeList",
+          "traits": {
+            "smithy.api#xmlName": "Attribute",
+            "smithy.api#xmlFlattened": {}
+          }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#PutAttributesRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        },
+        "ItemName": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Attributes": {
+          "target": "com.amazonaws.simpledb#ReplaceableAttributeList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#xmlName": "Attribute",
+            "smithy.api#xmlFlattened": {}
+          }
+        },
+        "Expected": { "target": "com.amazonaws.simpledb#UpdateCondition" }
+      }
+    },
+    "com.amazonaws.simpledb#PutAttributesResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.amazonaws.simpledb#DeleteAttributesRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        },
+        "ItemName": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Attributes": {
+          "target": "com.amazonaws.simpledb#DeletableAttributeList",
+          "traits": {
+            "smithy.api#xmlName": "Attribute",
+            "smithy.api#xmlFlattened": {}
+          }
+        },
+        "Expected": { "target": "com.amazonaws.simpledb#UpdateCondition" }
+      }
+    },
+    "com.amazonaws.simpledb#DeleteAttributesResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.amazonaws.simpledb#BatchPutAttributesRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Items": {
+          "target": "com.amazonaws.simpledb#ReplaceableItemList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#xmlName": "Item",
+            "smithy.api#xmlFlattened": {}
+          }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#BatchPutAttributesResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.amazonaws.simpledb#BatchDeleteAttributesRequest": {
+      "type": "structure",
+      "members": {
+        "DomainName": {
+          "target": "com.amazonaws.simpledb#DomainName",
+          "traits": { "smithy.api#required": {} }
+        },
+        "Items": {
+          "target": "com.amazonaws.simpledb#DeletableItemList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#xmlName": "Item",
+            "smithy.api#xmlFlattened": {}
+          }
+        }
+      }
+    },
+    "com.amazonaws.simpledb#BatchDeleteAttributesResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.amazonaws.simpledb#SelectRequest": {
+      "type": "structure",
+      "members": {
+        "SelectExpression": {
+          "target": "smithy.api#String",
+          "traits": { "smithy.api#required": {} }
+        },
+        "NextToken": { "target": "smithy.api#String" },
+        "ConsistentRead": { "target": "smithy.api#Boolean" }
+      }
+    },
+    "com.amazonaws.simpledb#SelectResponse": {
+      "type": "structure",
+      "members": {
+        "Items": {
+          "target": "com.amazonaws.simpledb#ItemList",
+          "traits": {
+            "smithy.api#xmlName": "Item",
+            "smithy.api#xmlFlattened": {}
+          }
+        },
+        "NextToken": { "target": "smithy.api#String" }
+      }
+    },
+
+    "com.amazonaws.simpledb#NoSuchDomain": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "The specified domain does not exist."
+      }
+    },
+    "com.amazonaws.simpledb#InvalidParameterValue": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "The value for a parameter is invalid."
+      }
+    },
+    "com.amazonaws.simpledb#MissingParameter": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "The request must contain the specified missing parameter."
+      }
+    },
+    "com.amazonaws.simpledb#NumberDomainsExceeded": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "Too many domains exist for this account."
+      }
+    },
+    "com.amazonaws.simpledb#InvalidNextToken": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "The specified NextToken is not valid."
+      }
+    },
+    "com.amazonaws.simpledb#AttributeDoesNotExist": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "The specified attribute does not exist."
+      }
+    },
+    "com.amazonaws.simpledb#DuplicateItemName": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "The item name was specified more than once."
+      }
+    },
+    "com.amazonaws.simpledb#InvalidNumberPredicates": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "Too many predicates exist in the query expression."
+      }
+    },
+    "com.amazonaws.simpledb#InvalidNumberValueTests": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "Too many predicates exist in the query expression."
+      }
+    },
+    "com.amazonaws.simpledb#InvalidQueryExpression": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "The specified query expression syntax is not valid."
+      }
+    },
+    "com.amazonaws.simpledb#TooManyRequestedAttributes": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "smithy.api#documentation": "Too many attributes in this request."
+      }
+    },
+    "com.amazonaws.simpledb#RequestTimeout": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 408,
+        "smithy.api#documentation": "A timeout occurred when attempting to query the specified domain with the specified query expression."
+      }
+    },
+    "com.amazonaws.simpledb#NumberDomainAttributesExceeded": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "Too many attributes in this domain."
+      }
+    },
+    "com.amazonaws.simpledb#NumberDomainBytesExceeded": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "Too many bytes in this domain."
+      }
+    },
+    "com.amazonaws.simpledb#NumberItemAttributesExceeded": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "Too many attributes in this item."
+      }
+    },
+    "com.amazonaws.simpledb#NumberSubmittedAttributesExceeded": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "Too many attributes exist in a single call."
+      }
+    },
+    "com.amazonaws.simpledb#NumberSubmittedItemsExceeded": {
+      "type": "structure",
+      "members": {
+        "message": { "target": "smithy.api#String" },
+        "BoxUsage": { "target": "smithy.api#String" }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#documentation": "Too many items exist in a single call."
+      }
+    },
+
+    "com.amazonaws.simpledb#CreateDomain": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#CreateDomainRequest" },
+      "output": { "target": "com.amazonaws.simpledb#CreateDomainResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" },
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NumberDomainsExceeded" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Creates a new SimpleDB domain. Idempotent — creating an existing domain succeeds without error.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#DeleteDomain": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#DeleteDomainRequest" },
+      "output": { "target": "com.amazonaws.simpledb#DeleteDomainResponse" },
+      "errors": [{ "target": "com.amazonaws.simpledb#MissingParameter" }],
+      "traits": {
+        "smithy.api#documentation": "Deletes a SimpleDB domain and all of its items. Idempotent — deleting a missing domain succeeds without error.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#DomainMetadata": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#DomainMetadataRequest" },
+      "output": { "target": "com.amazonaws.simpledb#DomainMetadataResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NoSuchDomain" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Returns information about a SimpleDB domain (item count, sizes, timestamp).",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#ListDomains": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#ListDomainsRequest" },
+      "output": { "target": "com.amazonaws.simpledb#ListDomainsResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#InvalidNextToken" },
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Lists all SimpleDB domains in the account/region. Paginated.",
+        "smithy.api#http": { "method": "POST", "uri": "/" },
+        "smithy.api#paginated": {
+          "inputToken": "NextToken",
+          "outputToken": "NextToken",
+          "items": "DomainNames",
+          "pageSize": "MaxNumberOfDomains"
+        }
+      }
+    },
+    "com.amazonaws.simpledb#GetAttributes": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#GetAttributesRequest" },
+      "output": { "target": "com.amazonaws.simpledb#GetAttributesResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" },
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NoSuchDomain" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Returns all (or the requested subset of) attributes of a SimpleDB item. Reads are eventually consistent unless <code>ConsistentRead</code> is set.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#PutAttributes": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#PutAttributesRequest" },
+      "output": { "target": "com.amazonaws.simpledb#PutAttributesResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#AttributeDoesNotExist" },
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" },
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NoSuchDomain" },
+        { "target": "com.amazonaws.simpledb#NumberDomainAttributesExceeded" },
+        { "target": "com.amazonaws.simpledb#NumberDomainBytesExceeded" },
+        { "target": "com.amazonaws.simpledb#NumberItemAttributesExceeded" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Creates or replaces attributes of a SimpleDB item. With <code>Replace: true</code> an attribute's existing values are overwritten; otherwise values accumulate.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#DeleteAttributes": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#DeleteAttributesRequest" },
+      "output": { "target": "com.amazonaws.simpledb#DeleteAttributesResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#AttributeDoesNotExist" },
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" },
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NoSuchDomain" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Deletes one or more attributes of a SimpleDB item — or the whole item when no attributes are named. Idempotent: deleting a missing attribute/item succeeds.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#BatchPutAttributes": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#BatchPutAttributesRequest" },
+      "output": {
+        "target": "com.amazonaws.simpledb#BatchPutAttributesResponse"
+      },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#DuplicateItemName" },
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" },
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NoSuchDomain" },
+        { "target": "com.amazonaws.simpledb#NumberDomainAttributesExceeded" },
+        { "target": "com.amazonaws.simpledb#NumberDomainBytesExceeded" },
+        { "target": "com.amazonaws.simpledb#NumberItemAttributesExceeded" },
+        {
+          "target": "com.amazonaws.simpledb#NumberSubmittedAttributesExceeded"
+        },
+        { "target": "com.amazonaws.simpledb#NumberSubmittedItemsExceeded" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Puts attributes on up to 25 items in a single call.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#BatchDeleteAttributes": {
+      "type": "operation",
+      "input": {
+        "target": "com.amazonaws.simpledb#BatchDeleteAttributesRequest"
+      },
+      "output": {
+        "target": "com.amazonaws.simpledb#BatchDeleteAttributesResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deletes attributes (or whole items) on up to 25 items in a single call. Idempotent — missing items/attributes are not an error.",
+        "smithy.api#http": { "method": "POST", "uri": "/" }
+      }
+    },
+    "com.amazonaws.simpledb#Select": {
+      "type": "operation",
+      "input": { "target": "com.amazonaws.simpledb#SelectRequest" },
+      "output": { "target": "com.amazonaws.simpledb#SelectResponse" },
+      "errors": [
+        { "target": "com.amazonaws.simpledb#InvalidNextToken" },
+        { "target": "com.amazonaws.simpledb#InvalidNumberPredicates" },
+        { "target": "com.amazonaws.simpledb#InvalidNumberValueTests" },
+        { "target": "com.amazonaws.simpledb#InvalidParameterValue" },
+        { "target": "com.amazonaws.simpledb#InvalidQueryExpression" },
+        { "target": "com.amazonaws.simpledb#MissingParameter" },
+        { "target": "com.amazonaws.simpledb#NoSuchDomain" },
+        { "target": "com.amazonaws.simpledb#RequestTimeout" },
+        { "target": "com.amazonaws.simpledb#TooManyRequestedAttributes" }
+      ],
+      "traits": {
+        "smithy.api#documentation": "Runs a SimpleDB select expression (<code>select output_list from domain [where ...]</code>). Paginated via <code>NextToken</code>.",
+        "smithy.api#http": { "method": "POST", "uri": "/" },
+        "smithy.api#paginated": {
+          "inputToken": "NextToken",
+          "outputToken": "NextToken",
+          "items": "Items"
+        }
+      }
+    }
+  }
+}

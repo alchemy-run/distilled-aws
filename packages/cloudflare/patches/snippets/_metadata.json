@@ -1,0 +1,28 @@
+{
+  "description": "Key dictionary / op aliases for snippets (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdOn": "created_on",
+        "mainModule": "main_module",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "snippetName": "snippet_name",
+        "totalCount": "total_count"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "listRules",
+          "target": "getRule"
+        }
+      ]
+    }
+  ]
+}

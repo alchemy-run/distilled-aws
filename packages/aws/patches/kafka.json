@@ -1,0 +1,10 @@
+{
+  "operations": {
+    "getBootstrapBrokers": {
+      "errors": ["NotFoundException"]
+    },
+    "listTopics": {
+      "errors": ["NotFoundException"]
+    }
+  }
+}

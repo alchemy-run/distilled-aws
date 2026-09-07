@@ -1,0 +1,2647 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroup": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name is the name of the group.",
+            "smithy.api#required": {}
+          }
+        },
+        "preferredVersion": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery",
+          "traits": {
+            "smithy.api#documentation": "preferredVersion is the version preferred by the API server, which probably is the storage version."
+          }
+        },
+        "serverAddressByClientCIDRs": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroupServerAddressByClientCIDRsList",
+          "traits": {
+            "smithy.api#documentation": "a map of client CIDR to server address that is serving this group. This is to help clients reach servers in the most network-efficient way possible. Clients can use the appropriate server address as per the CIDR that they match. In case of multiple matches, clients should use the longest matching CIDR. The server returns only those CIDRs that it thinks that the client can match. For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP. Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP."
+          }
+        },
+        "versions": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroupVersionsList",
+          "traits": {
+            "smithy.api#documentation": "versions are the versions supported in this group.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "APIGroup contains the name, the supported versions, and the preferred version of a group."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery": {
+      "type": "structure",
+      "members": {
+        "groupVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "groupVersion specifies the API group and version in the form \"group/version\"",
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "version specifies the version in the form of \"version\". This is to save the clients the trouble of splitting the GroupVersion.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GroupVersion contains the \"group/version\" and \"version\" string of a version. It is made a struct to keep extensibility."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ServerAddressByClientCIDR": {
+      "type": "structure",
+      "members": {
+        "clientCIDR": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CIDR with which clients can match their IP to figure out the server address that they should use.",
+            "smithy.api#required": {}
+          }
+        },
+        "serverAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Address of this server, suitable for a client that matches the above CIDR. This can be a hostname, hostname:port, IP or IP:port.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroupServerAddressByClientCIDRsList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ServerAddressByClientCIDR"
+      },
+      "traits": {
+        "smithy.api#documentation": "a map of client CIDR to server address that is serving this group. This is to help clients reach servers in the most network-efficient way possible. Clients can use the appropriate server address as per the CIDR that they match. In case of multiple matches, clients should use the longest matching CIDR. The server returns only those CIDRs that it thinks that the client can match. For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP. Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroupVersionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery"
+      },
+      "traits": {
+        "smithy.api#documentation": "versions are the versions supported in this group."
+      }
+    },
+    "com.kubernetes.policy#GetPolicyAPIGroup": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/",
+          "code": 200
+        },
+        "smithy.api#documentation": "get information of a group"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceList": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "groupVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "groupVersion is the group and version this APIResourceList is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "resources": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceListResourcesList",
+          "traits": {
+            "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResource": {
+      "type": "structure",
+      "members": {
+        "categories": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceCategoriesList",
+          "traits": {
+            "smithy.api#documentation": "categories is a list of the grouped resources this resource belongs to (e.g. 'all')"
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "group is the preferred group of the resource.  Empty implies the group of the containing resource list. For subresources, this may have a different value, for example: Scale\"."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo')",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name is the plural name of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "namespaced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "namespaced indicates if a resource is namespaced or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "shortNames": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceShortNamesList",
+          "traits": {
+            "smithy.api#documentation": "shortNames is a list of suggested short names of the resource."
+          }
+        },
+        "singularName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface.",
+            "smithy.api#required": {}
+          }
+        },
+        "storageVersionHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hash value of the storage version, the version this resource is converted to when written to the data store. Value must be treated as opaque by clients. Only equality comparison on the value is valid. This is an alpha feature and may change or be removed in the future. The field is populated by the apiserver only if the StorageVersionHash feature gate is enabled. This field will remain optional even if it graduates."
+          }
+        },
+        "verbs": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceVerbsList",
+          "traits": {
+            "smithy.api#documentation": "verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy)",
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "APIResource specifies the name of a resource and whether it is namespaced."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "categories is a list of the grouped resources this resource belongs to (e.g. 'all')"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceShortNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "shortNames is a list of suggested short names of the resource."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceVerbsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy)"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceListResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
+      }
+    },
+    "com.kubernetes.policy#GetPolicyV1APIResources": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/",
+          "code": 200
+        },
+        "smithy.api#documentation": "get available resources"
+      }
+    },
+    "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "allowWatchBookmarks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "allowWatchBookmarks",
+            "smithy.api#documentation": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored."
+          }
+        },
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continue",
+            "smithy.api#documentation": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications."
+          }
+        },
+        "fieldSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their fields. Defaults to everything."
+          }
+        },
+        "labelSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labelSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their labels. Defaults to everything."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersion",
+            "smithy.api#documentation": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "resourceVersionMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersionMatch",
+            "smithy.api#documentation": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "sendInitialEvents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "sendInitialEvents",
+            "smithy.api#documentation": "`sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.\n\nWhen `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan\n  is interpreted as \"data at least as new as the provided `resourceVersion`\"\n  and the bookmark event is send when the state is synced\n  to a `resourceVersion` at least as fresh as the one provided by the ListOptions.\n  If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the\n  bookmark event is send when the state is synced at least to the moment\n  when request started being processed.\n- `resourceVersionMatch` set to any other value or unset\n  Invalid error is returned.\n\nDefaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise."
+          }
+        },
+        "shardSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "shardSelector",
+            "smithy.api#documentation": "shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges:\n\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000')\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n\nField paths use CEL-style object-rooted syntax (e.g. \"object.metadata.uid\"), NOT the fieldSelector format (\"metadata.uid\"). Currently supported paths:\n  - object.metadata.uid\n  - object.metadata.namespace\n\nhexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64.\n\nExamples:\n  2-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n  4-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')\n    shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')\n    shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        },
+        "timeoutSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "timeoutSeconds",
+            "smithy.api#documentation": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity."
+          }
+        },
+        "watch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "watch",
+            "smithy.api#documentation": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetList": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "items": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetListItemsList",
+          "traits": {
+            "smithy.api#documentation": "Items is a list of PodDisruptionBudgets",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "metadata": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ListMeta",
+          "traits": {
+            "smithy.api#documentation": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PodDisruptionBudgetList is a collection of PodDisruptionBudgets."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "metadata": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMeta",
+          "traits": {
+            "smithy.api#documentation": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        },
+        "spec": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetSpec",
+          "traits": {
+            "smithy.api#documentation": "Specification of the desired behavior of the PodDisruptionBudget."
+          }
+        },
+        "status": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatus",
+          "traits": {
+            "smithy.api#documentation": "Most recently observed status of the PodDisruptionBudget."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMeta": {
+      "type": "structure",
+      "members": {
+        "annotations": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaAnnotationsMap",
+          "traits": {
+            "smithy.api#documentation": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations"
+          }
+        },
+        "creationTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.\n\nPopulated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        },
+        "deletionGracePeriodSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only."
+          }
+        },
+        "deletionTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.\n\nPopulated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        },
+        "finalizers": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaFinalizersList",
+          "traits": {
+            "smithy.api#documentation": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list."
+          }
+        },
+        "generateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.\n\nIf this field is specified and the generated name exists, the server will return a 409.\n\nApplied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency"
+          }
+        },
+        "generation": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "A sequence number representing a specific generation of the desired state. Populated by the system. Read-only."
+          }
+        },
+        "labels": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels"
+          }
+        },
+        "managedFields": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaManagedFieldsList",
+          "traits": {
+            "smithy.api#documentation": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names"
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the \"default\" namespace, but \"default\" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.\n\nMust be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces"
+          }
+        },
+        "ownerReferences": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaOwnerReferencesList",
+          "traits": {
+            "smithy.api#documentation": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.\n\nPopulated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency"
+          }
+        },
+        "selfLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.\n\nPopulated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaAnnotationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaFinalizersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted."
+          }
+        },
+        "fieldsType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: \"FieldsV1\""
+          }
+        },
+        "fieldsV1": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type."
+          }
+        },
+        "manager": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Manager is an identifier of the workflow managing these fields."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'."
+          }
+        },
+        "subresource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaManagedFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry"
+      },
+      "traits": {
+        "smithy.api#documentation": "ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1OwnerReference": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API version of the referent.",
+            "smithy.api#required": {}
+          }
+        },
+        "blockOwnerDeletion": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, AND if the owner has the \"foregroundDeletion\" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs \"delete\" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned."
+          }
+        },
+        "controller": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, this reference points to the managing controller."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names",
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMetaOwnerReferencesList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1OwnerReference"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetSpec": {
+      "type": "structure",
+      "members": {
+        "maxUnavailable": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An eviction is allowed if at most \"maxUnavailable\" pods selected by \"selector\" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with \"minAvailable\"."
+          }
+        },
+        "minAvailable": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An eviction is allowed if at least \"minAvailable\" pods selected by \"selector\" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying \"100%\"."
+          }
+        },
+        "selector": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelector",
+          "traits": {
+            "smithy.api#documentation": "Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace."
+          }
+        },
+        "unhealthyPodEvictionPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type=\"Ready\",status=\"True\".\n\nValid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.\n\nIfHealthyBudget policy means that running pods (status.phase=\"Running\"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.\n\nAlwaysAllow policy means that all running pods (status.phase=\"Running\"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.\n\nAdditional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PodDisruptionBudgetSpec is a description of a PodDisruptionBudget."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelector": {
+      "type": "structure",
+      "members": {
+        "matchExpressions": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorMatchExpressionsList",
+          "traits": {
+            "smithy.api#documentation": "matchExpressions is a list of label selector requirements. The requirements are ANDed."
+          }
+        },
+        "matchLabels": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorMatchLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorRequirement": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "key is the label key that the selector applies to.",
+            "smithy.api#required": {}
+          }
+        },
+        "operator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+            "smithy.api#required": {}
+          }
+        },
+        "values": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorRequirementValuesList",
+          "traits": {
+            "smithy.api#documentation": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorRequirementValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorMatchExpressionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorRequirement"
+      },
+      "traits": {
+        "smithy.api#documentation": "matchExpressions is a list of label selector requirements. The requirements are ANDed."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1LabelSelectorMatchLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatus": {
+      "type": "structure",
+      "members": {
+        "conditions": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatusConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Conditions contain conditions for PDB. The disruption controller sets the DisruptionAllowed condition. The following are known values for the reason field (additional reasons could be added in the future): - SyncFailed: The controller encountered an error and wasn't able to compute\n              the number of allowed disruptions. Therefore no disruptions are\n              allowed and the status of the condition will be False.\n- InsufficientPods: The number of pods are either at or below the number\n                    required by the PodDisruptionBudget. No disruptions are\n                    allowed and the status of the condition will be False.\n- SufficientPods: There are more pods than required by the PodDisruptionBudget.\n                  The condition will be True, and the number of allowed\n                  disruptions are provided by the disruptionsAllowed property."
+          }
+        },
+        "currentHealthy": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "current number of healthy pods"
+          }
+        },
+        "desiredHealthy": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum desired number of healthy pods"
+          }
+        },
+        "disruptedPods": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatusDisruptedPodsMap",
+          "traits": {
+            "smithy.api#documentation": "DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions."
+          }
+        },
+        "disruptionsAllowed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pod disruptions that are currently allowed."
+          }
+        },
+        "expectedPods": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "total number of pods counted by this disruption budget"
+          }
+        },
+        "observedGeneration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Condition": {
+      "type": "structure",
+      "members": {
+        "lastTransitionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string.",
+            "smithy.api#required": {}
+          }
+        },
+        "observedGeneration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "status of the condition, one of True, False, Unknown.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "type of condition in CamelCase or in foo.example.com/CamelCase.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Condition contains details for one aspect of the current state of this API Resource."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatusConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Condition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions contain conditions for PDB. The disruption controller sets the DisruptionAllowed condition. The following are known values for the reason field (additional reasons could be added in the future): - SyncFailed: The controller encountered an error and wasn't able to compute\n              the number of allowed disruptions. Therefore no disruptions are\n              allowed and the status of the condition will be False.\n- InsufficientPods: The number of pods are either at or below the number\n                    required by the PodDisruptionBudget. No disruptions are\n                    allowed and the status of the condition will be False.\n- SufficientPods: There are more pods than required by the PodDisruptionBudget.\n                  The condition will be True, and the number of allowed\n                  disruptions are provided by the disruptionsAllowed property."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatusDisruptedPodsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetListItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "traits": {
+        "smithy.api#documentation": "Items is a list of PodDisruptionBudgets"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ListMeta": {
+      "type": "structure",
+      "members": {
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message."
+          }
+        },
+        "remainingItemCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency"
+          }
+        },
+        "selfLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: selfLink is a legacy read-only field that is no longer populated by the system."
+          }
+        },
+        "shardInfo": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ShardInfo",
+          "traits": {
+            "smithy.api#documentation": "shardInfo is set when the list is a filtered subset of the full collection, as selected by a shard selector on the request. It echoes back the selector so clients can verify which shard they received and merge sharded responses. Clients should not cache sharded list responses as a full representation of the collection.\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ShardInfo": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "selector is the shard selector string from the request, echoed back so clients can verify which shard they received and merge responses from multiple shards.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ShardInfo describes the shard selector that was applied to produce a list response. Its presence on a list response indicates the list is a filtered subset."
+      }
+    },
+    "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "list or watch objects of kind PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "fieldManager": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldManager",
+            "smithy.api#documentation": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint."
+          }
+        },
+        "fieldValidation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldValidation",
+            "smithy.api#documentation": "fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "metadata": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMeta",
+          "traits": {
+            "smithy.api#documentation": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        },
+        "spec": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetSpec",
+          "traits": {
+            "smithy.api#documentation": "Specification of the desired behavior of the PodDisruptionBudget."
+          }
+        },
+        "status": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatus",
+          "traits": {
+            "smithy.api#documentation": "Most recently observed status of the PodDisruptionBudget."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#Conflict"
+        },
+        {
+          "target": "com.kubernetes.policy#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "create a PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudgetRequestDryRunList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Preconditions": {
+      "type": "structure",
+      "members": {
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the target ResourceVersion"
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the target UID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out."
+      }
+    },
+    "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continue",
+            "smithy.api#documentation": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "fieldSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their fields. Defaults to everything."
+          }
+        },
+        "gracePeriodSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "gracePeriodSeconds",
+            "smithy.api#documentation": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately."
+          }
+        },
+        "ignoreStoreReadErrorWithClusterBreakingPotential": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "ignoreStoreReadErrorWithClusterBreakingPotential",
+            "smithy.api#documentation": "if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it"
+          }
+        },
+        "labelSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labelSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their labels. Defaults to everything."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned."
+          }
+        },
+        "orphanDependents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "orphanDependents",
+            "smithy.api#documentation": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both."
+          }
+        },
+        "propagationPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "propagationPolicy",
+            "smithy.api#documentation": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersion",
+            "smithy.api#documentation": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "resourceVersionMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersionMatch",
+            "smithy.api#documentation": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "sendInitialEvents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "sendInitialEvents",
+            "smithy.api#documentation": "`sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.\n\nWhen `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan\n  is interpreted as \"data at least as new as the provided `resourceVersion`\"\n  and the bookmark event is send when the state is synced\n  to a `resourceVersion` at least as fresh as the one provided by the ListOptions.\n  If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the\n  bookmark event is send when the state is synced at least to the moment\n  when request started being processed.\n- `resourceVersionMatch` set to any other value or unset\n  Invalid error is returned.\n\nDefaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise."
+          }
+        },
+        "shardSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "shardSelector",
+            "smithy.api#documentation": "shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges:\n\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000')\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n\nField paths use CEL-style object-rooted syntax (e.g. \"object.metadata.uid\"), NOT the fieldSelector format (\"metadata.uid\"). Currently supported paths:\n  - object.metadata.uid\n  - object.metadata.namespace\n\nhexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64.\n\nExamples:\n  2-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n  4-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')\n    shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')\n    shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        },
+        "timeoutSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "timeoutSeconds",
+            "smithy.api#documentation": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "preconditions": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Preconditions",
+          "traits": {
+            "smithy.api#documentation": "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Status": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Suggested HTTP return code for this status, 0 if not set."
+          }
+        },
+        "details": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1StatusDetails",
+          "traits": {
+            "smithy.api#documentation": "Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the status of this operation."
+          }
+        },
+        "metadata": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ListMeta",
+          "traits": {
+            "smithy.api#documentation": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status is a return value for calls that don't return other objects."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1StatusDetails": {
+      "type": "structure",
+      "members": {
+        "causes": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1StatusDetailsCausesList",
+          "traits": {
+            "smithy.api#documentation": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group attribute of the resource associated with the status StatusReason."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described)."
+          }
+        },
+        "retryAfterSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1StatusCause": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.\n\nExamples:\n  \"name\" - the field \"name\" on the current resource\n  \"items[0].name\" - the field \"name\" on the first array entry in \"items\""
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description of the cause of the error.  This field may be presented as-is to a reader."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A machine-readable description of the cause of the error. If this value is empty there is no information available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered."
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1StatusDetailsCausesList": {
+      "type": "list",
+      "member": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1StatusCause"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes."
+      }
+    },
+    "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Status"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "delete collection of PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "read the specified PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "fieldManager": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldManager",
+            "smithy.api#documentation": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint."
+          }
+        },
+        "fieldValidation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldValidation",
+            "smithy.api#documentation": "fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "metadata": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMeta",
+          "traits": {
+            "smithy.api#documentation": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        },
+        "spec": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetSpec",
+          "traits": {
+            "smithy.api#documentation": "Specification of the desired behavior of the PodDisruptionBudget."
+          }
+        },
+        "status": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatus",
+          "traits": {
+            "smithy.api#documentation": "Most recently observed status of the PodDisruptionBudget."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        },
+        {
+          "target": "com.kubernetes.policy#Conflict"
+        },
+        {
+          "target": "com.kubernetes.policy#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "replace the specified PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "fieldManager": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldManager",
+            "smithy.api#documentation": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch)."
+          }
+        },
+        "fieldValidation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldValidation",
+            "smithy.api#documentation": "fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered."
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "force",
+            "smithy.api#documentation": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        },
+        {
+          "target": "com.kubernetes.policy#Conflict"
+        },
+        {
+          "target": "com.kubernetes.policy#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "partially update the specified PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudgetRequestDryRunList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+      }
+    },
+    "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "gracePeriodSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "gracePeriodSeconds",
+            "smithy.api#documentation": "The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately."
+          }
+        },
+        "ignoreStoreReadErrorWithClusterBreakingPotential": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "ignoreStoreReadErrorWithClusterBreakingPotential",
+            "smithy.api#documentation": "if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it"
+          }
+        },
+        "orphanDependents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "orphanDependents",
+            "smithy.api#documentation": "Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both."
+          }
+        },
+        "propagationPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "propagationPolicy",
+            "smithy.api#documentation": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "preconditions": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Preconditions",
+          "traits": {
+            "smithy.api#documentation": "Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1Status"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        },
+        {
+          "target": "com.kubernetes.policy#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "delete a PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatusRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatusRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "read status of the specified PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatusRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "fieldManager": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldManager",
+            "smithy.api#documentation": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint."
+          }
+        },
+        "fieldValidation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldValidation",
+            "smithy.api#documentation": "fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          }
+        },
+        "metadata": {
+          "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1ObjectMeta",
+          "traits": {
+            "smithy.api#documentation": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          }
+        },
+        "spec": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetSpec",
+          "traits": {
+            "smithy.api#documentation": "Specification of the desired behavior of the PodDisruptionBudget."
+          }
+        },
+        "status": {
+          "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetStatus",
+          "traits": {
+            "smithy.api#documentation": "Most recently observed status of the PodDisruptionBudget."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatusRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        },
+        {
+          "target": "com.kubernetes.policy#Conflict"
+        },
+        {
+          "target": "com.kubernetes.policy#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "replace status of the specified PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatusRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "dryRun": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dryRun",
+            "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
+          }
+        },
+        "fieldManager": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldManager",
+            "smithy.api#documentation": "fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch)."
+          }
+        },
+        "fieldValidation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldValidation",
+            "smithy.api#documentation": "fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered."
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "force",
+            "smithy.api#documentation": "Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatusRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudget"
+      },
+      "errors": [
+        {
+          "target": "com.kubernetes.policy#NotFound"
+        },
+        {
+          "target": "com.kubernetes.policy#Conflict"
+        },
+        {
+          "target": "com.kubernetes.policy#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "partially update status of the specified PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "allowWatchBookmarks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "allowWatchBookmarks",
+            "smithy.api#documentation": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored."
+          }
+        },
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continue",
+            "smithy.api#documentation": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications."
+          }
+        },
+        "fieldSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their fields. Defaults to everything."
+          }
+        },
+        "labelSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labelSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their labels. Defaults to everything."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned."
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersion",
+            "smithy.api#documentation": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "resourceVersionMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersionMatch",
+            "smithy.api#documentation": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "sendInitialEvents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "sendInitialEvents",
+            "smithy.api#documentation": "`sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.\n\nWhen `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan\n  is interpreted as \"data at least as new as the provided `resourceVersion`\"\n  and the bookmark event is send when the state is synced\n  to a `resourceVersion` at least as fresh as the one provided by the ListOptions.\n  If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the\n  bookmark event is send when the state is synced at least to the moment\n  when request started being processed.\n- `resourceVersionMatch` set to any other value or unset\n  Invalid error is returned.\n\nDefaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise."
+          }
+        },
+        "shardSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "shardSelector",
+            "smithy.api#documentation": "shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges:\n\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000')\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n\nField paths use CEL-style object-rooted syntax (e.g. \"object.metadata.uid\"), NOT the fieldSelector format (\"metadata.uid\"). Currently supported paths:\n  - object.metadata.uid\n  - object.metadata.namespace\n\nhexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64.\n\nExamples:\n  2-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n  4-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')\n    shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')\n    shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        },
+        "timeoutSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "timeoutSeconds",
+            "smithy.api#documentation": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity."
+          }
+        },
+        "watch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "watch",
+            "smithy.api#documentation": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespacesRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApiPolicyV1PodDisruptionBudgetList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/poddisruptionbudgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "list or watch objects of kind PodDisruptionBudget"
+      }
+    },
+    "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetListRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "allowWatchBookmarks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "allowWatchBookmarks",
+            "smithy.api#documentation": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored."
+          }
+        },
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continue",
+            "smithy.api#documentation": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications."
+          }
+        },
+        "fieldSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their fields. Defaults to everything."
+          }
+        },
+        "labelSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labelSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their labels. Defaults to everything."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned."
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersion",
+            "smithy.api#documentation": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "resourceVersionMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersionMatch",
+            "smithy.api#documentation": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "sendInitialEvents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "sendInitialEvents",
+            "smithy.api#documentation": "`sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.\n\nWhen `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan\n  is interpreted as \"data at least as new as the provided `resourceVersion`\"\n  and the bookmark event is send when the state is synced\n  to a `resourceVersion` at least as fresh as the one provided by the ListOptions.\n  If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the\n  bookmark event is send when the state is synced at least to the moment\n  when request started being processed.\n- `resourceVersionMatch` set to any other value or unset\n  Invalid error is returned.\n\nDefaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise."
+          }
+        },
+        "shardSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "shardSelector",
+            "smithy.api#documentation": "shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges:\n\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000')\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n\nField paths use CEL-style object-rooted syntax (e.g. \"object.metadata.uid\"), NOT the fieldSelector format (\"metadata.uid\"). Currently supported paths:\n  - object.metadata.uid\n  - object.metadata.namespace\n\nhexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64.\n\nExamples:\n  2-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n  4-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')\n    shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')\n    shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        },
+        "timeoutSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "timeoutSeconds",
+            "smithy.api#documentation": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity."
+          }
+        },
+        "watch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "watch",
+            "smithy.api#documentation": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1WatchEvent": {
+      "type": "structure",
+      "members": {
+        "object": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Object is:\n * If Type is Added or Modified: the new state of the object.\n * If Type is Deleted: the state of the object immediately before deletion.\n * If Type is Error: *Status is recommended; other types may make sense\n   depending on context.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Event represents a single event to a watched resource."
+      }
+    },
+    "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetList": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetListRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1WatchEvent"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead."
+      }
+    },
+    "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "object name and auth scope, such as for teams and projects"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the PodDisruptionBudget"
+          }
+        },
+        "allowWatchBookmarks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "allowWatchBookmarks",
+            "smithy.api#documentation": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored."
+          }
+        },
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continue",
+            "smithy.api#documentation": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications."
+          }
+        },
+        "fieldSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their fields. Defaults to everything."
+          }
+        },
+        "labelSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labelSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their labels. Defaults to everything."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned."
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersion",
+            "smithy.api#documentation": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "resourceVersionMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersionMatch",
+            "smithy.api#documentation": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "sendInitialEvents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "sendInitialEvents",
+            "smithy.api#documentation": "`sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.\n\nWhen `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan\n  is interpreted as \"data at least as new as the provided `resourceVersion`\"\n  and the bookmark event is send when the state is synced\n  to a `resourceVersion` at least as fresh as the one provided by the ListOptions.\n  If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the\n  bookmark event is send when the state is synced at least to the moment\n  when request started being processed.\n- `resourceVersionMatch` set to any other value or unset\n  Invalid error is returned.\n\nDefaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise."
+          }
+        },
+        "shardSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "shardSelector",
+            "smithy.api#documentation": "shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges:\n\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000')\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n\nField paths use CEL-style object-rooted syntax (e.g. \"object.metadata.uid\"), NOT the fieldSelector format (\"metadata.uid\"). Currently supported paths:\n  - object.metadata.uid\n  - object.metadata.namespace\n\nhexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64.\n\nExamples:\n  2-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n  4-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')\n    shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')\n    shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        },
+        "timeoutSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "timeoutSeconds",
+            "smithy.api#documentation": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity."
+          }
+        },
+        "watch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "watch",
+            "smithy.api#documentation": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1WatchEvent"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "watch changes to an object of kind PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
+      }
+    },
+    "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "allowWatchBookmarks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "allowWatchBookmarks",
+            "smithy.api#documentation": "allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored."
+          }
+        },
+        "continue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continue",
+            "smithy.api#documentation": "The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".\n\nThis field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications."
+          }
+        },
+        "fieldSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fieldSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their fields. Defaults to everything."
+          }
+        },
+        "labelSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labelSelector",
+            "smithy.api#documentation": "A selector to restrict the list of returned objects by their labels. Defaults to everything."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.\n\nThe server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned."
+          }
+        },
+        "pretty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pretty",
+            "smithy.api#documentation": "If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget)."
+          }
+        },
+        "resourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersion",
+            "smithy.api#documentation": "resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "resourceVersionMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourceVersionMatch",
+            "smithy.api#documentation": "resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.\n\nDefaults to unset"
+          }
+        },
+        "sendInitialEvents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "sendInitialEvents",
+            "smithy.api#documentation": "`sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.\n\nWhen `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan\n  is interpreted as \"data at least as new as the provided `resourceVersion`\"\n  and the bookmark event is send when the state is synced\n  to a `resourceVersion` at least as fresh as the one provided by the ListOptions.\n  If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the\n  bookmark event is send when the state is synced at least to the moment\n  when request started being processed.\n- `resourceVersionMatch` set to any other value or unset\n  Invalid error is returned.\n\nDefaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise."
+          }
+        },
+        "shardSelector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "shardSelector",
+            "smithy.api#documentation": "shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges:\n\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000')\n  shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n\nField paths use CEL-style object-rooted syntax (e.g. \"object.metadata.uid\"), NOT the fieldSelector format (\"metadata.uid\"). Currently supported paths:\n  - object.metadata.uid\n  - object.metadata.namespace\n\nhexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64.\n\nExamples:\n  2-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')\n  4-shard split:\n    shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')\n    shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')\n    shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')\n    shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')\n\nThis is an alpha field and requires enabling the ShardedListAndWatch feature gate."
+          }
+        },
+        "timeoutSeconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "timeoutSeconds",
+            "smithy.api#documentation": "Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity."
+          }
+        },
+        "watch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "watch",
+            "smithy.api#documentation": "Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespacesRequest"
+      },
+      "output": {
+        "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1WatchEvent"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/apis/policy/v1/watch/poddisruptionbudgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead."
+      }
+    },
+    "com.kubernetes.policy#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.kubernetes.policy#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.kubernetes.policy#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.kubernetes.policy#Policy": {
+      "type": "service",
+      "version": "unversioned",
+      "operations": [
+        {
+          "target": "com.kubernetes.policy#GetPolicyAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.policy#GetPolicyV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatus"
+        },
+        {
+          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatus"
+        },
+        {
+          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatus"
+        },
+        {
+          "target": "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetList"
+        },
+        {
+          "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespaces"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Kubernetes"
+      }
+    }
+  }
+}

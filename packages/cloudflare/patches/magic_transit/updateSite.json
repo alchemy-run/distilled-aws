@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_transit#SitesUpdate with distilled cloudflare/magic-transit updateSite",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#SitesUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateSite"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#SitesUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateSiteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateSite/input/target",
+      "value": "com.cloudflare.magic_transit#UpdateSiteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#SitesUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateSiteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateSite/output/target",
+      "value": "com.cloudflare.magic_transit#UpdateSiteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateSite/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#SiteNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#MagicWanUnauthorized"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

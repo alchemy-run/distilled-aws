@@ -1,0 +1,41 @@
+{
+  "description": "Align speed#PagesTestsList with distilled cloudflare/speed listPageTests",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsList",
+      "path": "/shapes/com.cloudflare.speed#ListPageTests"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsListRequest",
+      "path": "/shapes/com.cloudflare.speed#ListPageTestsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#ListPageTests/input/target",
+      "value": "com.cloudflare.speed#ListPageTestsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsListResponse",
+      "path": "/shapes/com.cloudflare.speed#ListPageTestsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#ListPageTests/output/target",
+      "value": "com.cloudflare.speed#ListPageTestsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.speed#ListPageTests/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

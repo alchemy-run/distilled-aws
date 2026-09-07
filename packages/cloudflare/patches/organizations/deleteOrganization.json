@@ -1,0 +1,42 @@
+{
+  "description": "Align organizations#Delete with distilled cloudflare/organizations deleteOrganization",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#Delete",
+      "path": "/shapes/com.cloudflare.organizations#DeleteOrganization"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#DeleteRequest",
+      "path": "/shapes/com.cloudflare.organizations#DeleteOrganizationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#DeleteOrganization/input/target",
+      "value": "com.cloudflare.organizations#DeleteOrganizationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#DeleteResponse",
+      "path": "/shapes/com.cloudflare.organizations#DeleteOrganizationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#DeleteOrganization/output/target",
+      "value": "com.cloudflare.organizations#DeleteOrganizationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.organizations#DeleteOrganization/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.organizations#OrganizationNotFound"
+        },
+        {
+          "target": "com.cloudflare.organizations#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4453 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.copilot#CopilotEnterpriseOneDayUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotUsageMetrics1DayReport": {
+      "type": "structure",
+      "members": {
+        "download_links": {
+          "target": "com.github.copilot#CopilotUsageMetrics1DayReportDownloadLinksList",
+          "traits": {
+            "smithy.api#documentation": "The URLs to download the Copilot usage metrics report for the enterprise/organization for the specified day.",
+            "smithy.api#required": {}
+          }
+        },
+        "report_day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The day of the report in `YYYY-MM-DD` format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Links to download the Copilot usage metrics report for an enterprise/organization for a specific day."
+      }
+    },
+    "com.github.copilot#CopilotUsageMetrics1DayReportDownloadLinksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The URLs to download the Copilot usage metrics report for the enterprise/organization for the specified day."
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseOneDayUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotEnterpriseOneDayUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/copilot/metrics/reports/enterprise-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot enterprise usage metrics for a specific day\n\nUse this endpoint to retrieve download links for the Copilot enterprise usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the enterprise.\n\nThe report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Reports are available starting from October 10, 2025, and historical data can be accessed for up to 1 year from the current date.\n\nEnterprise owners, billing managers, and authorized users with fine-grained \"View Enterprise Copilot Metrics\" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotUsageMetrics28DayReport": {
+      "type": "structure",
+      "members": {
+        "download_links": {
+          "target": "com.github.copilot#CopilotUsageMetrics28DayReportDownloadLinksList",
+          "traits": {
+            "smithy.api#documentation": "The URLs to download the latest Copilot usage metrics report for the enterprise/organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "report_start_day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start date of the report period in `YYYY-MM-DD` format.",
+            "smithy.api#required": {}
+          }
+        },
+        "report_end_day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date of the report period in `YYYY-MM-DD` format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Links to download the latest Copilot usage metrics report for an enterprise/organization."
+      }
+    },
+    "com.github.copilot#CopilotUsageMetrics28DayReportDownloadLinksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The URLs to download the latest Copilot usage metrics report for the enterprise/organization."
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotEnterpriseUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics28DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/copilot/metrics/reports/enterprise-28-day/latest",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot enterprise usage metrics\n\nUse this endpoint to retrieve download links for the latest 28-day enterprise Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the enterprise.\n\nThe report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed.\n\nEnterprise owners, billing managers, and authorized users with fine-grained \"View Enterprise Copilot Metrics\" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseReposOneDayReportRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseReposOneDayReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotEnterpriseReposOneDayReportRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/copilot/metrics/reports/repos-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot enterprise repository report for a specific day\n\nUse this endpoint to retrieve download links for the Copilot enterprise repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the enterprise, with one entry per repository.\n\nThe report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed.\n\nEnterprise owners, billing managers, and authorized users with fine-grained \"View Enterprise Copilot Metrics\" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseUserTeamsOneDayReportRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotEnterpriseUserTeamsOneDayReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotEnterpriseUserTeamsOneDayReportRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/copilot/metrics/reports/user-teams-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot enterprise user-teams report for a specific day\n\nUse this endpoint to retrieve download links for the Copilot enterprise user-teams report for a specific day. The report provides user-team join data for Copilot across the enterprise, with one entry per user-team pair.\n\nThe report contains user-team membership data for the specified day, enabling consumers to join with the existing enterprise user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed.\n\nEnterprise owners, billing managers, and authorized users with fine-grained \"View Enterprise Copilot Metrics\" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CopilotUsersOneDayUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotUsersOneDayUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotUsersOneDayUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/copilot/metrics/reports/users-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot users usage metrics for a specific day\n\nUse this endpoint to retrieve download links for the Copilot user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise.\n\nThe report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement.\n\nReports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed. Reports are available starting from October 10, 2025, and historical data can be accessed for up to 1 year from the current date.\n\nEnterprise owners, billing managers, and authorized users with fine-grained \"View Enterprise Copilot Metrics\" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CopilotUsersUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotUsersUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotUsersUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics28DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/copilot/metrics/reports/users-28-day/latest",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot users usage metrics\n\nUse this endpoint to retrieve download links for the latest 28-day enterprise users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the enterprise.\n\nThe report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement.\n\nReports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed.\n\nEnterprise owners, billing managers, and authorized users with fine-grained \"View Enterprise Copilot Metrics\" permission can retrieve Copilot metrics reports for the enterprise. OAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#SetEnterpriseCodingAgentPolicyRequestPolicyState": {
+      "type": "enum",
+      "members": {
+        "ENABLED_FOR_ALL_ORGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled_for_all_orgs"
+          }
+        },
+        "DISABLED_FOR_ALL_ORGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled_for_all_orgs"
+          }
+        },
+        "ENABLED_FOR_SELECTED_ORGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled_for_selected_orgs"
+          }
+        },
+        "CONFIGURED_BY_ORG_ADMINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configured_by_org_admins"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy state for Copilot cloud agent in the enterprise. Can be one of `enabled_for_all_orgs`, `disabled_for_all_orgs`, `enabled_for_selected_orgs`, or `configured_by_org_admins`."
+      }
+    },
+    "com.github.copilot#SetEnterpriseCodingAgentPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "policy_state": {
+          "target": "com.github.copilot#SetEnterpriseCodingAgentPolicyRequestPolicyState",
+          "traits": {
+            "smithy.api#documentation": "The policy state for Copilot cloud agent in the enterprise. Can be one of `enabled_for_all_orgs`, `disabled_for_all_orgs`, `enabled_for_selected_orgs`, or `configured_by_org_admins`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#SetEnterpriseCodingAgentPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#SetEnterpriseCodingAgentPolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/enterprises/{enterprise}/copilot/policies/coding_agent",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the coding agent policy for an enterprise\n\nSets the policy for Copilot cloud agent usage across an enterprise.\n\nEnterprise owners can configure whether Copilot cloud agent is enabled for all\norganizations, disabled for all organizations, configured by individual organization\nadmins, or enabled for selected organizations only.\n\nOnly enterprise owners can set the coding agent policy for their enterprise.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestOrganizationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of organization logins within the enterprise to enable Copilot cloud agent for."
+      }
+    },
+    "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestCustomPropertiesItemValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The values of the custom property to match."
+      }
+    },
+    "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestCustomPropertiesItem": {
+      "type": "structure",
+      "members": {
+        "property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the custom property to filter by.",
+            "smithy.api#required": {}
+          }
+        },
+        "values": {
+          "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestCustomPropertiesItemValuesList",
+          "traits": {
+            "smithy.api#documentation": "The values of the custom property to match.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestCustomPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestCustomPropertiesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of custom property filters to match organizations. Organizations matching any of the specified property name/value pairs will be included. This is a one-time operation, setting the property on an organization in the future will not automatically update its coding agent policy."
+      }
+    },
+    "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "organizations": {
+          "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestOrganizationsList",
+          "traits": {
+            "smithy.api#documentation": "List of organization logins within the enterprise to enable Copilot cloud agent for."
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequestCustomPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "List of custom property filters to match organizations. Organizations matching any of the specified property name/value pairs will be included. This is a one-time operation, setting the property on an organization in the future will not automatically update its coding agent policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/copilot/policies/coding_agent/organizations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add organizations to the enterprise coding agent policy\n\nEnables Copilot cloud agent for the specified organizations within the enterprise.\n\nThe enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before\nusing this endpoint. Organizations can be specified by login or matched via custom properties.\n\nOnly organizations that have Copilot enabled and belong to the enterprise will be affected.\n\nOnly enterprise owners can add organizations to the coding agent policy.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestOrganizationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of organization logins within the enterprise to disable Copilot cloud agent for."
+      }
+    },
+    "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestCustomPropertiesItemValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The values of the custom property to match."
+      }
+    },
+    "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestCustomPropertiesItem": {
+      "type": "structure",
+      "members": {
+        "property_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the custom property to filter by.",
+            "smithy.api#required": {}
+          }
+        },
+        "values": {
+          "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestCustomPropertiesItemValuesList",
+          "traits": {
+            "smithy.api#documentation": "The values of the custom property to match.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestCustomPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestCustomPropertiesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of custom property filters to match organizations. Organizations matching any of the specified property name/value pairs will be included. This is a one-time operation, setting the property on an organization in the future will not automatically update its coding agent policy."
+      }
+    },
+    "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "organizations": {
+          "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestOrganizationsList",
+          "traits": {
+            "smithy.api#documentation": "List of organization logins within the enterprise to disable Copilot cloud agent for."
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequestCustomPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "List of custom property filters to match organizations. Organizations matching any of the specified property name/value pairs will be included. This is a one-time operation, setting the property on an organization in the future will not automatically update its coding agent policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/enterprises/{enterprise}/copilot/policies/coding_agent/organizations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove organizations from the enterprise coding agent policy\n\nDisables Copilot cloud agent for the specified organizations within the enterprise.\n\nThe enterprise's coding agent policy must be set to `enabled_for_selected_orgs` before\nusing this endpoint. Organizations can be specified by login or matched via custom properties.\n\nOnly organizations that have Copilot enabled and belong to the enterprise will be affected.\n\nOnly enterprise owners can remove organizations from the coding agent policy.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:enterprise` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#GetCopilotOrganizationDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetails": {
+      "type": "structure",
+      "members": {
+        "seat_breakdown": {
+          "target": "com.github.copilot#CopilotOrganizationSeatBreakdown",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_code_suggestions": {
+          "target": "com.github.copilot#CopilotOrganizationDetailsPublicCodeSuggestions",
+          "traits": {
+            "smithy.api#documentation": "The organization policy for allowing or blocking suggestions matching public code (duplication detection filter).",
+            "smithy.api#required": {}
+          }
+        },
+        "ide_chat": {
+          "target": "com.github.copilot#CopilotOrganizationDetailsIdeChat",
+          "traits": {
+            "smithy.api#documentation": "The organization policy for allowing or disallowing Copilot Chat in the IDE."
+          }
+        },
+        "platform_chat": {
+          "target": "com.github.copilot#CopilotOrganizationDetailsPlatformChat",
+          "traits": {
+            "smithy.api#documentation": "The organization policy for allowing or disallowing Copilot features on GitHub.com."
+          }
+        },
+        "cli": {
+          "target": "com.github.copilot#CopilotOrganizationDetailsCli",
+          "traits": {
+            "smithy.api#documentation": "The organization policy for allowing or disallowing Copilot CLI."
+          }
+        },
+        "seat_management_setting": {
+          "target": "com.github.copilot#CopilotOrganizationDetailsSeatManagementSetting",
+          "traits": {
+            "smithy.api#documentation": "The mode of assigning new seats.",
+            "smithy.api#required": {}
+          }
+        },
+        "plan_type": {
+          "target": "com.github.copilot#CopilotOrganizationDetailsPlanType",
+          "traits": {
+            "smithy.api#documentation": "The Copilot plan of the organization, or the parent enterprise, when applicable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the seat breakdown and policies set for an organization with a Copilot Business or Copilot Enterprise subscription."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationSeatBreakdown": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of seats being billed for the organization as of the current billing cycle."
+          }
+        },
+        "added_this_cycle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seats added during the current billing cycle."
+          }
+        },
+        "pending_cancellation": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of seats that are pending cancellation at the end of the current billing cycle."
+          }
+        },
+        "pending_invitation": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of users who have been invited to receive a Copilot seat through this organization."
+          }
+        },
+        "active_this_cycle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of seats that have used Copilot during the current billing cycle."
+          }
+        },
+        "inactive_this_cycle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of seats that have not used Copilot during the current billing cycle."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The breakdown of Copilot Business seats for the organization."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetailsPublicCodeSuggestions": {
+      "type": "enum",
+      "members": {
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "allow"
+          }
+        },
+        "BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "block"
+          }
+        },
+        "UNCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unconfigured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organization policy for allowing or blocking suggestions matching public code (duplication detection filter)."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetailsIdeChat": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "UNCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unconfigured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organization policy for allowing or disallowing Copilot Chat in the IDE."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetailsPlatformChat": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "UNCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unconfigured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organization policy for allowing or disallowing Copilot features on GitHub.com."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetailsCli": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "UNCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unconfigured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The organization policy for allowing or disallowing Copilot CLI."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetailsSeatManagementSetting": {
+      "type": "enum",
+      "members": {
+        "ASSIGN_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "assign_all"
+          }
+        },
+        "ASSIGN_SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "assign_selected"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "UNCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unconfigured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mode of assigning new seats."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationDetailsPlanType": {
+      "type": "enum",
+      "members": {
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "business"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Copilot plan of the organization, or the parent enterprise, when applicable."
+      }
+    },
+    "com.github.copilot#GetCopilotOrganizationDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#GetCopilotOrganizationDetailsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotOrganizationDetails"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/billing",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot seat information and settings for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets information about an organization's Copilot subscription, including seat breakdown\nand feature policies. To configure these settings, go to your organization's settings on GitHub.com.\nFor more information, see \"[Managing policies for Copilot in your organization](https://docs.github.com/copilot/managing-copilot/managing-policies-for-copilot-business-in-your-organization).\"\n\nOnly organization owners can view details about the organization's Copilot Business or Copilot Enterprise subscription.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#ListCopilotSeatsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotSeatDetails": {
+      "type": "structure",
+      "members": {
+        "assignee": {
+          "target": "com.github.copilot#NullableSimpleUser",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "organization": {
+          "target": "com.github.copilot#NullableOrganizationSimple",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "assigning_team": {
+          "target": "com.github.copilot#CopilotSeatDetailsAssigningTeam",
+          "traits": {
+            "smithy.api#documentation": "The team through which the assignee is granted access to GitHub Copilot, if applicable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "pending_cancellation_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pending cancellation date for the seat, in `YYYY-MM-DD` format. This will be null unless the assignee's Copilot access has been canceled during the current billing cycle. If the seat has been cancelled, this corresponds to the start of the organization's next billing cycle.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_activity_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of user's last GitHub Copilot activity, in ISO 8601 format.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_activity_editor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last editor that was used by the user for a GitHub Copilot completion.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_authenticated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the last time the user authenticated with GitHub Copilot, in ISO 8601 format.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of when the assignee was last granted access to GitHub Copilot, in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Closing down notice:** This field is no longer relevant and is closing down. Use the `created_at` field to determine when the assignee was last granted access to GitHub Copilot. Timestamp of when the assignee's GitHub Copilot access was last updated, in ISO 8601 format."
+          }
+        },
+        "plan_type": {
+          "target": "com.github.copilot#CopilotSeatDetailsPlanType",
+          "traits": {
+            "smithy.api#documentation": "The Copilot plan of the organization, or the parent enterprise, when applicable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a Copilot Business seat assignment for a user, team, or organization."
+      }
+    },
+    "com.github.copilot#NullableSimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.copilot#NullableOrganizationSimple": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub organization."
+      }
+    },
+    "com.github.copilot#Team": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String"
+        },
+        "notification_setting": {
+          "target": "smithy.api#String"
+        },
+        "permission": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.copilot#TeamPermissions"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.copilot#TeamType",
+          "traits": {
+            "smithy.api#documentation": "The ownership type of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "access_source": {
+          "target": "com.github.copilot#TeamAccessSource",
+          "traits": {
+            "smithy.api#documentation": "How the team's access to the repository was granted. This property is only\npresent when the team is returned in a repository context, such as\n`GET /repos/{owner}/{repo}/teams`."
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the organization to which this team belongs"
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise to which this team belongs"
+          }
+        },
+        "parent": {
+          "target": "com.github.copilot#NullableTeamSimple",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups of organization members that gives permissions on specified repositories."
+      }
+    },
+    "com.github.copilot#TeamPermissions": {
+      "type": "structure",
+      "members": {
+        "pull": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "push": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#TeamType": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ownership type of the team"
+      }
+    },
+    "com.github.copilot#TeamAccessSource": {
+      "type": "enum",
+      "members": {
+        "DIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "direct"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the team's access to the repository was granted. This property is only\npresent when the team is returned in a repository context, such as\n`GET /repos/{owner}/{repo}/teams`."
+      }
+    },
+    "com.github.copilot#NullableTeamSimple": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the team",
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the team",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permission": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permission that the team will have for its repositories",
+            "smithy.api#required": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The level of privacy this team should have"
+          }
+        },
+        "notification_setting": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The notification setting the team has set"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ldap_dn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinguished Name (DN) that team maps to within LDAP environment"
+          }
+        },
+        "type": {
+          "target": "com.github.copilot#NullableTeamSimpleType",
+          "traits": {
+            "smithy.api#documentation": "The ownership type of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the organization to which this team belongs"
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise to which this team belongs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups of organization members that gives permissions on specified repositories."
+      }
+    },
+    "com.github.copilot#NullableTeamSimpleType": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ownership type of the team"
+      }
+    },
+    "com.github.copilot#EnterpriseTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sync_to_organizations": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retired: this field will not be returned with GHEC enterprise teams."
+          }
+        },
+        "organization_selection_type": {
+          "target": "smithy.api#String"
+        },
+        "group_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "group_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retired: this field will not be returned with GHEC enterprise teams.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notification_setting": {
+          "target": "com.github.copilot#EnterpriseTeamNotificationSetting",
+          "traits": {
+            "smithy.api#documentation": "Whether team members will receive notifications when the team is mentioned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group of enterprise owners and/or members"
+      }
+    },
+    "com.github.copilot#EnterpriseTeamNotificationSetting": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATIONS_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_enabled"
+          }
+        },
+        "NOTIFICATIONS_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether team members will receive notifications when the team is mentioned."
+      }
+    },
+    "com.github.copilot#CopilotSeatDetailsAssigningTeam": {
+      "type": "union",
+      "members": {
+        "Team": {
+          "target": "com.github.copilot#Team"
+        },
+        "EnterpriseTeam": {
+          "target": "com.github.copilot#EnterpriseTeam"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The team through which the assignee is granted access to GitHub Copilot, if applicable."
+      }
+    },
+    "com.github.copilot#CopilotSeatDetailsPlanType": {
+      "type": "enum",
+      "members": {
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "business"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Copilot plan of the organization, or the parent enterprise, when applicable."
+      }
+    },
+    "com.github.copilot#ListCopilotSeatsResponseSeatsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot#CopilotSeatDetails"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#ListCopilotSeatsResponse": {
+      "type": "structure",
+      "members": {
+        "total_seats": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of Copilot seats for the organization currently being billed."
+          }
+        },
+        "seats": {
+          "target": "com.github.copilot#ListCopilotSeatsResponseSeatsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#ListCopilotSeats": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#ListCopilotSeatsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#ListCopilotSeatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/billing/seats",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all Copilot seat assignments for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nLists all Copilot seats for which an organization with a Copilot Business or Copilot Enterprise subscription is currently being billed.\nOnly organization owners can view assigned seats.\n\nEach seat object contains information about the assigned user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`.\nFor more information about activity data, see [Metrics data properties for GitHub Copilot](https://docs.github.com/copilot/reference/metrics-data).\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForTeamsRequestSelectedTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of team names within the organization to which to grant access to GitHub Copilot."
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForTeamsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "selected_teams": {
+          "target": "com.github.copilot#AddCopilotSeatsForTeamsRequestSelectedTeamsList",
+          "traits": {
+            "smithy.api#documentation": "List of team names within the organization to which to grant access to GitHub Copilot.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForTeamsResponse": {
+      "type": "structure",
+      "members": {
+        "seats_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForTeams": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#AddCopilotSeatsForTeamsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#AddCopilotSeatsForTeamsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/copilot/billing/selected_teams",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add teams to the Copilot subscription for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nPurchases a GitHub Copilot seat for all users within each specified team.\nThe organization will be billed for each seat based on the organization's Copilot plan. For more information about Copilot pricing, see \"[About billing for GitHub Copilot in your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-the-copilot-subscription-for-your-organization/about-billing-for-github-copilot-in-your-organization).\"\n\nOnly organization owners can purchase Copilot seats for their organization members. The organization must have a Copilot Business or Copilot Enterprise subscription and a configured suggestion matching policy.\nFor more information about setting up a Copilot subscription, see \"[Subscribing to Copilot for your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-the-copilot-subscription-for-your-organization/subscribing-to-copilot-for-your-organization).\"\nFor more information about setting a suggestion matching policy, see \"[Managing policies for Copilot in your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/setting-policies-for-copilot-in-your-organization/managing-policies-for-copilot-in-your-organization#policies-for-suggestion-matching).\"\n\nThe response contains the total number of new seats that were created and existing seats that were refreshed.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForTeamsRequestSelectedTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The names of teams from which to revoke access to GitHub Copilot."
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForTeamsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "selected_teams": {
+          "target": "com.github.copilot#CancelCopilotSeatAssignmentForTeamsRequestSelectedTeamsList",
+          "traits": {
+            "smithy.api#documentation": "The names of teams from which to revoke access to GitHub Copilot.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForTeamsResponse": {
+      "type": "structure",
+      "members": {
+        "seats_cancelled": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForTeams": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CancelCopilotSeatAssignmentForTeamsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CancelCopilotSeatAssignmentForTeamsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/copilot/billing/selected_teams",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove teams from the Copilot subscription for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nSets seats for all members of each team specified to \"pending cancellation\".\nThis will cause the members of the specified team(s) to lose access to GitHub Copilot at the end of the current billing cycle unless they retain access through another team.\nFor more information about disabling access to Copilot, see \"[Revoking access to Copilot for members of your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-access-to-github-copilot-in-your-organization/revoking-access-to-copilot-for-members-of-your-organization).\"\n\nOnly organization owners can cancel Copilot seats for their organization members.\n\nThe response contains the total number of seats set to \"pending cancellation\".\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForUsersRequestSelectedUsernamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The usernames of the organization members to be granted access to GitHub Copilot."
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForUsersRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "selected_usernames": {
+          "target": "com.github.copilot#AddCopilotSeatsForUsersRequestSelectedUsernamesList",
+          "traits": {
+            "smithy.api#documentation": "The usernames of the organization members to be granted access to GitHub Copilot.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForUsersResponse": {
+      "type": "structure",
+      "members": {
+        "seats_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#AddCopilotSeatsForUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#AddCopilotSeatsForUsersRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#AddCopilotSeatsForUsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/copilot/billing/selected_users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add users to the Copilot subscription for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nPurchases a GitHub Copilot seat for each user specified.\nThe organization will be billed for each seat based on the organization's Copilot plan. For more information about Copilot pricing, see \"[About billing for GitHub Copilot in your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-the-copilot-subscription-for-your-organization/about-billing-for-github-copilot-in-your-organization).\"\n\nOnly organization owners can purchase Copilot seats for their organization members. The organization must have a Copilot Business or Copilot Enterprise subscription and a configured suggestion matching policy.\nFor more information about setting up a Copilot subscription, see \"[Subscribing to Copilot for your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-the-copilot-subscription-for-your-organization/subscribing-to-copilot-for-your-organization).\"\nFor more information about setting a suggestion matching policy, see \"[Managing policies for Copilot in your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/setting-policies-for-copilot-in-your-organization/managing-policies-for-copilot-in-your-organization#policies-for-suggestion-matching).\"\n\nThe response contains the total number of new seats that were created and existing seats that were refreshed.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForUsersRequestSelectedUsernamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The usernames of the organization members for which to revoke access to GitHub Copilot."
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForUsersRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "selected_usernames": {
+          "target": "com.github.copilot#CancelCopilotSeatAssignmentForUsersRequestSelectedUsernamesList",
+          "traits": {
+            "smithy.api#documentation": "The usernames of the organization members for which to revoke access to GitHub Copilot.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForUsersResponse": {
+      "type": "structure",
+      "members": {
+        "seats_cancelled": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#CancelCopilotSeatAssignmentForUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CancelCopilotSeatAssignmentForUsersRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CancelCopilotSeatAssignmentForUsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/copilot/billing/selected_users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove users from the Copilot subscription for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nSets seats for all users specified to \"pending cancellation\".\nThis will cause the specified users to lose access to GitHub Copilot at the end of the current billing cycle unless they retain access through team membership.\nFor more information about disabling access to Copilot, see \"[Revoking access to Copilot for members of your organization](https://docs.github.com/copilot/managing-copilot/managing-github-copilot-in-your-organization/managing-access-to-github-copilot-in-your-organization/revoking-access-to-copilot-for-members-of-your-organization).\"\n\nOnly organization owners can cancel Copilot seats for their organization members.\n\nThe response contains the total number of seats set to \"pending cancellation\".\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `admin:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#GetCopilotCodingAgentPermissionsOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#GetCopilotCodingAgentPermissionsOrganizationResponseEnabledRepositories": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy for which repositories can use Copilot cloud agent. Can be one of `all`, `selected`, or `none`."
+      }
+    },
+    "com.github.copilot#GetCopilotCodingAgentPermissionsOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "enabled_repositories": {
+          "target": "com.github.copilot#GetCopilotCodingAgentPermissionsOrganizationResponseEnabledRepositories",
+          "traits": {
+            "smithy.api#documentation": "The policy for which repositories can use Copilot cloud agent. Can be one of `all`, `selected`, or `none`.",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL for the selected repositories endpoint. Only present when `enabled_repositories` is `selected`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#GetCopilotCodingAgentPermissionsOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#GetCopilotCodingAgentPermissionsOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#GetCopilotCodingAgentPermissionsOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/coding-agent/permissions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot cloud agent permissions for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets information about which repositories in an organization have been enabled\nor disabled for the Copilot cloud agent.\n\nOrganization owners can configure whether Copilot cloud agent is enabled for\nall repositories, selected repositories, or no repositories owned by organization.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot#SetCopilotCodingAgentPermissionsOrganizationRequestEnabledRepositories": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy for which repositories can use Copilot cloud agent. Can be one of `all`, `selected`, or `none`."
+      }
+    },
+    "com.github.copilot#SetCopilotCodingAgentPermissionsOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "enabled_repositories": {
+          "target": "com.github.copilot#SetCopilotCodingAgentPermissionsOrganizationRequestEnabledRepositories",
+          "traits": {
+            "smithy.api#documentation": "The policy for which repositories can use Copilot cloud agent. Can be one of `all`, `selected`, or `none`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#SetCopilotCodingAgentPermissionsOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#SetCopilotCodingAgentPermissionsOrganizationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot/coding-agent/permissions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set Copilot cloud agent permissions for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nSets the policy for which repositories in an organization can use Copilot cloud agent.\n\nOrganization owners can configure whether Copilot cloud agent is enabled for\nall repositories, selected repositories, or no repositories owned by the organization.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#MinimalRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.copilot#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String"
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String"
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String"
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String"
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0."
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String"
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.github.copilot#MinimalRepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.copilot#MinimalRepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.copilot#MinimalRepositoryPermissions"
+        },
+        "role_name": {
+          "target": "smithy.api#String"
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "subscribers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "network_count": {
+          "target": "smithy.api#Integer"
+        },
+        "code_of_conduct": {
+          "target": "com.github.copilot#CodeOfConduct"
+        },
+        "license": {
+          "target": "com.github.copilot#MinimalRepositoryLicense",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer"
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers": {
+          "target": "smithy.api#Integer"
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "security_and_analysis": {
+          "target": "com.github.copilot#SecurityAndAnalysis",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.copilot#MinimalRepositoryCustomPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimal Repository"
+      }
+    },
+    "com.github.copilot#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.copilot#MinimalRepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#MinimalRepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.copilot#MinimalRepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#CodeOfConduct": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Of Conduct"
+      }
+    },
+    "com.github.copilot#MinimalRepositoryLicense": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "spdx_id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysis": {
+      "type": "structure",
+      "members": {
+        "advanced_security": {
+          "target": "com.github.copilot#SecurityAndAnalysisAdvancedSecurity",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+          }
+        },
+        "code_security": {
+          "target": "com.github.copilot#SecurityAndAnalysisCodeSecurity"
+        },
+        "dependabot_security_updates": {
+          "target": "com.github.copilot#SecurityAndAnalysisDependabotSecurityUpdates",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+          }
+        },
+        "secret_scanning": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanning"
+        },
+        "secret_scanning_push_protection": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningPushProtection"
+        },
+        "secret_scanning_non_provider_patterns": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningNonProviderPatterns"
+        },
+        "secret_scanning_ai_detection": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningAiDetection"
+        },
+        "secret_scanning_delegated_alert_dismissal": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal"
+        },
+        "secret_scanning_delegated_bypass": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypass"
+        },
+        "secret_scanning_delegated_bypass_options": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptions"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisAdvancedSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisAdvancedSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisAdvancedSecurityStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+      }
+    },
+    "com.github.copilot#SecurityAndAnalysisCodeSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisCodeSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisCodeSecurityStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisDependabotSecurityUpdatesStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+      }
+    },
+    "com.github.copilot#SecurityAndAnalysisDependabotSecurityUpdates": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisDependabotSecurityUpdatesStatus",
+          "traits": {
+            "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+      }
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanning": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningPushProtectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningPushProtection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningPushProtectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningNonProviderPatterns": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningAiDetectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningAiDetection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningAiDetectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypass": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM"
+          }
+        },
+        "ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the bypass reviewer"
+      }
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS"
+          }
+        },
+        "EXEMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXEMPT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass mode for the reviewer"
+      }
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem": {
+      "type": "structure",
+      "members": {
+        "reviewer_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team or role selected as a bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "reviewer_type": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType",
+          "traits": {
+            "smithy.api#documentation": "The type of the bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode",
+          "traits": {
+            "smithy.api#documentation": "The bypass mode for the reviewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+      }
+    },
+    "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptions": {
+      "type": "structure",
+      "members": {
+        "reviewers": {
+          "target": "com.github.copilot#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList",
+          "traits": {
+            "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#MinimalRepositoryCustomPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+      }
+    },
+    "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganizationResponseRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot#MinimalRepository"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories": {
+          "target": "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganizationResponseRepositoriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/coding-agent/permissions/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repositories enabled for Copilot cloud agent in an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nLists the selected repositories that are enabled for Copilot cloud agent in an organization.\n\nOrganization owners can use this endpoint when the coding agent repository policy\nis set to `selected` to see which repositories have been enabled.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganizationRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of repository IDs to enable for Copilot cloud agent."
+      }
+    },
+    "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganizationRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of repository IDs to enable for Copilot cloud agent.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganizationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#Conflict"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot/coding-agent/permissions/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set selected repositories for Copilot cloud agent in an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nReplaces the list of selected repositories that are enabled for Copilot cloud\nagent in an organization. This method can only be called when the cloud agent\nrepository policy is set to `selected`.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot#EnableCopilotCodingAgentForRepositoryInOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#EnableCopilotCodingAgentForRepositoryInOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#EnableCopilotCodingAgentForRepositoryInOrganizationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#Conflict"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot/coding-agent/permissions/repositories/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable a repository for Copilot cloud agent in an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nAdds a repository to the list of selected repositories enabled for Copilot\ncloud agent in an organization. This method can only be called when the\ncloud agent repository policy is set to `selected`.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot#DisableCopilotCodingAgentForRepositoryInOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#DisableCopilotCodingAgentForRepositoryInOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#DisableCopilotCodingAgentForRepositoryInOrganizationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/copilot/coding-agent/permissions/repositories/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable a repository for Copilot cloud agent in an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nRemoves a repository from the list of selected repositories enabled for Copilot\ncloud agent in an organization. This method can only be called when the\ncloud agent repository policy is set to `selected`.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#CopilotContentExclusionForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationContentExclusionDetails": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.copilot#CopilotOrganizationContentExclusionDetailsValueList"
+      },
+      "traits": {
+        "smithy.api#documentation": "List all Copilot Content Exclusion rules for an organization."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationContentExclusionDetailsValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#CopilotContentExclusionForOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.copilot#CopilotOrganizationContentExclusionDetails",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#CopilotContentExclusionForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotContentExclusionForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotContentExclusionForOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/content_exclusion",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot content exclusion rules for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets information about an organization's Copilot content exclusion path rules.\nTo configure these settings, go to the organization's settings on GitHub.\nFor more information, see \"[Excluding content from GitHub Copilot](https://docs.github.com/copilot/managing-copilot/configuring-and-auditing-content-exclusion/excluding-content-from-github-copilot#configuring-content-exclusions-for-your-organization).\"\n\nOrganization owners can view details about Copilot content exclusion rules for the organization.\n\nOAuth app tokens and personal access tokens (classic) need either the `copilot` or `read:org` scopes to use this endpoint.\n\n> [!CAUTION]\n> * At this time, the API does not support comments. This endpoint will not return any comments in the existing rules.\n> * At this time, the API does not support duplicate keys. If your content exclusion configuration contains duplicate keys, the API will return only the last occurrence of that key. For example, if duplicate entries are present, only the final value will be included in the response."
+      }
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase1IfAnyMatchList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase1": {
+      "type": "structure",
+      "members": {
+        "ifAnyMatch": {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase1IfAnyMatchList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase2IfNoneMatchList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase2": {
+      "type": "structure",
+      "members": {
+        "ifNoneMatch": {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase2IfNoneMatchList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase1"
+        },
+        "Case2": {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueItem"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyValueList"
+      },
+      "traits": {}
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "body": {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequestBodyMap",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#SetCopilotContentExclusionForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#SetCopilotContentExclusionForOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot/content_exclusion",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set Copilot content exclusion rules for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nSets Copilot content exclusion path rules for an organization.\nTo configure these settings, go to the organization's settings on GitHub.\nFor more information, see \"[Excluding content from GitHub Copilot](https://docs.github.com/copilot/managing-copilot/configuring-and-auditing-content-exclusion/excluding-content-from-github-copilot#configuring-content-exclusions-for-your-organization).\"\n\nOrganization owners can set Copilot content exclusion rules for the organization.\n\nOAuth app tokens and personal access tokens (classic) need the `copilot` scope to use this endpoint.\n\n> [!CAUTION]\n> * At this time, the API does not support comments. When using this endpoint, any existing comments in your rules will be deleted.\n> * At this time, the API does not support duplicate keys. If you submit content exclusions through the API with duplicate keys, only the last occurrence will be saved. Earlier entries with the same key will be overwritten."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationOneDayUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationOneDayUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotOrganizationOneDayUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/metrics/reports/organization-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot organization usage metrics for a specific day\n\nUse this endpoint to retrieve download links for the Copilot organization usage metrics report for a specific day. The report provides comprehensive usage data for Copilot features across the organization.\n\nThe report contains aggregated metrics for the specified day, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed.\n\nOrganization owners and authorized users with fine-grained \"View Organization Copilot Metrics\" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFor more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations)."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotOrganizationUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics28DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/metrics/reports/organization-28-day/latest",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot organization usage metrics\n\nUse this endpoint to retrieve download links for the latest 28-day organization Copilot usage metrics report. The report provides comprehensive usage data for Copilot features across the organization.\n\nThe report contains aggregated metrics for the previous 28 days, including usage statistics for various Copilot features, user engagement data, and feature adoption metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed.\n\nOrganization owners and authorized users with fine-grained \"View Organization Copilot Metrics\" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFor more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations)."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationReposOneDayReportRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationReposOneDayReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotOrganizationReposOneDayReportRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/metrics/reports/repos-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot organization repository report for a specific day\n\nUse this endpoint to retrieve download links for the Copilot organization repository report for a specific day. The report provides per-repository pull request metrics for Copilot across the organization, with one entry per repository.\n\nThe report contains repository-level pull request activity for the specified day, including the Copilot Coding Agent (CCA) and Copilot Code Review (CCR) breakdowns. Only repositories that had activity on the specified day are included. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed.\n\nOrganization owners and authorized users with fine-grained \"View Organization Copilot Metrics\" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFor more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations)."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUserTeamsOneDayReportRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUserTeamsOneDayReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotOrganizationUserTeamsOneDayReportRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/metrics/reports/user-teams-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot organization user-teams report for a specific day\n\nUse this endpoint to retrieve download links for the Copilot organization user-teams report for a specific day. The report provides user-team join data for Copilot across the organization, with one entry per user-team pair.\n\nThe report contains user-team membership data for the specified day, enabling consumers to join with the existing organization user reports to compute team-level usage metrics. Reports are generated daily and made available for download through signed URLs with a limited expiration time.\n\nThe response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed.\n\nOrganization owners and authorized users with fine-grained \"View Organization Copilot Metrics\" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFor more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations)."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUsersOneDayUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "day": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The day to request data for, in `YYYY-MM-DD` format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUsersOneDayUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotOrganizationUsersOneDayUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics1DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/metrics/reports/users-1-day",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot organization users usage metrics for a specific day\n\nUse this endpoint to retrieve download links for the Copilot organization user usage metrics report for a specific day. The report provides detailed user-level usage data and engagement metrics for Copilot features across the organization.\n\nThe report contains user-specific metrics for the specified day, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement.\n\nReports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date of the report. The report covers a complete day for which data has been processed.\n\nOrganization owners and authorized users with fine-grained \"View Organization Copilot Metrics\" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFor more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations)."
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUsersUsageMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#CopilotOrganizationUsersUsageMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#CopilotOrganizationUsersUsageMetricsRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotUsageMetrics28DayReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot/metrics/reports/users-28-day/latest",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot organization users usage metrics\n\nUse this endpoint to retrieve download links for the latest 28-day organization users Copilot usage metrics report. The report provides detailed user-level usage data and engagement metrics for Copilot features across the organization.\n\nThe report contains user-specific metrics for the previous 28 days, including individual user engagement statistics, feature usage patterns, and adoption metrics broken down by user. This report allows authorized users to analyze Copilot usage at the user level to understand adoption patterns and identify opportunities for increased engagement.\n\nReports are generated daily and made available for download through signed URLs with a limited expiration time. The response includes download links to the report files, along with the specific date range covered by the report. The report covers a complete 28-day period ending on the most recent day for which data has been processed.\n\nOrganization owners and authorized users with fine-grained \"View Organization Copilot Metrics\" permission can retrieve Copilot metrics reports for the organization. OAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFor more information about organization metrics attribution, see [How are metrics attributed across organizations](https://docs.github.com/copilot/concepts/copilot-metrics#how-are-metrics-attributed-across-organizations)."
+      }
+    },
+    "com.github.copilot#GetCopilotSeatDetailsForUserRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#GetCopilotSeatDetailsForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#GetCopilotSeatDetailsForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#CopilotSeatDetails"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        },
+        {
+          "target": "com.github.copilot#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/members/{username}/copilot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot seat assignment details for a user\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets the GitHub Copilot seat details for a member of an organization who currently has access to GitHub Copilot.\n\nThe seat object contains information about the user's most recent Copilot activity. Users must have telemetry enabled in their IDE for Copilot in the IDE activity to be reflected in `last_activity_at`.\nFor more information about activity data, see [Metrics data properties for GitHub Copilot](https://docs.github.com/copilot/reference/metrics-data).\n\nOnly organization owners can view Copilot seat assignment details for members of their organization.\n\nOAuth app tokens and personal access tokens (classic) need either the `manage_billing:copilot` or `read:org` scopes to use this endpoint."
+      }
+    },
+    "com.github.copilot#GetCopilotCloudAgentConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot#GetCopilotCloudAgentConfigurationResponseMcpConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user-supplied MCP server configuration for the repository, as a free-form JSON object. This will be set to `null` if no configuration has been set.\n\nThe shape of a valid MCP configuration may evolve over time, so this property is intentionally not strictly typed. Clients should not assume a fixed schema."
+      }
+    },
+    "com.github.copilot#GetCopilotCloudAgentConfigurationResponseEnabledTools": {
+      "type": "structure",
+      "members": {
+        "codeql": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the CodeQL tool is enabled for the Copilot cloud agent.",
+            "smithy.api#required": {}
+          }
+        },
+        "copilot_code_review": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Copilot code review tool is enabled for the Copilot cloud agent.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret_scanning": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the secret scanning tool is enabled for the Copilot cloud agent.",
+            "smithy.api#required": {}
+          }
+        },
+        "dependency_vulnerability_checks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the dependency vulnerability checks tool is enabled for the Copilot cloud agent.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The enabled review tools for Copilot cloud agent."
+      }
+    },
+    "com.github.copilot#GetCopilotCloudAgentConfigurationResponseCustomAllowlistList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of custom allowlist entries, as hosts or URLs, that the firewall will allow the Copilot cloud agent to access."
+      }
+    },
+    "com.github.copilot#GetCopilotCloudAgentConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "mcp_configuration": {
+          "target": "com.github.copilot#GetCopilotCloudAgentConfigurationResponseMcpConfigurationMap",
+          "traits": {
+            "smithy.api#documentation": "The user-supplied MCP server configuration for the repository, as a free-form JSON object. This will be set to `null` if no configuration has been set.\n\nThe shape of a valid MCP configuration may evolve over time, so this property is intentionally not strictly typed. Clients should not assume a fixed schema.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled_tools": {
+          "target": "com.github.copilot#GetCopilotCloudAgentConfigurationResponseEnabledTools",
+          "traits": {
+            "smithy.api#documentation": "The enabled review tools for Copilot cloud agent.",
+            "smithy.api#required": {}
+          }
+        },
+        "require_actions_workflow_approval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Actions workflow approval is required for Copilot cloud agent pull requests.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_firewall_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the firewall is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_firewall_recommended_allowlist_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the firewall recommended allowlist is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_allowlist": {
+          "target": "com.github.copilot#GetCopilotCloudAgentConfigurationResponseCustomAllowlistList",
+          "traits": {
+            "smithy.api#documentation": "A list of custom allowlist entries, as hosts or URLs, that the firewall will allow the Copilot cloud agent to access.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_automations_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether automations are enabled in this repository. When true, users can create automations that automatically run agents on a schedule or in response to events like new issues or updated pull requests.",
+            "smithy.api#required": {}
+          }
+        },
+        "require_write_access_for_automation_triggers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether write access is required for automation triggers. When true, automations will only run if the user triggering the event has write access to the repository. When false, users can create automations that listen for events triggered by users without write access.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot#GetCopilotCloudAgentConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot#GetCopilotCloudAgentConfigurationRequest"
+      },
+      "output": {
+        "target": "com.github.copilot#GetCopilotCloudAgentConfigurationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot#Forbidden"
+        },
+        {
+          "target": "com.github.copilot#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/copilot/cloud-agent/configuration",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Copilot cloud agent configuration for a repository\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets the Copilot cloud agent configuration for a repository, including MCP server\nconfiguration, enabled review tools, Actions workflow approval settings, and firewall\nconfiguration.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.copilot#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.copilot#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.copilot#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.copilot#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.github.copilot#Copilot": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.copilot#CopilotEnterpriseOneDayUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotEnterpriseUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotEnterpriseReposOneDayReport"
+        },
+        {
+          "target": "com.github.copilot#CopilotEnterpriseUserTeamsOneDayReport"
+        },
+        {
+          "target": "com.github.copilot#CopilotUsersOneDayUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotUsersUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#SetEnterpriseCodingAgentPolicy"
+        },
+        {
+          "target": "com.github.copilot#AddOrganizationsToEnterpriseCodingAgentPolicy"
+        },
+        {
+          "target": "com.github.copilot#RemoveOrganizationsFromEnterpriseCodingAgentPolicy"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotOrganizationDetails"
+        },
+        {
+          "target": "com.github.copilot#ListCopilotSeats"
+        },
+        {
+          "target": "com.github.copilot#AddCopilotSeatsForTeams"
+        },
+        {
+          "target": "com.github.copilot#CancelCopilotSeatAssignmentForTeams"
+        },
+        {
+          "target": "com.github.copilot#AddCopilotSeatsForUsers"
+        },
+        {
+          "target": "com.github.copilot#CancelCopilotSeatAssignmentForUsers"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotCodingAgentPermissionsOrganization"
+        },
+        {
+          "target": "com.github.copilot#SetCopilotCodingAgentPermissionsOrganization"
+        },
+        {
+          "target": "com.github.copilot#ListCopilotCodingAgentSelectedRepositoriesForOrganization"
+        },
+        {
+          "target": "com.github.copilot#SetCopilotCodingAgentSelectedRepositoriesForOrganization"
+        },
+        {
+          "target": "com.github.copilot#EnableCopilotCodingAgentForRepositoryInOrganization"
+        },
+        {
+          "target": "com.github.copilot#DisableCopilotCodingAgentForRepositoryInOrganization"
+        },
+        {
+          "target": "com.github.copilot#CopilotContentExclusionForOrganization"
+        },
+        {
+          "target": "com.github.copilot#SetCopilotContentExclusionForOrganization"
+        },
+        {
+          "target": "com.github.copilot#CopilotOrganizationOneDayUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotOrganizationUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotOrganizationReposOneDayReport"
+        },
+        {
+          "target": "com.github.copilot#CopilotOrganizationUserTeamsOneDayReport"
+        },
+        {
+          "target": "com.github.copilot#CopilotOrganizationUsersOneDayUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#CopilotOrganizationUsersUsageMetrics"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotSeatDetailsForUser"
+        },
+        {
+          "target": "com.github.copilot#GetCopilotCloudAgentConfiguration"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

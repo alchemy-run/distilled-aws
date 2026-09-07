@@ -1,0 +1,45 @@
+{
+  "description": "Align r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdate with distilled cloudflare/r2-data-catalog updateNamespaceTableMaintenanceConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdate",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequest",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfig/input/target",
+      "value": "com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponse",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfig/output/target",
+      "value": "com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2_data_catalog#UpdateNamespaceTableMaintenanceConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2_data_catalog#TableNotFound"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#WarehouseInactive"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2854 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.imagebuilder#TriggersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#TriggersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Delete a trigger for the specified virtual machine image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#TriggersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        },
+        "triggerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the trigger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#TriggersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#TriggersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#TriggersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Create or update a trigger for the specified virtual machine image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#TriggersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#TriggerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a trigger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.imagebuilder#TriggerProperties": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of trigger.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.azure.imagebuilder#TriggerStatus",
+          "traits": {
+            "smithy.api#documentation": "Trigger status"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.imagebuilder#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of a trigger"
+      }
+    },
+    "com.azure.imagebuilder#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the resource"
+      }
+    },
+    "com.azure.imagebuilder#TriggerStatus": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed status message, including for alerts and error messages."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time of the status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the status of a trigger"
+      }
+    },
+    "com.azure.imagebuilder#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.imagebuilder#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.imagebuilder#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.imagebuilder#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.imagebuilder#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.imagebuilder#TriggersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        },
+        "triggerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the trigger"
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#TriggerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of a trigger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#TriggerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of trigger.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of a trigger"
+      }
+    },
+    "com.azure.imagebuilder#TriggersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#TriggersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#TriggersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Get the specified trigger for the specified image template resource",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#TriggersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#TriggerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a trigger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.imagebuilder#TriggersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        },
+        "triggerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the trigger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#TriggersListByImageTemplate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#TriggersListByImageTemplateRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#TriggerCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "List all triggers for the specified Image Template resource",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#TriggerCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.imagebuilder#TriggerCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The Trigger items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The result of List triggers operation"
+      }
+    },
+    "com.azure.imagebuilder#TriggerCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#Trigger"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Trigger items on this page"
+      }
+    },
+    "com.azure.imagebuilder#Trigger": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#TriggerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a trigger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a trigger that can invoke an image template build."
+      }
+    },
+    "com.azure.imagebuilder#TriggersListByImageTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRunOutput": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRunOutputRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRunOutputResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/runOutputs/{runOutputName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Get the specified run output for the specified image template resource",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRunOutputResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#RunOutputProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the run output"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.imagebuilder#RunOutputProperties": {
+      "type": "structure",
+      "members": {
+        "artifactId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource id of the artifact."
+          }
+        },
+        "artifactUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location URI of the artifact."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.imagebuilder#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of a run output"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRunOutputRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        },
+        "runOutputName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the run output"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesListRunOutputs": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesListRunOutputsRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#RunOutputCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/runOutputs",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "List all run outputs for the specified Image Template resource",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#RunOutputCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.imagebuilder#RunOutputCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The RunOutput items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The result of List run outputs operation"
+      }
+    },
+    "com.azure.imagebuilder#RunOutputCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#RunOutput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The RunOutput items on this page"
+      }
+    },
+    "com.azure.imagebuilder#RunOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#RunOutputProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the run output"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an output that was created by running an image template."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesListRunOutputsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesRun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesRunRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/run",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Create artifacts from a existing image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesRunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCancelRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/cancel",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Cancel the long running image build based on the image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCancelRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Delete a virtual machine image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Update the tags for this Virtual Machine Image Template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#ImageTemplateProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the image template"
+          }
+        },
+        "identity": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the image template, if configured.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.imagebuilder#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the image template. The type 'None' will remove any identities from the image template."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the image template."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.imagebuilder#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.imagebuilder#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.imagebuilder#ResourceIdentityType": {
+      "type": "enum",
+      "members": {
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity used for the image template. The type 'None' will remove any identities from the image template."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateProperties": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.azure.imagebuilder#ImageTemplateSource",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties used to describe the source image.",
+            "smithy.api#required": {}
+          }
+        },
+        "customize": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesCustomizeList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties used to describe the customization steps of the image, like Image source etc"
+          }
+        },
+        "optimize": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesOptimize",
+          "traits": {
+            "smithy.api#documentation": "Specifies optimization to be performed on image."
+          }
+        },
+        "validate": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesValidate",
+          "traits": {
+            "smithy.api#documentation": "Configuration options and list of validations to be performed on the resulting image."
+          }
+        },
+        "distribute": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesDistributeList",
+          "traits": {
+            "smithy.api#documentation": "The distribution targets where the image output needs to go to.",
+            "smithy.api#required": {}
+          }
+        },
+        "errorHandling": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandling",
+          "traits": {
+            "smithy.api#documentation": "Error handling options upon a build failure"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.imagebuilder#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource"
+          }
+        },
+        "provisioningError": {
+          "target": "com.azure.imagebuilder#ProvisioningError",
+          "traits": {
+            "smithy.api#documentation": "Provisioning error, if any"
+          }
+        },
+        "lastRunStatus": {
+          "target": "com.azure.imagebuilder#ImageTemplateLastRunStatus",
+          "traits": {
+            "smithy.api#documentation": "State of 'run' that is currently executing or was last executed."
+          }
+        },
+        "buildTimeoutInMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum duration to wait while building the image template (includes all customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours)."
+          }
+        },
+        "vmProfile": {
+          "target": "com.azure.imagebuilder#ImageTemplateVmProfile",
+          "traits": {
+            "smithy.api#documentation": "Describes how virtual machine is set up to build images"
+          }
+        },
+        "additionalDataDisks": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesAdditionalDataDisksList",
+          "traits": {
+            "smithy.api#documentation": "Optional array of additional data disks to be added to the image."
+          }
+        },
+        "stagingResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The staging resource group id in the same subscription as the image template that will be used to build the image. If this field is empty, a resource group with a random name will be created. If the resource group specified in this field doesn't exist, it will be created with the same name. If the resource group specified exists, it must be empty and in the same region as the image template. The resource group created will be deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if the resource group specified exists the resources created in the resource group will be deleted during template deletion and the resource group itself will remain."
+          }
+        },
+        "exactStagingResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The staging resource group id in the same subscription as the image template that will be used to build the image. This read-only field differs from 'stagingResourceGroup' only if the value specified in the 'stagingResourceGroup' field is empty."
+          }
+        },
+        "autoRun": {
+          "target": "com.azure.imagebuilder#ImageTemplateAutoRun",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether or not to automatically run the image template build on template creation or update."
+          }
+        },
+        "managedResourceTags": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesManagedResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags that will be applied to the resource group and/or resources created by the service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an image template"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesManagedResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags that will be applied to the resource group and/or resources created by the service."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateAutoRun": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.imagebuilder#AutoRunState",
+          "traits": {
+            "smithy.api#documentation": "Enabling this field will trigger an automatic build on image template creation or update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates if the image template needs to be built on create/update"
+      }
+    },
+    "com.azure.imagebuilder#AutoRunState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enabling this field will trigger an automatic build on image template creation or update."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesAdditionalDataDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#DataDisk"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional array of additional data disks to be added to the image."
+      }
+    },
+    "com.azure.imagebuilder#DataDisk": {
+      "type": "structure",
+      "members": {
+        "sizeGB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the data disk in GB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data disk properties."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateVmProfile": {
+      "type": "structure",
+      "members": {
+        "vmSize": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Size of the virtual machine used to build, customize and capture images. Omit or specify empty string to use the default (Standard_D1_v2 for Gen1 images and Standard_D2ds_v4 for Gen2 images)."
+          }
+        },
+        "osDiskSizeGB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the OS disk in GB. Omit or specify 0 to use Azure's default OS disk size."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.imagebuilder#ImageTemplateVmProfileUserAssignedIdentitiesList",
+          "traits": {
+            "smithy.api#documentation": "Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template."
+          }
+        },
+        "vnetConfig": {
+          "target": "com.azure.imagebuilder#VirtualNetworkConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional configuration of the virtual network to use to deploy the build VM and validation VM in. Omit if no specific virtual network needs to be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the virtual machines used to build and validate images"
+      }
+    },
+    "com.azure.imagebuilder#VirtualNetworkConfig": {
+      "type": "structure",
+      "members": {
+        "subnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id of a pre-existing subnet on which the build VM and validation VM will be deployed"
+          }
+        },
+        "containerInstanceSubnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id of a pre-existing subnet on which Azure Container Instance will be deployed for Isolated Builds. This field may be specified only if `subnetId` is also specified and must be on the same Virtual Network as the subnet specified in `subnetId`."
+          }
+        },
+        "proxyVmSize": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Size of the proxy virtual machine used to pass traffic to the build VM and validation VM. This must not be specified if `containerInstanceSubnetId` is specified because no proxy virtual machine is deployed in that case. Omit or specify empty string to use the default (Standard_A1_v2)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual Network configuration."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateVmProfileUserAssignedIdentitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateLastRunStatus": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time of the last run (UTC)"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time of the last run (UTC)"
+          }
+        },
+        "runState": {
+          "target": "com.azure.imagebuilder#RunState",
+          "traits": {
+            "smithy.api#documentation": "State of the last run"
+          }
+        },
+        "runSubState": {
+          "target": "com.azure.imagebuilder#RunSubState",
+          "traits": {
+            "smithy.api#documentation": "Sub-state of the last run"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Verbose information about the last run state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the latest status of running an image template"
+      }
+    },
+    "com.azure.imagebuilder#RunSubState": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Queued"
+          }
+        },
+        "BUILDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Building"
+          }
+        },
+        "CUSTOMIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Customizing"
+          }
+        },
+        "OPTIMIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Optimizing"
+          }
+        },
+        "VALIDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Validating"
+          }
+        },
+        "DISTRIBUTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Distributing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sub-state of the last run"
+      }
+    },
+    "com.azure.imagebuilder#RunState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "CANCELING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceling"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "PARTIALLYSUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PartiallySucceeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of the last run"
+      }
+    },
+    "com.azure.imagebuilder#ProvisioningError": {
+      "type": "structure",
+      "members": {
+        "provisioningErrorCode": {
+          "target": "com.azure.imagebuilder#ProvisioningErrorCode",
+          "traits": {
+            "smithy.api#documentation": "Error code of the provisioning failure"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Verbose error message about the provisioning failure"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the error happened when create or update an image template"
+      }
+    },
+    "com.azure.imagebuilder#ProvisioningErrorCode": {
+      "type": "enum",
+      "members": {
+        "BADSOURCETYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadSourceType"
+          }
+        },
+        "BADPIRSOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadPIRSource"
+          }
+        },
+        "BADMANAGEDIMAGESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadManagedImageSource"
+          }
+        },
+        "BADSHAREDIMAGEVERSIONSOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadSharedImageVersionSource"
+          }
+        },
+        "BADCUSTOMIZERTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadCustomizerType"
+          }
+        },
+        "UNSUPPORTEDCUSTOMIZERTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UnsupportedCustomizerType"
+          }
+        },
+        "NOCUSTOMIZERSCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoCustomizerScript"
+          }
+        },
+        "BADVALIDATORTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadValidatorType"
+          }
+        },
+        "UNSUPPORTEDVALIDATORTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UnsupportedValidatorType"
+          }
+        },
+        "NOVALIDATORSCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoValidatorScript"
+          }
+        },
+        "BADDISTRIBUTETYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadDistributeType"
+          }
+        },
+        "BADSHAREDIMAGEDISTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadSharedImageDistribute"
+          }
+        },
+        "BADSTAGINGRESOURCEGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BadStagingResourceGroup"
+          }
+        },
+        "SERVERERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServerError"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error code of the provisioning failure"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandling": {
+      "type": "structure",
+      "members": {
+        "onCustomizerError": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandlingOnCustomizerError",
+          "traits": {
+            "smithy.api#documentation": "If there is a customizer error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a customizer error and this field is set to 'abort', the build VM will be preserved."
+          }
+        },
+        "onValidationError": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandlingOnValidationError",
+          "traits": {
+            "smithy.api#documentation": "If there is a validation error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a validation error and this field is set to 'abort', the build VM will be preserved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error handling options upon a build failure"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandlingOnValidationError": {
+      "type": "enum",
+      "members": {
+        "CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cleanup"
+          }
+        },
+        "ABORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If there is a validation error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a validation error and this field is set to 'abort', the build VM will be preserved."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandlingOnCustomizerError": {
+      "type": "enum",
+      "members": {
+        "CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cleanup"
+          }
+        },
+        "ABORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If there is a customizer error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a customizer error and this field is set to 'abort', the build VM will be preserved."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesDistributeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplateDistributor"
+      },
+      "traits": {
+        "smithy.api#documentation": "The distribution targets where the image output needs to go to."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateDistributor": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of distribution.",
+            "smithy.api#required": {}
+          }
+        },
+        "runOutputName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name to be used for the associated RunOutput.",
+            "smithy.api#required": {}
+          }
+        },
+        "artifactTags": {
+          "target": "com.azure.imagebuilder#ImageTemplateDistributorArtifactTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags that will be applied to the artifact once it has been created/updated by the distributor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Generic distribution object"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateDistributorArtifactTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags that will be applied to the artifact once it has been created/updated by the distributor."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesValidate": {
+      "type": "structure",
+      "members": {
+        "continueDistributeOnFailure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If validation fails and this field is set to false, output image(s) will not be distributed. This is the default behavior. If validation fails and this field is set to true, output image(s) will still be distributed. Please use this option with caution as it may result in bad images being distributed for use. In either case (true or false), the end to end image run will be reported as having failed in case of a validation failure. [Note: This field has no effect if validation succeeds.]"
+          }
+        },
+        "sourceValidationOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If this field is set to true, the image specified in the 'source' section will directly be validated. No separate build will be run to generate and then validate a customized image."
+          }
+        },
+        "inVMValidations": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesValidateInVMValidationsList",
+          "traits": {
+            "smithy.api#documentation": "List of validations to be performed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options and list of validations to be performed on the resulting image."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesValidateInVMValidationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplateInVMValidator"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of validations to be performed."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateInVMValidator": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of validation you want to use on the Image. For example, \"Shell\" can be shell validation",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly Name to provide context on what this validation step does"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a unit of in-VM validation of image"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesOptimize": {
+      "type": "structure",
+      "members": {
+        "vmBoot": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesOptimizeVmBoot",
+          "traits": {
+            "smithy.api#documentation": "Optimization is applied on the image for a faster VM boot."
+          }
+        },
+        "workload": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesOptimizeWorkload",
+          "traits": {
+            "smithy.api#documentation": "Optimization is applied on the image for specific workloads."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies optimization to be performed on image."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesOptimizeWorkload": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.imagebuilder#WorkloadOptimizationState",
+          "traits": {
+            "smithy.api#documentation": "Enabling this field will optimize vm images for specific workloads."
+          }
+        },
+        "scriptUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI of the script to be run for workload optimization. It can be a github link, SAS URI for Azure Storage, etc"
+          }
+        },
+        "sha256Checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 checksum of the script provided in the scriptUri field"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optimization is applied on the image for specific workloads."
+      }
+    },
+    "com.azure.imagebuilder#WorkloadOptimizationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enabling this field will optimize vm images for specific workloads."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesOptimizeVmBoot": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.imagebuilder#VMBootOptimizationState",
+          "traits": {
+            "smithy.api#documentation": "Enabling this field will improve VM boot time by optimizing the final customized image output."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optimization is applied on the image for a faster VM boot."
+      }
+    },
+    "com.azure.imagebuilder#VMBootOptimizationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enabling this field will improve VM boot time by optimizing the final customized image output."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesCustomizeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplateCustomizer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the properties used to describe the customization steps of the image, like Image source etc"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateCustomizer": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of customization tool you want to use on the Image. For example, \"Shell\" can be shell customizer",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly Name to provide context on what this customization step does"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a unit of image customization"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateSource": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of source image you want to start with.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a virtual machine image source for building, customizing and distributing"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        },
+        "identity": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The identity of the image template, if configured."
+          }
+        },
+        "tags": {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The user-specified tags associated with the image template."
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#ImageTemplateUpdateParametersProperties",
+          "traits": {
+            "smithy.api#documentation": "Parameters for updating an image template."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateUpdateParametersProperties": {
+      "type": "structure",
+      "members": {
+        "distribute": {
+          "target": "com.azure.imagebuilder#ImageTemplateUpdateParametersPropertiesDistributeList",
+          "traits": {
+            "smithy.api#documentation": "The distribution targets where the image output needs to go to."
+          }
+        },
+        "vmProfile": {
+          "target": "com.azure.imagebuilder#ImageTemplateVmProfile",
+          "traits": {
+            "smithy.api#documentation": "Describes how virtual machine is set up to build images"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters for updating an image template."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateUpdateParametersPropertiesDistributeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplateDistributor"
+      },
+      "traits": {
+        "smithy.api#documentation": "The distribution targets where the image output needs to go to."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user-specified tags associated with the image template."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateIdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.imagebuilder#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the image template. The type 'None' will remove any identities from the image template."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentityInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the image template."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateIdentityInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.imagebuilder#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.imagebuilder#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Create or update a virtual machine image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#ImageTemplateProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the image template"
+          }
+        },
+        "identity": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the image template, if configured.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        },
+        "tags": {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the image template"
+          }
+        },
+        "identity": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The identity of the image template, if configured.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.azure.imagebuilder#ImageTemplateSource",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties used to describe the source image.",
+            "smithy.api#required": {}
+          }
+        },
+        "customize": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesInputCustomizeList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties used to describe the customization steps of the image, like Image source etc"
+          }
+        },
+        "optimize": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesOptimize",
+          "traits": {
+            "smithy.api#documentation": "Specifies optimization to be performed on image."
+          }
+        },
+        "validate": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesValidate",
+          "traits": {
+            "smithy.api#documentation": "Configuration options and list of validations to be performed on the resulting image."
+          }
+        },
+        "distribute": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesInputDistributeList",
+          "traits": {
+            "smithy.api#documentation": "The distribution targets where the image output needs to go to.",
+            "smithy.api#required": {}
+          }
+        },
+        "errorHandling": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesErrorHandling",
+          "traits": {
+            "smithy.api#documentation": "Error handling options upon a build failure"
+          }
+        },
+        "buildTimeoutInMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum duration to wait while building the image template (includes all customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours)."
+          }
+        },
+        "vmProfile": {
+          "target": "com.azure.imagebuilder#ImageTemplateVmProfile",
+          "traits": {
+            "smithy.api#documentation": "Describes how virtual machine is set up to build images"
+          }
+        },
+        "additionalDataDisks": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesInputAdditionalDataDisksList",
+          "traits": {
+            "smithy.api#documentation": "Optional array of additional data disks to be added to the image."
+          }
+        },
+        "stagingResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The staging resource group id in the same subscription as the image template that will be used to build the image. If this field is empty, a resource group with a random name will be created. If the resource group specified in this field doesn't exist, it will be created with the same name. If the resource group specified exists, it must be empty and in the same region as the image template. The resource group created will be deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if the resource group specified exists the resources created in the resource group will be deleted during template deletion and the resource group itself will remain."
+          }
+        },
+        "autoRun": {
+          "target": "com.azure.imagebuilder#ImageTemplateAutoRun",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether or not to automatically run the image template build on template creation or update."
+          }
+        },
+        "managedResourceTags": {
+          "target": "com.azure.imagebuilder#ImageTemplatePropertiesInputManagedResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags that will be applied to the resource group and/or resources created by the service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an image template"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesInputManagedResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags that will be applied to the resource group and/or resources created by the service."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesInputAdditionalDataDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#DataDisk"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional array of additional data disks to be added to the image."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesInputDistributeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplateDistributor"
+      },
+      "traits": {
+        "smithy.api#documentation": "The distribution targets where the image output needs to go to."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplatePropertiesInputCustomizeList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplateCustomizer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the properties used to describe the customization steps of the image, like Image source etc"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Get information about a virtual machine image template",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#ImageTemplateProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the image template"
+          }
+        },
+        "identity": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the image template, if configured.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "imageTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the image Template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#ImageTemplateListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Gets information about the VM image templates associated with the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.imagebuilder#ImageTemplateListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ImageTemplate items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ImageTemplate list operation."
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#ImageTemplate"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ImageTemplate items on this page"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.imagebuilder#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.imagebuilder#ImageTemplateTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.imagebuilder#ImageTemplateProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the image template"
+          }
+        },
+        "identity": {
+          "target": "com.azure.imagebuilder#ImageTemplateIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the image template, if configured.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Image template is an ARM resource managed by Microsoft.VirtualMachineImages provider"
+      }
+    },
+    "com.azure.imagebuilder#ImageTemplateTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesListRequest"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#ImageTemplateListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VirtualMachineImages/imageTemplates",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Gets information about the VM image templates associated with the subscription.",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#VirtualMachineImageTemplatesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.imagebuilder#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.imagebuilder#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.VirtualMachineImages/operations",
+          "code": 200,
+          "apiVersion": "2025-10-01"
+        },
+        "smithy.api#documentation": "Lists available operations for the Microsoft.VirtualMachineImages provider",
+        "com.distilled.openapi#apiVersion": "2025-10-01"
+      }
+    },
+    "com.azure.imagebuilder#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.imagebuilder#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of operations supported by the resource provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the request to list REST API operations. It contains a list of operations and a URL nextLink to get the next set of results."
+      }
+    },
+    "com.azure.imagebuilder#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.imagebuilder#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of operations supported by the resource provider."
+      }
+    },
+    "com.azure.imagebuilder#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is of the format {provider}/{resource}/{operation}"
+          }
+        },
+        "display": {
+          "target": "com.azure.imagebuilder#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that describes the operation."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Properties of the operation."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The flag that indicates whether the operation applies to data plane."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A REST API operation"
+      }
+    },
+    "com.azure.imagebuilder#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name of the resource provider."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For example: read, write, delete, or listKeys/action"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type on which the operation is performed."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that describes the operation."
+      }
+    },
+    "com.azure.imagebuilder#Imagebuilder": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.imagebuilder#TriggersDelete"
+        },
+        {
+          "target": "com.azure.imagebuilder#TriggersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.imagebuilder#TriggersGet"
+        },
+        {
+          "target": "com.azure.imagebuilder#TriggersListByImageTemplate"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetRunOutput"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesListRunOutputs"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesRun"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCancel"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesDelete"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdate"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGet"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesList"
+        },
+        {
+          "target": "com.azure.imagebuilder#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Imagebuilder",
+        "smithy.api#documentation": "Azure Imagebuilder API — merged from the imagebuilder resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

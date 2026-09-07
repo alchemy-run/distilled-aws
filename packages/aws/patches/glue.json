@@ -1,0 +1,63 @@
+{
+  "operations": {
+    "createCrawler": {
+      "syntheticErrors": [
+        {
+          "name": "GlueRoleNotAssumable",
+          "from": "InvalidInputException",
+          "message": { "includes": "unable to assume" }
+        },
+        {
+          "name": "GlueS3TargetNotReady",
+          "from": "InvalidInputException",
+          "message": { "includes": "InvalidAccessKeyId" }
+        }
+      ]
+    },
+    "updateCrawler": {
+      "syntheticErrors": [
+        {
+          "name": "GlueRoleNotAssumable",
+          "from": "InvalidInputException",
+          "message": { "includes": "unable to assume" }
+        },
+        {
+          "name": "GlueS3TargetNotReady",
+          "from": "InvalidInputException",
+          "message": { "includes": "InvalidAccessKeyId" }
+        }
+      ]
+    },
+    "startJobRun": {
+      "syntheticErrors": [
+        {
+          "name": "GlueRoleNotAssumable",
+          "from": "InvalidInputException",
+          "message": { "includes": "unable to assume" }
+        }
+      ]
+    },
+    "createJob": {
+      "syntheticErrors": [
+        {
+          "name": "GlueRoleNotAssumable",
+          "from": "InvalidInputException",
+          "message": { "includes": "unable to assume" }
+        }
+      ]
+    },
+    "updateJob": {
+      "syntheticErrors": [
+        {
+          "name": "GlueRoleNotAssumable",
+          "from": "InvalidInputException",
+          "message": { "includes": "unable to assume" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "GlueRoleNotAssumable": ["RetryableError"],
+    "GlueS3TargetNotReady": ["RetryableError"]
+  }
+}

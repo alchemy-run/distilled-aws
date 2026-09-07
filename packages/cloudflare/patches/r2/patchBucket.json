@@ -1,0 +1,52 @@
+{
+  "description": "Align r2#BucketsEdit with distilled cloudflare/r2 patchBucket",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsEdit",
+      "path": "/shapes/com.cloudflare.r2#PatchBucket"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsEditRequest",
+      "path": "/shapes/com.cloudflare.r2#PatchBucketRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#PatchBucket/input/target",
+      "value": "com.cloudflare.r2#PatchBucketRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsEditResponse",
+      "path": "/shapes/com.cloudflare.r2#PatchBucketResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#PatchBucket/output/target",
+      "value": "com.cloudflare.r2#PatchBucketResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#PatchBucket/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#PatchBucketRequest/members/cf_r2_storage_class",
+      "path": "/shapes/com.cloudflare.r2#PatchBucketRequest/members/storageClass"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#PatchBucketRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#PatchBucketRequest/members/jurisdiction"
+    }
+  ]
+}

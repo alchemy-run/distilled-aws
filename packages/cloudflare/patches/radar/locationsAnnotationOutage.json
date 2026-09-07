@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AnnotationsOutagesLocations with distilled cloudflare/radar locationsAnnotationOutage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsOutagesLocations",
+      "path": "/shapes/com.cloudflare.radar#LocationsAnnotationOutage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsOutagesLocationsRequest",
+      "path": "/shapes/com.cloudflare.radar#LocationsAnnotationOutageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsAnnotationOutage/input/target",
+      "value": "com.cloudflare.radar#LocationsAnnotationOutageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsOutagesLocationsResponse",
+      "path": "/shapes/com.cloudflare.radar#LocationsAnnotationOutageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsAnnotationOutage/output/target",
+      "value": "com.cloudflare.radar#LocationsAnnotationOutageResponse"
+    }
+  ]
+}

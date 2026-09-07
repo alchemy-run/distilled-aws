@@ -1,0 +1,4733 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "adsense",
+    "version": "v2",
+    "title": "AdSense Management API",
+    "baseUrl": "https://adsense.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.adsense_v2#AdClientAdCode": {
+      "type": "structure",
+      "members": {
+        "ampHead": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The AdSense code snippet to add to the head of an AMP page."
+          }
+        },
+        "adCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The AdSense code snippet to add to the head of an HTML page."
+          }
+        },
+        "ampBody": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The AdSense code snippet to add to the body of an AMP page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of the AdSense code for a given ad client. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634)."
+      }
+    },
+    "com.gcp.adsense_v2#Row": {
+      "type": "structure",
+      "members": {
+        "cells": {
+          "target": "com.gcp.adsense_v2#CellList",
+          "traits": {
+            "smithy.api#documentation": "Cells in the row."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Row representation."
+      }
+    },
+    "com.gcp.adsense_v2#CellList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Cell"
+      }
+    },
+    "com.gcp.adsense_v2#UrlChannel": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the URL channel. Format: accounts/{account}/adclients/{adclient}/urlchannels/{urlchannel}"
+          }
+        },
+        "reportingDimensionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the custom channel as used in the `URL_CHANNEL_ID` reporting dimension."
+          }
+        },
+        "uriPattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI pattern of the channel. Does not include \"http://\" or \"https://\". Example: www.example.com/home"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a URL channel. URL channels allow you to track the performance of particular pages in your site; see [URL channels](https://support.google.com/adsense/answer/2923836) for more information."
+      }
+    },
+    "com.gcp.adsense_v2#Alert": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The localized alert message. This may contain HTML markup, such as phrase elements or links."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Type of alert. This identifies the broad type of this alert, and provides a stable machine-readable identifier that will not be translated. For example, \"payment-hold\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the alert. Format: accounts/{account}/alerts/{alert}"
+          }
+        },
+        "severity": {
+          "target": "com.gcp.adsense_v2#AlertSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Severity of this alert."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an alert."
+      }
+    },
+    "com.gcp.adsense_v2#AlertSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "SEVERE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#Adsense_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.adsense_v2#ListSitesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through sites. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        },
+        "sites": {
+          "target": "com.gcp.adsense_v2#SiteList",
+          "traits": {
+            "smithy.api#documentation": "The sites returned in this list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the sites list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#SiteList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Site"
+      }
+    },
+    "com.gcp.adsense_v2#PolicyIssue": {
+      "type": "structure",
+      "members": {
+        "warningEscalationDate": {
+          "target": "com.gcp.adsense_v2#Adsense_Date",
+          "traits": {
+            "smithy.api#documentation": "Optional. The date (in the America/Los_Angeles timezone) when the entity will have ad serving demand restricted or ad serving disabled. This is present only for issues with a `WARNED` enforcement action. See https://support.google.com/adsense/answer/11066888."
+          }
+        },
+        "action": {
+          "target": "com.gcp.adsense_v2#PolicyIssueActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The most severe action taken on the entity over the past seven days."
+          }
+        },
+        "adRequestCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Total number of ad requests affected by the policy violations over the past seven days."
+          }
+        },
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Hostname/domain of the entity (for example \"foo.com\" or \"www.foo.com\"). This _should_ be a bare domain/host name without any protocol. This will be present for all policy issues."
+          }
+        },
+        "siteSection": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Prefix of the site-section having policy issues (For example \"foo.com/bar-section\"). This will be present if the `entity_type` is `SITE_SECTION` and will be absent for other entity types."
+          }
+        },
+        "policyTopics": {
+          "target": "com.gcp.adsense_v2#PolicyTopicList",
+          "traits": {
+            "smithy.api#documentation": "Required. Unordered list. The policy topics that this entity was found to violate over the past seven days."
+          }
+        },
+        "entityType": {
+          "target": "com.gcp.adsense_v2#PolicyIssueEntityTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of the entity indicating if the entity is a site, site-section, or page."
+          }
+        },
+        "firstDetectedDate": {
+          "target": "com.gcp.adsense_v2#Adsense_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The date (in the America/Los_Angeles timezone) when policy violations were first detected on the entity."
+          }
+        },
+        "adClients": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of ad clients associated with the policy issue (either as the primary ad client or an associated host/secondary ad client). In the latter case, this will be an ad client that is not owned by the current account."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. URI of the page having policy violations (for example \"foo.com/bar\" or \"www.foo.com/bar\"). This will be present if the `entity_type` is `PAGE` and will be absent for other entity types."
+          }
+        },
+        "lastDetectedDate": {
+          "target": "com.gcp.adsense_v2#Adsense_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The date (in the America/Los_Angeles timezone) when policy violations were last detected on the entity."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the entity with policy issues. Format: accounts/{account}/policyIssues/{policy_issue}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a policy issue for a single entity (site, site-section, or page). All issues for a single entity are represented by a single PolicyIssue resource, though that PolicyIssue can have multiple causes (or \"topics\") that can change over time. Policy issues are removed if there are no issues detected recently or if there's a recent successful appeal for the entity."
+      }
+    },
+    "com.gcp.adsense_v2#PolicyIssueActionEnum": {
+      "type": "enum",
+      "members": {
+        "ENFORCEMENT_ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENFORCEMENT_ACTION_UNSPECIFIED"
+          }
+        },
+        "WARNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNED"
+          }
+        },
+        "AD_SERVING_RESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_SERVING_RESTRICTED"
+          }
+        },
+        "AD_SERVING_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_SERVING_DISABLED"
+          }
+        },
+        "AD_SERVED_WITH_CLICK_CONFIRMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_SERVED_WITH_CLICK_CONFIRMATION"
+          }
+        },
+        "AD_PERSONALIZATION_RESTRICTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_PERSONALIZATION_RESTRICTED"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#PolicyTopicList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#PolicyTopic"
+      }
+    },
+    "com.gcp.adsense_v2#PolicyIssueEntityTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ENTITY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTITY_TYPE_UNSPECIFIED"
+          }
+        },
+        "SITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE"
+          }
+        },
+        "SITE_SECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITE_SECTION"
+          }
+        },
+        "PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.adsense_v2#Account": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Creation time of the account."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Display name of this account."
+          }
+        },
+        "premium": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether this account is premium. Premium accounts have access to additional spam-related metrics."
+          }
+        },
+        "timeZone": {
+          "target": "com.gcp.adsense_v2#TimeZone",
+          "traits": {
+            "smithy.api#documentation": "The account time zone, as used by reporting. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725)."
+          }
+        },
+        "pendingTasks": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Outstanding tasks that need to be completed as part of the sign-up process for a new account. e.g. \"billing-profile-creation\", \"phone-pin-verification\"."
+          }
+        },
+        "state": {
+          "target": "com.gcp.adsense_v2#AccountStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the account."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the account. Format: accounts/pub-[0-9]+"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an account."
+      }
+    },
+    "com.gcp.adsense_v2#AccountStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "NEEDS_ATTENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_ATTENTION"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOSED"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#Payment": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "com.gcp.adsense_v2#Adsense_Date",
+          "traits": {
+            "smithy.api#documentation": "Output only. For paid earnings, the date that the payment was credited. For unpaid earnings, this field is empty. Payment dates are always returned in the billing timezone (America/Los_Angeles)."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The amount of unpaid or paid earnings, as a formatted string, including the currency. E.g. \"¥1,235 JPY\", \"$1,234.57\", \"£87.65\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the payment. Format: - accounts/{account}/payments/unpaid for unpaid (current) AdSense earnings. - accounts/{account}/payments/youtube-unpaid for unpaid (current) YouTube earnings. - accounts/{account}/payments/yyyy-MM-dd for paid AdSense earnings. - accounts/{account}/payments/youtube-yyyy-MM-dd for paid YouTube earnings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an unpaid or paid payment. See [Payment timelines for AdSense](https://support.google.com/adsense/answer/7164703) for more information about payments and the [YouTube homepage and payments account](https://support.google.com/adsense/answer/11622510) article for information about dedicated payments accounts for YouTube."
+      }
+    },
+    "com.gcp.adsense_v2#Site": {
+      "type": "structure",
+      "members": {
+        "reportingDimensionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the site as used in the `OWNED_SITE_ID` reporting dimension."
+          }
+        },
+        "state": {
+          "target": "com.gcp.adsense_v2#SiteStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of a site."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of a site. Format: accounts/{account}/sites/{site}"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain (or subdomain) of the site, e.g. \"example.com\" or \"www.example.com\". This is used in the `OWNED_SITE_DOMAIN_NAME` reporting dimension."
+          }
+        },
+        "autoAdsEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether auto ads is turned on for the site."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a Site."
+      }
+    },
+    "com.gcp.adsense_v2#SiteStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "REQUIRES_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUIRES_REVIEW"
+          }
+        },
+        "GETTING_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GETTING_READY"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "NEEDS_ATTENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_ATTENTION"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#CustomChannel": {
+      "type": "structure",
+      "members": {
+        "reportingDimensionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the custom channel as used in the `CUSTOM_CHANNEL_ID` reporting dimension."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name of the custom channel."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the custom channel. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}"
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the custom channel is active and collecting data. See https://support.google.com/adsense/answer/10077192."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a custom channel."
+      }
+    },
+    "com.gcp.adsense_v2#ListLinkedCustomChannelsResponse": {
+      "type": "structure",
+      "members": {
+        "customChannels": {
+          "target": "com.gcp.adsense_v2#CustomChannelList",
+          "traits": {
+            "smithy.api#documentation": "The custom channels returned in this list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through alerts. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the custom channels linked to an adunit list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#CustomChannelList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#CustomChannel"
+      }
+    },
+    "com.gcp.adsense_v2#AdUnit": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name of the ad unit, as provided when the ad unit was created."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}"
+          }
+        },
+        "contentAdsSettings": {
+          "target": "com.gcp.adsense_v2#ContentAdsSettings",
+          "traits": {
+            "smithy.api#documentation": "Required. Settings specific to content ads (AFC)."
+          }
+        },
+        "state": {
+          "target": "com.gcp.adsense_v2#AdUnitStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. State of the ad unit."
+          }
+        },
+        "reportingDimensionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the ad unit as used in the `AD_UNIT_ID` reporting dimension."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an ad unit. An ad unit represents a saved ad unit with a specific set of ad settings that have been customized within an account."
+      }
+    },
+    "com.gcp.adsense_v2#AdUnitStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHIVED"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListUrlChannelsResponse": {
+      "type": "structure",
+      "members": {
+        "urlChannels": {
+          "target": "com.gcp.adsense_v2#UrlChannelList",
+          "traits": {
+            "smithy.api#documentation": "The url channels returned in this list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through url channels. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the url channels list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#UrlChannelList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#UrlChannel"
+      }
+    },
+    "com.gcp.adsense_v2#ListChildAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through accounts. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        },
+        "accounts": {
+          "target": "com.gcp.adsense_v2#AccountList",
+          "traits": {
+            "smithy.api#documentation": "The accounts returned in this list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the child account list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#AccountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Account"
+      }
+    },
+    "com.gcp.adsense_v2#ListSavedReportsResponse": {
+      "type": "structure",
+      "members": {
+        "savedReports": {
+          "target": "com.gcp.adsense_v2#SavedReportList",
+          "traits": {
+            "smithy.api#documentation": "The reports returned in this list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through reports. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the saved reports list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#SavedReportList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#SavedReport"
+      }
+    },
+    "com.gcp.adsense_v2#ListPolicyIssuesResponse": {
+      "type": "structure",
+      "members": {
+        "policyIssues": {
+          "target": "com.gcp.adsense_v2#PolicyIssueList",
+          "traits": {
+            "smithy.api#documentation": "The policy issues returned in the list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through policy issues. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the policy issues list rpc. Policy issues are reported only if the publisher has at least one AFC ad client in READY or GETTING_READY state. If the publisher has no such AFC ad client, the response will be an empty list."
+      }
+    },
+    "com.gcp.adsense_v2#PolicyIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#PolicyIssue"
+      }
+    },
+    "com.gcp.adsense_v2#ListAlertsResponse": {
+      "type": "structure",
+      "members": {
+        "alerts": {
+          "target": "com.gcp.adsense_v2#AlertList",
+          "traits": {
+            "smithy.api#documentation": "The alerts returned in this list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the alerts list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#AlertList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Alert"
+      }
+    },
+    "com.gcp.adsense_v2#Header": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the header."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) of this column. Only present if the header type is METRIC_CURRENCY."
+          }
+        },
+        "type": {
+          "target": "com.gcp.adsense_v2#HeaderTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of the header."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The header information of the columns requested in the report."
+      }
+    },
+    "com.gcp.adsense_v2#HeaderTypeEnum": {
+      "type": "enum",
+      "members": {
+        "HEADER_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEADER_TYPE_UNSPECIFIED"
+          }
+        },
+        "DIMENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIMENSION"
+          }
+        },
+        "METRIC_TALLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_TALLY"
+          }
+        },
+        "METRIC_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_RATIO"
+          }
+        },
+        "METRIC_CURRENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_CURRENCY"
+          }
+        },
+        "METRIC_MILLISECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_MILLISECONDS"
+          }
+        },
+        "METRIC_DECIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_DECIMAL"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ReportResult": {
+      "type": "structure",
+      "members": {
+        "totalMatchedRows": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The total number of rows matched by the report request."
+          }
+        },
+        "headers": {
+          "target": "com.gcp.adsense_v2#HeaderList",
+          "traits": {
+            "smithy.api#documentation": "The header information; one for each dimension in the request, followed by one for each metric in the request."
+          }
+        },
+        "warnings": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Any warnings associated with generation of the report. These warnings are always returned in English."
+          }
+        },
+        "startDate": {
+          "target": "com.gcp.adsense_v2#Adsense_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. Start date of the range (inclusive)."
+          }
+        },
+        "rows": {
+          "target": "com.gcp.adsense_v2#RowList",
+          "traits": {
+            "smithy.api#documentation": "The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request."
+          }
+        },
+        "totals": {
+          "target": "com.gcp.adsense_v2#Row",
+          "traits": {
+            "smithy.api#documentation": "The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty."
+          }
+        },
+        "averages": {
+          "target": "com.gcp.adsense_v2#Row",
+          "traits": {
+            "smithy.api#documentation": "The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty."
+          }
+        },
+        "endDate": {
+          "target": "com.gcp.adsense_v2#Adsense_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. End date of the range (inclusive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of a generated report."
+      }
+    },
+    "com.gcp.adsense_v2#HeaderList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Header"
+      }
+    },
+    "com.gcp.adsense_v2#RowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Row"
+      }
+    },
+    "com.gcp.adsense_v2#TimeZone": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. IANA Time Zone Database version number. For example \"2019a\"."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA Time Zone Database time zone. For example \"America/New_York\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones)."
+      }
+    },
+    "com.gcp.adsense_v2#ContentAdsSettings": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.adsense_v2#ContentAdsSettingsTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of the ad unit."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Size of the ad unit. e.g. \"728x90\", \"1x3\" (for responsive ad units)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings specific to content ads (AFC)."
+      }
+    },
+    "com.gcp.adsense_v2#ContentAdsSettingsTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "DISPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY"
+          }
+        },
+        "FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEED"
+          }
+        },
+        "ARTICLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARTICLE"
+          }
+        },
+        "MATCHED_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_CONTENT"
+          }
+        },
+        "LINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.adsense_v2#AdUnitAdCode": {
+      "type": "structure",
+      "members": {
+        "adCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The code snippet to add to the body of an HTML page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of the ad unit code for a given ad unit. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634) and [Where to place the ad code in your HTML](https://support.google.com/adsense/answer/9190028)."
+      }
+    },
+    "com.gcp.adsense_v2#HttpBody": {
+      "type": "structure",
+      "members": {
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTTP Content-Type header value specifying the content type of the body."
+          }
+        },
+        "extensions": {
+          "target": "com.gcp.adsense_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "Application specific response metadata. Must be set in the first response for streaming APIs."
+          }
+        },
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request/response body as raw binary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged."
+      }
+    },
+    "com.gcp.adsense_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.adsense_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#DocumentMap"
+      }
+    },
+    "com.gcp.adsense_v2#AdClient": {
+      "type": "structure",
+      "members": {
+        "reportingDimensionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the ad client as used in the `AD_CLIENT_ID` reporting dimension. Present only if the ad client supports reporting."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the ad client. Format: accounts/{account}/adclients/{adclient}"
+          }
+        },
+        "productCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reporting product code of the ad client. For example, \"AFC\" for AdSense for Content. Corresponds to the `PRODUCT_CODE` dimension, and present only if the ad client supports reporting."
+          }
+        },
+        "state": {
+          "target": "com.gcp.adsense_v2#AdClientStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the ad client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an ad client. An ad client represents a user's subscription with a specific AdSense product."
+      }
+    },
+    "com.gcp.adsense_v2#AdClientStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "GETTING_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GETTING_READY"
+          }
+        },
+        "REQUIRES_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUIRES_REVIEW"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#SavedReport": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the report. Format: accounts/{account}/reports/{report}"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Report title as specified by publisher."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a saved report."
+      }
+    },
+    "com.gcp.adsense_v2#AdBlockingRecoveryTag": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ad blocking recovery tag. Note that the message generated by the tag can be blocked by an ad blocking extension. If this is not your desired outcome, then you'll need to use it in conjunction with the error protection code."
+          }
+        },
+        "errorProtectionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error protection code that can be used in conjunction with the tag. It'll display a message to users if an [ad blocking extension blocks their access to your site](https://support.google.com/adsense/answer/11575480)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an ad blocking recovery tag. See https://support.google.com/adsense/answer/11575177."
+      }
+    },
+    "com.gcp.adsense_v2#ListAdUnitsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through ad units. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        },
+        "adUnits": {
+          "target": "com.gcp.adsense_v2#AdUnitList",
+          "traits": {
+            "smithy.api#documentation": "The ad units returned in the list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the adunit list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#AdUnitList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#AdUnit"
+      }
+    },
+    "com.gcp.adsense_v2#ListPaymentsResponse": {
+      "type": "structure",
+      "members": {
+        "payments": {
+          "target": "com.gcp.adsense_v2#PaymentList",
+          "traits": {
+            "smithy.api#documentation": "The payments returned in this list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the payments list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#PaymentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#Payment"
+      }
+    },
+    "com.gcp.adsense_v2#Cell": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value in the cell. The dimension cells contain strings, and the metric cells contain numbers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cell representation."
+      }
+    },
+    "com.gcp.adsense_v2#ListCustomChannelsResponse": {
+      "type": "structure",
+      "members": {
+        "customChannels": {
+          "target": "com.gcp.adsense_v2#CustomChannelList",
+          "traits": {
+            "smithy.api#documentation": "The custom channels returned in this list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through alerts. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the custom channel list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#PolicyTopic": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The policy topic. For example, \"sexual-content\" or \"ads-obscuring-content\".\""
+          }
+        },
+        "mustFix": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Deprecated. Always set to false."
+          }
+        },
+        "type": {
+          "target": "com.gcp.adsense_v2#PolicyTopicTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of policy topic. For example, \"POLICY\" represents all the policy topics that are related to the Google Publisher Policy (GPP). See https://support.google.com/adsense/answer/15689616."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a particular policy topic. A policy topic represents a single class of policy issue that can impact ad serving for your site. For example, sexual content or having ads that obscure your content. A single policy issue can have multiple policy topics for a single entity."
+      }
+    },
+    "com.gcp.adsense_v2#PolicyTopicTypeEnum": {
+      "type": "enum",
+      "members": {
+        "POLICY_TOPIC_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLICY_TOPIC_TYPE_UNSPECIFIED"
+          }
+        },
+        "POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLICY"
+          }
+        },
+        "ADVERTISER_PREFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADVERTISER_PREFERENCE"
+          }
+        },
+        "REGULATORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULATORY"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAdClientsResponse": {
+      "type": "structure",
+      "members": {
+        "adClients": {
+          "target": "com.gcp.adsense_v2#AdClientList",
+          "traits": {
+            "smithy.api#documentation": "The ad clients returned in this list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through ad clients. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the ad client list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#AdClientList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#AdClient"
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through accounts. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        },
+        "accounts": {
+          "target": "com.gcp.adsense_v2#AccountList",
+          "traits": {
+            "smithy.api#documentation": "The accounts returned in this list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the account list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#ListLinkedAdUnitsResponse": {
+      "type": "structure",
+      "members": {
+        "adUnits": {
+          "target": "com.gcp.adsense_v2#AdUnitList",
+          "traits": {
+            "smithy.api#documentation": "The ad units returned in the list response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token used to page through ad units. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response definition for the ad units linked to a custom channel list rpc."
+      }
+    },
+    "com.gcp.adsense_v2#ListChildAccountsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListChildAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChildAccounts` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent account, which owns the child accounts. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.adsense_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.adsense_v2#ListChildAccountsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListChildAccountsAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListChildAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}:listChildAccounts"
+        },
+        "smithy.api#documentation": "Lists all accounts directly managed by the given AdSense account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListAccountsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/accounts"
+        },
+        "smithy.api#documentation": "Lists all accounts available to this user.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAdBlockingRecoveryTagAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the account to get the tag for. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAdBlockingRecoveryTagAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAdBlockingRecoveryTagAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdBlockingRecoveryTag"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/adBlockingRecoveryTag"
+        },
+        "smithy.api#documentation": "Gets the ad blocking recovery tag of an account."
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Account to get information about. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about the selected AdSense account."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsSitesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of sites. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSites` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListSitesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/sites"
+        },
+        "smithy.api#documentation": "Lists all the sites available in an account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsSitesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the site. Format: accounts/{account}/sites/{site}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#Site"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about the selected site."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsPaymentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of payments. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsPayments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsPaymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListPaymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/payments"
+        },
+        "smithy.api#documentation": "Lists all the payments available for an account."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of alerts. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to use for translating alert messages. If unspecified, this defaults to the user's display language. If the given language is not supported, alerts will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListAlertsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/alerts"
+        },
+        "smithy.api#documentation": "Lists all the alerts available in an account."
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsPolicyIssuesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the policy issue. Format: accounts/{account}/policyIssues/{policy_issue}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsPolicyIssues": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsPolicyIssuesRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#PolicyIssue"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about the selected policy issue."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsPolicyIssuesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account for which policy issues are being retrieved. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of policy issues to include in the response, used for paging. If unspecified, at most 10000 policy issues will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListPolicyIssues` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPolicyIssues` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsPolicyIssues": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsPolicyIssuesRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListPolicyIssuesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policyIssues"
+        },
+        "smithy.api#documentation": "Lists all the policy issues where the specified account is involved, both directly and through any AFP child accounts.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the ad client to retrieve. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsAdclientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdClient"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the ad client from the given resource name."
+      }
+    },
+    "com.gcp.adsense_v2#GetAdcodeAccountsAdclientsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the ad client for which to get the adcode. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAdcodeAccountsAdclients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAdcodeAccountsAdclientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdClientAdCode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/adcode"
+        },
+        "smithy.api#documentation": "Gets the AdSense code for a given ad client. This returns what was previously known as the 'auto ad code'. This is only supported for ad clients with a product_code of AFC. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634)."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of ad clients to include in the response, used for paging. If unspecified, at most 10000 ad clients will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListAdClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdClients` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of ad clients. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsAdclientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListAdClientsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/adclients"
+        },
+        "smithy.api#documentation": "Lists all the ad clients available in an account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsAdunitsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. AdUnit to get information about. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsAdunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsAdclientsAdunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdUnit"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets an ad unit from a specified account and ad client."
+      }
+    },
+    "com.gcp.adsense_v2#ListLinkedCustomChannelsAccountsAdclientsAdunitsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ad unit which owns the collection of custom channels. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of custom channels to include in the response, used for paging. If unspecified, at most 10000 custom channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListLinkedCustomChannels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLinkedCustomChannels` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListLinkedCustomChannelsAccountsAdclientsAdunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListLinkedCustomChannelsAccountsAdclientsAdunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListLinkedCustomChannelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}:listLinkedCustomChannels"
+        },
+        "smithy.api#documentation": "Lists all the custom channels available for an ad unit.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsAdunitsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of ad units to include in the response, used for paging. If unspecified, at most 10000 ad units will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListAdUnits` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdUnits` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ad client which owns the collection of ad units. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsAdunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsAdclientsAdunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListAdUnitsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/adunits"
+        },
+        "smithy.api#documentation": "Lists all ad units under a specified account and ad client.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#PatchAccountsAdclientsAdunitsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list of fields to update. If empty, a full update is performed.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.adsense_v2#AdUnit",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.adsense_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.adsense_v2#PatchAccountsAdclientsAdunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#PatchAccountsAdclientsAdunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdUnit"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsense_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates an ad unit. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method. For now, this method can only be used to update `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566"
+      }
+    },
+    "com.gcp.adsense_v2#CreateAccountsAdclientsAdunitsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Ad client to create an ad unit under. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.adsense_v2#AdUnit",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#CreateAccountsAdclientsAdunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#CreateAccountsAdclientsAdunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdUnit"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsense_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/adunits"
+        },
+        "smithy.api#documentation": "Creates an ad unit. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method. Note that ad units can only be created for ad clients with an \"AFC\" product code. For more info see the [AdClient resource](/adsense/management/reference/rest/v2/accounts.adclients). For now, this method can only be used to create `DISPLAY` ad units. See: https://support.google.com/adsense/answer/9183566"
+      }
+    },
+    "com.gcp.adsense_v2#GetAdcodeAccountsAdclientsAdunitsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the adunit for which to get the adcode. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAdcodeAccountsAdclientsAdunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAdcodeAccountsAdclientsAdunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#AdUnitAdCode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/adcode"
+        },
+        "smithy.api#documentation": "Gets the ad unit code for a given ad unit. For more information, see [About the AdSense code](https://support.google.com/adsense/answer/9274634) and [Where to place the ad code in your HTML](https://support.google.com/adsense/answer/9190028)."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsCustomchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of custom channels to include in the response, used for paging. If unspecified, at most 10000 custom channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListCustomChannels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomChannels` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ad client which owns the collection of custom channels. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsCustomchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsAdclientsCustomchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListCustomChannelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/customchannels"
+        },
+        "smithy.api#documentation": "Lists all the custom channels available in an ad client.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsCustomchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the custom channel. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsCustomchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsAdclientsCustomchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#CustomChannel"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about the selected custom channel."
+      }
+    },
+    "com.gcp.adsense_v2#DeleteAccountsAdclientsCustomchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the custom channel to delete. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#DeleteAccountsAdclientsCustomchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#DeleteAccountsAdclientsCustomchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsense_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method."
+      }
+    },
+    "com.gcp.adsense_v2#ListLinkedAdUnitsAccountsAdclientsCustomchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of ad units to include in the response, used for paging. If unspecified, at most 10000 ad units will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListLinkedAdUnits` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListLinkedAdUnits` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The custom channel which owns the collection of ad units. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListLinkedAdUnitsAccountsAdclientsCustomchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListLinkedAdUnitsAccountsAdclientsCustomchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListLinkedAdUnitsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}:listLinkedAdUnits"
+        },
+        "smithy.api#documentation": "Lists all the ad units available for a custom channel.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#PatchAccountsAdclientsCustomchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list of fields to update. If empty, a full update is performed.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the custom channel. Format: accounts/{account}/adclients/{adclient}/customchannels/{customchannel}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.adsense_v2#CustomChannel",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#PatchAccountsAdclientsCustomchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#PatchAccountsAdclientsCustomchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#CustomChannel"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsense_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method."
+      }
+    },
+    "com.gcp.adsense_v2#CreateAccountsAdclientsCustomchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ad client to create a custom channel under. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.adsense_v2#CustomChannel",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#CreateAccountsAdclientsCustomchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#CreateAccountsAdclientsCustomchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#CustomChannel"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsense_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/customchannels"
+        },
+        "smithy.api#documentation": "Creates a custom channel. This method can be called only by a restricted set of projects, which are usually owned by [AdSense for Platforms](https://developers.google.com/adsense/platforms/) publishers. Contact your account manager if you need to use this method."
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsUrlchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the url channel to retrieve. Format: accounts/{account}/adclients/{adclient}/urlchannels/{urlchannel}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetAccountsAdclientsUrlchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetAccountsAdclientsUrlchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#UrlChannel"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about the selected url channel."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsUrlchannelsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ad client which owns the collection of url channels. Format: accounts/{account}/adclients/{adclient}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of url channels to include in the response, used for paging. If unspecified, at most 10000 url channels will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListUrlChannels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUrlChannels` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsAdclientsUrlchannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsAdclientsUrlchannelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListUrlChannelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/urlchannels"
+        },
+        "smithy.api#documentation": "Lists active url channels.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetSavedAccountsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the saved report to retrieve. Format: accounts/{account}/reports/{report}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GetSavedAccountsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GetSavedAccountsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#SavedReport"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/saved"
+        },
+        "smithy.api#documentation": "Gets the saved report from the given resource name."
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsDimensionsEnum": {
+      "type": "enum",
+      "members": {
+        "DIMENSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIMENSION_UNSPECIFIED"
+          }
+        },
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATE"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEK"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH"
+          }
+        },
+        "ACCOUNT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_NAME"
+          }
+        },
+        "AD_CLIENT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_CLIENT_ID"
+          }
+        },
+        "HOSTED_AD_CLIENT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTED_AD_CLIENT_ID"
+          }
+        },
+        "PRODUCT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_NAME"
+          }
+        },
+        "PRODUCT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_CODE"
+          }
+        },
+        "AD_UNIT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_NAME"
+          }
+        },
+        "AD_UNIT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_ID"
+          }
+        },
+        "AD_UNIT_SIZE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_SIZE_NAME"
+          }
+        },
+        "AD_UNIT_SIZE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_SIZE_CODE"
+          }
+        },
+        "CUSTOM_CHANNEL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_CHANNEL_NAME"
+          }
+        },
+        "CUSTOM_CHANNEL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_CHANNEL_ID"
+          }
+        },
+        "HOSTED_CUSTOM_CHANNEL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTED_CUSTOM_CHANNEL_ID"
+          }
+        },
+        "OWNED_SITE_DOMAIN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNED_SITE_DOMAIN_NAME"
+          }
+        },
+        "OWNED_SITE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNED_SITE_ID"
+          }
+        },
+        "PAGE_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_URL"
+          }
+        },
+        "URL_CHANNEL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_CHANNEL_NAME"
+          }
+        },
+        "URL_CHANNEL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_CHANNEL_ID"
+          }
+        },
+        "BUYER_NETWORK_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUYER_NETWORK_NAME"
+          }
+        },
+        "BUYER_NETWORK_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUYER_NETWORK_ID"
+          }
+        },
+        "BID_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BID_TYPE_NAME"
+          }
+        },
+        "BID_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BID_TYPE_CODE"
+          }
+        },
+        "CREATIVE_SIZE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_SIZE_NAME"
+          }
+        },
+        "CREATIVE_SIZE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_SIZE_CODE"
+          }
+        },
+        "DOMAIN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_NAME"
+          }
+        },
+        "DOMAIN_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_CODE"
+          }
+        },
+        "COUNTRY_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY_NAME"
+          }
+        },
+        "COUNTRY_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY_CODE"
+          }
+        },
+        "PLATFORM_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_TYPE_NAME"
+          }
+        },
+        "PLATFORM_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_TYPE_CODE"
+          }
+        },
+        "TARGETING_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARGETING_TYPE_NAME"
+          }
+        },
+        "TARGETING_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARGETING_TYPE_CODE"
+          }
+        },
+        "TRAFFIC_SOURCE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_NAME"
+          }
+        },
+        "TRAFFIC_SOURCE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_CODE"
+          }
+        },
+        "CONTENT_PLATFORM_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_PLATFORM_NAME"
+          }
+        },
+        "CONTENT_PLATFORM_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_PLATFORM_CODE"
+          }
+        },
+        "AD_PLACEMENT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_PLACEMENT_NAME"
+          }
+        },
+        "AD_PLACEMENT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_PLACEMENT_CODE"
+          }
+        },
+        "REQUESTED_AD_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUESTED_AD_TYPE_NAME"
+          }
+        },
+        "REQUESTED_AD_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUESTED_AD_TYPE_CODE"
+          }
+        },
+        "SERVED_AD_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVED_AD_TYPE_NAME"
+          }
+        },
+        "SERVED_AD_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVED_AD_TYPE_CODE"
+          }
+        },
+        "AD_FORMAT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_FORMAT_NAME"
+          }
+        },
+        "AD_FORMAT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_FORMAT_CODE"
+          }
+        },
+        "CUSTOM_SEARCH_STYLE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_SEARCH_STYLE_NAME"
+          }
+        },
+        "CUSTOM_SEARCH_STYLE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_SEARCH_STYLE_ID"
+          }
+        },
+        "DOMAIN_REGISTRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_REGISTRANT"
+          }
+        },
+        "WEBSEARCH_QUERY_STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBSEARCH_QUERY_STRING"
+          }
+        },
+        "OS_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OS_TYPE_NAME"
+          }
+        },
+        "OS_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OS_TYPE_CODE"
+          }
+        },
+        "BROWSER_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROWSER_TYPE_NAME"
+          }
+        },
+        "BROWSER_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROWSER_TYPE_CODE"
+          }
+        },
+        "WEBVIEW_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBVIEW_TYPE_NAME"
+          }
+        },
+        "WEBVIEW_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBVIEW_TYPE_CODE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsDimensionsEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsDimensionsEnum"
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsReportingTimeZoneEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_TIME_ZONE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_TIME_ZONE_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_TIME_ZONE"
+          }
+        },
+        "GOOGLE_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_TIME_ZONE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsMetricsEnum": {
+      "type": "enum",
+      "members": {
+        "METRIC_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_UNSPECIFIED"
+          }
+        },
+        "PAGE_VIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS"
+          }
+        },
+        "AD_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS"
+          }
+        },
+        "MATCHED_AD_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS"
+          }
+        },
+        "TOTAL_IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOTAL_IMPRESSIONS"
+          }
+        },
+        "IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS"
+          }
+        },
+        "CLICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICKS"
+          }
+        },
+        "PAGE_VIEWS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS_SPAM_RATIO"
+          }
+        },
+        "AD_REQUESTS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_SPAM_RATIO"
+          }
+        },
+        "MATCHED_AD_REQUESTS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS_SPAM_RATIO"
+          }
+        },
+        "IMPRESSIONS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS_SPAM_RATIO"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO"
+          }
+        },
+        "CLICKS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICKS_SPAM_RATIO"
+          }
+        },
+        "AD_REQUESTS_COVERAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_COVERAGE"
+          }
+        },
+        "PAGE_VIEWS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS_CTR"
+          }
+        },
+        "AD_REQUESTS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_CTR"
+          }
+        },
+        "MATCHED_AD_REQUESTS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS_CTR"
+          }
+        },
+        "IMPRESSIONS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS_CTR"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS_CTR"
+          }
+        },
+        "ACTIVE_VIEW_MEASURABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE_VIEW_MEASURABILITY"
+          }
+        },
+        "ACTIVE_VIEW_VIEWABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE_VIEW_VIEWABILITY"
+          }
+        },
+        "ACTIVE_VIEW_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE_VIEW_TIME"
+          }
+        },
+        "ESTIMATED_EARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESTIMATED_EARNINGS"
+          }
+        },
+        "PAGE_VIEWS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS_RPM"
+          }
+        },
+        "AD_REQUESTS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_RPM"
+          }
+        },
+        "MATCHED_AD_REQUESTS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS_RPM"
+          }
+        },
+        "IMPRESSIONS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS_RPM"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS_RPM"
+          }
+        },
+        "COST_PER_CLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COST_PER_CLICK"
+          }
+        },
+        "ADS_PER_IMPRESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS_PER_IMPRESSION"
+          }
+        },
+        "TOTAL_EARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOTAL_EARNINGS"
+          }
+        },
+        "WEBSEARCH_RESULT_PAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBSEARCH_RESULT_PAGES"
+          }
+        },
+        "FUNNEL_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_REQUESTS"
+          }
+        },
+        "FUNNEL_IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_IMPRESSIONS"
+          }
+        },
+        "FUNNEL_CLICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_CLICKS"
+          }
+        },
+        "FUNNEL_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_RPM"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsMetricsEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsMetricsEnum"
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsDateRangeEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_DATE_RANGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_DATE_RANGE_UNSPECIFIED"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        },
+        "TODAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TODAY"
+          }
+        },
+        "YESTERDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YESTERDAY"
+          }
+        },
+        "MONTH_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH_TO_DATE"
+          }
+        },
+        "YEAR_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR_TO_DATE"
+          }
+        },
+        "LAST_7_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_7_DAYS"
+          }
+        },
+        "LAST_30_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_30_DAYS"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsDimensionsEnumList",
+          "traits": {
+            "smithy.api#documentation": "Dimensions to base the report on.",
+            "smithy.api#httpQuery": "dimensions"
+          }
+        },
+        "endDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "endDate.month"
+          }
+        },
+        "reportingTimeZone": {
+          "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsReportingTimeZoneEnum",
+          "traits": {
+            "smithy.api#documentation": "Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).",
+            "smithy.api#httpQuery": "reportingTimeZone"
+          }
+        },
+        "endDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "endDate.day"
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsMetricsEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Reporting metrics.",
+            "smithy.api#httpQuery": "metrics"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to use for translating report output. If unspecified, this defaults to English (\"en\"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of rows of report data to return. Reports producing more rows than the requested limit will be truncated. If unset, this defaults to 100,000 rows for `Reports.GenerateReport` and 1,000,000 rows for `Reports.GenerateCsvReport`, which are also the maximum values permitted here. Report truncation can be identified (for `Reports.GenerateReport` only) by comparing the number of rows returned to the value returned in `total_matched_rows`.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "startDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "startDate.month"
+          }
+        },
+        "orderBy": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The name of a dimension or metric to sort the resulting report on, can be prefixed with \"+\" to sort ascending or \"-\" to sort descending. If no prefix is specified, the column is sorted ascending.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "endDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "endDate.year"
+          }
+        },
+        "startDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "startDate.day"
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsDateRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Date range of the report, if unset the range will be considered CUSTOM.",
+            "smithy.api#httpQuery": "dateRange"
+          }
+        },
+        "startDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "startDate.year"
+          }
+        },
+        "filters": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.",
+            "smithy.api#httpQuery": "filters"
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of reports. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#HttpBody"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+account}/reports:generateCsv"
+        },
+        "smithy.api#documentation": "Generates a csv formatted ad hoc report."
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsDimensionsEnum": {
+      "type": "enum",
+      "members": {
+        "DIMENSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIMENSION_UNSPECIFIED"
+          }
+        },
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATE"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEK"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH"
+          }
+        },
+        "ACCOUNT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_NAME"
+          }
+        },
+        "AD_CLIENT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_CLIENT_ID"
+          }
+        },
+        "HOSTED_AD_CLIENT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTED_AD_CLIENT_ID"
+          }
+        },
+        "PRODUCT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_NAME"
+          }
+        },
+        "PRODUCT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_CODE"
+          }
+        },
+        "AD_UNIT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_NAME"
+          }
+        },
+        "AD_UNIT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_ID"
+          }
+        },
+        "AD_UNIT_SIZE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_SIZE_NAME"
+          }
+        },
+        "AD_UNIT_SIZE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_UNIT_SIZE_CODE"
+          }
+        },
+        "CUSTOM_CHANNEL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_CHANNEL_NAME"
+          }
+        },
+        "CUSTOM_CHANNEL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_CHANNEL_ID"
+          }
+        },
+        "HOSTED_CUSTOM_CHANNEL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSTED_CUSTOM_CHANNEL_ID"
+          }
+        },
+        "OWNED_SITE_DOMAIN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNED_SITE_DOMAIN_NAME"
+          }
+        },
+        "OWNED_SITE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNED_SITE_ID"
+          }
+        },
+        "PAGE_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_URL"
+          }
+        },
+        "URL_CHANNEL_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_CHANNEL_NAME"
+          }
+        },
+        "URL_CHANNEL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_CHANNEL_ID"
+          }
+        },
+        "BUYER_NETWORK_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUYER_NETWORK_NAME"
+          }
+        },
+        "BUYER_NETWORK_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUYER_NETWORK_ID"
+          }
+        },
+        "BID_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BID_TYPE_NAME"
+          }
+        },
+        "BID_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BID_TYPE_CODE"
+          }
+        },
+        "CREATIVE_SIZE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_SIZE_NAME"
+          }
+        },
+        "CREATIVE_SIZE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATIVE_SIZE_CODE"
+          }
+        },
+        "DOMAIN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_NAME"
+          }
+        },
+        "DOMAIN_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_CODE"
+          }
+        },
+        "COUNTRY_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY_NAME"
+          }
+        },
+        "COUNTRY_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY_CODE"
+          }
+        },
+        "PLATFORM_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_TYPE_NAME"
+          }
+        },
+        "PLATFORM_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_TYPE_CODE"
+          }
+        },
+        "TARGETING_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARGETING_TYPE_NAME"
+          }
+        },
+        "TARGETING_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TARGETING_TYPE_CODE"
+          }
+        },
+        "TRAFFIC_SOURCE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_NAME"
+          }
+        },
+        "TRAFFIC_SOURCE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_CODE"
+          }
+        },
+        "CONTENT_PLATFORM_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_PLATFORM_NAME"
+          }
+        },
+        "CONTENT_PLATFORM_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_PLATFORM_CODE"
+          }
+        },
+        "AD_PLACEMENT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_PLACEMENT_NAME"
+          }
+        },
+        "AD_PLACEMENT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_PLACEMENT_CODE"
+          }
+        },
+        "REQUESTED_AD_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUESTED_AD_TYPE_NAME"
+          }
+        },
+        "REQUESTED_AD_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUESTED_AD_TYPE_CODE"
+          }
+        },
+        "SERVED_AD_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVED_AD_TYPE_NAME"
+          }
+        },
+        "SERVED_AD_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVED_AD_TYPE_CODE"
+          }
+        },
+        "AD_FORMAT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_FORMAT_NAME"
+          }
+        },
+        "AD_FORMAT_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_FORMAT_CODE"
+          }
+        },
+        "CUSTOM_SEARCH_STYLE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_SEARCH_STYLE_NAME"
+          }
+        },
+        "CUSTOM_SEARCH_STYLE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_SEARCH_STYLE_ID"
+          }
+        },
+        "DOMAIN_REGISTRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_REGISTRANT"
+          }
+        },
+        "WEBSEARCH_QUERY_STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBSEARCH_QUERY_STRING"
+          }
+        },
+        "OS_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OS_TYPE_NAME"
+          }
+        },
+        "OS_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OS_TYPE_CODE"
+          }
+        },
+        "BROWSER_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROWSER_TYPE_NAME"
+          }
+        },
+        "BROWSER_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROWSER_TYPE_CODE"
+          }
+        },
+        "WEBVIEW_TYPE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBVIEW_TYPE_NAME"
+          }
+        },
+        "WEBVIEW_TYPE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBVIEW_TYPE_CODE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsDimensionsEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#GenerateAccountsReportsDimensionsEnum"
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsMetricsEnum": {
+      "type": "enum",
+      "members": {
+        "METRIC_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METRIC_UNSPECIFIED"
+          }
+        },
+        "PAGE_VIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS"
+          }
+        },
+        "AD_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS"
+          }
+        },
+        "MATCHED_AD_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS"
+          }
+        },
+        "TOTAL_IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOTAL_IMPRESSIONS"
+          }
+        },
+        "IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS"
+          }
+        },
+        "CLICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICKS"
+          }
+        },
+        "PAGE_VIEWS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS_SPAM_RATIO"
+          }
+        },
+        "AD_REQUESTS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_SPAM_RATIO"
+          }
+        },
+        "MATCHED_AD_REQUESTS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS_SPAM_RATIO"
+          }
+        },
+        "IMPRESSIONS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS_SPAM_RATIO"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO"
+          }
+        },
+        "CLICKS_SPAM_RATIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICKS_SPAM_RATIO"
+          }
+        },
+        "AD_REQUESTS_COVERAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_COVERAGE"
+          }
+        },
+        "PAGE_VIEWS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS_CTR"
+          }
+        },
+        "AD_REQUESTS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_CTR"
+          }
+        },
+        "MATCHED_AD_REQUESTS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS_CTR"
+          }
+        },
+        "IMPRESSIONS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS_CTR"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS_CTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS_CTR"
+          }
+        },
+        "ACTIVE_VIEW_MEASURABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE_VIEW_MEASURABILITY"
+          }
+        },
+        "ACTIVE_VIEW_VIEWABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE_VIEW_VIEWABILITY"
+          }
+        },
+        "ACTIVE_VIEW_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE_VIEW_TIME"
+          }
+        },
+        "ESTIMATED_EARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESTIMATED_EARNINGS"
+          }
+        },
+        "PAGE_VIEWS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGE_VIEWS_RPM"
+          }
+        },
+        "AD_REQUESTS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD_REQUESTS_RPM"
+          }
+        },
+        "MATCHED_AD_REQUESTS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHED_AD_REQUESTS_RPM"
+          }
+        },
+        "IMPRESSIONS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPRESSIONS_RPM"
+          }
+        },
+        "INDIVIDUAL_AD_IMPRESSIONS_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIVIDUAL_AD_IMPRESSIONS_RPM"
+          }
+        },
+        "COST_PER_CLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COST_PER_CLICK"
+          }
+        },
+        "ADS_PER_IMPRESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS_PER_IMPRESSION"
+          }
+        },
+        "TOTAL_EARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOTAL_EARNINGS"
+          }
+        },
+        "WEBSEARCH_RESULT_PAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEBSEARCH_RESULT_PAGES"
+          }
+        },
+        "FUNNEL_REQUESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_REQUESTS"
+          }
+        },
+        "FUNNEL_IMPRESSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_IMPRESSIONS"
+          }
+        },
+        "FUNNEL_CLICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_CLICKS"
+          }
+        },
+        "FUNNEL_RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNNEL_RPM"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsMetricsEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.adsense_v2#GenerateAccountsReportsMetricsEnum"
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsReportingTimeZoneEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_TIME_ZONE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_TIME_ZONE_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_TIME_ZONE"
+          }
+        },
+        "GOOGLE_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_TIME_ZONE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsDateRangeEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_DATE_RANGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_DATE_RANGE_UNSPECIFIED"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        },
+        "TODAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TODAY"
+          }
+        },
+        "YESTERDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YESTERDAY"
+          }
+        },
+        "MONTH_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH_TO_DATE"
+          }
+        },
+        "YEAR_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR_TO_DATE"
+          }
+        },
+        "LAST_7_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_7_DAYS"
+          }
+        },
+        "LAST_30_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_30_DAYS"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "endDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "endDate.month"
+          }
+        },
+        "dimensions": {
+          "target": "com.gcp.adsense_v2#GenerateAccountsReportsDimensionsEnumList",
+          "traits": {
+            "smithy.api#documentation": "Dimensions to base the report on.",
+            "smithy.api#httpQuery": "dimensions"
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.adsense_v2#GenerateAccountsReportsMetricsEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Reporting metrics.",
+            "smithy.api#httpQuery": "metrics"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to use for translating report output. If unspecified, this defaults to English (\"en\"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        },
+        "endDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "endDate.day"
+          }
+        },
+        "reportingTimeZone": {
+          "target": "com.gcp.adsense_v2#GenerateAccountsReportsReportingTimeZoneEnum",
+          "traits": {
+            "smithy.api#documentation": "Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).",
+            "smithy.api#httpQuery": "reportingTimeZone"
+          }
+        },
+        "startDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "startDate.month"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of rows of report data to return. Reports producing more rows than the requested limit will be truncated. If unset, this defaults to 100,000 rows for `Reports.GenerateReport` and 1,000,000 rows for `Reports.GenerateCsvReport`, which are also the maximum values permitted here. Report truncation can be identified (for `Reports.GenerateReport` only) by comparing the number of rows returned to the value returned in `total_matched_rows`.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "orderBy": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The name of a dimension or metric to sort the resulting report on, can be prefixed with \"+\" to sort ascending or \"-\" to sort descending. If no prefix is specified, the column is sorted ascending.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "startDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "startDate.day"
+          }
+        },
+        "endDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "endDate.year"
+          }
+        },
+        "filters": {
+          "target": "com.gcp.adsense_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of [filters](/adsense/management/reporting/filtering) to apply to the report. All provided filters must match in order for the data to be included in the report.",
+            "smithy.api#httpQuery": "filters"
+          }
+        },
+        "startDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "startDate.year"
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.adsense_v2#GenerateAccountsReportsDateRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Date range of the report, if unset the range will be considered CUSTOM.",
+            "smithy.api#httpQuery": "dateRange"
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of reports. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GenerateAccountsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ReportResult"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+account}/reports:generate"
+        },
+        "smithy.api#documentation": "Generates an ad hoc report."
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsSavedDateRangeEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_DATE_RANGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_DATE_RANGE_UNSPECIFIED"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        },
+        "TODAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TODAY"
+          }
+        },
+        "YESTERDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YESTERDAY"
+          }
+        },
+        "MONTH_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH_TO_DATE"
+          }
+        },
+        "YEAR_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR_TO_DATE"
+          }
+        },
+        "LAST_7_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_7_DAYS"
+          }
+        },
+        "LAST_30_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_30_DAYS"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsSavedReportingTimeZoneEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_TIME_ZONE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_TIME_ZONE_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_TIME_ZONE"
+          }
+        },
+        "GOOGLE_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_TIME_ZONE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsSavedRequest": {
+      "type": "structure",
+      "members": {
+        "startDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "startDate.month"
+          }
+        },
+        "startDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "startDate.year"
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.adsense_v2#GenerateAccountsReportsSavedDateRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Date range of the report, if unset the range will be considered CUSTOM.",
+            "smithy.api#httpQuery": "dateRange"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the saved report. Format: accounts/{account}/reports/{report}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "endDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "endDate.month"
+          }
+        },
+        "startDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "startDate.day"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to use for translating report output. If unspecified, this defaults to English (\"en\"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        },
+        "endDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "endDate.year"
+          }
+        },
+        "endDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "endDate.day"
+          }
+        },
+        "reportingTimeZone": {
+          "target": "com.gcp.adsense_v2#GenerateAccountsReportsSavedReportingTimeZoneEnum",
+          "traits": {
+            "smithy.api#documentation": "Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).",
+            "smithy.api#httpQuery": "reportingTimeZone"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateAccountsReportsSaved": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GenerateAccountsReportsSavedRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ReportResult"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/saved:generate"
+        },
+        "smithy.api#documentation": "Generates a saved report."
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsSavedReportingTimeZoneEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_TIME_ZONE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_TIME_ZONE_UNSPECIFIED"
+          }
+        },
+        "ACCOUNT_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_TIME_ZONE"
+          }
+        },
+        "GOOGLE_TIME_ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOOGLE_TIME_ZONE"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsSavedDateRangeEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_DATE_RANGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_DATE_RANGE_UNSPECIFIED"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        },
+        "TODAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TODAY"
+          }
+        },
+        "YESTERDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YESTERDAY"
+          }
+        },
+        "MONTH_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH_TO_DATE"
+          }
+        },
+        "YEAR_TO_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR_TO_DATE"
+          }
+        },
+        "LAST_7_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_7_DAYS"
+          }
+        },
+        "LAST_30_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAST_30_DAYS"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsSavedRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the saved report. Format: accounts/{account}/reports/{report}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "endDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "endDate.month"
+          }
+        },
+        "endDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "endDate.year"
+          }
+        },
+        "startDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "startDate.day"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to use for translating report output. If unspecified, this defaults to English (\"en\"). If the given language is not supported, report output will be returned in English. The language is specified as an [IETF BCP-47 language code](https://en.wikipedia.org/wiki/IETF_language_tag).",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [ISO-4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) to use when reporting on monetary metrics. Defaults to the account's currency if not set.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        },
+        "reportingTimeZone": {
+          "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsSavedReportingTimeZoneEnum",
+          "traits": {
+            "smithy.api#documentation": "Timezone in which to generate the report. If unspecified, this defaults to the account timezone. For more information, see [changing the time zone of your reports](https://support.google.com/adsense/answer/9830725).",
+            "smithy.api#httpQuery": "reportingTimeZone"
+          }
+        },
+        "endDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "endDate.day"
+          }
+        },
+        "startDate.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "startDate.month"
+          }
+        },
+        "dateRange": {
+          "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsSavedDateRangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Date range of the report, if unset the range will be considered CUSTOM.",
+            "smithy.api#httpQuery": "dateRange"
+          }
+        },
+        "startDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "startDate.year"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#GenerateCsvAccountsReportsSaved": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#GenerateCsvAccountsReportsSavedRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#HttpBody"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/saved:generateCsv"
+        },
+        "smithy.api#documentation": "Generates a csv formatted saved report."
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsReportsSavedRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the collection of reports. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of reports to include in the response, used for paging. If unspecified, at most 10000 reports will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListSavedReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSavedReports` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.adsense_v2#ListAccountsReportsSaved": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsense_v2#ListAccountsReportsSavedRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsense_v2#ListSavedReportsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsense_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.adsense_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/reports/saved"
+        },
+        "smithy.api#documentation": "Lists saved reports.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "description": "lockdown configurations is an ARRAY on the wire; responses echo priority",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#LockdownConfigurationsList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.cloudflare.firewall#LockdownsCreateRequestConfigurations"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdownRequest/members/configurations/target",
+      "value": "com.cloudflare.firewall#LockdownConfigurationsList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdownResponse/members/configurations/target",
+      "value": "com.cloudflare.firewall#LockdownConfigurationsList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetLockdownResponse/members/configurations/target",
+      "value": "com.cloudflare.firewall#LockdownConfigurationsList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsListResultItem/members/configurations/target",
+      "value": "com.cloudflare.firewall#LockdownConfigurationsList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownRequest/members/configurations/target",
+      "value": "com.cloudflare.firewall#LockdownConfigurationsList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownResponse/members/configurations/target",
+      "value": "com.cloudflare.firewall#LockdownConfigurationsList"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#CreateLockdownResponse/members/priority",
+      "value": {
+        "target": "smithy.api#Integer",
+        "traits": {
+          "smithy.api#documentation": "The priority of the Zone Lockdown rule, echoed on reads."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#GetLockdownResponse/members/priority",
+      "value": {
+        "target": "smithy.api#Integer",
+        "traits": {
+          "smithy.api#documentation": "The priority of the Zone Lockdown rule, echoed on reads."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsListResultItem/members/priority",
+      "value": {
+        "target": "smithy.api#Integer",
+        "traits": {
+          "smithy.api#documentation": "The priority of the Zone Lockdown rule, echoed on reads."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#UpdateLockdownResponse/members/priority",
+      "value": {
+        "target": "smithy.api#Integer",
+        "traits": {
+          "smithy.api#documentation": "The priority of the Zone Lockdown rule, echoed on reads."
+        }
+      }
+    }
+  ]
+}

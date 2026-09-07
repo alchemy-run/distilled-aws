@@ -1,0 +1,20 @@
+{
+  "description": "Align cloudforce_one#RequestsMessageDelete with distilled cloudflare/cloudforce-one deleteRequestMessage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageDelete",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestMessage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageDeleteRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestMessageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestMessage/input/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteRequestMessageRequest"
+    }
+  ]
+}

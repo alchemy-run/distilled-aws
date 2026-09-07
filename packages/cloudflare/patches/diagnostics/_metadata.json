@@ -1,0 +1,27 @@
+{
+  "description": "Key dictionary / op aliases for diagnostics (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "checkType": "check_type",
+        "documentationUrl": "documentation_url",
+        "maxRttMs": "max_rtt_ms",
+        "maxTtl": "max_ttl",
+        "meanRttMs": "mean_rtt_ms",
+        "minRttMs": "min_rtt_ms",
+        "packetCount": "packet_count",
+        "packetType": "packet_type",
+        "packetsLost": "packets_lost",
+        "packetsPerTtl": "packets_per_ttl",
+        "packetsSent": "packets_sent",
+        "packetsTtl": "packets_ttl",
+        "stdDevRttMs": "std_dev_rtt_ms",
+        "targetSummary": "target_summary",
+        "tracerouteTimeMs": "traceroute_time_ms",
+        "waitTime": "wait_time"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1786 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.git#CreateBlobRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new blob's content.",
+            "smithy.api#required": {}
+          }
+        },
+        "encoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoding used for `content`. Currently, `\"utf-8\"` and `\"base64\"` are supported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#ShortBlob": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Short Blob"
+      }
+    },
+    "com.github.git#CreateBlob": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#CreateBlobRequest"
+      },
+      "output": {
+        "target": "com.github.git#ShortBlob"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Forbidden"
+        },
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/git/blobs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a blob"
+      }
+    },
+    "com.github.git#GetBlobRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "file_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#Blob": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "encoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "highlighted_content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Blob"
+      }
+    },
+    "com.github.git#GetBlob": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#GetBlobRequest"
+      },
+      "output": {
+        "target": "com.github.git#Blob"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Forbidden"
+        },
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/git/blobs/{file_sha}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a blob\n\nThe `content` in the response will always be Base64 encoded.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw blob data.\n- **`application/vnd.github+json`**: Returns a JSON representation of the blob with `content` as a base64 encoded string. This is the default if no media type is specified.\n\n**Note** This endpoint supports blobs up to 100 megabytes in size."
+      }
+    },
+    "com.github.git#CreateCommitRequestParentsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The full SHAs of the commits that were the parents of this commit. If omitted or empty, the commit will be written as a root commit. For a single parent, an array of one SHA should be provided; for a merge commit, an array of more than one should be provided."
+      }
+    },
+    "com.github.git#CreateCommitRequestAuthor": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the author (or committer) of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the author (or committer) of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates when this commit was authored (or committed). This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the author of the commit. By default, the `author` will be the authenticated user and the current date. See the `author` and `committer` object below for details."
+      }
+    },
+    "com.github.git#CreateCommitRequestCommitter": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the author (or committer) of the commit"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the author (or committer) of the commit"
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates when this commit was authored (or committed). This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the person who is making the commit. By default, `committer` will use the information set in `author`. See the `author` and `committer` object below for details."
+      }
+    },
+    "com.github.git#CreateCommitRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The commit message",
+            "smithy.api#required": {}
+          }
+        },
+        "tree": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA of the tree object this commit points to",
+            "smithy.api#required": {}
+          }
+        },
+        "parents": {
+          "target": "com.github.git#CreateCommitRequestParentsList",
+          "traits": {
+            "smithy.api#documentation": "The full SHAs of the commits that were the parents of this commit. If omitted or empty, the commit will be written as a root commit. For a single parent, an array of one SHA should be provided; for a merge commit, an array of more than one should be provided."
+          }
+        },
+        "author": {
+          "target": "com.github.git#CreateCommitRequestAuthor",
+          "traits": {
+            "smithy.api#documentation": "Information about the author of the commit. By default, the `author` will be the authenticated user and the current date. See the `author` and `committer` object below for details."
+          }
+        },
+        "committer": {
+          "target": "com.github.git#CreateCommitRequestCommitter",
+          "traits": {
+            "smithy.api#documentation": "Information about the person who is making the commit. By default, `committer` will use the information set in `author`. See the `author` and `committer` object below for details."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [PGP signature](https://en.wikipedia.org/wiki/Pretty_Good_Privacy) of the commit. GitHub adds the signature to the `gpgsig` header of the created commit. For a commit signature to be verifiable by Git or GitHub, it must be an ASCII-armored detached PGP signature over the string commit as it would be written to the object database. To pass a `signature` parameter, you need to first manually create a valid PGP signature, which can be complicated. You may find it easier to [use the command line](https://git-scm.com/book/id/v2/Git-Tools-Signing-Your-Work) to create signed commits."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GitCommit": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA for the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "com.github.git#GitCommitAuthor",
+          "traits": {
+            "smithy.api#documentation": "Identifying information for the git-user",
+            "smithy.api#required": {}
+          }
+        },
+        "committer": {
+          "target": "com.github.git#GitCommitCommitter",
+          "traits": {
+            "smithy.api#documentation": "Identifying information for the git-user",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message describing the purpose of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "tree": {
+          "target": "com.github.git#GitCommitTree",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parents": {
+          "target": "com.github.git#GitCommitParentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verification": {
+          "target": "com.github.git#GitCommitVerification",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Low-level Git commit operations within a repository"
+      }
+    },
+    "com.github.git#GitCommitAuthor": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git email address of the user",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the git user",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifying information for the git-user"
+      }
+    },
+    "com.github.git#GitCommitCommitter": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git email address of the user",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the git user",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifying information for the git-user"
+      }
+    },
+    "com.github.git#GitCommitTree": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA for the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#GitCommitParentsItem": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA for the commit",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#GitCommitParentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.git#GitCommitParentsItem"
+      },
+      "traits": {}
+    },
+    "com.github.git#GitCommitVerification": {
+      "type": "structure",
+      "members": {
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "payload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "verified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#CreateCommit": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#CreateCommitRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitCommit"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/git/commits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a commit\n\nCreates a new Git [commit object](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects).\n\n**Signature verification object**\n\nThe response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object:\n\n\nThese are the possible values for `reason` in the `verification` object:"
+      }
+    },
+    "com.github.git#GetCommitRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "commit_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The SHA of the commit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GetCommit": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#GetCommitRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitCommit"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/git/commits/{commit_sha}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a commit object\n\nGets a Git [commit object](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects).\n\nTo get the contents of a commit, see \"[Get a commit](/rest/commits/commits#get-a-commit).\"\n\n**Signature verification object**\n\nThe response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object:\n\n\nThese are the possible values for `reason` in the `verification` object:"
+      }
+    },
+    "com.github.git#ListMatchingRefsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Git reference. For more information, see \"[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)\" in the Git documentation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GitRef": {
+      "type": "structure",
+      "members": {
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object": {
+          "target": "com.github.git#GitRefObject",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Git references within a repository"
+      }
+    },
+    "com.github.git#GitRefObject": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA for the reference",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#ListMatchingRefsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.git#GitRef"
+      },
+      "traits": {}
+    },
+    "com.github.git#ListMatchingRefsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.git#ListMatchingRefsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.git#ListMatchingRefs": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#ListMatchingRefsRequest"
+      },
+      "output": {
+        "target": "com.github.git#ListMatchingRefsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/git/matching-refs/{ref}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List matching references\n\nReturns an array of references from your Git database that match the supplied name. The `:ref` in the URL must be formatted as `heads/<branch name>` for branches and `tags/<tag name>` for tags. If the `:ref` doesn't exist in the repository, but existing refs start with `:ref`, they will be returned as an array.\n\nWhen you use this endpoint without providing a `:ref`, it will return an array of all the references from your Git database, including notes and stashes if they exist on the server. Anything in the namespace is returned, not just `heads` and `tags`.\n\n> [!NOTE]\n> You need to explicitly [request a pull request](https://docs.github.com/rest/pulls/pulls#get-a-pull-request) to trigger a test merge commit, which checks the mergeability of pull requests. For more information, see \"[Checking mergeability of pull requests](https://docs.github.com/rest/guides/getting-started-with-the-git-database-api#checking-mergeability-of-pull-requests)\".\n\nIf you request matching references for a branch named `feature` but the branch `feature` doesn't exist, the response can still include other matching head refs that start with the word `feature`, such as `featureA` and `featureB`."
+      }
+    },
+    "com.github.git#GetRefRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Git reference. For more information, see \"[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)\" in the Git documentation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GetRef": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#GetRefRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitRef"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/git/ref/{ref}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a reference\n\nReturns a single reference from your Git database. The `:ref` in the URL must be formatted as `heads/<branch name>` for branches and `tags/<tag name>` for tags. If the `:ref` doesn't match an existing ref, a `404` is returned.\n\n> [!NOTE]\n> You need to explicitly [request a pull request](https://docs.github.com/rest/pulls/pulls#get-a-pull-request) to trigger a test merge commit, which checks the mergeability of pull requests. For more information, see \"[Checking mergeability of pull requests](https://docs.github.com/rest/guides/getting-started-with-the-git-database-api#checking-mergeability-of-pull-requests)\"."
+      }
+    },
+    "com.github.git#CreateRefRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the fully qualified reference (ie: `refs/heads/master`). If it doesn't start with 'refs' and have at least two slashes, it will be rejected.",
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA1 value for this reference.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#CreateRef": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#CreateRefRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitRef"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/git/refs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a reference\n\nCreates a reference for your repository. You are unable to create new references for empty repositories, even if the commit SHA-1 hash used exists. Empty repositories are repositories without branches."
+      }
+    },
+    "com.github.git#UpdateRefRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Git reference. For more information, see \"[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)\" in the Git documentation."
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA1 value to set this reference to",
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to force the update or to make sure the update is a fast-forward update. Leaving this out or setting it to `false` will make sure you're not overwriting work."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#UpdateRef": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#UpdateRefRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitRef"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/git/refs/{ref}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a reference\n\nUpdates the provided reference to point to a new SHA. For more information, see \"[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)\" in the Git documentation."
+      }
+    },
+    "com.github.git#DeleteRefRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Git reference. For more information, see \"[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)\" in the Git documentation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#DeleteRef": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#DeleteRefRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/git/refs/{ref}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a reference\n\nDeletes the provided reference."
+      }
+    },
+    "com.github.git#CreateTagRequestType": {
+      "type": "enum",
+      "members": {
+        "COMMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "commit"
+          }
+        },
+        "TREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tree"
+          }
+        },
+        "BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blob"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the object we're tagging. Normally this is a `commit` but it can also be a `tree` or a `blob`."
+      }
+    },
+    "com.github.git#CreateTagRequestTagger": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the author of the tag",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the author of the tag",
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this object was tagged. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object with information about the individual creating the tag."
+      }
+    },
+    "com.github.git#CreateTagRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tag's name. This is typically a version (e.g., \"v0.0.1\").",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tag message.",
+            "smithy.api#required": {}
+          }
+        },
+        "object": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA of the git object this is tagging.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.git#CreateTagRequestType",
+          "traits": {
+            "smithy.api#documentation": "The type of the object we're tagging. Normally this is a `commit` but it can also be a `tree` or a `blob`.",
+            "smithy.api#required": {}
+          }
+        },
+        "tagger": {
+          "target": "com.github.git#CreateTagRequestTagger",
+          "traits": {
+            "smithy.api#documentation": "An object with information about the individual creating the tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GitTag": {
+      "type": "structure",
+      "members": {
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the tag",
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the tag",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message describing the purpose of the tag",
+            "smithy.api#required": {}
+          }
+        },
+        "tagger": {
+          "target": "com.github.git#GitTagTagger",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object": {
+          "target": "com.github.git#GitTagObject",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verification": {
+          "target": "com.github.git#Verification"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for a Git tag"
+      }
+    },
+    "com.github.git#GitTagTagger": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#GitTagObject": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#Verification": {
+      "type": "structure",
+      "members": {
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "verified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#CreateTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#CreateTagRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitTag"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/git/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a tag object\n\nNote that creating a tag object does not create the reference that makes a tag in Git. If you want to create an annotated tag in Git, you have to do this call to create the tag object, and then [create](https://docs.github.com/rest/git/refs#create-a-reference) the `refs/tags/[tag]` reference. If you want to create a lightweight tag, you only have to [create](https://docs.github.com/rest/git/refs#create-a-reference) the tag reference - this call would be unnecessary.\n\n**Signature verification object**\n\nThe response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object:\n\n\nThese are the possible values for `reason` in the `verification` object:"
+      }
+    },
+    "com.github.git#GetTagRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "tag_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GetTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#GetTagRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitTag"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/git/tags/{tag_sha}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a tag\n\n**Signature verification object**\n\nThe response will include a `verification` object that describes the result of verifying the commit's signature. The following fields are included in the `verification` object:\n\n\nThese are the possible values for `reason` in the `verification` object:"
+      }
+    },
+    "com.github.git#CreateTreeRequestTreeItemMode": {
+      "type": "enum",
+      "members": {
+        "_100644": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "100644"
+          }
+        },
+        "_100755": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "100755"
+          }
+        },
+        "_040000": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "040000"
+          }
+        },
+        "_160000": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "160000"
+          }
+        },
+        "_120000": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "120000"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The file mode; one of `100644` for file (blob), `100755` for executable (blob), `040000` for subdirectory (tree), `160000` for submodule (commit), or `120000` for a blob that specifies the path of a symlink."
+      }
+    },
+    "com.github.git#CreateTreeRequestTreeItemType": {
+      "type": "enum",
+      "members": {
+        "BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blob"
+          }
+        },
+        "TREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tree"
+          }
+        },
+        "COMMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "commit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Either `blob`, `tree`, or `commit`."
+      }
+    },
+    "com.github.git#CreateTreeRequestTreeItem": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file referenced in the tree."
+          }
+        },
+        "mode": {
+          "target": "com.github.git#CreateTreeRequestTreeItemMode",
+          "traits": {
+            "smithy.api#documentation": "The file mode; one of `100644` for file (blob), `100755` for executable (blob), `040000` for subdirectory (tree), `160000` for submodule (commit), or `120000` for a blob that specifies the path of a symlink."
+          }
+        },
+        "type": {
+          "target": "com.github.git#CreateTreeRequestTreeItemType",
+          "traits": {
+            "smithy.api#documentation": "Either `blob`, `tree`, or `commit`."
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA1 checksum ID of the object in the tree. Also called `tree.sha`. If the value is `null` then the file will be deleted.  \n  \n**Note:** Use either `tree.sha` or `content` to specify the contents of the entry. Using both `tree.sha` and `content` will return an error.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content you want this file to have. GitHub will write this blob out and use that SHA for this entry. Use either this, or `tree.sha`.  \n  \n**Note:** Use either `tree.sha` or `content` to specify the contents of the entry. Using both `tree.sha` and `content` will return an error."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#CreateTreeRequestTreeList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.git#CreateTreeRequestTreeItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Objects (of `path`, `mode`, `type`, and `sha`) specifying a tree structure."
+      }
+    },
+    "com.github.git#CreateTreeRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "tree": {
+          "target": "com.github.git#CreateTreeRequestTreeList",
+          "traits": {
+            "smithy.api#documentation": "Objects (of `path`, `mode`, `type`, and `sha`) specifying a tree structure.",
+            "smithy.api#required": {}
+          }
+        },
+        "base_tree": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA1 of an existing Git tree object which will be used as the base for the new tree. If provided, a new Git tree object will be created from entries in the Git tree object pointed to by `base_tree` and entries defined in the `tree` parameter. Entries defined in the `tree` parameter will overwrite items from `base_tree` with the same `path`. If you're creating new changes on a branch, then normally you'd set `base_tree` to the SHA1 of the Git tree object of the current latest commit on the branch you're working on.\nIf not provided, GitHub will create a new Git tree object from only the entries defined in the `tree` parameter. If you create a new commit pointing to such a tree, then all files which were a part of the parent commit's tree and were not defined in the `tree` parameter will be listed as deleted by the new commit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GitTree": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tree": {
+          "target": "com.github.git#GitTreeTreeList",
+          "traits": {
+            "smithy.api#documentation": "Objects specifying a tree structure",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The hierarchy between files in a Git repository."
+      }
+    },
+    "com.github.git#GitTreeTreeItem": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.git#GitTreeTreeList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.git#GitTreeTreeItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Objects specifying a tree structure"
+      }
+    },
+    "com.github.git#CreateTree": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#CreateTreeRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitTree"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#Forbidden"
+        },
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/git/trees",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a tree\n\nThe tree creation API accepts nested entries. If you specify both a tree and a nested path modifying that tree, this endpoint will overwrite the contents of the tree with the new path contents, and create a new tree structure.\n\nIf you use this endpoint to add, delete, or modify the file contents in a tree, you will need to commit the tree and then update a branch to point to the commit. For more information see \"[Create a commit](https://docs.github.com/rest/git/commits#create-a-commit)\" and \"[Update a reference](https://docs.github.com/rest/git/refs#update-a-reference).\"\n\nReturns an error if you try to delete a file that does not exist."
+      }
+    },
+    "com.github.git#GetTreeRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "tree_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The SHA1 value or ref (branch or tag) name of the tree."
+          }
+        },
+        "recursive": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "recursive",
+            "smithy.api#documentation": "Setting this parameter to any value returns the objects or subtrees referenced by the tree specified in `:tree_sha`. For example, setting `recursive` to any of the following will enable returning objects or subtrees: `0`, `1`, `\"true\"`, and `\"false\"`. Omit this parameter to prevent recursively returning objects or subtrees."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.git#GetTree": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.git#GetTreeRequest"
+      },
+      "output": {
+        "target": "com.github.git#GitTree"
+      },
+      "errors": [
+        {
+          "target": "com.github.git#NotFound"
+        },
+        {
+          "target": "com.github.git#Conflict"
+        },
+        {
+          "target": "com.github.git#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/git/trees/{tree_sha}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a tree\n\nReturns a single tree using the SHA1 value or ref name for that tree.\n\nIf `truncated` is `true` in the response then the number of items in the `tree` array exceeded our maximum limit. If you need to fetch more items, use the non-recursive method of fetching trees, and fetch one sub-tree at a time.\n\n> [!NOTE]\n> The limit for the `tree` array is 100,000 entries with a maximum size of 7 MB when using the `recursive` parameter."
+      }
+    },
+    "com.github.git#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.git#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.git#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.github.git#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.git#Git": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.git#CreateBlob"
+        },
+        {
+          "target": "com.github.git#GetBlob"
+        },
+        {
+          "target": "com.github.git#CreateCommit"
+        },
+        {
+          "target": "com.github.git#GetCommit"
+        },
+        {
+          "target": "com.github.git#ListMatchingRefs"
+        },
+        {
+          "target": "com.github.git#GetRef"
+        },
+        {
+          "target": "com.github.git#CreateRef"
+        },
+        {
+          "target": "com.github.git#UpdateRef"
+        },
+        {
+          "target": "com.github.git#DeleteRef"
+        },
+        {
+          "target": "com.github.git#CreateTag"
+        },
+        {
+          "target": "com.github.git#GetTag"
+        },
+        {
+          "target": "com.github.git#CreateTree"
+        },
+        {
+          "target": "com.github.git#GetTree"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

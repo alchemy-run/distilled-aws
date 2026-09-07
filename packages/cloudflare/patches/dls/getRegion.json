@@ -1,0 +1,30 @@
+{
+  "description": "Align dls#RegionsGet with distilled cloudflare/dls getRegion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionsGet",
+      "path": "/shapes/com.cloudflare.dls#GetRegion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionsGetRequest",
+      "path": "/shapes/com.cloudflare.dls#GetRegionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#GetRegion/input/target",
+      "value": "com.cloudflare.dls#GetRegionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionsGetResponse",
+      "path": "/shapes/com.cloudflare.dls#GetRegionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#GetRegion/output/target",
+      "value": "com.cloudflare.dls#GetRegionResponse"
+    }
+  ]
+}

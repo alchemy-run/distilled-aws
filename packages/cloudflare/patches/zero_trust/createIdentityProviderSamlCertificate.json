@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#IdentityProvidersSamlCertificateCreate with distilled cloudflare/zero-trust createIdentityProviderSamlCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersSamlCertificateCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersSamlCertificateCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificate/input/target",
+      "value": "com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersSamlCertificateCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificate/output/target",
+      "value": "com.cloudflare.zero_trust#CreateIdentityProviderSamlCertificateResponse"
+    }
+  ]
+}

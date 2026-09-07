@@ -1,0 +1,30 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionPrefixesItemsGet with distilled cloudflare/ddos-protection getAdvancedTcpProtectionPrefixItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGet",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGetRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItem/input/target",
+      "value": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGetResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItem/output/target",
+      "value": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionPrefixItemResponse"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "operations": {
+    "createPolicyStore": { "errors": ["ValidationException"] },
+    "updatePolicyStore": { "errors": ["ValidationException"] },
+    "getPolicyStore": { "errors": ["ValidationException"] },
+    "createPolicy": { "errors": ["ValidationException"] },
+    "updatePolicy": { "errors": ["ValidationException"] },
+    "getPolicy": { "errors": ["ValidationException"] },
+    "putSchema": { "errors": ["ValidationException"] },
+    "getSchema": { "errors": ["ValidationException"] },
+    "isAuthorized": { "errors": ["ValidationException"] },
+    "isAuthorizedWithToken": { "errors": ["ValidationException"] },
+    "batchIsAuthorized": { "errors": ["ValidationException"] },
+    "batchIsAuthorizedWithToken": { "errors": ["ValidationException"] },
+    "batchGetPolicy": { "errors": ["ValidationException"] },
+    "createIdentitySource": { "errors": ["ValidationException"] },
+    "updateIdentitySource": { "errors": ["ValidationException"] },
+    "createPolicyTemplate": { "errors": ["ValidationException"] },
+    "updatePolicyTemplate": { "errors": ["ValidationException"] },
+    "createPolicyStoreAlias": { "errors": ["ValidationException"] },
+    "deletePolicyStoreAlias": {
+      "errors": ["ValidationException", "ResourceNotFoundException"]
+    }
+  }
+}

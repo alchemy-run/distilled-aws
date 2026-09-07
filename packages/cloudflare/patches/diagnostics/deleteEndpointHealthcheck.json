@@ -1,0 +1,32 @@
+{
+  "description": "Align diagnostics#EndpointHealthchecksDelete with distilled cloudflare/diagnostics deleteEndpointHealthcheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksDelete",
+      "path": "/shapes/com.cloudflare.diagnostics#DeleteEndpointHealthcheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksDeleteRequest",
+      "path": "/shapes/com.cloudflare.diagnostics#DeleteEndpointHealthcheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#DeleteEndpointHealthcheck/input/target",
+      "value": "com.cloudflare.diagnostics#DeleteEndpointHealthcheckRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.diagnostics#DeleteEndpointHealthcheck/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthcheckNotFound"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#Forbidden"
+        }
+      ]
+    }
+  ]
+}

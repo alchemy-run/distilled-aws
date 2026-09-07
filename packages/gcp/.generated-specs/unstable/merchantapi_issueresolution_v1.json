@@ -1,0 +1,1875 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "merchantapi",
+    "version": "issueresolution_v1",
+    "title": "Merchant API",
+    "baseUrl": "https://merchantapi.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.merchantapi_issueresolution_v1#Region": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized name of the region. For region with code='001' the value is 'All countries' or the equivalent in other languages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Region with code and localized name."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#InputField": {
+      "type": "structure",
+      "members": {
+        "choiceInput": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ChoiceInput",
+          "traits": {
+            "smithy.api#documentation": "Input field to select one of the offered choices. Corresponds to the [html input type=radio](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.radio.html#input.radio)."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the field is required. The action button needs to stay disabled till values for all required fields are provided."
+          }
+        },
+        "textInput": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextInput",
+          "traits": {
+            "smithy.api#documentation": "Input field to provide text information. Corresponds to the [html input type=text](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.text.html#input.text) or [html textarea](https://www.w3.org/TR/2012/WD-html-markup-20121025/textarea.html#textarea)."
+          }
+        },
+        "checkboxInput": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#CheckboxInput",
+          "traits": {
+            "smithy.api#documentation": "Input field to provide a boolean value. Corresponds to the [html input type=checkbox](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.checkbox.html#input.checkbox)."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Not for display but need to be sent back for the given input field."
+          }
+        },
+        "label": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextWithTooltip",
+          "traits": {
+            "smithy.api#documentation": "Input field label. There may be more information to be shown in a tooltip."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input field that needs to be available to the business. If the field is marked as required, then a value needs to be provided for a successful processing of the request."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ProductChange": {
+      "type": "structure",
+      "members": {
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ProductChangeReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Impact": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Message summarizing the overall impact of the issue. If present, it should be rendered to the business. For example: \"Disapproves 90k offers in 25 countries\""
+          }
+        },
+        "severity": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ImpactSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "The severity of the issue."
+          }
+        },
+        "breakdowns": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BreakdownList",
+          "traits": {
+            "smithy.api#documentation": "Detailed impact breakdown. Explains the types of restriction the issue has in different shopping destinations and territory. If present, it should be rendered to the business. Can be shown as a mouse over dropdown or a dialog. Each breakdown item represents a group of regions with the same impact details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Overall impact of the issue."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ImpactSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#BreakdownList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#Breakdown"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ChoiceInputValue": {
+      "type": "structure",
+      "members": {
+        "choiceInputOptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the option that was selected by the business."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Value for choice input field."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ProductStatusChangeMessage": {
+      "type": "structure",
+      "members": {
+        "attribute": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ProductStatusChangeMessageAttributeEnum",
+          "traits": {
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+          }
+        },
+        "managingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
+          }
+        },
+        "changes": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ProductChangeList",
+          "traits": {
+            "smithy.api#documentation": "A message to describe the change that happened to the product"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ProductStatusChangeMessageAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ProductStatusChangeMessageResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT"
+          }
+        },
+        "ACCOUNT_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SERVICE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#ProductChange"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TextInputValue": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Text provided by the business."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Value for text input field."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#BuiltInUserInputAction": {
+      "type": "structure",
+      "members": {
+        "flows": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ActionFlowList",
+          "traits": {
+            "smithy.api#documentation": "Actions may provide multiple different flows. Business selects one that fits best to their intent. Selecting the flow is the first step in user's interaction with the action. It affects what input fields will be available and required and also how the request will be processed."
+          }
+        },
+        "actionContext": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the action's context that must be included as part of the TriggerActionPayload.action_context in TriggerActionRequest.payload to call the `triggeraction` method. The content should be treated as opaque and must not be modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action that is implemented and performed in (your) third-party application. The application needs to show an additional content and input form to the business. They can start the action only when they provided all required inputs. The application will request processing of the action by calling the [triggeraction method](https://developers.google.com/merchant/api/reference/rest/issueresolution_v1/issueresolution/triggeraction)."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ActionFlowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#ActionFlow"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TextWithTooltip": {
+      "type": "structure",
+      "members": {
+        "simpleValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the message as a simple text."
+          }
+        },
+        "simpleTooltipValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the tooltip as a simple text."
+          }
+        },
+        "tooltipIconStyle": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextWithTooltipTooltipIconStyleEnum",
+          "traits": {
+            "smithy.api#documentation": "The suggested type of an icon for tooltip, if a tooltip is present."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Block of text that may contain a tooltip with more information."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TextWithTooltipTooltipIconStyleEnum": {
+      "type": "enum",
+      "members": {
+        "TOOLTIP_ICON_STYLE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOOLTIP_ICON_STYLE_UNSPECIFIED"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "QUESTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUESTION"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#InputValue": {
+      "type": "structure",
+      "members": {
+        "textInputValue": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextInputValue",
+          "traits": {
+            "smithy.api#documentation": "Value for text input field."
+          }
+        },
+        "checkboxInputValue": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#CheckboxInputValue",
+          "traits": {
+            "smithy.api#documentation": "Value for checkbox input field."
+          }
+        },
+        "choiceInputValue": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ChoiceInputValue",
+          "traits": {
+            "smithy.api#documentation": "Value for choice input field."
+          }
+        },
+        "inputFieldId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the corresponding input field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input provided by the business for input field."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Breakdown": {
+      "type": "structure",
+      "members": {
+        "regions": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RegionList",
+          "traits": {
+            "smithy.api#documentation": "Lists of regions. Should be rendered as a title for this group of details. The full list should be shown to the business. If the list is too long, it is recommended to make it expandable."
+          }
+        },
+        "details": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Human readable, localized description of issue's effect on different targets. Should be rendered as a list. For example: * \"Products not showing in ads\" * \"Products not showing organically\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A detailed impact breakdown for a group of regions where the impact of the issue on different shopping destinations is the same."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RegionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#Region"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#AdditionalContent": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the additional content;"
+          }
+        },
+        "paragraphs": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Long text organized into paragraphs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Long text from external source."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ChoiceInput": {
+      "type": "structure",
+      "members": {
+        "options": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ChoiceInputOptionList",
+          "traits": {
+            "smithy.api#documentation": "A list of choices. Only one option can be selected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Choice input allows the business to select one of the offered choices. Some choices may be linked to additional input fields that should be displayed under or next to the choice option. The value for the additional input field needs to be provided only when the specific choice is selected by the the business. For example, additional input field can be hidden or disabled until the business selects the specific choice."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ChoiceInputOptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#ChoiceInputOption"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayload": {
+      "type": "structure",
+      "members": {
+        "contentOption": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayloadContentOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. How the detailed content should be returned. Default option is to return the content as a pre-rendered HTML text."
+          }
+        },
+        "userInputActionOption": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayloadUserInputActionOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. How actions with user input form should be handled. If not provided, actions will be returned as links that points the business to Merchant Center where they can request the action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payload for configuring how the content should be rendered."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayloadContentOptionEnum": {
+      "type": "enum",
+      "members": {
+        "CONTENT_OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_OPTION_UNSPECIFIED"
+          }
+        },
+        "PRE_RENDERED_HTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRE_RENDERED_HTML"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayloadUserInputActionOptionEnum": {
+      "type": "enum",
+      "members": {
+        "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED"
+          }
+        },
+        "REDIRECT_TO_MERCHANT_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDIRECT_TO_MERCHANT_CENTER"
+          }
+        },
+        "BUILT_IN_USER_INPUT_ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILT_IN_USER_INPUT_ACTIONS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#BuiltInSimpleAction": {
+      "type": "structure",
+      "members": {
+        "additionalContent": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#AdditionalContent",
+          "traits": {
+            "smithy.api#documentation": "Long text from an external source that should be available to the business. Present when the type is `SHOW_ADDITIONAL_CONTENT`."
+          }
+        },
+        "attributeCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The attribute that needs to be updated. Present when the type is `EDIT_ITEM_ATTRIBUTE`. This field contains a code for attribute, represented in snake_case. You can find a list of product's attributes, with their codes [here](https://support.google.com/merchants/answer/7052112)."
+          }
+        },
+        "type": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BuiltInSimpleActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of action that represents a functionality that is expected to be available in third-party application."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action that is implemented and performed in (your) third-party application. Represents various functionality that is expected to be available to business and will help them with resolving the issue. The application should point the business to the place, where they can access the corresponding functionality. If the functionality is not supported, it is recommended to explain the situation to the business and provide them with instructions how to solve the issue."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#BuiltInSimpleActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "BUILT_IN_SIMPLE_ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILT_IN_SIMPLE_ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "VERIFY_PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFY_PHONE"
+          }
+        },
+        "CLAIM_WEBSITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLAIM_WEBSITE"
+          }
+        },
+        "ADD_PRODUCTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD_PRODUCTS"
+          }
+        },
+        "ADD_CONTACT_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD_CONTACT_INFO"
+          }
+        },
+        "LINK_ADS_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK_ADS_ACCOUNT"
+          }
+        },
+        "ADD_BUSINESS_REGISTRATION_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD_BUSINESS_REGISTRATION_NUMBER"
+          }
+        },
+        "EDIT_ITEM_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EDIT_ITEM_ATTRIBUTE"
+          }
+        },
+        "FIX_ACCOUNT_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIX_ACCOUNT_ISSUE"
+          }
+        },
+        "SHOW_ADDITIONAL_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOW_ADDITIONAL_CONTENT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ChoiceInputOption": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextWithTooltip",
+          "traits": {
+            "smithy.api#documentation": "Short description of the choice option. There may be more information to be shown as a tooltip."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Not for display but need to be sent back for the selected choice option."
+          }
+        },
+        "additionalInput": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#InputField",
+          "traits": {
+            "smithy.api#documentation": "Input that should be displayed when this option is selected. The additional input will not contain a `ChoiceInput`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A choice that the business can select."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TextInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextInputTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the text input"
+          }
+        },
+        "additionalInfo": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextWithTooltip",
+          "traits": {
+            "smithy.api#documentation": "Additional info regarding the field to be displayed to the business. For example, warning to not include personal identifiable information. There may be more information to be shown in a tooltip."
+          }
+        },
+        "formatInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Information about the required format. If present, it should be shown close to the input field to help the business to provide a correct value. For example: \"VAT numbers should be in a format similar to SK9999999999\""
+          }
+        },
+        "ariaLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text to be used as the [aria-label](https://www.w3.org/TR/WCAG20-TECHS/ARIA14.html) for the input."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Text input allows the business to provide a text value."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TextInputTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TEXT_INPUT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEXT_INPUT_TYPE_UNSPECIFIED"
+          }
+        },
+        "GENERIC_SHORT_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERIC_SHORT_TEXT"
+          }
+        },
+        "GENERIC_LONG_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERIC_LONG_TEXT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderProductIssuesResponse": {
+      "type": "structure",
+      "members": {
+        "renderedIssues": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RenderedIssueList",
+          "traits": {
+            "smithy.api#documentation": "List of issues for a given product. This list can be shown with compressed, expandable items. In the compressed form, the title and impact should be shown for each issue. Once the issue is expanded, the detailed content and available actions should be rendered."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing an issue resolution content and actions for listed product issues."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderedIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#RenderedIssue"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ListAggregateProductStatusesResponse": {
+      "type": "structure",
+      "members": {
+        "aggregateProductStatuses": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#AggregateProductStatusList",
+          "traits": {
+            "smithy.api#documentation": "The `AggregateProductStatuses` resources for the given account."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the `ListAggregateProductStatuses` method."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#AggregateProductStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#AggregateProductStatus"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TriggerActionPayload": {
+      "type": "structure",
+      "members": {
+        "actionInput": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ActionInput",
+          "traits": {
+            "smithy.api#documentation": "Required. Input provided by the business."
+          }
+        },
+        "actionContext": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The context from the selected action. The value is obtained from rendered issues and needs to be sent back to identify the action that is being triggered."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payload for the triggered action."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ActionFlow": {
+      "type": "structure",
+      "members": {
+        "inputs": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#InputFieldList",
+          "traits": {
+            "smithy.api#documentation": "A list of input fields."
+          }
+        },
+        "dialogButtonLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for the button to trigger the action from the action dialog. For example: \"Request review\""
+          }
+        },
+        "dialogMessage": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextWithTooltip",
+          "traits": {
+            "smithy.api#documentation": "Message displayed in the request dialog. For example: \"Make sure you've fixed all your country-specific issues. If not, you may have to wait 7 days to request another review\". There may be an more information to be shown in a tooltip."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Not for display but need to be sent back for the selected action flow."
+          }
+        },
+        "dialogTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the request dialog. For example: \"Before you request a review\""
+          }
+        },
+        "dialogCallout": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Callout",
+          "traits": {
+            "smithy.api#documentation": "Important message to be highlighted in the request dialog. For example: \"You can only request a review for disagreeing with this issue once. If it's not approved, you'll need to fix the issue and wait a few days before you can request another review.\""
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text value describing the intent for the action flow. It can be used as an input label if business needs to pick one of multiple flows. For example: \"I disagree with the issue\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Flow that can be selected for an action. When a business selects a flow, application should open a dialog with more information and input form."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#InputFieldList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#InputField"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#CheckboxInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Checkbox input allows the business to provide a boolean value. Corresponds to the [html input type=checkbox](https://www.w3.org/TR/2012/WD-html-markup-20121025/input.checkbox.html#input.checkbox). If the business checks the box, the input value for the field is `true`, otherwise it is `false`. This type of input is often used as a confirmation that the business completed required steps before they are allowed to start the action. In such a case, the input field is marked as required and the button to trigger the action should stay disabled until the business checks the box."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Callout": {
+      "type": "structure",
+      "members": {
+        "styleHint": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#CalloutStyleHintEnum",
+          "traits": {
+            "smithy.api#documentation": "Can be used to render messages with different severity in different styles. Snippets off all types contain important information that should be displayed to the business."
+          }
+        },
+        "fullMessage": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TextWithTooltip",
+          "traits": {
+            "smithy.api#documentation": "A full message that needs to be shown to the business."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An important message that should be highlighted. Usually displayed as a banner."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#CalloutStyleHintEnum": {
+      "type": "enum",
+      "members": {
+        "CALLOUT_STYLE_HINT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CALLOUT_STYLE_HINT_UNSPECIFIED"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Action": {
+      "type": "structure",
+      "members": {
+        "isAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Controlling whether the button is active or disabled. The value is 'false' when the action was already requested or is not available. If the action is not available then a reason will be present. If (your) third-party application shows a disabled button for action that is not available, then it should also show reasons."
+          }
+        },
+        "builtinSimpleAction": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BuiltInSimpleAction",
+          "traits": {
+            "smithy.api#documentation": "Action implemented and performed in (your) third-party application. The application should point the business to the place, where they can access the corresponding functionality or provide instructions, if the specific functionality is not available."
+          }
+        },
+        "reasons": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ReasonList",
+          "traits": {
+            "smithy.api#documentation": "List of reasons why the action is not available. The list of reasons is empty if the action is available. If there is only one reason, it can be displayed next to the disabled button. If there are more reasons, all of them should be displayed, for example in a pop-up dialog."
+          }
+        },
+        "externalAction": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ExternalAction",
+          "traits": {
+            "smithy.api#documentation": "Action that is implemented and performed outside of (your) third-party application. The application needs to redirect the business to the external location where they can perform the action."
+          }
+        },
+        "buttonLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label of the action button."
+          }
+        },
+        "builtinUserInputAction": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BuiltInUserInputAction",
+          "traits": {
+            "smithy.api#documentation": "Action implemented and performed in (your) third-party application. The application needs to show an additional content and input form to the business as specified for given action. They can trigger the action only when they provided all required inputs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An actionable step that can be executed to solve the issue."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ReasonList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#Reason"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Reason": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Messages summarizing the reason, why the action is not available. For example: \"Review requested on Jan 03. Review requests can take a few days to complete.\""
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed explanation of the reason. Should be displayed as a hint if present."
+          }
+        },
+        "action": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Action",
+          "traits": {
+            "smithy.api#documentation": "Optional. An action that needs to be performed to solve the problem represented by this reason. This action will always be available. Should be rendered as a link or button next to the summarizing message. For example, the review may be available only once the business configure all required attributes. In such a situation this action can be a link to the form, where they can fill the missing attribute to unblock the main action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single reason why the action is not available."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ExternalAction": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ExternalActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of external action."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to external system, for example Merchant Center, where the business can perform the action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action that is implemented and performed outside of the third-party application. It should redirect the business to the provided URL of an external system where they can perform the action. For example to request a review in the Merchant Center."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ExternalActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EXTERNAL_ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTERNAL_ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER"
+          }
+        },
+        "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER"
+          }
+        },
+        "LEGAL_APPEAL_IN_HELP_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL_APPEAL_IN_HELP_CENTER"
+          }
+        },
+        "VERIFY_IDENTITY_IN_MERCHANT_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFY_IDENTITY_IN_MERCHANT_CENTER"
+          }
+        },
+        "VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderAccountIssuesResponse": {
+      "type": "structure",
+      "members": {
+        "renderedIssues": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RenderedIssueList",
+          "traits": {
+            "smithy.api#documentation": "List of account issues for a given account. This list can be shown with compressed, expandable items. In the compressed form, the title and impact should be shown for each issue. Once the issue is expanded, the detailed content and available actions should be rendered."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing an issue resolution content and actions for listed account issues."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ActionInput": {
+      "type": "structure",
+      "members": {
+        "inputValues": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#InputValueList",
+          "traits": {
+            "smithy.api#documentation": "Required. Values for input fields."
+          }
+        },
+        "actionFlowId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the selected action flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input provided by the business."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#InputValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#InputValue"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssue": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short issue description in English."
+          }
+        },
+        "documentationUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of a web page to help with resolving this issue."
+          }
+        },
+        "productCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of products affected by this issue."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "How this issue affects serving of the offer."
+          }
+        },
+        "resolution": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssueResolutionEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the issue can be resolved by the merchant."
+          }
+        },
+        "attribute": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The attribute's name, if the issue is caused by a single attribute."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code of the issue."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed issue description in English."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ItemLevelIssue of the product status."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "NOT_IMPACTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IMPACTED"
+          }
+        },
+        "DEMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMOTED"
+          }
+        },
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISAPPROVED"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssueResolutionEnum": {
+      "type": "enum",
+      "members": {
+        "RESOLUTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLUTION_UNSPECIFIED"
+          }
+        },
+        "MERCHANT_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_ACTION"
+          }
+        },
+        "PENDING_PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING_PROCESSING"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#AggregateProductStatus": {
+      "type": "structure",
+      "members": {
+        "stats": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Stats",
+          "traits": {
+            "smithy.api#documentation": "Products statistics for the given reporting context and country."
+          }
+        },
+        "itemLevelIssues": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssueList",
+          "traits": {
+            "smithy.api#documentation": "The product issues that affect the given reporting context and country."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country of the aggregate product statuses. Represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the `AggregateProductStatuses` resource. Format: `accounts/{account}/aggregateProductStatuses/{aggregateProductStatuses}`"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#AggregateProductStatusReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "The reporting context of the aggregate product statuses."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Aggregate product statuses for a given reporting context and country."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#ItemLevelIssue"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#AggregateProductStatusReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderedIssue": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the issue."
+          }
+        },
+        "impact": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Impact",
+          "traits": {
+            "smithy.api#documentation": "Clarifies the severity of the issue. The summarizing message, if present, should be shown right under the title for each issue. It helps business to quickly understand the impact of the issue. The detailed breakdown helps the business to fully understand the impact of the issue. It can be rendered as dialog that opens when the business mouse over the summarized impact statement. Issues with different severity can be styled differently. They may use a different color or icon to signal the difference between `ERROR`, `WARNING` and `INFO`."
+          }
+        },
+        "prerenderedContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class."
+          }
+        },
+        "prerenderedOutOfCourtDisputeSettlement": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pre-rendered HTML that contains a link to the external location where the ODS can be requested and instructions for how to request it. HTML elements contain CSS classes that can be used to customize the style of this snippet. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `ods-section`* - wrapper around the out-of-court dispute resolution section * `ods-description`* - intro text for the out-of-court dispute resolution. It may contain multiple segments and a link. * `ods-param`* - wrapper around the header-value pair for parameters that the business may need to provide during the ODS process. * `ods-routing-id`* - ods param for the Routing ID. * `ods-reference-id`* - ods param for the Routing ID. * `ods-param-header`* - header for the ODS parameter * `ods-param-value`* - value of the ODS parameter. This value should be rendered in a way that it is easy for the user to identify and copy. * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon."
+          }
+        },
+        "actions": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#ActionList",
+          "traits": {
+            "smithy.api#documentation": "A list of actionable steps that can be executed to solve the issue. An example is requesting a re-review or providing arguments when business disagrees with the issue. Actions that are supported in (your) third-party application can be rendered as buttons and should be available to the business when they expand the issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An issue affecting specific business or their product."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ActionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#Action"
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Stats": {
+      "type": "structure",
+      "members": {
+        "activeCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of products that are active."
+          }
+        },
+        "pendingCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of products that are pending."
+          }
+        },
+        "expiringCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of products that are expiring."
+          }
+        },
+        "disapprovedCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of products that are disapproved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Products statistics."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#CheckboxInputValue": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. True if the business checked the box field. False otherwise."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Value for checkbox input field."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TriggerActionResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message for the business."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response informing about the started action."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ListAccountsAggregateProductStatusesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account to list aggregate product statuses for. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListAggregateProductStatuses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAggregateProductStatuses` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter expression that filters the aggregate product statuses. Filtering is only supported by the `reporting_context` and `country` field. For example: `reporting_context = \"SHOPPING_ADS\" AND country = \"US\"`.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of aggregate product statuses to return. The service may return fewer than this value. If unspecified, at most 25 aggregate product statuses are returned. The maximum value is 250; values above 250 are coerced to 250.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#ListAccountsAggregateProductStatuses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#ListAccountsAggregateProductStatusesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#ListAggregateProductStatusesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "issueresolution/v1/{+parent}/aggregateProductStatuses"
+        },
+        "smithy.api#documentation": "Lists the `AggregateProductStatuses` resources for your merchant account. The response might contain fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be used to obtain additional results.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TriggeractionIssueresolutionRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The business's account that is triggering the action. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) used to localize the response. If not set, the result will be in default language `en-US`.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#TriggerActionPayload",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#TriggeractionIssueresolution": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#TriggeractionIssueresolutionRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#TriggerActionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "issueresolution/v1/{+name}:triggeraction"
+        },
+        "smithy.api#documentation": "Start an action. The action can be requested by a business in third-party application. Before the business can request the action, the third-party application needs to show them action specific content and display a user input form. Access to the `triggeraction` method is restricted to an allowlist. You can submit an allowlist request in the [Shopping API Support Form](https://support.google.com/merchants/contact/shopping_api_support_form) under \"What is the issue/question?\" to get access to this feature. The action can be successfully started only once all `required` inputs are provided. If any `required` input is missing, or invalid value was provided, the service will return 400 error. Validation errors will contain Ids for all problematic field together with translated, human readable error messages that can be shown to the user."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderaccountissuesIssueresolutionRequest": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize issue resolution content. If not set, the result will be in default language `en-US`.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in an issue resolution content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.",
+            "smithy.api#httpQuery": "timeZone"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account to fetch issues for. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayload",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderaccountissuesIssueresolution": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#RenderaccountissuesIssueresolutionRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#RenderAccountIssuesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "issueresolution/v1/{+name}:renderaccountissues"
+        },
+        "smithy.api#documentation": "Provide a list of business's account issues with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications."
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderproductissuesIssueresolutionRequest": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize an issue resolution content. If not set, the result will be in default language `en-US`.",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in an issue resolution content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.",
+            "smithy.api#httpQuery": "timeZone"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the product. Format: `accounts/{account}/products/{product}` The `{product}` segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the `{product}` segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{product}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{product}` segment must be the base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/products/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{product}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{product}` segment is used to differentiate between the two formats.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_issueresolution_v1#RenderIssuesRequestPayload",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_issueresolution_v1#RenderproductissuesIssueresolution": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#RenderproductissuesIssueresolutionRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_issueresolution_v1#RenderProductIssuesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_issueresolution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "issueresolution/v1/{+name}:renderproductissues"
+        },
+        "smithy.api#documentation": "Provide a list of issues for business's product with an issue resolution content and available actions. This content and actions are meant to be rendered and shown in third-party applications."
+      }
+    }
+  }
+}

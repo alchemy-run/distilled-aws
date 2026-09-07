@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_cloud_networking#ResourcesGet with distilled cloudflare/magic-cloud-networking getResource",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesGet",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#GetResource"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesGetRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#GetResourceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#GetResource/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#GetResourceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesGetResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#GetResourceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#GetResource/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#GetResourceResponse"
+    }
+  ]
+}

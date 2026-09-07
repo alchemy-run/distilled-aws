@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer3SummaryDuration with distilled cloudflare/radar durationAttackLayer3Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryDuration",
+      "path": "/shapes/com.cloudflare.radar#DurationAttackLayer3Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryDurationRequest",
+      "path": "/shapes/com.cloudflare.radar#DurationAttackLayer3SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DurationAttackLayer3Summary/input/target",
+      "value": "com.cloudflare.radar#DurationAttackLayer3SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryDurationResponse",
+      "path": "/shapes/com.cloudflare.radar#DurationAttackLayer3SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DurationAttackLayer3Summary/output/target",
+      "value": "com.cloudflare.radar#DurationAttackLayer3SummaryResponse"
+    }
+  ]
+}

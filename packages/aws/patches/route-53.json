@@ -1,0 +1,63 @@
+{
+  "errorCategories": {
+    "PriorRequestNotComplete": ["ConflictError", "RetryableError"],
+    "ThrottlingException": ["ThrottlingError", "RetryableError"]
+  },
+  "structures": {
+    "CreateHostedZoneResponse": {
+      "members": {
+        "DelegationSet": {
+          "optional": true
+        }
+      }
+    },
+    "ListResourceRecordSetsResponse": {
+      "members": {
+        "ResourceRecordSets": {
+          "optional": true
+        }
+      }
+    },
+    "ListHostedZonesResponse": {
+      "members": {
+        "HostedZones": {
+          "optional": true
+        },
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "ListHealthChecksResponse": {
+      "members": {
+        "HealthChecks": {
+          "optional": true
+        },
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "ListHostedZonesByNameResponse": {
+      "members": {
+        "HostedZones": {
+          "optional": true
+        }
+      }
+    },
+    "ListVPCAssociationAuthorizationsResponse": {
+      "members": {
+        "VPCs": {
+          "optional": true
+        }
+      }
+    },
+    "ListQueryLoggingConfigsResponse": {
+      "members": {
+        "QueryLoggingConfigs": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

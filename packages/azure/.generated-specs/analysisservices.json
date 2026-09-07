@@ -1,0 +1,2368 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.analysisservices#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AnalysisServices/operations",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Lists all of the available consumption REST API operations.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.analysisservices#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of analysis services operations supported by the Microsoft.AnalysisServices resource provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of listing consumption operations. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.analysisservices#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of analysis services operations supported by the Microsoft.AnalysisServices resource provider."
+      }
+    },
+    "com.azure.analysisservices#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}."
+          }
+        },
+        "display": {
+          "target": "com.azure.analysisservices#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that represents the operation."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin"
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#OperationProperties",
+          "traits": {
+            "smithy.api#documentation": "Additional properties to expose performance metrics to shoebox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Consumption REST API operation."
+      }
+    },
+    "com.azure.analysisservices#OperationProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.analysisservices#OperationPropertiesServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "Performance metrics to shoebox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional properties to expose performance metrics to shoebox."
+      }
+    },
+    "com.azure.analysisservices#OperationPropertiesServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.analysisservices#OperationPropertiesServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "The metric specifications."
+          }
+        },
+        "logSpecifications": {
+          "target": "com.azure.analysisservices#OperationPropertiesServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "The log specifications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Performance metrics to shoebox."
+      }
+    },
+    "com.azure.analysisservices#OperationPropertiesServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#LogSpecifications"
+      },
+      "traits": {
+        "smithy.api#documentation": "The log specifications."
+      }
+    },
+    "com.azure.analysisservices#LogSpecifications": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of metric."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayed name of log."
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blob duration for the log."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The log metric specification for exposing performance metrics to shoebox."
+      }
+    },
+    "com.azure.analysisservices#OperationPropertiesServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#MetricSpecifications"
+      },
+      "traits": {
+        "smithy.api#documentation": "The metric specifications."
+      }
+    },
+    "com.azure.analysisservices#MetricSpecifications": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of metric."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayed name of metric."
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayed description of metric."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of the metric."
+          }
+        },
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The aggregation type of metric."
+          }
+        },
+        "dimensions": {
+          "target": "com.azure.analysisservices#MetricSpecificationsDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "The dimensions of metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available operation metric specification for exposing performance metrics to shoebox."
+      }
+    },
+    "com.azure.analysisservices#MetricSpecificationsDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#MetricDimensions"
+      },
+      "traits": {
+        "smithy.api#documentation": "The dimensions of metric."
+      }
+    },
+    "com.azure.analysisservices#MetricDimensions": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dimension name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dimension display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric dimension."
+      }
+    },
+    "com.azure.analysisservices#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.Consumption."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed: UsageDetail, etc."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type: Read, write, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that represents the operation."
+      }
+    },
+    "com.azure.analysisservices#ServersListOperationStatuses": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListOperationStatusesRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#OperationStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AnalysisServices/locations/{location}/operationstatuses/{operationId}",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "List the status of operation.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#OperationStatus": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation Id."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation name."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the operation."
+          }
+        },
+        "error": {
+          "target": "com.azure.analysisservices#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "The error detail of the operation if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of operation."
+      }
+    },
+    "com.azure.analysisservices#ErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "subCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The error sub code"
+          }
+        },
+        "httpStatusCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The http status code"
+          }
+        },
+        "timeStamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the timestamp for the error."
+          }
+        },
+        "details": {
+          "target": "com.azure.analysisservices#ErrorDetailDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.analysisservices#ErrorDetailAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.analysisservices#ErrorDetailAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.analysisservices#ErrorAdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.analysisservices#ErrorDetailDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.analysisservices#ServersListOperationStatusesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region name which the operation will lookup into."
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The target operation Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersListOperationResults": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListOperationResultsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AnalysisServices/locations/{location}/operationresults/{operationId}",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "List the result of the specified operation.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersListOperationResultsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region name which the operation will lookup into."
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The target operation Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#CheckServerNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AnalysisServices/locations/{location}/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Check the name availability in the target location.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#CheckServerNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicator of available of the server name."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason of unavailability."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed message of the request unavailability."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The checking result of server name availability."
+      }
+    },
+    "com.azure.analysisservices#ServersCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region name which the operation will lookup into."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for checking availability."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type of azure analysis services."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersDissociateGateway": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersDissociateGatewayRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}/dissociateGateway",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Dissociates a Unified Gateway associated with the server.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersDissociateGatewayRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be at least 3 characters in length, and no more than 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersListGatewayStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListGatewayStatusRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#GatewayListStatusLive"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}/listGatewayStatus",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Return the gateway status of the specified Analysis Services server instance.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#GatewayListStatusLive": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.analysisservices#GatewayListStatusLiveStatus",
+          "traits": {
+            "smithy.api#documentation": "Live message of list gateway. Status: 0 - Live"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of gateway is live."
+      }
+    },
+    "com.azure.analysisservices#GatewayListStatusLiveStatus": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Live message of list gateway. Status: 0 - Live"
+      }
+    },
+    "com.azure.analysisservices#ServersListGatewayStatusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersListSkusForExisting": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListSkusForExistingRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#SkuEnumerationForExistingResourceResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}/skus",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Lists eligible SKUs for an Analysis Services resource.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#SkuEnumerationForExistingResourceResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.analysisservices#SkuEnumerationForExistingResourceResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The collection of available SKUs for existing resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents enumerating SKUs for existing resources."
+      }
+    },
+    "com.azure.analysisservices#SkuEnumerationForExistingResourceResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#SkuDetailsForExistingResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection of available SKUs for existing resources."
+      }
+    },
+    "com.azure.analysisservices#SkuDetailsForExistingResource": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU in SKU details for existing resources."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents SKU details for existing resources."
+      }
+    },
+    "com.azure.analysisservices#ResourceSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU level.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.analysisservices#ResourceSkuTier",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of instances in the read only query pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the SKU name and Azure pricing tier for Analysis Services resource."
+      }
+    },
+    "com.azure.analysisservices#ResourceSkuTier": {
+      "type": "enum",
+      "members": {
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Development"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+      }
+    },
+    "com.azure.analysisservices#ServersListSkusForExistingRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be at least 3 characters in length, and no more than 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersListSkusForNew": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListSkusForNewRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#SkuEnumerationForNewResourceResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AnalysisServices/skus",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Lists eligible SKUs for Analysis Services resource provider.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#SkuEnumerationForNewResourceResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.analysisservices#SkuEnumerationForNewResourceResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The collection of available SKUs for new resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents enumerating SKUs for new resources."
+      }
+    },
+    "com.azure.analysisservices#SkuEnumerationForNewResourceResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#ResourceSku"
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection of available SKUs for new resources."
+      }
+    },
+    "com.azure.analysisservices#ServersListSkusForNewRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#AnalysisServicesServers"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AnalysisServices/servers",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Lists all the Analysis Services servers for the given subscription.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServers": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.analysisservices#AnalysisServicesServersValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of Analysis Services resources.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Analysis Services resources."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServersValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#AnalysisServicesServer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Analysis Services resources."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the Analysis Services resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Analysis Services resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the Analysis Services resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an instance of an Analysis Services resource."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerProperties": {
+      "type": "structure",
+      "members": {
+        "asAdministrators": {
+          "target": "com.azure.analysisservices#ServerAdministrators",
+          "traits": {
+            "smithy.api#documentation": "A collection of AS server administrators"
+          }
+        },
+        "backupBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS container URI to the backup container."
+          }
+        },
+        "gatewayDetails": {
+          "target": "com.azure.analysisservices#GatewayDetails",
+          "traits": {
+            "smithy.api#documentation": "The gateway details configured for the AS server."
+          }
+        },
+        "ipV4FirewallSettings": {
+          "target": "com.azure.analysisservices#IPv4FirewallSettings",
+          "traits": {
+            "smithy.api#documentation": "The firewall settings for the AS server."
+          }
+        },
+        "querypoolConnectionMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesQuerypoolConnectionMode",
+          "traits": {
+            "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+          }
+        },
+        "managedMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesManagedMode",
+          "traits": {
+            "smithy.api#documentation": "The managed mode of the server (0 = not managed, 1 = managed)."
+          }
+        },
+        "serverMonitorMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesServerMonitorMode",
+          "traits": {
+            "smithy.api#documentation": "The server monitor mode for AS server"
+          }
+        },
+        "state": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesState",
+          "traits": {
+            "smithy.api#documentation": "The current state of Analysis Services resource. The state is to indicate more states outside of resource provisioning."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current deployment state of Analysis Services resource. The provisioningState is to indicate states for resource provisioning."
+          }
+        },
+        "serverFullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full name of the Analysis Services resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of Analysis Services resource."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Paused"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pausing"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Preparing"
+          }
+        },
+        "SCALING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scaling"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment state of Analysis Services resource. The provisioningState is to indicate states for resource provisioning."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesState": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Paused"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pausing"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Preparing"
+          }
+        },
+        "SCALING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scaling"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of Analysis Services resource. The state is to indicate more states outside of resource provisioning."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesServerMonitorMode": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The server monitor mode for AS server"
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesManagedMode": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The managed mode of the server (0 = not managed, 1 = managed)."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesQuerypoolConnectionMode": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All"
+          }
+        },
+        "READONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+      }
+    },
+    "com.azure.analysisservices#IPv4FirewallSettings": {
+      "type": "structure",
+      "members": {
+        "firewallRules": {
+          "target": "com.azure.analysisservices#IPv4FirewallSettingsFirewallRulesList",
+          "traits": {
+            "smithy.api#documentation": "An array of firewall rules."
+          }
+        },
+        "enablePowerBIService": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The indicator of enabling PBI service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of firewall rules."
+      }
+    },
+    "com.azure.analysisservices#IPv4FirewallSettingsFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.analysisservices#IPv4FirewallRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of firewall rules."
+      }
+    },
+    "com.azure.analysisservices#IPv4FirewallRule": {
+      "type": "structure",
+      "members": {
+        "firewallRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rule name."
+          }
+        },
+        "rangeStart": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start range of IPv4."
+          }
+        },
+        "rangeEnd": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end range of IPv4."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The detail of firewall rule."
+      }
+    },
+    "com.azure.analysisservices#GatewayDetails": {
+      "type": "structure",
+      "members": {
+        "gatewayResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway resource to be associated with the server."
+          }
+        },
+        "gatewayObjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway object id from in the DMTS cluster for the gateway resource."
+          }
+        },
+        "dmtsClusterUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri of the DMTS cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The gateway details."
+      }
+    },
+    "com.azure.analysisservices#ServerAdministrators": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.azure.analysisservices#ServerAdministratorsMembersList",
+          "traits": {
+            "smithy.api#documentation": "An array of administrator user identities."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of administrator user identities."
+      }
+    },
+    "com.azure.analysisservices#ServerAdministratorsMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of administrator user identities."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+      }
+    },
+    "com.azure.analysisservices#ServersListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#AnalysisServicesServers"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Gets all the Analysis Services servers for the given resource group.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersResume": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersResumeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}/resume",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Resumes operation of the specified Analysis Services server instance.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersResumeRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be at least 3 characters in length, and no more than 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersSuspend": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersSuspendRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}/suspend",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Suspends operation of the specified Analysis Services server instance.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersSuspendRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be at least 3 characters in length, and no more than 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Deletes the specified Analysis Services server.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be at least 3 characters in length, and no more than 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#ServersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#ServersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Updates the current state of the specified Analysis Services server.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the Analysis Services resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Analysis Services resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the Analysis Services resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.analysisservices#ServersUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.analysisservices#ServersUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+      }
+    },
+    "com.azure.analysisservices#ServersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be at least 3 characters in length, and no more than 63."
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.analysisservices#ServersUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "asAdministrators": {
+          "target": "com.azure.analysisservices#ServerAdministrators",
+          "traits": {
+            "smithy.api#documentation": "A collection of AS server administrators"
+          }
+        },
+        "backupBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS container URI to the backup container."
+          }
+        },
+        "gatewayDetails": {
+          "target": "com.azure.analysisservices#GatewayDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "The gateway details configured for the AS server."
+          }
+        },
+        "ipV4FirewallSettings": {
+          "target": "com.azure.analysisservices#IPv4FirewallSettings",
+          "traits": {
+            "smithy.api#documentation": "The firewall settings for the AS server."
+          }
+        },
+        "querypoolConnectionMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInputQuerypoolConnectionMode",
+          "traits": {
+            "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+          }
+        },
+        "managedMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInputManagedMode",
+          "traits": {
+            "smithy.api#documentation": "The managed mode of the server (0 = not managed, 1 = managed)."
+          }
+        },
+        "serverMonitorMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInputServerMonitorMode",
+          "traits": {
+            "smithy.api#documentation": "The server monitor mode for AS server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a set of mutable Analysis Services resource properties."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInputServerMonitorMode": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The server monitor mode for AS server"
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInputManagedMode": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The managed mode of the server (0 = not managed, 1 = managed)."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerMutablePropertiesInputQuerypoolConnectionMode": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All"
+          }
+        },
+        "READONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+      }
+    },
+    "com.azure.analysisservices#GatewayDetailsInput": {
+      "type": "structure",
+      "members": {
+        "gatewayResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway resource to be associated with the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The gateway details."
+      }
+    },
+    "com.azure.analysisservices#ServersUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
+      }
+    },
+    "com.azure.analysisservices#ServersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#ServersCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Provisions the specified Analysis Services server based on the configuration specified in the request.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the Analysis Services resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Analysis Services resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the Analysis Services resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.analysisservices#ServersCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.analysisservices#ServersCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+      }
+    },
+    "com.azure.analysisservices#ServersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.analysisservices#ServersCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "asAdministrators": {
+          "target": "com.azure.analysisservices#ServerAdministrators",
+          "traits": {
+            "smithy.api#documentation": "A collection of AS server administrators"
+          }
+        },
+        "backupBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS container URI to the backup container."
+          }
+        },
+        "gatewayDetails": {
+          "target": "com.azure.analysisservices#GatewayDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "The gateway details configured for the AS server."
+          }
+        },
+        "ipV4FirewallSettings": {
+          "target": "com.azure.analysisservices#IPv4FirewallSettings",
+          "traits": {
+            "smithy.api#documentation": "The firewall settings for the AS server."
+          }
+        },
+        "querypoolConnectionMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesInputQuerypoolConnectionMode",
+          "traits": {
+            "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+          }
+        },
+        "managedMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesInputManagedMode",
+          "traits": {
+            "smithy.api#documentation": "The managed mode of the server (0 = not managed, 1 = managed)."
+          }
+        },
+        "serverMonitorMode": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerPropertiesInputServerMonitorMode",
+          "traits": {
+            "smithy.api#documentation": "The server monitor mode for AS server"
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of Analysis Services resource."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesInputServerMonitorMode": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The server monitor mode for AS server"
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesInputManagedMode": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The managed mode of the server (0 = not managed, 1 = managed)."
+      }
+    },
+    "com.azure.analysisservices#AnalysisServicesServerPropertiesInputQuerypoolConnectionMode": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All"
+          }
+        },
+        "READONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
+      }
+    },
+    "com.azure.analysisservices#ServersCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+      }
+    },
+    "com.azure.analysisservices#ServersGetDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.analysisservices#ServersGetDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.analysisservices#ServersGetDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AnalysisServices/servers/{serverName}",
+          "code": 200,
+          "apiVersion": "2017-08-01"
+        },
+        "smithy.api#documentation": "Gets details about the specified Analysis Services server.",
+        "com.distilled.openapi#apiVersion": "2017-08-01"
+      }
+    },
+    "com.azure.analysisservices#ServersGetDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the Analysis Services resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Analysis Services resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the Analysis Services resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.analysisservices#ResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Analysis Services resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.analysisservices#ServersGetDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.analysisservices#AnalysisServicesServerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.analysisservices#ServersGetDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
+      }
+    },
+    "com.azure.analysisservices#ServersGetDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier for a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Resource group of which a given Analysis Services server is part. This name must be at least 1 character in length, and no more than 90."
+          }
+        },
+        "serverName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Analysis Services server. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.analysisservices#Analysisservices": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.analysisservices#OperationsList"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersListOperationStatuses"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersListOperationResults"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersDissociateGateway"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersListGatewayStatus"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersListSkusForExisting"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersListSkusForNew"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersList"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersListByResourceGroup"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersResume"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersSuspend"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersDelete"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersUpdate"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersCreate"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersGetDetails"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Analysisservices",
+        "smithy.api#documentation": "Azure Analysisservices API — merged from the analysisservices resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

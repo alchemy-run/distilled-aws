@@ -1,0 +1,45 @@
+{
+  "description": "Align custom_hostnames#FallbackOriginGet with distilled cloudflare/custom-hostnames getFallbackOrigin",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#FallbackOriginGet",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetFallbackOrigin"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#FallbackOriginGetRequest",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetFallbackOriginRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetFallbackOrigin/input/target",
+      "value": "com.cloudflare.custom_hostnames#GetFallbackOriginRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#FallbackOriginGetResponse",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetFallbackOriginResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetFallbackOrigin/output/target",
+      "value": "com.cloudflare.custom_hostnames#GetFallbackOriginResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetFallbackOrigin/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasAccessNotGranted"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#Forbidden"
+        }
+      ]
+    }
+  ]
+}

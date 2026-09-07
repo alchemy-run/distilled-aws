@@ -1,0 +1,31 @@
+{
+  "description": "Type createPrimaryIp's retryable quota failure. The OpenAPI document only declares 4xx/5xx wildcards, so it currently lands as Forbidden (403 resource_limit_exceeded, message 'Primary IP limit exceeded'). A dedicated tag lets callers retry without matching on message text — the quota is commonly exhausted transiently by sibling deployments whose Servers hold auto-created Primary IP pairs.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.hetzner.primary_ips#PrimaryIpLimitExceeded",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": { "target": "smithy.api#Integer" },
+          "message": { "target": "smithy.api#String" }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "smithy.api#documentation": "The project has no remaining Primary IP quota (Hetzner `resource_limit_exceeded`, HTTP 403). Often transient — Servers hold auto-created Primary IP pairs that free up on delete — retry.",
+          "com.distilled.openapi#errorMatchers": [
+            {
+              "status": 403,
+              "message": { "includes": "IP limit" }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.hetzner.primary_ips#CreatePrimaryIp/errors",
+      "value": [{ "target": "com.hetzner.primary_ips#PrimaryIpLimitExceeded" }]
+    }
+  ]
+}

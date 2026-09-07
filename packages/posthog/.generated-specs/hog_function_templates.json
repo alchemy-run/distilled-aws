@@ -1,0 +1,447 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.hog_function_templates#HogFunctionTemplatesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "template_id",
+            "smithy.api#documentation": "Filter to a specific template by its template_id. Deprecated templates are excluded from list results; use the retrieve endpoint to look up a template by ID regardless of status."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "Filter by template type (e.g. destination, email, sms_provider, broadcast). Defaults to destination if neither type nor types is provided."
+          }
+        },
+        "types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "types",
+            "smithy.api#documentation": "Comma-separated list of template types to include (e.g. destination,email,sms_provider)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_function_templates#HogFunctionTemplate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique template identifier (e.g. 'template-slack')."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the template."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "What this template does.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source code of the template."
+          }
+        },
+        "code_language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Programming language: 'hog' or 'javascript'."
+          }
+        },
+        "inputs_schema": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Schema defining configurable inputs for functions created from this template."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Function type this template creates."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle status: alpha, beta, stable, deprecated, or hidden."
+          }
+        },
+        "category": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Category tags for organizing templates."
+          }
+        },
+        "free": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether available on free plans."
+          }
+        },
+        "icon_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the template's icon.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filters": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Default event filters."
+          }
+        },
+        "masking": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Default PII masking configuration."
+          }
+        },
+        "mapping_templates": {
+          "target": "com.posthog.hog_function_templates#HogFunctionTemplateMappingTemplatesList",
+          "traits": {
+            "smithy.api#documentation": "Pre-defined mapping configurations for destination templates.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_function_templates#HogFunctionMappingTemplate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of this mapping template."
+          }
+        },
+        "include_by_default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this mapping is enabled by default.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "use_all_events_by_default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this mapping should match all events by default, hiding the event filter UI.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filters": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Event filters specific to this mapping."
+          }
+        },
+        "inputs": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Input values specific to this mapping."
+          }
+        },
+        "inputs_schema": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Additional input schema fields specific to this mapping."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_function_templates#HogFunctionTemplateMappingTemplatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_function_templates#HogFunctionMappingTemplate"
+      },
+      "traits": {
+        "smithy.api#documentation": "Pre-defined mapping configurations for destination templates."
+      }
+    },
+    "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_function_templates#HogFunctionTemplate"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_function_templates#HogFunctionTemplatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_function_templates#HogFunctionTemplatesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_function_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_function_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_function_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_function_templates/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_function_templates#HogFunctionTemplate"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_function_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_function_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_function_templates/{template_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_function_templates#PublicHogFunctionTemplatesListRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "template_id",
+            "smithy.api#documentation": "Filter to a specific template by its template_id. Deprecated templates are excluded from list results; use the retrieve endpoint to look up a template by ID regardless of status."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "Filter by template type (e.g. destination, email, sms_provider, broadcast). Defaults to destination if neither type nor types is provided."
+          }
+        },
+        "types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "types",
+            "smithy.api#documentation": "Comma-separated list of template types to include (e.g. destination,email,sms_provider)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_function_templates#PublicHogFunctionTemplatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_function_templates#PublicHogFunctionTemplatesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_function_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_function_templates#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/public_hog_function_templates/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_function_templates#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.hog_function_templates#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.hog_function_templates#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.hog_function_templates#HogFunctionTemplates": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.hog_function_templates#HogFunctionTemplatesList"
+        },
+        {
+          "target": "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_function_templates#PublicHogFunctionTemplatesList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

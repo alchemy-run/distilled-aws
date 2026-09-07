@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#UsageZoneGet with distilled cloudflare/dns getUsageZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#UsageZoneGet",
+      "path": "/shapes/com.cloudflare.dns#GetUsageZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#UsageZoneGetRequest",
+      "path": "/shapes/com.cloudflare.dns#GetUsageZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetUsageZone/input/target",
+      "value": "com.cloudflare.dns#GetUsageZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#UsageZoneGetResponse",
+      "path": "/shapes/com.cloudflare.dns#GetUsageZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetUsageZone/output/target",
+      "value": "com.cloudflare.dns#GetUsageZoneResponse"
+    }
+  ]
+}

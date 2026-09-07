@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsIndicatorTypesList with distilled cloudflare/cloudforce-one listThreatEventIndicatorTypes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsIndicatorTypesList",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsIndicatorTypesListRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypes/input/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsIndicatorTypesListResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypes/output/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventIndicatorTypesResponse"
+    }
+  ]
+}

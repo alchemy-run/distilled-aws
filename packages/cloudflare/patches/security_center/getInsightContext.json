@@ -1,0 +1,30 @@
+{
+  "description": "Align security_center#InsightsContextGet with distilled cloudflare/security-center getInsightContext",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsContextGet",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightContext"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsContextGetRequest",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightContextRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightContext/input/target",
+      "value": "com.cloudflare.security_center#GetInsightContextRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsContextGetResponse",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightContextResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightContext/output/target",
+      "value": "com.cloudflare.security_center#GetInsightContextResponse"
+    }
+  ]
+}

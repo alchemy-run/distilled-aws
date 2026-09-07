@@ -1,0 +1,1464 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "firebaserules",
+    "version": "v1",
+    "title": "Firebase Rules API",
+    "baseUrl": "https://firebaserules.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.firebaserules_v1#TestRulesetRequest": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.gcp.firebaserules_v1#Source",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional `Source` to be checked for correctness. This field must not be set when the resource name refers to a `Ruleset`."
+          }
+        },
+        "testSuite": {
+          "target": "com.gcp.firebaserules_v1#TestSuite",
+          "traits": {
+            "smithy.api#documentation": "Required. The tests to execute against the `Source`. When `Source` is provided inline, the test cases will only be run if the `Source` is syntactically and semantically valid. Inline `TestSuite` to run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request for FirebaseRulesService.TestRuleset."
+      }
+    },
+    "com.gcp.firebaserules_v1#Source": {
+      "type": "structure",
+      "members": {
+        "files": {
+          "target": "com.gcp.firebaserules_v1#FileList",
+          "traits": {
+            "smithy.api#documentation": "Required. `File` set constituting the `Source` bundle."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`Source` is one or more `File` messages comprising a logical set of rules."
+      }
+    },
+    "com.gcp.firebaserules_v1#FileList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#File"
+      }
+    },
+    "com.gcp.firebaserules_v1#File": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Textual Content."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. File name."
+          }
+        },
+        "fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fingerprint (e.g. github sha) associated with the `File`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`File` containing source content."
+      }
+    },
+    "com.gcp.firebaserules_v1#TestSuite": {
+      "type": "structure",
+      "members": {
+        "testCases": {
+          "target": "com.gcp.firebaserules_v1#TestCaseList",
+          "traits": {
+            "smithy.api#documentation": "Collection of test cases associated with the `TestSuite`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`TestSuite` is a collection of `TestCase` instances that validate the logical correctness of a `Ruleset`. The `TestSuite` may be referenced in-line within a `TestRuleset` invocation or as part of a `Release` object as a pre-release check."
+      }
+    },
+    "com.gcp.firebaserules_v1#TestCaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#TestCase"
+      }
+    },
+    "com.gcp.firebaserules_v1#TestCase": {
+      "type": "structure",
+      "members": {
+        "expectation": {
+          "target": "com.gcp.firebaserules_v1#TestCaseExpectationEnum",
+          "traits": {
+            "smithy.api#documentation": "Test expectation."
+          }
+        },
+        "request": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Request context. The exact format of the request context is service-dependent. See the appropriate service documentation for information about the supported fields and types on the request. Minimally, all services support the following fields and types: Request field | Type ---------------|----------------- auth.uid | `string` auth.token | `map` headers | `map` method | `string` params | `map` path | `string` time | `google.protobuf.Timestamp` If the request value is not well-formed for the service, the request will be rejected as an invalid argument."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Optional resource value as it appears in persistent storage before the request is fulfilled. The resource type depends on the `request.path` value."
+          }
+        },
+        "functionMocks": {
+          "target": "com.gcp.firebaserules_v1#FunctionMockList",
+          "traits": {
+            "smithy.api#documentation": "Optional function mocks for service-defined functions. If not set, any service defined function is expected to return an error, which may or may not influence the test outcome."
+          }
+        },
+        "pathEncoding": {
+          "target": "com.gcp.firebaserules_v1#TestCasePathEncodingEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether paths (such as request.path) are encoded and how."
+          }
+        },
+        "expressionReportLevel": {
+          "target": "com.gcp.firebaserules_v1#TestCaseExpressionReportLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies what should be included in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`TestCase` messages provide the request context and an expectation as to whether the given context will be allowed or denied. Test cases may specify the `request`, `resource`, and `function_mocks` to mock a function call to a service-provided function. The `request` object represents context present at request-time. The `resource` is the value of the target resource as it appears in persistent storage before the request is executed."
+      }
+    },
+    "com.gcp.firebaserules_v1#TestCaseExpectationEnum": {
+      "type": "enum",
+      "members": {
+        "EXPECTATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPECTATION_UNSPECIFIED"
+          }
+        },
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW"
+          }
+        },
+        "DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENY"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#FunctionMockList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#FunctionMock"
+      }
+    },
+    "com.gcp.firebaserules_v1#TestCasePathEncodingEnum": {
+      "type": "enum",
+      "members": {
+        "ENCODING_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENCODING_UNSPECIFIED"
+          }
+        },
+        "URL_ENCODED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_ENCODED"
+          }
+        },
+        "PLAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAIN"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#TestCaseExpressionReportLevelEnum": {
+      "type": "enum",
+      "members": {
+        "LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_UNSPECIFIED"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL"
+          }
+        },
+        "VISITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISITED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#FunctionMock": {
+      "type": "structure",
+      "members": {
+        "function": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the function. The function name must match one provided by a service declaration."
+          }
+        },
+        "args": {
+          "target": "com.gcp.firebaserules_v1#ArgList",
+          "traits": {
+            "smithy.api#documentation": "The list of `Arg` values to match. The order in which the arguments are provided is the order in which they must appear in the function invocation."
+          }
+        },
+        "result": {
+          "target": "com.gcp.firebaserules_v1#Result",
+          "traits": {
+            "smithy.api#documentation": "The mock result of the function call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mock function definition. Mocks must refer to a function declared by the target service. The type of the function args and result will be inferred at test time. If either the arg or result values are not compatible with function type declaration, the request will be considered invalid. More than one `FunctionMock` may be provided for a given function name so long as the `Arg` matchers are distinct. There may be only one function for a given overload where all `Arg` values are `Arg.any_value`."
+      }
+    },
+    "com.gcp.firebaserules_v1#ArgList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#Arg"
+      }
+    },
+    "com.gcp.firebaserules_v1#Arg": {
+      "type": "structure",
+      "members": {
+        "exactValue": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Argument exactly matches value provided."
+          }
+        },
+        "anyValue": {
+          "target": "com.gcp.firebaserules_v1#Empty",
+          "traits": {
+            "smithy.api#documentation": "Argument matches any value provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Arg matchers for the mock function."
+      }
+    },
+    "com.gcp.firebaserules_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.firebaserules_v1#Result": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The result is an actual value. The type of the value must match that of the type declared by the service."
+          }
+        },
+        "undefined": {
+          "target": "com.gcp.firebaserules_v1#Empty",
+          "traits": {
+            "smithy.api#documentation": "The result is undefined, meaning the result could not be computed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible result values from the function mock invocation."
+      }
+    },
+    "com.gcp.firebaserules_v1#TestRulesetResponse": {
+      "type": "structure",
+      "members": {
+        "issues": {
+          "target": "com.gcp.firebaserules_v1#IssueList",
+          "traits": {
+            "smithy.api#documentation": "Syntactic and semantic `Source` issues of varying severity. Issues of `ERROR` severity will prevent tests from executing."
+          }
+        },
+        "testResults": {
+          "target": "com.gcp.firebaserules_v1#TestResultList",
+          "traits": {
+            "smithy.api#documentation": "The set of test results given the test cases in the `TestSuite`. The results will appear in the same order as the test cases appear in the `TestSuite`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for FirebaseRulesService.TestRuleset."
+      }
+    },
+    "com.gcp.firebaserules_v1#IssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#Issue"
+      }
+    },
+    "com.gcp.firebaserules_v1#TestResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#TestResult"
+      }
+    },
+    "com.gcp.firebaserules_v1#Issue": {
+      "type": "structure",
+      "members": {
+        "sourcePosition": {
+          "target": "com.gcp.firebaserules_v1#SourcePosition",
+          "traits": {
+            "smithy.api#documentation": "Position of the issue in the `Source`."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short error description."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.firebaserules_v1#IssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "The severity of the issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issues include warnings, errors, and deprecation notices."
+      }
+    },
+    "com.gcp.firebaserules_v1#IssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "DEPRECATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATION"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#SourcePosition": {
+      "type": "structure",
+      "members": {
+        "fileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the `File`."
+          }
+        },
+        "line": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Line number of the source fragment. 1-based."
+          }
+        },
+        "column": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "First column on the source line associated with the source fragment."
+          }
+        },
+        "currentOffset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Start position relative to the beginning of the file."
+          }
+        },
+        "endOffset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "End position relative to the beginning of the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Position in the `Source` content including its line, column number, and an index of the `File` in the `Source` message. Used for debug purposes."
+      }
+    },
+    "com.gcp.firebaserules_v1#TestResult": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.firebaserules_v1#TestResultStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the test."
+          }
+        },
+        "debugMessages": {
+          "target": "com.gcp.firebaserules_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Debug messages related to test execution issues encountered during evaluation. Debug messages may be related to too many or too few invocations of function mocks or to runtime errors that occur during evaluation. For example: ```Unable to read variable [name: \"resource\"]```"
+          }
+        },
+        "errorPosition": {
+          "target": "com.gcp.firebaserules_v1#SourcePosition",
+          "traits": {
+            "smithy.api#documentation": "Position in the `Source` or `Ruleset` where the principle runtime error occurs. Evaluation of an expression may result in an error. Rules are deny by default, so a `DENY` expectation when an error is generated is valid. When there is a `DENY` with an error, the `SourcePosition` is returned. E.g. `error_position { line: 19 column: 37 }`"
+          }
+        },
+        "functionCalls": {
+          "target": "com.gcp.firebaserules_v1#FunctionCallList",
+          "traits": {
+            "smithy.api#documentation": "The set of function calls made to service-defined methods. Function calls are included in the order in which they are encountered during evaluation, are provided for both mocked and unmocked functions, and included on the response regardless of the test `state`."
+          }
+        },
+        "visitedExpressions": {
+          "target": "com.gcp.firebaserules_v1#VisitedExpressionList",
+          "traits": {
+            "smithy.api#documentation": "The set of visited permission expressions for a given test. This returns the positions and evaluation results of all visited permission expressions which were relevant to the test case, e.g. ``` match /path { allow read if: } ``` For a detailed report of the intermediate evaluation states, see the `expression_reports` field"
+          }
+        },
+        "expressionReports": {
+          "target": "com.gcp.firebaserules_v1#ExpressionReportList",
+          "traits": {
+            "smithy.api#documentation": "The mapping from expression in the ruleset AST to the values they were evaluated to. Partially-nested to mirror AST structure. Note that this field is actually tracking expressions and not permission statements in contrast to the \"visited_expressions\" field above. Literal expressions are omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Test result message containing the state of the test as well as a description and source position for test failures."
+      }
+    },
+    "com.gcp.firebaserules_v1#TestResultStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILURE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firebaserules_v1#FunctionCallList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#FunctionCall"
+      }
+    },
+    "com.gcp.firebaserules_v1#VisitedExpressionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#VisitedExpression"
+      }
+    },
+    "com.gcp.firebaserules_v1#ExpressionReportList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#ExpressionReport"
+      }
+    },
+    "com.gcp.firebaserules_v1#FunctionCall": {
+      "type": "structure",
+      "members": {
+        "function": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the function invoked."
+          }
+        },
+        "args": {
+          "target": "com.gcp.firebaserules_v1#DocumentList",
+          "traits": {
+            "smithy.api#documentation": "The arguments that were provided to the function."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a service-defined function call that was invoked during test execution."
+      }
+    },
+    "com.gcp.firebaserules_v1#DocumentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.firebaserules_v1#VisitedExpression": {
+      "type": "structure",
+      "members": {
+        "sourcePosition": {
+          "target": "com.gcp.firebaserules_v1#SourcePosition",
+          "traits": {
+            "smithy.api#documentation": "Position in the `Source` or `Ruleset` where an expression was visited."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The evaluated value for the visited expression, e.g. true/false"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Store the position and access outcome for an expression visited in rules."
+      }
+    },
+    "com.gcp.firebaserules_v1#ExpressionReport": {
+      "type": "structure",
+      "members": {
+        "sourcePosition": {
+          "target": "com.gcp.firebaserules_v1#SourcePosition",
+          "traits": {
+            "smithy.api#documentation": "Position of expression in original rules source."
+          }
+        },
+        "values": {
+          "target": "com.gcp.firebaserules_v1#ValueCountList",
+          "traits": {
+            "smithy.api#documentation": "Values that this expression evaluated to when encountered."
+          }
+        },
+        "children": {
+          "target": "com.gcp.firebaserules_v1#ExpressionReportList",
+          "traits": {
+            "smithy.api#documentation": "Subexpressions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes where in a file an expression is found and what it was evaluated to over the course of its use."
+      }
+    },
+    "com.gcp.firebaserules_v1#ValueCountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#ValueCount"
+      }
+    },
+    "com.gcp.firebaserules_v1#ValueCount": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The return value of the expression"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of times that expression returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tuple for how many times an Expression was evaluated to a particular ExpressionValue."
+      }
+    },
+    "com.gcp.firebaserules_v1#Ruleset": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the `Ruleset`. The ruleset_id is auto generated by the service. Format: `projects/{project_id}/rulesets/{ruleset_id}`"
+          }
+        },
+        "source": {
+          "target": "com.gcp.firebaserules_v1#Source",
+          "traits": {
+            "smithy.api#documentation": "Required. `Source` for the `Ruleset`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time the `Ruleset` was created."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.firebaserules_v1#Metadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. The metadata for this ruleset."
+          }
+        },
+        "attachmentPoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Intended resource to which this Ruleset should be released. May be left blank to signify the resource associated with the default release. Expected format: firestore.googleapis.com/projects//databases/"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`Ruleset` is an immutable copy of `Source` with a globally unique identifier and a creation time."
+      }
+    },
+    "com.gcp.firebaserules_v1#Metadata": {
+      "type": "structure",
+      "members": {
+        "services": {
+          "target": "com.gcp.firebaserules_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Services that this ruleset has declarations for (e.g., \"cloud.firestore\"). There may be 0+ of these."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for a Ruleset."
+      }
+    },
+    "com.gcp.firebaserules_v1#ListRulesetsResponse": {
+      "type": "structure",
+      "members": {
+        "rulesets": {
+          "target": "com.gcp.firebaserules_v1#RulesetList",
+          "traits": {
+            "smithy.api#documentation": "List of `Ruleset` instances."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for FirebaseRulesService.ListRulesets."
+      }
+    },
+    "com.gcp.firebaserules_v1#RulesetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#Ruleset"
+      }
+    },
+    "com.gcp.firebaserules_v1#Release": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/releases/{release_id}`"
+          }
+        },
+        "rulesetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist for the `Release` to be created."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time the release was created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time the release was updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`Release` is a named reference to a `Ruleset`. Once a `Release` refers to a `Ruleset`, rules-enabled services will be able to enforce the `Ruleset`."
+      }
+    },
+    "com.gcp.firebaserules_v1#UpdateReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "release": {
+          "target": "com.gcp.firebaserules_v1#Release",
+          "traits": {
+            "smithy.api#documentation": "Required. `Release` to update."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies which fields to update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request for FirebaseRulesService.UpdateRelease."
+      }
+    },
+    "com.gcp.firebaserules_v1#ListReleasesResponse": {
+      "type": "structure",
+      "members": {
+        "releases": {
+          "target": "com.gcp.firebaserules_v1#ReleaseList",
+          "traits": {
+            "smithy.api#documentation": "List of `Release` instances."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for FirebaseRulesService.ListReleases."
+      }
+    },
+    "com.gcp.firebaserules_v1#ReleaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaserules_v1#Release"
+      }
+    },
+    "com.gcp.firebaserules_v1#GetReleaseExecutableResponse": {
+      "type": "structure",
+      "members": {
+        "executable": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Executable view of the `Ruleset` referenced by the `Release`."
+          }
+        },
+        "language": {
+          "target": "com.gcp.firebaserules_v1#GetReleaseExecutableResponseLanguageEnum",
+          "traits": {
+            "smithy.api#documentation": "`Language` used to generate the executable bytes."
+          }
+        },
+        "rulesetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`Ruleset` name associated with the `Release` executable."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for the most recent `Release.update_time`."
+          }
+        },
+        "executableVersion": {
+          "target": "com.gcp.firebaserules_v1#GetReleaseExecutableResponseExecutableVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "The Rules runtime version of the executable."
+          }
+        },
+        "syncTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional, indicates the freshness of the result. The response is guaranteed to be the latest within an interval up to the sync_time (inclusive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for FirebaseRulesService.GetReleaseExecutable"
+      }
+    },
+    "com.gcp.firebaserules_v1#GetReleaseExecutableResponseLanguageEnum": {
+      "type": "enum",
+      "members": {
+        "LANGUAGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LANGUAGE_UNSPECIFIED"
+          }
+        },
+        "FIREBASE_RULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREBASE_RULES"
+          }
+        },
+        "EVENT_FLOW_TRIGGERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT_FLOW_TRIGGERS"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#GetReleaseExecutableResponseExecutableVersionEnum": {
+      "type": "enum",
+      "members": {
+        "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED"
+          }
+        },
+        "FIREBASE_RULES_EXECUTABLE_V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREBASE_RULES_EXECUTABLE_V1"
+          }
+        },
+        "FIREBASE_RULES_EXECUTABLE_V2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREBASE_RULES_EXECUTABLE_V2"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#TestProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Tests may either provide `source` or a `Ruleset` resource name. For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id}` For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaserules_v1#TestRulesetRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaserules_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaserules_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaserules_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaserules_v1#TestProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#TestProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#TestRulesetResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:test"
+        },
+        "smithy.api#documentation": "Test `Source` for syntactic and semantic correctness. Issues present, if any, will be returned to the caller with a description, severity, and source location. The test method may be executed with `Source` or a `Ruleset` name. Passing `Source` is useful for unit testing new rules. Passing a `Ruleset` name is useful for regression testing an existing rule. The following is an example of `Source` that permits users to upload images to a bucket bearing their user id and matching the correct metadata: _*Example*_ // Users are allowed to subscribe and unsubscribe to the blog. service firebase.storage { match /users/{userId}/images/{imageName} { allow write: if userId == request.auth.uid && (imageName.matches('*.png$') || imageName.matches('*.jpg$')) && resource.mimeType.matches('^image/') } }"
+      }
+    },
+    "com.gcp.firebaserules_v1#CreateProjectsRulesetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for Project which owns this `Ruleset`. Format: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaserules_v1#Ruleset",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#CreateProjectsRulesets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#CreateProjectsRulesetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Ruleset"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}/rulesets"
+        },
+        "smithy.api#documentation": "Create a `Ruleset` from `Source`. The `Ruleset` is given a unique generated name which is returned to the caller. `Source` containing syntactic or semantics errors will result in an error response indicating the first error encountered. For a detailed view of `Source` issues, use TestRuleset."
+      }
+    },
+    "com.gcp.firebaserules_v1#GetProjectsRulesetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the ruleset to get. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#GetProjectsRulesets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#GetProjectsRulesetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Ruleset"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a `Ruleset` by name including the full `Source` contents."
+      }
+    },
+    "com.gcp.firebaserules_v1#ListProjectsRulesetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the project. Format: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`. Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications. Example: `create_time > date(\"2017-01-01T00:00:00Z\") AND name=UUID-*`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Next page token for loading the next batch of `Ruleset` instances.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#ListProjectsRulesets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#ListProjectsRulesetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#ListRulesetsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/rulesets"
+        },
+        "smithy.api#documentation": "List `Ruleset` metadata only and optionally filter the results by `Ruleset` name. The full `Source` contents of a `Ruleset` may be retrieved with GetRuleset.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#DeleteProjectsRulesetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the ruleset to delete. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#DeleteProjectsRulesets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#DeleteProjectsRulesetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a `Ruleset` by resource name. If the `Ruleset` is referenced by a `Release` the operation will fail."
+      }
+    },
+    "com.gcp.firebaserules_v1#CreateProjectsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaserules_v1#Release",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#CreateProjectsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#CreateProjectsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Release"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}/releases"
+        },
+        "smithy.api#documentation": "Create a `Release`. Release names should reflect the developer's deployment practices. For example, the release name may include the environment name, application name, application version, or any other name meaningful to the developer. Once a `Release` refers to a `Ruleset`, the rules can be enforced by Firebase Rules-enabled services. More than one `Release` may be 'live' concurrently. Consider the following three `Release` names for `projects/foo` and the `Ruleset` to which they refer. Release Name -> Ruleset Name * projects/foo/releases/prod -> projects/foo/rulesets/uuid123 * projects/foo/releases/prod/beta -> projects/foo/rulesets/uuid123 * projects/foo/releases/prod/v23 -> projects/foo/rulesets/uuid456 The relationships reflect a `Ruleset` rollout in progress. The `prod` and `prod/beta` releases refer to the same `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be updated using the UpdateRelease method."
+      }
+    },
+    "com.gcp.firebaserules_v1#PatchProjectsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaserules_v1#UpdateReleaseRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#PatchProjectsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#PatchProjectsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Release"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update a `Release` via PATCH. Only updates to `ruleset_name` will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method."
+      }
+    },
+    "com.gcp.firebaserules_v1#GetProjectsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#GetProjectsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#GetProjectsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Release"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a `Release` by name."
+      }
+    },
+    "com.gcp.firebaserules_v1#ListProjectsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the project. Format: `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. `Release` filter. The list method supports filters with restrictions on the `Release.name`, and `Release.ruleset_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name -> Ruleset Name: * projects/foo/releases/prod -> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v1 -> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v2 -> projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name -> Ruleset Name: * projects/foo/releases/prod -> projects/foo/rulesets/1234 * projects/foo/releases/prod/v1 -> projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Next page token for the next batch of `Release` instances.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#ListProjectsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#ListProjectsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#ListReleasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/releases"
+        },
+        "smithy.api#documentation": "List the `Release` values for a project. This list may optionally be filtered by `Release` name, `Ruleset` name, `TestSuite` name, or any combination thereof.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#DeleteProjectsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for the `Release` to delete. Format: `projects/{project_id}/releases/{release_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#DeleteProjectsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#DeleteProjectsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a `Release` by resource name."
+      }
+    },
+    "com.gcp.firebaserules_v1#GetExecutableProjectsReleasesExecutableVersionEnum": {
+      "type": "enum",
+      "members": {
+        "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED"
+          }
+        },
+        "FIREBASE_RULES_EXECUTABLE_V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREBASE_RULES_EXECUTABLE_V1"
+          }
+        },
+        "FIREBASE_RULES_EXECUTABLE_V2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREBASE_RULES_EXECUTABLE_V2"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#GetExecutableProjectsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "executableVersion": {
+          "target": "com.gcp.firebaserules_v1#GetExecutableProjectsReleasesExecutableVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.",
+            "smithy.api#httpQuery": "executableVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaserules_v1#GetExecutableProjectsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaserules_v1#GetExecutableProjectsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaserules_v1#GetReleaseExecutableResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaserules_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaserules_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}:getExecutable"
+        },
+        "smithy.api#documentation": "Get the `Release` executable to use when enforcing rules."
+      }
+    }
+  }
+}

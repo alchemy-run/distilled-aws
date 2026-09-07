@@ -1,0 +1,4084 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "threatintelligence",
+    "version": "v1beta",
+    "title": "Threat Intelligence API",
+    "baseUrl": "https://threatintelligence.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.threatintelligence_v1beta#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.threatintelligence_v1beta#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#DocumentMap"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileCompany": {
+      "type": "structure",
+      "members": {
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the company."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the company."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Company information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#UpsertConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "configuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Created configuration ID with server assigned id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for UpsertConfiguration."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#SeverityAnalysis": {
+      "type": "structure",
+      "members": {
+        "confidence": {
+          "target": "com.gcp.threatintelligence_v1beta#SeverityAnalysisConfidenceEnum",
+          "traits": {
+            "smithy.api#documentation": "The level of confidence in the given verdict."
+          }
+        },
+        "reasoning": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable explanation from the model, detailing why a particular result is considered to have a certain severity."
+          }
+        },
+        "severityLevel": {
+          "target": "com.gcp.threatintelligence_v1beta#SeverityAnalysisSeverityLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "The level of severity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured severity analysis for a threat."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#SeverityAnalysisConfidenceEnum": {
+      "type": "enum",
+      "members": {
+        "CONFIDENCE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "CONFIDENCE_LEVEL_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_LOW"
+          }
+        },
+        "CONFIDENCE_LEVEL_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_MEDIUM"
+          }
+        },
+        "CONFIDENCE_LEVEL_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#SeverityAnalysisSeverityLevelEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_LEVEL_UNSPECIFIED"
+          }
+        },
+        "SEVERITY_LEVEL_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_LEVEL_LOW"
+          }
+        },
+        "SEVERITY_LEVEL_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_LEVEL_MEDIUM"
+          }
+        },
+        "SEVERITY_LEVEL_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_LEVEL_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TargetTechnologyFindingDetail": {
+      "type": "structure",
+      "members": {
+        "vulnerabilityMatch": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatch",
+          "traits": {
+            "smithy.api#documentation": "Optional. The vulnerability match details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains details for a technology watchlist finding."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AlertDocumentTranslation": {
+      "type": "structure",
+      "members": {
+        "translatedTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The translated title of the document."
+          }
+        },
+        "translatedContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The translated content of the document."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The translation of an alert document."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ConfigurationRevision": {
+      "type": "structure",
+      "members": {
+        "snapshot": {
+          "target": "com.gcp.threatintelligence_v1beta#Configuration",
+          "traits": {
+            "smithy.api#documentation": "The snapshot of the configuration"
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the Revision was created"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the ConfigurationRevision Format: projects//configurations//revisions/"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ConfigurationRevision is a snapshot of a Configuration at a point in time. It is immutable."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ProductFix": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the fix. Ex: \"Magento\"."
+          }
+        },
+        "sourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The source ID of the fix. Ex: \"APPSEC-1420\"."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URI of the fix."
+          }
+        },
+        "publishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The published time of the fix."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains details about a product fix."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileConfig": {
+      "type": "structure",
+      "members": {
+        "citations": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Citations for the organization profile."
+          }
+        },
+        "parentCompanies": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCompanyList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The parent companies of the organization."
+          }
+        },
+        "contactInfo": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileContactInfoList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contact information for the organization."
+          }
+        },
+        "webPresences": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileWebPresenceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Web presence of the organization."
+          }
+        },
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the organization."
+          }
+        },
+        "industries": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileIndustryList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The industries the organization is involved in."
+          }
+        },
+        "orgSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A summary of the organization."
+          }
+        },
+        "technologyPresence": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Technology presence of the organization."
+          }
+        },
+        "executives": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfilePersonList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Executives of the organization."
+          }
+        },
+        "securityConsiderations": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileSecurityConsiderations",
+          "traits": {
+            "smithy.api#documentation": "Optional. Security considerations for the organization."
+          }
+        },
+        "summary": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileSummary",
+          "traits": {
+            "smithy.api#documentation": "Optional. A summarized version of the customer profile."
+          }
+        },
+        "products": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileProductList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product information for the organization."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileLocationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Locations the organization is present or conducts business in."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CustomerProfileConfig is the configuration for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileCitationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitation"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileCompanyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCompany"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileContactInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileContactInfo"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileWebPresenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileWebPresence"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileIndustryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileIndustry"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfilePersonList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfilePerson"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileProductList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileProduct"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileLocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#CustomerProfileLocation"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TargetTechnologyAlertDetail": {
+      "type": "structure",
+      "members": {
+        "vulnerabilityMatch": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatch",
+          "traits": {
+            "smithy.api#documentation": "Optional. The vulnerability match details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains details for a technology watchlist alert."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PublicExploit": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URI of the exploit."
+          }
+        },
+        "exploitGrade": {
+          "target": "com.gcp.threatintelligence_v1beta#PublicExploitExploitGradeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The grade of the exploit. Ex: \"non-weaponized\"."
+          }
+        },
+        "exploitName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the exploit. Ex: \"Magentounauth.php.txt\"."
+          }
+        },
+        "releaseTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The release time of the exploit."
+          }
+        },
+        "exploitReliability": {
+          "target": "com.gcp.threatintelligence_v1beta#PublicExploitExploitReliabilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The reliability of the exploit. Ex: \"Unreviewed\"."
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The size of the exploit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains details about a public exploit."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PublicExploitExploitGradeEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOIT_GRADE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_GRADE_UNSPECIFIED"
+          }
+        },
+        "UNEVALUATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEVALUATED"
+          }
+        },
+        "PROOF_OF_CONCEPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROOF_OF_CONCEPT"
+          }
+        },
+        "NON_WEAPONIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_WEAPONIZED"
+          }
+        },
+        "WEAPONIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEAPONIZED"
+          }
+        },
+        "SCANNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCANNER"
+          }
+        },
+        "FAKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAKE"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PublicExploitExploitReliabilityEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOIT_RELIABILITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_RELIABILITY_UNSPECIFIED"
+          }
+        },
+        "UNREVIEWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNREVIEWED"
+          }
+        },
+        "REVIEWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVIEWED"
+          }
+        },
+        "TESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TESTED"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Association": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the association."
+          }
+        },
+        "type": {
+          "target": "com.gcp.threatintelligence_v1beta#AssociationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the association."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an association with a vulnerability."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AssociationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_INTEL_OBJECT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_UNSPECIFIED"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_THREAT_ACTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_THREAT_ACTOR"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_MALWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_MALWARE"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_REPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_REPORT"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_CAMPAIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_CAMPAIGN"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_IOC_COLLECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_IOC_COLLECTION"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_SOFTWARE_AND_TOOLKITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_SOFTWARE_AND_TOOLKITS"
+          }
+        },
+        "THREAT_INTEL_OBJECT_TYPE_VULNERABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_INTEL_OBJECT_TYPE_VULNERABILITY"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsTriagedRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsTriaged."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#InsiderThreatAlertDetail": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`"
+          }
+        },
+        "discoveryDocumentIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. Array of ids to accommodate multiple discovery documents"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Captures the specific details of InsiderThreat alert."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileIndustry": {
+      "type": "structure",
+      "members": {
+        "industry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the industry."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the industry."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Industry information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListConfigurationsResponse": {
+      "type": "structure",
+      "members": {
+        "configurations": {
+          "target": "com.gcp.threatintelligence_v1beta#ConfigurationList",
+          "traits": {
+            "smithy.api#documentation": "List of configurations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListConfigurations."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ConfigurationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#Configuration"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfilePerson": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The title of the person."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the person."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the person."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Person information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#InsiderThreatFindingDetail": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "com.gcp.threatintelligence_v1beta#InsiderThreatFindingDetailSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of the InsiderThreat finding. This indicates the potential impact of the threat."
+          }
+        },
+        "matchScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. Reference to the match score of the InsiderThreat finding. This is a float value greater than 0 and less than or equal to 1 calculated by the matching engine based on the similarity of the document and the user provided configurations."
+          }
+        },
+        "documentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The unique identifier of the document that triggered the InsiderThreat finding. This ID can be used to retrieve the content of the document for further analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A detail object for a InsiderThreat finding."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#InsiderThreatFindingDetailSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Configuration": {
+      "type": "structure",
+      "members": {
+        "detail": {
+          "target": "com.gcp.threatintelligence_v1beta#ConfigurationDetail",
+          "traits": {
+            "smithy.api#documentation": "Required. Domain specific details for the configuration."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the configuration."
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the service that provides the configuration."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Server generated name for the configuration. format is projects/{project}/configurations/{configuration}"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If included when updating a configuration, this should be set to the current etag of the configuration. If the etags do not match, the update will be rejected and an ABORTED error will be returned."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A user-manipulatable version. Does not adhere to a specific format"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human readable name for the configuration."
+          }
+        },
+        "audit": {
+          "target": "com.gcp.threatintelligence_v1beta#Audit",
+          "traits": {
+            "smithy.api#documentation": "Output only. Audit information for the configuration."
+          }
+        },
+        "state": {
+          "target": "com.gcp.threatintelligence_v1beta#ConfigurationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. State of the configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A configuration represents a behavior an engine should follow when producing new findings."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ConfigurationStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        },
+        "DEPRECATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsFalsePositiveRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsFalsePositive."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileSecurityConsiderations": {
+      "type": "structure",
+      "members": {
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A note about the security considerations."
+          }
+        },
+        "considerations": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A series of considerations for the security of the organization, such as \"high risk of compromise\" or \"vulnerable to cyberbullying\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Security considerations for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FindingDetail": {
+      "type": "structure",
+      "members": {
+        "detailType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union."
+          }
+        },
+        "initialAccessBroker": {
+          "target": "com.gcp.threatintelligence_v1beta#InitialAccessBrokerFindingDetail",
+          "traits": {
+            "smithy.api#documentation": "Initial Access Broker finding detail type."
+          }
+        },
+        "targetTechnology": {
+          "target": "com.gcp.threatintelligence_v1beta#TargetTechnologyFindingDetail",
+          "traits": {
+            "smithy.api#documentation": "Technology Watchlist finding detail type."
+          }
+        },
+        "dataLeak": {
+          "target": "com.gcp.threatintelligence_v1beta#DataLeakFindingDetail",
+          "traits": {
+            "smithy.api#documentation": "Data Leak finding detail type."
+          }
+        },
+        "insiderThreat": {
+          "target": "com.gcp.threatintelligence_v1beta#InsiderThreatFindingDetail",
+          "traits": {
+            "smithy.api#documentation": "Insider Threat finding detail type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper class that contains the union struct for all the various findings detail specific classes."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AlertDocument": {
+      "type": "structure",
+      "members": {
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The language code of the document."
+          }
+        },
+        "aiSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. AI summary of the document."
+          }
+        },
+        "ingestTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when GTI received the intel."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Source of the intel item, e.g. DarkMarket."
+          }
+        },
+        "collectionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the origin source collected the intel."
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The author of the document."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The content of the document."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The title of the document, if available."
+          }
+        },
+        "translation": {
+          "target": "com.gcp.threatintelligence_v1beta#AlertDocumentTranslation",
+          "traits": {
+            "smithy.api#documentation": "Output only. The translation of the document, if available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Server generated name for the alert document. format is projects/{project}/alerts/{alert}/documents/{document}"
+          }
+        },
+        "sourceUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the intel was last updated by the source."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp of the original external publication of the document."
+          }
+        },
+        "sourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. URI of the intel item from the source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A document that is associated with an alert."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Audit": {
+      "type": "structure",
+      "members": {
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time of creation or last update."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time of creation."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Agent that created or updated the record, could be a UserId or a JobId."
+          }
+        },
+        "updater": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Agent that last updated the record, could be a UserId or a JobId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tracks basic CRUD facts."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Finding": {
+      "type": "structure",
+      "members": {
+        "reoccurrenceTimes": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. When identical finding (same labels and same details) has re-occurred."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A short descriptive title for the finding <= 250 chars. EX: \"Actor 'baddy' offering $1000 for credentials of 'goodguy'\"."
+          }
+        },
+        "severityAnalysis": {
+          "target": "com.gcp.threatintelligence_v1beta#SeverityAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Output only. High-Precision Severity Analysis verdict for the finding."
+          }
+        },
+        "audit": {
+          "target": "com.gcp.threatintelligence_v1beta#Audit",
+          "traits": {
+            "smithy.api#documentation": "Output only. Audit data about the finding."
+          }
+        },
+        "relevanceAnalysis": {
+          "target": "com.gcp.threatintelligence_v1beta#RelevanceAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Output only. High-Precision Relevance Analysis verdict for the finding."
+          }
+        },
+        "detail": {
+          "target": "com.gcp.threatintelligence_v1beta#FindingDetail",
+          "traits": {
+            "smithy.api#documentation": "Required. Holder of the domain specific details of the finding."
+          }
+        },
+        "alert": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the alert that this finding is bound to."
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Logical source of this finding (name of the sub-engine)."
+          }
+        },
+        "configurations": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration names that are bound to this finding."
+          }
+        },
+        "aiSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. AI summary of the finding."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Server generated name for the finding (leave clear during creation). Format: projects/{project}/findings/{finding}"
+          }
+        },
+        "severity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Deprecated: Use the `severity_analysis` field instead. Base severity score from the finding source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ‘stateless’ and a point in time event that a check produced a result of interest."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsBenignRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsBenign."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.threatintelligence_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.threatintelligence_v1beta#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.threatintelligence_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#InitialAccessBrokerFindingDetail": {
+      "type": "structure",
+      "members": {
+        "matchScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. Reference to the match score of the IAB finding. This is a float value between 0 and 1 calculated by the matching engine based on the similarity of the document and the user provided configurations."
+          }
+        },
+        "documentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The unique identifier of the document that triggered the IAB finding. This ID can be used to retrieve the content of the document for further analysis."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.threatintelligence_v1beta#InitialAccessBrokerFindingDetailSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of the IAB finding. This indicates the potential impact of the threat."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A detail object for an Initial Access Broker (IAB) finding."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#InitialAccessBrokerFindingDetailSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TechnologyWatchListConfig": {
+      "type": "structure",
+      "members": {
+        "technologies": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*"
+          }
+        },
+        "alertThreshold": {
+          "target": "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThreshold",
+          "traits": {
+            "smithy.api#documentation": "Optional. Alert thresholds to effectively reduce noise."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TechnologyWatchListConfig is the configuration for the technology watchlist."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ConfigurationDetail": {
+      "type": "structure",
+      "members": {
+        "customerProfile": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileConfig",
+          "traits": {
+            "smithy.api#documentation": "Customer Profile detail config."
+          }
+        },
+        "detailType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union."
+          }
+        },
+        "technologyWatchlist": {
+          "target": "com.gcp.threatintelligence_v1beta#TechnologyWatchListConfig",
+          "traits": {
+            "smithy.api#documentation": "Technology Watchlist detail config."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wrapper class that contains the union struct for all the various configuration detail specific classes."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileProduct": {
+      "type": "structure",
+      "members": {
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the product."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The brand of the product."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileWebPresence": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The domain name of the web presence."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the web presence."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Web presence information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DataLeakAlertDetail": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`"
+          }
+        },
+        "discoveryDocumentIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. Array of ids to accommodate multiple discovery documents"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Captures the specific details of Data Leak alert."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileSummary": {
+      "type": "structure",
+      "members": {
+        "primaryWebsite": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The primary website of the customer."
+          }
+        },
+        "keyPeopleSummary": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. A narrative summary of key people."
+          }
+        },
+        "brands": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. A narrative summary of brands."
+          }
+        },
+        "areaServed": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The area the customer serves."
+          }
+        },
+        "industry": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The industry the customer is in."
+          }
+        },
+        "productsSummary": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. A narrative summary of products."
+          }
+        },
+        "founded": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The date the customer was founded."
+          }
+        },
+        "servicesSummary": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. A narrative summary of services."
+          }
+        },
+        "parentCompany": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The parent company of the customer."
+          }
+        },
+        "headquarters": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The headquarters of the customer."
+          }
+        },
+        "title": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The official name of the customer."
+          }
+        },
+        "entityType": {
+          "target": "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The entity type of the customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A summarized version of the customer profile. Generated by the backend."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileCitedString": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The value of the string."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the string."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A string with citation ids."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GenerateOrgProfileConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The domain of the organization to generate the profile for."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The display name of the organization to generate the profile for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for GenerateOrgProfileConfiguration."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Facet": {
+      "type": "structure",
+      "members": {
+        "facetCounts": {
+          "target": "com.gcp.threatintelligence_v1beta#FacetCountList",
+          "traits": {
+            "smithy.api#documentation": "List of counts for the facet (if categorical)."
+          }
+        },
+        "facetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the facet. Options include \"string\", \"int\", \"float\", \"bool\", \"enum\", \"timestamp\", \"user\" and are useful to show the right sort of UI controls when building a AIP-160 style filtering string."
+          }
+        },
+        "facet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the facet. This is also the string that needs to be used in the filtering expression."
+          }
+        },
+        "totalCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total number of records that contain this facet with ANY value."
+          }
+        },
+        "minValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Min value of the facet stringified based on type. This is only populated for facets that have a clear ordering, for types like enum it will be left empty. Timestamps will be formatted using RFC3339."
+          }
+        },
+        "maxValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Max value of the facet stringified based on type. Will be populated and formatted the same as min_value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Facet represents a sub element of a resource for filtering. The results from this method are used to populate the filterable facets in the UI."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FacetCountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#FacetCount"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsTrackedExternallyRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsTrackedExternally."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListConfigurationRevisionsResponse": {
+      "type": "structure",
+      "members": {
+        "revisions": {
+          "target": "com.gcp.threatintelligence_v1beta#ConfigurationRevisionList",
+          "traits": {
+            "smithy.api#documentation": "The Configuration Revisions associated with the specified Configuration"
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListConfigurationRevisions."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ConfigurationRevisionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#ConfigurationRevision"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#SearchFindingsResponse": {
+      "type": "structure",
+      "members": {
+        "findings": {
+          "target": "com.gcp.threatintelligence_v1beta#FindingList",
+          "traits": {
+            "smithy.api#documentation": "List of findings."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for SearchFindings."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#Finding"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Alert": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.threatintelligence_v1beta#AlertStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the alert."
+          }
+        },
+        "findings": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Findings that are covered by this alert."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A short title for the alert."
+          }
+        },
+        "aiSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. AI summary of the alert."
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. External ID for the alert. This is used internally to provide protection against out of order updates."
+          }
+        },
+        "priorityAnalysis": {
+          "target": "com.gcp.threatintelligence_v1beta#PriorityAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Output only. High-Precision Priority Analysis for the alert."
+          }
+        },
+        "relevanceAnalysis": {
+          "target": "com.gcp.threatintelligence_v1beta#RelevanceAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Output only. High-Precision Relevance Analysis verdict for the alert."
+          }
+        },
+        "duplicateOf": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. alert name of the alert this alert is a duplicate of. Format: projects/{project}/alerts/{alert}"
+          }
+        },
+        "audit": {
+          "target": "com.gcp.threatintelligence_v1beta#Audit",
+          "traits": {
+            "smithy.api#documentation": "Output only. Audit information for the alert."
+          }
+        },
+        "severityAnalysis": {
+          "target": "com.gcp.threatintelligence_v1beta#SeverityAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Output only. High-Precision Severity Analysis for the alert."
+          }
+        },
+        "findingCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of findings associated with this alert."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Server generated name for the alert. format is projects/{project}/alerts/{alert}"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If included when updating an alert, this should be set to the current etag of the alert. If the etags do not match, the update will be rejected and an ABORTED error will be returned."
+          }
+        },
+        "configurations": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource names of the Configurations bound to this alert. Format: projects/{project}/configurations/{configuration}"
+          }
+        },
+        "duplicatedBy": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. alert names of the alerts that are duplicates of this alert. Format: projects/{project}/alerts/{alert}"
+          }
+        },
+        "detail": {
+          "target": "com.gcp.threatintelligence_v1beta#AlertDetail",
+          "traits": {
+            "smithy.api#documentation": "Output only. Details object for the alert, not all alerts will have a details object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user's intent towards the findings of that group, even those that haven't occurred yet."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AlertStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ"
+          }
+        },
+        "TRIAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAGED"
+          }
+        },
+        "ESCALATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESCALATED"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOLVED"
+          }
+        },
+        "DUPLICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DUPLICATE"
+          }
+        },
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FALSE_POSITIVE"
+          }
+        },
+        "NOT_ACTIONABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ACTIONABLE"
+          }
+        },
+        "BENIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BENIGN"
+          }
+        },
+        "TRACKED_EXTERNALLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRACKED_EXTERNALLY"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileContactInfo": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The address of the contact."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the contact."
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the contact."
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The phone number of the contact."
+          }
+        },
+        "other": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The other contact information."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the contact information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contact information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#InitialAccessBrokerAlertDetail": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`"
+          }
+        },
+        "discoveryDocumentIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. Array of ids to accommodate multiple discovery documents"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Captures the specific details of InitialAccessBroker (IAB) alert."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileLocation": {
+      "type": "structure",
+      "members": {
+        "facilityType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of location."
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The address of the location."
+          }
+        },
+        "citationIds": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The citation ids for the location."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The brand of the location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#CustomerProfileCitation": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The source of the citation."
+          }
+        },
+        "document": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the document the citation is from."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The url of the citation."
+          }
+        },
+        "retrievalTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the citation was retrieved."
+          }
+        },
+        "citationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The citation id for the citation. Should be unique within the profile."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Citation information for the customer profile."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#EnumerateAlertFacetsResponse": {
+      "type": "structure",
+      "members": {
+        "facets": {
+          "target": "com.gcp.threatintelligence_v1beta#FacetList",
+          "traits": {
+            "smithy.api#documentation": "List of facets and the counts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for EnumerateAlertFacets."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FacetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#Facet"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsReadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsRead."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListAlertsResponse": {
+      "type": "structure",
+      "members": {
+        "alerts": {
+          "target": "com.gcp.threatintelligence_v1beta#AlertList",
+          "traits": {
+            "smithy.api#documentation": "List of alerts."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListAlerts."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AlertList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThreshold": {
+      "type": "structure",
+      "members": {
+        "priorityMinimum": {
+          "target": "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdPriorityMinimumEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum priority for the alert."
+          }
+        },
+        "epssScoreMinimum": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum epss score for the alert. Ex: 0.8. Valid range is [0.0, 1.0]."
+          }
+        },
+        "exploitationStates": {
+          "target": "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdExploitationStatesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The exploitation states of the alert."
+          }
+        },
+        "cvssScoreMinimum": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum CVSS score for the alert. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Ex: 7.0. Valid range is [0.0, 10.0]."
+          }
+        },
+        "riskRatingMinimum": {
+          "target": "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdRiskRatingMinimumEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum risk rating for the alert."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TechnologyWatchListAlertThreshold contains the thresholds for alerting."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdPriorityMinimumEnum": {
+      "type": "enum",
+      "members": {
+        "PRIORITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_UNSPECIFIED"
+          }
+        },
+        "P0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P0"
+          }
+        },
+        "P1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1"
+          }
+        },
+        "P2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P2"
+          }
+        },
+        "P3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P3"
+          }
+        },
+        "P4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P4"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdExploitationStatesItemEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOITATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_UNSPECIFIED"
+          }
+        },
+        "EXPLOITATION_STATE_NO_KNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_NO_KNOWN"
+          }
+        },
+        "EXPLOITATION_STATE_REPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_REPORTED"
+          }
+        },
+        "EXPLOITATION_STATE_SUSPECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_SUSPECTED"
+          }
+        },
+        "EXPLOITATION_STATE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_CONFIRMED"
+          }
+        },
+        "EXPLOITATION_STATE_WIDESPREAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_WIDESPREAD"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdExploitationStatesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdExploitationStatesItemEnum"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TechnologyWatchListAlertThresholdRiskRatingMinimumEnum": {
+      "type": "enum",
+      "members": {
+        "RISK_RATING_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RISK_RATING_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        },
+        "UNRATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRATED"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FacetCount": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the facet stringified. Timestamps will be formatted using RFC3339."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of records with the value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "FacetCount represents a count of records with each facet value."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#RelevanceAnalysis": {
+      "type": "structure",
+      "members": {
+        "relevanceLevel": {
+          "target": "com.gcp.threatintelligence_v1beta#RelevanceAnalysisRelevanceLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "The level of relevance."
+          }
+        },
+        "confidence": {
+          "target": "com.gcp.threatintelligence_v1beta#RelevanceAnalysisConfidenceEnum",
+          "traits": {
+            "smithy.api#documentation": "The level of confidence in the given verdict."
+          }
+        },
+        "reasoning": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable explanation from the matcher, detailing why a particular result is considered relevant or not relevant."
+          }
+        },
+        "relevant": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the threat is considered relevant."
+          }
+        },
+        "evidence": {
+          "target": "com.gcp.threatintelligence_v1beta#Evidence",
+          "traits": {
+            "smithy.api#documentation": "Evidence supporting the verdict, including matched and unmatched items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured relevance analysis for a threat."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#RelevanceAnalysisRelevanceLevelEnum": {
+      "type": "enum",
+      "members": {
+        "RELEVANCE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEVANCE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "RELEVANCE_LEVEL_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEVANCE_LEVEL_LOW"
+          }
+        },
+        "RELEVANCE_LEVEL_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEVANCE_LEVEL_MEDIUM"
+          }
+        },
+        "RELEVANCE_LEVEL_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEVANCE_LEVEL_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#RelevanceAnalysisConfidenceEnum": {
+      "type": "enum",
+      "members": {
+        "CONFIDENCE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "CONFIDENCE_LEVEL_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_LOW"
+          }
+        },
+        "CONFIDENCE_LEVEL_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_MEDIUM"
+          }
+        },
+        "CONFIDENCE_LEVEL_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsDuplicateRequest": {
+      "type": "structure",
+      "members": {
+        "duplicateOf": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the alert to mark as a duplicate of. Format: projects/{project}/alerts/{alert}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsDuplicate."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatch": {
+      "type": "structure",
+      "members": {
+        "matchedTechnologies": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The specific technologies from the configured watchlist that triggered the match. Ex: \"Apache Struts\"."
+          }
+        },
+        "exploitationVectors": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationVectorsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of exploitation vectors for the vulnerability."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A description of the vulnerability."
+          }
+        },
+        "technologies": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. All technologies affected by the vulnerability. Ex: \"Apache Struts\"."
+          }
+        },
+        "riskRating": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchRiskRatingEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The risk rating of the vulnerability."
+          }
+        },
+        "exploitationConsequences": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationConsequencesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of exploitation consequences for the vulnerability."
+          }
+        },
+        "publiclyAvailableExploit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether a publicly available exploit exists."
+          }
+        },
+        "disclosureTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The disclosure time of the vulnerability."
+          }
+        },
+        "priority": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchPriorityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The priority level of the vulnerability data. Ex: \"P1\"."
+          }
+        },
+        "publicExploits": {
+          "target": "com.gcp.threatintelligence_v1beta#PublicExploitList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of public exploits."
+          }
+        },
+        "productFixes": {
+          "target": "com.gcp.threatintelligence_v1beta#ProductFixList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of product fixes for the vulnerability."
+          }
+        },
+        "cveId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The CVE ID of the vulnerability. Ex: \"CVE-2025-9876\". See https://www.cve.org/ for more information."
+          }
+        },
+        "associations": {
+          "target": "com.gcp.threatintelligence_v1beta#AssociationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting."
+          }
+        },
+        "collectionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The collection ID of the vulnerability. Ex: \"vulnerability--cve-2025-9876\"."
+          }
+        },
+        "cvss3Score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4."
+          }
+        },
+        "exploitationState": {
+          "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The exploitation state of the vulnerability."
+          }
+        },
+        "epssScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The EPSS score, representing the probability of exploitation. Example: 0.87."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains details about a vulnerability match."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationVectorsItemEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOITATION_VECTOR_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_VECTOR_UNSPECIFIED"
+          }
+        },
+        "ADMINISTRATIVE_INTERFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMINISTRATIVE_INTERFACE"
+          }
+        },
+        "BLUETOOTH_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLUETOOTH_ACCESS"
+          }
+        },
+        "BROWSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROWSER"
+          }
+        },
+        "COMPROMISED_COMMUNICATION_CHANNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPROMISED_COMMUNICATION_CHANNEL"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMAIL"
+          }
+        },
+        "EXPOSED_WEB_APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPOSED_WEB_APPLICATION"
+          }
+        },
+        "LOCAL_NETWORK_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_NETWORK_ACCESS"
+          }
+        },
+        "MALICIOUS_APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALICIOUS_APPLICATION"
+          }
+        },
+        "MALICIOUS_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALICIOUS_FILE"
+          }
+        },
+        "MALICIOUS_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALICIOUS_SERVER"
+          }
+        },
+        "OPEN_PORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPEN_PORT"
+          }
+        },
+        "PHYSICAL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHYSICAL_ACCESS"
+          }
+        },
+        "SHORT_RANGE_RADIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHORT_RANGE_RADIO"
+          }
+        },
+        "UNSPECIFIED_LOCAL_VECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_LOCAL_VECTOR"
+          }
+        },
+        "UNSPECIFIED_REMOTE_VECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSPECIFIED_REMOTE_VECTOR"
+          }
+        },
+        "VPN_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VPN_ACCESS"
+          }
+        },
+        "WIFI_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WIFI_ACCESS"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationVectorsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationVectorsItemEnum"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchRiskRatingEnum": {
+      "type": "enum",
+      "members": {
+        "RISK_RATING_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RISK_RATING_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        },
+        "UNRATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNRATED"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationConsequencesItemEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOITATION_CONSEQUENCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_CONSEQUENCE_UNSPECIFIED"
+          }
+        },
+        "CODE_EXECUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CODE_EXECUTION"
+          }
+        },
+        "COMMAND_EXECUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMAND_EXECUTION"
+          }
+        },
+        "DATA_LOSS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_LOSS"
+          }
+        },
+        "DATA_MANIPULATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_MANIPULATION"
+          }
+        },
+        "DENIAL_OF_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENIAL_OF_SERVICE"
+          }
+        },
+        "INFORMATION_DISCLOSURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFORMATION_DISCLOSURE"
+          }
+        },
+        "UNAUTHORIZED_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAUTHORIZED_ACCESS"
+          }
+        },
+        "PRIVILEGE_ESCALATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVILEGE_ESCALATION"
+          }
+        },
+        "SANDBOX_ESCAPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SANDBOX_ESCAPE"
+          }
+        },
+        "SECURITY_BYPASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY_BYPASS"
+          }
+        },
+        "CONTAINER_ESCAPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTAINER_ESCAPE"
+          }
+        },
+        "SPOOFING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPOOFING"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationConsequencesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationConsequencesItemEnum"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchPriorityEnum": {
+      "type": "enum",
+      "members": {
+        "PRIORITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_UNSPECIFIED"
+          }
+        },
+        "P0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P0"
+          }
+        },
+        "P1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1"
+          }
+        },
+        "P2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P2"
+          }
+        },
+        "P3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P3"
+          }
+        },
+        "P4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P4"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PublicExploitList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#PublicExploit"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ProductFixList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#ProductFix"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AssociationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.threatintelligence_v1beta#Association"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#VulnerabilityMatchExploitationStateEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOITATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_UNSPECIFIED"
+          }
+        },
+        "EXPLOITATION_STATE_NO_KNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_NO_KNOWN"
+          }
+        },
+        "EXPLOITATION_STATE_REPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_REPORTED"
+          }
+        },
+        "EXPLOITATION_STATE_SUSPECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_SUSPECTED"
+          }
+        },
+        "EXPLOITATION_STATE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_CONFIRMED"
+          }
+        },
+        "EXPLOITATION_STATE_WIDESPREAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOITATION_STATE_WIDESPREAD"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListFindingsResponse": {
+      "type": "structure",
+      "members": {
+        "findings": {
+          "target": "com.gcp.threatintelligence_v1beta#FindingList",
+          "traits": {
+            "smithy.api#documentation": "List of findings."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListFindings."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Evidence": {
+      "type": "structure",
+      "members": {
+        "commonThemes": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of semantic themes or concepts found to be common, related, or aligned between the sources, supporting the verdict."
+          }
+        },
+        "distinctThemes": {
+          "target": "com.gcp.threatintelligence_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of semantic themes or descriptions unique to one source or semantically distant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details the evidence used to determine the relevance verdict."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#AlertDetail": {
+      "type": "structure",
+      "members": {
+        "targetTechnology": {
+          "target": "com.gcp.threatintelligence_v1beta#TargetTechnologyAlertDetail",
+          "traits": {
+            "smithy.api#documentation": "Technology Watchlist alert detail type."
+          }
+        },
+        "detailType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union."
+          }
+        },
+        "initialAccessBroker": {
+          "target": "com.gcp.threatintelligence_v1beta#InitialAccessBrokerAlertDetail",
+          "traits": {
+            "smithy.api#documentation": "Initial Access Broker alert detail type."
+          }
+        },
+        "insiderThreat": {
+          "target": "com.gcp.threatintelligence_v1beta#InsiderThreatAlertDetail",
+          "traits": {
+            "smithy.api#documentation": "Insider Threat alert detail type."
+          }
+        },
+        "dataLeak": {
+          "target": "com.gcp.threatintelligence_v1beta#DataLeakAlertDetail",
+          "traits": {
+            "smithy.api#documentation": "Data Leak alert detail type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container for different types of alert details."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PriorityAnalysis": {
+      "type": "structure",
+      "members": {
+        "priorityLevel": {
+          "target": "com.gcp.threatintelligence_v1beta#PriorityAnalysisPriorityLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "The level of Priority."
+          }
+        },
+        "confidence": {
+          "target": "com.gcp.threatintelligence_v1beta#PriorityAnalysisConfidenceEnum",
+          "traits": {
+            "smithy.api#documentation": "The level of confidence in the given verdict."
+          }
+        },
+        "reasoning": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable explanation from the model, detailing why a particular result is considered to have a certain priority."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured priority analysis for a threat."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PriorityAnalysisPriorityLevelEnum": {
+      "type": "enum",
+      "members": {
+        "PRIORITY_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_LEVEL_UNSPECIFIED"
+          }
+        },
+        "PRIORITY_LEVEL_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_LEVEL_LOW"
+          }
+        },
+        "PRIORITY_LEVEL_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_LEVEL_MEDIUM"
+          }
+        },
+        "PRIORITY_LEVEL_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_LEVEL_HIGH"
+          }
+        },
+        "PRIORITY_LEVEL_CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_LEVEL_CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#PriorityAnalysisConfidenceEnum": {
+      "type": "enum",
+      "members": {
+        "CONFIDENCE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "CONFIDENCE_LEVEL_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_LOW"
+          }
+        },
+        "CONFIDENCE_LEVEL_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_MEDIUM"
+          }
+        },
+        "CONFIDENCE_LEVEL_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENCE_LEVEL_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DataLeakFindingDetail": {
+      "type": "structure",
+      "members": {
+        "matchScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. Reference to the match score of the Data Leak finding. This is a float value greater than 0 and less than or equal to 1 calculated by the matching engine based on the similarity of the document and the user provided configurations."
+          }
+        },
+        "documentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The unique identifier of the document that triggered the Data Leak finding. This ID can be used to retrieve the content of the document for further analysis."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.threatintelligence_v1beta#DataLeakFindingDetailSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of the Data Leak finding. This indicates the potential impact of the threat."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A detail object for a Data Leak finding."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DataLeakFindingDetailSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsEscalatedRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsEscalated."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsResolvedRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsResolved."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#MarkAlertAsNotActionableRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for MarkAlertAsNotActionable."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GenerateOrgProfileProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project to generate the profile for. Format: projects/{project}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#GenerateOrgProfileConfigurationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GenerateOrgProfileProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#GenerateOrgProfileProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:generateOrgProfile"
+        },
+        "smithy.api#documentation": "Triggers the generation of a Customer Profile for a project."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to get. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#GetProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Get an alert by name."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#EscalateProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as escalated. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsEscalatedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#EscalateProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#EscalateProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:escalate"
+        },
+        "smithy.api#documentation": "Marks an alert as escalated - ESCALATED."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FalsePositiveProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as a false positive. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsFalsePositiveRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#FalsePositiveProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#FalsePositiveProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:falsePositive"
+        },
+        "smithy.api#documentation": "Marks an alert as a false positive - FALSE_POSITIVE."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#EnumerateFacetsProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent of the alerts.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter on what alerts will be enumerated.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#EnumerateFacetsProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#EnumerateFacetsProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#EnumerateAlertFacetsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/alerts:enumerateFacets"
+        },
+        "smithy.api#documentation": "EnumerateAlertFacets returns the facets and the number of alerts that meet the filter criteria and have that value for each facet."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#BenignProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as a benign. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsBenignRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#BenignProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#BenignProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:benign"
+        },
+        "smithy.api#documentation": "Marks an alert as benign - BENIGN."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ReadProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as read. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsReadRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ReadProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#ReadProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:read"
+        },
+        "smithy.api#documentation": "Marks an alert as read - READ."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#NotActionableProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as a not actionable. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsNotActionableRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#NotActionableProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#NotActionableProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:notActionable"
+        },
+        "smithy.api#documentation": "Marks an alert as not actionable - NOT_ACTIONABLE."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TriageProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as a triaged. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsTriagedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TriageProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#TriageProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:triage"
+        },
+        "smithy.api#documentation": "Marks an alert as triaged - TRIAGED."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ResolveProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as resolved. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsResolvedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ResolveProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#ResolveProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:resolve"
+        },
+        "smithy.api#documentation": "Marks an alert to closed state - RESOLVED."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TrackExternallyProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as tracked externally. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsTrackedExternallyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#TrackExternallyProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#TrackExternallyProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:trackExternally"
+        },
+        "smithy.api#documentation": "Marks an alert as tracked externally - TRACKED_EXTERNALLY."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DuplicateProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert to mark as a duplicate. Format: projects/{project}/alerts/{alert}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#MarkAlertAsDuplicateRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#DuplicateProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#DuplicateProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:duplicate"
+        },
+        "smithy.api#documentation": "Marks an alert as a duplicate of another alert. - DUPLICATE."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent of the alerts. Format: projects/{project}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size. Default to 100 alerts per page. Maximum is 1000 alerts per page.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Order by criteria in the csv format: \"field1, field2 desc\" or \"field1, field2\" or \"field1 asc, field2\". If a field is specified without `asc` or `desc`, ascending order is used by default. Supported fields for ordering are identical to those supported for filtering. Examples: * `audit.create_time desc` * `audit.update_time asc` * `audit.create_time desc, severity_analysis.severity_level desc`",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token to retrieve the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter criteria. Supported fields for filtering include: * `audit.create_time` * `audit.creator` * `audit.update_time` * `audit.updater` * `detail.data_leak.discovery_document_ids` * `detail.data_leak.severity` * `detail.detail_type` * `detail.initial_access_broker.discovery_document_ids` * `detail.initial_access_broker.severity` * `detail.insider_threat.discovery_document_ids` * `detail.insider_threat.severity` * `finding_count` * `priority_analysis.priority_level` * `relevance_analysis.confidence` * `relevance_analysis.relevance_level` * `relevance_analysis.relevant` * `severity_analysis.severity_level` * `state` Examples: * `detail.detail_type = \"initial_access_broker\"` * `detail.detail_type != \"data_leak\"` * `detail.insider_threat.severity = \"HIGH\"` * `audit.create_time >= \"2026-04-03T00:00:00Z\" AND audit.create_time < \"2026-04-06T00:00:00Z\"` * `state = \"NEW\" OR state = \"TRIAGED\"` * `severity_analysis.severity_level = \"SEVERITY_LEVEL_CRITICAL\"`",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#ListProjectsAlertsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#ListAlertsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/alerts"
+        },
+        "smithy.api#documentation": "Get a list of alerts that meet the filter criteria.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsAlertsDocumentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the alert document to get. Format: projects/{project}/alerts/{alert}/documents/{document}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsAlertsDocuments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#GetProjectsAlertsDocumentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#AlertDocument"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a specific document associated with an alert."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsFindingsRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter criteria.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent of the findings.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsFindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#ListProjectsFindingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#ListFindingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/findings"
+        },
+        "smithy.api#documentation": "Get a list of findings that meet the filter criteria. The `parent` field in ListFindingsRequest should have the format: projects/{project}",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#SearchProjectsFindingsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent of the findings. Format: vaults/{vault}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Query on what findings will be returned. This supports the same filter criteria as FindingService.ListFindings as well as the following relationship query `has_alert`. Example: - `has_alert(\"name=\\\"projects/gti-12345/alerts/alert-12345\\\"\")`",
+            "smithy.api#httpQuery": "query"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#SearchProjectsFindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#SearchProjectsFindingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#SearchFindingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/findings:search"
+        },
+        "smithy.api#documentation": "SearchFindings is a more powerful version of ListFindings that supports complex queries like \"findings for alerts\" using functions such as `has_alert` in the query string. The `parent` field in SearchFindingsRequest should have the format: projects/{project} Example to search for findings for a specific issue: `has_alert(\"name=\\\"projects/gti-12345/alerts/alert-12345\\\"\")`",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsFindingsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the finding to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsFindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#GetProjectsFindingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Finding"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Get a finding by name. The `name` field should have the format: `projects/{project}/findings/{finding}`"
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the configuration to get. Format: vaults/{vault}/configurations/{configuration}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#GetProjectsConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#GetProjectsConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#Configuration"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Get a configuration by name."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter criteria.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent of the configuration. Format: vaults/{vault}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#ListProjectsConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#ListConfigurationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/configurations"
+        },
+        "smithy.api#documentation": "Get a list of configurations that meet the filter criteria.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#UpsertProjectsConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent of the configuration.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "publishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Time that the configuration should be considered to have been published. This is an advanced feature used when onboarding and bulk loading data from other systems. Do not set this field without consulting with the API team.",
+            "smithy.api#httpQuery": "publishTime"
+          }
+        },
+        "body": {
+          "target": "com.gcp.threatintelligence_v1beta#Configuration",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#UpsertProjectsConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#UpsertProjectsConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#UpsertConfigurationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/configurations:upsert"
+        },
+        "smithy.api#documentation": "Creates or updates a configuration."
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsConfigurationsRevisionsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An AIP-160 filter string",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token provided by the API",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specify ordering of response",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Configuration to retrieve Revisions for",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page Size",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.threatintelligence_v1beta#ListProjectsConfigurationsRevisions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.threatintelligence_v1beta#ListProjectsConfigurationsRevisionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.threatintelligence_v1beta#ListConfigurationRevisionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.threatintelligence_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.threatintelligence_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/revisions"
+        },
+        "smithy.api#documentation": "List configuration revisions that meet the filter criteria.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "description": "Docs gap: the KV put page describes the payload only in prose ('Body should be the value to be stored… use multipart/form-data for metadata') with no Body Parameters section, so the generated request had no way to carry the value. Model the multipart form: a required `value` part (the byte sequence, up to 25 MiB) and an optional JSON `metadata` part, exactly as v0 did.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValue/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValueRequest/members/value",
+      "value": {
+        "target": "smithy.api#Blob",
+        "traits": {
+          "smithy.api#required": {},
+          "smithy.api#documentation": "A byte sequence to be stored, up to 25 MiB in length."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValueRequest/members/metadata",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#documentation": "Associates arbitrary JSON data with a key/value pair."
+        }
+      }
+    }
+  ]
+}

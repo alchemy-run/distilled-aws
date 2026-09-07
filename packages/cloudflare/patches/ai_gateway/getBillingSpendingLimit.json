@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingSpendingLimitGet with distilled cloudflare/ai-gateway getBillingSpendingLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitGet",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingSpendingLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitGetRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingSpendingLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingSpendingLimit/input/target",
+      "value": "com.cloudflare.ai_gateway#GetBillingSpendingLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitGetResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingSpendingLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingSpendingLimit/output/target",
+      "value": "com.cloudflare.ai_gateway#GetBillingSpendingLimitResponse"
+    }
+  ]
+}

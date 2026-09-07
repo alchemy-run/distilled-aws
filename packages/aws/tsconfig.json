@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.ts", "src/**/*.json"],
+  "compilerOptions": {
+    // The base config is noEmit (typecheck-style); this package must emit
+    // lib/ — consumers' bundlers (e.g. alchemy's Lambda bundling) resolve
+    // the `default` export condition to lib/services/*.js.
+    "composite": true,
+    "noEmit": false,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "paths": {
+      "@distilled.cloud/core/*": ["../core/src/*"]
+    }
+  },
+  "references": [
+    {
+      "path": "../core"
+    }
+  ]
+}

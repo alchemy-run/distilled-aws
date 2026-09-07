@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#PostQuantumOriginSummary with distilled cloudflare/radar summaryPostQuantumOrigin",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumOriginSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryPostQuantumOrigin"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumOriginSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryPostQuantumOriginRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryPostQuantumOrigin/input/target",
+      "value": "com.cloudflare.radar#SummaryPostQuantumOriginRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumOriginSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryPostQuantumOriginResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryPostQuantumOrigin/output/target",
+      "value": "com.cloudflare.radar#SummaryPostQuantumOriginResponse"
+    }
+  ]
+}

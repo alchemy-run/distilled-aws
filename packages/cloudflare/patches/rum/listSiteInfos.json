@@ -1,0 +1,50 @@
+{
+  "description": "Align rum#SiteInfoList with distilled cloudflare/rum listSiteInfos",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#SiteInfoList",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfos"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#SiteInfoListRequest",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfosRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfos/input/target",
+      "value": "com.cloudflare.rum#ListSiteInfosRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#SiteInfoListResponse",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfosResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfos/output/target",
+      "value": "com.cloudflare.rum#ListSiteInfosResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfos/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#ListSiteInfos/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

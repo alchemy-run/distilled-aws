@@ -1,0 +1,20 @@
+{
+  "description": "Align email_routing#DnsDelete with distilled cloudflare/email-routing deleteDns. The response is the bare v4 envelope with no result payload (smithy.api#Unit output), so the generator synthesizes the empty DeleteDnsResponse from the op name.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsDelete",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteDns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsDeleteRequest",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteDnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteDns/input/target",
+      "value": "com.cloudflare.email_routing#DeleteDnsRequest"
+    }
+  ]
+}

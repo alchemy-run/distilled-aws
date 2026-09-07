@@ -1,0 +1,9 @@
+{
+  "structures": {
+    "IceServer": {
+      "members": {
+        "Password": { "sensitive": true }
+      }
+    }
+  }
+}

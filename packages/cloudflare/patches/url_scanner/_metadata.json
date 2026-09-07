@@ -1,0 +1,18 @@
+{
+  "description": "Key dictionary / op aliases for url_scanner (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "aiInput": "ai-input",
+        "aiTrain": "ai-train",
+        "countryName": "country_name",
+        "dnssecValid": "dnssec_valid",
+        "ipv6Percentage": "IPv6Percentage",
+        "phishingV2": "phishing_v2",
+        "superCategoryId": "super_category_id"
+      }
+    }
+  ]
+}

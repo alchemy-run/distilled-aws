@@ -1,0 +1,50 @@
+{
+  "description": "Align leaked_credential_checks#DetectionsList with distilled cloudflare/leaked-credential-checks listDetections",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.leaked_credential_checks#DetectionsList",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetections"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.leaked_credential_checks#DetectionsListRequest",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetectionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetections/input/target",
+      "value": "com.cloudflare.leaked_credential_checks#ListDetectionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.leaked_credential_checks#DetectionsListResponse",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetectionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetections/output/target",
+      "value": "com.cloudflare.leaked_credential_checks#ListDetectionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetections/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#ListDetections/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.leaked_credential_checks#LeakedCredentialChecksDisabled"
+        },
+        {
+          "target": "com.cloudflare.leaked_credential_checks#Forbidden"
+        }
+      ]
+    }
+  ]
+}

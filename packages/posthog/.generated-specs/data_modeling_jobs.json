@@ -1,0 +1,343 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.data_modeling_jobs#DataModelingJobsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "saved_query_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "saved_query_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_modeling_jobs#PaginatedDataModelingJobList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.data_modeling_jobs#PaginatedDataModelingJobListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJob": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "saved_query_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.data_modeling_jobs#DataModelingJobStatusEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "rows_materialized": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "workflow_run_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rows_expected": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total rows expected to be materialized",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `Cancelled` - Cancelled\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running"
+      }
+    },
+    "com.posthog.data_modeling_jobs#PaginatedDataModelingJobListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJob"
+      },
+      "traits": {}
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJobsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_modeling_jobs#PaginatedDataModelingJobList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_modeling_jobs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List data modeling jobs which are \"runs\" for our saved queries."
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data modeling job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJobsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_modeling_jobs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List data modeling jobs which are \"runs\" for our saved queries."
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_modeling_jobs/recent/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the most recent non-running job for each saved query from the v2 backend."
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_modeling_jobs#DataModelingJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_modeling_jobs/running/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all currently running jobs from the v2 backend."
+      }
+    },
+    "com.posthog.data_modeling_jobs#DataModelingJobs": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.data_modeling_jobs#DataModelingJobsList"
+        },
+        {
+          "target": "com.posthog.data_modeling_jobs#DataModelingJobsRetrieve"
+        },
+        {
+          "target": "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieve"
+        },
+        {
+          "target": "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

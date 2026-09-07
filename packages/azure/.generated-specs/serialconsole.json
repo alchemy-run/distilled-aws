@@ -1,0 +1,984 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.serialconsole#SerialPortsConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#SerialPortsConnectRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialPortConnectResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourceType}/{parentResource}/providers/Microsoft.SerialConsole/serialPorts/{serialPort}/connect",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Connect to serial port of the target resource",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialPortConnectResult": {
+      "type": "structure",
+      "members": {
+        "connectionString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connection string to the serial port of the resource.",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns a connection string to the serial port of the resource."
+      }
+    },
+    "com.azure.serialconsole#SerialPortsConnectRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider namespace of the parent resource."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the parent resource. For example: 'virtualMachines' or 'virtualMachineScaleSets'"
+          }
+        },
+        "parentResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the parent resource."
+          }
+        },
+        "serialPort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the serial port to connect to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#SerialPortsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#SerialPortsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialPortsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourceType}/{parentResource}/providers/Microsoft.SerialConsole/serialPorts/{serialPort}",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Creates or updates a serial port",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialPortsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.serialconsole#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.serialconsole#SerialPortProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the serial port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.serialconsole#SerialPortProperties": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.serialconsole#SerialPortState",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether the port is enabled for a serial console connection."
+          }
+        },
+        "connectionState": {
+          "target": "com.azure.serialconsole#SerialPortConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether the port is currently active."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the serial port."
+      }
+    },
+    "com.azure.serialconsole#SerialPortConnectionState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies whether the port is currently active."
+      }
+    },
+    "com.azure.serialconsole#SerialPortState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies whether the port is enabled for a serial console connection."
+      }
+    },
+    "com.azure.serialconsole#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.serialconsole#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.serialconsole#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.serialconsole#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.serialconsole#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.serialconsole#SerialPortsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider namespace of the parent resource."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the parent resource. For example: 'virtualMachines' or 'virtualMachineScaleSets'"
+          }
+        },
+        "parentResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the parent resource."
+          }
+        },
+        "serialPort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the serial port to connect to."
+          }
+        },
+        "properties": {
+          "target": "com.azure.serialconsole#SerialPortProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the serial port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#SerialPortsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#SerialPortsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialPortsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourceType}/{parentResource}/providers/Microsoft.SerialConsole/serialPorts/{serialPort}",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Gets the configured settings for a serial port",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialPortsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.serialconsole#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.serialconsole#SerialPortProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the serial port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.serialconsole#SerialPortsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider namespace of the parent resource."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the parent resource. For example: 'virtualMachines' or 'virtualMachineScaleSets'"
+          }
+        },
+        "parentResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the parent resource."
+          }
+        },
+        "serialPort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the serial port to connect to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#SerialPortsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#SerialPortsListRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialPortListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourceType}/{parentResource}/providers/Microsoft.SerialConsole/serialPorts",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Lists all of the configured serial ports for a parent resource",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialPortListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.serialconsole#SerialPortListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of serial ports."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list serial ports operation response."
+      }
+    },
+    "com.azure.serialconsole#SerialPortListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.serialconsole#SerialPort"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of serial ports."
+      }
+    },
+    "com.azure.serialconsole#SerialPort": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.serialconsole#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.serialconsole#SerialPortProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the serial port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the serial port of the parent resource."
+      }
+    },
+    "com.azure.serialconsole#SerialPortsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "resourceProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider namespace of the parent resource."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource type of the parent resource. For example: 'virtualMachines' or 'virtualMachineScaleSets'"
+          }
+        },
+        "parentResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the parent resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#SerialPortsListBySubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#SerialPortsListBySubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialPortListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.SerialConsole/serialPorts",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Handles requests to list all SerialPort resources in a subscription.",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialPortsListBySubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#EnableConsole": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#EnableConsoleRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#EnableSerialConsoleResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.SerialConsole/consoleServices/{default}/enableConsole",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Enable Serial Console for a subscription\n\nEnables the Serial Console service for all VMs and VM scale sets in the provided subscription",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#EnableSerialConsoleResult": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.serialconsole#EnableSerialConsoleResultProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns whether or not Serial Console is disabled (enabled)."
+      }
+    },
+    "com.azure.serialconsole#EnableSerialConsoleResultProperties": {
+      "type": "structure",
+      "members": {
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not Serial Console is disabled."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.serialconsole#EnableConsoleRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "default": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default parameter. Leave the value as \"default\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#DisableConsole": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#DisableConsoleRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#DisableSerialConsoleResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.SerialConsole/consoleServices/{default}/disableConsole",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Disable Serial Console for a subscription\n\nDisables the Serial Console service for all VMs and VM scale sets in the provided subscription",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#DisableSerialConsoleResult": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.serialconsole#DisableSerialConsoleResultProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns whether or not Serial Console is disabled."
+      }
+    },
+    "com.azure.serialconsole#DisableSerialConsoleResultProperties": {
+      "type": "structure",
+      "members": {
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not Serial Console is disabled."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.serialconsole#DisableConsoleRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "default": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default parameter. Leave the value as \"default\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#GetConsoleStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.serialconsole#GetConsoleStatusRequest"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialConsoleStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.SerialConsole/consoleServices/{default}",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Get the disabled status for a subscription\n\nGets whether or not Serial Console is disabled for a given subscription",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialConsoleStatus": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.serialconsole#SerialConsoleStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns whether or not Serial Console is disabled."
+      }
+    },
+    "com.azure.serialconsole#SerialConsoleStatusProperties": {
+      "type": "structure",
+      "members": {
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not Serial Console is disabled."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.serialconsole#GetConsoleStatusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "default": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default parameter. Leave the value as \"default\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.serialconsole#ListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.serialconsole#SerialConsoleOperations"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.SerialConsole/operations",
+          "code": 200,
+          "apiVersion": "2024-07-01"
+        },
+        "smithy.api#documentation": "Gets a list of Serial Console API operations.",
+        "com.distilled.openapi#apiVersion": "2024-07-01"
+      }
+    },
+    "com.azure.serialconsole#SerialConsoleOperations": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.serialconsole#SerialConsoleOperationsValueList",
+          "traits": {
+            "smithy.api#documentation": "A list of Serial Console operations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serial Console operations"
+      }
+    },
+    "com.azure.serialconsole#SerialConsoleOperationsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.serialconsole#SerialConsoleOperationsValueItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Serial Console operations"
+      }
+    },
+    "com.azure.serialconsole#SerialConsoleOperationsValueItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "isDataAction": {
+          "target": "smithy.api#String"
+        },
+        "display": {
+          "target": "com.azure.serialconsole#SerialConsoleOperationsValueItemDisplay"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.serialconsole#SerialConsoleOperationsValueItemDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String"
+        },
+        "resource": {
+          "target": "smithy.api#String"
+        },
+        "operation": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.serialconsole#Serialconsole": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.serialconsole#SerialPortsConnect"
+        },
+        {
+          "target": "com.azure.serialconsole#SerialPortsCreate"
+        },
+        {
+          "target": "com.azure.serialconsole#SerialPortsGet"
+        },
+        {
+          "target": "com.azure.serialconsole#SerialPortsList"
+        },
+        {
+          "target": "com.azure.serialconsole#SerialPortsListBySubscriptions"
+        },
+        {
+          "target": "com.azure.serialconsole#EnableConsole"
+        },
+        {
+          "target": "com.azure.serialconsole#DisableConsole"
+        },
+        {
+          "target": "com.azure.serialconsole#GetConsoleStatus"
+        },
+        {
+          "target": "com.azure.serialconsole#ListOperations"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Serialconsole",
+        "smithy.api#documentation": "Azure Serialconsole API — merged from the serialconsole resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+name: SDK request
+description: Ask for an SDK for a provider distilled doesn't cover yet
+title: "Request: <provider>"
+labels: ["sdk-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every SDK here is generated from a machine-readable description of the
+        API. That makes the spec link the single thing that decides how much
+        work a request is: a published OpenAPI document means adding a spec
+        and a `scripts/generate.ts`, while an API with only prose docs means
+        transcribing the surface by hand first.
+
+        So please fill in the spec field honestly — "none published" is a
+        useful answer, a guess is not.
+
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      description: The service, as it's actually branded.
+      placeholder: Xata
+    validations:
+      required: true
+
+  - type: input
+    id: homepage
+    attributes:
+      label: Homepage
+      description: Link to the service itself.
+      placeholder: https://xata.io
+    validations:
+      required: true
+
+  - type: textarea
+    id: specs
+    attributes:
+      label: Specs
+      description: >-
+        Link to a machine-readable description of the API — OpenAPI/Swagger,
+        a Smithy model, a GraphQL schema, protobuf, or a JSON schema. If none
+        is published, link the API reference docs and say "no machine-readable
+        spec published".
+      placeholder: |
+        https://github.com/xataio/xata/tree/main/openapi
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Which part of the API?
+      description: >-
+        Optional, but it scopes the work a lot. Many providers split a control
+        plane (accounts, projects, provisioning) from a data plane (records,
+        queries, per-resource endpoints). Say which one you need, and name the
+        specific operations if you know them.
+      placeholder: |
+        Control plane — creating and deleting databases and branches.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: What are you building?
+      description: >-
+        Optional. Helps prioritise, and sometimes reveals that an existing SDK
+        already covers it.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open issues and PRs for an existing request for this provider.
+          required: true

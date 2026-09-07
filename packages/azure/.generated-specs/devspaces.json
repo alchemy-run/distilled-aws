@@ -1,0 +1,1120 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.devspaces#ControllersListConnectionDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersListConnectionDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ControllerConnectionDetailsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}/listConnectionDetails",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Lists connection details for an Azure Dev Spaces Controller.\n\nLists connection details for the underlying container resources of an Azure Dev Spaces Controller.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllerConnectionDetailsList": {
+      "type": "structure",
+      "members": {
+        "connectionDetailsList": {
+          "target": "com.azure.devspaces#ControllerConnectionDetailsListConnectionDetailsListList",
+          "traits": {
+            "smithy.api#documentation": "List of Azure Dev Spaces Controller connection details."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ControllerConnectionDetailsListConnectionDetailsListList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devspaces#ControllerConnectionDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Azure Dev Spaces Controller connection details."
+      }
+    },
+    "com.azure.devspaces#ControllerConnectionDetails": {
+      "type": "structure",
+      "members": {
+        "orchestratorSpecificConnectionDetails": {
+          "target": "com.azure.devspaces#OrchestratorSpecificConnectionDetails"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#OrchestratorSpecificConnectionDetails": {
+      "type": "structure",
+      "members": {
+        "instanceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the Instance type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Base class for types that supply values used to connect to container orchestrators"
+      }
+    },
+    "com.azure.devspaces#ControllersListConnectionDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "targetContainerHostResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID of the target container host mapped to the Azure Dev Spaces Controller.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#ControllersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersListRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ControllerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevSpaces/controllers",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Lists the Azure Dev Spaces Controllers in a subscription.\n\nLists all the Azure Dev Spaces Controllers with their properties in the subscription.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllerList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devspaces#ControllerListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Azure Dev Spaces Controllers."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI that can be used to request the next page for list of Azure Dev Spaces Controllers."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ControllerListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devspaces#Controller"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Azure Dev Spaces Controllers."
+      }
+    },
+    "com.azure.devspaces#Controller": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devspaces#ControllerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the Azure resource is located.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devspaces#ControllerProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.devspaces#Sku",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.devspaces#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU for Azure Dev Spaces Controller.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.devspaces#SkuTier",
+          "traits": {
+            "smithy.api#documentation": "The tier of the SKU for Azure Dev Spaces Controller."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model representing SKU for Azure Dev Spaces Controller."
+      }
+    },
+    "com.azure.devspaces#SkuTier": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tier of the SKU for Azure Dev Spaces Controller."
+      }
+    },
+    "com.azure.devspaces#SkuName": {
+      "type": "enum",
+      "members": {
+        "S1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the SKU for Azure Dev Spaces Controller."
+      }
+    },
+    "com.azure.devspaces#ControllerProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.devspaces#ControllerPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the Azure Dev Spaces Controller."
+          }
+        },
+        "hostSuffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS suffix for public endpoints running in the Azure Dev Spaces Controller."
+          }
+        },
+        "dataPlaneFqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS name for accessing DataPlane services"
+          }
+        },
+        "targetContainerHostApiServerFqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS of the target container host's API server"
+          }
+        },
+        "targetContainerHostResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID of the target container host",
+            "smithy.api#required": {}
+          }
+        },
+        "targetContainerHostCredentialsBase64": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Credentials of the target container host (base64).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ControllerPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the Azure Dev Spaces Controller."
+      }
+    },
+    "com.azure.devspaces#ControllerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the Azure resource."
+      }
+    },
+    "com.azure.devspaces#ControllersListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#ControllersListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ControllerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Lists the Azure Dev Spaces Controllers in a resource group.\n\nLists all the Azure Dev Spaces Controllers with their properties in the specified resource group and subscription.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllersListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#ControllersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Deletes an Azure Dev Spaces Controller.\n\nDeletes an existing Azure Dev Spaces Controller.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#ControllersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ControllersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Updates an Azure Dev Spaces Controller.\n\nUpdates the properties of an existing Azure Dev Spaces Controller with the specified update parameters.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devspaces#ControllersUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the Azure resource is located.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devspaces#ControllerProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.devspaces#Sku",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devspaces#ControllersUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the Azure resource."
+      }
+    },
+    "com.azure.devspaces#ControllersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devspaces#ControllersUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the Azure Dev Spaces Controller."
+          }
+        },
+        "properties": {
+          "target": "com.azure.devspaces#ControllerUpdateParametersProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#ControllerUpdateParametersProperties": {
+      "type": "structure",
+      "members": {
+        "targetContainerHostCredentialsBase64": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Credentials of the target container host (base64)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ControllersUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the Azure Dev Spaces Controller."
+      }
+    },
+    "com.azure.devspaces#ControllersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ControllersCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Creates an Azure Dev Spaces Controller.\n\nCreates an Azure Dev Spaces Controller with the specified create parameters.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllersCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devspaces#ControllersCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the Azure resource is located.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devspaces#ControllerProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.devspaces#Sku",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devspaces#ControllersCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the Azure resource."
+      }
+    },
+    "com.azure.devspaces#ControllersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devspaces#ControllersCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the Azure resource is located.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devspaces#ControllerPropertiesInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.devspaces#Sku",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#ControllerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "targetContainerHostResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID of the target container host",
+            "smithy.api#required": {}
+          }
+        },
+        "targetContainerHostCredentialsBase64": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Credentials of the target container host (base64).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ControllersCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the Azure resource."
+      }
+    },
+    "com.azure.devspaces#ControllersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ControllersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ControllersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Gets an Azure Dev Spaces Controller.\n\nGets the properties for an Azure Dev Spaces Controller.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ControllersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.devspaces#ControllersGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the Azure resource is located.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.devspaces#ControllerProperties",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.devspaces#Sku",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.devspaces#ControllersGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the Azure resource."
+      }
+    },
+    "com.azure.devspaces#ControllersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ResourceProviderOperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DevSpaces/operations",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Lists operations for the resource provider.\n\nLists all the supported operations by the Microsoft.DevSpaces resource provider along with their description.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ResourceProviderOperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.devspaces#ResourceProviderOperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "Resource provider operations list."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI that can be used to request the next page for list of Azure operations."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ResourceProviderOperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.devspaces#ResourceProviderOperationDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource provider operations list."
+      }
+    },
+    "com.azure.devspaces#ResourceProviderOperationDefinition": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider operation name."
+          }
+        },
+        "display": {
+          "target": "com.azure.devspaces#ResourceProviderOperationDisplay"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ResourceProviderOperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provider."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource type."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provider operation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the resource provider operation."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.devspaces#ContainerHostMappingsGetContainerHostMapping": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.devspaces#ContainerHostMappingsGetContainerHostMappingRequest"
+      },
+      "output": {
+        "target": "com.azure.devspaces#ContainerHostMapping"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/locations/{location}/checkContainerHostMapping",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Returns container host mapping object for a container host resource ID if an associated controller exists.",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.devspaces#ContainerHostMapping": {
+      "type": "structure",
+      "members": {
+        "containerHostResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM ID of the Container Host resource"
+          }
+        },
+        "mappedControllerResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM ID of the mapped Controller resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container host mapping object specifying the Container host resource ID and its associated Controller resource."
+      }
+    },
+    "com.azure.devspaces#ContainerHostMappingsGetContainerHostMappingRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource group to which the resource belongs."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Location of the container host."
+          }
+        },
+        "containerHostResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM ID of the Container Host resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.devspaces#Devspaces": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.devspaces#ControllersListConnectionDetails"
+        },
+        {
+          "target": "com.azure.devspaces#ControllersList"
+        },
+        {
+          "target": "com.azure.devspaces#ControllersListByResourceGroup"
+        },
+        {
+          "target": "com.azure.devspaces#ControllersDelete"
+        },
+        {
+          "target": "com.azure.devspaces#ControllersUpdate"
+        },
+        {
+          "target": "com.azure.devspaces#ControllersCreate"
+        },
+        {
+          "target": "com.azure.devspaces#ControllersGet"
+        },
+        {
+          "target": "com.azure.devspaces#OperationsList"
+        },
+        {
+          "target": "com.azure.devspaces#ContainerHostMappingsGetContainerHostMapping"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Devspaces",
+        "smithy.api#documentation": "Azure Devspaces API — merged from the devspaces resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

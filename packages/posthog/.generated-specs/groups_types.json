@@ -1,0 +1,1160 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.groups_types#GroupsTypesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupType": {
+      "type": "structure",
+      "members": {
+        "group_type": {
+          "target": "smithy.api#String"
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer"
+        },
+        "name_singular": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name_plural": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detail_dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "default_columns": {
+          "target": "com.posthog.groups_types#GroupTypeDefaultColumnsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupTypeDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupsTypesListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.groups_types#GroupType"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupsTypesListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.groups_types#GroupsTypesListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups_types#GroupsTypesListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups_types/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#PaginatedGroupUsageMetricList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.groups_types#PaginatedGroupUsageMetricListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupUsageMetric": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the usage metric. Must be unique per group type within the project."
+          }
+        },
+        "format": {
+          "target": "com.posthog.groups_types#GroupUsageMetricFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "How the metric value is formatted in the UI. One of `numeric` or `currency`.\n\n* `numeric` - numeric\n* `currency` - currency"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling time window in days used to compute the metric. Defaults to 7."
+          }
+        },
+        "display": {
+          "target": "com.posthog.groups_types#GroupUsageMetricDisplayEnum",
+          "traits": {
+            "smithy.api#documentation": "Visual representation in the UI. One of `number` or `sparkline`.\n\n* `number` - number\n* `sparkline` - sparkline"
+          }
+        },
+        "filters": {
+          "target": "com.posthog.groups_types#GroupUsageMetricFiltersMap",
+          "traits": {
+            "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+          }
+        },
+        "math": {
+          "target": "com.posthog.groups_types#MathEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation function. `count` counts matching events; `sum` sums the value of `math_property` on matching events.\n\n* `count` - count\n* `sum` - sum"
+          }
+        },
+        "math_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required when `math` is `sum`; must be empty when `math` is `count`. For events metrics this is an event property name. For data warehouse metrics this is the column name (or HogQL expression) to sum on the DW table.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupUsageMetricFormatEnum": {
+      "type": "enum",
+      "members": {
+        "NUMERIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "numeric"
+          }
+        },
+        "CURRENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "currency"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `numeric` - numeric\n* `currency` - currency"
+      }
+    },
+    "com.posthog.groups_types#GroupUsageMetricDisplayEnum": {
+      "type": "enum",
+      "members": {
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "number"
+          }
+        },
+        "SPARKLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sparkline"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `number` - number\n* `sparkline` - sparkline"
+      }
+    },
+    "com.posthog.groups_types#GroupUsageMetricFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+      }
+    },
+    "com.posthog.groups_types#MathEnum": {
+      "type": "enum",
+      "members": {
+        "COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "count"
+          }
+        },
+        "SUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sum"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `count` - count\n* `sum` - sum"
+      }
+    },
+    "com.posthog.groups_types#PaginatedGroupUsageMetricListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.groups_types#GroupUsageMetric"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesMetricsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups_types#PaginatedGroupUsageMetricList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/metrics/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsCreateRequestFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the usage metric. Must be unique per group type within the project."
+          }
+        },
+        "format": {
+          "target": "com.posthog.groups_types#GroupUsageMetricFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "How the metric value is formatted in the UI. One of `numeric` or `currency`.\n\n* `numeric` - numeric\n* `currency` - currency"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling time window in days used to compute the metric. Defaults to 7."
+          }
+        },
+        "display": {
+          "target": "com.posthog.groups_types#GroupUsageMetricDisplayEnum",
+          "traits": {
+            "smithy.api#documentation": "Visual representation in the UI. One of `number` or `sparkline`.\n\n* `number` - number\n* `sparkline` - sparkline"
+          }
+        },
+        "filters": {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsCreateRequestFiltersMap",
+          "traits": {
+            "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+          }
+        },
+        "math": {
+          "target": "com.posthog.groups_types#MathEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation function. `count` counts matching events; `sum` sums the value of `math_property` on matching events.\n\n* `count` - count\n* `sum` - sum"
+          }
+        },
+        "math_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required when `math` is `sum`; must be empty when `math` is `count`. For events metrics this is an event property name. For data warehouse metrics this is the column name (or HogQL expression) to sum on the DW table.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesMetricsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups_types#GroupUsageMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/metrics/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this group usage metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesMetricsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups_types#GroupUsageMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsUpdateRequestFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this group usage metric."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the usage metric. Must be unique per group type within the project."
+          }
+        },
+        "format": {
+          "target": "com.posthog.groups_types#GroupUsageMetricFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "How the metric value is formatted in the UI. One of `numeric` or `currency`.\n\n* `numeric` - numeric\n* `currency` - currency"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling time window in days used to compute the metric. Defaults to 7."
+          }
+        },
+        "display": {
+          "target": "com.posthog.groups_types#GroupUsageMetricDisplayEnum",
+          "traits": {
+            "smithy.api#documentation": "Visual representation in the UI. One of `number` or `sparkline`.\n\n* `number` - number\n* `sparkline` - sparkline"
+          }
+        },
+        "filters": {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsUpdateRequestFiltersMap",
+          "traits": {
+            "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+          }
+        },
+        "math": {
+          "target": "com.posthog.groups_types#MathEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation function. `count` counts matching events; `sum` sums the value of `math_property` on matching events.\n\n* `count` - count\n* `sum` - sum"
+          }
+        },
+        "math_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required when `math` is `sum`; must be empty when `math` is `count`. For events metrics this is an event property name. For data warehouse metrics this is the column name (or HogQL expression) to sum on the DW table.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesMetricsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups_types#GroupUsageMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsPartialUpdateRequestFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this group usage metric."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the usage metric. Must be unique per group type within the project."
+          }
+        },
+        "format": {
+          "target": "com.posthog.groups_types#GroupUsageMetricFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "How the metric value is formatted in the UI. One of `numeric` or `currency`.\n\n* `numeric` - numeric\n* `currency` - currency"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling time window in days used to compute the metric. Defaults to 7."
+          }
+        },
+        "display": {
+          "target": "com.posthog.groups_types#GroupUsageMetricDisplayEnum",
+          "traits": {
+            "smithy.api#documentation": "Visual representation in the UI. One of `number` or `sparkline`.\n\n* `number` - number\n* `sparkline` - sparkline"
+          }
+        },
+        "filters": {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsPartialUpdateRequestFiltersMap",
+          "traits": {
+            "smithy.api#documentation": "Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key.\n\n**Events** (default, when `source` is missing or `\"events\"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`.\n\n**Data warehouse** (`source: \"data_warehouse\"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported."
+          }
+        },
+        "math": {
+          "target": "com.posthog.groups_types#MathEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation function. `count` counts matching events; `sum` sums the value of `math_property` on matching events.\n\n* `count` - count\n* `sum` - sum"
+          }
+        },
+        "math_property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required when `math` is `sum`; must be empty when `math` is `count`. For events metrics this is an event property name. For data warehouse metrics this is the column name (or HogQL expression) to sum on the DW table.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesMetricsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.groups_types#GroupUsageMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this group usage metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesMetricsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesMetricsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/groups_types/{group_type_index}/metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdateRequestDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name_singular": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name_plural": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detail_dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "default_columns": {
+          "target": "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdateRequestDefaultColumnsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/groups_types/create_detail_dashboard/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesSetDefaultColumnsUpdateRequestDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupsTypesSetDefaultColumnsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name_singular": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name_plural": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detail_dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "default_columns": {
+          "target": "com.posthog.groups_types#GroupsTypesSetDefaultColumnsUpdateRequestDefaultColumnsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesSetDefaultColumnsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesSetDefaultColumnsUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/groups_types/set_default_columns/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdateRequestDefaultColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name_singular": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name_plural": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detail_dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "default_columns": {
+          "target": "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdateRequestDefaultColumnsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.groups_types#BadRequest"
+        },
+        {
+          "target": "com.posthog.groups_types#Forbidden"
+        },
+        {
+          "target": "com.posthog.groups_types#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/groups_types/update_metadata/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.groups_types#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.groups_types#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.groups_types#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.groups_types#GroupsTypes": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.groups_types#GroupsTypesList"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesDestroy"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsList"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsCreate"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsRetrieve"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsUpdate"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsDestroy"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdate"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesSetDefaultColumnsUpdate"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

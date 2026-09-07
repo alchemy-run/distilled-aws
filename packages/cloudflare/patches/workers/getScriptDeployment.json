@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#ScriptsDeploymentsGet with distilled cloudflare/workers getScriptDeployment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeploymentsGet",
+      "path": "/shapes/com.cloudflare.workers#GetScriptDeployment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeploymentsGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetScriptDeploymentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetScriptDeployment/input/target",
+      "value": "com.cloudflare.workers#GetScriptDeploymentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsDeploymentsGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetScriptDeploymentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetScriptDeployment/output/target",
+      "value": "com.cloudflare.workers#GetScriptDeploymentResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetScriptDeployment/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#DeploymentNotFound"
+        }
+      ]
+    }
+  ]
+}

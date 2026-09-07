@@ -1,0 +1,15 @@
+{
+  "description": "Docs prose (not the type tree) documents `null` as the way to clear the zone-level mitigation-action override ('null - clears any existing override'); v0 modeled it. Mark the write-side member nullable on both the PATCH and PUT settings requests.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#PatchSettingRequest/members/validation_override_mitigation_action/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSettingRequest/members/validation_override_mitigation_action/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    }
+  ]
+}

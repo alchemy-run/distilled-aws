@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#WafOverridesDelete with distilled cloudflare/firewall deleteWafOverride",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafOverridesDelete",
+      "path": "/shapes/com.cloudflare.firewall#DeleteWafOverride"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafOverridesDeleteRequest",
+      "path": "/shapes/com.cloudflare.firewall#DeleteWafOverrideRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteWafOverride/input/target",
+      "value": "com.cloudflare.firewall#DeleteWafOverrideRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafOverridesDeleteResponse",
+      "path": "/shapes/com.cloudflare.firewall#DeleteWafOverrideResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteWafOverride/output/target",
+      "value": "com.cloudflare.firewall#DeleteWafOverrideResponse"
+    }
+  ]
+}

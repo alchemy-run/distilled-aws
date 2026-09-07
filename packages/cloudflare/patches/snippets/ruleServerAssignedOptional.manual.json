@@ -1,0 +1,13 @@
+{
+  "description": "rule id/last_updated are server-assigned — not part of the PUT payload",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.snippets#RulesUpdateRequestRulesItem/members/id"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.snippets#RulesUpdateRequestRulesItem/members/last_updated"
+    }
+  ]
+}

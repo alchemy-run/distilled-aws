@@ -1,0 +1,39 @@
+{
+  "description": "Align cache#SmartTieredCacheGet with distilled cloudflare/cache getSmartTieredCache",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#SmartTieredCacheGet",
+      "path": "/shapes/com.cloudflare.cache#GetSmartTieredCache"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#SmartTieredCacheGetRequest",
+      "path": "/shapes/com.cloudflare.cache#GetSmartTieredCacheRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetSmartTieredCache/input/target",
+      "value": "com.cloudflare.cache#GetSmartTieredCacheRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#SmartTieredCacheGetResponse",
+      "path": "/shapes/com.cloudflare.cache#GetSmartTieredCacheResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetSmartTieredCache/output/target",
+      "value": "com.cloudflare.cache#GetSmartTieredCacheResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#GetSmartTieredCache/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

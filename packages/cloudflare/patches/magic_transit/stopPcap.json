@@ -1,0 +1,20 @@
+{
+  "description": "Align magic_transit#PcapsStop with distilled cloudflare/magic-transit stopPcap",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsStop",
+      "path": "/shapes/com.cloudflare.magic_transit#StopPcap"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsStopRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#StopPcapRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#StopPcap/input/target",
+      "value": "com.cloudflare.magic_transit#StopPcapRequest"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Docs gap: turnstile widget `domains: array of WidgetDomain` leaves the item type opaque, but each item is a hostname string on the wire (v0 typed string[]).",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsCreateRequestDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsCreateResponseDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsDeleteResponseDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsGetResponseDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsListResultItemDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsRotateSecretResponseDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsUpdateRequestDomainsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetsUpdateResponseDomainsList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

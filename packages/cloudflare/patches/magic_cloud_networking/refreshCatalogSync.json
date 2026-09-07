@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_cloud_networking#CatalogSyncsRefresh with distilled cloudflare/magic-cloud-networking refreshCatalogSync",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CatalogSyncsRefresh",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#RefreshCatalogSync"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CatalogSyncsRefreshRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#RefreshCatalogSyncRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#RefreshCatalogSync/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#RefreshCatalogSyncRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CatalogSyncsRefreshResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#RefreshCatalogSyncResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#RefreshCatalogSync/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#RefreshCatalogSyncResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#RefreshCatalogSync/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_cloud_networking#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncNotFound"
+        }
+      ]
+    }
+  ]
+}

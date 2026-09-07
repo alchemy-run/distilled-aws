@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#ConnectorsDelete with distilled cloudflare/magic-transit deleteConnector",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsDelete",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteConnector"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteConnectorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteConnector/input/target",
+      "value": "com.cloudflare.magic_transit#DeleteConnectorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsDeleteResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteConnectorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#DeleteConnector/output/target",
+      "value": "com.cloudflare.magic_transit#DeleteConnectorResponse"
+    }
+  ]
+}

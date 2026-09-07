@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksSubnetsCloudflareSourceUpdate with distilled cloudflare/zero-trust patchNetworkSubnetCloudflareSource",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsCloudflareSourceUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSource"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsCloudflareSourceUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSourceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSource/input/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSourceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsCloudflareSourceUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSourceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSource/output/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkSubnetCloudflareSourceResponse"
+    }
+  ]
+}

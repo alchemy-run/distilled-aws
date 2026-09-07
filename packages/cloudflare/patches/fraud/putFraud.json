@@ -1,0 +1,42 @@
+{
+  "description": "Align fraud#Update with distilled cloudflare/fraud putFraud",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.fraud#Update",
+      "path": "/shapes/com.cloudflare.fraud#PutFraud"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.fraud#UpdateRequest",
+      "path": "/shapes/com.cloudflare.fraud#PutFraudRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.fraud#PutFraud/input/target",
+      "value": "com.cloudflare.fraud#PutFraudRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.fraud#UpdateResponse",
+      "path": "/shapes/com.cloudflare.fraud#PutFraudResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.fraud#PutFraud/output/target",
+      "value": "com.cloudflare.fraud#PutFraudResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.fraud#PutFraud/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.fraud#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.fraud#FraudDetectionNotEntitled"
+        }
+      ]
+    }
+  ]
+}

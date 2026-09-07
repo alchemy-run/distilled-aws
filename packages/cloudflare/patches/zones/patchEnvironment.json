@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#EnvironmentsEdit with distilled cloudflare/zones patchEnvironment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsEdit",
+      "path": "/shapes/com.cloudflare.zones#PatchEnvironment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsEditRequest",
+      "path": "/shapes/com.cloudflare.zones#PatchEnvironmentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchEnvironment/input/target",
+      "value": "com.cloudflare.zones#PatchEnvironmentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsEditResponse",
+      "path": "/shapes/com.cloudflare.zones#PatchEnvironmentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchEnvironment/output/target",
+      "value": "com.cloudflare.zones#PatchEnvironmentResponse"
+    }
+  ]
+}

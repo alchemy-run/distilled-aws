@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#WafOverridesUpdate with distilled cloudflare/firewall updateWafOverride",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafOverridesUpdate",
+      "path": "/shapes/com.cloudflare.firewall#UpdateWafOverride"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafOverridesUpdateRequest",
+      "path": "/shapes/com.cloudflare.firewall#UpdateWafOverrideRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateWafOverride/input/target",
+      "value": "com.cloudflare.firewall#UpdateWafOverrideRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafOverridesUpdateResponse",
+      "path": "/shapes/com.cloudflare.firewall#UpdateWafOverrideResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateWafOverride/output/target",
+      "value": "com.cloudflare.firewall#UpdateWafOverrideResponse"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align pages#ProjectsDeploymentsCreate with distilled cloudflare/pages createProjectDeployment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsCreate",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeployment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsCreateRequest",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeployment/input/target",
+      "value": "com.cloudflare.pages#CreateProjectDeploymentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsCreateResponse",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeployment/output/target",
+      "value": "com.cloudflare.pages#CreateProjectDeploymentResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeployment/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pages#ProjectNotFound"
+        },
+        {
+          "target": "com.cloudflare.pages#Forbidden"
+        }
+      ]
+    }
+  ]
+}

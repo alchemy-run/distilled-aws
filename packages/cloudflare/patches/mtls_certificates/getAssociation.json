@@ -1,0 +1,38 @@
+{
+  "description": "Align mtls_certificates#AssociationsGet with distilled cloudflare/mtls-certificates getAssociation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#AssociationsGet",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetAssociation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#AssociationsGetRequest",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetAssociationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetAssociation/input/target",
+      "value": "com.cloudflare.mtls_certificates#GetAssociationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#AssociationsGetResponse",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetAssociationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetAssociation/output/target",
+      "value": "com.cloudflare.mtls_certificates#GetAssociationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetAssociation/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

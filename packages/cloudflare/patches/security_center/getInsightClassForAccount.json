@@ -1,0 +1,30 @@
+{
+  "description": "Align security_center#InsightsClassGetForAccount with distilled cloudflare/security-center getInsightClassForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsClassGetForAccount",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightClassForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsClassGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightClassForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightClassForAccount/input/target",
+      "value": "com.cloudflare.security_center#GetInsightClassForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsClassGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightClassForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightClassForAccount/output/target",
+      "value": "com.cloudflare.security_center#GetInsightClassForAccountResponse"
+    }
+  ]
+}

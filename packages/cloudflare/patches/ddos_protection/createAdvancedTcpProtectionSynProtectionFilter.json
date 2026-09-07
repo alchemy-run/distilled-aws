@@ -1,0 +1,42 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreate with distilled cloudflare/ddos-protection createAdvancedTcpProtectionSynProtectionFilter",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreate",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilter"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreateRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilterRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilter/input/target",
+      "value": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilterRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreateResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilterResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilter/output/target",
+      "value": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilterResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionSynProtectionFilter/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#Forbidden"
+        }
+      ]
+    }
+  ]
+}

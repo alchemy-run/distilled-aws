@@ -1,0 +1,20 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDelete with distilled cloudflare/ddos-protection bulkDeleteAdvancedTcpProtectionTcpFlowProtectionFilters",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDelete",
+      "path": "/shapes/com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFilters"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFilters/input/target",
+      "value": "com.cloudflare.ddos_protection#BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest"
+    }
+  ]
+}

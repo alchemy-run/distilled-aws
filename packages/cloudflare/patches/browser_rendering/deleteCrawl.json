@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#CrawlDelete with distilled cloudflare/browser-rendering deleteCrawl",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#CrawlDelete",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteCrawl"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#CrawlDeleteRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteCrawlRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteCrawl/input/target",
+      "value": "com.cloudflare.browser_rendering#DeleteCrawlRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#CrawlDeleteResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteCrawlResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteCrawl/output/target",
+      "value": "com.cloudflare.browser_rendering#DeleteCrawlResponse"
+    }
+  ]
+}

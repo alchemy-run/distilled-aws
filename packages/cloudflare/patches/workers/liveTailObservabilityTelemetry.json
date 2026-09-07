@@ -1,0 +1,30 @@
+{
+  "description": "Align workers#ObservabilityTelemetryLiveTail with distilled cloudflare/workers liveTailObservabilityTelemetry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryLiveTail",
+      "path": "/shapes/com.cloudflare.workers#LiveTailObservabilityTelemetry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryLiveTailRequest",
+      "path": "/shapes/com.cloudflare.workers#LiveTailObservabilityTelemetryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#LiveTailObservabilityTelemetry/input/target",
+      "value": "com.cloudflare.workers#LiveTailObservabilityTelemetryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryLiveTailResponse",
+      "path": "/shapes/com.cloudflare.workers#LiveTailObservabilityTelemetryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#LiveTailObservabilityTelemetry/output/target",
+      "value": "com.cloudflare.workers#LiveTailObservabilityTelemetryResponse"
+    }
+  ]
+}

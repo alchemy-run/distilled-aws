@@ -1,0 +1,48 @@
+{
+  "description": "Align alerting#PoliciesUpdate with distilled cloudflare/alerting updatePolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesUpdate",
+      "path": "/shapes/com.cloudflare.alerting#UpdatePolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesUpdateRequest",
+      "path": "/shapes/com.cloudflare.alerting#UpdatePolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#UpdatePolicy/input/target",
+      "value": "com.cloudflare.alerting#UpdatePolicyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesUpdateResponse",
+      "path": "/shapes/com.cloudflare.alerting#UpdatePolicyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#UpdatePolicy/output/target",
+      "value": "com.cloudflare.alerting#UpdatePolicyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#UpdatePolicy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidAlertType"
+        },
+        {
+          "target": "com.cloudflare.alerting#MechanismRequired"
+        }
+      ]
+    }
+  ]
+}

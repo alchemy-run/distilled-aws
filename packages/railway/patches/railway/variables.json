@@ -1,0 +1,10 @@
+{
+  "description": "variables returns the EnvironmentVariables scalar (JSON map), not an object — the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VariablesRequest/traits/com.railway.graphql#operation/query",
+      "value": "query variables($environmentId: String!, $projectId: String!, $serviceId: String, $unrendered: Boolean) {\n  variables(environmentId: $environmentId, projectId: $projectId, serviceId: $serviceId, unrendered: $unrendered)\n}"
+    }
+  ]
+}

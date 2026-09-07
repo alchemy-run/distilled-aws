@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#OriginCloudRegionsBulkUpdate with distilled cloudflare/cache bulkPutOriginCloudRegions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsBulkUpdate",
+      "path": "/shapes/com.cloudflare.cache#BulkPutOriginCloudRegions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsBulkUpdateRequest",
+      "path": "/shapes/com.cloudflare.cache#BulkPutOriginCloudRegionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#BulkPutOriginCloudRegions/input/target",
+      "value": "com.cloudflare.cache#BulkPutOriginCloudRegionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponse",
+      "path": "/shapes/com.cloudflare.cache#BulkPutOriginCloudRegionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#BulkPutOriginCloudRegions/output/target",
+      "value": "com.cloudflare.cache#BulkPutOriginCloudRegionsResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#SubscriptionsGet with distilled cloudflare/zones getSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SubscriptionsGet",
+      "path": "/shapes/com.cloudflare.zones#GetSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SubscriptionsGetRequest",
+      "path": "/shapes/com.cloudflare.zones#GetSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetSubscription/input/target",
+      "value": "com.cloudflare.zones#GetSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SubscriptionsGetResponse",
+      "path": "/shapes/com.cloudflare.zones#GetSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetSubscription/output/target",
+      "value": "com.cloudflare.zones#GetSubscriptionResponse"
+    }
+  ]
+}

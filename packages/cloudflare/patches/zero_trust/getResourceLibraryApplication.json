@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#ResourceLibraryApplicationsGet with distilled cloudflare/zero-trust getResourceLibraryApplication",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryApplicationsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryApplication"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryApplicationsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryApplicationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryApplication/input/target",
+      "value": "com.cloudflare.zero_trust#GetResourceLibraryApplicationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryApplicationsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryApplicationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryApplication/output/target",
+      "value": "com.cloudflare.zero_trust#GetResourceLibraryApplicationResponse"
+    }
+  ]
+}

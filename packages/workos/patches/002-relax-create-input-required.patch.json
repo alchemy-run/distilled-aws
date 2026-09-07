@@ -1,0 +1,13 @@
+{
+  "description": "Relax `required` on two CREATE request body schemas where the test suite verifies the SDK forwards an empty body to the server (rather than rejecting it client-side via schema validation), so the test can assert the server's BadRequest response.\n\nObserved test failures pre-patch (from `OrganizationsControllerCreate.test.ts` and `PortalSessionsControllerCreate.test.ts`):\n  - `Error: Missing key at [\"name\"]` when running `OrganizationsControllerCreate({})` — input schema rejected the empty body before the request went out.\n  - `Error: Missing key at [\"organization\"]` for `PortalSessionsControllerCreate({})`.\n\nThese fields really are required at the API level — the targeted relaxation is so the SDK can be used for both happy-path AND deliberate-bad-input testing without the schema short-circuiting the request.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GenerateLinkDto/required"
+    }
+  ]
+}

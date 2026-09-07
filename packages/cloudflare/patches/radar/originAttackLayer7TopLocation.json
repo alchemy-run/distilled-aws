@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7TopLocationsOrigin with distilled cloudflare/radar originAttackLayer7TopLocation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TopLocationsOrigin",
+      "path": "/shapes/com.cloudflare.radar#OriginAttackLayer7TopLocation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TopLocationsOriginRequest",
+      "path": "/shapes/com.cloudflare.radar#OriginAttackLayer7TopLocationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#OriginAttackLayer7TopLocation/input/target",
+      "value": "com.cloudflare.radar#OriginAttackLayer7TopLocationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TopLocationsOriginResponse",
+      "path": "/shapes/com.cloudflare.radar#OriginAttackLayer7TopLocationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#OriginAttackLayer7TopLocation/output/target",
+      "value": "com.cloudflare.radar#OriginAttackLayer7TopLocationResponse"
+    }
+  ]
+}

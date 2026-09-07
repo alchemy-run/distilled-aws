@@ -1,0 +1,23 @@
+{
+  "description": "tail creation takes a JSON body with a filters list (the docs model no body for this endpoint)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTailFiltersList",
+      "value": {
+        "type": "list",
+        "member": { "target": "smithy.api#Document" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTailRequest/members/filters",
+      "value": {
+        "target": "com.cloudflare.workers#CreateScriptTailFiltersList",
+        "traits": {
+          "smithy.api#documentation": "Tail event filters; an empty list tails everything."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayRulesResetExpiration with distilled cloudflare/zero-trust resetExpirationGatewayRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesResetExpiration",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetExpirationGatewayRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesResetExpirationRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetExpirationGatewayRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetExpirationGatewayRule/input/target",
+      "value": "com.cloudflare.zero_trust#ResetExpirationGatewayRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayRulesResetExpirationResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetExpirationGatewayRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetExpirationGatewayRule/output/target",
+      "value": "com.cloudflare.zero_trust#ResetExpirationGatewayRuleResponse"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "structures": {
+    "WaypointOptimizationOptimizedWaypoint": {
+      "members": {
+        "DepartureTime": {
+          "optional": true
+        }
+      }
+    },
+    "RouteFerryLegDetails": {
+      "members": {
+        "AfterTravelSteps": {
+          "optional": true
+        },
+        "BeforeTravelSteps": {
+          "optional": true
+        },
+        "Notices": {
+          "optional": true
+        },
+        "PassThroughWaypoints": {
+          "optional": true
+        },
+        "Spans": {
+          "optional": true
+        },
+        "TravelSteps": {
+          "optional": true
+        }
+      }
+    },
+    "RoutePedestrianLegDetails": {
+      "members": {
+        "AfterTravelSteps": {
+          "optional": true
+        },
+        "Notices": {
+          "optional": true
+        },
+        "PassThroughWaypoints": {
+          "optional": true
+        },
+        "Spans": {
+          "optional": true
+        },
+        "TravelSteps": {
+          "optional": true
+        }
+      }
+    },
+    "RouteRentalLegDetails": {
+      "members": {
+        "AfterTravelSteps": {
+          "optional": true
+        },
+        "Attributions": {
+          "optional": true
+        },
+        "BeforeTravelSteps": {
+          "optional": true
+        },
+        "BookingWebLinks": {
+          "optional": true
+        },
+        "TravelSteps": {
+          "optional": true
+        }
+      }
+    },
+    "RouteTaxiLegDetails": {
+      "members": {
+        "AfterTravelSteps": {
+          "optional": true
+        },
+        "Attributions": {
+          "optional": true
+        },
+        "BeforeTravelSteps": {
+          "optional": true
+        },
+        "BookingWebLinks": {
+          "optional": true
+        },
+        "Notices": {
+          "optional": true
+        },
+        "TravelSteps": {
+          "optional": true
+        }
+      }
+    },
+    "RouteTransitLegDetails": {
+      "members": {
+        "AfterTravelSteps": {
+          "optional": true
+        },
+        "Attributions": {
+          "optional": true
+        },
+        "BeforeTravelSteps": {
+          "optional": true
+        },
+        "BookingWebLinks": {
+          "optional": true
+        },
+        "Incidents": {
+          "optional": true
+        },
+        "IntermediateStops": {
+          "optional": true
+        },
+        "NextDepartures": {
+          "optional": true
+        },
+        "Notices": {
+          "optional": true
+        },
+        "PassThroughWaypoints": {
+          "optional": true
+        },
+        "Spans": {
+          "optional": true
+        },
+        "TravelSteps": {
+          "optional": true
+        }
+      }
+    },
+    "RouteVehicleLegDetails": {
+      "members": {
+        "AfterTravelSteps": {
+          "optional": true
+        },
+        "Incidents": {
+          "optional": true
+        },
+        "Notices": {
+          "optional": true
+        },
+        "PassThroughWaypoints": {
+          "optional": true
+        },
+        "Spans": {
+          "optional": true
+        },
+        "Tolls": {
+          "optional": true
+        },
+        "TollSystems": {
+          "optional": true
+        },
+        "TravelSteps": {
+          "optional": true
+        },
+        "TruckRoadTypes": {
+          "optional": true
+        },
+        "Zones": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

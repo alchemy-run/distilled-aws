@@ -1,0 +1,267 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.botnet_feed#AsnDayReportRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asn_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#AsnDayReportResponse": {
+      "type": "structure",
+      "members": {
+        "cidr": {
+          "target": "smithy.api#String"
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "offense_count": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.botnet_feed#AsnDayReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.botnet_feed#AsnDayReportRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.botnet_feed#AsnDayReportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/botnet_feed/asn/{asn_id}/day_report",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets all the data the botnet tracking database has for a given ASN registered to user account for given date. If no date is given, it will return results for the previous day.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#AsnFullReportRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asn_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#AsnFullReportResponse": {
+      "type": "structure",
+      "members": {
+        "cidr": {
+          "target": "smithy.api#String"
+        },
+        "date": {
+          "target": "smithy.api#String"
+        },
+        "offense_count": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.botnet_feed#AsnFullReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.botnet_feed#AsnFullReportRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.botnet_feed#AsnFullReportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/botnet_feed/asn/{asn_id}/full_report",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets all the data the botnet threat feed tracking database has for a given ASN registered to user account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#ConfigsAsnDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asn_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#ConfigsAsnDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "asn": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.botnet_feed#ConfigsAsnDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.botnet_feed#ConfigsAsnDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.botnet_feed#ConfigsAsnDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/botnet_feed/configs/asn/{asn_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an ASN from botnet threat feed for a given user.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#ConfigsAsnGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#ConfigsAsnGetResponse": {
+      "type": "structure",
+      "members": {
+        "asn": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.botnet_feed#ConfigsAsnGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.botnet_feed#ConfigsAsnGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.botnet_feed#ConfigsAsnGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/botnet_feed/configs/asn",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of all ASNs registered for a user for the DDoS Botnet Feed API.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.botnet_feed#BotnetFeed": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.botnet_feed#AsnDayReport"
+        },
+        {
+          "target": "com.cloudflare.botnet_feed#AsnFullReport"
+        },
+        {
+          "target": "com.cloudflare.botnet_feed#ConfigsAsnDelete"
+        },
+        {
+          "target": "com.cloudflare.botnet_feed#ConfigsAsnGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare BotnetFeed",
+        "smithy.api#documentation": "Cloudflare API — botnet_feed resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

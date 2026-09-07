@@ -1,0 +1,45 @@
+{
+  "description": "Align workflows#VersionsGet with distilled cloudflare/workflows getVersion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsGet",
+      "path": "/shapes/com.cloudflare.workflows#GetVersion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsGetRequest",
+      "path": "/shapes/com.cloudflare.workflows#GetVersionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#GetVersion/input/target",
+      "value": "com.cloudflare.workflows#GetVersionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsGetResponse",
+      "path": "/shapes/com.cloudflare.workflows#GetVersionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#GetVersion/output/target",
+      "value": "com.cloudflare.workflows#GetVersionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#GetVersion/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workflows#WorkflowNotFound"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workflows#VersionNotFound"
+        }
+      ]
+    }
+  ]
+}

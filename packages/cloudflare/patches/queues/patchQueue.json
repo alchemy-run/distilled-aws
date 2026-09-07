@@ -1,0 +1,42 @@
+{
+  "description": "Align queues#Edit with distilled cloudflare/queues patchQueue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#Edit",
+      "path": "/shapes/com.cloudflare.queues#PatchQueue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#EditRequest",
+      "path": "/shapes/com.cloudflare.queues#PatchQueueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#PatchQueue/input/target",
+      "value": "com.cloudflare.queues#PatchQueueRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#EditResponse",
+      "path": "/shapes/com.cloudflare.queues#PatchQueueResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#PatchQueue/output/target",
+      "value": "com.cloudflare.queues#PatchQueueResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#PatchQueue/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

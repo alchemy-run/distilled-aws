@@ -1,0 +1,74 @@
+{
+  "description": "Add observed error responses to the v1 edge-ingest operation. Live probes against api.axiom.co showed: 400 for invalid dataset name, 404 when the dataset does not exist, and 422 when the payload body is missing.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/components/responses",
+      "value": {
+        "BadRequestError": {
+          "description": "Bad request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": { "type": "integer" },
+                  "message": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "NotFoundError": {
+          "description": "Not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": { "type": "integer" },
+                  "message": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "UnprocessableEntityError": {
+          "description": "Unprocessable entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": { "type": "integer" },
+                  "message": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1ingest~1{dataset-id}/post/responses/400",
+      "value": {
+        "$ref": "#/components/responses/BadRequestError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1ingest~1{dataset-id}/post/responses/404",
+      "value": {
+        "$ref": "#/components/responses/NotFoundError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1ingest~1{dataset-id}/post/responses/422",
+      "value": {
+        "$ref": "#/components/responses/UnprocessableEntityError"
+      }
+    }
+  ]
+}

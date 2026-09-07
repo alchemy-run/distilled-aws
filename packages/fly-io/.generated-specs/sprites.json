@@ -1,0 +1,1452 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.flyio.sprites#CreateOrganizationTokenRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Fly organization slug"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable label for the minted token"
+          }
+        },
+        "invite_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional Sprites invite code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#CreateOrganizationTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sprites bearer token. Send as Authorization: Bearer on subsequent sprite ops.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#CreateOrganizationToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#CreateOrganizationTokenRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#CreateOrganizationTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#SpritesNotEnabled"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/organizations/{org}/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mint a Sprites bearer token from a Fly.io macaroon\n\nPOST with Authorization: FlyV1 {FLY_API_TOKEN}. Sprite CRUD rejects Bearer FLY_API_TOKEN (401); callers mint once, cache, then Bearer the returned token. 401 with 'sprites not enabled' means the org has not enabled Sprites."
+      }
+    },
+    "com.flyio.sprites#ListSpritesRequest": {
+      "type": "structure",
+      "members": {
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "prefix",
+            "smithy.api#documentation": "Filter sprites by name prefix"
+          }
+        },
+        "max_results": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "max_results",
+            "smithy.api#documentation": "Maximum number of results (1-50, default 50)"
+          }
+        },
+        "continuation_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuation_token",
+            "smithy.api#documentation": "Token from the previous response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#ListSpritesResponse": {
+      "type": "structure",
+      "members": {
+        "sprites": {
+          "target": "com.flyio.sprites#ListSpritesResponseSpritesList"
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean"
+        },
+        "next_continuation_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "running": {
+          "target": "smithy.api#Integer"
+        },
+        "warm": {
+          "target": "smithy.api#Integer"
+        },
+        "cold": {
+          "target": "smithy.api#Integer"
+        },
+        "running_limit": {
+          "target": "smithy.api#Integer"
+        },
+        "warm_limit": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#Sprite": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "organization": {
+          "target": "smithy.api#String"
+        },
+        "org_slug": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "url_settings": {
+          "target": "com.flyio.sprites#UrlSettings"
+        },
+        "status": {
+          "target": "com.flyio.sprites#SpriteStatus"
+        },
+        "labels": {
+          "target": "com.flyio.sprites#SpriteLabelsList"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "last_started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_active_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_running_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#UrlSettings": {
+      "type": "structure",
+      "members": {
+        "auth": {
+          "target": "com.flyio.sprites#UrlAuth"
+        },
+        "private_access": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#UrlAuth": {
+      "type": "enum",
+      "members": {
+        "SPRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sprite"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#SpriteStatus": {
+      "type": "enum",
+      "members": {
+        "COLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cold"
+          }
+        },
+        "WARM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warm"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#SpriteLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListSpritesResponseSpritesList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#Sprite"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListSprites": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#ListSpritesRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#ListSpritesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites",
+          "code": 200
+        },
+        "smithy.api#documentation": "List sprites for the authenticated organization",
+        "smithy.api#paginated": {
+          "inputToken": "continuation_token",
+          "outputToken": "next_continuation_token",
+          "items": "sprites",
+          "pageSize": "max_results",
+          "mode": "cursor"
+        }
+      }
+    },
+    "com.flyio.sprites#CreateSpriteRequestLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels stamped on the sprite (used for ownership / nuke)"
+      }
+    },
+    "com.flyio.sprites#CreateSpriteRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the sprite within the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "url_settings": {
+          "target": "com.flyio.sprites#UrlSettings"
+        },
+        "labels": {
+          "target": "com.flyio.sprites#CreateSpriteRequestLabelsList",
+          "traits": {
+            "smithy.api#documentation": "Labels stamped on the sprite (used for ownership / nuke)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#CreateSprite": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#CreateSpriteRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#Sprite"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#BadRequest"
+        },
+        {
+          "target": "com.flyio.sprites#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sprites",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a sprite"
+      }
+    },
+    "com.flyio.sprites#GetSpriteRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique sprite name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#GetSprite": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#GetSpriteRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#Sprite"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a sprite"
+      }
+    },
+    "com.flyio.sprites#UpdateSpriteRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique sprite name"
+          }
+        },
+        "url_settings": {
+          "target": "com.flyio.sprites#UrlSettings",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#UpdateSprite": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#UpdateSpriteRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#Sprite"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sprites/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update sprite URL auth settings"
+      }
+    },
+    "com.flyio.sprites#DeleteSpriteRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique sprite name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#DeleteSprite": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#DeleteSpriteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/sprites/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a sprite"
+      }
+    },
+    "com.flyio.sprites#ListExecSessionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#ExecSession": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "command": {
+          "target": "smithy.api#String"
+        },
+        "is_active": {
+          "target": "smithy.api#Boolean"
+        },
+        "tty": {
+          "target": "smithy.api#Boolean"
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "last_activity": {
+          "target": "smithy.api#String"
+        },
+        "workdir": {
+          "target": "smithy.api#String"
+        },
+        "bytes_per_second": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListExecSessionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#ExecSession"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListExecSessionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.flyio.sprites#ListExecSessionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.flyio.sprites#ListExecSessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#ListExecSessionsRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#ListExecSessionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites/{name}/exec",
+          "code": 200
+        },
+        "smithy.api#documentation": "List active exec sessions"
+      }
+    },
+    "com.flyio.sprites#ExecCommandRequestCmdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ExecCommandRequestEnvList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ExecCommandRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cmd": {
+          "target": "com.flyio.sprites#ExecCommandRequestCmdList",
+          "traits": {
+            "smithy.api#httpQuery": "cmd",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Command and args (repeatable)"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "path",
+            "smithy.api#documentation": "Explicit path to the executable"
+          }
+        },
+        "stdin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "stdin",
+            "smithy.api#documentation": "Read stdin from the request body"
+          }
+        },
+        "env": {
+          "target": "com.flyio.sprites#ExecCommandRequestEnvList",
+          "traits": {
+            "smithy.api#httpQuery": "env",
+            "smithy.api#documentation": "Environment variables as KEY=VALUE (repeatable)"
+          }
+        },
+        "dir": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dir",
+            "smithy.api#documentation": "Working directory"
+          }
+        },
+        "body": {
+          "target": "smithy.api#Blob",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#ExecResult": {
+      "type": "structure",
+      "members": {
+        "exit_code": {
+          "target": "smithy.api#Integer"
+        },
+        "stdout": {
+          "target": "smithy.api#String"
+        },
+        "stderr": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ExecCommand": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#ExecCommandRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#ExecResult"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#BadRequest"
+        },
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sprites/{name}/exec",
+          "code": 200,
+          "bodyMediaType": "application/octet-stream"
+        },
+        "smithy.api#documentation": "Execute a command via HTTP POST (non-TTY). Simpler than the WebSocket exec API."
+      }
+    },
+    "com.flyio.sprites#CreateCheckpointRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#StreamEvent": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "data": {
+          "target": "smithy.api#String"
+        },
+        "error": {
+          "target": "smithy.api#String"
+        },
+        "time": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#CreateCheckpointResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#StreamEvent"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#CreateCheckpointResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.flyio.sprites#CreateCheckpointResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.flyio.sprites#CreateCheckpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#CreateCheckpointRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#CreateCheckpointResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sprites/{name}/checkpoint",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a checkpoint (NDJSON progress stream)"
+      }
+    },
+    "com.flyio.sprites#ListCheckpointsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#Checkpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "create_time": {
+          "target": "smithy.api#String"
+        },
+        "source_id": {
+          "target": "smithy.api#String"
+        },
+        "comment": {
+          "target": "smithy.api#String"
+        },
+        "health": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListCheckpointsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#Checkpoint"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListCheckpointsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.flyio.sprites#ListCheckpointsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.flyio.sprites#ListCheckpoints": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#ListCheckpointsRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#ListCheckpointsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites/{name}/checkpoints",
+          "code": 200
+        },
+        "smithy.api#documentation": "List checkpoints"
+      }
+    },
+    "com.flyio.sprites#GetCheckpointRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "checkpoint_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Checkpoint identifier (e.g. v7)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#GetCheckpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#GetCheckpointRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#Checkpoint"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites/{name}/checkpoints/{checkpoint_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a checkpoint"
+      }
+    },
+    "com.flyio.sprites#RestoreCheckpointRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "checkpoint_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#RestoreCheckpointResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#StreamEvent"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#RestoreCheckpointResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.flyio.sprites#RestoreCheckpointResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.flyio.sprites#RestoreCheckpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#RestoreCheckpointRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#RestoreCheckpointResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/sprites/{name}/checkpoints/{checkpoint_id}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore a checkpoint (NDJSON progress stream). Destructive."
+      }
+    },
+    "com.flyio.sprites#WriteFileRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "path",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Path to the file to write"
+          }
+        },
+        "workingDir": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "workingDir",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Working directory for resolving relative paths"
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "mode",
+            "smithy.api#documentation": "File permissions in octal (e.g. 0644)"
+          }
+        },
+        "mkdir": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "mkdir",
+            "smithy.api#documentation": "Create parent directories if they do not exist"
+          }
+        },
+        "body": {
+          "target": "smithy.api#Blob",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#WriteFileResponse": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "size": {
+          "target": "smithy.api#Double"
+        },
+        "mode": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#WriteFile": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#WriteFileRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#WriteFileResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#BadRequest"
+        },
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sprites/{name}/fs/write",
+          "code": 200,
+          "bodyMediaType": "application/octet-stream"
+        },
+        "smithy.api#documentation": "Write file contents to the sprite filesystem. Request body is raw file bytes."
+      }
+    },
+    "com.flyio.sprites#ListServicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#SpriteService": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "cmd": {
+          "target": "smithy.api#String"
+        },
+        "args": {
+          "target": "com.flyio.sprites#SpriteServiceArgsList"
+        },
+        "needs": {
+          "target": "com.flyio.sprites#SpriteServiceNeedsList"
+        },
+        "http_port": {
+          "target": "smithy.api#Integer"
+        },
+        "state": {
+          "target": "com.flyio.sprites#SpriteServiceState"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#SpriteServiceArgsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#SpriteServiceNeedsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#SpriteServiceState": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "pid": {
+          "target": "smithy.api#Integer"
+        },
+        "started_at": {
+          "target": "smithy.api#String"
+        },
+        "error": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListServicesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#SpriteService"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#ListServicesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.flyio.sprites#ListServicesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.flyio.sprites#ListServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#ListServicesRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#ListServicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites/{name}/services",
+          "code": 200
+        },
+        "smithy.api#documentation": "List configured sprite services"
+      }
+    },
+    "com.flyio.sprites#GetServiceRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "service_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#GetService": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#GetServiceRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#SpriteService"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sprites/{name}/services/{service_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a sprite service"
+      }
+    },
+    "com.flyio.sprites#PutServiceRequestArgsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Command arguments"
+      }
+    },
+    "com.flyio.sprites#PutServiceRequestNeedsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Service dependencies (started first)"
+      }
+    },
+    "com.flyio.sprites#PutServiceRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "service_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "duration",
+            "smithy.api#documentation": "Time to monitor logs after starting (default 5s)"
+          }
+        },
+        "cmd": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command to execute",
+            "smithy.api#required": {}
+          }
+        },
+        "args": {
+          "target": "com.flyio.sprites#PutServiceRequestArgsList",
+          "traits": {
+            "smithy.api#documentation": "Command arguments"
+          }
+        },
+        "dir": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Working directory for the service"
+          }
+        },
+        "needs": {
+          "target": "com.flyio.sprites#PutServiceRequestNeedsList",
+          "traits": {
+            "smithy.api#documentation": "Service dependencies (started first)"
+          }
+        },
+        "http_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "HTTP port for proxy routing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.flyio.sprites#PutServiceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.flyio.sprites#StreamEvent"
+      },
+      "traits": {}
+    },
+    "com.flyio.sprites#PutServiceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.flyio.sprites#PutServiceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.flyio.sprites#PutService": {
+      "type": "operation",
+      "input": {
+        "target": "com.flyio.sprites#PutServiceRequest"
+      },
+      "output": {
+        "target": "com.flyio.sprites#PutServiceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.flyio.sprites#BadRequest"
+        },
+        {
+          "target": "com.flyio.sprites#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/sprites/{name}/services/{service_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create or update a sprite service. Returns NDJSON start progress."
+      }
+    },
+    "com.flyio.sprites#SpritesNotEnabled": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 401,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 401,
+            "message": {
+              "matches": "[Ss]prites not enabled"
+            }
+          }
+        ]
+      }
+    },
+    "com.flyio.sprites#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.flyio.sprites#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.flyio.sprites#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.flyio.sprites#FlySprites": {
+      "type": "service",
+      "version": "v1",
+      "operations": [
+        {
+          "target": "com.flyio.sprites#CreateOrganizationToken"
+        },
+        {
+          "target": "com.flyio.sprites#ListSprites"
+        },
+        {
+          "target": "com.flyio.sprites#CreateSprite"
+        },
+        {
+          "target": "com.flyio.sprites#GetSprite"
+        },
+        {
+          "target": "com.flyio.sprites#UpdateSprite"
+        },
+        {
+          "target": "com.flyio.sprites#DeleteSprite"
+        },
+        {
+          "target": "com.flyio.sprites#ListExecSessions"
+        },
+        {
+          "target": "com.flyio.sprites#ExecCommand"
+        },
+        {
+          "target": "com.flyio.sprites#CreateCheckpoint"
+        },
+        {
+          "target": "com.flyio.sprites#ListCheckpoints"
+        },
+        {
+          "target": "com.flyio.sprites#GetCheckpoint"
+        },
+        {
+          "target": "com.flyio.sprites#RestoreCheckpoint"
+        },
+        {
+          "target": "com.flyio.sprites#WriteFile"
+        },
+        {
+          "target": "com.flyio.sprites#ListServices"
+        },
+        {
+          "target": "com.flyio.sprites#GetService"
+        },
+        {
+          "target": "com.flyio.sprites#PutService"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Fly Sprites API",
+        "smithy.api#documentation": "REST API at https://api.sprites.dev/v1. Auth is FLY_API_TOKEN only: mint POST /v1/organizations/{org}/tokens with Authorization: FlyV1 {token}, cache, then Bearer the minted token on sprite ops. Never SPRITES_TOKEN. No published OpenAPI — hand-authored from https://sprites.dev/api and github.com/superfly/sprites-js."
+      }
+    }
+  }
+}

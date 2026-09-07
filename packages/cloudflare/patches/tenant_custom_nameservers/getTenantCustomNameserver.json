@@ -1,0 +1,38 @@
+{
+  "description": "Align tenant_custom_nameservers#Get with distilled cloudflare/tenant-custom-nameservers getTenantCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#Get",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#GetRequest",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserver/input/target",
+      "value": "com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#GetResponse",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserver/output/target",
+      "value": "com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserverResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#GetTenantCustomNameserver/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

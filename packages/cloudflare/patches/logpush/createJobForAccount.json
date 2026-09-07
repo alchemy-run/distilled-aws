@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#JobsCreateForAccount with distilled cloudflare/logpush createJobForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForAccount",
+      "path": "/shapes/com.cloudflare.logpush#CreateJobForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#CreateJobForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#CreateJobForAccount/input/target",
+      "value": "com.cloudflare.logpush#CreateJobForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#CreateJobForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#CreateJobForAccount/output/target",
+      "value": "com.cloudflare.logpush#CreateJobForAccountResponse"
+    }
+  ]
+}

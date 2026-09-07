@@ -1,0 +1,41 @@
+{
+  "description": "Align dls#RegionalServicesPrefixBindingsList with distilled cloudflare/dls listRegionalServicePrefixBindings",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsList",
+      "path": "/shapes/com.cloudflare.dls#ListRegionalServicePrefixBindings"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsListRequest",
+      "path": "/shapes/com.cloudflare.dls#ListRegionalServicePrefixBindingsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#ListRegionalServicePrefixBindings/input/target",
+      "value": "com.cloudflare.dls#ListRegionalServicePrefixBindingsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsListResponse",
+      "path": "/shapes/com.cloudflare.dls#ListRegionalServicePrefixBindingsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#ListRegionalServicePrefixBindings/output/target",
+      "value": "com.cloudflare.dls#ListRegionalServicePrefixBindingsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dls#ListRegionalServicePrefixBindings/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

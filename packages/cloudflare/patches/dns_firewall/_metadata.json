@@ -1,0 +1,28 @@
+{
+  "description": "Key dictionary / op aliases for dns_firewall (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "attackMitigation": "attack_mitigation",
+        "dataLag": "data_lag",
+        "deprecateAnyRequests": "deprecate_any_requests",
+        "dnsFirewallIpCount": "dns_firewall_ip_count",
+        "dnsFirewallIps": "dns_firewall_ips",
+        "ecsFallback": "ecs_fallback",
+        "maximumCacheTtl": "maximum_cache_ttl",
+        "minimumCacheTtl": "minimum_cache_ttl",
+        "modifiedOn": "modified_on",
+        "negativeCacheTtl": "negative_cache_ttl",
+        "onlyWhenUpstreamUnhealthy": "only_when_upstream_unhealthy",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "timeDelta": "time_delta",
+        "timeIntervals": "time_intervals",
+        "totalCount": "total_count",
+        "upstreamIps": "upstream_ips"
+      }
+    }
+  ]
+}

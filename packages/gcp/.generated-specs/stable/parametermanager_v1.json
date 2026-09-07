@@ -1,0 +1,1146 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "parametermanager",
+    "version": "v1",
+    "title": "Parameter Manager API",
+    "baseUrl": "https://parametermanager.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.parametermanager_v1#RenderParameterVersionResponse": {
+      "type": "structure",
+      "members": {
+        "parameterVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource identifier of a ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`."
+          }
+        },
+        "payload": {
+          "target": "com.gcp.parametermanager_v1#ParameterVersionPayload",
+          "traits": {
+            "smithy.api#documentation": "Payload content of a ParameterVersion resource."
+          }
+        },
+        "renderedPayload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server generated rendered version of the user provided payload data (ParameterVersionPayload) which has substitutions of all (if any) references to a SecretManager SecretVersion resources. This substitution only works for a Parameter which is in JSON or YAML format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing RenderParameterVersionResponse resource"
+      }
+    },
+    "com.gcp.parametermanager_v1#Location": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.parametermanager_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.parametermanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.parametermanager_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.parametermanager_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.parametermanager_v1#ResourcePolicyMember": {
+      "type": "structure",
+      "members": {
+        "iamPolicyNamePrincipal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. IAM policy binding member referring to a Google Cloud resource by user-assigned name (https://google.aip.dev/122). If a resource is deleted and recreated with the same name, the binding will be applicable to the new resource. Example: `principal://parametermanager.googleapis.com/projects/12345/name/locations/us-central1-a/parameters/my-parameter`"
+          }
+        },
+        "iamPolicyUidPrincipal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. IAM policy binding member referring to a Google Cloud resource by system-assigned unique identifier (https://google.aip.dev/148#uid). If a resource is deleted and recreated with the same name, the binding will not be applicable to the new resource Example: `principal://parametermanager.googleapis.com/projects/12345/uid/locations/us-central1-a/parameters/a918fed5`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output-only policy member strings of a Google Cloud resource's built-in identity."
+      }
+    },
+    "com.gcp.parametermanager_v1#ListParametersResponse": {
+      "type": "structure",
+      "members": {
+        "parameters": {
+          "target": "com.gcp.parametermanager_v1#ParameterList",
+          "traits": {
+            "smithy.api#documentation": "The list of Parameters"
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.parametermanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing Parameters"
+      }
+    },
+    "com.gcp.parametermanager_v1#ParameterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.parametermanager_v1#Parameter"
+      }
+    },
+    "com.gcp.parametermanager_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.parametermanager_v1#Parameter": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. [Output only] The resource name of the Parameter in the format `projects/*/locations/*/parameters/*`."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output only] Update time stamp"
+          }
+        },
+        "policyMember": {
+          "target": "com.gcp.parametermanager_v1#ResourcePolicyMember",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output-only] policy member strings of a Google Cloud resource."
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Customer managed encryption key (CMEK) to use for encrypting the Parameter Versions. If not set, the default Google-managed encryption key will be used. Cloud KMS CryptoKeys must reside in the same location as the Parameter. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.parametermanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Labels as key value pairs"
+          }
+        },
+        "format": {
+          "target": "com.gcp.parametermanager_v1#ParameterFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the format of a Parameter."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output only] Create time stamp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing Parameter resource"
+      }
+    },
+    "com.gcp.parametermanager_v1#ParameterFormatEnum": {
+      "type": "enum",
+      "members": {
+        "PARAMETER_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARAMETER_FORMAT_UNSPECIFIED"
+          }
+        },
+        "UNFORMATTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNFORMATTED"
+          }
+        },
+        "YAML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YAML"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#ListParameterVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.parametermanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
+          }
+        },
+        "parameterVersions": {
+          "target": "com.gcp.parametermanager_v1#ParameterVersionList",
+          "traits": {
+            "smithy.api#documentation": "The list of ParameterVersions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing ParameterVersions"
+      }
+    },
+    "com.gcp.parametermanager_v1#ParameterVersionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.parametermanager_v1#ParameterVersion"
+      }
+    },
+    "com.gcp.parametermanager_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.parametermanager_v1#ParameterVersion": {
+      "type": "structure",
+      "members": {
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Disabled boolean to determine if a ParameterVersion acts as a metadata only resource (payload is never returned if disabled is true). If true any calls will always default to BASIC view even if the user explicitly passes FULL view as part of the request. A render call on a disabled resource fails with an error. Default value is False."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output only] Update time stamp"
+          }
+        },
+        "payload": {
+          "target": "com.gcp.parametermanager_v1#ParameterVersionPayload",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. Payload content of a ParameterVersion resource. This is only returned when the request provides the View value of FULL (default for GET request)."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output only] Create time stamp"
+          }
+        },
+        "kmsKeyVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. [Output only] The resource name of the KMS key version used to encrypt the ParameterVersion payload. This field is populated only if the Parameter resource has customer managed encryption key (CMEK) configured."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing ParameterVersion resource"
+      }
+    },
+    "com.gcp.parametermanager_v1#ParameterVersionPayload": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. bytes data for storing payload."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for storing a ParameterVersion resource's payload data"
+      }
+    },
+    "com.gcp.parametermanager_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.parametermanager_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.parametermanager_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.parametermanager_v1#Location"
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.parametermanager_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.parametermanager_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.parametermanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocationsParametersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource in the format `projects/*/locations/*/parameters/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocationsParameters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#GetProjectsLocationsParametersRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#Parameter"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Parameter."
+      }
+    },
+    "com.gcp.parametermanager_v1#DeleteProjectsLocationsParametersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource in the format `projects/*/locations/*/parameters/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.parametermanager_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.parametermanager_v1#DeleteProjectsLocationsParameters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#DeleteProjectsLocationsParametersRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single Parameter."
+      }
+    },
+    "com.gcp.parametermanager_v1#CreateProjectsLocationsParametersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Value for parent in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "parameterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the Parameter resource",
+            "smithy.api#httpQuery": "parameterId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.parametermanager_v1#Parameter",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#CreateProjectsLocationsParameters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#CreateProjectsLocationsParametersRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#Parameter"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/parameters"
+        },
+        "smithy.api#documentation": "Creates a new Parameter in a given project and location."
+      }
+    },
+    "com.gcp.parametermanager_v1#PatchProjectsLocationsParametersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. [Output only] The resource name of the Parameter in the format `projects/*/locations/*/parameters/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Parameter resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A mutable field will be overwritten if it is in the mask. If the user does not provide a mask then all mutable fields present in the request will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.parametermanager_v1#Parameter",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#PatchProjectsLocationsParameters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#PatchProjectsLocationsParametersRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#Parameter"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a single Parameter."
+      }
+    },
+    "com.gcp.parametermanager_v1#ListProjectsLocationsParametersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListParametersRequest in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListParameters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListParameters` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#ListProjectsLocationsParameters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#ListProjectsLocationsParametersRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#ListParametersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/parameters"
+        },
+        "smithy.api#documentation": "Lists Parameters in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocationsParametersVersionsViewEnum": {
+      "type": "enum",
+      "members": {
+        "VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEW_UNSPECIFIED"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocationsParametersVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "view": {
+          "target": "com.gcp.parametermanager_v1#GetProjectsLocationsParametersVersionsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. View of the ParameterVersion. In the default FULL view, all metadata & payload associated with the ParameterVersion will be returned.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource in the format `projects/*/locations/*/parameters/*/versions/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#GetProjectsLocationsParametersVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#GetProjectsLocationsParametersVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#ParameterVersion"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single ParameterVersion."
+      }
+    },
+    "com.gcp.parametermanager_v1#DeleteProjectsLocationsParametersVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource in the format `projects/*/locations/*/parameters/*/versions/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#DeleteProjectsLocationsParametersVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#DeleteProjectsLocationsParametersVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single ParameterVersion."
+      }
+    },
+    "com.gcp.parametermanager_v1#RenderProjectsLocationsParametersVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#RenderProjectsLocationsParametersVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#RenderProjectsLocationsParametersVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#RenderParameterVersionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}:render"
+        },
+        "smithy.api#documentation": "Gets rendered version of a ParameterVersion."
+      }
+    },
+    "com.gcp.parametermanager_v1#CreateProjectsLocationsParametersVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Value for parent in the format `projects/*/locations/*/parameters/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "parameterVersionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the ParameterVersion resource",
+            "smithy.api#httpQuery": "parameterVersionId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.parametermanager_v1#ParameterVersion",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#CreateProjectsLocationsParametersVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#CreateProjectsLocationsParametersVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#ParameterVersion"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/versions"
+        },
+        "smithy.api#documentation": "Creates a new ParameterVersion in a given project, location, and parameter."
+      }
+    },
+    "com.gcp.parametermanager_v1#PatchProjectsLocationsParametersVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. [Output only] The resource name of the ParameterVersion in the format `projects/*/locations/*/parameters/*/versions/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the ParameterVersion resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A mutable field will be overwritten if it is in the mask. If the user does not provide a mask then all mutable fields present in the request will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.parametermanager_v1#ParameterVersion",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#PatchProjectsLocationsParametersVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#PatchProjectsLocationsParametersVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#ParameterVersion"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a single ParameterVersion."
+      }
+    },
+    "com.gcp.parametermanager_v1#ListProjectsLocationsParametersVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListParameterVersionsRequest in the format `projects/*/locations/*/parameters/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListParameterVersions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListParameterVersions` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.parametermanager_v1#ListProjectsLocationsParametersVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parametermanager_v1#ListProjectsLocationsParametersVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parametermanager_v1#ListParameterVersionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parametermanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.parametermanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/versions"
+        },
+        "smithy.api#documentation": "Lists ParameterVersions in a given project, location, and parameter.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

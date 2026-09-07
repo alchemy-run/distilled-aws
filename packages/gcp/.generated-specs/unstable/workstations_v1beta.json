@@ -1,0 +1,3788 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "workstations",
+    "version": "v1beta",
+    "title": "Cloud Workstations API",
+    "baseUrl": "https://workstations.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.workstations_v1beta#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.workstations_v1beta#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.workstations_v1beta#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.workstations_v1beta#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#DocumentMap"
+      }
+    },
+    "com.gcp.workstations_v1beta#Accelerator": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Type of accelerator resource to attach to the instance, for example, `\"nvidia-tesla-p100\"`."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of accelerator cards exposed to the instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An accelerator card attached to the instance."
+      }
+    },
+    "com.gcp.workstations_v1beta#StopWorkstationRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for StopWorkstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#RuntimeHost": {
+      "type": "structure",
+      "members": {
+        "gceInstanceHost": {
+          "target": "com.gcp.workstations_v1beta#GceInstanceHost",
+          "traits": {
+            "smithy.api#documentation": "Specifies a Compute Engine instance as the host."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Runtime host for the workstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#AuditConfig": {
+      "type": "structure",
+      "members": {
+        "auditLogConfigs": {
+          "target": "com.gcp.workstations_v1beta#AuditLogConfigList",
+          "traits": {
+            "smithy.api#documentation": "The configuration for logging of each type of permission."
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging."
+      }
+    },
+    "com.gcp.workstations_v1beta#AuditLogConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#AuditLogConfig"
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationCluster": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Full name of this workstation cluster."
+          }
+        },
+        "privateClusterConfig": {
+          "target": "com.gcp.workstations_v1beta#PrivateClusterConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for private workstation cluster."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Client-specified annotations."
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation cluster and that are also propagated to the underlying Compute Engine resources."
+          }
+        },
+        "gatewayConfig": {
+          "target": "com.gcp.workstations_v1beta#GatewayConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration options for Cluster HTTP Gateway."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Name of the Compute Engine network in which instances associated with this workstation cluster will be created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation cluster was most recently updated."
+          }
+        },
+        "workstationLaunchUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the launch URL for workstations in this cluster. Requests sent to unstarted workstations will be redirected to this URL. Requests redirected to the launch endpoint will be sent with a `workstation` and `project` query parameter containing the full workstation resource name and project ID, respectively. The launch endpoint is responsible for starting the workstation, polling it until it reaches `STATE_RUNNING`, and then issuing a redirect to the workstation's host URL."
+          }
+        },
+        "degraded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether this workstation cluster is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the cluster."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding."
+          }
+        },
+        "workstationAuthorizationUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the redirect URL for unauthorized requests received by workstation VMs in this cluster. Redirects to this endpoint will send a base64 encoded `state` query param containing the target workstation name and original request hostname. The endpoint is responsible for retrieving a token using `GenerateAccessToken` and redirecting back to the original hostname with the token."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation cluster was created."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation cluster was soft-deleted."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Human-readable name for this workstation cluster."
+          }
+        },
+        "subnetwork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether this workstation cluster is currently being updated to match its intended state."
+          }
+        },
+        "conditions": {
+          "target": "com.gcp.workstations_v1beta#StatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Status conditions describing the workstation cluster's current state."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "controlPlaneIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The private IP address of the control plane for this workstation cluster. Workstation VMs need access to this IP address to work with the service, so make sure that your firewall rules allow egress from the workstation VMs to this address."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A system-assigned unique identifier for this workstation cluster."
+          }
+        },
+        "domainConfig": {
+          "target": "com.gcp.workstations_v1beta#DomainConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration options for a custom domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A workstation cluster resource in the Cloud Workstations API. Defines a group of workstations in a particular region and the VPC network they're attached to."
+      }
+    },
+    "com.gcp.workstations_v1beta#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.workstations_v1beta#StatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#Status"
+      }
+    },
+    "com.gcp.workstations_v1beta#ListWorkstationConfigsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unreachable resources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "workstationConfigs": {
+          "target": "com.gcp.workstations_v1beta#WorkstationConfigList",
+          "traits": {
+            "smithy.api#documentation": "The requested configs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListWorkstationConfigs."
+      }
+    },
+    "com.gcp.workstations_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#WorkstationConfig"
+      }
+    },
+    "com.gcp.workstations_v1beta#ReservationAffinity": {
+      "type": "structure",
+      "members": {
+        "consumeReservationType": {
+          "target": "com.gcp.workstations_v1beta#ReservationAffinityConsumeReservationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Corresponds to the type of reservation consumption."
+          }
+        },
+        "values": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Corresponds to the label values of reservation resources. Valid values are either the name of a reservation in the same project or \"projects/{project}/reservations/{reservation}\" to target a shared reservation in the same zone but in a different project."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Corresponds to the label key of reservation resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ReservationAffinity is the configuration of the desired reservation from which instances can consume resources."
+      }
+    },
+    "com.gcp.workstations_v1beta#ReservationAffinityConsumeReservationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "NO_RESERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_RESERVATION"
+          }
+        },
+        "ANY_RESERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY_RESERVATION"
+          }
+        },
+        "SPECIFIC_RESERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIFIC_RESERVATION"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GceInstance": {
+      "type": "structure",
+      "members": {
+        "startupScriptUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Link to the startup script stored in Cloud Storage. This script will be run on the host workstation VM when the VM is created. The URI must be of the form gs://{bucket-name}/{object-name}. If specifying a startup script, the service account must have [Permission to access the bucket and script file in Cloud Storage](https://cloud.google.com/storage/docs/access-control/iam-permissions). Otherwise, the script must be publicly accessible. Note that the service regularly updates the OS version of the host VM, and it is the responsibility of the user to ensure the script stays compatible with the OS version."
+          }
+        },
+        "poolSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of VMs that the system should keep idle so that new workstations can be started quickly for new users. Defaults to `0` in the API."
+          }
+        },
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of machine to use for VM instances—for example, `\"e2-standard-4\"`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types)."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Network tags to add to the Compute Engine VMs backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules)."
+          }
+        },
+        "bootDiskSizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB."
+          }
+        },
+        "boostConfigs": {
+          "target": "com.gcp.workstations_v1beta#BoostConfigList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use. If specified, users will have the option to choose from the list of boost configs when starting a workstation."
+          }
+        },
+        "disablePublicIpAddresses": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. When set to true, disables public IP addresses for VMs. If you disable public IP addresses, you must set up Private Google Access or Cloud NAT on your network. If you use Private Google Access and you use `private.googleapis.com` or `restricted.googleapis.com` for Container Registry and Artifact Registry, make sure that you set up DNS records for domains `*.gcr.io` and `*.pkg.dev`. Defaults to false (VMs have public IP addresses)."
+          }
+        },
+        "shieldedInstanceConfig": {
+          "target": "com.gcp.workstations_v1beta#GceShieldedInstanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of Compute Engine Shielded instance options."
+          }
+        },
+        "accelerators": {
+          "target": "com.gcp.workstations_v1beta#AcceleratorList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of the type and count of accelerator cards attached to the instance."
+          }
+        },
+        "reservationAffinity": {
+          "target": "com.gcp.workstations_v1beta#ReservationAffinity",
+          "traits": {
+            "smithy.api#documentation": "Optional. [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) specifies a reservation that can be consumed to create VM instances. If SPECIFIC_RESERVATION is specified, Cloud Workstations will only create VMs in the zone where the reservation is located. This would affect availability since the service will no longer be resilient to zonal outages. If ANY_RESERVATION is specified, creating reservations in both zones that the config creates VMs in will ensure higher availability. **Important Considerations for Reservation Affinity:** * This feature is intended for advanced users and requires familiarity with Google Compute Engine reservations. * Using reservations incurs charges, regardless of utilization. * The resources in the pool will consume the specified reservation. Take this into account when setting the pool size."
+          }
+        },
+        "serviceAccountScopes": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Scopes to grant to the service_account. When specified, users of workstations under this configuration must have `iam.serviceAccounts.actAs` on the service account."
+          }
+        },
+        "enableNestedVirtualization": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series."
+          }
+        },
+        "vmTags": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as [resource manager tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview). Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`."
+          }
+        },
+        "pooledInstances": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of instances currently available in the pool for faster workstation startup."
+          }
+        },
+        "instanceMetadata": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Custom metadata to apply to Compute Engine instances."
+          }
+        },
+        "disableSsh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to disable SSH access to the VM."
+          }
+        },
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logging.logEntries.create` and `monitoring.timeSeries.create` permissions on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have [Artifact Registry Reader](https://cloud.google.com/artifact-registry/docs/access-control#roles) permission to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible."
+          }
+        },
+        "confidentialInstanceConfig": {
+          "target": "com.gcp.workstations_v1beta#GceConfidentialInstanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of Compute Engine Confidential VM instance options."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A runtime using a Compute Engine instance."
+      }
+    },
+    "com.gcp.workstations_v1beta#BoostConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#BoostConfig"
+      }
+    },
+    "com.gcp.workstations_v1beta#AcceleratorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#Accelerator"
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationConfig": {
+      "type": "structure",
+      "members": {
+        "readinessChecks": {
+          "target": "com.gcp.workstations_v1beta#ReadinessCheckList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Readiness checks to perform when starting a workstation using this workstation configuration. Mark a workstation as running only after all specified readiness checks return 200 status codes."
+          }
+        },
+        "conditions": {
+          "target": "com.gcp.workstations_v1beta#StatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Status conditions describing the workstation configuration's current state."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A system-assigned unique identifier for this workstation configuration."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "grantWorkstationAdminRoleOnCreate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Grant creator of a workstation `roles/workstations.policyAdmin` role along with `roles/workstations.user` role on the workstation created by them. This allows workstation users to share access to either their entire workstation, or individual ports. Defaults to false."
+          }
+        },
+        "idleTimeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `\"7200s\"` (2 hours). The default is `\"1200s\"` (20 minutes)."
+          }
+        },
+        "allowedPorts": {
+          "target": "com.gcp.workstations_v1beta#PortRangeList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of PortRanges specifying single ports or ranges of ports that are externally accessible in the workstation. Allowed ports must be one of 22, 80, or within range 1024-65535. If not specified defaults to ports 22, 80, and ports 1024-65535."
+          }
+        },
+        "enableAuditAgent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](https://cloud.google.com/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type=\"gce_instance\" log_name:\"/logs/linux-auditd\""
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Client-specified annotations."
+          }
+        },
+        "runningTimeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `\"54000s\"` (15 hours). Defaults to `\"43200s\"` (12 hours). A value of `\"0s\"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `\"0s\"` and less than `\"86400s\"` (24 hours). Warning: A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates."
+          }
+        },
+        "disableTcpConnections": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Disables support for plain TCP connections in the workstation. By default the service supports TCP connections through a websocket relay. Setting this option to true disables that relay, which prevents the usage of services that require plain TCP connections, such as SSH. When enabled, all communication must occur over HTTPS or WSS."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Full name of this workstation configuration."
+          }
+        },
+        "replicaZones": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. Specifies the zones used to replicate the VM and disk resources within the region. If set, exactly two zones within the workstation cluster's region must be specified—for example, `['us-central1-a', 'us-central1-f']`. If this field is empty, two default zones within the region are used. Immutable after the workstation configuration is created."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation configuration and that are also propagated to the underlying Compute Engine resources."
+          }
+        },
+        "persistentDirectories": {
+          "target": "com.gcp.workstations_v1beta#PersistentDirectoryList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Directories to persist across workstation sessions."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether this workstation configuration is currently being updated to match its intended state."
+          }
+        },
+        "container": {
+          "target": "com.gcp.workstations_v1beta#Container",
+          "traits": {
+            "smithy.api#documentation": "Optional. Container that runs upon startup for each workstation using this workstation configuration."
+          }
+        },
+        "encryptionKey": {
+          "target": "com.gcp.workstations_v1beta#CustomerEncryptionKey",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key (CMEK). If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk might be lost. If the encryption key is revoked, the workstation session automatically stops within 7 hours. Immutable after the workstation configuration is created."
+          }
+        },
+        "host": {
+          "target": "com.gcp.workstations_v1beta#Host",
+          "traits": {
+            "smithy.api#documentation": "Optional. Runtime host for the workstation."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Human-readable name for this workstation configuration."
+          }
+        },
+        "maxUsableWorkstations": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of workstations under this configuration a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified, defaults to `0`, which indicates unlimited."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation configuration was created."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation configuration was soft-deleted."
+          }
+        },
+        "degraded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether this workstation configuration is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the configuration."
+          }
+        },
+        "httpOptions": {
+          "target": "com.gcp.workstations_v1beta#HttpOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. HTTP options that customize the behavior of the workstation service's HTTP proxy."
+          }
+        },
+        "enablePushingCredentials": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Enables pushing user provided credentials to Workstations by calling workstations.pushCredentials. If application_default_credentials are supplied to pushCredentials, the provided token is returned when tools and applications running in the user container make a request for Default Application Credentials. Please note that any credentials supplied are made available to all users with access to the workstation."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation configuration was most recently updated."
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "ephemeralDirectories": {
+          "target": "com.gcp.workstations_v1beta#EphemeralDirectoryList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Ephemeral directories which won't persist across workstation sessions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A workstation configuration resource in the Cloud Workstations API. Workstation configurations act as templates for workstations. The workstation configuration defines details such as the workstation virtual machine (VM) instance type, persistent storage, container image defining environment, which IDE or Code Editor to use, and more. Administrators and platform teams can also use [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/overview) rules to grant access to teams or to individual developers."
+      }
+    },
+    "com.gcp.workstations_v1beta#ReadinessCheckList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#ReadinessCheck"
+      }
+    },
+    "com.gcp.workstations_v1beta#PortRangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#PortRange"
+      }
+    },
+    "com.gcp.workstations_v1beta#PersistentDirectoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#PersistentDirectory"
+      }
+    },
+    "com.gcp.workstations_v1beta#EphemeralDirectoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#EphemeralDirectory"
+      }
+    },
+    "com.gcp.workstations_v1beta#Container": {
+      "type": "structure",
+      "members": {
+        "command": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, overrides the default ENTRYPOINT specified by the image."
+          }
+        },
+        "workingDir": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, overrides the default DIR specified by the image."
+          }
+        },
+        "env": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Environment variables passed to the container's entrypoint."
+          }
+        },
+        "runAsUser": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, overrides the USER specified in the image with the given uid."
+          }
+        },
+        "args": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Arguments passed to the entrypoint."
+          }
+        },
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A Docker container image that defines a custom environment. Cloud Workstations provides a number of [preconfigured images](https://cloud.google.com/workstations/docs/preconfigured-base-images), but you can create your own [custom container images](https://cloud.google.com/workstations/docs/custom-container-images). If using a private image, the `host.gceInstance.serviceAccount` field must be specified in the workstation configuration. If using a custom container image, the service account must have [Artifact Registry Reader](https://cloud.google.com/artifact-registry/docs/access-control#roles) permission to pull the specified image. Otherwise, the image must be publicly accessible."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Docker container."
+      }
+    },
+    "com.gcp.workstations_v1beta#ReadinessCheck": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Path to which the request should be sent."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Port to which the request should be sent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A readiness check to be performed on a workstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#OAuthToken": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The email address encapsulated in the OAuth token."
+          }
+        },
+        "scopes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The scopes encapsulated in the OAuth token. See https://developers.google.com/identity/protocols/oauth2/scopes for more information."
+          }
+        },
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The OAuth token."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time the OAuth access token will expire. This should be the time the access token was generated plus the expires_in offset returned from the Access Token Response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OAuth token."
+      }
+    },
+    "com.gcp.workstations_v1beta#Policy": {
+      "type": "structure",
+      "members": {
+        "auditConfigs": {
+          "target": "com.gcp.workstations_v1beta#AuditConfigList",
+          "traits": {
+            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "bindings": {
+          "target": "com.gcp.workstations_v1beta#BindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+      }
+    },
+    "com.gcp.workstations_v1beta#AuditConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#AuditConfig"
+      }
+    },
+    "com.gcp.workstations_v1beta#BindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#Binding"
+      }
+    },
+    "com.gcp.workstations_v1beta#Host": {
+      "type": "structure",
+      "members": {
+        "gceInstance": {
+          "target": "com.gcp.workstations_v1beta#GceInstance",
+          "traits": {
+            "smithy.api#documentation": "Specifies a Compute Engine instance as the host."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Runtime host for a workstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceConfidentialInstanceConfig": {
+      "type": "structure",
+      "members": {
+        "enableConfidentialCompute": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the instance has confidential compute enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of Compute Engine Confidential VM instance options."
+      }
+    },
+    "com.gcp.workstations_v1beta#Operation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.workstations_v1beta#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "response": {
+          "target": "com.gcp.workstations_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.workstations_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.workstations_v1beta#PortRange": {
+      "type": "structure",
+      "members": {
+        "first": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Starting port number for the current range of ports. Valid ports are 22, 80, and ports within the range 1024-65535."
+          }
+        },
+        "last": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Ending port number for the current range of ports. Valid ports are 22, 80, and ports within the range 1024-65535."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same."
+      }
+    },
+    "com.gcp.workstations_v1beta#PushCredentialsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationDefaultCredentials": {
+          "target": "com.gcp.workstations_v1beta#OAuthToken",
+          "traits": {
+            "smithy.api#documentation": "Optional. Credentials used by Cloud Client Libraries, Google API Client Libraries, and other tooling within the user conainer: https://cloud.google.com/docs/authentication/application-default-credentials"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for PushCredentials."
+      }
+    },
+    "com.gcp.workstations_v1beta#PrivateClusterConfig": {
+      "type": "structure",
+      "members": {
+        "serviceAttachmentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Service attachment URI for the workstation cluster. The service attachment is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services)."
+          }
+        },
+        "allowedProjects": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed."
+          }
+        },
+        "enablePrivateEndpoint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Whether Workstations endpoint is private."
+          }
+        },
+        "clusterHostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options for private workstation clusters."
+      }
+    },
+    "com.gcp.workstations_v1beta#GenerateAccessTokenRequest": {
+      "type": "structure",
+      "members": {
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Port for which the access token should be generated. If specified, the generated access token grants access only to the specified port of the workstation. If specified, values must be within the range [1 - 65535]. If not specified, the generated access token grants access to all ports of the workstation."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Desired expiration time of the access token. This value must be at most 24 hours in the future. If a value is not specified, the token's expiration time will be set to a default value of 1 hour in the future."
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Desired lifetime duration of the access token. This value must be at most 24 hours. If a value is not specified, the token's lifetime will be set to a default value of 1 hour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for GenerateAccessToken."
+      }
+    },
+    "com.gcp.workstations_v1beta#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListWorkstationsResponse": {
+      "type": "structure",
+      "members": {
+        "workstations": {
+          "target": "com.gcp.workstations_v1beta#WorkstationList",
+          "traits": {
+            "smithy.api#documentation": "The requested workstations."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Unreachable resources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListWorkstations."
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#Workstation"
+      }
+    },
+    "com.gcp.workstations_v1beta#HttpOptions": {
+      "type": "structure",
+      "members": {
+        "allowedUnauthenticatedCorsPreflightRequests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. By default, the workstations service makes sure that all requests to the workstation are authenticated. CORS preflight requests do not include cookies or custom headers, and so are considered unauthenticated and blocked by the workstations service. Enabling this option allows these unauthenticated CORS preflight requests through to the workstation, where it becomes the responsibility of the destination server in the workstation to validate the request."
+          }
+        },
+        "disableLocalhostReplacement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. By default, the workstations service replaces references to localhost, 127.0.0.1, and 0.0.0.0 with the workstation's hostname in http responses from the workstation so that applications under development run properly on the workstation. This may intefere with some applications, and so this option allows that behavior to be disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "HTTP options for the running workstations."
+      }
+    },
+    "com.gcp.workstations_v1beta#Workstation": {
+      "type": "structure",
+      "members": {
+        "boostConfigs": {
+          "target": "com.gcp.workstations_v1beta#WorkstationBoostConfigList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of available boost configuration IDs that this workstation can be boosted up to."
+          }
+        },
+        "sourceWorkstation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The source workstation from which this workstation's persistent directories were cloned on creation."
+          }
+        },
+        "runtimeHost": {
+          "target": "com.gcp.workstations_v1beta#RuntimeHost",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. Runtime host for the workstation when in STATE_RUNNING."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Human-readable name for this workstation."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Host to which clients can send HTTPS traffic that will be received by the workstation. Authorized traffic will be received to the workstation as HTTP on port 80. To send traffic to a different port, clients may prefix the host with the destination port in the format `{port}-{host}`."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A system-assigned unique identifier for this workstation."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether this workstation is currently being updated to match its intended state."
+          }
+        },
+        "env": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Environment variables passed to the workstation container's entrypoint."
+          }
+        },
+        "conditions": {
+          "target": "com.gcp.workstations_v1beta#StatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Status conditions describing the workstation's current state."
+          }
+        },
+        "persistentDirectories": {
+          "target": "com.gcp.workstations_v1beta#WorkstationPersistentDirectoryList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Directories to persist across workstation sessions."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation and that are also propagated to the underlying Compute Engine resources."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Full name of this workstation."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.workstations_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Client-specified annotations."
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the Google Cloud KMS encryption key used to encrypt this workstation. The KMS key can only be configured in the WorkstationConfig. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`."
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation was most recently updated."
+          }
+        },
+        "degraded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether this workstation is in degraded mode, in which case it may require user action to restore full functionality. The conditions field contains detailed information about the status of the workstation."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation was created."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation was soft-deleted."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state."
+          }
+        },
+        "state": {
+          "target": "com.gcp.workstations_v1beta#WorkstationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state of the workstation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single instance of a developer workstation with its own persistent storage."
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationBoostConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#WorkstationBoostConfig"
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationPersistentDirectoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#WorkstationPersistentDirectory"
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STATE_STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_STARTING"
+          }
+        },
+        "STATE_RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_RUNNING"
+          }
+        },
+        "STATE_STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_STOPPING"
+          }
+        },
+        "STATE_STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_STOPPED"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListWorkstationClustersResponse": {
+      "type": "structure",
+      "members": {
+        "workstationClusters": {
+          "target": "com.gcp.workstations_v1beta#WorkstationClusterList",
+          "traits": {
+            "smithy.api#documentation": "The requested workstation clusters."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unreachable resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListWorkstationClusters."
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationClusterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#WorkstationCluster"
+      }
+    },
+    "com.gcp.workstations_v1beta#StartWorkstationRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it."
+          }
+        },
+        "boostConfig": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, the workstation starts using the boost configuration with the specified ID."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for StartWorkstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceInstanceHost": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. The name of the Compute Engine instance."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. The ID of the Compute Engine instance."
+          }
+        },
+        "zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output only. The zone of the Compute Engine instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Compute Engine instance host."
+      }
+    },
+    "com.gcp.workstations_v1beta#Binding": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+          }
+        },
+        "condition": {
+          "target": "com.gcp.workstations_v1beta#Expr",
+          "traits": {
+            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "members": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
+      }
+    },
+    "com.gcp.workstations_v1beta#GatewayConfig": {
+      "type": "structure",
+      "members": {
+        "http2Enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether HTTP/2 is enabled for this workstation cluster. Defaults to false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options for Cluster HTTP Gateway."
+      }
+    },
+    "com.gcp.workstations_v1beta#PersistentDirectory": {
+      "type": "structure",
+      "members": {
+        "gceHd": {
+          "target": "com.gcp.workstations_v1beta#GceHyperdiskBalancedHighAvailability",
+          "traits": {
+            "smithy.api#documentation": "A PersistentDirectory backed by a Compute Engine hyperdisk high availability disk."
+          }
+        },
+        "gcePd": {
+          "target": "com.gcp.workstations_v1beta#GceRegionalPersistentDisk",
+          "traits": {
+            "smithy.api#documentation": "A PersistentDirectory backed by a Compute Engine persistent disk."
+          }
+        },
+        "mountPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Location of this directory in the running workstation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A directory to persist across workstation sessions. Updates to this field will not update existing workstations and will only take effect on new workstations."
+      }
+    },
+    "com.gcp.workstations_v1beta#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationPersistentDirectory": {
+      "type": "structure",
+      "members": {
+        "mountPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The mount path of the persistent directory."
+          }
+        },
+        "sizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Size of the persistent directory in GB. If specified in an update request, this is the desired size of the directory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted."
+      }
+    },
+    "com.gcp.workstations_v1beta#GcePersistentDisk": {
+      "type": "structure",
+      "members": {
+        "sourceSnapshot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Must be empty if read_only is false. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. Only file systems supported by Container-Optimized OS (COS) are explicitly supported. For a list of supported file systems, see [the filesystems available in Container-Optimized OS](https://cloud.google.com/container-optimized-os/docs/concepts/supported-filesystems). This field is mutable."
+          }
+        },
+        "diskType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Type of the disk to use. Defaults to `\"pd-standard\"`."
+          }
+        },
+        "sourceImage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the disk image to use as the source for the disk. Must be empty if source_snapshot is set. Updating source_image will update content in the ephemeral directory after the workstation is restarted. Only file systems supported by Container-Optimized OS (COS) are explicitly supported. For a list of supported file systems, please refer to the [COS documentation](https://cloud.google.com/container-optimized-os/docs/concepts/supported-filesystems). This field is mutable."
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the disk is read only. If true, the disk may be shared by multiple VMs and source_snapshot must be set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An EphemeralDirectory is backed by a Compute Engine persistent disk."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceRegionalPersistentDisk": {
+      "type": "structure",
+      "members": {
+        "maxSizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set."
+          }
+        },
+        "sizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The GB capacity of a persistent home directory for each workstation created with this configuration. Must be empty if source_snapshot is set. Valid values are `10`, `50`, `100`, `200`, `500`, or `1000`. Defaults to `200`. If less than `200` GB, the disk_type must be `\"pd-balanced\"` or `\"pd-ssd\"`."
+          }
+        },
+        "diskType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [type of the persistent disk](https://cloud.google.com/compute/docs/disks#disk-types) for the home directory. Defaults to `\"pd-standard\"`."
+          }
+        },
+        "sourceSnapshot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the snapshot to use as the source for the disk. If set, size_gb and fs_type must be empty. Must be formatted as ext4 file system with no partitions."
+          }
+        },
+        "fsType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `\"ext4\"`."
+          }
+        },
+        "reclaimPolicy": {
+          "target": "com.gcp.workstations_v1beta#GceRegionalPersistentDiskReclaimPolicyEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`."
+          }
+        },
+        "archiveTimeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of seconds to wait after initially creating or subsequently shutting down the workstation before converting its disk into a snapshot. This generally saves costs at the expense of greater startup time on next workstation start, as the service will need to create a disk from the archival snapshot. A value of `\"0s\"` indicates that the disk will never be archived."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Persistent Directory backed by a Compute Engine regional persistent disk. The persistent_directories field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceRegionalPersistentDiskReclaimPolicyEnum": {
+      "type": "enum",
+      "members": {
+        "RECLAIM_POLICY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECLAIM_POLICY_UNSPECIFIED"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "RETAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETAIN"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListUsableWorkstationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unreachable resources."
+          }
+        },
+        "workstations": {
+          "target": "com.gcp.workstations_v1beta#WorkstationList",
+          "traits": {
+            "smithy.api#documentation": "The requested workstations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListUsableWorkstations."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceShieldedInstanceConfig": {
+      "type": "structure",
+      "members": {
+        "enableIntegrityMonitoring": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the instance has integrity monitoring enabled."
+          }
+        },
+        "enableVtpm": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the instance has the vTPM enabled."
+          }
+        },
+        "enableSecureBoot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the instance has Secure Boot enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of Compute Engine Shielded instance options."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.workstations_v1beta#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.workstations_v1beta#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      }
+    },
+    "com.gcp.workstations_v1beta#BoostConfig": {
+      "type": "structure",
+      "members": {
+        "accelerators": {
+          "target": "com.gcp.workstations_v1beta#AcceleratorList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of the type and count of accelerator cards attached to the boost instance. Defaults to `none`."
+          }
+        },
+        "enableNestedVirtualization": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series."
+          }
+        },
+        "poolSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of boost VMs that the system should keep idle so that workstations can be boosted quickly. Defaults to `0`."
+          }
+        },
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of machine that boosted VM instances will use—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types). Defaults to `e2-standard-4`."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to be used for the boost configuration."
+          }
+        },
+        "bootDiskSizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB."
+          }
+        },
+        "reservationAffinity": {
+          "target": "com.gcp.workstations_v1beta#ReservationAffinity",
+          "traits": {
+            "smithy.api#documentation": "Optional. [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) specifies a reservation that can be consumed to create boost VM instances. If SPECIFIC_RESERVATION is specified, Cloud Workstations will only create VMs in the zone where the reservation is located. This would affect availability since the service will no longer be resilient to zonal outages. If ANY_RESERVATION is specified, creating reservations in both zones that the config creates VMs in will ensure higher availability. **Important Considerations for Reservation Affinity:** * This feature is intended for advanced users and requires familiarity with Google Compute Engine reservations. * Using reservations incurs charges, regardless of utilization. * The resources in the pool will consume the specified reservation. Take this into account when setting the pool size."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A boost configuration is a set of resources that a workstation can use to increase its performance. If you specify a boost configuration, upon startup, workstation users can choose to use a VM provisioned under the boost config by passing the boost config ID in the start request. If the workstation user does not provide a boost config ID in the start request, the system will choose a VM from the pool provisioned under the default config."
+      }
+    },
+    "com.gcp.workstations_v1beta#GenerateAccessTokenResponse": {
+      "type": "structure",
+      "members": {
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generated bearer access token. To use this token, include it in an Authorization header of an HTTP request sent to the associated workstation's hostname—for example, `Authorization: Bearer `."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which the generated token will expire."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for GenerateAccessToken."
+      }
+    },
+    "com.gcp.workstations_v1beta#WorkstationBoostConfig": {
+      "type": "structure",
+      "members": {
+        "running": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether or not the current workstation is actively boosted with this id."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Boost configuration ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Boost configuration for this workstation. This object is populated from the parent workstation configuration."
+      }
+    },
+    "com.gcp.workstations_v1beta#TestIamPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.workstations_v1beta#CustomerEncryptionKey": {
+      "type": "structure",
+      "members": {
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The name of the Google Cloud KMS encryption key. For example, `\"projects/PROJECT_ID/locations/REGION/keyRings/KEY_RING/cryptoKeys/KEY_NAME\"`. The key must be in the same region as the workstation configuration."
+          }
+        },
+        "kmsKeyServiceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The service account to use with the specified KMS key. We recommend that you use a separate service account and follow KMS best practices. For more information, see [Separation of duties](https://cloud.google.com/kms/docs/separation-of-duties) and `gcloud kms keys add-iam-policy-binding` [`--member`](https://cloud.google.com/sdk/gcloud/reference/kms/keys/add-iam-policy-binding#--member)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A customer-managed encryption key (CMEK) for the Compute Engine resources of the associated workstation configuration. Specify the name of your Cloud KMS encryption key and the default service account. We recommend that you use a separate service account and follow [Cloud KMS best practices](https://cloud.google.com/kms/docs/separation-of-duties)."
+      }
+    },
+    "com.gcp.workstations_v1beta#Expr": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceHyperdiskBalancedHighAvailability": {
+      "type": "structure",
+      "members": {
+        "sizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The GB capacity of a persistent home directory for each workstation created with this configuration. Must be empty if source_snapshot is set. Valid values are `10`, `50`, `100`, `200`, `500`, or `1000`. Defaults to `200`."
+          }
+        },
+        "maxSizeGb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set."
+          }
+        },
+        "sourceSnapshot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the snapshot to use as the source for the disk. If set, size_gb must be empty. Must be formatted as ext4 file system with no partitions."
+          }
+        },
+        "reclaimPolicy": {
+          "target": "com.gcp.workstations_v1beta#GceHyperdiskBalancedHighAvailabilityReclaimPolicyEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`."
+          }
+        },
+        "archiveTimeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of seconds to wait after initially creating or subsequently shutting down the workstation before converting its disk into a snapshot. This generally saves costs at the expense of greater startup time on next workstation start, as the service will need to create a disk from the archival snapshot. A value of `\"0s\"` indicates that the disk will never be archived."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Persistent Directory backed by a Compute Engine [Hyperdisk Balanced High Availability Disk](https://cloud.google.com/compute/docs/disks/hd-types/hyperdisk-balanced-ha). This is a high-availability block storage solution that offers a balance between performance and cost for most general-purpose workloads."
+      }
+    },
+    "com.gcp.workstations_v1beta#GceHyperdiskBalancedHighAvailabilityReclaimPolicyEnum": {
+      "type": "enum",
+      "members": {
+        "RECLAIM_POLICY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECLAIM_POLICY_UNSPECIFIED"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "RETAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETAIN"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListUsableWorkstationConfigsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unreachable resources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "workstationConfigs": {
+          "target": "com.gcp.workstations_v1beta#WorkstationConfigList",
+          "traits": {
+            "smithy.api#documentation": "The requested configs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListUsableWorkstationConfigs."
+      }
+    },
+    "com.gcp.workstations_v1beta#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time that the operation was created."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time that the operation finished running."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for long-running operations."
+      }
+    },
+    "com.gcp.workstations_v1beta#AuditLogConfig": {
+      "type": "structure",
+      "members": {
+        "exemptedMembers": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+          }
+        },
+        "logType": {
+          "target": "com.gcp.workstations_v1beta#AuditLogConfigLogTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The log type that this config enables."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+      }
+    },
+    "com.gcp.workstations_v1beta#AuditLogConfigLogTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LOG_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOG_TYPE_UNSPECIFIED"
+          }
+        },
+        "ADMIN_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN_READ"
+          }
+        },
+        "DATA_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_WRITE"
+          }
+        },
+        "DATA_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_READ"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#EphemeralDirectory": {
+      "type": "structure",
+      "members": {
+        "gcePd": {
+          "target": "com.gcp.workstations_v1beta#GcePersistentDisk",
+          "traits": {
+            "smithy.api#documentation": "An EphemeralDirectory backed by a Compute Engine persistent disk."
+          }
+        },
+        "mountPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Location of this directory in the running workstation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An ephemeral directory which won't persist across workstation sessions. It is freshly created on every workstation start operation."
+      }
+    },
+    "com.gcp.workstations_v1beta#DomainConfig": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Domain used by Workstations for HTTP ingress."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration options for a custom domain."
+      }
+    },
+    "com.gcp.workstations_v1beta#TestIamPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.workstations_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.workstations_v1beta#SetIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policy": {
+          "target": "com.gcp.workstations_v1beta#Policy",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.workstations_v1beta#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.workstations_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.workstations_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.workstations_v1beta#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the requested resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClusters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#WorkstationCluster"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Returns the requested workstation cluster."
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, any workstation configurations and workstations in the workstation cluster are also deleted. Otherwise, the request only works if the workstation cluster has no configurations or workstations.",
+            "smithy.api#httpQuery": "force"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation cluster to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, the request will be rejected if the latest version of the workstation cluster on the server does not have this ETag.",
+            "smithy.api#httpQuery": "etag"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClusters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified workstation cluster."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter the WorkstationClusters to be listed. Possible filters are described in https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClusters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#ListWorkstationClustersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/workstationClusters"
+        },
+        "smithy.api#documentation": "Returns all workstation clusters in the specified location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "workstationClusterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID to use for the workstation cluster.",
+            "smithy.api#httpQuery": "workstationClusterId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#WorkstationCluster",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClusters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/workstationClusters"
+        },
+        "smithy.api#documentation": "Creates a new workstation cluster."
+      }
+    },
+    "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Mask that specifies which fields in the workstation cluster should be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Full name of this workstation cluster.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, and the workstation cluster is not found, a new workstation cluster will be created. In this situation, update_mask is ignored.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#WorkstationCluster",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClusters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing workstation cluster."
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation configuration to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, any workstations in the workstation configuration are also deleted. Otherwise, the request works only if the workstation configuration has no workstations.",
+            "smithy.api#httpQuery": "force"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, the request is rejected if the latest version of the workstation configuration on the server does not have this ETag.",
+            "smithy.api#httpQuery": "etag"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified workstation configuration."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListUsableProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListUsableProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#ListUsableProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#ListUsableWorkstationConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/workstationConfigs:listUsable"
+        },
+        "smithy.api#documentation": "Returns all workstation configurations in the specified cluster on which the caller has the \"workstations.workstation.create\" permission.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Full name of this workstation configuration.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set and the workstation configuration is not found, a new workstation configuration will be created. In this situation, update_mask is ignored.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Mask specifying which fields in the workstation configuration should be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#WorkstationConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing workstation configuration."
+      }
+    },
+    "com.gcp.workstations_v1beta#SetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#SetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#SetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+      }
+    },
+    "com.gcp.workstations_v1beta#GetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the requested resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#WorkstationConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Returns the requested workstation configuration."
+      }
+    },
+    "com.gcp.workstations_v1beta#TestIamPermissionsProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#TestIamPermissionsProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#TestIamPermissionsProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "workstationConfigId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID to use for the workstation configuration.",
+            "smithy.api#httpQuery": "workstationConfigId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#WorkstationConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/workstationConfigs"
+        },
+        "smithy.api#documentation": "Creates a new workstation configuration."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersWorkstationConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter the WorkstationConfigs to be listed. Possible filters are described in https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersWorkstationConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersWorkstationConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#ListWorkstationConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/workstationConfigs"
+        },
+        "smithy.api#documentation": "Returns all workstation configurations in the specified cluster.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PushCredentialsProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "workstation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation for which the credentials should be pushed.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#PushCredentialsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PushCredentialsProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#PushCredentialsProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+workstation}:pushCredentials"
+        },
+        "smithy.api#documentation": "Pushes credentials to a running workstation on behalf of a user. Once complete, supported credential types (application_default_credentials) are made available to processes running in the user container."
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the requested resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GetProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Workstation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Returns the requested workstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#StartProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation to start.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#StartWorkstationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#StartProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#StartProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:start"
+        },
+        "smithy.api#documentation": "Starts running a workstation so that users can connect to it."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter the Workstations to be listed. Possible filters are described in https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#ListProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#ListWorkstationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/workstations"
+        },
+        "smithy.api#documentation": "Returns all Workstations using the specified workstation configuration.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#StopProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation to stop.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#StopWorkstationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#StopProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#StopProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:stop"
+        },
+        "smithy.api#documentation": "Stops running a workstation, reducing costs."
+      }
+    },
+    "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "workstationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID to use for the workstation.",
+            "smithy.api#httpQuery": "workstationId"
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#Workstation",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#CreateProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/workstations"
+        },
+        "smithy.api#documentation": "Creates a new workstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#GenerateAccessTokenProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "workstation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation for which the access token should be generated.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#GenerateAccessTokenRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GenerateAccessTokenProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GenerateAccessTokenProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#GenerateAccessTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+workstation}:generateAccessToken"
+        },
+        "smithy.api#documentation": "Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation. Once generated this token cannot be revoked and is good for the lifetime of the token."
+      }
+    },
+    "com.gcp.workstations_v1beta#TestIamPermissionsProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#TestIamPermissionsProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#TestIamPermissionsProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.workstations_v1beta#GetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#GetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#GetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.workstations_v1beta#SetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#SetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#SetIamPolicyProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+      }
+    },
+    "com.gcp.workstations_v1beta#ListUsableProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#ListUsableProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#ListUsableProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#ListUsableWorkstationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/workstations:listUsable"
+        },
+        "smithy.api#documentation": "Returns all workstations using the specified workstation configuration on which the caller has the \"workstations.workstations.use\" permission.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Mask specifying which fields in the workstation should be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Full name of this workstation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set and the workstation is not found, a new workstation is created. In this situation, update_mask is ignored.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        },
+        "body": {
+          "target": "com.gcp.workstations_v1beta#Workstation",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#PatchProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing workstation."
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the workstation to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        }
+      }
+    },
+    "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersWorkstationConfigsWorkstations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.workstations_v1beta#DeleteProjectsLocationsWorkstationClustersWorkstationConfigsWorkstationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.workstations_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.workstations_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.workstations_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified workstation."
+      }
+    }
+  }
+}

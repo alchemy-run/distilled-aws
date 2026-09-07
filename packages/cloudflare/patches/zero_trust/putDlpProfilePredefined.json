@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpProfilesPredefinedUpdate with distilled cloudflare/zero-trust putDlpProfilePredefined",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpProfilesPredefinedUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PutDlpProfilePredefined"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpProfilesPredefinedUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutDlpProfilePredefinedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutDlpProfilePredefined/input/target",
+      "value": "com.cloudflare.zero_trust#PutDlpProfilePredefinedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpProfilesPredefinedUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutDlpProfilePredefinedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutDlpProfilePredefined/output/target",
+      "value": "com.cloudflare.zero_trust#PutDlpProfilePredefinedResponse"
+    }
+  ]
+}

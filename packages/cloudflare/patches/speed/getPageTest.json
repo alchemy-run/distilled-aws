@@ -1,0 +1,30 @@
+{
+  "description": "Align speed#PagesTestsGet with distilled cloudflare/speed getPageTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsGet",
+      "path": "/shapes/com.cloudflare.speed#GetPageTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsGetRequest",
+      "path": "/shapes/com.cloudflare.speed#GetPageTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#GetPageTest/input/target",
+      "value": "com.cloudflare.speed#GetPageTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsGetResponse",
+      "path": "/shapes/com.cloudflare.speed#GetPageTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#GetPageTest/output/target",
+      "value": "com.cloudflare.speed#GetPageTestResponse"
+    }
+  ]
+}

@@ -1,0 +1,990 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.powerbiembedded#WorkspaceCollectionsMigrate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsMigrateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/moveResources",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Migrates an existing Power BI Workspace Collection to a different resource group and/or subscription.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsMigrateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "targetResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource group the Power BI workspace collections will be migrated to."
+          }
+        },
+        "resources": {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsMigrateRequestResourcesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsMigrateRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspacesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspacesListRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}/workspaces",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Retrieves all existing Power BI workspaces in the specified workspace collection.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbiembedded#WorkspaceListValueList"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiembedded#Workspace"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#Workspace": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workspace id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workspace name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Property bag"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspacesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#GetAvailableOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.PowerBI/operations",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Indicates which operations can be performed by the Power BI Resource Provider.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbiembedded#OperationListValueList"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiembedded#Operation"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation being performed on this particular object. This name should match the action name that appears in RBAC / the event service."
+          }
+        },
+        "display": {
+          "target": "com.azure.powerbiembedded#Display"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#Display": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name. This form is also expected to include the publisher/company responsible. Use Title Casing. Begin with \"Microsoft\" for 1st party services."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource type related to this action/operation. This form should match the public documentation for the resource provider. Use Title Casing. For examples, refer to the \"name\" section."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name for the operation as shown to the user. This name should be concise (to fit in drop downs), but clear (self-documenting). Use Title Casing and include the entity/resource to which it applies."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly description for the operation as shown to the user. This description should be thorough, yet concise. It will be used in tool-tips and detailed views."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; governs the display of the operation in the RBAC UX and the audit logs UX. Default value is 'user,system'"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsRegenerateKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsRegenerateKeyRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionAccessKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}/regenerateKey",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Regenerates the primary or secondary access key for the specified Power BI Workspace Collection.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionAccessKeys": {
+      "type": "structure",
+      "members": {
+        "key1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access key 1"
+          }
+        },
+        "key2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access key 2"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsRegenerateKeyRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        },
+        "keyName": {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsRegenerateKeyRequestKeyName",
+          "traits": {
+            "smithy.api#documentation": "Key name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsRegenerateKeyRequestKeyName": {
+      "type": "enum",
+      "members": {
+        "KEY1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "key1"
+          }
+        },
+        "KEY2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "key2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key name"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsGetAccessKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsGetAccessKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionAccessKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}/listKeys",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Retrieves the primary and secondary access keys for the specified Power BI Workspace Collection.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsGetAccessKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBI/workspaceCollections",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Retrieves all existing Power BI workspace collections in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionListValueList"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollection"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workspace collection name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionTagsMap"
+        },
+        "sku": {
+          "target": "com.azure.powerbiembedded#AzureSku"
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#AzureSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.powerbiembedded#AzureSkuName",
+          "traits": {
+            "smithy.api#documentation": "SKU name",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.powerbiembedded#AzureSkuTier",
+          "traits": {
+            "smithy.api#documentation": "SKU tier",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#AzureSkuTier": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU tier"
+      }
+    },
+    "com.azure.powerbiembedded#AzureSkuName": {
+      "type": "enum",
+      "members": {
+        "S1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU name"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Retrieves all existing Power BI workspace collections in the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#CheckNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBI/locations/{location}/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Verify the specified Power BI Workspace Collection name is valid and not already in use.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#CheckNameResponse": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies a Boolean value that indicates whether the specified Power BI Workspace Collection name is available to use."
+          }
+        },
+        "reason": {
+          "target": "com.azure.powerbiembedded#CheckNameResponseReason",
+          "traits": {
+            "smithy.api#documentation": "Reason why the workspace collection name cannot be used."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message indicating an unavailable name due to a conflict, or a description of the naming rules that are violated."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#CheckNameResponseReason": {
+      "type": "enum",
+      "members": {
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unavailable"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reason why the workspace collection name cannot be used."
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure location"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workspace collection name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Delete a Power BI Workspace Collection.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Update an existing Power BI Workspace Collection with the specified properties.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsUpdateRequestTagsMap"
+        },
+        "sku": {
+          "target": "com.azure.powerbiembedded#AzureSku"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Creates a new Power BI Workspace Collection with the specified properties. A Power BI Workspace Collection contains one or more workspaces, and can be used to provision keys that provide API access to those workspaces.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsCreateRequestTagsMap"
+        },
+        "sku": {
+          "target": "com.azure.powerbiembedded#AzureSku"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsGetByName": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollectionsGetByNameRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiembedded#WorkspaceCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-01-29"
+        },
+        "smithy.api#documentation": "Retrieves an existing Power BI Workspace Collection.",
+        "com.distilled.openapi#apiVersion": "2016-01-29"
+      }
+    },
+    "com.azure.powerbiembedded#WorkspaceCollectionsGetByNameRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Azure resource group"
+          }
+        },
+        "workspaceCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Power BI Embedded Workspace Collection name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiembedded#Powerbiembedded": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsMigrate"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspacesList"
+        },
+        {
+          "target": "com.azure.powerbiembedded#GetAvailableOperations"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsRegenerateKey"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsGetAccessKeys"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsListBySubscription"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsDelete"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsUpdate"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsCreate"
+        },
+        {
+          "target": "com.azure.powerbiembedded#WorkspaceCollectionsGetByName"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Powerbiembedded",
+        "smithy.api#documentation": "Azure Powerbiembedded API — merged from the powerbiembedded resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#GatewayListsDelete with distilled cloudflare/zero-trust deleteGatewayList",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayList"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayListRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayList/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayListRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayListsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayListResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayList/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayListResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#GatewayListNotFound"
+        }
+      ]
+    }
+  ]
+}

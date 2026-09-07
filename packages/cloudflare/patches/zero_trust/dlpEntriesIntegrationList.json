@@ -1,0 +1,13 @@
+{
+  "description": "Align zero_trust#DlpEntriesIntegrationList with distilled cloudflare/zero-trust listDlpEntries (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpEntriesIntegrationList/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

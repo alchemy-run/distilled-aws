@@ -1,0 +1,38 @@
+{
+  "description": "Align zaraz#HistoryList with distilled cloudflare/zaraz listHistories",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryList",
+      "path": "/shapes/com.cloudflare.zaraz#ListHistories"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryListRequest",
+      "path": "/shapes/com.cloudflare.zaraz#ListHistoriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#ListHistories/input/target",
+      "value": "com.cloudflare.zaraz#ListHistoriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryListResponse",
+      "path": "/shapes/com.cloudflare.zaraz#ListHistoriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#ListHistories/output/target",
+      "value": "com.cloudflare.zaraz#ListHistoriesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zaraz#ListHistories/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align dns#RecordsScanList with distilled cloudflare/dns scanListRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanList",
+      "path": "/shapes/com.cloudflare.dns#ScanListRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanListRequest",
+      "path": "/shapes/com.cloudflare.dns#ScanListRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ScanListRecord/input/target",
+      "value": "com.cloudflare.dns#ScanListRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanListResponse",
+      "path": "/shapes/com.cloudflare.dns#ScanListRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ScanListRecord/output/target",
+      "value": "com.cloudflare.dns#ScanListRecordResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#ScanListRecord/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

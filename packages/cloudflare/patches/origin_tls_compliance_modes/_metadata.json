@@ -1,0 +1,12 @@
+{
+  "description": "Key dictionary / op aliases for origin_tls_compliance_modes (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "modifiedOn": "modified_on"
+      }
+    }
+  ]
+}

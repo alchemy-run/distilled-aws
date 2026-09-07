@@ -1,0 +1,873 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.reminders#RemindersListRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reminders#PaginatedReminderList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.reminders#PaginatedReminderListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#Reminder": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization this reminder belongs to. You must be a member of it.",
+            "smithy.api#required": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional ID of the project this reminder is scoped to. Required when targeting a specific resource. Must belong to the chosen organization.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short text shown as the notification title when the reminder fires.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional longer body for the notification."
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional PostHog resource this reminder is about. One of: dashboard, insight, experiment, feature_flag, survey, notebook, replay, error_tracking. Resources are project-scoped, so a team must be set when this is provided.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the referenced resource; must exist in the chosen project.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a one-off reminder: when it should fire (ISO 8601, future).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recurrence_interval": {
+          "target": "com.posthog.reminders#ReminderRecurrenceInterval",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional: recurring reminders stop (status=completed) after this time.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_fire_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_fired_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.reminders#ReminderStatusEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.reminders#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#RecurrenceIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "daily"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        },
+        "YEARLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yearly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+      }
+    },
+    "com.posthog.reminders#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#ReminderRecurrenceInterval": {
+      "type": "union",
+      "members": {
+        "RecurrenceIntervalEnum": {
+          "target": "com.posthog.reminders#RecurrenceIntervalEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.reminders#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+      }
+    },
+    "com.posthog.reminders#ReminderStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "ERRORED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "errored"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `active` - Active\n* `completed` - Completed\n* `errored` - Errored"
+      }
+    },
+    "com.posthog.reminders#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.reminders#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.reminders#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.reminders#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.reminders#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.reminders#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#PaginatedReminderListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.reminders#Reminder"
+      },
+      "traits": {}
+    },
+    "com.posthog.reminders#RemindersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reminders#RemindersListRequest"
+      },
+      "output": {
+        "target": "com.posthog.reminders#PaginatedReminderList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/reminders/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.reminders#RemindersCreateRequestRecurrenceInterval": {
+      "type": "union",
+      "members": {
+        "RecurrenceIntervalEnum": {
+          "target": "com.posthog.reminders#RecurrenceIntervalEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.reminders#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+      }
+    },
+    "com.posthog.reminders#RemindersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization this reminder belongs to. You must be a member of it.",
+            "smithy.api#required": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional ID of the project this reminder is scoped to. Required when targeting a specific resource. Must belong to the chosen organization.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short text shown as the notification title when the reminder fires.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional longer body for the notification."
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional PostHog resource this reminder is about. One of: dashboard, insight, experiment, feature_flag, survey, notebook, replay, error_tracking. Resources are project-scoped, so a team must be set when this is provided.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the referenced resource; must exist in the chosen project.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a one-off reminder: when it should fire (ISO 8601, future).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recurrence_interval": {
+          "target": "com.posthog.reminders#RemindersCreateRequestRecurrenceInterval",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional: recurring reminders stop (status=completed) after this time.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reminders#RemindersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reminders#RemindersCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.reminders#Reminder"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/reminders/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.reminders#RemindersRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this reminder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reminders#RemindersRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reminders#RemindersRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.reminders#Reminder"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/reminders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.reminders#RemindersUpdateRequestRecurrenceInterval": {
+      "type": "union",
+      "members": {
+        "RecurrenceIntervalEnum": {
+          "target": "com.posthog.reminders#RecurrenceIntervalEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.reminders#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+      }
+    },
+    "com.posthog.reminders#RemindersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this reminder."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization this reminder belongs to. You must be a member of it.",
+            "smithy.api#required": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional ID of the project this reminder is scoped to. Required when targeting a specific resource. Must belong to the chosen organization.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short text shown as the notification title when the reminder fires.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional longer body for the notification."
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional PostHog resource this reminder is about. One of: dashboard, insight, experiment, feature_flag, survey, notebook, replay, error_tracking. Resources are project-scoped, so a team must be set when this is provided.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the referenced resource; must exist in the chosen project.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a one-off reminder: when it should fire (ISO 8601, future).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recurrence_interval": {
+          "target": "com.posthog.reminders#RemindersUpdateRequestRecurrenceInterval",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional: recurring reminders stop (status=completed) after this time.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reminders#RemindersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reminders#RemindersUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.reminders#Reminder"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/reminders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.reminders#RemindersPartialUpdateRequestRecurrenceInterval": {
+      "type": "union",
+      "members": {
+        "RecurrenceIntervalEnum": {
+          "target": "com.posthog.reminders#RecurrenceIntervalEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.reminders#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+      }
+    },
+    "com.posthog.reminders#RemindersPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this reminder."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization this reminder belongs to. You must be a member of it."
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional ID of the project this reminder is scoped to. Required when targeting a specific resource. Must belong to the chosen organization.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short text shown as the notification title when the reminder fires."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional longer body for the notification."
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional PostHog resource this reminder is about. One of: dashboard, insight, experiment, feature_flag, survey, notebook, replay, error_tracking. Resources are project-scoped, so a team must be set when this is provided.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the referenced resource; must exist in the chosen project.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a one-off reminder: when it should fire (ISO 8601, future).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recurrence_interval": {
+          "target": "com.posthog.reminders#RemindersPartialUpdateRequestRecurrenceInterval",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cron_expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC."
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional: recurring reminders stop (status=completed) after this time.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reminders#RemindersPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reminders#RemindersPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.reminders#Reminder"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/reminders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.reminders#RemindersDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this reminder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.reminders#RemindersDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.reminders#RemindersDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/reminders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.reminders#Reminders": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.reminders#RemindersList"
+        },
+        {
+          "target": "com.posthog.reminders#RemindersCreate"
+        },
+        {
+          "target": "com.posthog.reminders#RemindersRetrieve"
+        },
+        {
+          "target": "com.posthog.reminders#RemindersUpdate"
+        },
+        {
+          "target": "com.posthog.reminders#RemindersPartialUpdate"
+        },
+        {
+          "target": "com.posthog.reminders#RemindersDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align brand_protection#LogoMatchesGet with distilled cloudflare/brand-protection getLogoMatch",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogoMatchesGet",
+      "path": "/shapes/com.cloudflare.brand_protection#GetLogoMatch"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogoMatchesGetRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#GetLogoMatchRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#GetLogoMatch/input/target",
+      "value": "com.cloudflare.brand_protection#GetLogoMatchRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogoMatchesGetResponse",
+      "path": "/shapes/com.cloudflare.brand_protection#GetLogoMatchResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#GetLogoMatch/output/target",
+      "value": "com.cloudflare.brand_protection#GetLogoMatchResponse"
+    }
+  ]
+}

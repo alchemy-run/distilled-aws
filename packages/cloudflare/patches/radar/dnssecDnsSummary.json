@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsSummaryDnssec with distilled cloudflare/radar dnssecDnsSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryDnssec",
+      "path": "/shapes/com.cloudflare.radar#DnssecDnsSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryDnssecRequest",
+      "path": "/shapes/com.cloudflare.radar#DnssecDnsSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DnssecDnsSummary/input/target",
+      "value": "com.cloudflare.radar#DnssecDnsSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryDnssecResponse",
+      "path": "/shapes/com.cloudflare.radar#DnssecDnsSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DnssecDnsSummary/output/target",
+      "value": "com.cloudflare.radar#DnssecDnsSummaryResponse"
+    }
+  ]
+}

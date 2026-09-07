@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#RobotsTxtTopUserAgentsDirective with distilled cloudflare/radar directiveRobotsTxtTopUserAgent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RobotsTxtTopUserAgentsDirective",
+      "path": "/shapes/com.cloudflare.radar#DirectiveRobotsTxtTopUserAgent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RobotsTxtTopUserAgentsDirectiveRequest",
+      "path": "/shapes/com.cloudflare.radar#DirectiveRobotsTxtTopUserAgentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DirectiveRobotsTxtTopUserAgent/input/target",
+      "value": "com.cloudflare.radar#DirectiveRobotsTxtTopUserAgentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RobotsTxtTopUserAgentsDirectiveResponse",
+      "path": "/shapes/com.cloudflare.radar#DirectiveRobotsTxtTopUserAgentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DirectiveRobotsTxtTopUserAgent/output/target",
+      "value": "com.cloudflare.radar#DirectiveRobotsTxtTopUserAgentResponse"
+    }
+  ]
+}

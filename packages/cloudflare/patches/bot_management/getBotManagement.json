@@ -1,0 +1,39 @@
+{
+  "description": "Align bot_management#Get with distilled cloudflare/bot-management getBotManagement",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.bot_management#Get",
+      "path": "/shapes/com.cloudflare.bot_management#GetBotManagement"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.bot_management#GetRequest",
+      "path": "/shapes/com.cloudflare.bot_management#GetBotManagementRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.bot_management#GetBotManagement/input/target",
+      "value": "com.cloudflare.bot_management#GetBotManagementRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.bot_management#GetResponse",
+      "path": "/shapes/com.cloudflare.bot_management#GetBotManagementResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.bot_management#GetBotManagement/output/target",
+      "value": "com.cloudflare.bot_management#GetBotManagementResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.bot_management#GetBotManagement/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.bot_management#Forbidden"
+        }
+      ]
+    }
+  ]
+}

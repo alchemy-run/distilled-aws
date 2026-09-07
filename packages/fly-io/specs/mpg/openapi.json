@@ -1,0 +1,864 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Fly Managed Postgres (MPG) UI-EX API",
+    "version": "v2",
+    "description": "flyctl UI-EX REST at https://api.fly.io. Auth is Authorization: Bearer $FLY_API_TOKEN (macaroon). Hand-authored from flyctl internal/uiex/mpg/v2."
+  },
+  "servers": [{ "url": "https://api.fly.io" }],
+  "paths": {
+    "/api/v1/organizations/{org_slug}/postgresv2": {
+      "parameters": [
+        {
+          "name": "org_slug",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "listClusters",
+        "summary": "List MPG v2 clusters in an organization",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListClustersResponse" }
+              }
+            }
+          },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Organization not found" }
+        }
+      },
+      "post": {
+        "operationId": "createCluster",
+        "summary": "Create an MPG v2 cluster",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateClusterRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateClusterResponse" }
+              }
+            }
+          },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Organization not found" },
+          "409": { "description": "Conflict" }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_slug}/postgresv2/{id}": {
+      "parameters": [
+        {
+          "name": "org_slug",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "getCluster",
+        "summary": "Get an MPG v2 cluster by org and id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetClusterResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" }
+        }
+      },
+      "delete": {
+        "operationId": "destroyCluster",
+        "summary": "Destroy an MPG v2 cluster (async — poll 404)",
+        "responses": {
+          "202": { "description": "Accepted" },
+          "200": { "description": "Deleted" },
+          "204": { "description": "No content" },
+          "404": { "description": "Cluster not found" }
+        }
+      }
+    },
+    "/api/v1/organizations/{org_slug}/postgresv2/regions": {
+      "get": {
+        "operationId": "listRegions",
+        "summary": "List regions that support MPG for an organization",
+        "parameters": [
+          {
+            "name": "org_slug",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListRegionsResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}": {
+      "get": {
+        "operationId": "getClusterById",
+        "summary": "Get an MPG v2 cluster by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetClusterResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/users": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "listUsers",
+        "summary": "List cluster users",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListUsersResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" }
+        }
+      },
+      "post": {
+        "operationId": "createUser",
+        "summary": "Create a user with a role",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateUserRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateUserResponse" }
+              }
+            }
+          },
+          "200": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateUserResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" },
+          "409": { "description": "User exists" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/users/{username}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "patch": {
+        "operationId": "updateUserRole",
+        "summary": "Update a user's role",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateUserRoleRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Updated" },
+          "204": { "description": "Updated" },
+          "404": { "description": "Not found" }
+        }
+      },
+      "delete": {
+        "operationId": "deleteUser",
+        "summary": "Delete a user",
+        "responses": {
+          "200": { "description": "Deleted" },
+          "204": { "description": "Deleted" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/users/{username}/credentials": {
+      "get": {
+        "operationId": "getUserCredentials",
+        "summary": "Get a user's credentials",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetUserCredentialsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/databases": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "listDatabases",
+        "summary": "List databases (no DELETE API)",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListDatabasesResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" }
+        }
+      },
+      "post": {
+        "operationId": "createDatabase",
+        "summary": "Create a database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateDatabaseRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Created" },
+          "200": { "description": "Created" },
+          "204": { "description": "Created" },
+          "404": { "description": "Cluster not found" },
+          "409": { "description": "Database exists" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/databases/{database}/extensions": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "database",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "listExtensions",
+        "summary": "List available/installed extensions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListExtensionsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Not found" }
+        }
+      },
+      "post": {
+        "operationId": "enableExtension",
+        "summary": "Enable an extension",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/EnableExtensionRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Enabled" },
+          "201": { "description": "Enabled" },
+          "204": { "description": "Enabled" },
+          "409": { "description": "Already enabled" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/databases/{database}/extensions/{name}": {
+      "delete": {
+        "operationId": "disableExtension",
+        "summary": "Disable an extension",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "database",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Disabled" },
+          "204": { "description": "Disabled" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/attachments": {
+      "post": {
+        "operationId": "createAttachment",
+        "summary": "Attach a cluster to a Machines app",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateAttachmentRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateAttachmentResponse" }
+              }
+            }
+          },
+          "200": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateAttachmentResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" },
+          "409": { "description": "Already attached" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/attachments/{app_name}": {
+      "delete": {
+        "operationId": "deleteAttachment",
+        "summary": "Detach a cluster from a Machines app",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "app_name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detached",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DeleteAttachmentResponse" }
+              }
+            }
+          },
+          "404": { "description": "Attachment not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/backups": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "listBackups",
+        "summary": "List cluster backups",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListBackupsResponse" }
+              }
+            }
+          },
+          "404": { "description": "Cluster not found" }
+        }
+      },
+      "post": {
+        "operationId": "createBackup",
+        "summary": "Create a backup",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateBackupRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Created" },
+          "200": { "description": "Created" },
+          "202": { "description": "Accepted" },
+          "404": { "description": "Cluster not found" }
+        }
+      }
+    },
+    "/api/v1/postgresv2/{id}/restore": {
+      "post": {
+        "operationId": "restoreBackup",
+        "summary": "Restore a cluster from a backup (creates a new cluster)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RestoreBackupRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Restored",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RestoreBackupResponse" }
+              }
+            }
+          },
+          "200": {
+            "description": "Restored",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RestoreBackupResponse" }
+              }
+            }
+          },
+          "404": { "description": "Not found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "raw_slug": { "type": "string" }
+        }
+      },
+      "IpAssignments": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+      },
+      "AttachedApp": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "id": { "type": "string" }
+        }
+      },
+      "ManagedCluster": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "status": { "type": "string" },
+          "engine": { "type": "string" },
+          "plan": { "type": "string" },
+          "region": { "type": "string" },
+          "organization": { "$ref": "#/components/schemas/Organization" },
+          "mpgd_cluster_id": { "type": "string" },
+          "disk": { "type": "integer" },
+          "replicas": { "type": "integer" },
+          "ip_assignments": { "$ref": "#/components/schemas/IpAssignments" },
+          "attached_apps": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AttachedApp" }
+          },
+          "postgis_enabled": { "type": "boolean" },
+          "environment": { "type": "string" }
+        }
+      },
+      "ClusterCredentials": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "user": { "type": "string" },
+          "password": { "type": "string", "x-sensitive": true },
+          "dbname": { "type": "string" },
+          "pgbouncer_uri": { "type": "string", "x-sensitive": true }
+        }
+      },
+      "GetClusterResponse": {
+        "type": "object",
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ManagedCluster" },
+          "credentials": { "$ref": "#/components/schemas/ClusterCredentials" }
+        }
+      },
+      "ListClustersResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ManagedCluster" }
+          }
+        }
+      },
+      "CreateClusterRequest": {
+        "type": "object",
+        "required": ["name", "region", "org_slug", "plan"],
+        "properties": {
+          "name": { "type": "string" },
+          "region": { "type": "string" },
+          "org_slug": { "type": "string" },
+          "plan": { "type": "string" },
+          "pg_major_version": { "type": "string" },
+          "storage_in_gb": { "type": "integer" },
+          "postgis_enabled": { "type": "boolean" }
+        }
+      },
+      "CreateClusterResponse": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "data": { "$ref": "#/components/schemas/ManagedCluster" },
+          "errors": { "type": "object", "additionalProperties": true }
+        }
+      },
+      "Region": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "available": { "type": "boolean" }
+        }
+      },
+      "ListRegionsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Region" }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "username": { "type": "string" },
+          "role": { "type": "string" }
+        }
+      },
+      "ListUsersResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/User" }
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "required": ["username", "role"],
+        "properties": {
+          "username": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["schema_admin", "writer", "reader"]
+          }
+        }
+      },
+      "CreateUserResponse": {
+        "type": "object",
+        "properties": {
+          "data": { "$ref": "#/components/schemas/User" }
+        }
+      },
+      "UpdateUserRoleRequest": {
+        "type": "object",
+        "required": ["role"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["schema_admin", "writer", "reader"]
+          }
+        }
+      },
+      "GetUserCredentialsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "username": { "type": "string" },
+              "user": { "type": "string" },
+              "password": { "type": "string", "x-sensitive": true }
+            }
+          }
+        }
+      },
+      "Database": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" }
+        }
+      },
+      "ListDatabasesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Database" }
+          }
+        }
+      },
+      "CreateDatabaseRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" }
+        }
+      },
+      "InstalledExtension": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "schema": { "type": "string" }
+        }
+      },
+      "Extension": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "docs_url": { "type": "string" },
+          "default_version": { "type": "string" },
+          "is_system": { "type": "boolean" },
+          "installed": { "$ref": "#/components/schemas/InstalledExtension" }
+        }
+      },
+      "ListExtensionsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Extension" }
+          }
+        }
+      },
+      "EnableExtensionRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "schema": { "type": "string" },
+          "create_schema_if_needed": { "type": "boolean" }
+        }
+      },
+      "CreateAttachmentRequest": {
+        "type": "object",
+        "required": ["app_name"],
+        "properties": {
+          "app_name": { "type": "string" }
+        }
+      },
+      "CreateAttachmentResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "app_id": { "type": "integer" },
+              "managed_service_id": { "type": "integer" },
+              "attached_at": { "type": "string" }
+            }
+          }
+        }
+      },
+      "DeleteAttachmentResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": { "type": "string" }
+            }
+          }
+        }
+      },
+      "ClusterBackup": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string" },
+          "type": { "type": "string" },
+          "start": { "type": "string" },
+          "stop": { "type": "string" }
+        }
+      },
+      "ListBackupsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ClusterBackup" }
+          }
+        }
+      },
+      "CreateBackupRequest": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" }
+        }
+      },
+      "RestoreBackupRequest": {
+        "type": "object",
+        "properties": {
+          "backup_id": { "type": "string" },
+          "name": { "type": "string" },
+          "pitr_time": { "type": "string" }
+        }
+      },
+      "RestoreBackupResponse": {
+        "type": "object",
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ManagedCluster" }
+        }
+      }
+    }
+  }
+}

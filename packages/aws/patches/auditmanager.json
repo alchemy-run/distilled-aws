@@ -1,0 +1,18 @@
+{
+  "operations": {
+    "registerAccount": {
+      "syntheticErrors": [
+        {
+          "name": "AuditManagerMaintenanceMode",
+          "from": "ValidationException",
+          "message": {
+            "includes": "maintenance mode"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "AuditManagerMaintenanceMode": ["BadRequestError"]
+  }
+}

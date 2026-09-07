@@ -1,0 +1,38 @@
+{
+  "description": "Align logs#LogExplorerDatasetsListForAccount with distilled cloudflare/logs listLogExplorerDatasetsForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsListForAccount",
+      "path": "/shapes/com.cloudflare.logs#ListLogExplorerDatasetsForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsListForAccountRequest",
+      "path": "/shapes/com.cloudflare.logs#ListLogExplorerDatasetsForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#ListLogExplorerDatasetsForAccount/input/target",
+      "value": "com.cloudflare.logs#ListLogExplorerDatasetsForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsListForAccountResponse",
+      "path": "/shapes/com.cloudflare.logs#ListLogExplorerDatasetsForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#ListLogExplorerDatasetsForAccount/output/target",
+      "value": "com.cloudflare.logs#ListLogExplorerDatasetsForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logs#ListLogExplorerDatasetsForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

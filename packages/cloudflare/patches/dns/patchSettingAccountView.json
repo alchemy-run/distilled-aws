@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#SettingsAccountViewsEdit with distilled cloudflare/dns patchSettingAccountView",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsEdit",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountView"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsEditRequest",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountViewRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountView/input/target",
+      "value": "com.cloudflare.dns#PatchSettingAccountViewRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsEditResponse",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountViewResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountView/output/target",
+      "value": "com.cloudflare.dns#PatchSettingAccountViewResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingAccountView/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#ViewNotFound"
+        }
+      ]
+    }
+  ]
+}

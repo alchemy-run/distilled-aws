@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingSpendingLimitDelete with distilled cloudflare/ai-gateway deleteBillingSpendingLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitDelete",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingSpendingLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingSpendingLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingSpendingLimit/input/target",
+      "value": "com.cloudflare.ai_gateway#DeleteBillingSpendingLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitDeleteResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingSpendingLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingSpendingLimit/output/target",
+      "value": "com.cloudflare.ai_gateway#DeleteBillingSpendingLimitResponse"
+    }
+  ]
+}

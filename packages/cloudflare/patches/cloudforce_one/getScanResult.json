@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ScansResultsGet with distilled cloudflare/cloudforce-one getScanResult",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansResultsGet",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetScanResult"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansResultsGetRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetScanResultRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetScanResult/input/target",
+      "value": "com.cloudflare.cloudforce_one#GetScanResultRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansResultsGetResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetScanResultResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetScanResult/output/target",
+      "value": "com.cloudflare.cloudforce_one#GetScanResultResponse"
+    }
+  ]
+}

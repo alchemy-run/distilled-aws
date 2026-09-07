@@ -1,0 +1,38 @@
+{
+  "description": "Align speed#PagesList with distilled cloudflare/speed listPages",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesList",
+      "path": "/shapes/com.cloudflare.speed#ListPages"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesListRequest",
+      "path": "/shapes/com.cloudflare.speed#ListPagesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#ListPages/input/target",
+      "value": "com.cloudflare.speed#ListPagesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesListResponse",
+      "path": "/shapes/com.cloudflare.speed#ListPagesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#ListPages/output/target",
+      "value": "com.cloudflare.speed#ListPagesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.speed#ListPages/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

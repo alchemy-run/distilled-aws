@@ -1,0 +1,45 @@
+{
+  "description": "Align d1#DatabaseGet with distilled cloudflare/d1 getDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseGet",
+      "path": "/shapes/com.cloudflare.d1#GetDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseGetRequest",
+      "path": "/shapes/com.cloudflare.d1#GetDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#GetDatabase/input/target",
+      "value": "com.cloudflare.d1#GetDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseGetResponse",
+      "path": "/shapes/com.cloudflare.d1#GetDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#GetDatabase/output/target",
+      "value": "com.cloudflare.d1#GetDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#GetDatabase/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.d1#UnknownError"
+        }
+      ]
+    }
+  ]
+}

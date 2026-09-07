@@ -1,0 +1,1168 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.machinelearning#WorkspacesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesListRequest"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#WorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MachineLearning/workspaces",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Lists all the available machine learning workspaces under the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspaceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.machinelearning#WorkspaceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of machine learning workspaces. Since this list may be incomplete, the nextLink field should be used to request the next list of machine learning workspaces."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI that can be used to request the next list of machine learning workspaces."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The result of a request to list machine learning workspace keys."
+      }
+    },
+    "com.azure.machinelearning#WorkspaceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.machinelearning#Workspace"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of machine learning workspaces. Since this list may be incomplete, the nextLink field should be used to request the next list of machine learning workspaces."
+      }
+    },
+    "com.azure.machinelearning#Workspace": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource. This cannot be changed after the resource is created.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.machinelearning#WorkspaceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The tags of the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.machinelearning#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku of the workspace."
+          }
+        },
+        "properties": {
+          "target": "com.azure.machinelearning#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a machine learning workspace."
+      }
+    },
+    "com.azure.machinelearning#WorkspaceProperties": {
+      "type": "structure",
+      "members": {
+        "userStorageAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified arm id of the storage account associated with this workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "ownerEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email id of the owner for this workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "workspaceType": {
+          "target": "com.azure.machinelearning#WorkspacePropertiesWorkspaceType",
+          "traits": {
+            "smithy.api#documentation": "The type of this workspace."
+          }
+        },
+        "workspaceState": {
+          "target": "com.azure.machinelearning#WorkspacePropertiesWorkspaceState",
+          "traits": {
+            "smithy.api#documentation": "The current state of workspace resource."
+          }
+        },
+        "workspaceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The immutable id associated with this workspace."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation time for this workspace resource."
+          }
+        },
+        "studioEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The regional endpoint for the machine learning studio service which hosts this workspace."
+          }
+        },
+        "keyVaultIdentifierId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key vault identifier used for encrypted workspaces."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a machine learning workspace."
+      }
+    },
+    "com.azure.machinelearning#WorkspacePropertiesWorkspaceState": {
+      "type": "enum",
+      "members": {
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "MIGRATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Migrated"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updated"
+          }
+        },
+        "REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Registered"
+          }
+        },
+        "UNREGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unregistered"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of workspace resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacePropertiesWorkspaceType": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Production"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "ANONYMOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Anonymous"
+          }
+        },
+        "PAIDSTANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PaidStandard"
+          }
+        },
+        "PAIDPREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PaidPremium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of this workspace."
+      }
+    },
+    "com.azure.machinelearning#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the sku"
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tier of the sku like Basic or Enterprise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku of the resource"
+      }
+    },
+    "com.azure.machinelearning#WorkspaceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tags of the resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#WorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Lists all the available machine learning workspaces under the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspacesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesListWorkspaceKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesListWorkspaceKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#WorkspaceKeysResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces/{workspaceName}/listWorkspaceKeys",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "List the authorization keys associated with this workspace.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspaceKeysResponse": {
+      "type": "structure",
+      "members": {
+        "primaryToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primary authorization key for this workspace."
+          }
+        },
+        "secondaryToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secondary authorization key for this workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workspace authorization keys for a workspace."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesListWorkspaceKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesResyncStorageKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesResyncStorageKeysRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces/{workspaceName}/resyncStorageKeys",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Resync storage keys associated with this workspace.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspacesResyncStorageKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Deletes a machine learning workspace.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspacesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#WorkspacesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Updates a machine learning workspace with the specified parameters.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspacesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource. This cannot be changed after the resource is created.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.machinelearning#WorkspacesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The tags of the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.machinelearning#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku of the workspace."
+          }
+        },
+        "properties": {
+          "target": "com.azure.machinelearning#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tags of the resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the machine learning workspace."
+          }
+        },
+        "tags": {
+          "target": "com.azure.machinelearning#WorkspacesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags for the machine learning workspace."
+          }
+        },
+        "properties": {
+          "target": "com.azure.machinelearning#WorkspacePropertiesUpdateParameters",
+          "traits": {
+            "smithy.api#documentation": "The properties that the machine learning workspace will be updated with."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacePropertiesUpdateParameters": {
+      "type": "structure",
+      "members": {
+        "workspaceState": {
+          "target": "com.azure.machinelearning#WorkspacePropertiesUpdateParametersWorkspaceState",
+          "traits": {
+            "smithy.api#documentation": "The current state of workspace resource."
+          }
+        },
+        "keyVaultIdentifierId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key vault identifier used for encrypted workspaces."
+          }
+        },
+        "sku": {
+          "target": "com.azure.machinelearning#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku of the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters for updating the properties of a machine learning workspace."
+      }
+    },
+    "com.azure.machinelearning#WorkspacePropertiesUpdateParametersWorkspaceState": {
+      "type": "enum",
+      "members": {
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "MIGRATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Migrated"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updated"
+          }
+        },
+        "REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Registered"
+          }
+        },
+        "UNREGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unregistered"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of workspace resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags for the machine learning workspace."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#WorkspacesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Creates or updates a workspace with the specified parameters.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspacesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource. This cannot be changed after the resource is created.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.machinelearning#WorkspacesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The tags of the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.machinelearning#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku of the workspace."
+          }
+        },
+        "properties": {
+          "target": "com.azure.machinelearning#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tags of the resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the machine learning workspace."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource. This cannot be changed after the resource is created.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.machinelearning#WorkspacesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The tags of the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.machinelearning#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku of the workspace."
+          }
+        },
+        "properties": {
+          "target": "com.azure.machinelearning#WorkspacePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "userStorageAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified arm id of the storage account associated with this workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "ownerEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email id of the owner for this workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyVaultIdentifierId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key vault identifier used for encrypted workspaces."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a machine learning workspace."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tags of the resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.machinelearning#WorkspacesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#WorkspacesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearning/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Gets the properties of the specified machine learning workspace.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#WorkspacesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource. This cannot be changed after the resource is created.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.machinelearning#WorkspacesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The tags of the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.machinelearning#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku of the workspace."
+          }
+        },
+        "properties": {
+          "target": "com.azure.machinelearning#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.machinelearning#WorkspacesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tags of the resource."
+      }
+    },
+    "com.azure.machinelearning#WorkspacesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Microsoft Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group to which the machine learning workspace belongs."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the machine learning workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.machinelearning#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.machinelearning#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.MachineLearning/operations",
+          "code": 200,
+          "apiVersion": "2019-10-01"
+        },
+        "smithy.api#documentation": "Lists all of the available Azure Machine Learning Studio REST API operations.",
+        "com.distilled.openapi#apiVersion": "2019-10-01"
+      }
+    },
+    "com.azure.machinelearning#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.machinelearning#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of AML Studio operations supported by the AML Studio resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of operations supported by the resource provider."
+      }
+    },
+    "com.azure.machinelearning#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.machinelearning#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of AML Studio operations supported by the AML Studio resource provider."
+      }
+    },
+    "com.azure.machinelearning#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "display": {
+          "target": "com.azure.machinelearning#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display name of operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Machine Learning Studio REST API operation"
+      }
+    },
+    "com.azure.machinelearning#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource provider name: Microsoft.MachineLearning"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource on which the operation is performed."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation that users can perform."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description for the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display name of operation"
+      }
+    },
+    "com.azure.machinelearning#Machinelearning": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.machinelearning#WorkspacesList"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesListWorkspaceKeys"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesResyncStorageKeys"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesDelete"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesUpdate"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearning#WorkspacesGet"
+        },
+        {
+          "target": "com.azure.machinelearning#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Machinelearning",
+        "smithy.api#documentation": "Azure Machinelearning API — merged from the machinelearning resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

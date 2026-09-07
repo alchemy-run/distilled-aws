@@ -1,0 +1,50 @@
+{
+  "description": "Align iam#UserGroupsMembersCreate with distilled cloudflare/iam createUserGroupMember",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersCreate",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMember"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersCreateRequest",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMemberRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMember/input/target",
+      "value": "com.cloudflare.iam#CreateUserGroupMemberRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersCreateResponse",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMemberResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMember/output/target",
+      "value": "com.cloudflare.iam#CreateUserGroupMemberResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMember/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMember/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#InvalidMember"
+        },
+        {
+          "target": "com.cloudflare.iam#UserGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

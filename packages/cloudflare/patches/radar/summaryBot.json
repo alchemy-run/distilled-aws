@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#BotsSummary with distilled cloudflare/radar summaryBot",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BotsSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryBot"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BotsSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryBotRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryBot/input/target",
+      "value": "com.cloudflare.radar#SummaryBotRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BotsSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryBotResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryBot/output/target",
+      "value": "com.cloudflare.radar#SummaryBotResponse"
+    }
+  ]
+}

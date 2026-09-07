@@ -1,0 +1,10 @@
+{
+  "description": "Docs drift: PUT /zones/{zone_id}/cloud_connector/rules takes a BARE JSON array of rules as the request body — the docs model a `rules` field, and sending {\"rules\": [...]} gets rejected with 'no cloud connector rules'. Mark the member as the whole body (httpPayload), matching distilled's T.HttpBody().",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRuleRequest/members/rules/traits",
+      "value": { "smithy.api#httpPayload": {} }
+    }
+  ]
+}

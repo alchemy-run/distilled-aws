@@ -1,0 +1,2839 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.azurestack#DeploymentLicenseCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#DeploymentLicenseCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#DeploymentLicenseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStack/generateDeploymentLicense",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Creates a license that can be used to deploy an Azure Stack device.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#DeploymentLicenseResponse": {
+      "type": "structure",
+      "members": {
+        "temporaryLicenseChain": {
+          "target": "com.azure.azurestack#DeploymentLicenseResponseTemporaryLicenseChainList",
+          "traits": {
+            "smithy.api#documentation": "A license chain that can be used to temporarily activate an Azure Stack device."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature of the license chain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A license that can be used to deploy an Azure Stack device."
+      }
+    },
+    "com.azure.azurestack#DeploymentLicenseResponseTemporaryLicenseChainList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A license chain that can be used to temporarily activate an Azure Stack device."
+      }
+    },
+    "com.azure.azurestack#DeploymentLicenseCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "verificationVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signing verification public key version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#CloudManifestFileGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#CloudManifestFileGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AzureStack/cloudManifestFiles/{verificationVersion}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a cloud specific manifest JSON file.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#CloudManifestFileProperties",
+          "traits": {
+            "smithy.api#documentation": "Cloud specific manifest data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileProperties": {
+      "type": "structure",
+      "members": {
+        "deploymentData": {
+          "target": "com.azure.azurestack#CloudManifestFileDeploymentData",
+          "traits": {
+            "smithy.api#documentation": "Cloud specific manifest data."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature of the cloud specific manifest data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud specific manifest JSON properties."
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileDeploymentData": {
+      "type": "structure",
+      "members": {
+        "externalDsmsCertificates": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dsms external certificates."
+          }
+        },
+        "customCloudVerificationKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signing verification public key."
+          }
+        },
+        "customEnvironmentEndpoints": {
+          "target": "com.azure.azurestack#CloudManifestFileEnvironmentEndpoints",
+          "traits": {
+            "smithy.api#documentation": "Environment endpoints."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud specific manifest data for AzureStack deployment."
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileEnvironmentEndpoints": {
+      "type": "structure",
+      "members": {
+        "customCloudArmEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM endpoint."
+          }
+        },
+        "externalDsmsEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dsms endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud specific environment endpoints for AzureStack deployment."
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileGetRequest": {
+      "type": "structure",
+      "members": {
+        "verificationVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Signing verification key version."
+          }
+        },
+        "versionCreationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "versionCreationDate",
+            "smithy.api#documentation": "Signing verification key version creation date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.azurestack#CloudManifestFileListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AzureStack/cloudManifestFiles",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a cloud specific manifest JSON file with latest version.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#CloudManifestFileListResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#CloudManifestFileProperties",
+          "traits": {
+            "smithy.api#documentation": "Cloud specific manifest data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.azurestack#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AzureStack/operations",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the list of supported REST operations.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azurestack#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of operations"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to the next page of operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Operations"
+      }
+    },
+    "com.azure.azurestack#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of operations"
+      }
+    },
+    "com.azure.azurestack#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation being performed on this particular object."
+          }
+        },
+        "display": {
+          "target": "com.azure.azurestack#Display",
+          "traits": {
+            "smithy.api#documentation": "Contains the localized display information for this particular operation or action."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the supported REST operation."
+      }
+    },
+    "com.azure.azurestack#Display": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized, friendly version of the resource provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized, friendly version of the resource type related to this action or operation; the resource type should match the public documentation for the resource provider."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized, friendly name for the operation. Use the name as it will displayed to the user."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized, friendly description for the operation. The description will be displayed to the user. It should be thorough and concise for used in both tooltips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the localized display information for this particular operation or action."
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#CustomerSubscriptionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Deletes a customer subscription under a registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "customerSubscriptionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#CustomerSubscriptionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#CustomerSubscriptionsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Creates a new customer subscription under a registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#CustomerSubscriptionProperties",
+          "traits": {
+            "smithy.api#documentation": "Customer subscription properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customer subscription properties."
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "customerSubscriptionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#CustomerSubscriptionProperties",
+          "traits": {
+            "smithy.api#documentation": "Customer subscription properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#CustomerSubscriptionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#CustomerSubscriptionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions/{customerSubscriptionName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the specified product.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#CustomerSubscriptionProperties",
+          "traits": {
+            "smithy.api#documentation": "Customer subscription properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "customerSubscriptionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#CustomerSubscriptionsListRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#CustomerSubscriptionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/customerSubscriptions",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a list of products.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to the next page."
+          }
+        },
+        "value": {
+          "target": "com.azure.azurestack#CustomerSubscriptionListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of customer subscriptions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pageable list of customer subscriptions."
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#CustomerSubscription"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of customer subscriptions."
+      }
+    },
+    "com.azure.azurestack#CustomerSubscription": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#CustomerSubscriptionProperties",
+          "traits": {
+            "smithy.api#documentation": "Customer subscription properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customer subscription."
+      }
+    },
+    "com.azure.azurestack#CustomerSubscriptionsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsUploadLog": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsUploadLogRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ProductLog"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/uploadProductLog",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the specified product.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ProductLog": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log ID."
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Logged product ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Logged subscription ID."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Logged registration name."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Logged resource group name."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Logged operation."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation start datetime."
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation end datetime."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation error data."
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation error details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product action log."
+      }
+    },
+    "com.azure.azurestack#ProductsUploadLogRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsGetProduct": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsGetProductRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ProductsGetProductResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/getProduct",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the specified product.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ProductsGetProductResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#ProductNestedProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the product resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#ProductNestedProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the product."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the product."
+          }
+        },
+        "publisherDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-friendly name of the product publisher."
+          }
+        },
+        "publisherIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Publisher identifier."
+          }
+        },
+        "offer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The offer representing the product."
+          }
+        },
+        "offerVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the product offer."
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product SKU."
+          }
+        },
+        "billingPartNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The part number used for billing purposes."
+          }
+        },
+        "vmExtensionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the Virtual Machine Extension."
+          }
+        },
+        "galleryItemIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the gallery item corresponding to the product."
+          }
+        },
+        "iconUris": {
+          "target": "com.azure.azurestack#IconUris",
+          "traits": {
+            "smithy.api#documentation": "Additional links available for this product."
+          }
+        },
+        "links": {
+          "target": "com.azure.azurestack#ProductNestedPropertiesLinksList",
+          "traits": {
+            "smithy.api#documentation": "Additional links available for this product."
+          }
+        },
+        "legalTerms": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The legal terms."
+          }
+        },
+        "privacyPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The privacy policy."
+          }
+        },
+        "payloadLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The length of product content."
+          }
+        },
+        "productKind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of the product (virtualMachine or virtualMachineExtension)"
+          }
+        },
+        "productProperties": {
+          "target": "com.azure.azurestack#ProductProperties",
+          "traits": {
+            "smithy.api#documentation": "Additional properties for the product."
+          }
+        },
+        "compatibility": {
+          "target": "com.azure.azurestack#Compatibility",
+          "traits": {
+            "smithy.api#documentation": "Product compatibility with current device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties portion of the product resource."
+      }
+    },
+    "com.azure.azurestack#Compatibility": {
+      "type": "structure",
+      "members": {
+        "isCompatible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Tells if product is compatible with current device"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short error message if any compatibility issues are found"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full error message if any compatibility issues are found"
+          }
+        },
+        "issues": {
+          "target": "com.azure.azurestack#CompatibilityIssuesList",
+          "traits": {
+            "smithy.api#documentation": "List of all issues found"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product compatibility"
+      }
+    },
+    "com.azure.azurestack#CompatibilityIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#CompatibilityIssue"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of all issues found"
+      }
+    },
+    "com.azure.azurestack#CompatibilityIssue": {
+      "type": "enum",
+      "members": {
+        "HIGHERDEVICEVERSIONREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HigherDeviceVersionRequired"
+          }
+        },
+        "LOWERDEVICEVERSIONREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LowerDeviceVersionRequired"
+          }
+        },
+        "CAPACITYBILLINGMODELREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CapacityBillingModelRequired"
+          }
+        },
+        "PAYASYOUGOBILLINGMODELREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PayAsYouGoBillingModelRequired"
+          }
+        },
+        "DEVELOPMENTBILLINGMODELREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DevelopmentBillingModelRequired"
+          }
+        },
+        "AZUREADIDENTITYSYSTEMREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureADIdentitySystemRequired"
+          }
+        },
+        "ADFSIDENTITYSYSTEMREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADFSIdentitySystemRequired"
+          }
+        },
+        "CONNECTIONTOINTERNETREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConnectionToInternetRequired"
+          }
+        },
+        "CONNECTIONTOAZUREREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConnectionToAzureRequired"
+          }
+        },
+        "DISCONNECTEDENVIRONMENTREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DisconnectedEnvironmentRequired"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compatibility issue"
+      }
+    },
+    "com.azure.azurestack#ProductProperties": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional properties of the product"
+      }
+    },
+    "com.azure.azurestack#ProductNestedPropertiesLinksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#ProductLink"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional links available for this product."
+      }
+    },
+    "com.azure.azurestack#ProductLink": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the link."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI corresponding to the link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Link with additional information about a product."
+      }
+    },
+    "com.azure.azurestack#IconUris": {
+      "type": "structure",
+      "members": {
+        "large": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to large icon."
+          }
+        },
+        "wide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to wide icon."
+          }
+        },
+        "medium": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to medium icon."
+          }
+        },
+        "small": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to small icon."
+          }
+        },
+        "hero": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to hero icon."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Links to product icons."
+      }
+    },
+    "com.azure.azurestack#ProductsGetProductRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsGetProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsGetProductsRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ProductList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/getProducts",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a list of products.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ProductList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to the next page."
+          }
+        },
+        "value": {
+          "target": "com.azure.azurestack#ProductListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of products."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pageable list of products."
+      }
+    },
+    "com.azure.azurestack#ProductListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#Product"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of products."
+      }
+    },
+    "com.azure.azurestack#Product": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#ProductNestedProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the product resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product information."
+      }
+    },
+    "com.azure.azurestack#ProductsGetProductsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsListProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsListProductsRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ProductList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/listProducts",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a list of products.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ProductsListProductsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsListDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsListDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ExtendedProduct"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/listDetails",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the extended properties of a product.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ExtendedProduct": {
+      "type": "structure",
+      "members": {
+        "galleryPackageBlobSasUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI to the .azpkg file that provides information required for showing product in the gallery."
+          }
+        },
+        "productKind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the kind of the product (virtualMachine or virtualMachineExtension)."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#ExtendedProductProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies additional properties describing the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Extended description about the product required for installing it into Azure Stack."
+      }
+    },
+    "com.azure.azurestack#ExtendedProductProperties": {
+      "type": "structure",
+      "members": {
+        "computeRole": {
+          "target": "com.azure.azurestack#ComputeRole",
+          "traits": {
+            "smithy.api#documentation": "Specifies kind of compute role included in the package."
+          }
+        },
+        "isSystemExtension": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies if product is a Virtual Machine Extension."
+          }
+        },
+        "sourceBlob": {
+          "target": "com.azure.azurestack#Uri",
+          "traits": {
+            "smithy.api#documentation": "Specifies a download location where content can be downloaded from."
+          }
+        },
+        "supportMultipleExtensions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if specified product supports multiple extensions."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies product version."
+          }
+        },
+        "vmOsType": {
+          "target": "com.azure.azurestack#OperatingSystem",
+          "traits": {
+            "smithy.api#documentation": "Specifies operating system used by the product."
+          }
+        },
+        "vmScaleSetEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if virtual machine Scale Set is enabled in the specified product."
+          }
+        },
+        "osDiskImage": {
+          "target": "com.azure.azurestack#OsDiskImage",
+          "traits": {
+            "smithy.api#documentation": "OS disk image used by product."
+          }
+        },
+        "dataDiskImages": {
+          "target": "com.azure.azurestack#ExtendedProductPropertiesDataDiskImagesList",
+          "traits": {
+            "smithy.api#documentation": "List of attached data disks."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product information."
+      }
+    },
+    "com.azure.azurestack#ExtendedProductPropertiesDataDiskImagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#DataDiskImage"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of attached data disks."
+      }
+    },
+    "com.azure.azurestack#DataDiskImage": {
+      "type": "structure",
+      "members": {
+        "lun": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The LUN."
+          }
+        },
+        "sourceBlobSasUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAS key for source blob."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data disk image."
+      }
+    },
+    "com.azure.azurestack#OsDiskImage": {
+      "type": "structure",
+      "members": {
+        "operatingSystem": {
+          "target": "com.azure.azurestack#OperatingSystem",
+          "traits": {
+            "smithy.api#documentation": "OS operating system type."
+          }
+        },
+        "sourceBlobSasUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAS key for source blob."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OS disk image."
+      }
+    },
+    "com.azure.azurestack#OperatingSystem": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Windows"
+          }
+        },
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Linux"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operating system type (Windows or Linux)."
+      }
+    },
+    "com.azure.azurestack#Uri": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The URI."
+      }
+    },
+    "com.azure.azurestack#ComputeRole": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "IAAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IaaS"
+          }
+        },
+        "PAAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PaaS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compute role type (IaaS or PaaS)."
+      }
+    },
+    "com.azure.azurestack#ProductsListDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ProductsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the specified product.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ProductsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#ProductNestedProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the product resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#ProductsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#ProductsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#ProductsListRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ProductList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a list of products.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ProductsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsEnableRemoteManagement": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsEnableRemoteManagementRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/enableRemoteManagement",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Enables remote management for device under the Azure Stack registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationsEnableRemoteManagementRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsGetActivationKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsGetActivationKeyRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#ActivationKeyResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/getactivationkey",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns Azure Stack Activation Key.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#ActivationKeyResult": {
+      "type": "structure",
+      "members": {
+        "activationKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Stack activation key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource containing the Azure Stack activation key."
+      }
+    },
+    "com.azure.azurestack#RegistrationsGetActivationKeyRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Delete the requested Azure Stack registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#RegistrationsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Patch an Azure Stack registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "location": {
+          "target": "com.azure.azurestack#RegistrationsUpdateResponseLocation",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurestack#RegistrationsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Custom tags for the resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#RegistrationProperties",
+          "traits": {
+            "smithy.api#documentation": "Registration resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationProperties": {
+      "type": "structure",
+      "members": {
+        "objectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The object identifier associated with the Azure Stack connecting to Azure."
+          }
+        },
+        "cloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the registered Azure Stack."
+          }
+        },
+        "billingModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the billing mode for the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties portion of the registration resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom tags for the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsUpdateResponseLocation": {
+      "type": "enum",
+      "members": {
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#RegistrationParameterProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Stack registration resource",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.azure.azurestack#RegistrationsUpdateRequestLocation",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsUpdateRequestLocation": {
+      "type": "enum",
+      "members": {
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationParameterProperties": {
+      "type": "structure",
+      "members": {
+        "registrationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token identifying registered Azure Stack",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the Azure Stack registration resource"
+      }
+    },
+    "com.azure.azurestack#RegistrationsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#RegistrationsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Create or update an Azure Stack registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "location": {
+          "target": "com.azure.azurestack#RegistrationsCreateOrUpdateResponseLocation",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurestack#RegistrationsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Custom tags for the resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#RegistrationProperties",
+          "traits": {
+            "smithy.api#documentation": "Registration resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom tags for the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsCreateOrUpdateResponseLocation": {
+      "type": "enum",
+      "members": {
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#RegistrationParameterProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Azure Stack registration resource",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.azure.azurestack#RegistrationsCreateOrUpdateRequestLocation",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsCreateOrUpdateRequestLocation": {
+      "type": "enum",
+      "members": {
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#RegistrationsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns the properties of an Azure Stack registration.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "location": {
+          "target": "com.azure.azurestack#RegistrationsGetResponseLocation",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurestack#RegistrationsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Custom tags for the resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#RegistrationProperties",
+          "traits": {
+            "smithy.api#documentation": "Registration resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom tags for the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsGetResponseLocation": {
+      "type": "enum",
+      "members": {
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        },
+        "registrationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure Stack registration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#RegistrationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStack/registrations",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a list of all registrations under current subscription.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to the next page."
+          }
+        },
+        "value": {
+          "target": "com.azure.azurestack#RegistrationListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Registrations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pageable list of registrations."
+      }
+    },
+    "com.azure.azurestack#RegistrationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurestack#Registration"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Registrations"
+      }
+    },
+    "com.azure.azurestack#Registration": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Resource."
+          }
+        },
+        "location": {
+          "target": "com.azure.azurestack#RegistrationLocation",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurestack#RegistrationTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Custom tags for the resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entity tag used for optimistic concurrency when modifying the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurestack#RegistrationProperties",
+          "traits": {
+            "smithy.api#documentation": "Registration resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Registration information."
+      }
+    },
+    "com.azure.azurestack#RegistrationTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom tags for the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationLocation": {
+      "type": "enum",
+      "members": {
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of the resource."
+      }
+    },
+    "com.azure.azurestack#RegistrationsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#RegistrationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurestack#RegistrationsListRequest"
+      },
+      "output": {
+        "target": "com.azure.azurestack#RegistrationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Returns a list of all registrations.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.azurestack#RegistrationsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurestack#Azurestack": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.azurestack#DeploymentLicenseCreate"
+        },
+        {
+          "target": "com.azure.azurestack#CloudManifestFileGet"
+        },
+        {
+          "target": "com.azure.azurestack#CloudManifestFileList"
+        },
+        {
+          "target": "com.azure.azurestack#OperationsList"
+        },
+        {
+          "target": "com.azure.azurestack#CustomerSubscriptionsDelete"
+        },
+        {
+          "target": "com.azure.azurestack#CustomerSubscriptionsCreate"
+        },
+        {
+          "target": "com.azure.azurestack#CustomerSubscriptionsGet"
+        },
+        {
+          "target": "com.azure.azurestack#CustomerSubscriptionsList"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsUploadLog"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsGetProduct"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsGetProducts"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsListProducts"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsListDetails"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsGet"
+        },
+        {
+          "target": "com.azure.azurestack#ProductsList"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsEnableRemoteManagement"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsGetActivationKey"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsDelete"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsUpdate"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsGet"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsListBySubscription"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Azurestack",
+        "smithy.api#documentation": "Azure Azurestack API — merged from the azurestack resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

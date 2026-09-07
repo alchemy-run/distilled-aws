@@ -1,0 +1,20 @@
+{
+  "description": "Mark sensitive fields (passwords, tokens) with x-sensitive extension for proper handling",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseBranchPassword/properties/plain_text/x-sensitive",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/token/x-sensitive",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/plain_text_refresh_token/x-sensitive",
+      "value": true
+    }
+  ]
+}

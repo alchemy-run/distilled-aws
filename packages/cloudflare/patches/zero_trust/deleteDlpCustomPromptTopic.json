@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpCustomPromptTopicsDelete with distilled cloudflare/zero-trust deleteDlpCustomPromptTopic",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpCustomPromptTopic"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpCustomPromptTopicRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpCustomPromptTopic/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpCustomPromptTopicRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpCustomPromptTopicResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpCustomPromptTopic/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpCustomPromptTopicResponse"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align api_gateway#LabelsUserGet with distilled cloudflare/api-gateway getLabelUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserGet",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserGetRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelUser/input/target",
+      "value": "com.cloudflare.api_gateway#GetLabelUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserGetResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelUser/output/target",
+      "value": "com.cloudflare.api_gateway#GetLabelUserResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelUser/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#LabelNotFound"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "structures": {
+    "State": {
+      "members": {
+        "errorCode": { "optional": true },
+        "errorMessage": { "optional": true }
+      }
+    },
+    "ResourceStatus": {
+      "members": {
+        "ec2": { "optional": true },
+        "ecr": { "optional": true }
+      }
+    },
+    "FailedAccount": {
+      "members": {
+        "errorCode": { "optional": true },
+        "errorMessage": { "optional": true }
+      }
+    }
+  }
+}

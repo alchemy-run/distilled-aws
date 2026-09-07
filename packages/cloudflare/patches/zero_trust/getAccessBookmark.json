@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessBookmarksGet with distilled cloudflare/zero-trust getAccessBookmark",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmark"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmarkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmark/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessBookmarkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmarkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmark/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessBookmarkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessBookmark/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessBookmarkNotFound"
+        }
+      ]
+    }
+  ]
+}

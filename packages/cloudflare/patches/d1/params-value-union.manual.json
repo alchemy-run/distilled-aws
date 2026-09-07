@@ -1,0 +1,25 @@
+{
+  "description": "D1 bound params are JSON values (string | number | null | number[] for blobs), not just strings — the docs type them string[] and string-only params reject numeric bindings. Mirrors distilled #379 (v0 models a precise union; the docs pipeline uses Document => unknown, identical on the wire).",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#DatabaseQueryRequestParamsList/member/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#DatabaseQueryRequestBatchItemParamsList/member/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#DatabaseRawRequestParamsList/member/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#DatabaseRawRequestBatchItemParamsList/member/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

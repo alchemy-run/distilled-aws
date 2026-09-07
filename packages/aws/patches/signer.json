@@ -1,0 +1,27 @@
+{
+  "operations": {
+    "putSigningProfile": {
+      "syntheticErrors": [
+        {
+          "name": "SigningProfileAlreadyExists",
+          "from": "ValidationException",
+          "message": {
+            "includes": "already exists"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "SigningProfileAlreadyExists": ["AlreadyExistsError"]
+  },
+  "structures": {
+    "SigningMaterial": {
+      "members": {
+        "certificateArn": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

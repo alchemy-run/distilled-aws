@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_cloud_networking#CloudIntegrationsInitialSetup with distilled cloudflare/magic-cloud-networking initialSetupCloudIntegration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsInitialSetup",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsInitialSetupRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegration/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsInitialSetupResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegration/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegrationResponse"
+    }
+  ]
+}

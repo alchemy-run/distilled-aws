@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_search#NamespacesInstancesJobsGet with distilled cloudflare/aisearch getNamespaceInstanceJob",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesJobsGet",
+      "path": "/shapes/com.cloudflare.ai_search#GetNamespaceInstanceJob"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesJobsGetRequest",
+      "path": "/shapes/com.cloudflare.ai_search#GetNamespaceInstanceJobRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#GetNamespaceInstanceJob/input/target",
+      "value": "com.cloudflare.ai_search#GetNamespaceInstanceJobRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesJobsGetResponse",
+      "path": "/shapes/com.cloudflare.ai_search#GetNamespaceInstanceJobResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#GetNamespaceInstanceJob/output/target",
+      "value": "com.cloudflare.ai_search#GetNamespaceInstanceJobResponse"
+    }
+  ]
+}

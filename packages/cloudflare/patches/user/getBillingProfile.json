@@ -1,0 +1,20 @@
+{
+  "description": "Align user#BillingProfileGet with distilled cloudflare/user getBillingProfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#BillingProfileGet",
+      "path": "/shapes/com.cloudflare.user#GetBillingProfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#BillingProfileGetResponse",
+      "path": "/shapes/com.cloudflare.user#GetBillingProfileResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#GetBillingProfile/output/target",
+      "value": "com.cloudflare.user#GetBillingProfileResponse"
+    }
+  ]
+}

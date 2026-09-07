@@ -1,0 +1,38 @@
+{
+  "description": "Align rulesets#VersionsListForAccount with distilled cloudflare/rulesets listVersionsForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsListForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsListForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForAccount/input/target",
+      "value": "com.cloudflare.rulesets#ListVersionsForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsListForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForAccount/output/target",
+      "value": "com.cloudflare.rulesets#ListVersionsForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

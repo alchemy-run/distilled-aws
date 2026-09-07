@@ -1,0 +1,45 @@
+{
+  "description": "Align ai_security#Get with distilled cloudflare/ai-security getAiSecurity",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_security#Get",
+      "path": "/shapes/com.cloudflare.ai_security#GetAiSecurity"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_security#GetRequest",
+      "path": "/shapes/com.cloudflare.ai_security#GetAiSecurityRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_security#GetAiSecurity/input/target",
+      "value": "com.cloudflare.ai_security#GetAiSecurityRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_security#GetResponse",
+      "path": "/shapes/com.cloudflare.ai_security#GetAiSecurityResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_security#GetAiSecurity/output/target",
+      "value": "com.cloudflare.ai_security#GetAiSecurityResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_security#GetAiSecurity/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_security#AiSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ai_security#ZoneNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.ai_security#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#PlansGet with distilled cloudflare/zones getPlan",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#PlansGet",
+      "path": "/shapes/com.cloudflare.zones#GetPlan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#PlansGetRequest",
+      "path": "/shapes/com.cloudflare.zones#GetPlanRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetPlan/input/target",
+      "value": "com.cloudflare.zones#GetPlanRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#PlansGetResponse",
+      "path": "/shapes/com.cloudflare.zones#GetPlanResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetPlan/output/target",
+      "value": "com.cloudflare.zones#GetPlanResponse"
+    }
+  ]
+}

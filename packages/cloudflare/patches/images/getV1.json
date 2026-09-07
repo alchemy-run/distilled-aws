@@ -1,0 +1,42 @@
+{
+  "description": "Align images#V1Get with distilled cloudflare/images getV1",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1Get",
+      "path": "/shapes/com.cloudflare.images#GetV1"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1GetRequest",
+      "path": "/shapes/com.cloudflare.images#GetV1Request"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#GetV1/input/target",
+      "value": "com.cloudflare.images#GetV1Request"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1GetResponse",
+      "path": "/shapes/com.cloudflare.images#GetV1Response"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#GetV1/output/target",
+      "value": "com.cloudflare.images#GetV1Response"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.images#GetV1/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.images#ImagesAccessNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.images#ImageNotFound"
+        }
+      ]
+    }
+  ]
+}

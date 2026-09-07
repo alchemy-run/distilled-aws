@@ -1,0 +1,59 @@
+{
+  "description": "Fix User schema in OrganizationMembership and PaginatedOrganizationMembership: make name nullable, make default_organization and SSO-related fields optional",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/OrganizationMembership/properties/user/properties/name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/OrganizationMembership/properties/user/required",
+      "value": [
+        "id",
+        "display_name",
+        "email",
+        "avatar_url",
+        "created_at",
+        "updated_at",
+        "two_factor_auth_configured"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/User/properties/name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/User/required",
+      "value": [
+        "id",
+        "display_name",
+        "email",
+        "avatar_url",
+        "created_at",
+        "updated_at",
+        "two_factor_auth_configured"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationMembership/properties/data/items/properties/user/properties/name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedOrganizationMembership/properties/data/items/properties/user/required",
+      "value": [
+        "id",
+        "display_name",
+        "email",
+        "avatar_url",
+        "created_at",
+        "updated_at",
+        "two_factor_auth_configured"
+      ]
+    }
+  ]
+}

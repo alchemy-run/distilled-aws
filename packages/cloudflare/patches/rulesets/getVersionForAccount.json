@@ -1,0 +1,30 @@
+{
+  "description": "Align rulesets#VersionsGetForAccount with distilled cloudflare/rulesets getVersionForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsGetForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#GetVersionForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#GetVersionForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#GetVersionForAccount/input/target",
+      "value": "com.cloudflare.rulesets#GetVersionForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#GetVersionForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#GetVersionForAccount/output/target",
+      "value": "com.cloudflare.rulesets#GetVersionForAccountResponse"
+    }
+  ]
+}

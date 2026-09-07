@@ -1,0 +1,587 @@
+{
+  "description": "Fix all Paginated* schemas: make pagination fields nullable",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncerResizeRequest/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncerResizeRequest/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncerResizeRequest/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncerResizeRequest/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterResizeRequest/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterResizeRequest/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterResizeRequest/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterResizeRequest/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranch/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaLintError/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaLintError/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaLintError/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaLintError/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchKeyspace/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchKeyspace/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchKeyspace/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchKeyspace/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchPassword/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchPassword/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchPassword/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchPassword/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterCidr/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterCidr/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterCidr/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterCidr/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabase/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPlanetscaleRegion/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPlanetscaleRegion/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPlanetscaleRegion/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPlanetscaleRegion/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPublicPlanetscaleRegionSerializer/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPublicPlanetscaleRegionSerializer/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPublicPlanetscaleRegionSerializer/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPublicPlanetscaleRegionSerializer/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchReadOnlyRegion/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchReadOnlyRegion/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchReadOnlyRegion/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseBranchReadOnlyRegion/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOauthApplication/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOauthApplication/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOauthApplication/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOauthApplication/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationMembership/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationMembership/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationMembership/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationMembership/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganization/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganization/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganization/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganization/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncer/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncer/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncer/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresBouncer/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedWorkflow/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedWorkflow/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedWorkflow/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedWorkflow/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployRequestReview/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployRequestReview/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployRequestReview/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployRequestReview/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseDeployRequest/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseDeployRequest/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseDeployRequest/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseDeployRequest/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployOperation/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployOperation/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployOperation/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployOperation/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployment/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployment/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployment/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDeployment/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedLineItem/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedLineItem/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedLineItem/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedLineItem/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedInvoice/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedInvoice/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedInvoice/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedInvoice/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeam/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeam/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeam/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeam/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeamMembership/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeamMembership/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeamMembership/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedOrganizationTeamMembership/properties/prev_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaRecommendation/properties/next_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaRecommendation/properties/next_page_url/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaRecommendation/properties/prev_page/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedSchemaRecommendation/properties/prev_page_url/x-nullable",
+      "value": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align cloudforce_one#ScansConfigDelete with distilled cloudflare/cloudforce-one deleteScanConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigDelete",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteScanConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigDeleteRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteScanConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteScanConfig/input/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteScanConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigDeleteResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteScanConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteScanConfig/output/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteScanConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteScanConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cloudforce_one#ScanConfigNotFound"
+        }
+      ]
+    }
+  ]
+}

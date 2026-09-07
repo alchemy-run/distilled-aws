@@ -1,0 +1,2590 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.manufacturingplatform#ManufacturingDataServicesListAvailableVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesListAvailableVersionsRequest"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#AvailableVersionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}/listAvailableVersions",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "Returns the list of available versions",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#AvailableVersionListResult": {
+      "type": "structure",
+      "members": {
+        "versions": {
+          "target": "com.azure.manufacturingplatform#AvailableVersionListResultVersionsList",
+          "traits": {
+            "smithy.api#documentation": "The list of versions",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of available versions"
+      }
+    },
+    "com.azure.manufacturingplatform#AvailableVersionListResultVersionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#ApplicationVersion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of versions"
+      }
+    },
+    "com.azure.manufacturingplatform#ApplicationVersion": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Application Version",
+            "smithy.api#required": {}
+          }
+        },
+        "isLatest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Latest",
+            "smithy.api#required": {}
+          }
+        },
+        "isPreview": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Preview",
+            "smithy.api#required": {}
+          }
+        },
+        "isDeprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Deprecated",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about application versions"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesListAvailableVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "mdsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "Delete a MdsResource",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "mdsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "Update a MdsResource",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.manufacturingplatform#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.manufacturingplatform#MdsResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.manufacturingplatform#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.manufacturingplatform#SkuTier": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.manufacturingplatform#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.manufacturingplatform#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.manufacturingplatform#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.manufacturingplatform#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.manufacturingplatform#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.manufacturingplatform#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.manufacturingplatform#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mds Resource Version."
+          }
+        },
+        "enableCopilot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable Copilot."
+          }
+        },
+        "enableDiagnosticSettings": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable Diagnostic Settings."
+          }
+        },
+        "aadApplicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AAD Application Id.",
+            "smithy.api#required": {}
+          }
+        },
+        "aksAdminGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AKS Admin Group Id."
+          }
+        },
+        "serviceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service Url"
+          }
+        },
+        "aksProfile": {
+          "target": "com.azure.manufacturingplatform#AksProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of AKS Created."
+          }
+        },
+        "storageProfile": {
+          "target": "com.azure.manufacturingplatform#StorageProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Storage Created."
+          }
+        },
+        "databaseProfile": {
+          "target": "com.azure.manufacturingplatform#DatabaseProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Database Created."
+          }
+        },
+        "adxProfile": {
+          "target": "com.azure.manufacturingplatform#AdxProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Adx Created."
+          }
+        },
+        "redisProfile": {
+          "target": "com.azure.manufacturingplatform#RedisProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Azure Redis Created."
+          }
+        },
+        "monitoringProfile": {
+          "target": "com.azure.manufacturingplatform#MonitoringProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Monitoring Resource Created."
+          }
+        },
+        "eventHubProfile": {
+          "target": "com.azure.manufacturingplatform#EventHubProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of EventHub Resource."
+          }
+        },
+        "functionAppProfile": {
+          "target": "com.azure.manufacturingplatform#FunctionAppProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Function App Resource."
+          }
+        },
+        "openAIProfile": {
+          "target": "com.azure.manufacturingplatform#OpenAIProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of OpenAI Resource."
+          }
+        },
+        "managedResourceGroupConfiguration": {
+          "target": "com.azure.manufacturingplatform#ManagedResourceGroupConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Configuration of the managed resource group associated with the resource."
+          }
+        },
+        "managedOnBehalfOfConfiguration": {
+          "target": "com.azure.manufacturingplatform#ManagedOnBehalfOfConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Managed On Behalf Of Configuration."
+          }
+        },
+        "cmkProfile": {
+          "target": "com.azure.manufacturingplatform#CmkProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of CMK Settings."
+          }
+        },
+        "fabricProfile": {
+          "target": "com.azure.manufacturingplatform#FabricProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Fabric resources."
+          }
+        },
+        "userManagedOpenAIProfile": {
+          "target": "com.azure.manufacturingplatform#UserManagedOpenAIProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of User Managed OpenAI Resource."
+          }
+        },
+        "denyAssignmentExclusions": {
+          "target": "com.azure.manufacturingplatform#MdsResourcePropertiesDenyAssignmentExclusionsList",
+          "traits": {
+            "smithy.api#documentation": "Deny Assignments exclusion list."
+          }
+        },
+        "resourceState": {
+          "target": "com.azure.manufacturingplatform#ResourceState",
+          "traits": {
+            "smithy.api#documentation": "State of the resource"
+          }
+        },
+        "redundancyState": {
+          "target": "com.azure.manufacturingplatform#RedundancyState",
+          "traits": {
+            "smithy.api#documentation": "Zone redundancy state for resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the ManufacturingPlatform MdsResource."
+      }
+    },
+    "com.azure.manufacturingplatform#RedundancyState": {
+      "type": "enum",
+      "members": {
+        "ZONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zonal"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The redundancy state of the resource"
+      }
+    },
+    "com.azure.manufacturingplatform#ResourceState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Inactive"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the resource"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourcePropertiesDenyAssignmentExclusionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#DenyAssignmentExclusion"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny Assignments exclusion list."
+      }
+    },
+    "com.azure.manufacturingplatform#DenyAssignmentExclusion": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Object Id of Identity",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Identity",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Deny Assignment Exclusions"
+      }
+    },
+    "com.azure.manufacturingplatform#UserManagedOpenAIProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of OpenAI Resource",
+            "smithy.api#required": {}
+          }
+        },
+        "gptModelDeploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Deployment Name",
+            "smithy.api#required": {}
+          }
+        },
+        "embeddingModelDeploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Deployment Name",
+            "smithy.api#required": {}
+          }
+        },
+        "embeddingModelType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to User Managed OpenAI Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#FabricProfile": {
+      "type": "structure",
+      "members": {
+        "keyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Key Vault Uri",
+            "smithy.api#required": {}
+          }
+        },
+        "oneLakeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI of One Lake",
+            "smithy.api#required": {}
+          }
+        },
+        "oneLakePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One Lake Path",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Fabric"
+      }
+    },
+    "com.azure.manufacturingplatform#CmkProfile": {
+      "type": "structure",
+      "members": {
+        "keyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI of Key in AKV",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to CMK"
+      }
+    },
+    "com.azure.manufacturingplatform#ManagedOnBehalfOfConfiguration": {
+      "type": "structure",
+      "members": {
+        "moboBrokerResources": {
+          "target": "com.azure.manufacturingplatform#ManagedOnBehalfOfConfigurationMoboBrokerResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Associated MoboBrokerResources.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration of the managed on behalf of resource."
+      }
+    },
+    "com.azure.manufacturingplatform#ManagedOnBehalfOfConfigurationMoboBrokerResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#MoboBrokerResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Associated MoboBrokerResources."
+      }
+    },
+    "com.azure.manufacturingplatform#MoboBrokerResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of MoboBrokerResource",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MoboBroker resource."
+      }
+    },
+    "com.azure.manufacturingplatform#ManagedResourceGroupConfiguration": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource group name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource group location.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration of the managed resource group associated with the resource."
+      }
+    },
+    "com.azure.manufacturingplatform#OpenAIProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of OpenAI Resource"
+          }
+        },
+        "gptModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Name"
+          }
+        },
+        "gptModelVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Version"
+          }
+        },
+        "gptModelCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Capacity"
+          }
+        },
+        "gptModelSkuName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model SKU Name"
+          }
+        },
+        "embeddingModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Name"
+          }
+        },
+        "embeddingModelVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Version"
+          }
+        },
+        "embeddingModelSkuName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model SKU Name"
+          }
+        },
+        "embeddingModelCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Capacity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to OpenAI Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#FunctionAppProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Azure Function App Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Azure Function App Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#EventHubProfile": {
+      "type": "structure",
+      "members": {
+        "adxInstanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Adx Instance"
+          }
+        },
+        "hostName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to EventHub Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#MonitoringProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Application Insights Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Monitoring Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#RedisProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Azure Redis Cache Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Azure Redis Cache Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#AdxProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Adx Resource"
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri of Adx Resource"
+          }
+        },
+        "dataIngestionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Data Ingestion Uri of Adx Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Azure Data Explorer (Adx) Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#DatabaseProfile": {
+      "type": "structure",
+      "members": {
+        "cosmosId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Cosmos Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Database Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#StorageProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of Storage Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Storage Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#AksProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of AKS Resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Aks Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current operation."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.manufacturingplatform#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.manufacturingplatform#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.manufacturingplatform#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.manufacturingplatform#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.manufacturingplatform#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "mdsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name."
+          }
+        },
+        "identity": {
+          "target": "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput",
+          "traits": {
+            "smithy.api#documentation": "The managed service identities assigned to this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesSkuUpdate",
+          "traits": {
+            "smithy.api#documentation": "The SKU (Stock Keeping Unit) assigned to this resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.manufacturingplatform#MdsResourceUpdatePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceUpdatePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mds Resource Version."
+          }
+        },
+        "enableCopilot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable Copilot."
+          }
+        },
+        "enableDiagnosticSettings": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable Diagnostic Settings."
+          }
+        },
+        "openAIProfile": {
+          "target": "com.azure.manufacturingplatform#OpenAIProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Profile of OpenAI Resource."
+          }
+        },
+        "fabricProfile": {
+          "target": "com.azure.manufacturingplatform#FabricProfileUpdate",
+          "traits": {
+            "smithy.api#documentation": "Profile of Fabric resources."
+          }
+        },
+        "userManagedOpenAIProfile": {
+          "target": "com.azure.manufacturingplatform#UserManagedOpenAIProfileUpdate",
+          "traits": {
+            "smithy.api#documentation": "Profile of User Managed OpenAI Resource."
+          }
+        },
+        "denyAssignmentExclusions": {
+          "target": "com.azure.manufacturingplatform#MdsResourceUpdatePropertiesInputDenyAssignmentExclusionsList",
+          "traits": {
+            "smithy.api#documentation": "Deny Assignments exclusion list."
+          }
+        },
+        "resourceState": {
+          "target": "com.azure.manufacturingplatform#ResourceState",
+          "traits": {
+            "smithy.api#documentation": "State of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the MdsResource."
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceUpdatePropertiesInputDenyAssignmentExclusionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#DenyAssignmentExclusion"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny Assignments exclusion list."
+      }
+    },
+    "com.azure.manufacturingplatform#UserManagedOpenAIProfileUpdate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of OpenAI Resource"
+          }
+        },
+        "gptModelDeploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Deployment Name"
+          }
+        },
+        "embeddingModelDeploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Deployment Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to User Managed OpenAI Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#FabricProfileUpdate": {
+      "type": "structure",
+      "members": {
+        "keyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Key Vault Uri"
+          }
+        },
+        "oneLakeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI of One Lake"
+          }
+        },
+        "oneLakePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One Lake Path"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to Fabric"
+      }
+    },
+    "com.azure.manufacturingplatform#OpenAIProfileInput": {
+      "type": "structure",
+      "members": {
+        "gptModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Name"
+          }
+        },
+        "gptModelVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Version"
+          }
+        },
+        "gptModelCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Capacity"
+          }
+        },
+        "gptModelSkuName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model SKU Name"
+          }
+        },
+        "embeddingModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Name"
+          }
+        },
+        "embeddingModelVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Version"
+          }
+        },
+        "embeddingModelSkuName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model SKU Name"
+          }
+        },
+        "embeddingModelCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Capacity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to OpenAI Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesSkuUpdate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code"
+          }
+        },
+        "tier": {
+          "target": "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesSkuUpdateTier",
+          "traits": {
+            "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code."
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesSkuUpdateTier": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+      }
+    },
+    "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType",
+          "traits": {
+            "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The identities assigned to this resource by the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The identities assigned to this resource by the user."
+      }
+    },
+    "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.manufacturingplatform#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "Create a MdsResource",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.manufacturingplatform#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.manufacturingplatform#MdsResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.manufacturingplatform#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.manufacturingplatform#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.manufacturingplatform#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "mdsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.manufacturingplatform#MdsResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequestSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequestSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.manufacturingplatform#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.manufacturingplatform#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.manufacturingplatform#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.manufacturingplatform#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.manufacturingplatform#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.manufacturingplatform#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mds Resource Version."
+          }
+        },
+        "enableCopilot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable Copilot."
+          }
+        },
+        "enableDiagnosticSettings": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable Diagnostic Settings."
+          }
+        },
+        "aadApplicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AAD Application Id.",
+            "smithy.api#required": {}
+          }
+        },
+        "aksAdminGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AKS Admin Group Id."
+          }
+        },
+        "openAIProfile": {
+          "target": "com.azure.manufacturingplatform#OpenAIProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Profile of OpenAI Resource."
+          }
+        },
+        "cmkProfile": {
+          "target": "com.azure.manufacturingplatform#CmkProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of CMK Settings."
+          }
+        },
+        "fabricProfile": {
+          "target": "com.azure.manufacturingplatform#FabricProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of Fabric resources."
+          }
+        },
+        "userManagedOpenAIProfile": {
+          "target": "com.azure.manufacturingplatform#UserManagedOpenAIProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Profile of User Managed OpenAI Resource."
+          }
+        },
+        "denyAssignmentExclusions": {
+          "target": "com.azure.manufacturingplatform#MdsResourcePropertiesInputDenyAssignmentExclusionsList",
+          "traits": {
+            "smithy.api#documentation": "Deny Assignments exclusion list."
+          }
+        },
+        "resourceState": {
+          "target": "com.azure.manufacturingplatform#ResourceState",
+          "traits": {
+            "smithy.api#documentation": "State of the resource"
+          }
+        },
+        "redundancyState": {
+          "target": "com.azure.manufacturingplatform#RedundancyState",
+          "traits": {
+            "smithy.api#documentation": "Zone redundancy state for resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the ManufacturingPlatform MdsResource."
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourcePropertiesInputDenyAssignmentExclusionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#DenyAssignmentExclusion"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deny Assignments exclusion list."
+      }
+    },
+    "com.azure.manufacturingplatform#UserManagedOpenAIProfileInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id of OpenAI Resource",
+            "smithy.api#required": {}
+          }
+        },
+        "gptModelDeploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GPT Model Deployment Name",
+            "smithy.api#required": {}
+          }
+        },
+        "embeddingModelDeploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Embedding Model Deployment Name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties related to User Managed OpenAI Resource"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "Get a MdsResource",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.manufacturingplatform#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.manufacturingplatform#MdsResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.manufacturingplatform#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.manufacturingplatform#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.manufacturingplatform#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "mdsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#MdsResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "List MdsResource resources by resource group",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.manufacturingplatform#MdsResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The MdsResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a MdsResource list operation."
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#MdsResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The MdsResource items on this page"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.manufacturingplatform#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.manufacturingplatform#MdsResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.manufacturingplatform#MdsResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.manufacturingplatform#MdsResourceIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.manufacturingplatform#MdsResourceSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A ManufacturingPlatformProviderHub resource"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.manufacturingplatform#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.manufacturingplatform#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.manufacturingplatform#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.manufacturingplatform#MdsResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.manufacturingplatform#ManufacturingDataServicesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#MdsResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "List MdsResource resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#ManufacturingDataServicesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.manufacturingplatform#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.manufacturingplatform#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ManufacturingPlatform/operations",
+          "code": 200,
+          "apiVersion": "2025-03-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-03-01"
+      }
+    },
+    "com.azure.manufacturingplatform#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.manufacturingplatform#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.manufacturingplatform#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.manufacturingplatform#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.manufacturingplatform#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.manufacturingplatform#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.manufacturingplatform#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.manufacturingplatform#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.manufacturingplatform#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.manufacturingplatform#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.manufacturingplatform#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.manufacturingplatform#Manufacturingplatform": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesListAvailableVersions"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesDelete"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesUpdate"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesGet"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesListBySubscription"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Manufacturingplatform",
+        "smithy.api#documentation": "Azure Manufacturingplatform API — merged from the manufacturingplatform resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

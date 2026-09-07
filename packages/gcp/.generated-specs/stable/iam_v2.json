@@ -1,0 +1,1070 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "iam",
+    "version": "v2",
+    "title": "Identity and Access Management (IAM) API",
+    "baseUrl": "https://iam.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.iam_v2#GoogleIamV2Policy": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A user-specified description of the `Policy`. This value can be up to 63 characters."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.iam_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "A key-value map to store arbitrary metadata for the `Policy`. Keys can be up to 63 characters. Values can be up to 255 characters."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the `Policy` was last updated."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The kind of the `Policy`. Always contains the value `DenyPolicy`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the `Policy`, which must be unique. Format: `policies/{attachment_point}/denypolicies/{policy_id}` The attachment point is identified by its URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-deny-policy`. For organizations and folders, use the numeric ID in the full resource name. For projects, requests can use the alphanumeric or the numeric ID. Responses always contain the numeric ID."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the `Policy` was deleted. Empty if the policy is not deleted."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The globally unique ID of the `Policy`. Assigned automatically when the `Policy` is created."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An opaque tag that identifies the current version of the `Policy`. IAM uses this value to help manage concurrent updates, so they do not cause one update to be overwritten by another. If this field is present in a CreatePolicyRequest, the value is ignored."
+          }
+        },
+        "rules": {
+          "target": "com.gcp.iam_v2#GoogleIamV2PolicyRuleList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules that specify the behavior of the `Policy`. All of the rules should be of the `kind` specified in the `Policy`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the `Policy` was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data for an IAM policy."
+      }
+    },
+    "com.gcp.iam_v2#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV2PolicyRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iam_v2#GoogleIamV2PolicyRule"
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV3mainOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the"
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV3OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the"
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.iam_v2#GoogleLongrunningOperation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.iam_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.iam_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.iam_v2#GoogleRpcStatus",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.iam_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV1betaWorkloadIdentityPoolOperationMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Metadata for long-running WorkloadIdentityPool operations."
+      }
+    },
+    "com.gcp.iam_v2#GoogleTypeExpr": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV2DenyRule": {
+      "type": "structure",
+      "members": {
+        "deniedPermissions": {
+          "target": "com.gcp.iam_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The permissions that are explicitly denied by this rule. Each permission uses the format `{service_fqdn}/{resource}.{verb}`, where `{service_fqdn}` is the fully qualified domain name for the service. For example, `iam.googleapis.com/roles.list`."
+          }
+        },
+        "exceptionPermissions": {
+          "target": "com.gcp.iam_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the permissions that this rule excludes from the set of denied permissions given by `denied_permissions`. If a permission appears in `denied_permissions` _and_ in `exception_permissions` then it will _not_ be denied. The excluded permissions can be specified using the same syntax as `denied_permissions`."
+          }
+        },
+        "exceptionPrincipals": {
+          "target": "com.gcp.iam_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The identities that are excluded from the deny rule, even if they are listed in the `denied_principals`. For example, you could add a Google group to the `denied_principals`, then exclude specific users who belong to that group. This field can contain the same values as the `denied_principals` field, excluding `principalSet://goog/public:all`, which represents all users on the internet."
+          }
+        },
+        "denialCondition": {
+          "target": "com.gcp.iam_v2#GoogleTypeExpr",
+          "traits": {
+            "smithy.api#documentation": "The condition that determines whether this deny rule applies to a request. If the condition expression evaluates to `true`, then the deny rule is applied; otherwise, the deny rule is not applied. Each deny rule is evaluated independently. If this deny rule does not apply to a request, other deny rules might still apply. The condition can use CEL functions that evaluate [resource tags](https://cloud.google.com/iam/help/conditions/resource-tags). Other functions and operators are not supported."
+          }
+        },
+        "deniedPrincipals": {
+          "target": "com.gcp.iam_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": " The identities that are prevented from using one or more permissions on Google Cloud resources. This field can contain the following values: * `principal://goog/subject/{email_id}`: A specific Google Account. Includes Gmail, Cloud Identity, and Google Workspace user accounts. For example, `principal://goog/subject/alice@example.com`. * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}`: A Google Cloud service account. For example, `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account@iam.gserviceaccount.com`. * `principalSet://goog/group/{group_id}`: A Google group. For example, `principalSet://goog/group/admins@example.com`. * `principalSet://goog/public:all`: A special identifier that represents any principal that is on the internet, even if they do not have a Google Account or are not logged in. * `principalSet://goog/cloudIdentityCustomerId/{customer_id}`: All of the principals associated with the specified Google Workspace or Cloud Identity customer ID. For example, `principalSet://goog/cloudIdentityCustomerId/C01Abc35`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `principalSet://cloudresourcemanager.googleapis.com/[projects|folders|organizations]/{project_number|folder_number|org_number}/type/ServiceAccount`: All service accounts grouped under a resource (project, folder, or organization). * `principalSet://cloudresourcemanager.googleapis.com/[projects|folders|organizations]/{project_number|folder_number|org_number}/type/ServiceAgent`: All service agents grouped under a resource (project, folder, or organization). * `deleted:principal://goog/subject/{email_id}?uid={uid}`: A specific Google Account that was deleted recently. For example, `deleted:principal://goog/subject/alice@example.com?uid=1234567890`. If the Google Account is recovered, this identifier reverts to the standard identifier for a Google Account. * `deleted:principalSet://goog/group/{group_id}?uid={uid}`: A Google group that was deleted recently. For example, `deleted:principalSet://goog/group/admins@example.com?uid=1234567890`. If the Google group is restored, this identifier reverts to the standard identifier for a Google group. * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}?uid={uid}`: A Google Cloud service account that was deleted recently. For example, `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account@iam.gserviceaccount.com?uid=1234567890`. If the service account is undeleted, this identifier reverts to the standard identifier for a service account. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A deny rule in an IAM deny policy."
+      }
+    },
+    "com.gcp.iam_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamAdminV1AuditDataPermissionDelta": {
+      "type": "structure",
+      "members": {
+        "addedPermissions": {
+          "target": "com.gcp.iam_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Added permissions."
+          }
+        },
+        "removedPermissions": {
+          "target": "com.gcp.iam_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Removed permissions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A PermissionDelta message to record the added_permissions and removed_permissions inside a role."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV1LoggingAuditData": {
+      "type": "structure",
+      "members": {
+        "policyDelta": {
+          "target": "com.gcp.iam_v2#GoogleIamV1PolicyDelta",
+          "traits": {
+            "smithy.api#documentation": "Policy delta between the original policy and the newly set policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Audit log information specific to Cloud IAM. This message is serialized as an `Any` type in the `ServiceData` message of an `AuditLog` message."
+      }
+    },
+    "com.gcp.iam_v2#GoogleCloudCommonOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "cancelRequested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "statusDetail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV2ListPoliciesResponse": {
+      "type": "structure",
+      "members": {
+        "policies": {
+          "target": "com.gcp.iam_v2#GoogleIamV2PolicyList",
+          "traits": {
+            "smithy.api#documentation": "Metadata for the policies that are attached to the resource."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token that you can use in a ListPoliciesRequest to retrieve the next page. If this field is omitted, there are no additional pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `ListPolicies`."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV2PolicyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iam_v2#GoogleIamV2Policy"
+      }
+    },
+    "com.gcp.iam_v2#CloudControl2SharedOperationsReconciliationOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "deleteResource": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. Use exclusive_action instead."
+          }
+        },
+        "exclusiveAction": {
+          "target": "com.gcp.iam_v2#CloudControl2SharedOperationsReconciliationOperationMetadataExclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Excluisive action returned by the CLH."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation metadata returned by the CLH during resource state reconciliation."
+      }
+    },
+    "com.gcp.iam_v2#CloudControl2SharedOperationsReconciliationOperationMetadataExclusiveActionEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_REPAIR_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_REPAIR_ACTION"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "RETRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETRY"
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamAdminV1AuditData": {
+      "type": "structure",
+      "members": {
+        "permissionDelta": {
+          "target": "com.gcp.iam_v2#GoogleIamAdminV1AuditDataPermissionDelta",
+          "traits": {
+            "smithy.api#documentation": "The permission_delta when when creating or updating a Role."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Audit log information specific to Cloud IAM admin APIs. This message is serialized as an `Any` type in the `ServiceData` message of an `AuditLog` message."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV1BindingDelta": {
+      "type": "structure",
+      "members": {
+        "member": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single identity requesting access for a Google Cloud resource. Follows the same format of Binding.members. Required"
+          }
+        },
+        "action": {
+          "target": "com.gcp.iam_v2#GoogleIamV1BindingDeltaActionEnum",
+          "traits": {
+            "smithy.api#documentation": "The action that was performed on a Binding. Required"
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required"
+          }
+        },
+        "condition": {
+          "target": "com.gcp.iam_v2#GoogleTypeExpr",
+          "traits": {
+            "smithy.api#documentation": "The condition that is associated with this binding."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One delta entry for Binding. Each individual change (only one member in each entry) to a binding will be a separate entry."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV1BindingDeltaActionEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_UNSPECIFIED"
+          }
+        },
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVE"
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#GoogleRpcStatus": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.iam_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.iam_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iam_v2#DocumentMap"
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV3betaOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the"
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV1PolicyDelta": {
+      "type": "structure",
+      "members": {
+        "bindingDeltas": {
+          "target": "com.gcp.iam_v2#GoogleIamV1BindingDeltaList",
+          "traits": {
+            "smithy.api#documentation": "The delta for Bindings between two policies."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The difference delta between two policies."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV1BindingDeltaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iam_v2#GoogleIamV1BindingDelta"
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV3alphaOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the"
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV2PolicyRule": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A user-specified description of the rule. This value can be up to 256 characters."
+          }
+        },
+        "denyRule": {
+          "target": "com.gcp.iam_v2#GoogleIamV2DenyRule",
+          "traits": {
+            "smithy.api#documentation": "A rule for a deny policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single rule in a `Policy`."
+      }
+    },
+    "com.gcp.iam_v2#GoogleIamV2PolicyOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the `google.longrunning.Operation` was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for long-running `Policy` operations."
+      }
+    },
+    "com.gcp.iam_v2#CreatePolicyPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource that the policy is attached to, along with the kind of policy to create. Format: `policies/{attachment_point}/denypolicies` The attachment point is identified by its URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`. For organizations and folders, use the numeric ID in the full resource name. For projects, you can use the alphanumeric or the numeric ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID to use for this policy, which will become the final component of the policy's resource name. The ID must contain 3 to 63 characters. It can contain lowercase letters and numbers, as well as dashes (`-`) and periods (`.`). The first character must be a lowercase letter.",
+            "smithy.api#httpQuery": "policyId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.iam_v2#GoogleIamV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.iam_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.iam_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.iam_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.iam_v2#CreatePolicyPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iam_v2#CreatePolicyPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.iam_v2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iam_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.iam_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.iam_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.iam_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}"
+        },
+        "smithy.api#documentation": "Creates a policy."
+      }
+    },
+    "com.gcp.iam_v2#UpdatePoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the `Policy`, which must be unique. Format: `policies/{attachment_point}/denypolicies/{policy_id}` The attachment point is identified by its URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-deny-policy`. For organizations and folders, use the numeric ID in the full resource name. For projects, requests can use the alphanumeric or the numeric ID. Responses always contain the numeric ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.iam_v2#GoogleIamV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#UpdatePolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iam_v2#UpdatePoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.iam_v2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iam_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.iam_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.iam_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.iam_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates the specified policy. You can update only the rules and the display name for the policy. To update a policy, you should use a read-modify-write loop: 1. Use GetPolicy to read the current version of the policy. 2. Modify the policy as needed. 3. Use `UpdatePolicy` to write the updated policy. This pattern helps prevent conflicts between concurrent updates."
+      }
+    },
+    "com.gcp.iam_v2#ListPoliciesPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of policies to return. IAM ignores this value and uses the value 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource that the policy is attached to, along with the kind of policy to list. Format: `policies/{attachment_point}/denypolicies` The attachment point is identified by its URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`. For organizations and folders, use the numeric ID in the full resource name. For projects, you can use the alphanumeric or the numeric ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received in a ListPoliciesResponse. Provide this token to retrieve the next page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#ListPoliciesPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iam_v2#ListPoliciesPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.iam_v2#GoogleIamV2ListPoliciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iam_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.iam_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}"
+        },
+        "smithy.api#documentation": "Retrieves the policies of the specified kind that are attached to a resource. The response lists only policy metadata. In particular, policy rules are omitted.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.iam_v2#GetPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the policy to retrieve. Format: `policies/{attachment_point}/denypolicies/{policy_id}` Use the URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`. For organizations and folders, use the numeric ID in the full resource name. For projects, you can use the alphanumeric or the numeric ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#GetPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iam_v2#GetPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.iam_v2#GoogleIamV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iam_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.iam_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a policy."
+      }
+    },
+    "com.gcp.iam_v2#DeletePoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The expected `etag` of the policy to delete. If the value does not match the value that is stored in IAM, the request fails with a `409` error code and `ABORTED` status. If you omit this field, the policy is deleted regardless of its current `etag`.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the policy to delete. Format: `policies/{attachment_point}/denypolicies/{policy_id}` Use the URL-encoded full resource name, which means that the forward-slash character, `/`, must be written as `%2F`. For example, `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`. For organizations and folders, use the numeric ID in the full resource name. For projects, you can use the alphanumeric or the numeric ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#DeletePolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iam_v2#DeletePoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.iam_v2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iam_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.iam_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.iam_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.iam_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a policy. This action is permanent."
+      }
+    },
+    "com.gcp.iam_v2#GetPoliciesOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iam_v2#GetPoliciesOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iam_v2#GetPoliciesOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iam_v2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iam_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.iam_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    }
+  }
+}

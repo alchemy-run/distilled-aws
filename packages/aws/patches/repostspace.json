@@ -1,0 +1,5 @@
+{
+  "operations": {
+    "listChannels": { "errors": ["ResourceNotFoundException"] }
+  }
+}

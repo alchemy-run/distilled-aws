@@ -1,0 +1,45 @@
+{
+  "description": "Align cache#RegionalTieredCacheGet with distilled cloudflare/cache getRegionalTieredCache",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#RegionalTieredCacheGet",
+      "path": "/shapes/com.cloudflare.cache#GetRegionalTieredCache"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#RegionalTieredCacheGetRequest",
+      "path": "/shapes/com.cloudflare.cache#GetRegionalTieredCacheRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetRegionalTieredCache/input/target",
+      "value": "com.cloudflare.cache#GetRegionalTieredCacheRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#RegionalTieredCacheGetResponse",
+      "path": "/shapes/com.cloudflare.cache#GetRegionalTieredCacheResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetRegionalTieredCache/output/target",
+      "value": "com.cloudflare.cache#GetRegionalTieredCacheResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#GetRegionalTieredCache/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#SettingUnavailableForPlan"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.cache#Unauthorized"
+        }
+      ]
+    }
+  ]
+}

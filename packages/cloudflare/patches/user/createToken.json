@@ -1,0 +1,45 @@
+{
+  "description": "Align user#TokensCreate with distilled cloudflare/user createToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensCreate",
+      "path": "/shapes/com.cloudflare.user#CreateToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensCreateRequest",
+      "path": "/shapes/com.cloudflare.user#CreateTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#CreateToken/input/target",
+      "value": "com.cloudflare.user#CreateTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensCreateResponse",
+      "path": "/shapes/com.cloudflare.user#CreateTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#CreateToken/output/target",
+      "value": "com.cloudflare.user#CreateTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#CreateToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#InvalidTokenName"
+        },
+        {
+          "target": "com.cloudflare.user#PermissionGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

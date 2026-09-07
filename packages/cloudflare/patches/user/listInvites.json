@@ -1,0 +1,28 @@
+{
+  "description": "Align user#InvitesList with distilled cloudflare/user listInvites",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#InvitesList",
+      "path": "/shapes/com.cloudflare.user#ListInvites"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#InvitesListResponse",
+      "path": "/shapes/com.cloudflare.user#ListInvitesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListInvites/output/target",
+      "value": "com.cloudflare.user#ListInvitesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#ListInvites/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

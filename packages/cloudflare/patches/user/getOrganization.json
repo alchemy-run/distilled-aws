@@ -1,0 +1,30 @@
+{
+  "description": "Align user#OrganizationsGet with distilled cloudflare/user getOrganization",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#OrganizationsGet",
+      "path": "/shapes/com.cloudflare.user#GetOrganization"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#OrganizationsGetRequest",
+      "path": "/shapes/com.cloudflare.user#GetOrganizationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#GetOrganization/input/target",
+      "value": "com.cloudflare.user#GetOrganizationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#OrganizationsGetResponse",
+      "path": "/shapes/com.cloudflare.user#GetOrganizationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#GetOrganization/output/target",
+      "value": "com.cloudflare.user#GetOrganizationResponse"
+    }
+  ]
+}

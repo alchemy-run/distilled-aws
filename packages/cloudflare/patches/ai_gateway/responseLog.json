@@ -1,0 +1,20 @@
+{
+  "description": "Align ai_gateway#LogsResponse with distilled cloudflare/ai-gateway responseLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#ResponseLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsResponseRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#ResponseLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ResponseLog/input/target",
+      "value": "com.cloudflare.ai_gateway#ResponseLogRequest"
+    }
+  ]
+}

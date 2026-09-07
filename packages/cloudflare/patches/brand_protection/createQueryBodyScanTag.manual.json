@@ -1,0 +1,15 @@
+{
+  "description": "createQuery takes `scan` and `tag` BOTH as query params and as body fields (the docs list both transports, with no descriptions distinguishing them). The converter dedup named the body pair `scan_2`/`tag_2`; rename to `body_scan`/`body_tag` (v0 distilled's surface names), keeping the wire names `scan`/`tag` via jsonName.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#CreateQueryRequest/members/scan_2",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateQueryRequest/members/body_scan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#CreateQueryRequest/members/tag_2",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateQueryRequest/members/body_tag"
+    }
+  ]
+}

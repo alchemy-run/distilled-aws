@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#RulesDelete with distilled cloudflare/firewall deleteRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesDelete",
+      "path": "/shapes/com.cloudflare.firewall#DeleteRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.firewall#DeleteRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteRule/input/target",
+      "value": "com.cloudflare.firewall#DeleteRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.firewall#DeleteRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteRule/output/target",
+      "value": "com.cloudflare.firewall#DeleteRuleResponse"
+    }
+  ]
+}

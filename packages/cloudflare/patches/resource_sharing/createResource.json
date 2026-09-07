@@ -1,0 +1,42 @@
+{
+  "description": "Align resource_sharing#ResourcesCreate with distilled cloudflare/resource-sharing createResource",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#ResourcesCreate",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResource"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#ResourcesCreateRequest",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResource/input/target",
+      "value": "com.cloudflare.resource_sharing#CreateResourceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_sharing#ResourcesCreateResponse",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResourceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResource/output/target",
+      "value": "com.cloudflare.resource_sharing#CreateResourceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_sharing#CreateResource/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    }
+  ]
+}

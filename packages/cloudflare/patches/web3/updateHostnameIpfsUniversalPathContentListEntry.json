@@ -1,0 +1,30 @@
+{
+  "description": "Align web3#HostnamesIpfsUniversalPathsContentListsEntriesUpdate with distilled cloudflare/web3 updateHostnameIpfsUniversalPathContentListEntry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesUpdate",
+      "path": "/shapes/com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesUpdateRequest",
+      "path": "/shapes/com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntry/input/target",
+      "value": "com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesUpdateResponse",
+      "path": "/shapes/com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntry/output/target",
+      "value": "com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntryResponse"
+    }
+  ]
+}

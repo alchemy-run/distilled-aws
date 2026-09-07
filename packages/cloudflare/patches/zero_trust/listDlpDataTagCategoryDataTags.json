@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DlpDataTagCategoriesDataTagsList with distilled cloudflare/zero-trust listDlpDataTagCategoryDataTags",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDataTagsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTags"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDataTagsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTagsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTags/input/target",
+      "value": "com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTagsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataTagCategoriesDataTagsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTagsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTags/output/target",
+      "value": "com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTagsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpDataTagCategoryDataTags/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

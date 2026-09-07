@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessAiControlsMcpServersDelete with distilled cloudflare/zero-trust deleteAccessAiControlMcpServer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpServersDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessAiControlMcpServer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpServersDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessAiControlMcpServerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessAiControlMcpServer/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessAiControlMcpServerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpServersDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessAiControlMcpServerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessAiControlMcpServer/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessAiControlMcpServerResponse"
+    }
+  ]
+}

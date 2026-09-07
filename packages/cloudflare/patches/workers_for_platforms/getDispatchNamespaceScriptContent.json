@@ -1,0 +1,20 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesScriptsContentGet with distilled cloudflare/workers-for-platforms getDispatchNamespaceScriptContent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentGet",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptContent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentGetRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptContentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptContent/input/target",
+      "value": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptContentRequest"
+    }
+  ]
+}

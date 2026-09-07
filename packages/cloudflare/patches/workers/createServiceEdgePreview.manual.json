@@ -1,0 +1,121 @@
+{
+  "description": "workers/services/{service_name}/environments/{environment_name}/edge-preview is absent from the API docs (docs-absent endpoint): the service-environment twin of createScriptEdgePreview — same multipart upload authorized by the cf-preview-upload-config-token header, answering the same preview_token, but scoped to one environment of a multi-environment service. Shapes transcribed from the distilled SDK's createServiceEdgePreview, reusing createScriptEdgePreview's metadata and wrangler-session-config shapes exactly as v0 does.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateServiceEdgePreviewRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "account_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Identifier.",
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          },
+          "service_name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Name of the Worker service.",
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          },
+          "environment_name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Name of the environment within the service.",
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          },
+          "cfPreviewUploadConfigToken": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "The session token returned by createSubdomainEdgePreviewSession.",
+              "smithy.api#httpHeader": "cf-preview-upload-config-token",
+              "smithy.api#required": {}
+            }
+          },
+          "metadata": {
+            "target": "com.cloudflare.workers#CreateScriptEdgePreviewMetadata",
+            "traits": {
+              "smithy.api#documentation": "JSON-encoded multipart `metadata` part: the preview worker's modules, bindings and settings."
+            }
+          },
+          "files": {
+            "target": "smithy.api#Document",
+            "traits": {
+              "com.cloudflare.protocols#formDataFile": {},
+              "smithy.api#documentation": "Module files comprising the worker script, appended under their own filenames."
+            }
+          },
+          "wrangler_session_config": {
+            "target": "com.cloudflare.workers#CreateScriptEdgePreviewWranglerSessionConfig",
+            "traits": {
+              "smithy.api#jsonName": "wrangler-session-config",
+              "smithy.api#documentation": "JSON-encoded multipart part selecting how the preview is routed (workers.dev or explicit routes); without it edge previews cannot opt into workers.dev routing."
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#input": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateServiceEdgePreviewResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "preview_token": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Token to send as cf-workers-preview-token header when making requests to the preview host.",
+              "smithy.api#required": {}
+            }
+          },
+          "tail_url": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "URL for tailing live logs from the preview worker."
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateServiceEdgePreview",
+      "value": {
+        "type": "operation",
+        "input": {
+          "target": "com.cloudflare.workers#CreateServiceEdgePreviewRequest"
+        },
+        "output": {
+          "target": "com.cloudflare.workers#CreateServiceEdgePreviewResponse"
+        },
+        "errors": [
+          {
+            "target": "com.cloudflare.workers#InvalidRoute"
+          }
+        ],
+        "traits": {
+          "smithy.api#http": {
+            "method": "POST",
+            "uri": "/accounts/{account_id}/workers/services/{service_name}/environments/{environment_name}/edge-preview",
+            "code": 200,
+            "contentType": "multipart"
+          },
+          "smithy.api#documentation": "Upload a preview worker for one environment of a service under an edge-preview session (undocumented endpoint)."
+        }
+      }
+    }
+  ]
+}

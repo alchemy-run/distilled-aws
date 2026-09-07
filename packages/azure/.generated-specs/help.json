@@ -1,0 +1,1062 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.help#DiscoverySolutionList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.help#DiscoverySolutionListRequest"
+      },
+      "output": {
+        "target": "com.azure.help#DiscoveryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Help/discoverySolutions",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Solutions Discovery is the initial point of entry within Help API, which helps you identify the relevant solutions for your Azure issue.<br/><br/> You can discover solutions using resourceUri OR resourceUri + problemClassificationId.<br/><br/>We will do our best in returning relevant diagnostics for your Azure issue.<br/><br/> Get the problemClassificationId(s) using this [reference](https://learn.microsoft.com/rest/api/support/problem-classifications/list?tabs=HTTP).<br/><br/> <b>Note: </b> ‘requiredParameterSets’ from Solutions Discovery API response must be passed via ‘additionalParameters’ as an input to Diagnostics API.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.help#DiscoveryResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.help#DiscoveryResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of solution metadata."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of solution metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Discovery response."
+      }
+    },
+    "com.azure.help#DiscoveryResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#SolutionMetadataResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of solution metadata."
+      }
+    },
+    "com.azure.help#SolutionMetadataResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.help#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.help#SolutionMetadataProperties",
+          "traits": {
+            "smithy.api#documentation": "Solution metadata Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution Metadata resource"
+      }
+    },
+    "com.azure.help#SolutionMetadataProperties": {
+      "type": "structure",
+      "members": {
+        "solutionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Solution Id."
+          }
+        },
+        "solutionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Solution Type."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of solution."
+          }
+        },
+        "requiredParameterSets": {
+          "target": "com.azure.help#SolutionMetadataPropertiesRequiredParameterSetsList",
+          "traits": {
+            "smithy.api#documentation": "Required parameters for invoking this particular solution."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Diagnostic solution metadata."
+      }
+    },
+    "com.azure.help#SolutionMetadataPropertiesRequiredParameterSetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#SolutionMetadataPropertiesRequiredParameterSetsItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "Required parameters for invoking this particular solution."
+      }
+    },
+    "com.azure.help#SolutionMetadataPropertiesRequiredParameterSetsItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.help#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.help#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.help#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.help#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.help#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.help#DiscoverySolutionListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is an extension resource provider and only resource level extension is supported at the moment."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Can be used to filter solutionIds by 'ProblemClassificationId'. The filter supports only 'and' and 'eq' operators. Example: $filter=ProblemClassificationId eq '1ddda5b4-cf6c-4d4f-91ad-bc38ab0e811e' and ProblemClassificationId eq '0a9673c2-7af6-4e19-90d3-4ee2461076d9'."
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.help#DiagnosticsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.help#DiagnosticsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.help#DiagnosticsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{scope}/providers/Microsoft.Help/diagnostics/{diagnosticsResourceName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Diagnostics tells you precisely the root cause of the issue and how to address it. You can get diagnostics once you discover and identify the relevant solution for your Azure issue.<br/><br/> You can create diagnostics using the ‘solutionId’  from Solution Discovery API response and ‘additionalParameters’ <br/><br/> <b>Note: </b>‘requiredParameterSets’ from Solutions Discovery API response must be passed via ‘additionalParameters’ as an input to Diagnostics API",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.help#DiagnosticsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.help#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.help#DiagnosticResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.help#DiagnosticResourceProperties": {
+      "type": "structure",
+      "members": {
+        "globalParameters": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesGlobalParametersMap",
+          "traits": {
+            "smithy.api#documentation": "Global parameters that can be passed to all solutionIds."
+          }
+        },
+        "insights": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesInsightsList",
+          "traits": {
+            "smithy.api#documentation": "SolutionIds that are needed to be invoked."
+          }
+        },
+        "acceptedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic Request Accepted time."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Status of diagnostic provisioning."
+          }
+        },
+        "diagnostics": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesDiagnosticsList",
+          "traits": {
+            "smithy.api#documentation": "Array of Diagnostics."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Diagnostic resource properties."
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesDiagnosticsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#Diagnostic"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of Diagnostics."
+      }
+    },
+    "com.azure.help#Diagnostic": {
+      "type": "structure",
+      "members": {
+        "solutionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Solution Id"
+          }
+        },
+        "status": {
+          "target": "com.azure.help#DiagnosticStatus"
+        },
+        "insights": {
+          "target": "com.azure.help#DiagnosticInsightsList",
+          "traits": {
+            "smithy.api#documentation": "The problems (if any) detected by this insight."
+          }
+        },
+        "error": {
+          "target": "com.azure.help#Error"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties returned with in an insight."
+      }
+    },
+    "com.azure.help#Error": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service specific error code which serves as the substatus for the HTTP error code."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service specific error type which serves as additional context for the error herein."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the error."
+          }
+        },
+        "details": {
+          "target": "com.azure.help#ErrorDetailsList",
+          "traits": {
+            "smithy.api#documentation": "An array of additional nested error response info objects, as described by this contract."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error definition."
+      }
+    },
+    "com.azure.help#ErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#Error"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of additional nested error response info objects, as described by this contract."
+      }
+    },
+    "com.azure.help#DiagnosticInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#Insight"
+      },
+      "traits": {
+        "smithy.api#documentation": "The problems (if any) detected by this insight."
+      }
+    },
+    "com.azure.help#Insight": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Article id."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This insight's title."
+          }
+        },
+        "results": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed result content."
+          }
+        },
+        "importanceLevel": {
+          "target": "com.azure.help#InsightImportanceLevel",
+          "traits": {
+            "smithy.api#documentation": "Importance level of the insight."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed insights(s) obtained via the invocation of an insight diagnostic troubleshooter."
+      }
+    },
+    "com.azure.help#InsightImportanceLevel": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Critical"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Warning"
+          }
+        },
+        "INFORMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Information"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Importance level of the insight."
+      }
+    },
+    "com.azure.help#DiagnosticStatus": {
+      "type": "enum",
+      "members": {
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "MISSINGINPUTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MissingInputs"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Timeout"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Denotes the status of the diagnostic resource."
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "PARTIALCOMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PartialComplete"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of diagnostic provisioning."
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#DiagnosticInvocation"
+      },
+      "traits": {
+        "smithy.api#documentation": "SolutionIds that are needed to be invoked."
+      }
+    },
+    "com.azure.help#DiagnosticInvocation": {
+      "type": "structure",
+      "members": {
+        "solutionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Solution Id to invoke."
+          }
+        },
+        "additionalParameters": {
+          "target": "com.azure.help#DiagnosticInvocationAdditionalParametersMap",
+          "traits": {
+            "smithy.api#documentation": "Additional parameters required to invoke the solutionId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Solution Invocation with additional params needed for invocation."
+      }
+    },
+    "com.azure.help#DiagnosticInvocationAdditionalParametersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional parameters required to invoke the solutionId."
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesGlobalParametersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Global parameters that can be passed to all solutionIds."
+      }
+    },
+    "com.azure.help#DiagnosticsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is an extension resource provider and only resource level extension is supported at the moment."
+          }
+        },
+        "diagnosticsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique resource name for insight resources"
+          }
+        },
+        "properties": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "globalParameters": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesInputGlobalParametersMap",
+          "traits": {
+            "smithy.api#documentation": "Global parameters that can be passed to all solutionIds."
+          }
+        },
+        "insights": {
+          "target": "com.azure.help#DiagnosticResourcePropertiesInputInsightsList",
+          "traits": {
+            "smithy.api#documentation": "SolutionIds that are needed to be invoked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Diagnostic resource properties."
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesInputInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#DiagnosticInvocation"
+      },
+      "traits": {
+        "smithy.api#documentation": "SolutionIds that are needed to be invoked."
+      }
+    },
+    "com.azure.help#DiagnosticResourcePropertiesInputGlobalParametersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Global parameters that can be passed to all solutionIds."
+      }
+    },
+    "com.azure.help#DiagnosticsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.help#DiagnosticsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.help#DiagnosticsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Help/diagnostics/{diagnosticsResourceName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.help#DiagnosticsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.help#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.help#DiagnosticResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Diagnostic Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.help#DiagnosticsGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is an extension resource provider and only resource level extension is supported at the moment."
+          }
+        },
+        "diagnosticsResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique resource name for insight resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.help#DiagnosticsCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.help#DiagnosticsCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.help#CheckNameAvailabilityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{scope}/providers/Microsoft.Help/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "This API is used to check the uniqueness of a resource name used for a diagnostic check.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.help#CheckNameAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Returns true or false depending on the availability of the name"
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for why value is not available. This field is returned if nameAvailable is false."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets an error message explaining the 'reason' value with more details. This field is returned iif nameAvailable is false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for whether the requested resource name is available or not."
+      }
+    },
+    "com.azure.help#DiagnosticsCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is an extension resource provider and only resource level extension is supported at the moment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource for which availability needs to be checked."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.help#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.help#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Help/operations",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Returns list of operations.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.help#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.help#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.help#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.help#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.help#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.help#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.help#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.help#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.help#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.help#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.help#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.help#Help": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.help#DiscoverySolutionList"
+        },
+        {
+          "target": "com.azure.help#DiagnosticsCreate"
+        },
+        {
+          "target": "com.azure.help#DiagnosticsGet"
+        },
+        {
+          "target": "com.azure.help#DiagnosticsCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.help#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Help",
+        "smithy.api#documentation": "Azure Help API — merged from the help resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

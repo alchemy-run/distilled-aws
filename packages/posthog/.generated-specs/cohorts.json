@@ -1,0 +1,2063 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.cohorts#CohortsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "basic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "basic",
+            "smithy.api#documentation": "Return a basic payload that omits the heavy `filters`, `query`, and `groups` fields. Useful for pickers that only need id/name/count."
+          }
+        },
+        "hide_behavioral_cohorts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "hide_behavioral_cohorts",
+            "smithy.api#documentation": "Set true to exclude behavioral (event-based) cohorts, which can't be used in feature flags or batch workflow audiences."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#PaginatedCohortListOutput": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.cohorts#PaginatedCohortListOutputResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "groups": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "filters": {
+          "target": "com.posthog.cohorts#CohortFilters",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document"
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "pending_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_calculating": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_by": {
+          "target": "com.posthog.cohorts#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_calculation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_backfill_person_properties_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "errors_calculating": {
+          "target": "smithy.api#Integer"
+        },
+        "last_error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_static": {
+          "target": "smithy.api#Boolean"
+        },
+        "cohort_type": {
+          "target": "com.posthog.cohorts#CohortOutputCohortType",
+          "traits": {
+            "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "experiment_set": {
+          "target": "com.posthog.cohorts#CohortOutputExperimentSetList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortFilters": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.posthog.cohorts#CohortFilterGroup"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortFilterGroup": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.cohorts#PropertyGroupOperator"
+        },
+        "values": {
+          "target": "com.posthog.cohorts#CohortFilterGroupValuesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AND/OR group containing cohort filters. Named to avoid collision with analytics Group model."
+      }
+    },
+    "com.posthog.cohorts#PropertyGroupOperator": {
+      "type": "enum",
+      "members": {
+        "AND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AND"
+          }
+        },
+        "OR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OR"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#BehavioralFilter": {
+      "type": "structure",
+      "members": {
+        "bytecode": {
+          "target": "com.posthog.cohorts#BehavioralFilterBytecodeList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bytecode_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conditionHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "com.posthog.cohorts#BehavioralFilterKey"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        },
+        "event_type": {
+          "target": "smithy.api#String"
+        },
+        "time_value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "time_interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "negation": {
+          "target": "smithy.api#Boolean"
+        },
+        "operator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operator_value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "seq_time_interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "seq_time_value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "seq_event": {
+          "target": "com.posthog.cohorts#BehavioralFilterSeqEvent",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "seq_event_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_periods": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "min_periods": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "event_filters": {
+          "target": "com.posthog.cohorts#BehavioralFilterEventFiltersList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "explicit_datetime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "explicit_datetime_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#BehavioralFilterBytecodeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#BehavioralFilterKey": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#BehavioralFilterSeqEvent": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#EventPropFilter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.cohorts#EventPropFilterTypeEnum"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        },
+        "operator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#EventPropFilterTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event"
+          }
+        },
+        "ELEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "element"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#HogQLFilter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#BehavioralFilterEventFiltersItem": {
+      "type": "union",
+      "members": {
+        "EventPropFilter": {
+          "target": "com.posthog.cohorts#EventPropFilter"
+        },
+        "HogQLFilter": {
+          "target": "com.posthog.cohorts#HogQLFilter"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#BehavioralFilterEventFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#BehavioralFilterEventFiltersItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortFilter": {
+      "type": "structure",
+      "members": {
+        "bytecode": {
+          "target": "com.posthog.cohorts#CohortFilterBytecodeList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bytecode_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conditionHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Integer"
+        },
+        "negation": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortFilterBytecodeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#PersonFilter": {
+      "type": "structure",
+      "members": {
+        "bytecode": {
+          "target": "com.posthog.cohorts#PersonFilterBytecodeList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bytecode_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conditionHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "operator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        },
+        "negation": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#PersonFilterBytecodeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortFilterGroupValuesItem": {
+      "type": "union",
+      "members": {
+        "BehavioralFilter": {
+          "target": "com.posthog.cohorts#BehavioralFilter"
+        },
+        "CohortFilter": {
+          "target": "com.posthog.cohorts#CohortFilter"
+        },
+        "PersonFilter": {
+          "target": "com.posthog.cohorts#PersonFilter"
+        },
+        "CohortFilterGroup": {
+          "target": "com.posthog.cohorts#CohortFilterGroup"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortFilterGroupValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortFilterGroupValuesItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.cohorts#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.cohorts#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.cohorts#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.cohorts#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.cohorts#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortTypeEnum": {
+      "type": "enum",
+      "members": {
+        "STATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "static"
+          }
+        },
+        "PERSON_PROPERTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "person_property"
+          }
+        },
+        "BEHAVIORAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "behavioral"
+          }
+        },
+        "REALTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "realtime"
+          }
+        },
+        "ANALYTICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "analytical"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
+      }
+    },
+    "com.posthog.cohorts#CohortOutputCohortType": {
+      "type": "union",
+      "members": {
+        "CohortTypeEnum": {
+          "target": "com.posthog.cohorts#CohortTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.cohorts#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
+      }
+    },
+    "com.posthog.cohorts#CohortOutputExperimentSetList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#PaginatedCohortListOutputResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortOutput"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#PaginatedCohortListOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsCreateRequestCohortType": {
+      "type": "union",
+      "members": {
+        "CohortTypeEnum": {
+          "target": "com.posthog.cohorts#CohortTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.cohorts#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
+      }
+    },
+    "com.posthog.cohorts#CohortsCreateRequestCreateStaticPersonIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "groups": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "filters": {
+          "target": "com.posthog.cohorts#CohortFilters",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document"
+        },
+        "is_static": {
+          "target": "smithy.api#Boolean"
+        },
+        "cohort_type": {
+          "target": "com.posthog.cohorts#CohortsCreateRequestCohortType",
+          "traits": {
+            "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        },
+        "_create_static_person_ids": {
+          "target": "com.posthog.cohorts#CohortsCreateRequestCreateStaticPersonIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#CohortOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/cohorts/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#CohortOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsUpdateRequestCohortType": {
+      "type": "union",
+      "members": {
+        "CohortTypeEnum": {
+          "target": "com.posthog.cohorts#CohortTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.cohorts#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
+      }
+    },
+    "com.posthog.cohorts#CohortsUpdateRequestCreateStaticPersonIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "groups": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "filters": {
+          "target": "com.posthog.cohorts#CohortFilters",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document"
+        },
+        "is_static": {
+          "target": "smithy.api#Boolean"
+        },
+        "cohort_type": {
+          "target": "com.posthog.cohorts#CohortsUpdateRequestCohortType",
+          "traits": {
+            "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        },
+        "_create_static_person_ids": {
+          "target": "com.posthog.cohorts#CohortsUpdateRequestCreateStaticPersonIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#CohortOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsPartialUpdateRequestCohortType": {
+      "type": "union",
+      "members": {
+        "CohortTypeEnum": {
+          "target": "com.posthog.cohorts#CohortTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.cohorts#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
+      }
+    },
+    "com.posthog.cohorts#CohortsPartialUpdateRequestCreateStaticPersonIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "groups": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "filters": {
+          "target": "com.posthog.cohorts#CohortFilters",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document"
+        },
+        "is_static": {
+          "target": "smithy.api#Boolean"
+        },
+        "cohort_type": {
+          "target": "com.posthog.cohorts#CohortsPartialUpdateRequestCohortType",
+          "traits": {
+            "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        },
+        "_create_static_person_ids": {
+          "target": "com.posthog.cohorts#CohortsPartialUpdateRequestCreateStaticPersonIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#CohortOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.cohorts#CohortsActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/activity/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdateRequestPersonIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of person UUIDs to add to the cohort"
+      }
+    },
+    "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        },
+        "person_ids": {
+          "target": "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdateRequestPersonIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of person UUIDs to add to the cohort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/add_persons_to_static_cohort/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsCalculationHistoryRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsCalculationHistoryRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsCalculationHistoryRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/calculation_history/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsPersonsRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortsPersonsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        },
+        "format": {
+          "target": "com.posthog.cohorts#CohortsPersonsRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of persons to return per page (defaults to 100)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of persons to skip before starting to return results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortPersonsResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.cohorts#CohortPersonsResponseResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortPersonResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.cohorts#CohortPersonResultTypeEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_ids": {
+          "target": "com.posthog.cohorts#CohortPersonResultDistinctIdsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.posthog.cohorts#CohortPersonResultPropertiesMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_identified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "matched_recordings": {
+          "target": "com.posthog.cohorts#CohortPersonResultMatchedRecordingsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value_at_data_point": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortPersonResultTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "person"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `person` - person"
+      }
+    },
+    "com.posthog.cohorts#CohortPersonResultDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortPersonResultPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortPersonResultMatchedRecordingsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortPersonResultMatchedRecordingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortPersonResultMatchedRecordingsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortPersonsResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortPersonResult"
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortsPersonsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsPersonsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#CohortPersonsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/persons/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        },
+        "person_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Person UUID to remove from the cohort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#BadRequest"
+        },
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/remove_person_from_static_cohort/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsUsedInRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this cohort."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortUsedInResponse": {
+      "type": "structure",
+      "members": {
+        "feature_flags": {
+          "target": "com.posthog.cohorts#CohortUsedInFlagsBlock",
+          "traits": {
+            "smithy.api#documentation": "Feature flags (active and inactive, excluding soft-deleted) that reference this cohort in their targeting conditions, with truncation metadata",
+            "smithy.api#required": {}
+          }
+        },
+        "insights": {
+          "target": "com.posthog.cohorts#CohortUsedInInsightsBlock",
+          "traits": {
+            "smithy.api#documentation": "Insights referencing this cohort with truncation metadata",
+            "smithy.api#required": {}
+          }
+        },
+        "cohorts": {
+          "target": "com.posthog.cohorts#CohortUsedInCohortsBlock",
+          "traits": {
+            "smithy.api#documentation": "Other cohorts that include this cohort as a criterion, with truncation metadata",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInFlagsBlock": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.cohorts#CohortUsedInFlagsBlockResultsList",
+          "traits": {
+            "smithy.api#documentation": "Feature flags referencing this cohort, capped at 100 results",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of feature flags referencing this cohort, before truncation",
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more feature flags exist beyond the truncation cap",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInFlag": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Feature flag database ID",
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Feature flag key (URL slug)",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Feature flag display name",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInFlagsBlockResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortUsedInFlag"
+      },
+      "traits": {
+        "smithy.api#documentation": "Feature flags referencing this cohort, capped at 100 results"
+      }
+    },
+    "com.posthog.cohorts#CohortUsedInInsightsBlock": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.cohorts#CohortUsedInInsightsBlockResultsList",
+          "traits": {
+            "smithy.api#documentation": "Insights referencing this cohort, capped at 100 results",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of insights referencing this cohort, before truncation",
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more insights exist beyond the truncation cap",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInInsight": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight database ID",
+            "smithy.api#required": {}
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Insight short ID used for routing in the frontend",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Insight display name; falls back to derived name, then to 'Unnamed' when both are empty",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInInsightsBlockResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortUsedInInsight"
+      },
+      "traits": {
+        "smithy.api#documentation": "Insights referencing this cohort, capped at 100 results"
+      }
+    },
+    "com.posthog.cohorts#CohortUsedInCohortsBlock": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.cohorts#CohortUsedInCohortsBlockResultsList",
+          "traits": {
+            "smithy.api#documentation": "Cohorts that include this cohort as a criterion, capped at 100 results",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of cohorts referencing this cohort, before truncation",
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more cohorts exist beyond the truncation cap",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInCohort": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Cohort database ID",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cohort display name; falls back to 'Unnamed' when empty",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.cohorts#CohortUsedInCohortsBlockResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.cohorts#CohortUsedInCohort"
+      },
+      "traits": {
+        "smithy.api#documentation": "Cohorts that include this cohort as a criterion, capped at 100 results"
+      }
+    },
+    "com.posthog.cohorts#CohortsUsedInRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsUsedInRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.cohorts#CohortUsedInResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/{id}/used_in/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#CohortsAllActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.cohorts#CohortsAllActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.cohorts#CohortsAllActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.cohorts#Forbidden"
+        },
+        {
+          "target": "com.posthog.cohorts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/cohorts/activity/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.cohorts#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.cohorts#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.cohorts#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.cohorts#Cohorts": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.cohorts#CohortsList"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsCreate"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsRetrieve"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsUpdate"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsDestroy"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdate"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsCalculationHistoryRetrieve"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsPersonsRetrieve"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdate"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsUsedInRetrieve"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsAllActivityRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

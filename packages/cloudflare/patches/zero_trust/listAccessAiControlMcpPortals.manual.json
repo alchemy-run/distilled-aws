@@ -1,0 +1,50 @@
+{
+  "description": "Align zero_trust#AccessAiControlsMcpPortalsList with distilled cloudflare/zero-trust listAccessAiControlMcpPortals. Hand-authored: the automatic import misses this route (import-distilled-patches' Request-const scan skips it), so the op kept its docs-derived name and never got distilled's pagination/errors — alchemy's McpPortal cleanup calls listAccessAiControlMcpPortals.pages(...).",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpPortalsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortals"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpPortalsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortalsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortals/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessAiControlMcpPortalsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpPortalsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortalsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortals/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessAiControlMcpPortalsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortals/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessAiControlMcpPortals/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

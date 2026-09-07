@@ -1,0 +1,931 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "firebasehosting",
+    "version": "v1",
+    "title": "Firebase Hosting API",
+    "baseUrl": "https://firebasehosting.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.firebasehosting_v1#CertVerification": {
+      "type": "structure",
+      "members": {
+        "http": {
+          "target": "com.gcp.firebasehosting_v1#HttpUpdate",
+          "traits": {
+            "smithy.api#documentation": "Output only. A file to add to your existing, non-Hosting hosting service that confirms your intent to let Hosting create an SSL cert for your domain name."
+          }
+        },
+        "dns": {
+          "target": "com.gcp.firebasehosting_v1#DnsUpdates",
+          "traits": {
+            "smithy.api#documentation": "Output only. A `TXT` record to add to your DNS records that confirms your intent to let Hosting create an SSL cert for your domain name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of ACME challenges you can use to allow Hosting to create an SSL certificate for your domain name before directing traffic to Hosting servers. Use either the DNS or HTTP challenge; it's not necessary to provide both."
+      }
+    },
+    "com.gcp.firebasehosting_v1#LiveMigrationStep": {
+      "type": "structure",
+      "members": {
+        "dnsUpdates": {
+          "target": "com.gcp.firebasehosting_v1#DnsUpdates",
+          "traits": {
+            "smithy.api#documentation": "Output only. DNS updates to facilitate your domain's zero-downtime migration to Hosting."
+          }
+        },
+        "issues": {
+          "target": "com.gcp.firebasehosting_v1#StatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Issues that prevent the current step from completing."
+          }
+        },
+        "certVerification": {
+          "target": "com.gcp.firebasehosting_v1#CertVerification",
+          "traits": {
+            "smithy.api#documentation": "Output only. A pair of ACME challenges that Hosting's Certificate Authority (CA) can use to create an SSL cert for your domain name. Use either the DNS or HTTP challenge; it's not necessary to provide both."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebasehosting_v1#LiveMigrationStepStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the live migration step, indicates whether you should work to complete the step now, in the future, or have already completed it."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of updates including ACME challenges and DNS records that allow Hosting to create an SSL certificate and establish project ownership for your domain name before you direct traffic to Hosting servers. Use these updates to facilitate zero downtime migrations to Hosting from other services. After you've made the recommended updates, check your custom domain's `ownershipState` and `certState`. To avoid downtime, they should be `OWNERSHIP_ACTIVE` and `CERT_ACTIVE`, respectively, before you update your `A` and `AAAA` records."
+      }
+    },
+    "com.gcp.firebasehosting_v1#StatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasehosting_v1#Status"
+      }
+    },
+    "com.gcp.firebasehosting_v1#LiveMigrationStepStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREPARING"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "INCOMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCOMPLETE"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.firebasehosting_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.firebasehosting_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.firebasehosting_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.firebasehosting_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.firebasehosting_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsRecord": {
+      "type": "structure",
+      "members": {
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The domain name the record pertains to, e.g. `foo.bar.com.`."
+          }
+        },
+        "type": {
+          "target": "com.gcp.firebasehosting_v1#DnsRecordTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The record's type, which determines what data the record contains."
+          }
+        },
+        "rdata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The data of the record. The meaning of the value depends on record type: - A and AAAA: IP addresses for the domain name. - CNAME: Another domain to check for records. - TXT: Arbitrary text strings associated with the domain name. Hosting uses TXT records to determine which Firebase projects have permission to act on the domain name's behalf. - CAA: The record's flags, tag, and value, e.g. `0 issue \"pki.goog\"`."
+          }
+        },
+        "requiredAction": {
+          "target": "com.gcp.firebasehosting_v1#DnsRecordRequiredActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. An enum that indicates the a required action for this record."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DNS records are resource records that define how systems and services should behave when handling requests for a domain name. For example, when you add `A` records to your domain name's DNS records, you're informing other systems (such as your users' web browsers) to contact those IPv4 addresses to retrieve resources relevant to your domain name (such as your Hosting site files)."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsRecordTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        },
+        "CAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAA"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsRecordRequiredActionEnum": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsUpdates": {
+      "type": "structure",
+      "members": {
+        "checkTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time Hosting checked your custom domain's DNS records."
+          }
+        },
+        "discovered": {
+          "target": "com.gcp.firebasehosting_v1#DnsRecordSetList",
+          "traits": {
+            "smithy.api#documentation": "The set of DNS records Hosting discovered when inspecting a domain."
+          }
+        },
+        "desired": {
+          "target": "com.gcp.firebasehosting_v1#DnsRecordSetList",
+          "traits": {
+            "smithy.api#documentation": "The set of DNS records Hosting needs to serve secure content on the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of DNS record updates that you should make to allow Hosting to serve secure content in response to requests against your domain name. These updates present the current state of your domain name's DNS records when Hosting last queried them, and the desired set of records that Hosting needs to see before your custom domain can be fully active."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsRecordSetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasehosting_v1#DnsRecordSet"
+      }
+    },
+    "com.gcp.firebasehosting_v1#CustomDomainMetadata": {
+      "type": "structure",
+      "members": {
+        "hostState": {
+          "target": "com.gcp.firebasehosting_v1#CustomDomainMetadataHostStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The `HostState` of the domain name this `CustomDomain` refers to."
+          }
+        },
+        "issues": {
+          "target": "com.gcp.firebasehosting_v1#StatusList",
+          "traits": {
+            "smithy.api#documentation": "A list of issues that are currently preventing Hosting from completing the operation. These are generally DNS-related issues that Hosting encounters when querying a domain name's records or attempting to mint an SSL certificate."
+          }
+        },
+        "quickSetupUpdates": {
+          "target": "com.gcp.firebasehosting_v1#DnsUpdates",
+          "traits": {
+            "smithy.api#documentation": "A set of DNS record updates that allow Hosting to serve secure content on your domain name. The record type determines the update's purpose: - `A` and `AAAA`: Updates your domain name's IP addresses so that they direct traffic to Hosting servers. - `TXT`: Updates ownership permissions on your domain name, letting Hosting know that your custom domain's project has permission to perform actions for that domain name. - `CAA`: Updates your domain name's list of authorized Certificate Authorities (CAs). Only present if you have existing `CAA` records that prohibit Hosting's CA from minting certs for your domain name. These updates include all DNS changes you'll need to get started with Hosting, but, if made all at once, can result in a brief period of downtime for your domain name--while Hosting creates and uploads an SSL cert, for example. If you'd like to add your domain name to Hosting without downtime, complete the `liveMigrationSteps` first, before making the remaining updates in this field."
+          }
+        },
+        "ownershipState": {
+          "target": "com.gcp.firebasehosting_v1#CustomDomainMetadataOwnershipStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The `OwnershipState` of the domain name this `CustomDomain` refers to."
+          }
+        },
+        "certState": {
+          "target": "com.gcp.firebasehosting_v1#CustomDomainMetadataCertStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The `CertState` of the domain name's SSL certificate."
+          }
+        },
+        "liveMigrationSteps": {
+          "target": "com.gcp.firebasehosting_v1#LiveMigrationStepList",
+          "traits": {
+            "smithy.api#documentation": "A set of DNS record updates and ACME challenges that allow you to transition domain names to Firebase Hosting with zero downtime. These updates allow Hosting to create an SSL certificate and establish ownership for your custom domain before Hosting begins serving traffic on it. If your domain name is already in active use with another provider, add one of the challenges and make the recommended DNS updates. After adding challenges and adjusting DNS records as necessary, wait for the `ownershipState` to be `OWNERSHIP_ACTIVE` and the `certState` to be `CERT_ACTIVE` before sending traffic to Hosting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata associated with a`CustomDomain` operation."
+      }
+    },
+    "com.gcp.firebasehosting_v1#CustomDomainMetadataHostStateEnum": {
+      "type": "enum",
+      "members": {
+        "HOST_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOST_STATE_UNSPECIFIED"
+          }
+        },
+        "HOST_UNHOSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOST_UNHOSTED"
+          }
+        },
+        "HOST_UNREACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOST_UNREACHABLE"
+          }
+        },
+        "HOST_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOST_MISMATCH"
+          }
+        },
+        "HOST_CONFLICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOST_CONFLICT"
+          }
+        },
+        "HOST_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOST_ACTIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#CustomDomainMetadataOwnershipStateEnum": {
+      "type": "enum",
+      "members": {
+        "OWNERSHIP_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_STATE_UNSPECIFIED"
+          }
+        },
+        "OWNERSHIP_MISSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_MISSING"
+          }
+        },
+        "OWNERSHIP_UNREACHABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_UNREACHABLE"
+          }
+        },
+        "OWNERSHIP_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_MISMATCH"
+          }
+        },
+        "OWNERSHIP_CONFLICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_CONFLICT"
+          }
+        },
+        "OWNERSHIP_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_PENDING"
+          }
+        },
+        "OWNERSHIP_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_ACTIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#CustomDomainMetadataCertStateEnum": {
+      "type": "enum",
+      "members": {
+        "CERT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_STATE_UNSPECIFIED"
+          }
+        },
+        "CERT_PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_PREPARING"
+          }
+        },
+        "CERT_VALIDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_VALIDATING"
+          }
+        },
+        "CERT_PROPAGATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_PROPAGATING"
+          }
+        },
+        "CERT_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_ACTIVE"
+          }
+        },
+        "CERT_EXPIRING_SOON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_EXPIRING_SOON"
+          }
+        },
+        "CERT_EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT_EXPIRED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#LiveMigrationStepList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasehosting_v1#LiveMigrationStep"
+      }
+    },
+    "com.gcp.firebasehosting_v1#HttpUpdate": {
+      "type": "structure",
+      "members": {
+        "desired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A text string to serve at the path."
+          }
+        },
+        "discovered": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether Hosting was able to find the required file contents on the specified path during its last check."
+          }
+        },
+        "lastCheckTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time Hosting systems checked for the file contents."
+          }
+        },
+        "checkError": {
+          "target": "com.gcp.firebasehosting_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Output only. An error encountered during the last contents check. If null, the check completed successfully."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The path to the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A file you can add to your existing, non-Hosting hosting service that confirms your intent to allow Hosting's Certificate Authorities to create an SSL certificate for your domain."
+      }
+    },
+    "com.gcp.firebasehosting_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.firebasehosting_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasehosting_v1#DocumentMap"
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsRecordSet": {
+      "type": "structure",
+      "members": {
+        "checkError": {
+          "target": "com.gcp.firebasehosting_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Output only. An error Hosting services encountered when querying your domain name's DNS records. Note: Hosting ignores `NXDOMAIN` errors, as those generally just mean that a domain name hasn't been set up yet."
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The domain name the record set pertains to."
+          }
+        },
+        "records": {
+          "target": "com.gcp.firebasehosting_v1#DnsRecordList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Records on the domain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of DNS records relevant to the setup and maintenance of a custom domain in Firebase Hosting."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DnsRecordList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasehosting_v1#DnsRecord"
+      }
+    },
+    "com.gcp.firebasehosting_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.firebasehosting_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.firebasehosting_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.firebasehosting_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firebasehosting_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebasehosting_v1#Operation"
+      }
+    },
+    "com.gcp.firebasehosting_v1#ListOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasehosting_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasehosting_v1#ListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasehosting_v1#ListOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasehosting_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasehosting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#CancelOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebasehosting_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasehosting_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.firebasehosting_v1#CancelOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasehosting_v1#CancelOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasehosting_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasehosting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DeleteOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#DeleteOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasehosting_v1#DeleteOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasehosting_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasehosting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.firebasehosting_v1#DeleteProjectsSitesCustomDomainsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#DeleteProjectsSitesCustomDomainsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasehosting_v1#DeleteProjectsSitesCustomDomainsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasehosting_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasehosting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "DeleteOperation is a part of the google.longrunning.Operations interface, but is not implemented for CustomDomain resources."
+      }
+    },
+    "com.gcp.firebasehosting_v1#CancelProjectsSitesCustomDomainsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebasehosting_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebasehosting_v1#CancelProjectsSitesCustomDomainsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebasehosting_v1#CancelProjectsSitesCustomDomainsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebasehosting_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebasehosting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebasehosting_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "CancelOperation is a part of the google.longrunning.Operations interface, but is not implemented for CustomDomain resources."
+      }
+    }
+  }
+}

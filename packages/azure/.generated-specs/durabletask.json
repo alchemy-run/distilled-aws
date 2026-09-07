@@ -1,0 +1,3237 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.durabletask#TaskHubsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#TaskHubsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Delete a Task Hub",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#TaskHubsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "taskHubName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the TaskHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#TaskHubsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#TaskHubsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#TaskHubsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Create or Update a Task Hub",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#TaskHubsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#TaskHubProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#TaskHubProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.durabletask#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation"
+          }
+        },
+        "dashboardUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the durable task scheduler dashboard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of Task Hub"
+      }
+    },
+    "com.azure.durabletask#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current operation"
+      }
+    },
+    "com.azure.durabletask#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.durabletask#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.durabletask#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.durabletask#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.durabletask#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.durabletask#TaskHubsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "taskHubName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the TaskHub"
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#TaskHubPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#TaskHubPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The properties of Task Hub"
+      }
+    },
+    "com.azure.durabletask#TaskHubsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#TaskHubsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#TaskHubsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Get a Task Hub",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#TaskHubsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#TaskHubProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#TaskHubsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "taskHubName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the TaskHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#TaskHubsListByScheduler": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#TaskHubsListBySchedulerRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#TaskHubListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List Task Hubs",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#TaskHubListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.durabletask#TaskHubListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The TaskHub items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a TaskHub list operation."
+      }
+    },
+    "com.azure.durabletask#TaskHubListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#TaskHub"
+      },
+      "traits": {
+        "smithy.api#documentation": "The TaskHub items on this page"
+      }
+    },
+    "com.azure.durabletask#TaskHub": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#TaskHubProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Task Hub resource belonging to the scheduler"
+      }
+    },
+    "com.azure.durabletask#TaskHubsListBySchedulerRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#RetentionPoliciesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Delete a Retention Policy",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#RetentionPoliciesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#RetentionPoliciesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Update a Retention Policy",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#RetentionPolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.durabletask#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation"
+          }
+        },
+        "retentionPolicies": {
+          "target": "com.azure.durabletask#RetentionPolicyPropertiesRetentionPoliciesList",
+          "traits": {
+            "smithy.api#documentation": "The orchestration retention policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The retention policy settings for the resource"
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyPropertiesRetentionPoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#RetentionPolicyDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "The orchestration retention policies"
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyDetails": {
+      "type": "structure",
+      "members": {
+        "retentionPeriodInDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The retention period in days after which the orchestration will be purged automatically",
+            "smithy.api#required": {}
+          }
+        },
+        "orchestrationState": {
+          "target": "com.azure.durabletask#PurgeableOrchestrationState",
+          "traits": {
+            "smithy.api#documentation": "The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a retention policy"
+      }
+    },
+    "com.azure.durabletask#PurgeableOrchestrationState": {
+      "type": "enum",
+      "members": {
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Terminated"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Purgeable orchestration state to be used in retention policies"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#RetentionPolicyPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "retentionPolicies": {
+          "target": "com.azure.durabletask#RetentionPolicyPropertiesInputRetentionPoliciesList",
+          "traits": {
+            "smithy.api#documentation": "The orchestration retention policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The retention policy settings for the resource"
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyPropertiesInputRetentionPoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#RetentionPolicyDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "The orchestration retention policies"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesCreateOrReplace": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplaceRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplaceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Create or Update a Retention Policy",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesCreateOrReplaceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#RetentionPolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesCreateOrReplaceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#RetentionPolicyPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#RetentionPoliciesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#RetentionPoliciesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Get a Retention Policy",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#RetentionPolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesListByScheduler": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#RetentionPoliciesListBySchedulerRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#RetentionPolicyListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List Retention Policies",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.durabletask#RetentionPolicyListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The RetentionPolicy items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a RetentionPolicy list operation."
+      }
+    },
+    "com.azure.durabletask#RetentionPolicyListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#RetentionPolicy"
+      },
+      "traits": {
+        "smithy.api#documentation": "The RetentionPolicy items on this page"
+      }
+    },
+    "com.azure.durabletask#RetentionPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#RetentionPolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A retention policy resource belonging to the scheduler"
+      }
+    },
+    "com.azure.durabletask#RetentionPoliciesListBySchedulerRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersGetPrivateLink": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersGetPrivateLinkRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersGetPrivateLinkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateLinkResources/{privateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Get a private link resource for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersGetPrivateLinkResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group id."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.durabletask#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource required member names."
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.durabletask#PrivateLinkResourcePropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource private link DNS zone name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a private link resource."
+      }
+    },
+    "com.azure.durabletask#PrivateLinkResourcePropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource private link DNS zone name."
+      }
+    },
+    "com.azure.durabletask#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource required member names."
+      }
+    },
+    "com.azure.durabletask#SchedulersGetPrivateLinkRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "privateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link associated with the Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersListPrivateLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersListPrivateLinksRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulerPrivateLinkResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List private link resources for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulerPrivateLinkResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.durabletask#SchedulerPrivateLinkResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SchedulerPrivateLinkResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SchedulerPrivateLinkResource list operation."
+      }
+    },
+    "com.azure.durabletask#SchedulerPrivateLinkResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#SchedulerPrivateLinkResourceListResultValueItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SchedulerPrivateLinkResource items on this page"
+      }
+    },
+    "com.azure.durabletask#SchedulerPrivateLinkResourceListResultValueItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private link resource."
+      }
+    },
+    "com.azure.durabletask#SchedulersListPrivateLinksRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersDeletePrivateEndpointConnection": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersDeletePrivateEndpointConnectionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Delete a private endpoint connection for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersDeletePrivateEndpointConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnection": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Update a private endpoint connection for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "groupIds": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionPropertiesGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The group ids for the private endpoint resource."
+          }
+        },
+        "privateEndpoint": {
+          "target": "com.azure.durabletask#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.durabletask#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the private endpoint connection resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private endpoint connection."
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.durabletask#PrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.durabletask#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointServiceConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection status."
+      }
+    },
+    "com.azure.durabletask#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ARM identifier for private endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint resource."
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionPropertiesGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The group ids for the private endpoint resource."
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection properties"
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.durabletask#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The private endpoint resource."
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnectionRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnectionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Create or update a private endpoint connection for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.durabletask#PrivateEndpointInput",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.durabletask#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private endpoint connection."
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The private endpoint resource."
+      }
+    },
+    "com.azure.durabletask#SchedulersGetPrivateEndpointConnection": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Get a private endpoint connection for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersListPrivateEndpointConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersListPrivateEndpointConnectionsRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#PrivateEndpointConnectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List private endpoint connections for the durable task scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The PrivateEndpointConnection items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a PrivateEndpointConnection list operation."
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#PrivateEndpointConnectionListResultValueItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateEndpointConnection items on this page"
+      }
+    },
+    "com.azure.durabletask#PrivateEndpointConnectionListResultValueItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection resource."
+      }
+    },
+    "com.azure.durabletask#SchedulersListPrivateEndpointConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Delete a Scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Update a Scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.durabletask#SchedulersUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#SchedulerProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.durabletask#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation"
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the durable task scheduler"
+          }
+        },
+        "ipAllowlist": {
+          "target": "com.azure.durabletask#SchedulerPropertiesIpAllowlistList",
+          "traits": {
+            "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.durabletask#SchedulerSku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the durable task scheduler",
+            "smithy.api#required": {}
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.durabletask#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Allow or disallow public network access to durable task scheduler"
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.durabletask#SchedulerPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "The private endpoints exposed by this resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the Scheduler"
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#SchedulerPropertiesPrivateEndpointConnectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoints exposed by this resource"
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesPrivateEndpointConnectionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection resource."
+      }
+    },
+    "com.azure.durabletask#PublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of the public network access."
+      }
+    },
+    "com.azure.durabletask#SchedulerSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.durabletask#SchedulerSkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The SKU capacity. This allows scale out/in for the resource and impacts zone redundancy"
+          }
+        },
+        "redundancyState": {
+          "target": "com.azure.durabletask#RedundancyState",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the current SKU configuration is zone redundant"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU (Stock Keeping Unit) assigned to this durable task scheduler"
+      }
+    },
+    "com.azure.durabletask#RedundancyState": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zone"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the resource redundancy"
+      }
+    },
+    "com.azure.durabletask#SchedulerSkuName": {
+      "type": "enum",
+      "members": {
+        "DEDICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Dedicated"
+          }
+        },
+        "CONSUMPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consumption"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the Stock Keeping Unit (SKU) of a Durable Task Scheduler"
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesIpAllowlistList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR"
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulerPropertiesUpdateInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.durabletask#SchedulersUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesUpdateInput": {
+      "type": "structure",
+      "members": {
+        "ipAllowlist": {
+          "target": "com.azure.durabletask#SchedulerPropertiesUpdateInputIpAllowlistList",
+          "traits": {
+            "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR"
+          }
+        },
+        "sku": {
+          "target": "com.azure.durabletask#SchedulerSkuUpdate",
+          "traits": {
+            "smithy.api#documentation": "SKU of the durable task scheduler"
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.durabletask#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Allow or disallow public network access to durable task scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Scheduler resource properties to be updated"
+      }
+    },
+    "com.azure.durabletask#SchedulerSkuUpdate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.durabletask#SchedulerSkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU"
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The SKU capacity. This allows scale out/in for the resource and impacts zone redundancy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU (Stock Keeping Unit) properties to be updated"
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesUpdateInputIpAllowlistList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR"
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Create or update a Scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        },
+        "tags": {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "ipAllowlist": {
+          "target": "com.azure.durabletask#SchedulerPropertiesInputIpAllowlistList",
+          "traits": {
+            "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.durabletask#SchedulerSku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the durable task scheduler",
+            "smithy.api#required": {}
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.durabletask#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Allow or disallow public network access to durable task scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the Scheduler"
+      }
+    },
+    "com.azure.durabletask#SchedulerPropertiesInputIpAllowlistList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR"
+      }
+    },
+    "com.azure.durabletask#SchedulersCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.durabletask#SchedulersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "Get a Scheduler",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.durabletask#SchedulersGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.durabletask#SchedulersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "schedulerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Scheduler"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulerListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List Schedulers by resource group",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulerListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.durabletask#SchedulerListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Scheduler items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Scheduler list operation."
+      }
+    },
+    "com.azure.durabletask#SchedulerListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#Scheduler"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Scheduler items on this page"
+      }
+    },
+    "com.azure.durabletask#Scheduler": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.durabletask#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.durabletask#SchedulerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.durabletask#SchedulerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Durable Task Scheduler resource"
+      }
+    },
+    "com.azure.durabletask#SchedulerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.durabletask#SchedulersListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#SchedulersListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.durabletask#SchedulersListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.durabletask#SchedulerListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DurableTask/schedulers",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List Schedulers by subscription",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#SchedulersListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.durabletask#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.durabletask#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DurableTask/operations",
+          "code": 200,
+          "apiVersion": "2026-02-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2026-02-01"
+      }
+    },
+    "com.azure.durabletask#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.durabletask#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.durabletask#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.durabletask#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.durabletask#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.durabletask#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.durabletask#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.durabletask#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.durabletask#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.durabletask#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.durabletask#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.durabletask#Durabletask": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.durabletask#TaskHubsDelete"
+        },
+        {
+          "target": "com.azure.durabletask#TaskHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#TaskHubsGet"
+        },
+        {
+          "target": "com.azure.durabletask#TaskHubsListByScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesDelete"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesGet"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesListByScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersGetPrivateLink"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersListPrivateLinks"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersDeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersGetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersDelete"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersGet"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersListByResourceGroup"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersListBySubscription"
+        },
+        {
+          "target": "com.azure.durabletask#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Durabletask",
+        "smithy.api#documentation": "Azure Durabletask API — merged from the durabletask resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

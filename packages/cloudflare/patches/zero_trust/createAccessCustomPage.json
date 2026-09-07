@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessCustomPagesCreate with distilled cloudflare/zero-trust createAccessCustomPage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCustomPage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCustomPageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCustomPage/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessCustomPageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCustomPageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCustomPage/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessCustomPageResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCustomPage/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessCustomPagesNotEntitled"
+        }
+      ]
+    }
+  ]
+}

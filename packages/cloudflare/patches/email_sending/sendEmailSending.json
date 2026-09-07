@@ -1,0 +1,30 @@
+{
+  "description": "Align email_sending#Send with distilled cloudflare/email-sending sendEmailSending",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#Send",
+      "path": "/shapes/com.cloudflare.email_sending#SendEmailSending"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SendRequest",
+      "path": "/shapes/com.cloudflare.email_sending#SendEmailSendingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#SendEmailSending/input/target",
+      "value": "com.cloudflare.email_sending#SendEmailSendingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SendResponse",
+      "path": "/shapes/com.cloudflare.email_sending#SendEmailSendingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#SendEmailSending/output/target",
+      "value": "com.cloudflare.email_sending#SendEmailSendingResponse"
+    }
+  ]
+}

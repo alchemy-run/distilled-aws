@@ -1,0 +1,53 @@
+{
+  "description": "Align origin_tls_client_auth#HostnamesUpdate with distilled cloudflare/origin-tls-client-auth putHostname",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnamesUpdate",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostname"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostnameRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostname/input/target",
+      "value": "com.cloudflare.origin_tls_client_auth#PutHostnameRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnamesUpdateResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostnameResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostname/output/target",
+      "value": "com.cloudflare.origin_tls_client_auth#PutHostnameResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostname/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#PutHostname/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificateIdRequired"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#InvalidHostnameConfig"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

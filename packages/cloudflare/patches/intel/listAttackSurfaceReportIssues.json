@@ -1,0 +1,41 @@
+{
+  "description": "Align intel#AttackSurfaceReportIssuesList with distilled cloudflare/intel listAttackSurfaceReportIssues",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesList",
+      "path": "/shapes/com.cloudflare.intel#ListAttackSurfaceReportIssues"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesListRequest",
+      "path": "/shapes/com.cloudflare.intel#ListAttackSurfaceReportIssuesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListAttackSurfaceReportIssues/input/target",
+      "value": "com.cloudflare.intel#ListAttackSurfaceReportIssuesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesListResponse",
+      "path": "/shapes/com.cloudflare.intel#ListAttackSurfaceReportIssuesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListAttackSurfaceReportIssues/output/target",
+      "value": "com.cloudflare.intel#ListAttackSurfaceReportIssuesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#ListAttackSurfaceReportIssues/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

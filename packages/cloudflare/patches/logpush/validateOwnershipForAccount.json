@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#OwnershipValidateForAccount with distilled cloudflare/logpush validateOwnershipForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#OwnershipValidateForAccount",
+      "path": "/shapes/com.cloudflare.logpush#ValidateOwnershipForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#OwnershipValidateForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#ValidateOwnershipForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#ValidateOwnershipForAccount/input/target",
+      "value": "com.cloudflare.logpush#ValidateOwnershipForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#OwnershipValidateForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#ValidateOwnershipForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#ValidateOwnershipForAccount/output/target",
+      "value": "com.cloudflare.logpush#ValidateOwnershipForAccountResponse"
+    }
+  ]
+}

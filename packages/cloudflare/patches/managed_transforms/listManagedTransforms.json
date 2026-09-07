@@ -1,0 +1,39 @@
+{
+  "description": "Align managed_transforms#List with distilled cloudflare/managed-transforms listManagedTransforms",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.managed_transforms#List",
+      "path": "/shapes/com.cloudflare.managed_transforms#ListManagedTransforms"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.managed_transforms#ListRequest",
+      "path": "/shapes/com.cloudflare.managed_transforms#ListManagedTransformsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.managed_transforms#ListManagedTransforms/input/target",
+      "value": "com.cloudflare.managed_transforms#ListManagedTransformsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.managed_transforms#ListResponse",
+      "path": "/shapes/com.cloudflare.managed_transforms#ListManagedTransformsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.managed_transforms#ListManagedTransforms/output/target",
+      "value": "com.cloudflare.managed_transforms#ListManagedTransformsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.managed_transforms#ListManagedTransforms/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.managed_transforms#Forbidden"
+        }
+      ]
+    }
+  ]
+}

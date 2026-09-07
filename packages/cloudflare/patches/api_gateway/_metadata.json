@@ -1,0 +1,40 @@
+{
+  "description": "Key dictionary / op aliases for api_gateway (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "activeSchema": "active_schema",
+        "apiRouting": "api_routing",
+        "authIdCharacteristics": "auth_id_characteristics",
+        "authIdTokens": "auth_id_tokens",
+        "confidenceIntervals": "confidence_intervals",
+        "createdAt": "created_at",
+        "dataPoints": "data_points",
+        "documentationUrl": "documentation_url",
+        "isLearned": "is_learned",
+        "lastUpdated": "last_updated",
+        "learnedAvailable": "learned_available",
+        "mappedResources": "mapped_resources",
+        "mitigationAction": "mitigation_action",
+        "operationId": "operation_id",
+        "operationIds": "operation_ids",
+        "parameterSchemas": "parameter_schemas",
+        "perPage": "per_page",
+        "periodSeconds": "period_seconds",
+        "resultInfo": "result_info",
+        "schemaId": "schema_id",
+        "schemaInfo": "schema_info",
+        "settingsMultipleRequest": "settings_multiple_request",
+        "suggestedThreshold": "suggested_threshold",
+        "totalCount": "total_count",
+        "trafficStats": "traffic_stats",
+        "uploadDetails": "upload_details",
+        "validationDefaultMitigationAction": "validation_default_mitigation_action",
+        "validationEnabled": "validation_enabled",
+        "validationOverrideMitigationAction": "validation_override_mitigation_action"
+      }
+    }
+  ]
+}

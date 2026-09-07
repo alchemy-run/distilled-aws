@@ -1,0 +1,51 @@
+{
+  "description": "Align accounts#Update with distilled cloudflare/accounts updateAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#Update",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#UpdateRequest",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccount/input/target",
+      "value": "com.cloudflare.accounts#UpdateAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#UpdateResponse",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccount/output/target",
+      "value": "com.cloudflare.accounts#UpdateAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#UpdateAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidAccountName"
+        },
+        {
+          "target": "com.cloudflare.accounts#AccountNameTooLong"
+        },
+        {
+          "target": "com.cloudflare.accounts#UpdateAccountTypeNotSupported"
+        },
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#MethodNotAllowed"
+        }
+      ]
+    }
+  ]
+}

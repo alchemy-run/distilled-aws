@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_cloud_networking#OnRampsAddressSpacesList with distilled cloudflare/magic-cloud-networking listOnRampAddressSpaces",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsAddressSpacesList",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListOnRampAddressSpaces"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsAddressSpacesListRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListOnRampAddressSpacesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListOnRampAddressSpaces/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListOnRampAddressSpacesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsAddressSpacesListResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListOnRampAddressSpacesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ListOnRampAddressSpaces/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#ListOnRampAddressSpacesResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align pipelines#Create with distilled cloudflare/pipelines createPipeline",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#Create",
+      "path": "/shapes/com.cloudflare.pipelines#CreatePipeline"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#CreateRequest",
+      "path": "/shapes/com.cloudflare.pipelines#CreatePipelineRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#CreatePipeline/input/target",
+      "value": "com.cloudflare.pipelines#CreatePipelineRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#CreateResponse",
+      "path": "/shapes/com.cloudflare.pipelines#CreatePipelineResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#CreatePipeline/output/target",
+      "value": "com.cloudflare.pipelines#CreatePipelineResponse"
+    }
+  ]
+}

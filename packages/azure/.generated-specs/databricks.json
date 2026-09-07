@@ -1,0 +1,4447 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.databricks#VNetPeeringDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#VNetPeeringDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Deletes the workspace vNetPeering.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#VNetPeeringDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "peeringName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace vNet peering."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#VNetPeeringCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#VNetPeeringCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#VNetPeeringCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Creates vNet Peering for workspace.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#VNetPeeringCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "List of properties for vNet Peering",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#VirtualNetworkPeeringPropertiesFormat": {
+      "type": "structure",
+      "members": {
+        "allowVirtualNetworkAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space."
+          }
+        },
+        "allowForwardedTraffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network."
+          }
+        },
+        "allowGatewayTransit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If gateway links can be used in remote virtual networking to link to this virtual network."
+          }
+        },
+        "useRemoteGateways": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway."
+          }
+        },
+        "databricksVirtualNetwork": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringPropertiesFormatDatabricksVirtualNetwork",
+          "traits": {
+            "smithy.api#documentation": "The remote virtual network should be in the same region. See here to learn more (https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/vnet-peering)."
+          }
+        },
+        "databricksAddressSpace": {
+          "target": "com.azure.databricks#AddressSpace",
+          "traits": {
+            "smithy.api#documentation": "The reference to the databricks virtual network address space."
+          }
+        },
+        "remoteVirtualNetwork": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringPropertiesFormatRemoteVirtualNetwork",
+          "traits": {
+            "smithy.api#documentation": "The remote virtual network should be in the same region. See here to learn more (https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/vnet-peering).",
+            "smithy.api#required": {}
+          }
+        },
+        "remoteAddressSpace": {
+          "target": "com.azure.databricks#AddressSpace",
+          "traits": {
+            "smithy.api#documentation": "The reference to the remote virtual network address space."
+          }
+        },
+        "peeringState": {
+          "target": "com.azure.databricks#PeeringState",
+          "traits": {
+            "smithy.api#documentation": "The status of the virtual network peering."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databricks#PeeringProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the virtual network peering resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the virtual network peering."
+      }
+    },
+    "com.azure.databricks#PeeringProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.databricks#PeeringState": {
+      "type": "enum",
+      "members": {
+        "INITIATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Initiated"
+          }
+        },
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Connected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the virtual network peering."
+      }
+    },
+    "com.azure.databricks#AddressSpace": {
+      "type": "structure",
+      "members": {
+        "addressPrefixes": {
+          "target": "com.azure.databricks#AddressSpaceAddressPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "A list of address blocks reserved for this virtual network in CIDR notation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AddressSpace contains an array of IP address ranges that can be used by subnets of the virtual network."
+      }
+    },
+    "com.azure.databricks#AddressSpaceAddressPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of address blocks reserved for this virtual network in CIDR notation."
+      }
+    },
+    "com.azure.databricks#VirtualNetworkPeeringPropertiesFormatRemoteVirtualNetwork": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Id of the remote virtual network."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The remote virtual network should be in the same region. See here to learn more (https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/vnet-peering)."
+      }
+    },
+    "com.azure.databricks#VirtualNetworkPeeringPropertiesFormatDatabricksVirtualNetwork": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Id of the databricks virtual network."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The remote virtual network should be in the same region. See here to learn more (https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/vnet-peering)."
+      }
+    },
+    "com.azure.databricks#VNetPeeringCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "peeringName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace vNet peering."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "List of properties for vNet Peering",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#VNetPeeringGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#VNetPeeringGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#VNetPeeringGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets the workspace vNet Peering.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#VNetPeeringGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "List of properties for vNet Peering",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#VNetPeeringGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "peeringName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace vNet peering."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#VNetPeeringListByWorkspace": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#VNetPeeringListByWorkspaceRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#VirtualNetworkPeeringList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Lists the workspace vNet Peerings.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#VirtualNetworkPeeringList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringListValueList",
+          "traits": {
+            "smithy.api#documentation": "The VirtualNetworkPeering items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets all virtual network peerings under a workspace."
+      }
+    },
+    "com.azure.databricks#VirtualNetworkPeeringListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#VirtualNetworkPeering"
+      },
+      "traits": {
+        "smithy.api#documentation": "The VirtualNetworkPeering items on this page"
+      }
+    },
+    "com.azure.databricks#VirtualNetworkPeering": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#VirtualNetworkPeeringPropertiesFormat",
+          "traits": {
+            "smithy.api#documentation": "List of properties for vNet Peering",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Peerings in a VirtualNetwork resource"
+      }
+    },
+    "com.azure.databricks#VNetPeeringListByWorkspaceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#PrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#PrivateLinkResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateLinkResources/{groupId}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Get the specified private link resource\n\nGet the specified private link resource for the given group id (sub-resource)",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#GroupIdInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The group id properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#GroupIdInformationProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group id"
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.databricks#GroupIdInformationPropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The required members for a specific group id"
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.databricks#GroupIdInformationPropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The required DNS zones for a specific group id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties for a group information object"
+      }
+    },
+    "com.azure.databricks#GroupIdInformationPropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The required DNS zones for a specific group id"
+      }
+    },
+    "com.azure.databricks#GroupIdInformationPropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The required members for a specific group id"
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private link resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesList2": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#PrivateLinkResourcesListRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#PrivateLinkResourcesList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "List private link resources\n\nList private link resources for a given workspace",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#PrivateLinkResourcesListValueList",
+          "traits": {
+            "smithy.api#documentation": "The GroupIdInformation items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The available private link resources for a workspace"
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#GroupIdInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GroupIdInformation items on this page"
+      }
+    },
+    "com.azure.databricks#GroupIdInformation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#GroupIdInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The group id properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The group information for creating a private endpoint on a workspace"
+      }
+    },
+    "com.azure.databricks#PrivateLinkResourcesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Remove private endpoint connection\n\nRemove private endpoint connection with the specified name",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Update private endpoint connection status\n\nUpdate the status of a private endpoint connection with the specified name",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.databricks#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint"
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionPropertiesGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "GroupIds from the private link service resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.databricks#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection state",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a private endpoint connection."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.databricks#PrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.databricks#PrivateLinkServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of a private endpoint connection",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description for the current state of a private endpoint connection"
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Actions required for a private endpoint connection"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of a private endpoint connection."
+      }
+    },
+    "com.azure.databricks#PrivateLinkServiceConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of a private endpoint connection"
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionPropertiesGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "GroupIds from the private link service resource."
+      }
+    },
+    "com.azure.databricks#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint property of a private endpoint connection."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection"
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.databricks#PrivateEndpointInput",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint"
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionPropertiesInputGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "GroupIds from the private link service resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.databricks#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection state",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a private endpoint connection."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionPropertiesInputGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "GroupIds from the private link service resource."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The private endpoint property of a private endpoint connection."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Get private endpoint connection\n\nGet a private endpoint connection properties for a workspace",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsList2": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsListRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#PrivateEndpointConnectionsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "List private endpoint connections\n\nList private endpoint connections of the workspace",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionsListValueList",
+          "traits": {
+            "smithy.api#documentation": "The PrivateEndpointConnection items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private link connections."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateEndpointConnection items on this page"
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint connection properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection of a workspace."
+      }
+    },
+    "com.azure.databricks#PrivateEndpointConnectionsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#OutboundNetworkDependenciesEndpointsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#OutboundNetworkDependenciesEndpointsListRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#OutboundNetworkDependenciesEndpointsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/outboundNetworkDependenciesEndpoints",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified Workspace.\n\nGets the list of endpoints that VNET Injected Workspace calls Azure Databricks Control Plane. You must configure outbound access with these endpoints. For more information, see https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/udr",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#OutboundNetworkDependenciesEndpointsListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.databricks#OutboundEnvironmentEndpointCollection",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#OutboundEnvironmentEndpointCollection": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#OutboundEnvironmentEndpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of outbound network dependency endpoints"
+      }
+    },
+    "com.azure.databricks#OutboundEnvironmentEndpoint": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category of endpoints accessed by the Workspace, e.g. azure-storage, azure-mysql, etc."
+          }
+        },
+        "endpoints": {
+          "target": "com.azure.databricks#OutboundEnvironmentEndpointEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "The endpoints that Workspace connect to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Egress endpoints which Workspace connects to for common purposes."
+      }
+    },
+    "com.azure.databricks#OutboundEnvironmentEndpointEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#EndpointDependency"
+      },
+      "traits": {
+        "smithy.api#documentation": "The endpoints that Workspace connect to"
+      }
+    },
+    "com.azure.databricks#EndpointDependency": {
+      "type": "structure",
+      "members": {
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the dependency."
+          }
+        },
+        "endpointDetails": {
+          "target": "com.azure.databricks#EndpointDependencyEndpointDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The Ports used when connecting to domainName."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A domain name or IP address the Workspace is reaching at."
+      }
+    },
+    "com.azure.databricks#EndpointDependencyEndpointDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#EndpointDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Ports used when connecting to domainName."
+      }
+    },
+    "com.azure.databricks#EndpointDetail": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An IP Address that Domain Name currently resolves to."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port an endpoint is connected to."
+          }
+        },
+        "latency": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in milliseconds it takes for the connection to be created from the Workspace to this IpAddress at this Port."
+          }
+        },
+        "isAccessible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether it is possible to create a connection from the Workspace to this IpAddress at this Port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Connect information from the Workspace to a single endpoint."
+      }
+    },
+    "com.azure.databricks#OutboundNetworkDependenciesEndpointsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#WorkspacesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Deletes the workspace.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#WorkspacesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "forceDeletion": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "forceDeletion",
+            "smithy.api#documentation": "Optional parameter to retain default unity catalog data. By default the data will retained if Uc is enabled on the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#WorkspacesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#WorkspacesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Updates a workspace.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#WorkspacesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#WorkspacesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The workspace properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databricks#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU tier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU for the resource."
+      }
+    },
+    "com.azure.databricks#WorkspaceProperties": {
+      "type": "structure",
+      "members": {
+        "computeMode": {
+          "target": "com.azure.databricks#ComputeMode",
+          "traits": {
+            "smithy.api#documentation": "The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid'",
+            "smithy.api#required": {}
+          }
+        },
+        "managedResourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The managed resource group Id. Required in Hybrid ComputeMode workspace. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "parameters": {
+          "target": "com.azure.databricks#WorkspaceCustomParameters",
+          "traits": {
+            "smithy.api#documentation": "The workspace's custom parameters."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databricks#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The workspace provisioning state."
+          }
+        },
+        "uiDefinitionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blob URI where the UI definition file is located."
+          }
+        },
+        "authorizations": {
+          "target": "com.azure.databricks#WorkspacePropertiesAuthorizationsList",
+          "traits": {
+            "smithy.api#documentation": "The workspace provider authorizations."
+          }
+        },
+        "createdBy": {
+          "target": "com.azure.databricks#CreatedBy",
+          "traits": {
+            "smithy.api#documentation": "Indicates the Object ID, PUID and Application ID of entity that created the workspace."
+          }
+        },
+        "updatedBy": {
+          "target": "com.azure.databricks#CreatedBy",
+          "traits": {
+            "smithy.api#documentation": "Indicates the Object ID, PUID and Application ID of entity that last updated the workspace."
+          }
+        },
+        "createdDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the date and time when the workspace is created."
+          }
+        },
+        "workspaceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the databricks workspace in databricks control plane."
+          }
+        },
+        "workspaceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The workspace URL which is of the format 'adb-{workspaceId}.{random}.azuredatabricks.net'"
+          }
+        },
+        "storageAccountIdentity": {
+          "target": "com.azure.databricks#ManagedIdentityConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The details of Managed Identity of Storage Account. Only returned in Hybrid ComputeMode workspace."
+          }
+        },
+        "managedDiskIdentity": {
+          "target": "com.azure.databricks#ManagedIdentityConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The details of Managed Identity of Disk Encryption Set used for Managed Disk Encryption. Only returned in Hybrid ComputeMode workspace."
+          }
+        },
+        "diskEncryptionSetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of the managed disk encryption set. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.databricks#WorkspacePropertiesEncryption",
+          "traits": {
+            "smithy.api#documentation": "Encryption properties for databricks workspace. Supported in both Serverless and Hybrid ComputeMode workspace."
+          }
+        },
+        "enhancedSecurityCompliance": {
+          "target": "com.azure.databricks#EnhancedSecurityComplianceDefinition",
+          "traits": {
+            "smithy.api#documentation": "Contains settings related to the Enhanced Security and Compliance Add-On. Supported in both Serverless and Hybrid ComputeMode workspace."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.databricks#WorkspacePropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connections created on the workspace. Supported in both Serverless and Hybrid ComputeMode workspace."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.databricks#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace."
+          }
+        },
+        "requiredNsgRules": {
+          "target": "com.azure.databricks#RequiredNsgRules",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "defaultCatalog": {
+          "target": "com.azure.databricks#DefaultCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for Default Catalog configuration during workspace creation. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "isUcEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether unity catalog enabled for the workspace or not. Set as true in Serverless ComputeMode workspace."
+          }
+        },
+        "accessConnector": {
+          "target": "com.azure.databricks#WorkspacePropertiesAccessConnector",
+          "traits": {
+            "smithy.api#documentation": "Access Connector Resource that is going to be associated with Databricks Workspace. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "defaultStorageFirewall": {
+          "target": "com.azure.databricks#DefaultStorageFirewall",
+          "traits": {
+            "smithy.api#documentation": "Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace properties."
+      }
+    },
+    "com.azure.databricks#DefaultStorageFirewall": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#WorkspacePropertiesAccessConnector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of Azure Databricks Access Connector Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "identityType": {
+          "target": "com.azure.databricks#IdentityType",
+          "traits": {
+            "smithy.api#documentation": "The identity type of the Access Connector Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the User Assigned Identity associated with the Access Connector Resource. This is required for type 'UserAssigned' and not valid for type 'SystemAssigned'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Access Connector Resource that is going to be associated with Databricks Workspace. Not allowed in Serverless ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#IdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The identity type of the Access Connector Resource."
+      }
+    },
+    "com.azure.databricks#DefaultCatalogProperties": {
+      "type": "structure",
+      "members": {
+        "initialType": {
+          "target": "com.azure.databricks#DefaultCatalogPropertiesInitialType",
+          "traits": {
+            "smithy.api#documentation": "Defines the initial type of the default catalog. Possible values (case-insensitive):  HiveMetastore, UnityCatalog"
+          }
+        },
+        "initialName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the initial Name of default catalog. If not specified, the name of the workspace will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "These properties lets user specify default catalog properties during workspace creation. Not allowed in Serverless ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#DefaultCatalogPropertiesInitialType": {
+      "type": "enum",
+      "members": {
+        "HIVEMETASTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HiveMetastore"
+          }
+        },
+        "UNITYCATALOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UnityCatalog"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the initial type of the default catalog. Possible values (case-insensitive):  HiveMetastore, UnityCatalog"
+      }
+    },
+    "com.azure.databricks#RequiredNsgRules": {
+      "type": "enum",
+      "members": {
+        "ALLRULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AllRules"
+          }
+        },
+        "NOAZUREDATABRICKSRULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoAzureDatabricksRules"
+          }
+        },
+        "NOAZURESERVICERULES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoAzureServiceRules"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only. Not allowed in Serverless ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#PublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#WorkspacePropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connections created on the workspace. Supported in both Serverless and Hybrid ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#EnhancedSecurityComplianceDefinition": {
+      "type": "structure",
+      "members": {
+        "automaticClusterUpdate": {
+          "target": "com.azure.databricks#AutomaticClusterUpdateDefinition",
+          "traits": {
+            "smithy.api#documentation": "Status of automated cluster updates feature."
+          }
+        },
+        "complianceSecurityProfile": {
+          "target": "com.azure.databricks#ComplianceSecurityProfileDefinition",
+          "traits": {
+            "smithy.api#documentation": "Status of Compliance Security Profile feature."
+          }
+        },
+        "enhancedSecurityMonitoring": {
+          "target": "com.azure.databricks#EnhancedSecurityMonitoringDefinition",
+          "traits": {
+            "smithy.api#documentation": "Status of Enhanced Security Monitoring feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of settings related to the Enhanced Security and Compliance Add-On."
+      }
+    },
+    "com.azure.databricks#EnhancedSecurityMonitoringDefinition": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#EnhancedSecurityMonitoringValue"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of Enhanced Security Monitoring feature."
+      }
+    },
+    "com.azure.databricks#EnhancedSecurityMonitoringValue": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.databricks#ComplianceSecurityProfileDefinition": {
+      "type": "structure",
+      "members": {
+        "complianceStandards": {
+          "target": "com.azure.databricks#ComplianceSecurityProfileDefinitionComplianceStandardsList",
+          "traits": {
+            "smithy.api#documentation": "Compliance standards associated with the workspace."
+          }
+        },
+        "value": {
+          "target": "com.azure.databricks#ComplianceSecurityProfileValue"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of Compliance Security Profile feature."
+      }
+    },
+    "com.azure.databricks#ComplianceSecurityProfileValue": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.databricks#ComplianceSecurityProfileDefinitionComplianceStandardsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance standards associated with the workspace."
+      }
+    },
+    "com.azure.databricks#AutomaticClusterUpdateDefinition": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#AutomaticClusterUpdateValue"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of automated cluster updates feature."
+      }
+    },
+    "com.azure.databricks#AutomaticClusterUpdateValue": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.databricks#WorkspacePropertiesEncryption": {
+      "type": "structure",
+      "members": {
+        "entities": {
+          "target": "com.azure.databricks#EncryptionEntitiesDefinition",
+          "traits": {
+            "smithy.api#documentation": "Encryption entities definition for the workspace.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption properties for databricks workspace. Supported in both Serverless and Hybrid ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#EncryptionEntitiesDefinition": {
+      "type": "structure",
+      "members": {
+        "managedServices": {
+          "target": "com.azure.databricks#EncryptionV2",
+          "traits": {
+            "smithy.api#documentation": "Encryption properties for the databricks managed services. Supported in both Serverless and Hybrid ComputeMode."
+          }
+        },
+        "managedDisk": {
+          "target": "com.azure.databricks#ManagedDiskEncryption",
+          "traits": {
+            "smithy.api#documentation": "Encryption properties for the databricks managed disks. Not allowed in Serverless ComputeMode workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption entities for databricks workspace resource."
+      }
+    },
+    "com.azure.databricks#ManagedDiskEncryption": {
+      "type": "structure",
+      "members": {
+        "keySource": {
+          "target": "com.azure.databricks#EncryptionKeySource2",
+          "traits": {
+            "smithy.api#documentation": "The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Keyvault. Not allowed in Serverless ComputeMode workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyVaultProperties": {
+          "target": "com.azure.databricks#ManagedDiskEncryptionKeyVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Key Vault input properties for encryption.",
+            "smithy.api#required": {}
+          }
+        },
+        "rotationToLatestKeyVersionEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicate whether the latest key version should be automatically used for Managed Disk Encryption."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that contains details of encryption used on the workspace."
+      }
+    },
+    "com.azure.databricks#ManagedDiskEncryptionKeyVaultProperties": {
+      "type": "structure",
+      "members": {
+        "keyVaultUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of KeyVault.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of KeyVault key.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of KeyVault key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key Vault input properties for encryption."
+      }
+    },
+    "com.azure.databricks#EncryptionKeySource2": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_KEYVAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Keyvault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Keyvault"
+      }
+    },
+    "com.azure.databricks#EncryptionV2": {
+      "type": "structure",
+      "members": {
+        "keySource": {
+          "target": "com.azure.databricks#EncryptionKeySource2",
+          "traits": {
+            "smithy.api#documentation": "The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Keyvault",
+            "smithy.api#required": {}
+          }
+        },
+        "keyVaultProperties": {
+          "target": "com.azure.databricks#EncryptionV2KeyVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Key Vault input properties for encryption."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that contains details of encryption used on the workspace."
+      }
+    },
+    "com.azure.databricks#EncryptionV2KeyVaultProperties": {
+      "type": "structure",
+      "members": {
+        "keyVaultUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Uri of KeyVault.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of KeyVault key.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of KeyVault key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key Vault input properties for encryption."
+      }
+    },
+    "com.azure.databricks#ManagedIdentityConfiguration": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The objectId of the Managed Identity that is linked to the Managed Storage account."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant Id where the Managed Identity is created."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of Identity created. It can be either SystemAssigned or UserAssigned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Managed Identity details for storage account."
+      }
+    },
+    "com.azure.databricks#CreatedBy": {
+      "type": "structure",
+      "members": {
+        "oid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Object ID that created the workspace."
+          }
+        },
+        "puid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Personal Object ID corresponding to the object ID above"
+          }
+        },
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID of the application that initiated the creation of the workspace. For example, Azure Portal."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides details of the entity that created/updated the workspace."
+      }
+    },
+    "com.azure.databricks#WorkspacePropertiesAuthorizationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#WorkspaceProviderAuthorization"
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace provider authorizations."
+      }
+    },
+    "com.azure.databricks#WorkspaceProviderAuthorization": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the workspace resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider's role definition identifier. This role will define all the permissions that the provider must have on the workspace's container resource group. This role definition cannot have permission to delete the resource group.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace provider authorization."
+      }
+    },
+    "com.azure.databricks#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Ready"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning status of the workspace."
+      }
+    },
+    "com.azure.databricks#WorkspaceCustomParameters": {
+      "type": "structure",
+      "members": {
+        "amlWorkspaceId": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "The ID of a Azure Machine Learning workspace to link with Databricks workspace. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "customVirtualNetworkId": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "The ID of a Virtual Network where this Databricks Cluster should be created. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "customPublicSubnetName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "The name of a Public Subnet within the Virtual Network. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "customPrivateSubnetName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "The name of the Private Subnet within the Virtual Network. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "enableNoPublicIp": {
+          "target": "com.azure.databricks#WorkspaceNoPublicIPBooleanParameter",
+          "traits": {
+            "smithy.api#documentation": "Boolean indicating whether the public IP should be disabled. Default value is true. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "loadBalancerBackendPoolName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Name of the outbound Load Balancer Backend Pool for Secure Cluster Connectivity (No Public IP). Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "loadBalancerId": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Resource URI of Outbound Load balancer for Secure Cluster Connectivity (No Public IP) workspace. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "natGatewayName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Name of the NAT gateway for Secure Cluster Connectivity (No Public IP) workspace subnets. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "publicIpName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Name of the Public IP for No Public IP workspace with managed vNet. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "prepareEncryption": {
+          "target": "com.azure.databricks#WorkspaceCustomBooleanParameter",
+          "traits": {
+            "smithy.api#documentation": "Prepare the workspace for encryption. Enables the Managed Identity for managed storage account. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.databricks#WorkspaceEncryptionParameter",
+          "traits": {
+            "smithy.api#documentation": "Contains the encryption details for Customer-Managed Key (CMK) enabled workspace.Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "requireInfrastructureEncryption": {
+          "target": "com.azure.databricks#WorkspaceCustomBooleanParameter",
+          "traits": {
+            "smithy.api#documentation": "A boolean indicating whether or not the DBFS root file system will be enabled with secondary layer of encryption with platform managed keys for data at rest. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "storageAccountName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Default DBFS storage account name. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "storageAccountSkuName": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Storage account SKU name, ex: Standard_GRS, Standard_LRS. Refer https://aka.ms/storageskus for valid inputs. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "vnetAddressPrefix": {
+          "target": "com.azure.databricks#WorkspaceCustomStringParameter",
+          "traits": {
+            "smithy.api#documentation": "Address prefix for Managed virtual network. Default value for this input is 10.139. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "resourceTags": {
+          "target": "com.azure.databricks#WorkspaceCustomObjectParameter",
+          "traits": {
+            "smithy.api#documentation": "Tags applied to resources under Managed resource group. These can be updated by updating tags at workspace level. Not allowed in Serverless ComputeMode workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom Parameters used for Workspace Creation. Not allowed in Serverless ComputeMode workspace."
+      }
+    },
+    "com.azure.databricks#WorkspaceCustomObjectParameter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#CustomParameterType",
+          "traits": {
+            "smithy.api#documentation": "The type of variable that this is"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The value which should be used for this field.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The value which should be used for this field."
+      }
+    },
+    "com.azure.databricks#CustomParameterType": {
+      "type": "enum",
+      "members": {
+        "BOOL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Bool"
+          }
+        },
+        "OBJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Object"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "String"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace's custom parameters."
+      }
+    },
+    "com.azure.databricks#WorkspaceCustomStringParameter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#CustomParameterType",
+          "traits": {
+            "smithy.api#documentation": "The type of variable that this is"
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value which should be used for this field.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Value."
+      }
+    },
+    "com.azure.databricks#WorkspaceCustomBooleanParameter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#CustomParameterType",
+          "traits": {
+            "smithy.api#documentation": "The type of variable that this is"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The value which should be used for this field.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The value which should be used for this field."
+      }
+    },
+    "com.azure.databricks#WorkspaceEncryptionParameter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#CustomParameterType",
+          "traits": {
+            "smithy.api#documentation": "The type of variable that this is"
+          }
+        },
+        "value": {
+          "target": "com.azure.databricks#Encryption",
+          "traits": {
+            "smithy.api#documentation": "The value which should be used for this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that contains details of encryption used on the workspace."
+      }
+    },
+    "com.azure.databricks#Encryption": {
+      "type": "structure",
+      "members": {
+        "keySource": {
+          "target": "com.azure.databricks#EncryptionKeySource",
+          "traits": {
+            "smithy.api#documentation": "The encryption keySource (provider). Possible values (case-insensitive):  Default, Microsoft.Keyvault"
+          }
+        },
+        "KeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of KeyVault key."
+          }
+        },
+        "keyversion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of KeyVault key."
+          }
+        },
+        "keyvaulturi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Uri of KeyVault."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that contains details of encryption used on the workspace."
+      }
+    },
+    "com.azure.databricks#EncryptionKeySource": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Default"
+          }
+        },
+        "MICROSOFT_KEYVAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Keyvault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The encryption keySource (provider). Possible values (case-insensitive):  Default, Microsoft.Keyvault"
+      }
+    },
+    "com.azure.databricks#WorkspaceNoPublicIPBooleanParameter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#CustomParameterType",
+          "traits": {
+            "smithy.api#documentation": "The type of variable that this is"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The value which should be used for this field.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The value which should be used for this field."
+      }
+    },
+    "com.azure.databricks#ComputeMode": {
+      "type": "enum",
+      "members": {
+        "SERVERLESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Serverless"
+          }
+        },
+        "HYBRID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hybrid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid'"
+      }
+    },
+    "com.azure.databricks#WorkspacesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#WorkspacesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#WorkspacesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#WorkspacesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#WorkspacesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#WorkspacesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Creates a new workspace.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#WorkspacesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#WorkspacesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The workspace properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databricks#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#WorkspacesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#WorkspacesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#WorkspacePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The workspace properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databricks#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#WorkspacePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "computeMode": {
+          "target": "com.azure.databricks#ComputeMode",
+          "traits": {
+            "smithy.api#documentation": "The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid'",
+            "smithy.api#required": {}
+          }
+        },
+        "managedResourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The managed resource group Id. Required in Hybrid ComputeMode workspace. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "parameters": {
+          "target": "com.azure.databricks#WorkspaceCustomParameters",
+          "traits": {
+            "smithy.api#documentation": "The workspace's custom parameters."
+          }
+        },
+        "uiDefinitionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blob URI where the UI definition file is located."
+          }
+        },
+        "authorizations": {
+          "target": "com.azure.databricks#WorkspacePropertiesInputAuthorizationsList",
+          "traits": {
+            "smithy.api#documentation": "The workspace provider authorizations."
+          }
+        },
+        "createdBy": {
+          "target": "com.azure.databricks#CreatedByInput",
+          "traits": {
+            "smithy.api#documentation": "Indicates the Object ID, PUID and Application ID of entity that created the workspace."
+          }
+        },
+        "updatedBy": {
+          "target": "com.azure.databricks#CreatedByInput",
+          "traits": {
+            "smithy.api#documentation": "Indicates the Object ID, PUID and Application ID of entity that last updated the workspace."
+          }
+        },
+        "storageAccountIdentity": {
+          "target": "com.azure.databricks#ManagedIdentityConfigurationInput",
+          "traits": {
+            "smithy.api#documentation": "The details of Managed Identity of Storage Account. Only returned in Hybrid ComputeMode workspace."
+          }
+        },
+        "managedDiskIdentity": {
+          "target": "com.azure.databricks#ManagedIdentityConfigurationInput",
+          "traits": {
+            "smithy.api#documentation": "The details of Managed Identity of Disk Encryption Set used for Managed Disk Encryption. Only returned in Hybrid ComputeMode workspace."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.databricks#WorkspacePropertiesEncryption",
+          "traits": {
+            "smithy.api#documentation": "Encryption properties for databricks workspace. Supported in both Serverless and Hybrid ComputeMode workspace."
+          }
+        },
+        "enhancedSecurityCompliance": {
+          "target": "com.azure.databricks#EnhancedSecurityComplianceDefinition",
+          "traits": {
+            "smithy.api#documentation": "Contains settings related to the Enhanced Security and Compliance Add-On. Supported in both Serverless and Hybrid ComputeMode workspace."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.databricks#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace."
+          }
+        },
+        "requiredNsgRules": {
+          "target": "com.azure.databricks#RequiredNsgRules",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "defaultCatalog": {
+          "target": "com.azure.databricks#DefaultCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for Default Catalog configuration during workspace creation. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "accessConnector": {
+          "target": "com.azure.databricks#WorkspacePropertiesAccessConnector",
+          "traits": {
+            "smithy.api#documentation": "Access Connector Resource that is going to be associated with Databricks Workspace. Not allowed in Serverless ComputeMode workspace."
+          }
+        },
+        "defaultStorageFirewall": {
+          "target": "com.azure.databricks#DefaultStorageFirewall",
+          "traits": {
+            "smithy.api#documentation": "Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace properties."
+      }
+    },
+    "com.azure.databricks#ManagedIdentityConfigurationInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The Managed Identity details for storage account."
+      }
+    },
+    "com.azure.databricks#CreatedByInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Provides details of the entity that created/updated the workspace."
+      }
+    },
+    "com.azure.databricks#WorkspacePropertiesInputAuthorizationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#WorkspaceProviderAuthorization"
+      },
+      "traits": {
+        "smithy.api#documentation": "The workspace provider authorizations."
+      }
+    },
+    "com.azure.databricks#WorkspacesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#WorkspacesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#WorkspacesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#WorkspacesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets the workspace.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#WorkspacesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#WorkspacesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The workspace properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databricks#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#WorkspacesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#WorkspacesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#WorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets all the workspaces within a resource group.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#WorkspaceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#WorkspaceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Workspace items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Workspace list operation."
+      }
+    },
+    "com.azure.databricks#WorkspaceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#Workspace"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Workspace items on this page"
+      }
+    },
+    "com.azure.databricks#Workspace": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#WorkspaceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The workspace properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databricks#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about workspace."
+      }
+    },
+    "com.azure.databricks#WorkspaceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#WorkspacesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#AccessConnectorsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Deletes the Azure Databricks Access Connector.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Databricks Access Connector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#AccessConnectorsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#AccessConnectorsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Updates an Azure Databricks Access Connector.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#AccessConnectorsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#AccessConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Databricks Access Connector properties"
+          }
+        },
+        "identity": {
+          "target": "com.azure.databricks#AccessConnectorsUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databricks#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databricks#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databricks#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databricks#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.databricks#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.databricks#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.databricks#AccessConnectorProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.databricks#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning status of the Access Connector."
+          }
+        },
+        "referedBy": {
+          "target": "com.azure.databricks#AccessConnectorPropertiesReferedByList",
+          "traits": {
+            "smithy.api#documentation": "List of workspaces referring this Access Connector."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.databricks#AccessConnectorPropertiesReferedByList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of workspaces referring this Access Connector."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Databricks Access Connector."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#AccessConnectorsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databricks#AccessConnectorsUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databricks#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databricks#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databricks#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.databricks#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#AccessConnectorsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#AccessConnectorsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Creates or updates Azure Databricks Access Connector.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#AccessConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Databricks Access Connector properties"
+          }
+        },
+        "identity": {
+          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databricks#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databricks#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Databricks Access Connector."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#AccessConnectorPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Azure Databricks Access Connector properties"
+          }
+        },
+        "identity": {
+          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databricks#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databricks#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databricks#AccessConnectorPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {}
+    },
+    "com.azure.databricks#AccessConnectorsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#AccessConnectorsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#AccessConnectorsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets an Azure Databricks Access Connector.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#AccessConnectorsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#AccessConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Databricks Access Connector properties"
+          }
+        },
+        "identity": {
+          "target": "com.azure.databricks#AccessConnectorsGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databricks#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databricks#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Databricks Access Connector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#AccessConnectorsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#AccessConnectorListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets all the Azure Databricks Access Connectors within a resource group.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#AccessConnectorListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#AccessConnectorListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The AccessConnector items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a AccessConnector list operation."
+      }
+    },
+    "com.azure.databricks#AccessConnectorListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#AccessConnector"
+      },
+      "traits": {
+        "smithy.api#documentation": "The AccessConnector items on this page"
+      }
+    },
+    "com.azure.databricks#AccessConnector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databricks#AccessConnectorTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databricks#AccessConnectorProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Databricks Access Connector properties"
+          }
+        },
+        "identity": {
+          "target": "com.azure.databricks#AccessConnectorIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about Azure Databricks Access Connector."
+      }
+    },
+    "com.azure.databricks#AccessConnectorIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databricks#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databricks#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databricks#AccessConnectorTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databricks#AccessConnectorsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#WorkspacesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#WorkspacesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#WorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Databricks/workspaces",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets all the workspaces within a subscription.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#WorkspacesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#AccessConnectorsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databricks#AccessConnectorsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.databricks#AccessConnectorListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Databricks/accessConnectors",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "Gets all the Azure Databricks Access Connectors within a subscription.",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#AccessConnectorsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databricks#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.databricks#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Databricks/operations",
+          "code": 200,
+          "apiVersion": "2026-01-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2026-01-01"
+      }
+    },
+    "com.azure.databricks#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databricks#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Resource Provider operations supported by the Resource Provider resource provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the request to list Resource Provider operations. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.databricks#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databricks#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Resource Provider operations supported by the Resource Provider resource provider."
+      }
+    },
+    "com.azure.databricks#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "display": {
+          "target": "com.azure.databricks#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that represents the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "REST API operation"
+      }
+    },
+    "com.azure.databricks#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: ex Microsoft.Databricks"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type: Read, write, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description for the resource operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that represents the operation."
+      }
+    },
+    "com.azure.databricks#Databricks": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.databricks#VNetPeeringDelete"
+        },
+        {
+          "target": "com.azure.databricks#VNetPeeringCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databricks#VNetPeeringGet"
+        },
+        {
+          "target": "com.azure.databricks#VNetPeeringListByWorkspace"
+        },
+        {
+          "target": "com.azure.databricks#PrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.databricks#PrivateLinkResourcesList2"
+        },
+        {
+          "target": "com.azure.databricks#PrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.databricks#PrivateEndpointConnectionsCreate"
+        },
+        {
+          "target": "com.azure.databricks#PrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.databricks#PrivateEndpointConnectionsList2"
+        },
+        {
+          "target": "com.azure.databricks#OutboundNetworkDependenciesEndpointsList"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesDelete"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesUpdate"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesGet"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsDelete"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsUpdate"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsGet"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesListBySubscription"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsListBySubscription"
+        },
+        {
+          "target": "com.azure.databricks#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Databricks",
+        "smithy.api#documentation": "Azure Databricks API — merged from the databricks resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

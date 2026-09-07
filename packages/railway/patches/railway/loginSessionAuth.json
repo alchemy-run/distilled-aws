@@ -1,0 +1,10 @@
+{
+  "description": "loginSessionAuth returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#LoginSessionAuthRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation loginSessionAuth($input: LoginSessionAuthInput!) {\n  loginSessionAuth(input: $input)\n}"
+    }
+  ]
+}

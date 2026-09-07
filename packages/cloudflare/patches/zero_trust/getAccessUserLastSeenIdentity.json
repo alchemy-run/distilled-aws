@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessUsersLastSeenIdentityGet with distilled cloudflare/zero-trust getAccessUserLastSeenIdentity",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersLastSeenIdentityGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserLastSeenIdentity"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersLastSeenIdentityGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserLastSeenIdentityRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserLastSeenIdentity/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessUserLastSeenIdentityRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersLastSeenIdentityGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserLastSeenIdentityResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserLastSeenIdentity/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessUserLastSeenIdentityResponse"
+    }
+  ]
+}

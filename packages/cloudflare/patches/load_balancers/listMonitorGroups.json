@@ -1,0 +1,38 @@
+{
+  "description": "Align load_balancers#MonitorGroupsList with distilled cloudflare/load-balancers listMonitorGroups",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsList",
+      "path": "/shapes/com.cloudflare.load_balancers#ListMonitorGroups"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsListRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#ListMonitorGroupsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#ListMonitorGroups/input/target",
+      "value": "com.cloudflare.load_balancers#ListMonitorGroupsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorGroupsListResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#ListMonitorGroupsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#ListMonitorGroups/output/target",
+      "value": "com.cloudflare.load_balancers#ListMonitorGroupsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#ListMonitorGroups/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

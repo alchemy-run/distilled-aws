@@ -1,0 +1,20 @@
+{
+  "description": "Align dns#RecordsScanTrigger with distilled cloudflare/dns scanTriggerRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanTrigger",
+      "path": "/shapes/com.cloudflare.dns#ScanTriggerRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsScanTriggerRequest",
+      "path": "/shapes/com.cloudflare.dns#ScanTriggerRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ScanTriggerRecord/input/target",
+      "value": "com.cloudflare.dns#ScanTriggerRecordRequest"
+    }
+  ]
+}

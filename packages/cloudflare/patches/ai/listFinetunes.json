@@ -1,0 +1,39 @@
+{
+  "description": "Align ai#FinetunesList with distilled cloudflare/ai listFinetunes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesList",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesListRequest",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunes/input/target",
+      "value": "com.cloudflare.ai#ListFinetunesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesListResponse",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunes/output/target",
+      "value": "com.cloudflare.ai#ListFinetunesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunes/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    }
+  ]
+}

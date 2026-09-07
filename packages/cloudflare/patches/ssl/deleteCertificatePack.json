@@ -1,0 +1,42 @@
+{
+  "description": "Align ssl#CertificatePacksDelete with distilled cloudflare/ssl deleteCertificatePack",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksDelete",
+      "path": "/shapes/com.cloudflare.ssl#DeleteCertificatePack"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksDeleteRequest",
+      "path": "/shapes/com.cloudflare.ssl#DeleteCertificatePackRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#DeleteCertificatePack/input/target",
+      "value": "com.cloudflare.ssl#DeleteCertificatePackRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksDeleteResponse",
+      "path": "/shapes/com.cloudflare.ssl#DeleteCertificatePackResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#DeleteCertificatePack/output/target",
+      "value": "com.cloudflare.ssl#DeleteCertificatePackResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ssl#DeleteCertificatePack/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ssl#CertificatePackNotFound"
+        },
+        {
+          "target": "com.cloudflare.ssl#Forbidden"
+        }
+      ]
+    }
+  ]
+}

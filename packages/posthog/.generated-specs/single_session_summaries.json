@@ -1,0 +1,672 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.single_session_summaries#SingleSessionSummariesListRequestOrder": {
+      "type": "enum",
+      "members": {
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "SESSION_DURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-session_duration"
+          }
+        },
+        "SESSION_START_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-session_start_time"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "SESSION_DURATION_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session_duration"
+          }
+        },
+        "SESSION_START_TIME_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session_start_time"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummariesListRequestOutcome": {
+      "type": "enum",
+      "members": {
+        "FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failure"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummariesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "Filter to summaries triggered by a specific user, identified by `User.uuid`."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Inclusive lower bound on `created_at`, accepts relative shorthand like `-7d`."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "Inclusive upper bound on `created_at`, accepts relative shorthand like `-1d`."
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "distinct_id",
+            "smithy.api#documentation": "Filter to summaries for a single user (the session's `distinct_id`)."
+          }
+        },
+        "has_exceptions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "has_exceptions",
+            "smithy.api#documentation": "When true, only summaries that surfaced one or more exception events; when false, only summaries without exceptions."
+          }
+        },
+        "has_visual_confirmation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "has_visual_confirmation",
+            "smithy.api#documentation": "When true, only summaries produced via the video-based visual-confirmation workflow."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummariesListRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Ordering field, defaults to `-created_at` (most recent first). Allowed: `created_at`, `session_start_time`, `session_duration` (prefix with `-` for descending)."
+          }
+        },
+        "outcome": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummariesListRequestOutcome",
+          "traits": {
+            "smithy.api#httpQuery": "outcome",
+            "smithy.api#documentation": "Filter by the summary's recorded `session_outcome.success` field. `success` for true, `failure` for false, `unknown` for summaries without an outcome."
+          }
+        },
+        "session_ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "session_ids",
+            "smithy.api#documentation": "Comma-separated list of session IDs to restrict the result to (uses the `(team, session_id)` index)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.single_session_summaries#PaginatedSingleSessionSummaryMinimalList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.single_session_summaries#PaginatedSingleSessionSummaryMinimalListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummaryMinimal": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session replay ID",
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinct ID of the session's user",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "session_start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session start time",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "session_duration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Session duration in seconds",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "session_outcome": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummaryMinimalSessionOutcome",
+          "traits": {
+            "smithy.api#documentation": "Headline outcome from the summary: `{success: bool, description: string}` or null if the summary did not record one. Useful for quickly classifying a session as success/failure.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exception_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of exception event IDs surfaced by this summary (capped at 100).",
+            "smithy.api#required": {}
+          }
+        },
+        "has_exceptions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the summary surfaced any exception events.",
+            "smithy.api#required": {}
+          }
+        },
+        "model_used": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "LLM model identifier that generated this summary, if recorded in run metadata.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "visual_confirmation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the summary was produced with video-based visual confirmation (the rasterized-recording path).",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_summary_context": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummaryMinimalExtraSummaryContext",
+          "traits": {
+            "smithy.api#documentation": "Optional context passed to the summary at generation time (e.g. `focus_area`).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.single_session_summaries#UserBasic",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lightweight projection for list endpoints — omits the full `summary` JSON (~50 KB per row)."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummaryMinimalSessionOutcome": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Headline outcome from the summary: `{success: bool, description: string}` or null if the summary did not record one. Useful for quickly classifying a session as success/failure."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummaryMinimalExtraSummaryContext": {
+      "type": "structure",
+      "members": {
+        "focus_area": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional context passed to the summary at generation time (e.g. `focus_area`)."
+      }
+    },
+    "com.posthog.single_session_summaries#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.single_session_summaries#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.single_session_summaries#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.single_session_summaries#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.single_session_summaries#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.single_session_summaries#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#PaginatedSingleSessionSummaryMinimalListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.single_session_summaries#SingleSessionSummaryMinimal"
+      },
+      "traits": {}
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummariesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.single_session_summaries#SingleSessionSummariesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.single_session_summaries#PaginatedSingleSessionSummaryMinimalList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/single_session_summaries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List stored AI-generated session summaries for the team, one row per session (latest summary kept). Use to discover which sessions have been summarized and to filter for sessions with specific problems — `has_exceptions=true`, `outcome=failure`, or a custom `session_ids` narrowing. Returns lightweight rows without the full summary JSON; use the retrieve endpoint for the per-segment / per-action detail."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummariesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummary": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session replay ID",
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinct ID of the session's user",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "session_start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session start time",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "session_duration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Session duration in seconds",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummarySummaryMap",
+          "traits": {
+            "smithy.api#documentation": "Full LLM-generated summary JSON. Contains `segments` (chronological journey segments), `key_actions` (per-segment events with `abandonment` / `confusion` / `exception` flags — the structured source of session-level problems), `segment_outcomes`, and `session_outcome`. Video-based runs additionally include a `sentiment` block.",
+            "smithy.api#required": {}
+          }
+        },
+        "exception_event_ids": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummaryExceptionEventIdsList",
+          "traits": {
+            "smithy.api#documentation": "Event IDs (capped at 100) where exceptions occurred during the session — extracted from the summary for searchability.",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_summary_context": {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummaryExtraSummaryContext",
+          "traits": {
+            "smithy.api#documentation": "Optional context passed to the summary at generation time (e.g. `focus_area`).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "`SessionSummaryRunMeta` — model used, whether video-based visual confirmation was applied, and visual-confirmation event-to-asset mappings.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.single_session_summaries#UserBasic",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Full session summary, including the generated `summary` JSON content."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummarySummaryMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Full LLM-generated summary JSON. Contains `segments` (chronological journey segments), `key_actions` (per-segment events with `abandonment` / `confusion` / `exception` flags — the structured source of session-level problems), `segment_outcomes`, and `session_outcome`. Video-based runs additionally include a `sentiment` block."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummaryExceptionEventIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Event IDs (capped at 100) where exceptions occurred during the session — extracted from the summary for searchability."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummaryExtraSummaryContext": {
+      "type": "structure",
+      "members": {
+        "focus_area": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional context passed to the summary at generation time (e.g. `focus_area`)."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummariesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.single_session_summaries#SingleSessionSummariesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.single_session_summaries#SingleSessionSummary"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/single_session_summaries/{session_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the latest stored AI summary for a single session by `session_id`. Returns the full `summary` JSON (segments with named timeline, per-action `abandonment` / `confusion` / `exception` flags, segment outcomes, headline `session_outcome`, optional `sentiment`), the `exception_event_ids` array, the `extra_summary_context` (e.g. `focus_area`) used at generation time, and the `run_metadata` (LLM model used, whether visual confirmation was applied). 404 if no summary has been generated for this session yet — to trigger generation, use the existing `session-recording-summarize` flow rather than this endpoint."
+      }
+    },
+    "com.posthog.single_session_summaries#SingleSessionSummaries": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummariesList"
+        },
+        {
+          "target": "com.posthog.single_session_summaries#SingleSessionSummariesRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

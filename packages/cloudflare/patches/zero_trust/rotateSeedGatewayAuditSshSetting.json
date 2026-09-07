@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayAuditSshSettingsRotateSeed with distilled cloudflare/zero-trust rotateSeedGatewayAuditSshSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAuditSshSettingsRotateSeed",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAuditSshSettingsRotateSeedRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSetting/input/target",
+      "value": "com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAuditSshSettingsRotateSeedResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSetting/output/target",
+      "value": "com.cloudflare.zero_trust#RotateSeedGatewayAuditSshSettingResponse"
+    }
+  ]
+}

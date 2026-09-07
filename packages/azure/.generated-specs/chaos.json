@@ -1,0 +1,4209 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.chaos#ExperimentsStart": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsStartRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/start",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Start a Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsStartRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsExecutionDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsExecutionDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentExecutionDetails"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions/{executionId}/getExecutionDetails",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Execution details of an experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionDetails": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the resource type."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the fully qualified resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentExecutionDetailsProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the experiment execution details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the execution details of an Experiment."
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionDetailsProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the execution."
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the start date time."
+          }
+        },
+        "stoppedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the stop date time."
+          }
+        },
+        "failureReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason why the execution failed."
+          }
+        },
+        "lastActionAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the last action date time."
+          }
+        },
+        "runInformation": {
+          "target": "com.azure.chaos#ExperimentExecutionDetailsPropertiesRunInformation",
+          "traits": {
+            "smithy.api#documentation": "The information of the experiment run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the extended properties of an experiment execution."
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionDetailsPropertiesRunInformation": {
+      "type": "structure",
+      "members": {
+        "steps": {
+          "target": "com.azure.chaos#ExperimentExecutionDetailsPropertiesRunInformationStepsList",
+          "traits": {
+            "smithy.api#documentation": "The steps of the experiment run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The information of the experiment run."
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionDetailsPropertiesRunInformationStepsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#StepStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The steps of the experiment run."
+      }
+    },
+    "com.azure.chaos#StepStatus": {
+      "type": "structure",
+      "members": {
+        "stepName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the step."
+          }
+        },
+        "stepId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the step."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the status of the step."
+          }
+        },
+        "branches": {
+          "target": "com.azure.chaos#StepStatusBranchesList",
+          "traits": {
+            "smithy.api#documentation": "The array of branches."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the a list of branches and branch statuses."
+      }
+    },
+    "com.azure.chaos#StepStatusBranchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#BranchStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of branches."
+      }
+    },
+    "com.azure.chaos#BranchStatus": {
+      "type": "structure",
+      "members": {
+        "branchName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the branch status."
+          }
+        },
+        "branchId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the branch status."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the branch."
+          }
+        },
+        "actions": {
+          "target": "com.azure.chaos#BranchStatusActionsList",
+          "traits": {
+            "smithy.api#documentation": "The array of actions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the a list of actions and action statuses."
+      }
+    },
+    "com.azure.chaos#BranchStatusActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ActionStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of actions."
+      }
+    },
+    "com.azure.chaos#ActionStatus": {
+      "type": "structure",
+      "members": {
+        "actionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the action status."
+          }
+        },
+        "actionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the action status."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the action."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the start time of the action."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the end time of the action."
+          }
+        },
+        "targets": {
+          "target": "com.azure.chaos#ActionStatusTargetsList",
+          "traits": {
+            "smithy.api#documentation": "The array of targets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the an action and its status."
+      }
+    },
+    "com.azure.chaos#ActionStatusTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ExperimentExecutionActionTargetDetailsProperties"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of targets."
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionActionTargetDetailsProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the execution."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target for the action."
+          }
+        },
+        "targetFailedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the failed date time."
+          }
+        },
+        "targetCompletedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the completed date time."
+          }
+        },
+        "error": {
+          "target": "com.azure.chaos#ExperimentExecutionActionTargetDetailsError",
+          "traits": {
+            "smithy.api#documentation": "The error of the action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Experiment action target details properties model."
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionActionTargetDetailsError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Experiment action target details error model."
+      }
+    },
+    "com.azure.chaos#ExperimentsExecutionDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        },
+        "executionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "GUID that represents a Experiment execution detail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsGetExecution": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsGetExecutionRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentsGetExecutionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions/{executionId}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get an execution of an Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsGetExecutionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentExecutionProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of experiment execution status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the execution."
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the start date time."
+          }
+        },
+        "stoppedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents the stop date time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the execution properties of an Experiment."
+      }
+    },
+    "com.azure.chaos#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.chaos#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.chaos#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.chaos#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.chaos#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.chaos#ExperimentsGetExecutionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        },
+        "executionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "GUID that represents a Experiment execution detail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsListAllExecutions": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsListAllExecutionsRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentExecutionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of executions of an Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#ExperimentExecutionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ExperimentExecution items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a list of Experiment executions and a link for pagination."
+      }
+    },
+    "com.azure.chaos#ExperimentExecutionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ExperimentExecution"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ExperimentExecution items on this page"
+      }
+    },
+    "com.azure.chaos#ExperimentExecution": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentExecutionProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of experiment execution status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the execution of a Experiment."
+      }
+    },
+    "com.azure.chaos#ExperimentsListAllExecutionsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsCancelRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Cancel a running Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsCancelRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Delete a Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "The operation to update an experiment.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.chaos#ExperimentsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.chaos#ExperimentsUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the experiment resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#ExperimentProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.chaos#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Most recent provisioning state for the given experiment resource."
+          }
+        },
+        "steps": {
+          "target": "com.azure.chaos#ExperimentPropertiesStepsList",
+          "traits": {
+            "smithy.api#documentation": "List of steps.",
+            "smithy.api#required": {}
+          }
+        },
+        "selectors": {
+          "target": "com.azure.chaos#ExperimentPropertiesSelectorsList",
+          "traits": {
+            "smithy.api#documentation": "List of selectors.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Experiment properties model."
+      }
+    },
+    "com.azure.chaos#ExperimentPropertiesSelectorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ChaosTargetSelector"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of selectors."
+      }
+    },
+    "com.azure.chaos#ChaosTargetSelector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the selector ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.azure.chaos#SelectorType",
+          "traits": {
+            "smithy.api#documentation": "Chaos target selector discriminator type",
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "com.azure.chaos#ChaosTargetFilter",
+          "traits": {
+            "smithy.api#documentation": "Model that represents available filter types that can be applied to a targets list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a selector in the Experiment resource."
+      }
+    },
+    "com.azure.chaos#ChaosTargetFilter": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.chaos#FilterType",
+          "traits": {
+            "smithy.api#documentation": "Chaos target filter discriminator type",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents available filter types that can be applied to a targets list."
+      }
+    },
+    "com.azure.chaos#FilterType": {
+      "type": "enum",
+      "members": {
+        "SIMPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Simple"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum that discriminates between filter types. Currently only `Simple` type is supported."
+      }
+    },
+    "com.azure.chaos#SelectorType": {
+      "type": "enum",
+      "members": {
+        "LIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "List"
+          }
+        },
+        "QUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Query"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of the selector type."
+      }
+    },
+    "com.azure.chaos#ExperimentPropertiesStepsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ChaosExperimentStep"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of steps."
+      }
+    },
+    "com.azure.chaos#ChaosExperimentStep": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the step name.",
+            "smithy.api#required": {}
+          }
+        },
+        "branches": {
+          "target": "com.azure.chaos#ChaosExperimentStepBranchesList",
+          "traits": {
+            "smithy.api#documentation": "List of branches.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a step in the Experiment resource."
+      }
+    },
+    "com.azure.chaos#ChaosExperimentStepBranchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ChaosExperimentBranch"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of branches."
+      }
+    },
+    "com.azure.chaos#ChaosExperimentBranch": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the branch name.",
+            "smithy.api#required": {}
+          }
+        },
+        "actions": {
+          "target": "com.azure.chaos#ChaosExperimentBranchActionsList",
+          "traits": {
+            "smithy.api#documentation": "List of actions.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a branch in the step. 9 total per experiment."
+      }
+    },
+    "com.azure.chaos#ChaosExperimentBranchActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ChaosExperimentAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of actions."
+      }
+    },
+    "com.azure.chaos#ChaosExperimentAction": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that represents a Capability URN.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.azure.chaos#ExperimentActionType",
+          "traits": {
+            "smithy.api#documentation": "Chaos experiment action discriminator type",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the base action model. 9 total per experiment."
+      }
+    },
+    "com.azure.chaos#ExperimentActionType": {
+      "type": "enum",
+      "members": {
+        "DELAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delay"
+          }
+        },
+        "DISCRETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "discrete"
+          }
+        },
+        "CONTINUOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "continuous"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum union of Chaos experiment action types."
+      }
+    },
+    "com.azure.chaos#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current provisioning state for a given Azure Chaos resource."
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.chaos#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.chaos#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.chaos#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.chaos#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.chaos#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.chaos#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.chaos#ExperimentsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "identity": {
+          "target": "com.azure.chaos#ExperimentsUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.chaos#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.chaos#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.chaos#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.chaos#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.chaos#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.chaos#ExperimentsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Create or update a Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the experiment resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.chaos#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.chaos#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the experiment resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "steps": {
+          "target": "com.azure.chaos#ExperimentPropertiesInputStepsList",
+          "traits": {
+            "smithy.api#documentation": "List of steps.",
+            "smithy.api#required": {}
+          }
+        },
+        "selectors": {
+          "target": "com.azure.chaos#ExperimentPropertiesInputSelectorsList",
+          "traits": {
+            "smithy.api#documentation": "List of selectors.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Experiment properties model."
+      }
+    },
+    "com.azure.chaos#ExperimentPropertiesInputSelectorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ChaosTargetSelector"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of selectors."
+      }
+    },
+    "com.azure.chaos#ExperimentPropertiesInputStepsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ChaosExperimentStep"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of steps."
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.chaos#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.chaos#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.chaos#ExperimentsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.chaos#ExperimentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a Experiment resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.chaos#ExperimentsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.chaos#ExperimentsGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the experiment resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.chaos#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.chaos#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.chaos#ExperimentsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.chaos#ExperimentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "experimentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Experiment resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsListRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of Experiment resources in a resource group.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#ExperimentListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Experiment items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a list of Experiment resources and a link for pagination."
+      }
+    },
+    "com.azure.chaos#ExperimentListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#Experiment"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Experiment items on this page"
+      }
+    },
+    "com.azure.chaos#Experiment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.chaos#ExperimentTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.chaos#ExperimentIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#ExperimentProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the experiment resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a Experiment resource."
+      }
+    },
+    "com.azure.chaos#ExperimentIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.chaos#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.chaos#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.chaos#ExperimentTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.chaos#ExperimentsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "running": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "running",
+            "smithy.api#documentation": "Optional value that indicates whether to filter results based on if the Experiment is currently running. If null, then the results will not be filtered."
+          }
+        },
+        "continuationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuationToken",
+            "smithy.api#documentation": "String that sets the continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#CapabilitiesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#CapabilitiesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Delete a Capability that extends a Target resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#CapabilitiesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        },
+        "capabilityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Capability resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#CapabilitiesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#CapabilitiesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#CapabilitiesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Create or update a Capability resource that extends a Target resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#CapabilitiesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#CapabilityProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a capability resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#CapabilityProperties": {
+      "type": "structure",
+      "members": {
+        "publisher": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the Publisher that this Capability extends."
+          }
+        },
+        "targetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the Target Type that this Capability extends."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized string of the description."
+          }
+        },
+        "parametersSchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to retrieve JSON schema of the Capability parameters."
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the URN for this Capability Type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Capability properties model."
+      }
+    },
+    "com.azure.chaos#CapabilitiesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        },
+        "capabilityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Capability resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#CapabilityPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of a capability resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#CapabilityPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Capability properties model."
+      }
+    },
+    "com.azure.chaos#CapabilitiesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#CapabilitiesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#CapabilitiesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a Capability resource that extends a Target resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#CapabilitiesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#CapabilityProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a capability resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#CapabilitiesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        },
+        "capabilityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Capability resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#CapabilitiesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#CapabilitiesListRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#CapabilityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of Capability resources that extend a Target resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#CapabilityListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#CapabilityListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Capability items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a list of Capability resources and a link for pagination."
+      }
+    },
+    "com.azure.chaos#CapabilityListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#Capability"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Capability items on this page"
+      }
+    },
+    "com.azure.chaos#Capability": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#CapabilityProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a capability resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a Capability resource."
+      }
+    },
+    "com.azure.chaos#CapabilitiesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        },
+        "continuationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuationToken",
+            "smithy.api#documentation": "String that sets the continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#TargetsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#TargetsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Delete a Target resource that extends a tracked regional resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#TargetsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#TargetsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#TargetsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#TargetsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Create or update a Target resource that extends a tracked regional resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#TargetsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#TargetsCreateOrUpdateResponsePropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The properties of the target resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#TargetsCreateOrUpdateResponsePropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the target resource."
+      }
+    },
+    "com.azure.chaos#TargetsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#TargetsCreateOrUpdateRequestPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The properties of the target resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#TargetsCreateOrUpdateRequestPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the target resource."
+      }
+    },
+    "com.azure.chaos#TargetsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#TargetsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#TargetsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a Target resource that extends a tracked regional resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#TargetsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#TargetsGetResponsePropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The properties of the target resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#TargetsGetResponsePropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the target resource."
+      }
+    },
+    "com.azure.chaos#TargetsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#TargetsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#TargetsListRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#TargetListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of Target resources that extend a tracked regional resource.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#TargetListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#TargetListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Target items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a list of Target resources and a link for pagination."
+      }
+    },
+    "com.azure.chaos#TargetListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#Target"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Target items on this page"
+      }
+    },
+    "com.azure.chaos#Target": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#TargetPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The properties of the target resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a Target resource."
+      }
+    },
+    "com.azure.chaos#TargetPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the target resource."
+      }
+    },
+    "com.azure.chaos#TargetsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "parentProviderNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource provider namespace."
+          }
+        },
+        "parentResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource type."
+          }
+        },
+        "parentResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The parent resource name."
+          }
+        },
+        "continuationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuationToken",
+            "smithy.api#documentation": "String that sets the continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#CapabilityTypesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#CapabilityTypesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#CapabilityTypesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes/{capabilityTypeName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a Capability Type resource for given Target Type and location.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#CapabilityTypesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#CapabilityTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the capability type resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#CapabilityTypeProperties": {
+      "type": "structure",
+      "members": {
+        "publisher": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the Publisher that this Capability Type extends."
+          }
+        },
+        "targetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the Target Type that this Capability Type extends."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized string of the display name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized string of the description."
+          }
+        },
+        "parametersSchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to retrieve JSON schema of the Capability Type parameters."
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the URN for this Capability Type."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the kind of this Capability Type."
+          }
+        },
+        "azureRbacActions": {
+          "target": "com.azure.chaos#CapabilityTypePropertiesAzureRbacActionsList",
+          "traits": {
+            "smithy.api#documentation": "Control plane actions necessary to execute capability type."
+          }
+        },
+        "azureRbacDataActions": {
+          "target": "com.azure.chaos#CapabilityTypePropertiesAzureRbacDataActionsList",
+          "traits": {
+            "smithy.api#documentation": "Data plane actions necessary to execute capability type."
+          }
+        },
+        "requiredAzureRoleDefinitionIds": {
+          "target": "com.azure.chaos#CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList",
+          "traits": {
+            "smithy.api#documentation": "Required Azure Role Definition Ids to execute capability type."
+          }
+        },
+        "runtimeProperties": {
+          "target": "com.azure.chaos#CapabilityTypePropertiesRuntimeProperties",
+          "traits": {
+            "smithy.api#documentation": "Runtime properties of this Capability Type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the Capability Type properties model."
+      }
+    },
+    "com.azure.chaos#CapabilityTypePropertiesRuntimeProperties": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String of the kind of the resource's action type (continuous or discrete)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Runtime properties of this Capability Type."
+      }
+    },
+    "com.azure.chaos#CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Required Azure Role Definition Ids to execute capability type."
+      }
+    },
+    "com.azure.chaos#CapabilityTypePropertiesAzureRbacDataActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Data plane actions necessary to execute capability type."
+      }
+    },
+    "com.azure.chaos#CapabilityTypePropertiesAzureRbacActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Control plane actions necessary to execute capability type."
+      }
+    },
+    "com.azure.chaos#CapabilityTypesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "targetTypeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target Type resource name."
+          }
+        },
+        "capabilityTypeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Capability Type resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#CapabilityTypesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#CapabilityTypesListRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#CapabilityTypeListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of Capability Type resources for given Target Type and location.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#CapabilityTypeListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#CapabilityTypeListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CapabilityType items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a list of Capability Type resources and a link for pagination."
+      }
+    },
+    "com.azure.chaos#CapabilityTypeListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#CapabilityType"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CapabilityType items on this page"
+      }
+    },
+    "com.azure.chaos#CapabilityType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#CapabilityTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the capability type resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a Capability Type resource."
+      }
+    },
+    "com.azure.chaos#CapabilityTypesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "targetTypeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target Type resource name."
+          }
+        },
+        "continuationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuationToken",
+            "smithy.api#documentation": "String that sets the continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#TargetTypesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#TargetTypesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#TargetTypesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a Target Type resources for given location.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#TargetTypesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#TargetTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the target type resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#TargetTypeProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized string of the display name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized string of the description."
+          }
+        },
+        "propertiesSchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to retrieve JSON schema of the Target Type properties."
+          }
+        },
+        "resourceTypes": {
+          "target": "com.azure.chaos#TargetTypePropertiesResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "List of resource types this Target Type can extend."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents the base Target Type properties model."
+      }
+    },
+    "com.azure.chaos#TargetTypePropertiesResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of resource types this Target Type can extend."
+      }
+    },
+    "com.azure.chaos#TargetTypesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "targetTypeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "String that represents a Target Type resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#TargetTypesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#TargetTypesListRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#TargetTypeListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of Target Type resources for given location.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#TargetTypeListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#TargetTypeListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The TargetType items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a list of Target Type resources and a link for pagination."
+      }
+    },
+    "com.azure.chaos#TargetTypeListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#TargetType"
+      },
+      "traits": {
+        "smithy.api#documentation": "The TargetType items on this page"
+      }
+    },
+    "com.azure.chaos#TargetType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.chaos#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.chaos#TargetTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the target type resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Model that represents a Target Type resource."
+      }
+    },
+    "com.azure.chaos#TargetTypesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "continuationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuationToken",
+            "smithy.api#documentation": "String that sets the continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#OperationStatusesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#OperationStatusesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#OperationStatusesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/operationStatuses/{operationId}",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Returns the current status of an async operation.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#OperationStatusesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.chaos#OperationStatusesGetResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.chaos#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#ErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.chaos#ErrorDetailDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.chaos#ErrorDetailAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.chaos#ErrorDetailAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.chaos#ErrorAdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.chaos#ErrorDetailDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.chaos#OperationStatusesGetResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.chaos#OperationStatusResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.chaos#OperationStatusResultOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.chaos#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current status of an async operation."
+      }
+    },
+    "com.azure.chaos#OperationStatusResultOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.chaos#OperationStatusesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of an ongoing async operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#ExperimentsListAll": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.chaos#ExperimentsListAllRequest"
+      },
+      "output": {
+        "target": "com.azure.chaos#ExperimentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/experiments",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "Get a list of Experiment resources in a subscription.",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#ExperimentsListAllRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "running": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "running",
+            "smithy.api#documentation": "Optional value that indicates whether to filter results based on if the Experiment is currently running. If null, then the results will not be filtered."
+          }
+        },
+        "continuationToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "continuationToken",
+            "smithy.api#documentation": "String that sets the continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.chaos#OperationsListAll": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.chaos#OperationsListAllResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Chaos/operations",
+          "code": 200,
+          "apiVersion": "2025-01-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-01-01"
+      }
+    },
+    "com.azure.chaos#OperationsListAllResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.chaos#OperationsListAllResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.chaos#OperationsListAllResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.chaos#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.chaos#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.chaos#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.chaos#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.chaos#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.chaos#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.chaos#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.chaos#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.chaos#Chaos": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.chaos#ExperimentsStart"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsExecutionDetails"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsGetExecution"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsListAllExecutions"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsCancel"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsDelete"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsUpdate"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsGet"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsList"
+        },
+        {
+          "target": "com.azure.chaos#CapabilitiesDelete"
+        },
+        {
+          "target": "com.azure.chaos#CapabilitiesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.chaos#CapabilitiesGet"
+        },
+        {
+          "target": "com.azure.chaos#CapabilitiesList"
+        },
+        {
+          "target": "com.azure.chaos#TargetsDelete"
+        },
+        {
+          "target": "com.azure.chaos#TargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.chaos#TargetsGet"
+        },
+        {
+          "target": "com.azure.chaos#TargetsList"
+        },
+        {
+          "target": "com.azure.chaos#CapabilityTypesGet"
+        },
+        {
+          "target": "com.azure.chaos#CapabilityTypesList"
+        },
+        {
+          "target": "com.azure.chaos#TargetTypesGet"
+        },
+        {
+          "target": "com.azure.chaos#TargetTypesList"
+        },
+        {
+          "target": "com.azure.chaos#OperationStatusesGet"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsListAll"
+        },
+        {
+          "target": "com.azure.chaos#OperationsListAll"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Chaos",
+        "smithy.api#documentation": "Azure Chaos API — merged from the chaos resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,2127 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.access_groups#ReadAccessGroupRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#ReadAccessGroupResponseTeamPermissionsItem": {
+      "type": "enum",
+      "members": {
+        "AIGATEWAYAPIKEYOWNEDBYSELF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayApiKeyOwnedBySelf"
+          }
+        },
+        "AIGATEWAYBUDGETMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayBudgetManager"
+          }
+        },
+        "AIGATEWAYCREDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayCredits"
+          }
+        },
+        "AIGATEWAYSETTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "CONNECTORMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConnectorManager"
+          }
+        },
+        "CREATEPROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CreateProject"
+          }
+        },
+        "ENVVARIABLEMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EnvVariableManager"
+          }
+        },
+        "ENVIRONMENTMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EnvironmentManager"
+          }
+        },
+        "FULLPRODUCTIONDEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FullProductionDeployment"
+          }
+        },
+        "INTEGRATIONMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IntegrationManager"
+          }
+        },
+        "ORGADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OrgAdmin"
+          }
+        },
+        "ORGVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OrgViewer"
+          }
+        },
+        "USAGEVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UsageViewer"
+          }
+        },
+        "V0BUILDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V0Builder"
+          }
+        },
+        "V0CHATTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V0Chatter"
+          }
+        },
+        "V0VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V0Viewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ReadAccessGroupResponseTeamPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#ReadAccessGroupResponseTeamPermissionsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ReadAccessGroupResponseEntitlementsItem": {
+      "type": "enum",
+      "members": {
+        "V0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ReadAccessGroupResponseEntitlementsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#ReadAccessGroupResponseEntitlementsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ReadAccessGroupResponseTeamRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Roles that the team has in the access group."
+      }
+    },
+    "com.vercel.access_groups#ReadAccessGroupResponse": {
+      "type": "structure",
+      "members": {
+        "teamPermissions": {
+          "target": "com.vercel.access_groups#ReadAccessGroupResponseTeamPermissionsList"
+        },
+        "entitlements": {
+          "target": "com.vercel.access_groups#ReadAccessGroupResponseEntitlementsList"
+        },
+        "isDsyncManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team that this access group belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was last updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "membersCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of members in the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectsCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of projects in the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamRoles": {
+          "target": "com.vercel.access_groups#ReadAccessGroupResponseTeamRolesList",
+          "traits": {
+            "smithy.api#documentation": "Roles that the team has in the access group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#ReadAccessGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#ReadAccessGroupRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#ReadAccessGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/access-groups/{idOrName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reads an access group\n\nAllows to read an access group"
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupRequestProjectsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The project role that will be added to this Access Group. \"null\" will remove this project level role."
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupRequestProjectsItem": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the project.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupRequestProjectsItemRole",
+          "traits": {
+            "smithy.api#documentation": "The project role that will be added to this Access Group. \"null\" will remove this project level role.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#UpdateAccessGroupRequestProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#UpdateAccessGroupRequestProjectsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#UpdateAccessGroupRequestMembersToAddList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of members to add to the access group."
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupRequestMembersToRemoveList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of members to remove from the access group."
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the access group"
+          }
+        },
+        "projects": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupRequestProjectsList"
+        },
+        "membersToAdd": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupRequestMembersToAddList",
+          "traits": {
+            "smithy.api#documentation": "List of members to add to the access group."
+          }
+        },
+        "membersToRemove": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupRequestMembersToRemoveList",
+          "traits": {
+            "smithy.api#documentation": "List of members to remove from the access group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupResponseEntitlementsItem": {
+      "type": "enum",
+      "members": {
+        "V0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#UpdateAccessGroupResponseEntitlementsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#UpdateAccessGroupResponseEntitlementsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#UpdateAccessGroupResponseTeamRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Roles that the team has in the access group."
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupResponseTeamPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions that the team has in the access group."
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupResponse": {
+      "type": "structure",
+      "members": {
+        "entitlements": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupResponseEntitlementsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team that this access group belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was last updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "membersCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of members in the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectsCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of projects in the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamRoles": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupResponseTeamRolesList",
+          "traits": {
+            "smithy.api#documentation": "Roles that the team has in the access group."
+          }
+        },
+        "teamPermissions": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupResponseTeamPermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions that the team has in the access group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#UpdateAccessGroupRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#UpdateAccessGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/access-groups/{idOrName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an access group\n\nAllows to update an access group metadata"
+      }
+    },
+    "com.vercel.access_groups#DeleteAccessGroupRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#DeleteAccessGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#DeleteAccessGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/access-groups/{idOrName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an access group\n\nAllows to delete an access group"
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupMembersRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or name of the Access Group."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Limit how many access group members should be returned."
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "next",
+            "smithy.api#documentation": "Continuation cursor to retrieve the next page of results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search project members by their name, username, and email."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupMembersResponseMembersItemTeamRole": {
+      "type": "enum",
+      "members": {
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRIBUTOR"
+          }
+        },
+        "DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVELOPER"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBER"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEWER"
+          }
+        },
+        "VIEWER_FOR_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEWER_FOR_PLUS"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupMembersResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "avatar": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "teamRole": {
+          "target": "com.vercel.access_groups#ListAccessGroupMembersResponseMembersItemTeamRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupMembersResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#ListAccessGroupMembersResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupMembersResponsePagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupMembersResponse": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.vercel.access_groups#ListAccessGroupMembersResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.access_groups#ListAccessGroupMembersResponsePagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupMembers": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#ListAccessGroupMembersRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#ListAccessGroupMembersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/access-groups/{idOrName}/members",
+          "code": 200
+        },
+        "smithy.api#documentation": "List members of an access group\n\nList members of an access group"
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#documentation": "Filter access groups by project."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search for access groups by name."
+          }
+        },
+        "membersLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "membersLimit",
+            "smithy.api#documentation": "Number of members to include in the response."
+          }
+        },
+        "projectsLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "projectsLimit",
+            "smithy.api#documentation": "Number of projects to include in the response."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Limit how many access group should be returned."
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "next",
+            "smithy.api#documentation": "Continuation cursor to retrieve the next page of results."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemEntitlementsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemTeamPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemTeamRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Roles that the team has in the access group."
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItem": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemMembersList"
+        },
+        "projects": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemProjectsList"
+        },
+        "entitlements": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemEntitlementsList"
+        },
+        "teamPermissions": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemTeamPermissionsList"
+        },
+        "isDsyncManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team that this access group belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was last updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "membersCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of members in the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectsCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of projects in the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamRoles": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItemTeamRolesList",
+          "traits": {
+            "smithy.api#documentation": "Roles that the team has in the access group."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1Pagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "accessGroups": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1AccessGroupsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1Pagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.access_groups#ListAccessGroupsResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#ListAccessGroupsRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#ListAccessGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/access-groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List access groups for a team, project or member\n\nList access groups"
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupRequestProjectsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The project role that will be added to this Access Group. \"null\" will remove this project level role."
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupRequestProjectsItem": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the project.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#CreateAccessGroupRequestProjectsItemRole",
+          "traits": {
+            "smithy.api#documentation": "The project role that will be added to this Access Group. \"null\" will remove this project level role.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#CreateAccessGroupRequestProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#CreateAccessGroupRequestProjectsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#CreateAccessGroupRequestMembersToAddList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of members to add to the access group."
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the access group",
+            "smithy.api#required": {}
+          }
+        },
+        "projects": {
+          "target": "com.vercel.access_groups#CreateAccessGroupRequestProjectsList"
+        },
+        "membersToAdd": {
+          "target": "com.vercel.access_groups#CreateAccessGroupRequestMembersToAddList",
+          "traits": {
+            "smithy.api#documentation": "List of members to add to the access group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupResponseEntitlementsItem": {
+      "type": "enum",
+      "members": {
+        "V0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v0"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#CreateAccessGroupResponseEntitlementsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#CreateAccessGroupResponseEntitlementsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#CreateAccessGroupResponseTeamRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Roles that the team has in the access group."
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupResponseTeamPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions that the team has in the access group."
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupResponse": {
+      "type": "structure",
+      "members": {
+        "entitlements": {
+          "target": "com.vercel.access_groups#CreateAccessGroupResponseEntitlementsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "membersCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectsCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team that this access group belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when the access group was last updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the access group.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamRoles": {
+          "target": "com.vercel.access_groups#CreateAccessGroupResponseTeamRolesList",
+          "traits": {
+            "smithy.api#documentation": "Roles that the team has in the access group."
+          }
+        },
+        "teamPermissions": {
+          "target": "com.vercel.access_groups#CreateAccessGroupResponseTeamPermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions that the team has in the access group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#CreateAccessGroupRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#CreateAccessGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/access-groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates an access group\n\nAllows to create an access group"
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or name of the Access Group."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Limit how many access group projects should be returned."
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "next",
+            "smithy.api#documentation": "Continuation cursor to retrieve the next page of results."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        },
+        "PROJECT_GUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_GUEST"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsItemProject": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "framework": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latestDeploymentId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsItem": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "project": {
+          "target": "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsItemProject",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsResponsePagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ListAccessGroupProjectsResponse": {
+      "type": "structure",
+      "members": {
+        "projects": {
+          "target": "com.vercel.access_groups#ListAccessGroupProjectsResponseProjectsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.access_groups#ListAccessGroupProjectsResponsePagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#ListAccessGroupProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#ListAccessGroupProjectsRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#ListAccessGroupProjectsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/access-groups/{idOrName}/projects",
+          "code": 200
+        },
+        "smithy.api#documentation": "List projects of an access group\n\nList projects of an access group"
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupProjectRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The project role that will be added to this Access Group."
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupProjectRequest": {
+      "type": "structure",
+      "members": {
+        "accessGroupIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the project.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#CreateAccessGroupProjectRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The project role that will be added to this Access Group.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupProjectResponseRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        },
+        "PROJECT_GUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_GUEST"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#CreateAccessGroupProjectResponse": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#CreateAccessGroupProjectResponseRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#CreateAccessGroupProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#CreateAccessGroupProjectRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#CreateAccessGroupProjectResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/access-groups/{accessGroupIdOrName}/projects",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an access group project\n\nAllows creation of an access group project"
+      }
+    },
+    "com.vercel.access_groups#ReadAccessGroupProjectRequest": {
+      "type": "structure",
+      "members": {
+        "accessGroupIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#ReadAccessGroupProjectResponseRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        },
+        "PROJECT_GUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_GUEST"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#ReadAccessGroupProjectResponse": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#ReadAccessGroupProjectResponseRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#ReadAccessGroupProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#ReadAccessGroupProjectRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#ReadAccessGroupProjectResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reads an access group project\n\nAllows reading an access group project"
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupProjectRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The project role that will be added to this Access Group."
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupProjectRequest": {
+      "type": "structure",
+      "members": {
+        "accessGroupIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupProjectRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The project role that will be added to this Access Group.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupProjectResponseRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        },
+        "PROJECT_GUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_GUEST"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.access_groups#UpdateAccessGroupProjectResponse": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "accessGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.access_groups#UpdateAccessGroupProjectResponseRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.access_groups#UpdateAccessGroupProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#UpdateAccessGroupProjectRequest"
+      },
+      "output": {
+        "target": "com.vercel.access_groups#UpdateAccessGroupProjectResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an access group project\n\nAllows update of an access group project"
+      }
+    },
+    "com.vercel.access_groups#DeleteAccessGroupProjectRequest": {
+      "type": "structure",
+      "members": {
+        "accessGroupIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.access_groups#DeleteAccessGroupProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.access_groups#DeleteAccessGroupProjectRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.access_groups#BadRequest"
+        },
+        {
+          "target": "com.vercel.access_groups#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/access-groups/{accessGroupIdOrName}/projects/{projectId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an access group project\n\nAllows deletion of an access group project"
+      }
+    },
+    "com.vercel.access_groups#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.access_groups#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.access_groups#AccessGroups": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.access_groups#ReadAccessGroup"
+        },
+        {
+          "target": "com.vercel.access_groups#UpdateAccessGroup"
+        },
+        {
+          "target": "com.vercel.access_groups#DeleteAccessGroup"
+        },
+        {
+          "target": "com.vercel.access_groups#ListAccessGroupMembers"
+        },
+        {
+          "target": "com.vercel.access_groups#ListAccessGroups"
+        },
+        {
+          "target": "com.vercel.access_groups#CreateAccessGroup"
+        },
+        {
+          "target": "com.vercel.access_groups#ListAccessGroupProjects"
+        },
+        {
+          "target": "com.vercel.access_groups#CreateAccessGroupProject"
+        },
+        {
+          "target": "com.vercel.access_groups#ReadAccessGroupProject"
+        },
+        {
+          "target": "com.vercel.access_groups#UpdateAccessGroupProject"
+        },
+        {
+          "target": "com.vercel.access_groups#DeleteAccessGroupProject"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

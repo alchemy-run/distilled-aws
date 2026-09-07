@@ -1,0 +1,38 @@
+{
+  "description": "Align intel#AttackSurfaceReportIssueTypesGet with distilled cloudflare/intel getAttackSurfaceReportIssueType",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssueTypesGet",
+      "path": "/shapes/com.cloudflare.intel#GetAttackSurfaceReportIssueType"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssueTypesGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetAttackSurfaceReportIssueTypeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetAttackSurfaceReportIssueType/input/target",
+      "value": "com.cloudflare.intel#GetAttackSurfaceReportIssueTypeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssueTypesGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetAttackSurfaceReportIssueTypeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetAttackSurfaceReportIssueType/output/target",
+      "value": "com.cloudflare.intel#GetAttackSurfaceReportIssueTypeResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#GetAttackSurfaceReportIssueType/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

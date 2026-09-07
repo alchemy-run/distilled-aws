@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#OrganizationsCreateForAccount with distilled cloudflare/zero-trust createOrganizationForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsCreateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateOrganizationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateOrganizationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateOrganizationForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#CreateOrganizationForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateOrganizationForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateOrganizationForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#CreateOrganizationForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateOrganizationForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#OrganizationAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

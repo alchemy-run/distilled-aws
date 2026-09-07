@@ -1,0 +1,30 @@
+{
+  "description": "Align network_interconnects#InterconnectsStatus with distilled cloudflare/network-interconnects statusInterconnect",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsStatus",
+      "path": "/shapes/com.cloudflare.network_interconnects#StatusInterconnect"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsStatusRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#StatusInterconnectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#StatusInterconnect/input/target",
+      "value": "com.cloudflare.network_interconnects#StatusInterconnectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsStatusResponse",
+      "path": "/shapes/com.cloudflare.network_interconnects#StatusInterconnectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#StatusInterconnect/output/target",
+      "value": "com.cloudflare.network_interconnects#StatusInterconnectResponse"
+    }
+  ]
+}

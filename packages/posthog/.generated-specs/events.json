@@ -1,0 +1,988 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.events#EventsListRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#Property": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.events#PropertyGroupOperator",
+          "traits": {
+            "smithy.api#documentation": "\n You can use a simplified version:\n```json\n{\n    \"properties\": [\n        {\n            \"key\": \"email\",\n            \"value\": \"x@y.com\",\n            \"operator\": \"exact\",\n            \"type\": \"event\"\n        }\n    ]\n}\n```\n\nOr you can create more complicated queries with AND and OR:\n```json\n{\n    \"properties\": {\n        \"type\": \"AND\",\n        \"values\": [\n            {\n                \"type\": \"OR\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            },\n            {\n                \"type\": \"AND\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            }\n        ]\n    ]\n}\n```\n\n\n* `AND` - AND\n* `OR` - OR"
+          }
+        },
+        "values": {
+          "target": "com.posthog.events#PropertyValuesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyGroupOperator": {
+      "type": "enum",
+      "members": {
+        "AND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AND"
+          }
+        },
+        "OR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OR"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyItem": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key of the property you're filtering on. For example `email` or `$current_url`"
+          }
+        },
+        "value": {
+          "target": "com.posthog.events#PropertyItemValue",
+          "traits": {
+            "smithy.api#documentation": "Value of your filter. For example `test@example.com` or `https://example.com/test/`. Can be an array for an OR query, like `[\"test@example.com\",\"ok@example.com\"]`"
+          }
+        },
+        "operator": {
+          "target": "com.posthog.events#PropertyItemOperator",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.events#PropertyItemType"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyItemValueCase3Item": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyItemValueCase3List": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.events#PropertyItemValueCase3Item"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyItemValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case3": {
+          "target": "com.posthog.events#PropertyItemValueCase3List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Value of your filter. For example `test@example.com` or `https://example.com/test/`. Can be an array for an OR query, like `[\"test@example.com\",\"ok@example.com\"]`"
+      }
+    },
+    "com.posthog.events#PropertyItemOperatorEnum": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "IS_NOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not"
+          }
+        },
+        "ICONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icontains"
+          }
+        },
+        "NOT_ICONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_icontains"
+          }
+        },
+        "REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regex"
+          }
+        },
+        "NOT_REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_regex"
+          }
+        },
+        "GT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gt"
+          }
+        },
+        "LT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lt"
+          }
+        },
+        "GTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gte"
+          }
+        },
+        "LTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lte"
+          }
+        },
+        "IS_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_set"
+          }
+        },
+        "IS_NOT_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not_set"
+          }
+        },
+        "IS_DATE_EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_date_exact"
+          }
+        },
+        "IS_DATE_AFTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_date_after"
+          }
+        },
+        "IS_DATE_BEFORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_date_before"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "NOT_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_in"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `exact` - exact\n* `is_not` - is_not\n* `icontains` - icontains\n* `not_icontains` - not_icontains\n* `regex` - regex\n* `not_regex` - not_regex\n* `gt` - gt\n* `lt` - lt\n* `gte` - gte\n* `lte` - lte\n* `is_set` - is_set\n* `is_not_set` - is_not_set\n* `is_date_exact` - is_date_exact\n* `is_date_after` - is_date_after\n* `is_date_before` - is_date_before\n* `in` - in\n* `not_in` - not_in"
+      }
+    },
+    "com.posthog.events#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyItemOperator": {
+      "type": "union",
+      "members": {
+        "PropertyItemOperatorEnum": {
+          "target": "com.posthog.events#PropertyItemOperatorEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.events#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyFilterTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event"
+          }
+        },
+        "EVENT_METADATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event_metadata"
+          }
+        },
+        "FEATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature"
+          }
+        },
+        "PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "person"
+          }
+        },
+        "COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cohort"
+          }
+        },
+        "ELEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "element"
+          }
+        },
+        "STATIC_COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "static-cohort"
+          }
+        },
+        "DYNAMIC_COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dynamic-cohort"
+          }
+        },
+        "PRECALCULATED_COHORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "precalculated-cohort"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group"
+          }
+        },
+        "RECORDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording"
+          }
+        },
+        "LOG_ENTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log_entry"
+          }
+        },
+        "BEHAVIORAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "behavioral"
+          }
+        },
+        "SESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session"
+          }
+        },
+        "HOGQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hogql"
+          }
+        },
+        "DATA_WAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data_warehouse"
+          }
+        },
+        "DATA_WAREHOUSE_PERSON_PROPERTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data_warehouse_person_property"
+          }
+        },
+        "ERROR_TRACKING_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_tracking_issue"
+          }
+        },
+        "LOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log"
+          }
+        },
+        "LOG_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log_attribute"
+          }
+        },
+        "LOG_RESOURCE_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log_resource_attribute"
+          }
+        },
+        "SPAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "span"
+          }
+        },
+        "SPAN_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "span_attribute"
+          }
+        },
+        "SPAN_RESOURCE_ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "span_resource_attribute"
+          }
+        },
+        "REVENUE_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "revenue_analytics"
+          }
+        },
+        "FLAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag"
+          }
+        },
+        "WORKFLOW_VARIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "workflow_variable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `event` - event\n* `event_metadata` - event_metadata\n* `feature` - feature\n* `person` - person\n* `cohort` - cohort\n* `element` - element\n* `static-cohort` - static-cohort\n* `dynamic-cohort` - dynamic-cohort\n* `precalculated-cohort` - precalculated-cohort\n* `group` - group\n* `recording` - recording\n* `log_entry` - log_entry\n* `behavioral` - behavioral\n* `session` - session\n* `hogql` - hogql\n* `data_warehouse` - data_warehouse\n* `data_warehouse_person_property` - data_warehouse_person_property\n* `error_tracking_issue` - error_tracking_issue\n* `log` - log\n* `log_attribute` - log_attribute\n* `log_resource_attribute` - log_resource_attribute\n* `span` - span\n* `span_attribute` - span_attribute\n* `span_resource_attribute` - span_resource_attribute\n* `revenue_analytics` - revenue_analytics\n* `flag` - flag\n* `workflow_variable` - workflow_variable"
+      }
+    },
+    "com.posthog.events#PropertyItemType": {
+      "type": "union",
+      "members": {
+        "PropertyFilterTypeEnum": {
+          "target": "com.posthog.events#PropertyFilterTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.events#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PropertyValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.events#PropertyItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsListRequestPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.events#Property"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsListRequestSelectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsListRequestWhereList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Only return events with a timestamp after this time. Default: now() - 24 hours."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only return events with a timestamp before this time. Default: now() + 5 seconds."
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "distinct_id",
+            "smithy.api#documentation": "Filter list by distinct id."
+          }
+        },
+        "event": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "event",
+            "smithy.api#documentation": "Filter list by event. For example `user sign up` or `$pageview`."
+          }
+        },
+        "format": {
+          "target": "com.posthog.events#EventsListRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "include_person": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_person",
+            "smithy.api#documentation": "Include person details for each event. Default: false."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of results to return"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Allows to skip first offset rows. Will fail for value larger than 100000. Read about proper way of paginating: https://posthog.com/docs/api/queries#5-use-timestamp-based-pagination-instead-of-offset"
+          }
+        },
+        "person_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "person_id",
+            "smithy.api#documentation": "Filter list by person id."
+          }
+        },
+        "properties": {
+          "target": "com.posthog.events#EventsListRequestPropertiesList",
+          "traits": {
+            "smithy.api#httpQuery": "properties",
+            "smithy.api#documentation": "Filter events by event property, person property, cohort, groups and more."
+          }
+        },
+        "select": {
+          "target": "com.posthog.events#EventsListRequestSelectList",
+          "traits": {
+            "smithy.api#httpQuery": "select",
+            "smithy.api#documentation": "(Experimental) JSON-serialized array of HogQL expressions to return"
+          }
+        },
+        "where": {
+          "target": "com.posthog.events#EventsListRequestWhereList",
+          "traits": {
+            "smithy.api#httpQuery": "where",
+            "smithy.api#documentation": "(Experimental) JSON-serialized array of HogQL expressions that must pass"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.events#PaginatedClickhouseEventList": {
+      "type": "structure",
+      "members": {
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.events#PaginatedClickhouseEventListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#ClickhouseEvent": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String"
+        },
+        "properties": {
+          "target": "com.posthog.events#ClickhouseEventPropertiesMap"
+        },
+        "event": {
+          "target": "smithy.api#String"
+        },
+        "timestamp": {
+          "target": "smithy.api#String"
+        },
+        "person": {
+          "target": "com.posthog.events#ClickhouseEventPersonMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "elements": {
+          "target": "com.posthog.events#ClickhouseEventElementsList"
+        },
+        "elements_chain": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#ClickhouseEventPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#ClickhouseEventPersonMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventElement": {
+      "type": "structure",
+      "members": {
+        "event": {
+          "target": "smithy.api#String"
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tag_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_class": {
+          "target": "com.posthog.events#EventElementAttrClassList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attr_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_child": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nth_of_type": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attributes": {
+          "target": "smithy.api#Document"
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventElementAttrClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#ClickhouseEventElementsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.events#EventElement"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#PaginatedClickhouseEventListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.events#ClickhouseEvent"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.events#EventsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.events#PaginatedClickhouseEventList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.events#BadRequest"
+        },
+        {
+          "target": "com.posthog.events#Forbidden"
+        },
+        {
+          "target": "com.posthog.events#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/events/",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint allows you to list and filter events.\n        It is effectively deprecated and is kept only for backwards compatibility.\n        If you ever ask about it you will be advised to not use it...\n        If you want to ad-hoc list or aggregate events, use the Query endpoint instead.\n        If you want to export all events or many pages of events you should use our CDP/Batch Exports products instead."
+      }
+    },
+    "com.posthog.events#EventsRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "format": {
+          "target": "com.posthog.events#EventsRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        },
+        "include_person": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_person",
+            "smithy.api#documentation": "Include person details for the event. Default: false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.events#EventsRetrieveResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.events#EventsRetrieveResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.events#EventsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.events#EventsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.events#EventsRetrieveResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.events#BadRequest"
+        },
+        {
+          "target": "com.posthog.events#Forbidden"
+        },
+        {
+          "target": "com.posthog.events#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/events/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.events#EventsValuesRetrieveRequestFormat": {
+      "type": "enum",
+      "members": {
+        "CSV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csv"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "json"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.events#EventsValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "format": {
+          "target": "com.posthog.events#EventsValuesRetrieveRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.events#EventsValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.events#EventsValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.events#BadRequest"
+        },
+        {
+          "target": "com.posthog.events#Forbidden"
+        },
+        {
+          "target": "com.posthog.events#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/events/values/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.events#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.events#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.events#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.events#Events": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.events#EventsList"
+        },
+        {
+          "target": "com.posthog.events#EventsRetrieve"
+        },
+        {
+          "target": "com.posthog.events#EventsValuesRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

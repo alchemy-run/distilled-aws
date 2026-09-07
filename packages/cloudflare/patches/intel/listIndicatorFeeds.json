@@ -1,0 +1,47 @@
+{
+  "description": "Align intel#IndicatorFeedsList with distilled cloudflare/intel listIndicatorFeeds",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsList",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeeds"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsListRequest",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeeds/input/target",
+      "value": "com.cloudflare.intel#ListIndicatorFeedsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsListResponse",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeeds/output/target",
+      "value": "com.cloudflare.intel#ListIndicatorFeedsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeeds/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeeds/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.intel#Forbidden"
+        }
+      ]
+    }
+  ]
+}

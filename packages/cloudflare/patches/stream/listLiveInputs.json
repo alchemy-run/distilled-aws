@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#LiveInputsList with distilled cloudflare/stream listLiveInputs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsList",
+      "path": "/shapes/com.cloudflare.stream#ListLiveInputs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsListRequest",
+      "path": "/shapes/com.cloudflare.stream#ListLiveInputsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#ListLiveInputs/input/target",
+      "value": "com.cloudflare.stream#ListLiveInputsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsListResponse",
+      "path": "/shapes/com.cloudflare.stream#ListLiveInputsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#ListLiveInputs/output/target",
+      "value": "com.cloudflare.stream#ListLiveInputsResponse"
+    }
+  ]
+}

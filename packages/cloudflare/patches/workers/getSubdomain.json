@@ -1,0 +1,45 @@
+{
+  "description": "Align workers#SubdomainsGet with distilled cloudflare/workers getSubdomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#SubdomainsGet",
+      "path": "/shapes/com.cloudflare.workers#GetSubdomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#SubdomainsGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetSubdomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetSubdomain/input/target",
+      "value": "com.cloudflare.workers#GetSubdomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#SubdomainsGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetSubdomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetSubdomain/output/target",
+      "value": "com.cloudflare.workers#GetSubdomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetSubdomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#SubdomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

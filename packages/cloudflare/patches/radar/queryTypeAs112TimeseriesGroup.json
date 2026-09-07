@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112TimeseriesGroupsQueryType with distilled cloudflare/radar queryTypeAs112TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsQueryType",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeAs112TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsQueryTypeRequest",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeAs112TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#QueryTypeAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsQueryTypeResponse",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeAs112TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeAs112TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#QueryTypeAs112TimeseriesGroupResponse"
+    }
+  ]
+}

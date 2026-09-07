@@ -1,0 +1,37 @@
+{
+  "operations": {
+    "createChannel": { "errors": ["ThrottlingException"] },
+    "createRecordingConfiguration": { "errors": ["ThrottlingException"] },
+    "createStreamKey": { "errors": ["ThrottlingException"] },
+    "deleteAdConfiguration": { "errors": ["ThrottlingException"] },
+    "deleteChannel": { "errors": ["ThrottlingException"] },
+    "deletePlaybackKeyPair": {
+      "errors": ["ThrottlingException", "InternalServerException"]
+    },
+    "deletePlaybackRestrictionPolicy": { "errors": ["ThrottlingException"] },
+    "deleteRecordingConfiguration": { "errors": ["ThrottlingException"] },
+    "deleteStreamKey": { "errors": ["ThrottlingException"] },
+    "getAdConfiguration": { "errors": ["ThrottlingException"] },
+    "getChannel": { "errors": ["ThrottlingException"] },
+    "getPlaybackKeyPair": { "errors": ["ThrottlingException"] },
+    "getPlaybackRestrictionPolicy": { "errors": ["ThrottlingException"] },
+    "getRecordingConfiguration": { "errors": ["ThrottlingException"] },
+    "getStream": { "errors": ["ThrottlingException"] },
+    "getStreamKey": { "errors": ["ThrottlingException"] },
+    "getStreamSession": { "errors": ["ThrottlingException"] },
+    "importPlaybackKeyPair": { "errors": ["ThrottlingException"] },
+    "listAdConfigurations": { "errors": ["ThrottlingException"] },
+    "listChannels": { "errors": ["ThrottlingException"] },
+    "listPlaybackKeyPairs": { "errors": ["ThrottlingException"] },
+    "listPlaybackRestrictionPolicies": { "errors": ["ThrottlingException"] },
+    "listRecordingConfigurations": { "errors": ["ThrottlingException"] },
+    "listStreamKeys": { "errors": ["ThrottlingException"] },
+    "listStreamSessions": { "errors": ["ThrottlingException"] },
+    "listStreams": { "errors": ["ThrottlingException"] },
+    "listTagsForResource": { "errors": ["ThrottlingException"] },
+    "stopStream": { "errors": ["ThrottlingException"] },
+    "tagResource": { "errors": ["ThrottlingException"] },
+    "untagResource": { "errors": ["ThrottlingException"] },
+    "updateChannel": { "errors": ["ThrottlingException"] }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "description": "Align organizations#OrganizationProfileUpdate with distilled cloudflare/organizations putOrganizationProfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#OrganizationProfileUpdate",
+      "path": "/shapes/com.cloudflare.organizations#PutOrganizationProfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#OrganizationProfileUpdateRequest",
+      "path": "/shapes/com.cloudflare.organizations#PutOrganizationProfileRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#PutOrganizationProfile/input/target",
+      "value": "com.cloudflare.organizations#PutOrganizationProfileRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.organizations#PutOrganizationProfile/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.organizations#OrganizationNotFound"
+        },
+        {
+          "target": "com.cloudflare.organizations#Forbidden"
+        }
+      ]
+    }
+  ]
+}

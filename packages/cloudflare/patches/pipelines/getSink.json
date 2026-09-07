@@ -1,0 +1,42 @@
+{
+  "description": "Align pipelines#SinksGet with distilled cloudflare/pipelines getSink",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#SinksGet",
+      "path": "/shapes/com.cloudflare.pipelines#GetSink"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#SinksGetRequest",
+      "path": "/shapes/com.cloudflare.pipelines#GetSinkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#GetSink/input/target",
+      "value": "com.cloudflare.pipelines#GetSinkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#SinksGetResponse",
+      "path": "/shapes/com.cloudflare.pipelines#GetSinkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#GetSink/output/target",
+      "value": "com.cloudflare.pipelines#GetSinkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#GetSink/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#SinkNotFound"
+        },
+        {
+          "target": "com.cloudflare.pipelines#InvalidSinkId"
+        }
+      ]
+    }
+  ]
+}

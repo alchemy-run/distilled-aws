@@ -1,0 +1,52 @@
+{
+  "description": "Align r2#BucketsObjectsDelete with distilled cloudflare/r2 deleteBucketObject, and type the missing-bucket / missing-key rejections",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsDelete",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObject"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsDeleteRequest",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObjectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObject/input/target",
+      "value": "com.cloudflare.r2#DeleteBucketObjectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsDeleteResponse",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObjectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObject/output/target",
+      "value": "com.cloudflare.r2#DeleteBucketObjectResponse"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#DeleteBucketObjectRequest/members/object_key",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObjectRequest/members/object_name"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObject/traits/smithy.api#http/uri",
+      "value": "/accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_name}"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketObject/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#NoSuchKey"
+        }
+      ]
+    }
+  ]
+}

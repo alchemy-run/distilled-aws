@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AiBotsSummaryUserAgent with distilled cloudflare/radar userAgentAiBotSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiBotsSummaryUserAgent",
+      "path": "/shapes/com.cloudflare.radar#UserAgentAiBotSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiBotsSummaryUserAgentRequest",
+      "path": "/shapes/com.cloudflare.radar#UserAgentAiBotSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#UserAgentAiBotSummary/input/target",
+      "value": "com.cloudflare.radar#UserAgentAiBotSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiBotsSummaryUserAgentResponse",
+      "path": "/shapes/com.cloudflare.radar#UserAgentAiBotSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#UserAgentAiBotSummary/output/target",
+      "value": "com.cloudflare.radar#UserAgentAiBotSummaryResponse"
+    }
+  ]
+}

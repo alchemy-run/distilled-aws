@@ -1,0 +1,42 @@
+{
+  "description": "Align organizations#OrganizationProfileGet with distilled cloudflare/organizations getOrganizationProfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#OrganizationProfileGet",
+      "path": "/shapes/com.cloudflare.organizations#GetOrganizationProfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#OrganizationProfileGetRequest",
+      "path": "/shapes/com.cloudflare.organizations#GetOrganizationProfileRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#GetOrganizationProfile/input/target",
+      "value": "com.cloudflare.organizations#GetOrganizationProfileRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#OrganizationProfileGetResponse",
+      "path": "/shapes/com.cloudflare.organizations#GetOrganizationProfileResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#GetOrganizationProfile/output/target",
+      "value": "com.cloudflare.organizations#GetOrganizationProfileResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.organizations#GetOrganizationProfile/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.organizations#OrganizationNotFound"
+        },
+        {
+          "target": "com.cloudflare.organizations#Forbidden"
+        }
+      ]
+    }
+  ]
+}

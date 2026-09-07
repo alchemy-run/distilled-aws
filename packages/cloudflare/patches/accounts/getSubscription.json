@@ -1,0 +1,38 @@
+{
+  "description": "Align accounts#SubscriptionsGet with distilled cloudflare/accounts getSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsGet",
+      "path": "/shapes/com.cloudflare.accounts#GetSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsGetRequest",
+      "path": "/shapes/com.cloudflare.accounts#GetSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetSubscription/input/target",
+      "value": "com.cloudflare.accounts#GetSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsGetResponse",
+      "path": "/shapes/com.cloudflare.accounts#GetSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetSubscription/output/target",
+      "value": "com.cloudflare.accounts#GetSubscriptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#GetSubscription/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

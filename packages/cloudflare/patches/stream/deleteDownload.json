@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#DownloadsDelete with distilled cloudflare/stream deleteDownload",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DownloadsDelete",
+      "path": "/shapes/com.cloudflare.stream#DeleteDownload"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DownloadsDeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteDownloadRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteDownload/input/target",
+      "value": "com.cloudflare.stream#DeleteDownloadRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DownloadsDeleteResponse",
+      "path": "/shapes/com.cloudflare.stream#DeleteDownloadResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteDownload/output/target",
+      "value": "com.cloudflare.stream#DeleteDownloadResponse"
+    }
+  ]
+}

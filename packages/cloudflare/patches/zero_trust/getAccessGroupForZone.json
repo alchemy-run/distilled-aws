@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessGroupsGetForZone with distilled cloudflare/zero-trust getAccessGroupForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsGetForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsGetForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZone/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessGroupForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsGetForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZone/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessGroupForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

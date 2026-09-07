@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#RiskScoringIntegrationsReferencesGet with distilled cloudflare/zero-trust getRiskScoringIntegrationReference",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringIntegrationsReferencesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationReference"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringIntegrationsReferencesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationReferenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationReference/input/target",
+      "value": "com.cloudflare.zero_trust#GetRiskScoringIntegrationReferenceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringIntegrationsReferencesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationReferenceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationReference/output/target",
+      "value": "com.cloudflare.zero_trust#GetRiskScoringIntegrationReferenceResponse"
+    }
+  ]
+}

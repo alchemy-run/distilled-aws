@@ -1,0 +1,3188 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestRouterIpsList"
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestWarpDevicesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateResponseRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateResponseWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateResponseWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateResponseWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateResponseRouterIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateResponseWarpDevicesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/mnm/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new network monitoring configuration."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponseRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponseWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponseWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponseWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponseRouterIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponseWarpDevicesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/mnm/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an existing network monitoring configuration.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditRequestRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditRequestWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditRequestWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsEditRequestWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name."
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsEditRequestRouterIpsList"
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsEditRequestWarpDevicesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditResponseRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditResponseWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditResponseWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsEditResponseWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEditResponse": {
+      "type": "structure",
+      "members": {
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsEditResponseRouterIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsEditResponseWarpDevicesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/mnm/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update fields in an existing network monitoring configuration."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsGetResponseRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsGetResponseWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsGetResponseWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsGetResponseWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsGetResponse": {
+      "type": "structure",
+      "members": {
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsGetResponseRouterIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsGetResponseWarpDevicesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/mnm/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists default sampling, router IPs and warp devices for account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequestRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequestWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequestWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequestWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequestRouterIpsList"
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequestWarpDevicesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponseRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponseWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponseWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponseWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponseRouterIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponseWarpDevicesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/mnm/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing network monitoring configuration, requires the entire configuration to be updated at once.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsFullGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponseRouterIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponseWarpDevicesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the warp device.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IPv4 CIDR of the router sourcing flow data associated with this warp device. Only /32 addresses are currently supported.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponseWarpDevicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponseWarpDevicesItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponse": {
+      "type": "structure",
+      "members": {
+        "default_sampling": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fallback sampling rate of flow messages being sent in packets per second. This should match the packet sampling rate configured on the router.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name.",
+            "smithy.api#required": {}
+          }
+        },
+        "router_ips": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponseRouterIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "warp_devices": {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponseWarpDevicesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#ConfigsFullGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/mnm/config/full",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists default sampling, router IPs, warp devices, and rules for account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequestPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequestType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequestDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequestPrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequestZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequestZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequestPrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequestType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequestDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequestPrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequestZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequestZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponsePrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponseType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponseDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponsePrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponseZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponseZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponsePrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponseType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponseDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponsePrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponseZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponseZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/mnm/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create network monitoring rules for account. Currently only supports creating a single rule per API request."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponsePrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponseType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponseDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponsePrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponseZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponseZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponsePrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponseType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponseDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponsePrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponseZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponseZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/mnm/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a network monitoring rule for account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequestPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequestType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequestDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequestPrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequestZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequestZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditRequestPrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditRequestType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditRequestDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditRequestPrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditRequestZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditRequestZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponsePrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponseType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponseDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponsePrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponseZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponseZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditResponsePrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditResponseType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditResponseDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditResponsePrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditResponseZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEditResponseZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/mnm/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a network monitoring rule for account."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponsePrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponseType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponseDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponsePrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponseZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponseZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGetResponsePrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGetResponseType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGetResponseDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGetResponsePrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGetResponseZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGetResponseZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/mnm/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List a single network monitoring rule for account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItemPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItemType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItemDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItemPrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItemZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItemZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultItemPrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultItemType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultItemDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultItemPrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultItemZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultItemZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesListResultItem"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/mnm/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists network monitoring rules for account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequestPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequestType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequestDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequestPrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequestZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequestZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequestPrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequestType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequestDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequestPrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequestZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequestZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponsePrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponseType": {
+      "type": "enum",
+      "members": {
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        },
+        "ZSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zscore"
+          }
+        },
+        "ADVANCED_DDOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced_ddos"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponseDuration": {
+      "type": "enum",
+      "members": {
+        "_1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1m"
+          }
+        },
+        "_5M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5m"
+          }
+        },
+        "_10M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10m"
+          }
+        },
+        "_15M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "15m"
+          }
+        },
+        "_20M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20m"
+          }
+        },
+        "_30M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30m"
+          }
+        },
+        "_45M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "45m"
+          }
+        },
+        "_60M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "60m"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponsePrefixMatch": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SUBNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subnet"
+          }
+        },
+        "SUPERNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supernet"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponseZscoreSensitivity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponseZscoreTarget": {
+      "type": "enum",
+      "members": {
+        "BITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bits"
+          }
+        },
+        "PACKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packets"
+          }
+        }
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#required": {}
+          }
+        },
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9, underscore (_), dash (-), period (.), and tilde (~). You can’t have a space in the rule name. Max 256 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponsePrefixesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponseType",
+          "traits": {
+            "smithy.api#documentation": "MNM rule type.",
+            "smithy.api#required": {}
+          }
+        },
+        "bandwidth_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of bits per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "duration": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponseDuration",
+          "traits": {
+            "smithy.api#documentation": "The amount of time that the rule threshold must be exceeded to send an alert notification. The final value must be equivalent to one of the following 8 values [\"1m\",\"5m\",\"10m\",\"15m\",\"20m\",\"30m\",\"45m\",\"60m\"]."
+          }
+        },
+        "packet_threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of packets per second for the rule. When this value is exceeded for the set duration, an alert notification is sent. Minimum of 1 and no maximum."
+          }
+        },
+        "prefix_match": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponsePrefixMatch",
+          "traits": {
+            "smithy.api#documentation": "Prefix match type to be applied for a prefix auto advertisement when using an advanced_ddos rule."
+          }
+        },
+        "zscore_sensitivity": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponseZscoreSensitivity",
+          "traits": {
+            "smithy.api#documentation": "Level of sensitivity set for zscore rules."
+          }
+        },
+        "zscore_target": {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponseZscoreTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of the zscore rule analysis."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/mnm/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update network monitoring rules for account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the rule. Must be unique.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEditResponse": {
+      "type": "structure",
+      "members": {
+        "automatic_advertisement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Toggle on if you would like Cloudflare to automatically advertise the IP Prefixes within the rule via Magic Transit when the rule is triggered. Only available for users of Magic Transit.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/mnm/rules/{rule_id}/advertisement",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update advertisement for rule."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/mnm/vpc-flows/token",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate authentication token for VPC flow logs export."
+      }
+    },
+    "com.cloudflare.magic_network_monitoring#MagicNetworkMonitoring": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsCreate"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsDelete"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsEdit"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsGet"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdate"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGet"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesCreate"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesDelete"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesEdit"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesGet"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesList"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesUpdate"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEdit"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare MagicNetworkMonitoring",
+        "smithy.api#documentation": "Cloudflare API — magic_network_monitoring resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

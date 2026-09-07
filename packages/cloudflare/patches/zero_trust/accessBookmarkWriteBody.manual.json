@@ -1,0 +1,85 @@
+{
+  "description": "Docs gap: the Access bookmark create/update pages type the body as `body: unknown`, so the request models carry no body fields — the wire accepts {name, domain, logo_url, app_launcher_visible} (mirrors the documented Bookmark result; v0 modeled the same write shape). All optional: the docs mark nothing required and the create example posts `{}`.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessBookmarkRequest/members/app_launcher_visible",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Displays the application in the App Launcher."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessBookmarkRequest/members/domain",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The domain of the Bookmark application."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessBookmarkRequest/members/logo_url",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The image URL for the logo shown in the App Launcher dashboard."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessBookmarkRequest/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The name of the Bookmark application."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessBookmarkRequest/members/app_launcher_visible",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Displays the application in the App Launcher."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessBookmarkRequest/members/domain",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The domain of the Bookmark application."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessBookmarkRequest/members/logo_url",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The image URL for the logo shown in the App Launcher dashboard."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessBookmarkRequest/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The name of the Bookmark application."
+        }
+      }
+    }
+  ]
+}

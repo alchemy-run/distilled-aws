@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessCertificatesDeleteForAccount with distilled cloudflare/zero-trust deleteAccessCertificateForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesDeleteForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCertificateForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCertificateForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCertificateForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessCertificateForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCertificateForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCertificateForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessCertificateForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCertificateForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessCertificateNotFound"
+        }
+      ]
+    }
+  ]
+}

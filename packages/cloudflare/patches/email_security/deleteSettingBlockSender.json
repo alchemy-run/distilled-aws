@@ -1,0 +1,45 @@
+{
+  "description": "Align email_security#SettingsBlockSendersDelete with distilled cloudflare/email-security deleteSettingBlockSender",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsBlockSendersDelete",
+      "path": "/shapes/com.cloudflare.email_security#DeleteSettingBlockSender"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsBlockSendersDeleteRequest",
+      "path": "/shapes/com.cloudflare.email_security#DeleteSettingBlockSenderRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#DeleteSettingBlockSender/input/target",
+      "value": "com.cloudflare.email_security#DeleteSettingBlockSenderRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsBlockSendersDeleteResponse",
+      "path": "/shapes/com.cloudflare.email_security#DeleteSettingBlockSenderResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#DeleteSettingBlockSender/output/target",
+      "value": "com.cloudflare.email_security#DeleteSettingBlockSenderResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#DeleteSettingBlockSender/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_security#BlockSenderNotFound"
+        },
+        {
+          "target": "com.cloudflare.email_security#EmailSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.email_security#Forbidden"
+        }
+      ]
+    }
+  ]
+}

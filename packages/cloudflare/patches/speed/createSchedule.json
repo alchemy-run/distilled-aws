@@ -1,0 +1,45 @@
+{
+  "description": "Align speed#ScheduleCreate with distilled cloudflare/speed createSchedule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#ScheduleCreate",
+      "path": "/shapes/com.cloudflare.speed#CreateSchedule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#ScheduleCreateRequest",
+      "path": "/shapes/com.cloudflare.speed#CreateScheduleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#CreateSchedule/input/target",
+      "value": "com.cloudflare.speed#CreateScheduleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#ScheduleCreateResponse",
+      "path": "/shapes/com.cloudflare.speed#CreateScheduleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#CreateSchedule/output/target",
+      "value": "com.cloudflare.speed#CreateScheduleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.speed#CreateSchedule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.speed#TestScheduleAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.speed#TestScheduleQuotaReached"
+        },
+        {
+          "target": "com.cloudflare.speed#Forbidden"
+        }
+      ]
+    }
+  ]
+}

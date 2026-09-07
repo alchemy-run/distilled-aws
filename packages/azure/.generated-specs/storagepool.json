@@ -1,0 +1,3020 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.storagepool#IscsiTargetsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#IscsiTargetsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Delete an iSCSI Target.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        },
+        "iscsiTargetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the iSCSI Target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#IscsiTargetsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#IscsiTargetsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Update an iSCSI Target.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#IscsiTargetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for iSCSI Target operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagepool#ManagedByExtended": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+      }
+    },
+    "com.azure.storagepool#SystemMetadata": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.storagepool#SystemMetadataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.storagepool#SystemMetadataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.storagepool#SystemMetadataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.storagepool#SystemMetadataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetProperties": {
+      "type": "structure",
+      "members": {
+        "aclMode": {
+          "target": "com.azure.storagepool#AclMode",
+          "traits": {
+            "smithy.api#documentation": "Mode for Target connectivity.",
+            "smithy.api#required": {}
+          }
+        },
+        "staticAcls": {
+          "target": "com.azure.storagepool#IscsiTargetPropertiesStaticAclsList",
+          "traits": {
+            "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+          }
+        },
+        "luns": {
+          "target": "com.azure.storagepool#IscsiTargetPropertiesLunsList",
+          "traits": {
+            "smithy.api#documentation": "List of LUNs to be exposed through iSCSI Target."
+          }
+        },
+        "targetIqn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iSCSI Target IQN (iSCSI Qualified Name); example: \"iqn.2005-03.org.iscsi:server\".",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.storagepool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "State of the operation on the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.azure.storagepool#OperationalStatus",
+          "traits": {
+            "smithy.api#documentation": "Operational status of the iSCSI Target.",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoints": {
+          "target": "com.azure.storagepool#IscsiTargetPropertiesEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "List of private IPv4 addresses to connect to the iSCSI Target."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port used by iSCSI Target portal group."
+          }
+        },
+        "sessions": {
+          "target": "com.azure.storagepool#IscsiTargetPropertiesSessionsList",
+          "traits": {
+            "smithy.api#documentation": "List of identifiers for active sessions on the iSCSI target"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response properties for iSCSI Target operations."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetPropertiesSessionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of identifiers for active sessions on the iSCSI target"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetPropertiesEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private IPv4 addresses to connect to the iSCSI Target."
+      }
+    },
+    "com.azure.storagepool#OperationalStatus": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unhealthy"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Stopped"
+          }
+        },
+        "STOPPED_DEALLOCATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Stopped (deallocated)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operational status of the resource."
+      }
+    },
+    "com.azure.storagepool#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the iSCSI Target."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetPropertiesLunsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#IscsiLun"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of LUNs to be exposed through iSCSI Target."
+      }
+    },
+    "com.azure.storagepool#IscsiLun": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User defined name for iSCSI LUN; example: \"lun0\"",
+            "smithy.api#required": {}
+          }
+        },
+        "managedDiskAzureResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource ID of the Managed Disk.",
+            "smithy.api#required": {}
+          }
+        },
+        "lun": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Logical Unit Number of the iSCSI LUN."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LUN to expose the Azure Managed Disk."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetPropertiesStaticAclsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#Acl"
+      },
+      "traits": {
+        "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+      }
+    },
+    "com.azure.storagepool#Acl": {
+      "type": "structure",
+      "members": {
+        "initiatorIqn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iSCSI initiator IQN (iSCSI Qualified Name); example: \"iqn.2005-03.org.iscsi:client\".",
+            "smithy.api#required": {}
+          }
+        },
+        "mappedLuns": {
+          "target": "com.azure.storagepool#AclMappedLunsList",
+          "traits": {
+            "smithy.api#documentation": "List of LUN names mapped to the ACL.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+      }
+    },
+    "com.azure.storagepool#AclMappedLunsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of LUN names mapped to the ACL."
+      }
+    },
+    "com.azure.storagepool#AclMode": {
+      "type": "enum",
+      "members": {
+        "DYNAMIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Dynamic"
+          }
+        },
+        "STATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Static"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ACL mode for iSCSI Target."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        },
+        "iscsiTargetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the iSCSI Target."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#IscsiTargetUpdatePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties for iSCSI Target update request.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#IscsiTargetUpdatePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "staticAcls": {
+          "target": "com.azure.storagepool#IscsiTargetUpdatePropertiesInputStaticAclsList",
+          "traits": {
+            "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+          }
+        },
+        "luns": {
+          "target": "com.azure.storagepool#IscsiTargetUpdatePropertiesInputLunsList",
+          "traits": {
+            "smithy.api#documentation": "List of LUNs to be exposed through iSCSI Target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for iSCSI Target update request."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetUpdatePropertiesInputLunsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#IscsiLunInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of LUNs to be exposed through iSCSI Target."
+      }
+    },
+    "com.azure.storagepool#IscsiLunInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User defined name for iSCSI LUN; example: \"lun0\"",
+            "smithy.api#required": {}
+          }
+        },
+        "managedDiskAzureResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource ID of the Managed Disk.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LUN to expose the Azure Managed Disk."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetUpdatePropertiesInputStaticAclsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#Acl"
+      },
+      "traits": {
+        "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#IscsiTargetsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#IscsiTargetsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Create or Update an iSCSI Target.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#IscsiTargetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for iSCSI Target operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        },
+        "iscsiTargetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the iSCSI Target."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#IscsiTargetCreatePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties for iSCSI Target create request.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#IscsiTargetCreatePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "aclMode": {
+          "target": "com.azure.storagepool#AclMode",
+          "traits": {
+            "smithy.api#documentation": "Mode for Target connectivity.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetIqn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iSCSI Target IQN (iSCSI Qualified Name); example: \"iqn.2005-03.org.iscsi:server\"."
+          }
+        },
+        "staticAcls": {
+          "target": "com.azure.storagepool#IscsiTargetCreatePropertiesInputStaticAclsList",
+          "traits": {
+            "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+          }
+        },
+        "luns": {
+          "target": "com.azure.storagepool#IscsiTargetCreatePropertiesInputLunsList",
+          "traits": {
+            "smithy.api#documentation": "List of LUNs to be exposed through iSCSI Target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for iSCSI Target create or update request."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetCreatePropertiesInputLunsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#IscsiLunInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of LUNs to be exposed through iSCSI Target."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetCreatePropertiesInputStaticAclsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#Acl"
+      },
+      "traits": {
+        "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#IscsiTargetsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#IscsiTargetsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Get an iSCSI Target.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#IscsiTargetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for iSCSI Target operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        },
+        "iscsiTargetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the iSCSI Target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsListByDiskPool": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#IscsiTargetsListByDiskPoolRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#IscsiTargetList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Get iSCSI Targets in a Disk pool.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#IscsiTargetList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagepool#IscsiTargetListValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of iSCSI Targets in a Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to fetch the next section of the paginated response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of iSCSI Targets."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#IscsiTarget"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of iSCSI Targets in a Disk Pool."
+      }
+    },
+    "com.azure.storagepool#IscsiTarget": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#IscsiTargetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for iSCSI Target operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for iSCSI Target requests."
+      }
+    },
+    "com.azure.storagepool#IscsiTargetsListByDiskPoolRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpgrade": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsUpgradeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/upgrade",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Upgrade replaces the underlying virtual machine hosts one at a time. This operation can take 10-15 minutes to complete. This is expected service behavior.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpgradeRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsDeallocate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsDeallocateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/deallocate",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Shuts down the Disk Pool and releases the compute resources. You are not billed for the compute resources that this Disk Pool uses. This operation can take 10 minutes to complete. This is expected service behavior.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsDeallocateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsStart": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsStartRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/start",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "The operation to start a Disk Pool. This start operation can take 10 minutes to complete. This is expected service behavior.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsStartRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpoints": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpointsRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#OutboundEnvironmentEndpointList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/outboundNetworkDependenciesEndpoints",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Gets the network endpoints of all outbound dependencies of a Disk Pool",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#OutboundEnvironmentEndpointList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagepool#OutboundEnvironmentEndpointListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to next page of resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of Outbound Environment Endpoints"
+      }
+    },
+    "com.azure.storagepool#OutboundEnvironmentEndpointListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#OutboundEnvironmentEndpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of resources."
+      }
+    },
+    "com.azure.storagepool#OutboundEnvironmentEndpoint": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of service accessed by the App Service Environment, e.g., Azure Storage, Azure SQL Database, and Azure Active Directory."
+          }
+        },
+        "endpoints": {
+          "target": "com.azure.storagepool#OutboundEnvironmentEndpointEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "The endpoints that the App Service Environment reaches the service at."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Endpoints accessed for a common purpose that the App Service Environment requires outbound network access to."
+      }
+    },
+    "com.azure.storagepool#OutboundEnvironmentEndpointEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#EndpointDependency"
+      },
+      "traits": {
+        "smithy.api#documentation": "The endpoints that the App Service Environment reaches the service at."
+      }
+    },
+    "com.azure.storagepool#EndpointDependency": {
+      "type": "structure",
+      "members": {
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the dependency."
+          }
+        },
+        "endpointDetails": {
+          "target": "com.azure.storagepool#EndpointDependencyEndpointDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The IP Addresses and Ports used when connecting to DomainName."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A domain name that a service is reached at, including details of the current connection status."
+      }
+    },
+    "com.azure.storagepool#EndpointDependencyEndpointDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#EndpointDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The IP Addresses and Ports used when connecting to DomainName."
+      }
+    },
+    "com.azure.storagepool#EndpointDetail": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An IP Address that Domain Name currently resolves to."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port an endpoint is connected to."
+          }
+        },
+        "latency": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in milliseconds it takes for a TCP connection to be created from the App Service Environment to this IpAddress at this Port."
+          }
+        },
+        "isAccessible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether it is possible to create a TCP connection from the App Service Environment to this IpAddress at this Port."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current TCP connectivity information from the App Service Environment to a single endpoint."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpointsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#ResourceSkusList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#ResourceSkusListRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#ResourceSkuListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StoragePool/locations/{location}/skus",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Lists available StoragePool resources and skus in an Azure location.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#ResourceSkuListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagepool#ResourceSkuListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of StoragePool resource skus."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to fetch the next section of the paginated response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List Disk Pool skus operation response."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#ResourceSkuInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of StoragePool resource skus."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuInfo": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "StoragePool RP API version"
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "StoragePool resource type"
+          }
+        },
+        "capabilities": {
+          "target": "com.azure.storagepool#ResourceSkuInfoCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "List of additional capabilities for StoragePool resource."
+          }
+        },
+        "locationInfo": {
+          "target": "com.azure.storagepool#ResourceSkuLocationInfo",
+          "traits": {
+            "smithy.api#documentation": "Zones and zone capabilities in those locations where the SKU is available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sku name"
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sku tier"
+          }
+        },
+        "restrictions": {
+          "target": "com.azure.storagepool#ResourceSkuInfoRestrictionsList",
+          "traits": {
+            "smithy.api#documentation": "The restrictions because of which SKU cannot be used. This is empty if there are no restrictions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource SKU Details"
+      }
+    },
+    "com.azure.storagepool#ResourceSkuInfoRestrictionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#ResourceSkuRestrictions"
+      },
+      "traits": {
+        "smithy.api#documentation": "The restrictions because of which SKU cannot be used. This is empty if there are no restrictions."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictions": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.storagepool#ResourceSkuRestrictionsType",
+          "traits": {
+            "smithy.api#documentation": "The type of restrictions."
+          }
+        },
+        "values": {
+          "target": "com.azure.storagepool#ResourceSkuRestrictionsValuesList",
+          "traits": {
+            "smithy.api#documentation": "The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted."
+          }
+        },
+        "restrictionInfo": {
+          "target": "com.azure.storagepool#ResourceSkuRestrictionInfo",
+          "traits": {
+            "smithy.api#documentation": "The information about the restriction where the SKU cannot be used."
+          }
+        },
+        "reasonCode": {
+          "target": "com.azure.storagepool#ResourceSkuRestrictionsReasonCode",
+          "traits": {
+            "smithy.api#documentation": "The reason for restriction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes scaling information of a SKU."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictionsReasonCode": {
+      "type": "enum",
+      "members": {
+        "QUOTAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QuotaId"
+          }
+        },
+        "NOTAVAILABLEFORSUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotAvailableForSubscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason for restriction."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictionInfo": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.azure.storagepool#ResourceSkuRestrictionInfoLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Locations where the SKU is restricted"
+          }
+        },
+        "zones": {
+          "target": "com.azure.storagepool#ResourceSkuRestrictionInfoZonesList",
+          "traits": {
+            "smithy.api#documentation": "List of availability zones where the SKU is restricted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes an available Compute SKU Restriction Information."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictionInfoZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of availability zones where the SKU is restricted."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictionInfoLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Locations where the SKU is restricted"
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictionsValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuRestrictionsType": {
+      "type": "enum",
+      "members": {
+        "LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Location"
+          }
+        },
+        "ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zone"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of restrictions."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuLocationInfo": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the SKU"
+          }
+        },
+        "zones": {
+          "target": "com.azure.storagepool#ResourceSkuLocationInfoZonesList",
+          "traits": {
+            "smithy.api#documentation": "List of availability zones where the SKU is supported."
+          }
+        },
+        "zoneDetails": {
+          "target": "com.azure.storagepool#ResourceSkuLocationInfoZoneDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details of capabilities available to a SKU in specific zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Zone and capability info for resource sku"
+      }
+    },
+    "com.azure.storagepool#ResourceSkuLocationInfoZoneDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#ResourceSkuZoneDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of capabilities available to a SKU in specific zones."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuZoneDetails": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.storagepool#ResourceSkuZoneDetailsNameList",
+          "traits": {
+            "smithy.api#documentation": "The set of zones that the SKU is available in with the specified capabilities."
+          }
+        },
+        "capabilities": {
+          "target": "com.azure.storagepool#ResourceSkuZoneDetailsCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "A list of capabilities that are available for the SKU in the specified list of zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes The zonal capabilities of a SKU."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuZoneDetailsCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#ResourceSkuCapability"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of capabilities that are available for the SKU in the specified list of zones."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuCapability": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capability name"
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capability value"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capability a resource SKU has."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuZoneDetailsNameList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of zones that the SKU is available in with the specified capabilities."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuLocationInfoZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of availability zones where the SKU is supported."
+      }
+    },
+    "com.azure.storagepool#ResourceSkuInfoCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#ResourceSkuCapability"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of additional capabilities for StoragePool resource."
+      }
+    },
+    "com.azure.storagepool#ResourceSkusListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The location of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolZonesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolZonesListRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#DiskPoolZoneListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StoragePool/locations/{location}/diskPoolZones",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Lists available Disk Pool Skus in an Azure location.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolZoneListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagepool#DiskPoolZoneListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of Disk Pool Skus."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to fetch the next section of the paginated response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List Disk Pool skus operation response."
+      }
+    },
+    "com.azure.storagepool#DiskPoolZoneListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#DiskPoolZoneInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Disk Pool Skus."
+      }
+    },
+    "com.azure.storagepool#DiskPoolZoneInfo": {
+      "type": "structure",
+      "members": {
+        "availabilityZones": {
+          "target": "com.azure.storagepool#DiskPoolZoneInfoAvailabilityZonesList",
+          "traits": {
+            "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
+          }
+        },
+        "additionalCapabilities": {
+          "target": "com.azure.storagepool#DiskPoolZoneInfoAdditionalCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "List of additional capabilities for Disk Pool."
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of VM deployed for Disk Pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disk Pool SKU Details"
+      }
+    },
+    "com.azure.storagepool#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sku name",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sku tier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku for ARM resource"
+      }
+    },
+    "com.azure.storagepool#DiskPoolZoneInfoAdditionalCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of additional capabilities for Disk Pool."
+      }
+    },
+    "com.azure.storagepool#DiskPoolZoneInfoAvailabilityZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
+      }
+    },
+    "com.azure.storagepool#DiskPoolZonesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The location of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Delete a Disk pool; attached disks are not affected. This delete operation can take 10 minutes to complete. This is expected service behavior.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#DiskPoolsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Update a Disk pool.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagepool#DiskPoolsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of the Disk pool"
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#DiskPoolProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.storagepool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "State of the operation on the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "availabilityZones": {
+          "target": "com.azure.storagepool#DiskPoolPropertiesAvailabilityZonesList",
+          "traits": {
+            "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"].",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.azure.storagepool#OperationalStatus",
+          "traits": {
+            "smithy.api#documentation": "Operational status of the Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "disks": {
+          "target": "com.azure.storagepool#DiskPoolPropertiesDisksList",
+          "traits": {
+            "smithy.api#documentation": "List of Azure Managed Disks to attach to a Disk Pool."
+          }
+        },
+        "subnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource ID of a Subnet for the Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "additionalCapabilities": {
+          "target": "com.azure.storagepool#DiskPoolPropertiesAdditionalCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "List of additional capabilities for Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disk Pool response properties."
+      }
+    },
+    "com.azure.storagepool#DiskPoolPropertiesAdditionalCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of additional capabilities for Disk Pool."
+      }
+    },
+    "com.azure.storagepool#DiskPoolPropertiesDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#Disk"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Azure Managed Disks to attach to a Disk Pool."
+      }
+    },
+    "com.azure.storagepool#Disk": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique Azure Resource ID of the Managed Disk.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Managed Disk to attach to the Disk Pool."
+      }
+    },
+    "com.azure.storagepool#DiskPoolPropertiesAvailabilityZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#DiskPoolUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for Disk Pool update request.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of the Disk Pool"
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagepool#DiskPoolsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagepool#DiskPoolUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "disks": {
+          "target": "com.azure.storagepool#DiskPoolUpdatePropertiesDisksList",
+          "traits": {
+            "smithy.api#documentation": "List of Azure Managed Disks to attach to a Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for Disk Pool update request."
+      }
+    },
+    "com.azure.storagepool#DiskPoolUpdatePropertiesDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#Disk"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Azure Managed Disks to attach to a Disk Pool."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#DiskPoolsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Create or Update Disk pool. This create or update operation can take 15 minutes to complete. This is expected service behavior.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagepool#DiskPoolsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of the Disk pool"
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#DiskPoolProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of the Disk Pool",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#DiskPoolCreateProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for Disk Pool create request.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagepool#DiskPoolsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagepool#DiskPoolCreateProperties": {
+      "type": "structure",
+      "members": {
+        "availabilityZones": {
+          "target": "com.azure.storagepool#DiskPoolCreatePropertiesAvailabilityZonesList",
+          "traits": {
+            "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
+          }
+        },
+        "disks": {
+          "target": "com.azure.storagepool#DiskPoolCreatePropertiesDisksList",
+          "traits": {
+            "smithy.api#documentation": "List of Azure Managed Disks to attach to a Disk Pool."
+          }
+        },
+        "subnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource ID of a Subnet for the Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "additionalCapabilities": {
+          "target": "com.azure.storagepool#DiskPoolCreatePropertiesAdditionalCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "List of additional capabilities for a Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for Disk Pool create or update request."
+      }
+    },
+    "com.azure.storagepool#DiskPoolCreatePropertiesAdditionalCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of additional capabilities for a Disk Pool."
+      }
+    },
+    "com.azure.storagepool#DiskPoolCreatePropertiesDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#Disk"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Azure Managed Disks to attach to a Disk Pool."
+      }
+    },
+    "com.azure.storagepool#DiskPoolCreatePropertiesAvailabilityZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#DiskPoolsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Get a Disk pool.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagepool#DiskPoolsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of the Disk pool"
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#DiskPoolProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "diskPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Disk Pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#DiskPoolListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Gets a list of DiskPools in a resource group.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagepool#DiskPoolListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of Disk pool objects.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to fetch the next section of the paginated response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Disk Pools"
+      }
+    },
+    "com.azure.storagepool#DiskPoolListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#DiskPool"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Disk pool objects."
+      }
+    },
+    "com.azure.storagepool#DiskPool": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagepool#DiskPoolTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.storagepool#Sku",
+          "traits": {
+            "smithy.api#documentation": "Determines the SKU of the Disk pool"
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagepool#DiskPoolProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Disk Pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "managedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource id. Indicates if this resource is managed by another Azure resource."
+          }
+        },
+        "managedByExtended": {
+          "target": "com.azure.storagepool#ManagedByExtended",
+          "traits": {
+            "smithy.api#documentation": "List of Azure resource ids that manage this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagepool#SystemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Resource metadata required by ARM RPC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for Disk Pool request."
+      }
+    },
+    "com.azure.storagepool#DiskPoolTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagepool#DiskPoolsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#DiskPoolsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagepool#DiskPoolsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.storagepool#DiskPoolListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StoragePool/diskPools",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Gets a list of Disk Pools in a subscription",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#DiskPoolsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagepool#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.storagepool#StoragePoolOperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.StoragePool/operations",
+          "code": 200,
+          "apiVersion": "2021-08-01"
+        },
+        "smithy.api#documentation": "Gets a list of StoragePool operations.",
+        "com.distilled.openapi#apiVersion": "2021-08-01"
+      }
+    },
+    "com.azure.storagepool#StoragePoolOperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagepool#StoragePoolOperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of operations supported by the StoragePool RP.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI to fetch the next section of the paginated response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the RP."
+      }
+    },
+    "com.azure.storagepool#StoragePoolOperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagepool#StoragePoolRPOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of operations supported by the StoragePool RP."
+      }
+    },
+    "com.azure.storagepool#StoragePoolRPOperation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation being performed on this particular object",
+            "smithy.api#required": {}
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation applies to data-plane.",
+            "smithy.api#required": {}
+          }
+        },
+        "actionType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the action type."
+          }
+        },
+        "display": {
+          "target": "com.azure.storagepool#StoragePoolOperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Additional metadata about RP operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; governs the display of the operation in the RBAC UX and the audit logs UX."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Description of a StoragePool RP Operation"
+      }
+    },
+    "com.azure.storagepool#StoragePoolOperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly form of the resource provider name.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly form of the resource type related to this action/operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly name for the operation, as it should be shown to the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly description for the operation, as it should be shown to the user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about an operation."
+      }
+    },
+    "com.azure.storagepool#Storagepool": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.storagepool#IscsiTargetsDelete"
+        },
+        {
+          "target": "com.azure.storagepool#IscsiTargetsUpdate"
+        },
+        {
+          "target": "com.azure.storagepool#IscsiTargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagepool#IscsiTargetsGet"
+        },
+        {
+          "target": "com.azure.storagepool#IscsiTargetsListByDiskPool"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsUpgrade"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsDeallocate"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsStart"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.storagepool#ResourceSkusList"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolZonesList"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsDelete"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsUpdate"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsGet"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsListBySubscription"
+        },
+        {
+          "target": "com.azure.storagepool#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Storagepool",
+        "smithy.api#documentation": "Azure Storagepool API — merged from the storagepool resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

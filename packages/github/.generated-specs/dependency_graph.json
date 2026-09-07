@@ -1,0 +1,1088 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.dependency_graph#DiffRangeRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "basehead": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The base and head Git revisions to compare. The Git revisions will be resolved to commit SHAs. Named revisions will be resolved to their corresponding HEAD commits, and an appropriate merge base will be determined. This parameter expects the format `{base}...{head}`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "The full path, relative to the repository root, of the dependency manifest file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.dependency_graph#DependencyGraphDiff": {
+      "type": "list",
+      "member": {
+        "target": "com.github.dependency_graph#DependencyGraphDiffItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A diff of the dependencies between two commits."
+      }
+    },
+    "com.github.dependency_graph#DependencyGraphDiffItemChangeType": {
+      "type": "enum",
+      "members": {
+        "ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "added"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphDiffItemVulnerabilitiesItem": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "advisory_ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "advisory_summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "advisory_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphDiffItemVulnerabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.dependency_graph#DependencyGraphDiffItemVulnerabilitiesItem"
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphDiffItemScope": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "RUNTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "runtime"
+          }
+        },
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Where the dependency is utilized. `development` means that the dependency is only utilized in the development environment. `runtime` means that the dependency is utilized at runtime and in the development environment."
+      }
+    },
+    "com.github.dependency_graph#DependencyGraphDiffItem": {
+      "type": "structure",
+      "members": {
+        "change_type": {
+          "target": "com.github.dependency_graph#DependencyGraphDiffItemChangeType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "manifest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ecosystem": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "package_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "license": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source_repository_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerabilities": {
+          "target": "com.github.dependency_graph#DependencyGraphDiffItemVulnerabilitiesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.github.dependency_graph#DependencyGraphDiffItemScope",
+          "traits": {
+            "smithy.api#documentation": "Where the dependency is utilized. `development` means that the dependency is only utilized in the development environment. `runtime` means that the dependency is utilized at runtime and in the development environment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DiffRangeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.dependency_graph#DependencyGraphDiff",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.dependency_graph#DiffRange": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.dependency_graph#DiffRangeRequest"
+      },
+      "output": {
+        "target": "com.github.dependency_graph#DiffRangeResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.dependency_graph#BadRequest"
+        },
+        {
+          "target": "com.github.dependency_graph#Forbidden"
+        },
+        {
+          "target": "com.github.dependency_graph#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/dependency-graph/compare/{basehead}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a diff of the dependencies between commits\n\nGets the diff of the dependency changes between two commits of a repository, based on the changes to the dependency manifests made in those commits."
+      }
+    },
+    "com.github.dependency_graph#ExportSbomRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbom": {
+      "type": "structure",
+      "members": {
+        "sbom": {
+          "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbom",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A schema for the SPDX JSON format returned by the Dependency Graph."
+      }
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomCreationInfoCreatorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tools that were used to generate the SPDX document."
+      }
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomCreationInfo": {
+      "type": "structure",
+      "members": {
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the SPDX document was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "creators": {
+          "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomCreationInfoCreatorsList",
+          "traits": {
+            "smithy.api#documentation": "The tools that were used to generate the SPDX document.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesItemExternalRefsItem": {
+      "type": "structure",
+      "members": {
+        "referenceCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category of reference to an external resource this reference refers to.",
+            "smithy.api#required": {}
+          }
+        },
+        "referenceLocator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A locator for the particular external resource this reference refers to.",
+            "smithy.api#required": {}
+          }
+        },
+        "referenceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category of reference to an external resource this reference refers to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesItemExternalRefsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesItemExternalRefsItem"
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesItem": {
+      "type": "structure",
+      "members": {
+        "SPDXID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique SPDX identifier for the package."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "versionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the package. If the package does not have an exact version specified,\na version range is given."
+          }
+        },
+        "downloadLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location where the package can be downloaded,\nor NOASSERTION if this has not been determined."
+          }
+        },
+        "filesAnalyzed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the package's file content has been subjected to\nanalysis during the creation of the SPDX document."
+          }
+        },
+        "licenseConcluded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The license of the package as determined while creating the SPDX document."
+          }
+        },
+        "licenseDeclared": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The license of the package as declared by its author, or NOASSERTION if this information\nwas not available when the SPDX document was created."
+          }
+        },
+        "supplier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The distribution source of this package, or NOASSERTION if this was not determined."
+          }
+        },
+        "copyrightText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The copyright holders of the package, and any dates present with those notices, if available."
+          }
+        },
+        "externalRefs": {
+          "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesItemExternalRefsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesItem"
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomRelationshipsItem": {
+      "type": "structure",
+      "members": {
+        "relationshipType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of relationship between the two SPDX elements."
+          }
+        },
+        "spdxElementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SPDX identifier of the package that is the source of the relationship."
+          }
+        },
+        "relatedSpdxElement": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SPDX identifier of the package that is the target of the relationship."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbomRelationshipsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomRelationshipsItem"
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyGraphSpdxSbomSbom": {
+      "type": "structure",
+      "members": {
+        "SPDXID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SPDX identifier for the SPDX document.",
+            "smithy.api#required": {}
+          }
+        },
+        "spdxVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the SPDX specification that this document conforms to.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional comment about the SPDX document."
+          }
+        },
+        "creationInfo": {
+          "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomCreationInfo",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SPDX document.",
+            "smithy.api#required": {}
+          }
+        },
+        "dataLicense": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The license under which the SPDX document is licensed.",
+            "smithy.api#required": {}
+          }
+        },
+        "documentNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace for the SPDX document.",
+            "smithy.api#required": {}
+          }
+        },
+        "packages": {
+          "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomPackagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "relationships": {
+          "target": "com.github.dependency_graph#DependencyGraphSpdxSbomSbomRelationshipsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#ExportSbom": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.dependency_graph#ExportSbomRequest"
+      },
+      "output": {
+        "target": "com.github.dependency_graph#DependencyGraphSpdxSbom"
+      },
+      "errors": [
+        {
+          "target": "com.github.dependency_graph#Forbidden"
+        },
+        {
+          "target": "com.github.dependency_graph#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/dependency-graph/sbom",
+          "code": 200
+        },
+        "smithy.api#documentation": "Export a software bill of materials (SBOM) for a repository.\n\nExports the software bill of materials (SBOM) for a repository in SPDX JSON format."
+      }
+    },
+    "com.github.dependency_graph#FetchSbomReportRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "sbom_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the SBOM export."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.dependency_graph#FetchSbomReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.dependency_graph#FetchSbomReportRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.dependency_graph#Forbidden"
+        },
+        {
+          "target": "com.github.dependency_graph#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/dependency-graph/sbom/fetch-report/{sbom_uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch a software bill of materials (SBOM) for a repository.\n\nFetches a previously generated software bill of materials (SBOM) for a repository.\nWhen the SBOM is ready, the response is a 302 redirect to a temporary download URL for the SBOM in SPDX JSON format.\nThe generated SBOM report may be retained for up to one week from the original request.\nThe temporary download URL returned by this endpoint expires separately, and its expiry is set when the fetch request is made."
+      }
+    },
+    "com.github.dependency_graph#GenerateSbomReportRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.dependency_graph#GenerateSbomReportResponse": {
+      "type": "structure",
+      "members": {
+        "sbom_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to poll for the SBOM export result."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.dependency_graph#GenerateSbomReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.dependency_graph#GenerateSbomReportRequest"
+      },
+      "output": {
+        "target": "com.github.dependency_graph#GenerateSbomReportResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.dependency_graph#Forbidden"
+        },
+        {
+          "target": "com.github.dependency_graph#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/dependency-graph/sbom/generate-report",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request generation of a software bill of materials (SBOM) for a repository.\n\nTriggers a job to generate a software bill of materials (SBOM) for a repository in SPDX JSON format."
+      }
+    },
+    "com.github.dependency_graph#CreateRepositorySnapshotRequestJob": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The external ID of the job.",
+            "smithy.api#required": {}
+          }
+        },
+        "correlator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Correlator provides a key that is used to group snapshots submitted over time. Only the \"latest\" submitted snapshot for a given combination of `job.correlator` and `detector.name` will be considered when calculating a repository's current dependencies. Correlator should be as unique as it takes to distinguish all detection runs for a given \"wave\" of CI workflow you run. If you're using GitHub Actions, a good default value for this could be the environment variables GITHUB_WORKFLOW and GITHUB_JOB concatenated together. If you're using a build matrix, then you'll also need to add additional key(s) to distinguish between each submission inside a matrix variation.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url for the job."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#CreateRepositorySnapshotRequestDetector": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the detector used.",
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the detector used.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url of the detector used.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A description of the detector used."
+      }
+    },
+    "com.github.dependency_graph#Metadata": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.dependency_graph#MetadataValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined metadata to store domain-specific information limited to 8 keys with scalar values."
+      }
+    },
+    "com.github.dependency_graph#MetadataValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#Manifest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the manifest.",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "com.github.dependency_graph#ManifestFile"
+        },
+        "metadata": {
+          "target": "com.github.dependency_graph#Metadata"
+        },
+        "resolved": {
+          "target": "com.github.dependency_graph#ManifestResolvedMap",
+          "traits": {
+            "smithy.api#documentation": "A collection of resolved package dependencies."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#ManifestFile": {
+      "type": "structure",
+      "members": {
+        "source_location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path of the manifest file relative to the root of the Git repository."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#Dependency": {
+      "type": "structure",
+      "members": {
+        "package_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Package-url (PURL) of dependency. See https://github.com/package-url/purl-spec for more details."
+          }
+        },
+        "metadata": {
+          "target": "com.github.dependency_graph#Metadata"
+        },
+        "relationship": {
+          "target": "com.github.dependency_graph#DependencyRelationship",
+          "traits": {
+            "smithy.api#documentation": "A notation of whether a dependency is requested directly by this manifest or is a dependency of another dependency."
+          }
+        },
+        "scope": {
+          "target": "com.github.dependency_graph#DependencyScope",
+          "traits": {
+            "smithy.api#documentation": "A notation of whether the dependency is required for the primary build artifact (runtime) or is only used for development. Future versions of this specification may allow for more granular scopes."
+          }
+        },
+        "dependencies": {
+          "target": "com.github.dependency_graph#DependencyDependenciesList",
+          "traits": {
+            "smithy.api#documentation": "Array of package-url (PURLs) of direct child dependencies."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.dependency_graph#DependencyRelationship": {
+      "type": "enum",
+      "members": {
+        "DIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "direct"
+          }
+        },
+        "INDIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "indirect"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A notation of whether a dependency is requested directly by this manifest or is a dependency of another dependency."
+      }
+    },
+    "com.github.dependency_graph#DependencyScope": {
+      "type": "enum",
+      "members": {
+        "RUNTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "runtime"
+          }
+        },
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A notation of whether the dependency is required for the primary build artifact (runtime) or is only used for development. Future versions of this specification may allow for more granular scopes."
+      }
+    },
+    "com.github.dependency_graph#DependencyDependenciesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of package-url (PURLs) of direct child dependencies."
+      }
+    },
+    "com.github.dependency_graph#ManifestResolvedMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.dependency_graph#Dependency"
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of resolved package dependencies."
+      }
+    },
+    "com.github.dependency_graph#CreateRepositorySnapshotRequestManifestsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.dependency_graph#Manifest"
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of package manifests, which are a collection of related dependencies declared in a file or representing a logical group of dependencies."
+      }
+    },
+    "com.github.dependency_graph#CreateRepositorySnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The version of the repository snapshot submission.",
+            "smithy.api#required": {}
+          }
+        },
+        "job": {
+          "target": "com.github.dependency_graph#CreateRepositorySnapshotRequestJob",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The commit SHA associated with this dependency snapshot. Maximum length: 40 characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository branch that triggered this snapshot.",
+            "smithy.api#required": {}
+          }
+        },
+        "detector": {
+          "target": "com.github.dependency_graph#CreateRepositorySnapshotRequestDetector",
+          "traits": {
+            "smithy.api#documentation": "A description of the detector used.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.github.dependency_graph#Metadata"
+        },
+        "manifests": {
+          "target": "com.github.dependency_graph#CreateRepositorySnapshotRequestManifestsMap",
+          "traits": {
+            "smithy.api#documentation": "A collection of package manifests, which are a collection of related dependencies declared in a file or representing a logical group of dependencies."
+          }
+        },
+        "scanned": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the snapshot was scanned.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.dependency_graph#CreateRepositorySnapshotResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the created snapshot.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the snapshot was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Either \"SUCCESS\", \"ACCEPTED\", or \"INVALID\". \"SUCCESS\" indicates that the snapshot was successfully created and the repository's dependencies were updated. \"ACCEPTED\" indicates that the snapshot was successfully created, but the repository's dependencies were not updated. \"INVALID\" indicates that the snapshot was malformed.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message providing further details about the result, such as why the dependencies were not updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.dependency_graph#CreateRepositorySnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.dependency_graph#CreateRepositorySnapshotRequest"
+      },
+      "output": {
+        "target": "com.github.dependency_graph#CreateRepositorySnapshotResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/dependency-graph/snapshots",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a snapshot of dependencies for a repository\n\nCreate a new snapshot of a repository's dependencies.\n\nThe authenticated user must have access to the repository.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.dependency_graph#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.dependency_graph#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.dependency_graph#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.dependency_graph#DependencyGraph": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.dependency_graph#DiffRange"
+        },
+        {
+          "target": "com.github.dependency_graph#ExportSbom"
+        },
+        {
+          "target": "com.github.dependency_graph#FetchSbomReport"
+        },
+        {
+          "target": "com.github.dependency_graph#GenerateSbomReport"
+        },
+        {
+          "target": "com.github.dependency_graph#CreateRepositorySnapshot"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

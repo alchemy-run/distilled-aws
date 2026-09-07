@@ -1,0 +1,20 @@
+{
+  "description": "Align dns#RecordsExport with distilled cloudflare/dns exportRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsExport",
+      "path": "/shapes/com.cloudflare.dns#ExportRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsExportRequest",
+      "path": "/shapes/com.cloudflare.dns#ExportRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ExportRecord/input/target",
+      "value": "com.cloudflare.dns#ExportRecordRequest"
+    }
+  ]
+}

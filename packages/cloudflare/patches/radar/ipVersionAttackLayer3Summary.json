@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer3SummaryIpVersion with distilled cloudflare/radar ipVersionAttackLayer3Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryIpVersion",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAttackLayer3Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryIpVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAttackLayer3SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAttackLayer3Summary/input/target",
+      "value": "com.cloudflare.radar#IpVersionAttackLayer3SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryIpVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAttackLayer3SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAttackLayer3Summary/output/target",
+      "value": "com.cloudflare.radar#IpVersionAttackLayer3SummaryResponse"
+    }
+  ]
+}

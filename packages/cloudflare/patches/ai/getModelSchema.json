@@ -1,0 +1,45 @@
+{
+  "description": "Align ai#ModelsSchemaGet with distilled cloudflare/ai getModelSchema",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ModelsSchemaGet",
+      "path": "/shapes/com.cloudflare.ai#GetModelSchema"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ModelsSchemaGetRequest",
+      "path": "/shapes/com.cloudflare.ai#GetModelSchemaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#GetModelSchema/input/target",
+      "value": "com.cloudflare.ai#GetModelSchemaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ModelsSchemaGetResponse",
+      "path": "/shapes/com.cloudflare.ai#GetModelSchemaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#GetModelSchema/output/target",
+      "value": "com.cloudflare.ai#GetModelSchemaResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#GetModelSchema/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai#ModelNotSupported"
+        },
+        {
+          "target": "com.cloudflare.ai#ModelSchemaNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    }
+  ]
+}

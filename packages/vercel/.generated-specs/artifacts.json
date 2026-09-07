@@ -1,0 +1,890 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.artifacts#RecordEventsRequestBodyItemSource": {
+      "type": "enum",
+      "members": {
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL"
+          }
+        },
+        "REMOTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOTE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One of `LOCAL` or `REMOTE`. `LOCAL` specifies that the cache event was from the user's filesystem cache. `REMOTE` specifies that the cache event is from a remote cache."
+      }
+    },
+    "com.vercel.artifacts#RecordEventsRequestBodyItemEvent": {
+      "type": "enum",
+      "members": {
+        "HIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIT"
+          }
+        },
+        "MISS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One of `HIT` or `MISS`. `HIT` specifies that a cached artifact for `hash` was found in the cache. `MISS` specifies that a cached artifact with `hash` was not found."
+      }
+    },
+    "com.vercel.artifacts#RecordEventsRequestBodyItem": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A UUID (universally unique identifer) for the session that generated this event.",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "com.vercel.artifacts#RecordEventsRequestBodyItemSource",
+          "traits": {
+            "smithy.api#documentation": "One of `LOCAL` or `REMOTE`. `LOCAL` specifies that the cache event was from the user's filesystem cache. `REMOTE` specifies that the cache event is from a remote cache.",
+            "smithy.api#required": {}
+          }
+        },
+        "event": {
+          "target": "com.vercel.artifacts#RecordEventsRequestBodyItemEvent",
+          "traits": {
+            "smithy.api#documentation": "One of `HIT` or `MISS`. `HIT` specifies that a cached artifact for `hash` was found in the cache. `MISS` specifies that a cached artifact with `hash` was not found.",
+            "smithy.api#required": {}
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The artifact hash",
+            "smithy.api#required": {}
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time taken to generate the artifact. This should be sent as a body parameter on `HIT` events."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#RecordEventsRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.artifacts#RecordEventsRequestBodyItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#RecordEventsRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "xArtifactClientCi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Client-Ci",
+            "smithy.api#documentation": "The continuous integration or delivery environment where this artifact is downloaded."
+          }
+        },
+        "xArtifactClientInteractive": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Client-Interactive",
+            "smithy.api#documentation": "1 if the client is an interactive shell. Otherwise 0"
+          }
+        },
+        "body": {
+          "target": "com.vercel.artifacts#RecordEventsRequestBodyList",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#RecordEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#RecordEventsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v8/artifacts/events",
+          "code": 200
+        },
+        "smithy.api#documentation": "Record an artifacts cache usage event\n\nRecords an artifacts cache usage event. The body of this request is an array of cache usage events. The supported event types are `HIT` and `MISS`. The source is either `LOCAL` the cache event was on the users filesystem cache or `REMOTE` if the cache event is for a remote cache. When the event is a `HIT` the request also accepts a number `duration` which is the time taken to generate the artifact in the cache."
+      }
+    },
+    "com.vercel.artifacts#StatusRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#StatusResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#StatusResponseBodyCase1Status": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "OVER_LIMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "over_limit"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paused"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#StatusResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.vercel.artifacts#StatusResponseBodyCase1Status",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#StatusResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.artifacts#StatusResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.artifacts#StatusResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#StatusResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.artifacts#StatusResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.artifacts#Status": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#StatusRequest"
+      },
+      "output": {
+        "target": "com.vercel.artifacts#StatusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v8/artifacts/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get status of Remote Caching for this principal\n\nCheck the status of Remote Caching for this principal. Returns a JSON-encoded status indicating if Remote Caching is enabled, disabled, or disabled due to usage limits."
+      }
+    },
+    "com.vercel.artifacts#DownloadArtifactRequest": {
+      "type": "structure",
+      "members": {
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The artifact hash"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "xArtifactClientCi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Client-Ci",
+            "smithy.api#documentation": "The continuous integration or delivery environment where this artifact is downloaded."
+          }
+        },
+        "xArtifactClientInteractive": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Client-Interactive",
+            "smithy.api#documentation": "1 if the client is an interactive shell. Otherwise 0"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#DownloadArtifactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.artifacts#DownloadArtifact": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#DownloadArtifactRequest"
+      },
+      "output": {
+        "target": "com.vercel.artifacts#DownloadArtifactResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        },
+        {
+          "target": "com.vercel.artifacts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v8/artifacts/{hash}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Download a cache artifact\n\nDownloads a cache artifact indentified by its `hash` specified on the request path. The artifact is downloaded as an octet-stream. The client should verify the content-length header and response body."
+      }
+    },
+    "com.vercel.artifacts#UploadArtifactRequest": {
+      "type": "structure",
+      "members": {
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The artifact hash"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "contentLength": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpHeader": "content-Length",
+            "smithy.api#documentation": "The artifact size in bytes"
+          }
+        },
+        "xArtifactDuration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Duration",
+            "smithy.api#documentation": "The time taken to generate the uploaded artifact in milliseconds."
+          }
+        },
+        "xArtifactClientCi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Client-Ci",
+            "smithy.api#documentation": "The continuous integration or delivery environment where this artifact was generated."
+          }
+        },
+        "xArtifactClientInteractive": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Client-Interactive",
+            "smithy.api#documentation": "1 if the client is an interactive shell. Otherwise 0"
+          }
+        },
+        "xArtifactTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Tag",
+            "smithy.api#documentation": "The base64 encoded tag for this artifact. The value is sent back to clients when the artifact is downloaded as the header `x-artifact-tag`"
+          }
+        },
+        "xArtifactSha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Sha",
+            "smithy.api#documentation": "The SHA of the source control revision that generated this artifact."
+          }
+        },
+        "xArtifactDirtyHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-Artifact-Dirty-Hash",
+            "smithy.api#documentation": "A hash representing uncommitted changes in the working directory when this artifact was generated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#UploadArtifactResponseUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of URLs where the artifact was updated"
+      }
+    },
+    "com.vercel.artifacts#UploadArtifactResponse": {
+      "type": "structure",
+      "members": {
+        "urls": {
+          "target": "com.vercel.artifacts#UploadArtifactResponseUrlsList",
+          "traits": {
+            "smithy.api#documentation": "Array of URLs where the artifact was updated",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.artifacts#UploadArtifact": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#UploadArtifactRequest"
+      },
+      "output": {
+        "target": "com.vercel.artifacts#UploadArtifactResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v8/artifacts/{hash}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload a cache artifact\n\nUploads a cache artifact identified by the `hash` specified on the path. The cache artifact can then be downloaded with the provided `hash`."
+      }
+    },
+    "com.vercel.artifacts#ArtifactExistsRequest": {
+      "type": "structure",
+      "members": {
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The artifact hash"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#ArtifactExists": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#ArtifactExistsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        },
+        {
+          "target": "com.vercel.artifacts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "HEAD",
+          "uri": "/v8/artifacts/{hash}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a cache artifact exists\n\nCheck that a cache artifact with the given `hash` exists. This request returns response headers only and is equivalent to a `GET` request to this endpoint where the response contains no body."
+      }
+    },
+    "com.vercel.artifacts#ArtifactQueryRequestHashesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "artifact hashes"
+      }
+    },
+    "com.vercel.artifacts#ArtifactQueryRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "hashes": {
+          "target": "com.vercel.artifacts#ArtifactQueryRequestHashesList",
+          "traits": {
+            "smithy.api#documentation": "artifact hashes",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#ArtifactQueryResponseBodyValueCase0": {
+      "type": "structure",
+      "members": {
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "taskDurationMs": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String"
+        },
+        "sha": {
+          "target": "smithy.api#String"
+        },
+        "dirtyHash": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#ArtifactQueryResponseBodyValueCase1Error": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#ArtifactQueryResponseBodyValueCase1": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.vercel.artifacts#ArtifactQueryResponseBodyValueCase1Error",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#ArtifactQueryResponseBodyValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.artifacts#ArtifactQueryResponseBodyValueCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.artifacts#ArtifactQueryResponseBodyValueCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#ArtifactQueryResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.artifacts#ArtifactQueryResponseBodyValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.artifacts#ArtifactQueryResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.artifacts#ArtifactQueryResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.artifacts#ArtifactQuery": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#ArtifactQueryRequest"
+      },
+      "output": {
+        "target": "com.vercel.artifacts#ArtifactQueryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v8/artifacts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Query information about an artifact\n\nQuery information about an array of artifacts."
+      }
+    },
+    "com.vercel.artifacts#DeleteAllArtifactsRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.artifacts#DeleteAllArtifactsResponse": {
+      "type": "structure",
+      "members": {
+        "deletedCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.artifacts#DeleteAllArtifacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.artifacts#DeleteAllArtifactsRequest"
+      },
+      "output": {
+        "target": "com.vercel.artifacts#DeleteAllArtifactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.artifacts#BadRequest"
+        },
+        {
+          "target": "com.vercel.artifacts#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v8/artifacts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all cache artifacts\n\nDeletes all cache artifacts stored for the authenticated team or user, clearing the Remote Cache. Subsequent builds will re-populate the cache."
+      }
+    },
+    "com.vercel.artifacts#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.artifacts#PaymentRequired": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 402,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 402
+          }
+        ]
+      }
+    },
+    "com.vercel.artifacts#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.artifacts#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.artifacts#Artifacts": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.artifacts#RecordEvents"
+        },
+        {
+          "target": "com.vercel.artifacts#Status"
+        },
+        {
+          "target": "com.vercel.artifacts#DownloadArtifact"
+        },
+        {
+          "target": "com.vercel.artifacts#UploadArtifact"
+        },
+        {
+          "target": "com.vercel.artifacts#ArtifactExists"
+        },
+        {
+          "target": "com.vercel.artifacts#ArtifactQuery"
+        },
+        {
+          "target": "com.vercel.artifacts#DeleteAllArtifacts"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

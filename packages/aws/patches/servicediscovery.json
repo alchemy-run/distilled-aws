@@ -1,0 +1,14 @@
+{
+  "structures": {
+    "SOA": {
+      "members": {
+        "TTL": { "optional": true }
+      }
+    },
+    "DnsConfig": {
+      "members": {
+        "DnsRecords": { "optional": true }
+      }
+    }
+  }
+}

@@ -1,0 +1,665 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.sandbox_environments#SandboxListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.sandbox_environments#PaginatedSandboxEnvironmentDTOList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.sandbox_environments#PaginatedSandboxEnvironmentDTOListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.sandbox_environments#SandboxEnvironmentDTO": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "network_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "allowed_domains": {
+          "target": "com.posthog.sandbox_environments#SandboxEnvironmentDTOAllowedDomainsList"
+        },
+        "repositories": {
+          "target": "com.posthog.sandbox_environments#SandboxEnvironmentDTORepositoriesList"
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "internal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.sandbox_environments#TaskUserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List response for sandbox environments (subset of fields)."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxEnvironmentDTOAllowedDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.sandbox_environments#SandboxEnvironmentDTORepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.sandbox_environments#TaskUserBasicInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.sandbox_environments#TaskUserBasicInfoHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response shape for a task creator, mirroring core ``UserBasicSerializer`` output."
+      }
+    },
+    "com.posthog.sandbox_environments#TaskUserBasicInfoHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.sandbox_environments#PaginatedSandboxEnvironmentDTOListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.sandbox_environments#SandboxEnvironmentDTO"
+      },
+      "traits": {}
+    },
+    "com.posthog.sandbox_environments#SandboxList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.sandbox_environments#SandboxListRequest"
+      },
+      "output": {
+        "target": "com.posthog.sandbox_environments#PaginatedSandboxEnvironmentDTOList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.sandbox_environments#BadRequest"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#Forbidden"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/sandbox_environments/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing sandbox environments that control network access for task runs."
+      }
+    },
+    "com.posthog.sandbox_environments#NetworkAccessLevelEnum": {
+      "type": "enum",
+      "members": {
+        "TRUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trusted"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `trusted` - Trusted\n* `full` - Full\n* `custom` - Custom"
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxCreateRequestAllowedDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed domains for custom network access."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxCreateRequestRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Repositories this environment applies to (format: org/repo)."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the environment.",
+            "smithy.api#required": {}
+          }
+        },
+        "network_access_level": {
+          "target": "com.posthog.sandbox_environments#NetworkAccessLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Network access policy: trusted (default allowlist), full (unrestricted), or custom.\n\n* `trusted` - Trusted\n* `full` - Full\n* `custom` - Custom"
+          }
+        },
+        "allowed_domains": {
+          "target": "com.posthog.sandbox_environments#SandboxCreateRequestAllowedDomainsList",
+          "traits": {
+            "smithy.api#documentation": "Allowed domains for custom network access."
+          }
+        },
+        "include_default_domains": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include default trusted domains (GitHub, npm, PyPI)."
+          }
+        },
+        "repositories": {
+          "target": "com.posthog.sandbox_environments#SandboxCreateRequestRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "Repositories this environment applies to (format: org/repo)."
+          }
+        },
+        "environment_variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Encrypted environment variables (write-only, never returned in responses)."
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, only the creator can see this environment; otherwise the whole team can."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.sandbox_environments#SandboxCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.sandbox_environments#SandboxEnvironmentDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.sandbox_environments#BadRequest"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#Forbidden"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/sandbox_environments/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing sandbox environments that control network access for task runs."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.sandbox_environments#SandboxRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.sandbox_environments#SandboxEnvironmentDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.sandbox_environments#Forbidden"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/sandbox_environments/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing sandbox environments that control network access for task runs."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxPartialUpdateRequestAllowedDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed domains for custom network access."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxPartialUpdateRequestRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Repositories this environment applies to (format: org/repo)."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the environment."
+          }
+        },
+        "network_access_level": {
+          "target": "com.posthog.sandbox_environments#NetworkAccessLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Network access policy: trusted (default allowlist), full (unrestricted), or custom.\n\n* `trusted` - Trusted\n* `full` - Full\n* `custom` - Custom"
+          }
+        },
+        "allowed_domains": {
+          "target": "com.posthog.sandbox_environments#SandboxPartialUpdateRequestAllowedDomainsList",
+          "traits": {
+            "smithy.api#documentation": "Allowed domains for custom network access."
+          }
+        },
+        "include_default_domains": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include default trusted domains (GitHub, npm, PyPI)."
+          }
+        },
+        "repositories": {
+          "target": "com.posthog.sandbox_environments#SandboxPartialUpdateRequestRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "Repositories this environment applies to (format: org/repo)."
+          }
+        },
+        "environment_variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Encrypted environment variables (write-only, never returned in responses)."
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, only the creator can see this environment; otherwise the whole team can."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.sandbox_environments#SandboxPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.sandbox_environments#SandboxEnvironmentDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.sandbox_environments#BadRequest"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#Forbidden"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/sandbox_environments/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing sandbox environments that control network access for task runs."
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.sandbox_environments#SandboxDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.sandbox_environments#Forbidden"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/sandbox_environments/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for managing sandbox environments that control network access for task runs."
+      }
+    },
+    "com.posthog.sandbox_environments#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.sandbox_environments#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.sandbox_environments#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.sandbox_environments#SandboxEnvironments": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.sandbox_environments#SandboxList"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#SandboxCreate"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#SandboxRetrieve"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#SandboxPartialUpdate"
+        },
+        {
+          "target": "com.posthog.sandbox_environments#SandboxDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

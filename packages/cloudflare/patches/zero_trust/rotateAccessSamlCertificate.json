@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessSamlCertificatesRotate with distilled cloudflare/zero-trust rotateAccessSamlCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessSamlCertificatesRotate",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessSamlCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessSamlCertificatesRotateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessSamlCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessSamlCertificate/input/target",
+      "value": "com.cloudflare.zero_trust#RotateAccessSamlCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessSamlCertificatesRotateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessSamlCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessSamlCertificate/output/target",
+      "value": "com.cloudflare.zero_trust#RotateAccessSamlCertificateResponse"
+    }
+  ]
+}

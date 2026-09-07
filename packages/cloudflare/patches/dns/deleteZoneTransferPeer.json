@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#ZoneTransfersPeersDelete with distilled cloudflare/dns deleteZoneTransferPeer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersPeersDelete",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferPeer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersPeersDeleteRequest",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferPeerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferPeer/input/target",
+      "value": "com.cloudflare.dns#DeleteZoneTransferPeerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersPeersDeleteResponse",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferPeerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferPeer/output/target",
+      "value": "com.cloudflare.dns#DeleteZoneTransferPeerResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#DeleteZoneTransferPeer/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#PeerNotFound"
+        }
+      ]
+    }
+  ]
+}

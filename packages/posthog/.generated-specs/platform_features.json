@@ -1,0 +1,1107 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.platform_features#ApprovalPoliciesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#PaginatedApprovalPolicyList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.platform_features#PaginatedApprovalPolicyListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ApprovalPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "action_key": {
+          "target": "smithy.api#String"
+        },
+        "conditions": {
+          "target": "smithy.api#Document"
+        },
+        "approver_config": {
+          "target": "smithy.api#Document"
+        },
+        "allow_self_approve": {
+          "target": "smithy.api#Boolean"
+        },
+        "bypass_org_membership_levels": {
+          "target": "smithy.api#Document"
+        },
+        "bypass_roles": {
+          "target": "com.posthog.platform_features#ApprovalPolicyBypassRolesList"
+        },
+        "expires_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Auto-expire change requests after this duration"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_by": {
+          "target": "com.posthog.platform_features#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ApprovalPolicyBypassRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.platform_features#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.platform_features#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.platform_features#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.platform_features#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.platform_features#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#PaginatedApprovalPolicyListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.platform_features#ApprovalPolicy"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ApprovalPoliciesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ApprovalPoliciesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#PaginatedApprovalPolicyList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/approval_policies/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesCreateRequestBypassRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ApprovalPoliciesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "action_key": {
+          "target": "smithy.api#String"
+        },
+        "conditions": {
+          "target": "smithy.api#Document"
+        },
+        "approver_config": {
+          "target": "smithy.api#Document"
+        },
+        "allow_self_approve": {
+          "target": "smithy.api#Boolean"
+        },
+        "bypass_org_membership_levels": {
+          "target": "smithy.api#Document"
+        },
+        "bypass_roles": {
+          "target": "com.posthog.platform_features#ApprovalPoliciesCreateRequestBypassRolesList"
+        },
+        "expires_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Auto-expire change requests after this duration"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ApprovalPoliciesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ApprovalPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/approval_policies/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this approval policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ApprovalPoliciesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ApprovalPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/approval_policies/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesUpdateRequestBypassRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ApprovalPoliciesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this approval policy."
+          }
+        },
+        "action_key": {
+          "target": "smithy.api#String"
+        },
+        "conditions": {
+          "target": "smithy.api#Document"
+        },
+        "approver_config": {
+          "target": "smithy.api#Document"
+        },
+        "allow_self_approve": {
+          "target": "smithy.api#Boolean"
+        },
+        "bypass_org_membership_levels": {
+          "target": "smithy.api#Document"
+        },
+        "bypass_roles": {
+          "target": "com.posthog.platform_features#ApprovalPoliciesUpdateRequestBypassRolesList"
+        },
+        "expires_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Auto-expire change requests after this duration"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ApprovalPoliciesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ApprovalPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/approval_policies/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesPartialUpdateRequestBypassRolesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ApprovalPoliciesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this approval policy."
+          }
+        },
+        "action_key": {
+          "target": "smithy.api#String"
+        },
+        "conditions": {
+          "target": "smithy.api#Document"
+        },
+        "approver_config": {
+          "target": "smithy.api#Document"
+        },
+        "allow_self_approve": {
+          "target": "smithy.api#Boolean"
+        },
+        "bypass_org_membership_levels": {
+          "target": "smithy.api#Document"
+        },
+        "bypass_roles": {
+          "target": "com.posthog.platform_features#ApprovalPoliciesPartialUpdateRequestBypassRolesList"
+        },
+        "expires_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Auto-expire change requests after this duration"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ApprovalPoliciesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ApprovalPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/approval_policies/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this approval policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ApprovalPoliciesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ApprovalPoliciesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/approval_policies/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsListRequestStateList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ChangeRequestsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "action_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "action_key"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "requester": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "requester"
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resource_id"
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resource_type"
+          }
+        },
+        "state": {
+          "target": "com.posthog.platform_features#ChangeRequestsListRequestStateList",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Multiple values may be separated by commas."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#PaginatedChangeRequestList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.platform_features#PaginatedChangeRequestListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ChangeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "action_key": {
+          "target": "smithy.api#String"
+        },
+        "action_version": {
+          "target": "smithy.api#Integer"
+        },
+        "resource_type": {
+          "target": "smithy.api#String"
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "intent": {
+          "target": "smithy.api#Document"
+        },
+        "intent_display": {
+          "target": "smithy.api#Document"
+        },
+        "policy_snapshot": {
+          "target": "smithy.api#Document"
+        },
+        "validation_status": {
+          "target": "com.posthog.platform_features#ValidationStatusEnum"
+        },
+        "validation_errors": {
+          "target": "smithy.api#Document"
+        },
+        "validated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.posthog.platform_features#ChangeRequestStateEnum"
+        },
+        "created_by": {
+          "target": "com.posthog.platform_features#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "applied_by": {
+          "target": "com.posthog.platform_features#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String"
+        },
+        "applied_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "apply_error": {
+          "target": "smithy.api#String"
+        },
+        "result_data": {
+          "target": "smithy.api#Document"
+        },
+        "approvals": {
+          "target": "com.posthog.platform_features#ChangeRequestApprovalsList"
+        },
+        "can_approve": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Check if current user can approve this change request."
+          }
+        },
+        "can_cancel": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_requester": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Check if current user is the requester."
+          }
+        },
+        "user_decision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Get the current user's approval decision if they have voted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ValidationStatusEnum": {
+      "type": "enum",
+      "members": {
+        "VALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "valid"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invalid"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "STALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stale"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `valid` - Valid\n* `invalid` - Invalid\n* `expired` - Expired\n* `stale` - Stale (resource changed)"
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestStateEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "approved"
+          }
+        },
+        "APPLIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "applied"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rejected"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - Pending\n* `approved` - Approved (awaiting application)\n* `applied` - Applied\n* `rejected` - Rejected\n* `expired` - Expired\n* `failed` - Failed to apply"
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestApprovalsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ChangeRequestApprovalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.platform_features#ChangeRequestApprovalsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#PaginatedChangeRequestListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.platform_features#ChangeRequest"
+      },
+      "traits": {}
+    },
+    "com.posthog.platform_features#ChangeRequestsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ChangeRequestsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#PaginatedChangeRequestList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/change_requests/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this change request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ChangeRequestsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ChangeRequest"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/change_requests/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsApproveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this change request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsApproveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ChangeRequestsApproveCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ChangeRequest"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/change_requests/{id}/approve/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Approve a change request.\nIf quorum is reached, automatically applies the change immediately."
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsCancelCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this change request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsCancelCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ChangeRequestsCancelCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ChangeRequest"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/change_requests/{id}/cancel/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel a change request.\nOnly the requester can cancel their own pending change request."
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsRejectCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this change request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.platform_features#ChangeRequestsRejectCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.platform_features#ChangeRequestsRejectCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.platform_features#ChangeRequest"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/change_requests/{id}/reject/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reject a change request."
+      }
+    },
+    "com.posthog.platform_features#PlatformFeatures": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.platform_features#ApprovalPoliciesList"
+        },
+        {
+          "target": "com.posthog.platform_features#ApprovalPoliciesCreate"
+        },
+        {
+          "target": "com.posthog.platform_features#ApprovalPoliciesRetrieve"
+        },
+        {
+          "target": "com.posthog.platform_features#ApprovalPoliciesUpdate"
+        },
+        {
+          "target": "com.posthog.platform_features#ApprovalPoliciesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.platform_features#ApprovalPoliciesDestroy"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsList"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsRetrieve"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsApproveCreate"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsCancelCreate"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsRejectCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

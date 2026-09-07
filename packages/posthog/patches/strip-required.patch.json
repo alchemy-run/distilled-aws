@@ -1,0 +1,3893 @@
+{
+  "description": "Strip required arrays from all PostHog response schemas. The spec is unreliable about required-ness — many endpoints omit fields the spec marks required (deleted users, cursor pagination omitting count, optional nested objects, etc.). Removing required treats all fields as optional, which lets decoding succeed against real responses without sacrificing type safety.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/components/schemas/Action/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActionConversionGoal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActionReference/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActionStepJSON/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActionsNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActiveBreakpoint/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActiveBreakpointsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActivityLog/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActivityLogEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActivityLogPaginatedResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActorsPropertyTaxonomyQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActorsPropertyTaxonomyQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActorsPropertyTaxonomyResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ActorsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AddSnapshotsInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AddSnapshotsResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Alert/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AlertCheck/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AlertCondition/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AlertScheduleRestriction/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AlertScheduleRestrictionWindow/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AlertSimulate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AlertSimulateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Annotation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AppMetricSeries/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AppMetricsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AppMetricsTotalsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AppendSegments/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ApprovalPolicy/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ApproveSnapshotInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ArrayPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Artifact/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AsyncDeletionStatus/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AutoApproveResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AutocompleteCompletionItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AvailableFiltersResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BatchCheckRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BatchCheckResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BatchExport/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BatchExportBackfill/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BatchExportDestination/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BatchExportRun/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BehavioralFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BlastRadius/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BlastRadiusRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BoxPlotDatum/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Breakdown/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BreakdownItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BreakdownSimulationResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BreakdownValue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BreakpointHit/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BreakpointHitsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BulkUpdateTagsError/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BulkUpdateTagsItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BulkUpdateTagsRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/BulkUpdateTagsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CachedSummary/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CalendarHeatmapQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CalendarHeatmapResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CapabilityState/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CategoricalScoreDefinitionConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CategoricalScoreOption/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Change/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ChangeRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ChartAxis/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ClaudeTaskRunCreateSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ClickhouseEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ClickhouseQueryProgress/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ClusteringJob/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CodeInviteRedeemRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CodexTaskRunCreateSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Cohort/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CohortFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CohortFilterGroup/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CohortFilters/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CohortPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Comment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CompareItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConditionalFormattingRule/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConnectionTokenResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Conversation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConversationMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConversionGoalFilter1/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConversionGoalFilter2/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConversionGoalFilter3/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CopyDashboardTemplate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CopyDashboardTileRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CopyExperimentToProject/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateGroup/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateLegalDocument/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateRecordingResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateRepoInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateRunInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateRunResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Credential/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CustomChannelCondition/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CustomChannelRule/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CustomEventConversionGoal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CustomerJourney/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CustomerProfileConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Dashboard/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DashboardBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DashboardCollaborator/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DashboardTemplate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DashboardTileBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DashboardTileResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataColorTheme/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataTableNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataTableNodeViewPropsContext/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataVisualizationNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehouseEventsModifier/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehouseNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehousePersonPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehousePropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehouseSavedQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehouseSavedQueryFolder/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehouseSavedQueryMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataWarehouseViewLink/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaBatchExportTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaDataWarehouseTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaEndpointTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaField/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaManagedViewTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaMaterializedViewTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaPostHogTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaSource/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaSystemTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatabaseSchemaViewTable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Dataset/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatasetItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DatePropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DayItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DependentFlag/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DesktopRecording/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DesktopRecordingTask/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Detail/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DocumentSimilarityQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DocumentSimilarityQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DraftStatusResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DurationMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EarlyAccessFeature/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EarlyAccessFeatureSerializerCreateOnly/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ElementPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ElementType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EmbeddedDocument/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EmbeddingDistance/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EmbeddingRecord/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointColumn/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointLastExecutionTimesRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointMaterialization/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointRunResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointVersionResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointsUsageOverviewItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointsUsageOverviewQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointsUsageTableQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointsUsageTableQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointsUsageTrendsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EndpointsUsageTrendsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EnsembleDetectorConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EnterpriseEventDefinition/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EnterprisePropertyDefinition/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingAssignmentRule/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingAssignmentRuleAssigneeRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingAssignmentRuleCreateRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingBreakdownsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingBreakdownsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingCorrelatedIssue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingExternalReference/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingExternalReferenceIntegration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingExternalReferenceIntegrationResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingExternalReferenceResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingFingerprint/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingGroupingRule/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingGroupingRuleAssigneeRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingGroupingRuleCreateRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingGroupingRuleListResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueAggregations/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueAssignee/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueAssignment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueCohort/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueCorrelationQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueCorrelationQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueFull/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueMergeRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueMergeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueSplitFingerprint/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingIssueSplitResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingPendingFingerprintIssueStateUpdate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingRecommendation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingRelease/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSimilarIssuesQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSimilarIssuesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSpikeDetectionConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSpikeEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSpikeEventIssue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingStackFrame/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSuppressionRule/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ErrorTrackingSymbolSet/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Evaluation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationPattern/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationReport/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationReportRun/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationRunRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationSummaryRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationSummaryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EvaluationSummaryStatistics/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventDefinition/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventDefinitionBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventDefinitionRecord/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventElement/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventFilterConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventMetadataPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventOddsRatioSerialized/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventPropFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventTaxonomyItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventTaxonomyQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventsHeatMapColumnAggregationResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventsHeatMapDataResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventsHeatMapRowAggregationResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventsHeatMapStructuredResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExistencePropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Experiment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentActorsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentApiEventSource/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentApiExposureConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentApiMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentBreakdownResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentDataWarehouseNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentEventExposureConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentExposureQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentExposureQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentExposureTimeSeries/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentFunnelMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentFunnelsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentFunnelsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentHoldout/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentHoldoutType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentMeanMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentRatioMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentRetentionMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentSavedMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentStatsBaseValidated/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentToSavedMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentTrendsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentTrendsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentVariant/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentVariantFunnelsBaseStats/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentVariantResultBayesian/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentVariantResultFrequentist/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExperimentVariantTrendsBaseStats/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExplainRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExportedAsset/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalDataSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalDataSourceBulkUpdateSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalDataSourceConnectionOption/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalDataSourceCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalDataSourceSerializers/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalQueryError/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlag/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertyCohortInSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertyDateSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertyExistsSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertyFlagEvaluatesSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertyGenericSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertyMultiContainsSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagFilterPropertySemverSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagMultivariateSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagMultivariateVariantSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagStatusResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeatureFlagVersionResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FeaturePropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FileSystem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FileSystemShortcut/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FirstEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FlagPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FlagValueItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FlagValueResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelCorrelationActorsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelCorrelationQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelCorrelationResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelCorrelationResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelExclusionActionsNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelExclusionEventsNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelPathsFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelsActorsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelsDataWarehouseNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FunnelsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GenerateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GenerateStepResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GitHubBranchesResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GitHubRepo/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GitHubReposRefreshResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GitHubReposResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GitProviderFileLinkResolveResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Goal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GoalLine/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Group/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupUsageMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HealthIssue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HeatmapGradientStop/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HeatmapResponseItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HeatmapScreenshotResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HeatmapsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFlow/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFlowAction/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFlowMasking/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFlowMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFlowSchedule/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunction/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunctionInvocation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunctionMappingTemplate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunctionMasking/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunctionMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunctionStatus/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogFunctionTemplate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLAutocomplete/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLAutocompleteResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLMetadata/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLMetadataResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLNotice/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQLVariable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/HogQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InputsItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InputsSchemaItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Insight/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightActorsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightActorsQueryOptions/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightThreshold/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightVariable/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightVizNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InsightsToolCall/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InstallCustom/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InstallTemplate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Integration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/IntegrationConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/InterestingNote/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/IntervalItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPrompt/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptDuplicate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptEditOperation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptOutlineEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptPublic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptResolveResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMPromptVersionSummary/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMProviderKey/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkill/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillDuplicate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillEditOperation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillFile/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillFileCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillFileEdit/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillFileInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillFileManifest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillFileRename/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillOutlineEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillResolveResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMSkillVersionSummary/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMTrace/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMTraceEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LLMTracePerson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LastEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LegalDocumentCreator/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LegalDocumentDTO/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LifecycleDataWarehouseNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LifecycleQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LifecycleQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LiveDebuggerBreakpoint/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LocalEvaluationResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogAttributesQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogAttributesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogEntryPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogValueResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogValuesQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogValuesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertConfiguration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertCreateDestination/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertDeleteDestination/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertDestinationResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertSimulateBucket/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertSimulateRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertSimulateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsAlertStateInterval/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/LogsView/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MCPServerInstallation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MCPServerInstallationTool/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MCPServerTemplate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MarkToleratedInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MarketingAnalyticsAggregatedQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MarketingAnalyticsAggregatedQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MarketingAnalyticsItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MarketingAnalyticsTableQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MarketingAnalyticsTableQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MatchedRecording/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MatchedRecordingEvent/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Merge/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Message/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MessageMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MessageSentiment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MinimalFeatureFlag/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MinimalHedgehogConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MinimalPerson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ModelConfiguration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MultipleBreakdownOptions/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MyFlagsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NonIntegratedConversionsTableQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NonIntegratedConversionsTableQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Notebook/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NotebookCollabSave/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NotebookMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NumericMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NumericPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OAuthRedirectResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ObjectMediaPreview/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Organization/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationDomain/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationIntegration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationInvite/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationMember/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationOAuthApplication/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OutdatedTrafficAlert/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PageURL/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedActionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedActivityLogList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedAlertList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedAnnotationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedApprovalPolicyList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedBatchExportBackfillList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedBatchExportList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedBatchExportRunList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedChangeRequestList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedClusteringJobList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedCohortList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedCommentList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedConversationMinimalList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedCustomerJourneyList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedCustomerProfileConfigList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDashboardBasicList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDashboardTemplateList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDataColorThemeList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDataWarehouseSavedQueryMinimalList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDatasetItemList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDatasetList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedDesktopRecordingList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEarlyAccessFeatureList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedElementList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEndpointResponseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEndpointVersionResponseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEnterpriseEventDefinitionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEnterprisePropertyDefinitionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingAssignmentRuleList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingFingerprintList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingIssueFullList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingRecommendationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingReleaseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingSpikeEventList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingStackFrameList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingSuppressionRuleList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedErrorTrackingSymbolSetList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEvaluationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEvaluationReportList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEvaluationReportRunList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedEventSchemaList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExperimentHoldoutList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExperimentList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExperimentSavedMetricList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExportedAssetList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExternalDataSchemaList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExternalDataSourceConnectionOptionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedExternalDataSourceSerializersList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedFeatureFlagList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedFileSystemList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedFileSystemShortcutList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedGroupList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedGroupUsageMetricList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHealthIssueList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHeatmapScreenshotResponseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHeatmapsResponseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHogFlowMinimalList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHogFlowScheduleList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHogFunctionMinimalList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedHogFunctionTemplateList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedInsightList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedInsightVariableList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedIntegrationConfigList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLLMPromptListList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLLMProviderKeyList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLLMSkillListList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLegalDocumentDTOList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLiveDebuggerBreakpointList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLogsAlertConfigurationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLogsAlertEventList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedLogsViewList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedMCPServerInstallationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedMCPServerInstallationToolList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedMCPServerTemplateList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedNotebookMinimalList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedObjectMediaPreviewList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedOrganizationDomainList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedOrganizationIntegrationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedOrganizationInviteList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedOrganizationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedOrganizationMemberList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedOrganizationOAuthApplicationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedPauseStateResponseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedPersistedFolderList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedPluginLogEntryList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedProductTourList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedProjectBackwardCompatBasicList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedProjectSecretAPIKeyList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedQuarantinedIdentifierEntryList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedRepoList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedReviewQueueItemList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedReviewQueueList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedRoleExternalReferenceList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedRoleList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedRoleMembershipList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedRunList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSandboxEnvironmentListList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSchemaPropertyGroupList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedScoreDefinitionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSessionGroupSummaryMinimalList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSessionRecordingList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSessionRecordingPlaylistList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSignalSourceConfigList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSnapshotHistoryEntryList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSnapshotList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSubscriptionDeliveryList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSubscriptionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedSurveyList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTableList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTaskAutomationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTaskList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTaskRunDetailList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTeamBasicList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedThresholdWithAlertList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTicketList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTicketViewList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedToleratedHashEntryList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedTraceReviewList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedUserInterviewList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedUserList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PaginatedWebExperimentsAPIList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PathsLink/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PathsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PathsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PauseResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PauseStateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PauseUntilRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PendingInvite/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersistedFolder/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Person/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonBulkDeleteResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonDeletePropertyRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonPropertiesAtTimeDebug/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonPropertiesAtTimeMetadata/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonPropertiesAtTimeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonRecord/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PersonUpdatePropertyRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PluginLogEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Population/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProductTour/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProductTourSerializerCreateUpdateOnly/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProjectBackwardCompat/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProjectBackwardCompatBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProjectSecretAPIKey/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Property/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PropertyGroupFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PropertyGroupFilterValue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PropertyItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PropertyValuesQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PropertyValuesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProxyRecord/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ProxyRecordListResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QuarantineInput/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QuarantinedIdentifierEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative1/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative10/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative11/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative14/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative15/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative16/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative17/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative18/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative19/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative2/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative21/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative22/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative23/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative24/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative25/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative27/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative28/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative29/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative3/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative30/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative31/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative32/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative33/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative34/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative35/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative36/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative37/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative38/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative39/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative4/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative40/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative41/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative42/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative43/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative44/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative45/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative47/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative48/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative49/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative50/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative51/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative52/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative53/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative54/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative55/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative57/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative58/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative59/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative6/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative60/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative62/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative63/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative64/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative65/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative66/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative67/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative68/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative69/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative7/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative70/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative72/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative73/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative74/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative75/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative76/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative77/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative78/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative79/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative8/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative80/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative81/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative82/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative83/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative86/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative87/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative88/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative89/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative9/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative90/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryResponseAlternative91/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryStatus/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryStatusResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryTiming/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryUpgradeRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/QueryUpgradeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RecomputeResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RecordingPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RecordingsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ReorderTilesRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Repo/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RepositoryReadinessResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ResolvedDateRangeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response1/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response10/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response11/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response12/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response13/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response14/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response15/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response16/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response18/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response19/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response2/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response20/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response21/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response22/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response23/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response24/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response25/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response26/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response3/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response4/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response5/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response6/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response8/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Response9/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Results/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RetentionQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RetentionQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RetentionResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RetentionValue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsBreakdown/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsGrossRevenueQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsGrossRevenueQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsMRRQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsMRRQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsMRRQueryResultItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsMetricsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsMetricsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsOverviewItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsOverviewQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsOverviewQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsTopCustomersQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueAnalyticsTopCustomersQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueExampleDataWarehouseTablesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RevenueExampleEventsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ReviewQueue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ReviewQueueCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ReviewQueueItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ReviewQueueItemCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ReviewStateCounts/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Role/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RoleExternalReference/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RoleLookupResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RoleMembership/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Run/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RunInsightsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RunSummary/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/S3PresignedPost/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SampleRatioMismatch/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SamplingRate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SandboxEnvironment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SandboxEnvironmentList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SavedInsightNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ScanEvidence/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ScenePersonalisationBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SchemaPropertyGroup/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SchemaPropertyGroupProperty/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ScoreDefinition/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ScoreDefinitionCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ScoreDefinitionNewVersion/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SdkAssessment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SdkHealthReport/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SdkReleaseAssessment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SentimentBatchResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SentimentRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SentimentResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Series/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionAttributionExplorerQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionAttributionExplorerQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionData/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionGroupSummary/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionGroupSummaryMinimal/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionRecording/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionRecordingExternalReference/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionRecordingPlaylist/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionRecordingType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionSummaries/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SessionsTimelineQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SharePassword/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SharingConfiguration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ShipVariant/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SignalSourceConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SignalUserAutonomyConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SimilarIssue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SimpleExternalDataSourceSerializers/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Snapshot/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SnapshotHistoryEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SnapshotManifestItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SpanPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StaticFilters/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StatusItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StickinessActorsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StickinessCriteria/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StickinessQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StickinessQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StringPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/StructuredSummary/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Subscription/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SubscriptionDelivery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SuggestReplyError/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SuggestReplyResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SuggestedQuestionsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SummarizeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SummaryBullet/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Survey/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyConditionEventValueSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyEndBranching/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyGlobalStatsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyLinkQuestionSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyMultipleChoiceQuestionSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyNextQuestionBranching/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyOpenQuestionSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyRatingQuestionSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyResponseBasedBranching/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveySerializerCreateUpdateOnly/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveySerializerCreateUpdateOnlySchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveySingleChoiceQuestionSchema/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveySpecificQuestionBranching/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SurveyStatsResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Table/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Task/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskAutomation/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRepositoriesResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunAppendLogRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactFinalizeUpload/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactPrepareUpload/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactPrepareUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactPresignRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactPresignResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactUpload/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactsFinalizeUploadRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactsFinalizeUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactsPrepareUploadRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactsPrepareUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactsUploadRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunArtifactsUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunCommandRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunCommandResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunDetail/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunRelayMessageRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskRunRelayMessageResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactFinalizeUpload/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactPrepareUpload/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactPrepareUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactsFinalizeUploadRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactsFinalizeUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactsPrepareUploadRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TaskStagedArtifactsPrepareUploadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Team/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TeamBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TeamTaxonomyItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TeamTaxonomyQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TestHogRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TestHogResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TestHogResultItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TextReprMetadata/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TextReprRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TextReprResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Threshold/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ThresholdWithAlert/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Ticket/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TicketAssignment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TicketPerson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TicketView/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TimelineEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ToleratedHashEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TopPage/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TopSource/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceNeighborsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceReview/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceReviewCreate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceReviewScore/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceReviewScoreWrite/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceSpansQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TraceSpansQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TracesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TranscriptSegment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TranslateRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TrendsAlertConfig/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TrendsFormulaNode/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TrendsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TrendsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Trigger/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UploadTarget/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UsageMetric/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UsageMetricsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/User/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserBasic/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserBasicInfo/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserBasicType/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserBlastRadiusRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserBlastRadiusResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserInterview/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/VectorSearchQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/VectorSearchQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/VectorSearchResponseItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/VolumeBucket/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebAnalyticsExternalSummaryQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebAnalyticsExternalSummaryQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebExperimentsAPI/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebExternalClicksTableQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebExternalClicksTableQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebGoalsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebGoalsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebNotableChangeItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebNotableChangesQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebNotableChangesQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebOverviewItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebOverviewQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebOverviewQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebPageURLSearchQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebPageURLSearchQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebStatsTableQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebStatsTableQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebTrendsItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebTrendsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebTrendsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebVitalsPathBreakdownQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebVitalsPathBreakdownQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebVitalsPathBreakdownResult/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebVitalsPathBreakdownResultItem/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebVitalsQuery/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WeeklyDigestResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WelcomeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WoWChange/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WorkflowVariablePropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogAttributeEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogAttributeValue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogEntry/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogPropertyFilter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsAttributesResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsCountRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsCountResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsQueryRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsQueryResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsServiceAggregate/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsServicesRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsServicesResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsServicesSparklineBucket/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsSparklineBucket/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsSparklineRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsSparklineResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_LogsValuesResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_SymbolSetDownloadResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_User/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_WelcomeInviter/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_WelcomePopularDashboard/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_WelcomeRecentActivity/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_WelcomeSuggestedStep/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/_WelcomeTeamMember/required"
+    }
+  ]
+}

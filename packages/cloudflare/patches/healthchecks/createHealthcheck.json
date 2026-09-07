@@ -1,0 +1,42 @@
+{
+  "description": "Align healthchecks#Create with distilled cloudflare/healthchecks createHealthcheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#Create",
+      "path": "/shapes/com.cloudflare.healthchecks#CreateHealthcheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#CreateRequest",
+      "path": "/shapes/com.cloudflare.healthchecks#CreateHealthcheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#CreateHealthcheck/input/target",
+      "value": "com.cloudflare.healthchecks#CreateHealthcheckRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#CreateResponse",
+      "path": "/shapes/com.cloudflare.healthchecks#CreateHealthcheckResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#CreateHealthcheck/output/target",
+      "value": "com.cloudflare.healthchecks#CreateHealthcheckResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.healthchecks#CreateHealthcheck/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.healthchecks#HealthcheckAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.healthchecks#Forbidden"
+        }
+      ]
+    }
+  ]
+}

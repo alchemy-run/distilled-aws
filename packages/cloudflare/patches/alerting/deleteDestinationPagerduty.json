@@ -1,0 +1,29 @@
+{
+  "description": "Align alerting#DestinationsPagerdutyDelete with distilled cloudflare/alerting deleteDestinationPagerduty",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyDelete",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationPagerduty"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyDeleteRequest",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationPagerdutyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationPagerduty/input/target",
+      "value": "com.cloudflare.alerting#DeleteDestinationPagerdutyRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationPagerduty/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "description": "Key dictionary / op aliases for filters (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

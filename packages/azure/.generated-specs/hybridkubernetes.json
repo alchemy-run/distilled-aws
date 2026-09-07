@@ -1,0 +1,2211 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredential": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredentialRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#CredentialResults"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}/listClusterUserCredential",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Gets cluster user credentials of a connected cluster\n\nGets cluster user credentials of the connected cluster with a specified resource group and name.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#CredentialResults": {
+      "type": "structure",
+      "members": {
+        "hybridConnectionConfig": {
+          "target": "com.azure.hybridkubernetes#HybridConnectionConfig",
+          "traits": {
+            "smithy.api#documentation": "Contains the REP (rendezvous endpoint) and “Sender” access token."
+          }
+        },
+        "kubeconfigs": {
+          "target": "com.azure.hybridkubernetes#CredentialResultsKubeconfigsList",
+          "traits": {
+            "smithy.api#documentation": "Base64-encoded Kubernetes configuration file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of credential result response."
+      }
+    },
+    "com.azure.hybridkubernetes#CredentialResultsKubeconfigsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#CredentialResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "Base64-encoded Kubernetes configuration file."
+      }
+    },
+    "com.azure.hybridkubernetes#CredentialResult": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the credential."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64-encoded Kubernetes configuration file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The credential result response."
+      }
+    },
+    "com.azure.hybridkubernetes#HybridConnectionConfig": {
+      "type": "structure",
+      "members": {
+        "expirationTime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when this token will be expired."
+          }
+        },
+        "hybridConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the connection"
+          }
+        },
+        "relay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the relay."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sender access token"
+          }
+        },
+        "relayTid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "TenantID of the relay"
+          }
+        },
+        "relayType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of relay"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the REP (rendezvous endpoint) and “Sender” access token."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredentialRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Kubernetes cluster on which get is called."
+          }
+        },
+        "authenticationMethod": {
+          "target": "com.azure.hybridkubernetes#AuthenticationMethod",
+          "traits": {
+            "smithy.api#documentation": "The mode of client authentication.",
+            "smithy.api#required": {}
+          }
+        },
+        "clientProxy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean value to indicate whether the request is for client side proxy or not",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#AuthenticationMethod": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Token"
+          }
+        },
+        "AAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAD"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mode of client authentication."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Delete a connected cluster.\n\nDelete a connected cluster, removing the tracked resource in Azure Resource Manager (ARM).",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Kubernetes cluster on which get is called."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Updates a connected cluster.\n\nAPI to update certain properties of the connected cluster resource",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridkubernetes#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Describes the connected cluster resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the connected cluster.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of connected cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterKind": {
+      "type": "enum",
+      "members": {
+        "PROVISIONEDCLUSTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProvisionedCluster"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates the kind of Arc connected cluster based on host infrastructure."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal id of connected cluster identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant id associated with the connected cluster. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the connected cluster. The type 'SystemAssigned, includes a system created identity. The type 'None' means no identity is assigned to the connected cluster.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity used for the connected cluster. The type 'SystemAssigned, includes a system created identity. The type 'None' means no identity is assigned to the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterProperties": {
+      "type": "structure",
+      "members": {
+        "agentPublicKeyCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64 encoded public certificate used by the agent to do the initial handshake to the backend services in Azure.",
+            "smithy.api#required": {}
+          }
+        },
+        "kubernetesVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kubernetes version of the connected cluster resource"
+          }
+        },
+        "totalNodeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of nodes present in the connected cluster resource"
+          }
+        },
+        "totalCoreCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of CPU cores present in the connected cluster resource"
+          }
+        },
+        "agentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the agent running on the connected cluster resource"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hybridkubernetes#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the connected cluster resource."
+          }
+        },
+        "distribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kubernetes distribution running on this connected cluster."
+          }
+        },
+        "distributionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kubernetes distribution version on this connected cluster."
+          }
+        },
+        "infrastructure": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The infrastructure on which the Kubernetes cluster represented by this connected cluster is running on."
+          }
+        },
+        "offering": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connected cluster offering"
+          }
+        },
+        "managedIdentityCertificateExpirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration time of the managed identity certificate"
+          }
+        },
+        "lastConnectivityTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time representing the last instance when heart beat was received from the cluster"
+          }
+        },
+        "connectivityStatus": {
+          "target": "com.azure.hybridkubernetes#ConnectivityStatus",
+          "traits": {
+            "smithy.api#documentation": "Represents the connectivity status of the connected cluster."
+          }
+        },
+        "privateLinkState": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesPrivateLinkState",
+          "traits": {
+            "smithy.api#documentation": "Property which describes the state of private link on a connected cluster resource."
+          }
+        },
+        "privateLinkScopeResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is populated only if privateLinkState is enabled. The resource id of the private link scope this connected cluster is assigned to, if any."
+          }
+        },
+        "azureHybridBenefit": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesAzureHybridBenefit",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
+          }
+        },
+        "aadProfile": {
+          "target": "com.azure.hybridkubernetes#AadProfile",
+          "traits": {
+            "smithy.api#documentation": "AAD profile for the connected cluster."
+          }
+        },
+        "arcAgentProfile": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfile",
+          "traits": {
+            "smithy.api#documentation": "Arc agentry configuration for the provisioned cluster."
+          }
+        },
+        "securityProfile": {
+          "target": "com.azure.hybridkubernetes#SecurityProfile",
+          "traits": {
+            "smithy.api#documentation": "Security profile for the connected cluster."
+          }
+        },
+        "oidcIssuerProfile": {
+          "target": "com.azure.hybridkubernetes#OidcIssuerProfile",
+          "traits": {
+            "smithy.api#documentation": "Open ID Connect (OIDC) Issuer Profile for the connected cluster."
+          }
+        },
+        "gateway": {
+          "target": "com.azure.hybridkubernetes#Gateway",
+          "traits": {
+            "smithy.api#documentation": "Details of the gateway used by the Arc router for connectivity.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "arcAgentryConfigurations": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesArcAgentryConfigurationsList",
+          "traits": {
+            "smithy.api#documentation": "Configuration settings for customizing the behavior of the connected cluster.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "miscellaneousProperties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesMiscellaneousPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "More properties related to the Connected Cluster"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesMiscellaneousPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "More properties related to the Connected Cluster"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesArcAgentryConfigurationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#ArcAgentryConfigurations"
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration settings for customizing the behavior of the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentryConfigurations": {
+      "type": "structure",
+      "members": {
+        "feature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the feature for the configuration setting."
+          }
+        },
+        "settings": {
+          "target": "com.azure.hybridkubernetes#ArcAgentryConfigurationsSettingsMap",
+          "traits": {
+            "smithy.api#documentation": "The configuration settings for the feature that do not contain any sensitive or secret information.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "protectedSettings": {
+          "target": "com.azure.hybridkubernetes#ArcAgentryConfigurationsProtectedSettingsMap",
+          "traits": {
+            "smithy.api#documentation": "The configuration settings for the feature that contain any sensitive or secret information.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.hybridkubernetes#ArcAgentryConfigurationsProtectedSettingsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration settings for the feature that contain any sensitive or secret information."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentryConfigurationsSettingsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration settings for the feature that do not contain any sensitive or secret information."
+      }
+    },
+    "com.azure.hybridkubernetes#Gateway": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the gateway for arc router connectivity is enabled."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.hybridkubernetes#OidcIssuerProfile": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable oidc issuer for workload identity integration."
+          }
+        },
+        "issuerUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issuer url for hybrid clusters connected to Arc used for the workload identity feature."
+          }
+        },
+        "selfHostedIssuerUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issuer url for public cloud clusters - AKS, EKS, GKE - used for the workload identity feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OIDC Issuer Profile specifies attributes for workload identity integration."
+      }
+    },
+    "com.azure.hybridkubernetes#SecurityProfile": {
+      "type": "structure",
+      "members": {
+        "workloadIdentity": {
+          "target": "com.azure.hybridkubernetes#SecurityProfileWorkloadIdentity",
+          "traits": {
+            "smithy.api#documentation": "The workload identity feature webhook."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Security Profile specifies attributes for cluster security features."
+      }
+    },
+    "com.azure.hybridkubernetes#SecurityProfileWorkloadIdentity": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable or disable the workload identity Webhook"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workload identity feature webhook."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfile": {
+      "type": "structure",
+      "members": {
+        "desiredAgentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the Arc agents to be installed on the cluster resource"
+          }
+        },
+        "agentAutoUpgrade": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileAgentAutoUpgrade",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the Arc agents on the be upgraded automatically to the latest version. Defaults to Enabled."
+          }
+        },
+        "systemComponents": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileSystemComponentsList",
+          "traits": {
+            "smithy.api#documentation": "List of system extensions that are installed on the cluster resource."
+          }
+        },
+        "agentErrors": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileAgentErrorsList",
+          "traits": {
+            "smithy.api#documentation": "List of arc agentry and system components errors on the cluster resource."
+          }
+        },
+        "agentState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Represents the current state of the Arc agentry and its dependent components."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the Arc Agent properties for the clusters."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileAgentErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#AgentError"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of arc agentry and system components errors on the cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#AgentError": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Agent error message."
+          }
+        },
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Severity of the error message."
+          }
+        },
+        "component": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Agent component where error message occured."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of error occured (UTC)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Agent Errors if any during agent or system component upgrade."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileSystemComponentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#SystemComponent"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of system extensions that are installed on the cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#SystemComponent": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the system extension"
+          }
+        },
+        "userSpecifiedVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the system extension to be installed on the cluster resource."
+          }
+        },
+        "majorVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Major Version of the system extension that is currently installed on the cluster resource."
+          }
+        },
+        "currentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the system extension that is currently installed on the cluster resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "System extensions and its current versions installed on the cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileAgentAutoUpgrade": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether the Arc agents on the be upgraded automatically to the latest version. Defaults to Enabled."
+      }
+    },
+    "com.azure.hybridkubernetes#AadProfile": {
+      "type": "structure",
+      "members": {
+        "enableAzureRBAC": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable Azure RBAC for Kubernetes authorization."
+          }
+        },
+        "adminGroupObjectIDs": {
+          "target": "com.azure.hybridkubernetes#AadProfileAdminGroupObjectIDsList",
+          "traits": {
+            "smithy.api#documentation": "The list of AAD group object IDs that will have admin role of the cluster."
+          }
+        },
+        "tenantID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD tenant ID to use for authentication. If not specified, will use the tenant of the deployment subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AAD Profile specifies attributes for Azure Active Directory integration."
+      }
+    },
+    "com.azure.hybridkubernetes#AadProfileAdminGroupObjectIDsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of AAD group object IDs that will have admin role of the cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesAzureHybridBenefit": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "True"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "False"
+          }
+        },
+        "NOTAPPLICABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotApplicable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesPrivateLinkState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property which describes the state of private link on a connected cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectivityStatus": {
+      "type": "enum",
+      "members": {
+        "CONNECTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Connecting"
+          }
+        },
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Connected"
+          }
+        },
+        "OFFLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Offline"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "AGENTNOTINSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AgentNotInstalled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the connectivity status of the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment state of connectedClusters."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridkubernetes#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.hybridkubernetes#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.hybridkubernetes#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.hybridkubernetes#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.hybridkubernetes#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Kubernetes cluster on which get is called."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPatchProperties",
+          "traits": {
+            "smithy.api#documentation": "Describes the connected cluster resource properties that can be updated during PATCH operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPatchProperties": {
+      "type": "structure",
+      "members": {
+        "distribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Represents the distribution of the connected cluster"
+          }
+        },
+        "distributionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Represents the Kubernetes distribution version on this connected cluster."
+          }
+        },
+        "azureHybridBenefit": {
+          "target": "com.azure.hybridkubernetes#AzureHybridBenefit",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
+          }
+        },
+        "gateway": {
+          "target": "com.azure.hybridkubernetes#Gateway",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether Gateway is enabled for the connected cluster resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties which can be patched on the connected cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#AzureHybridBenefit": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "True"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "False"
+          }
+        },
+        "NOTAPPLICABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotApplicable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Register a new Kubernetes cluster with Azure Resource Manager.\n\nAPI to register a new Kubernetes cluster and create or replace a connected cluster tracked resource in Azure Resource Manager (ARM).",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridkubernetes#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Describes the connected cluster resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the connected cluster.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of connected cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Kubernetes cluster on which get is called."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Describes the connected cluster resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The identity of the connected cluster.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of connected cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterIdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentityInputType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the connected cluster. The type 'SystemAssigned, includes a system created identity. The type 'None' means no identity is assigned to the connected cluster.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterIdentityInputType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity used for the connected cluster. The type 'SystemAssigned, includes a system created identity. The type 'None' means no identity is assigned to the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "agentPublicKeyCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64 encoded public certificate used by the agent to do the initial handshake to the backend services in Azure.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hybridkubernetes#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the connected cluster resource."
+          }
+        },
+        "distribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kubernetes distribution running on this connected cluster."
+          }
+        },
+        "distributionVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kubernetes distribution version on this connected cluster."
+          }
+        },
+        "infrastructure": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The infrastructure on which the Kubernetes cluster represented by this connected cluster is running on."
+          }
+        },
+        "privateLinkState": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesInputPrivateLinkState",
+          "traits": {
+            "smithy.api#documentation": "Property which describes the state of private link on a connected cluster resource."
+          }
+        },
+        "privateLinkScopeResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is populated only if privateLinkState is enabled. The resource id of the private link scope this connected cluster is assigned to, if any."
+          }
+        },
+        "azureHybridBenefit": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesInputAzureHybridBenefit",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
+          }
+        },
+        "aadProfile": {
+          "target": "com.azure.hybridkubernetes#AadProfile",
+          "traits": {
+            "smithy.api#documentation": "AAD profile for the connected cluster."
+          }
+        },
+        "arcAgentProfile": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Arc agentry configuration for the provisioned cluster."
+          }
+        },
+        "securityProfile": {
+          "target": "com.azure.hybridkubernetes#SecurityProfile",
+          "traits": {
+            "smithy.api#documentation": "Security profile for the connected cluster."
+          }
+        },
+        "oidcIssuerProfile": {
+          "target": "com.azure.hybridkubernetes#OidcIssuerProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Open ID Connect (OIDC) Issuer Profile for the connected cluster."
+          }
+        },
+        "gateway": {
+          "target": "com.azure.hybridkubernetes#Gateway",
+          "traits": {
+            "smithy.api#documentation": "Details of the gateway used by the Arc router for connectivity.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "arcAgentryConfigurations": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterPropertiesInputArcAgentryConfigurationsList",
+          "traits": {
+            "smithy.api#documentation": "Configuration settings for customizing the behavior of the connected cluster.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesInputArcAgentryConfigurationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#ArcAgentryConfigurations"
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration settings for customizing the behavior of the connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#OidcIssuerProfileInput": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable oidc issuer for workload identity integration."
+          }
+        },
+        "selfHostedIssuerUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issuer url for public cloud clusters - AKS, EKS, GKE - used for the workload identity feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OIDC Issuer Profile specifies attributes for workload identity integration."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileInput": {
+      "type": "structure",
+      "members": {
+        "desiredAgentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the Arc agents to be installed on the cluster resource"
+          }
+        },
+        "agentAutoUpgrade": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileInputAgentAutoUpgrade",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the Arc agents on the be upgraded automatically to the latest version. Defaults to Enabled."
+          }
+        },
+        "systemComponents": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileInputSystemComponentsList",
+          "traits": {
+            "smithy.api#documentation": "List of system extensions that are installed on the cluster resource."
+          }
+        },
+        "agentErrors": {
+          "target": "com.azure.hybridkubernetes#ArcAgentProfileInputAgentErrorsList",
+          "traits": {
+            "smithy.api#documentation": "List of arc agentry and system components errors on the cluster resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the Arc Agent properties for the clusters."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileInputAgentErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#AgentErrorInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of arc agentry and system components errors on the cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#AgentErrorInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Agent Errors if any during agent or system component upgrade."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileInputSystemComponentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#SystemComponentInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of system extensions that are installed on the cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#SystemComponentInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the system extension"
+          }
+        },
+        "userSpecifiedVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the system extension to be installed on the cluster resource."
+          }
+        },
+        "majorVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Major Version of the system extension that is currently installed on the cluster resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "System extensions and its current versions installed on the cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#ArcAgentProfileInputAgentAutoUpgrade": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether the Arc agents on the be upgraded automatically to the latest version. Defaults to Enabled."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesInputAzureHybridBenefit": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "True"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "False"
+          }
+        },
+        "NOTAPPLICABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotApplicable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterPropertiesInputPrivateLinkState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property which describes the state of private link on a connected cluster resource."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Get the properties of the specified connected cluster.\n\nReturns the properties of the specified connected cluster, including name, identity, properties, and additional cluster details.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridkubernetes#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Describes the connected cluster resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the connected cluster.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of connected cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Kubernetes cluster on which get is called."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Lists all connected clusters in the given Resource Group\n\nAPI to enumerate registered connected K8s clusters under a Resource Group",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterListValueList",
+          "traits": {
+            "smithy.api#documentation": "The ConnectedCluster items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The paginated list of connected Clusters"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#ConnectedCluster"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ConnectedCluster items on this page"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedCluster": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hybridkubernetes#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Describes the connected cluster resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the connected cluster.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of connected cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a connected cluster."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#ConnectedClusterList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Kubernetes/connectedClusters",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Lists all connected clusters in the given Subscription\n\nAPI to enumerate registered connected K8s clusters under a Subscription",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#ConnectedClusterListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hybridkubernetes#OperationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.hybridkubernetes#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Kubernetes/operations",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.hybridkubernetes#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hybridkubernetes#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of connected cluster API operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to fetch the next page of connected cluster API operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The paginated list of connected cluster API operations."
+      }
+    },
+    "com.azure.hybridkubernetes#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hybridkubernetes#OperationListValueItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of connected cluster API operations."
+      }
+    },
+    "com.azure.hybridkubernetes#OperationListValueItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.hybridkubernetes#OperationListValueItemDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.hybridkubernetes#OperationListValueItemOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.hybridkubernetes#OperationListValueItemActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.hybridkubernetes#OperationListValueItemActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.hybridkubernetes#OperationListValueItemOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.hybridkubernetes#OperationListValueItemDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.hybridkubernetes#Hybridkubernetes": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredential"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterDelete"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdate"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterGet"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#ConnectedClusterListBySubscription"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#OperationsGet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Hybridkubernetes",
+        "smithy.api#documentation": "Azure Hybridkubernetes API — merged from the hybridkubernetes resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

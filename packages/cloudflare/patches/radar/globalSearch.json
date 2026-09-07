@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#SearchGlobal with distilled cloudflare/radar globalSearch",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#SearchGlobal",
+      "path": "/shapes/com.cloudflare.radar#GlobalSearch"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#SearchGlobalRequest",
+      "path": "/shapes/com.cloudflare.radar#GlobalSearchRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GlobalSearch/input/target",
+      "value": "com.cloudflare.radar#GlobalSearchRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#SearchGlobalResponse",
+      "path": "/shapes/com.cloudflare.radar#GlobalSearchResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GlobalSearch/output/target",
+      "value": "com.cloudflare.radar#GlobalSearchResponse"
+    }
+  ]
+}

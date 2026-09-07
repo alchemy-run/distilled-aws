@@ -1,0 +1,63 @@
+{
+  "description": "flag variations are freeform per-variation values (Record<string, unknown> in alchemy props)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#UntypedVariationsMap",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlagRequest/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppFlagResponse/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#GetAppFlagResponse/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#AppsFlagsListResultItem/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlagRequest/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlagResponse/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#AppsFlagsChangelogListResultItemCase0After/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#AppsFlagsChangelogListResultItemCase1After/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#AppsFlagsChangelogListResultItemCase2After/members/variations/target",
+      "value": "com.cloudflare.flagship#UntypedVariationsMap"
+    }
+  ]
+}

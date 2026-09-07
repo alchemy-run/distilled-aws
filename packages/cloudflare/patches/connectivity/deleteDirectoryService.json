@@ -1,0 +1,32 @@
+{
+  "description": "Align connectivity#DirectoryServicesDelete with distilled cloudflare/connectivity deleteDirectoryService",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesDelete",
+      "path": "/shapes/com.cloudflare.connectivity#DeleteDirectoryService"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesDeleteRequest",
+      "path": "/shapes/com.cloudflare.connectivity#DeleteDirectoryServiceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#DeleteDirectoryService/input/target",
+      "value": "com.cloudflare.connectivity#DeleteDirectoryServiceRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#DeleteDirectoryService/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.connectivity#VpcServiceNotFound"
+        },
+        {
+          "target": "com.cloudflare.connectivity#Forbidden"
+        }
+      ]
+    }
+  ]
+}

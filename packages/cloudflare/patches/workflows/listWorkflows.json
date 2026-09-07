@@ -1,0 +1,41 @@
+{
+  "description": "Align workflows#List with distilled cloudflare/workflows listWorkflows",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#List",
+      "path": "/shapes/com.cloudflare.workflows#ListWorkflows"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#ListRequest",
+      "path": "/shapes/com.cloudflare.workflows#ListWorkflowsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#ListWorkflows/input/target",
+      "value": "com.cloudflare.workflows#ListWorkflowsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#ListResponse",
+      "path": "/shapes/com.cloudflare.workflows#ListWorkflowsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#ListWorkflows/output/target",
+      "value": "com.cloudflare.workflows#ListWorkflowsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#ListWorkflows/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "structures": {
+    "Cluster": {
+      "members": {
+        "clusterEndpoint": { "optional": true }
+      }
+    }
+  }
+}

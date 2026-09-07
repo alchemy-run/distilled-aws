@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AiBotsTimeseries with distilled cloudflare/radar timeseriesAiBot",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiBotsTimeseries",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesAiBot"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiBotsTimeseriesRequest",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesAiBotRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesAiBot/input/target",
+      "value": "com.cloudflare.radar#TimeseriesAiBotRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiBotsTimeseriesResponse",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesAiBotResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesAiBot/output/target",
+      "value": "com.cloudflare.radar#TimeseriesAiBotResponse"
+    }
+  ]
+}

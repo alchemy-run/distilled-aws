@@ -1,0 +1,30 @@
+{
+  "description": "Align rulesets#RulesEditForZone with distilled cloudflare/rulesets patchRuleForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesEditForZone",
+      "path": "/shapes/com.cloudflare.rulesets#PatchRuleForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesEditForZoneRequest",
+      "path": "/shapes/com.cloudflare.rulesets#PatchRuleForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#PatchRuleForZone/input/target",
+      "value": "com.cloudflare.rulesets#PatchRuleForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesEditForZoneResponse",
+      "path": "/shapes/com.cloudflare.rulesets#PatchRuleForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#PatchRuleForZone/output/target",
+      "value": "com.cloudflare.rulesets#PatchRuleForZoneResponse"
+    }
+  ]
+}

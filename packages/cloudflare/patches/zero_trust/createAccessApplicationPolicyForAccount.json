@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessApplicationsPoliciesCreateForAccount with distilled cloudflare/zero-trust createAccessApplicationPolicyForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsPoliciesCreateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsPoliciesCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsPoliciesCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessApplicationPolicyForAccountResponse"
+    }
+  ]
+}

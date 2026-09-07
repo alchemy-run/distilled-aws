@@ -1,0 +1,44 @@
+{
+  "name": "@distilled.cloud/railway",
+  "version": "1.0.0-rc.8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alchemy-run/distilled",
+    "directory": "packages/railway"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "module": "src/index.ts",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "bun": "./src/index.ts",
+      "worker": "./src/index.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "convert": "bun scripts/convert.ts",
+    "generate": "bun scripts/generate.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "specs:fetch": "git submodule update --force --init --recursive --depth=1 specs/distilled-spec-railway && git -C specs/distilled-spec-railway checkout -- .",
+    "specs:update": "git -C specs/distilled-spec-railway fetch && git -C specs/distilled-spec-railway checkout main && git -C specs/distilled-spec-railway pull"
+  },
+  "dependencies": {
+    "@distilled.cloud/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:tooling",
+    "@types/node": "catalog:tooling",
+    "@effect/platform-bun": "catalog:effect"
+  },
+  "peerDependencies": {
+    "effect": "catalog:effect"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Align api_gateway#LabelsUserBulkCreate with distilled cloudflare/api-gateway bulkCreateLabelUsers",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserBulkCreate",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsers"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserBulkCreateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsers/input/target",
+      "value": "com.cloudflare.api_gateway#BulkCreateLabelUsersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserBulkCreateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsers/output/target",
+      "value": "com.cloudflare.api_gateway#BulkCreateLabelUsersResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsers/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateLabelUsers/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#LabelAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

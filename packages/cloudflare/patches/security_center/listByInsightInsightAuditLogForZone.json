@@ -1,0 +1,41 @@
+{
+  "description": "Align security_center#InsightsAuditLogsListByInsightForZone with distilled cloudflare/security-center listByInsightInsightAuditLogForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsAuditLogsListByInsightForZone",
+      "path": "/shapes/com.cloudflare.security_center#ListByInsightInsightAuditLogForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequest",
+      "path": "/shapes/com.cloudflare.security_center#ListByInsightInsightAuditLogForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#ListByInsightInsightAuditLogForZone/input/target",
+      "value": "com.cloudflare.security_center#ListByInsightInsightAuditLogForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResponse",
+      "path": "/shapes/com.cloudflare.security_center#ListByInsightInsightAuditLogForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#ListByInsightInsightAuditLogForZone/output/target",
+      "value": "com.cloudflare.security_center#ListByInsightInsightAuditLogForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.security_center#ListByInsightInsightAuditLogForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

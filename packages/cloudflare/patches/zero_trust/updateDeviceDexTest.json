@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DevicesDexTestsUpdate with distilled cloudflare/zero-trust updateDeviceDexTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceDexTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceDexTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceDexTest/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateDeviceDexTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceDexTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceDexTest/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateDeviceDexTestResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceDexTest/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DexTestNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

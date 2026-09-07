@@ -1,0 +1,43 @@
+{
+  "errorCategories": {
+    "ThrottlingException": ["ThrottlingError", "RetryableError"],
+    "RequestLimitExceeded": ["ThrottlingError", "RetryableError"],
+    "ProvisionedThroughputExceededException": [
+      "ThrottlingError",
+      "RetryableError"
+    ],
+    "InternalServerError": ["ServerError", "RetryableError"],
+    "LimitExceededException": ["QuotaError", "RetryableError"],
+    "ResourceInUseException": ["ConflictError", "RetryableError"],
+    "TableInUseException": ["ConflictError", "RetryableError"],
+    "ContinuousBackupsUnavailableException": [
+      "ConflictError",
+      "RetryableError"
+    ],
+    "ResourceNotFoundException": ["NotFoundError"],
+    "TableNotFoundException": ["NotFoundError"],
+    "BackupNotFoundException": ["NotFoundError"],
+    "ExportNotFoundException": ["NotFoundError"],
+    "GlobalTableNotFoundException": ["NotFoundError"],
+    "ImportNotFoundException": ["NotFoundError"],
+    "PolicyNotFoundException": ["NotFoundError"],
+    "ReplicaNotFoundException": ["NotFoundError"],
+    "IndexNotFoundException": ["NotFoundError"],
+    "ConditionalCheckFailedException": ["ConflictError"],
+    "TransactionConflictException": ["ConflictError", "RetryableError"],
+    "TransactionInProgressException": ["ConflictError", "RetryableError"],
+    "DuplicateItemException": ["ConflictError"],
+    "BackupInUseException": ["ConflictError"],
+    "ExportConflictException": ["ConflictError"],
+    "ImportConflictException": ["ConflictError"],
+    "ReplicaAlreadyExistsException": ["ConflictError"],
+    "GlobalTableAlreadyExistsException": ["ConflictError"],
+    "TableAlreadyExistsException": ["ConflictError"],
+    "ItemCollectionSizeLimitExceededException": ["QuotaError"],
+    "InvalidEndpointException": ["BadRequestError"],
+    "InvalidExportTimeException": ["BadRequestError"],
+    "InvalidRestoreTimeException": ["BadRequestError"],
+    "IdempotentParameterMismatchException": ["BadRequestError"],
+    "PointInTimeRecoveryUnavailableException": ["BadRequestError"]
+  }
+}

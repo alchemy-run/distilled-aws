@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesDeploymentGroupsDelete with distilled cloudflare/zero-trust deleteDeviceDeploymentGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDeploymentGroupsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDeploymentGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDeploymentGroupsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDeploymentGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDeploymentGroup/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceDeploymentGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDeploymentGroupsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDeploymentGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDeploymentGroup/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceDeploymentGroupResponse"
+    }
+  ]
+}

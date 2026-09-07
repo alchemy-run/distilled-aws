@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#DatasetsGet with distilled cloudflare/ai-gateway getDataset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DatasetsGet",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetDataset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DatasetsGetRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetDatasetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetDataset/input/target",
+      "value": "com.cloudflare.ai_gateway#GetDatasetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DatasetsGetResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetDatasetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetDataset/output/target",
+      "value": "com.cloudflare.ai_gateway#GetDatasetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetDataset/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#DatasetNotFound"
+        }
+      ]
+    }
+  ]
+}

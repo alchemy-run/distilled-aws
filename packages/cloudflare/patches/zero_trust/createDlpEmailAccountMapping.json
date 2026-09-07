@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEmailAccountMappingCreate with distilled cloudflare/zero-trust createDlpEmailAccountMapping",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailAccountMappingCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailAccountMapping"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailAccountMappingCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailAccountMappingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailAccountMapping/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpEmailAccountMappingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailAccountMappingCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailAccountMappingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailAccountMapping/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpEmailAccountMappingResponse"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align abuse_reports#MitigationsReview with distilled cloudflare/abuse-reports reviewMitigation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#MitigationsReview",
+      "path": "/shapes/com.cloudflare.abuse_reports#ReviewMitigation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#MitigationsReviewRequest",
+      "path": "/shapes/com.cloudflare.abuse_reports#ReviewMitigationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.abuse_reports#ReviewMitigation/input/target",
+      "value": "com.cloudflare.abuse_reports#ReviewMitigationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#MitigationsReviewResponse",
+      "path": "/shapes/com.cloudflare.abuse_reports#ReviewMitigationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.abuse_reports#ReviewMitigation/output/target",
+      "value": "com.cloudflare.abuse_reports#ReviewMitigationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.abuse_reports#ReviewMitigation/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

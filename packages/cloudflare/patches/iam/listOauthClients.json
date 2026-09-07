@@ -1,0 +1,38 @@
+{
+  "description": "Align iam#OauthClientsList with distilled cloudflare/iam listOauthClients",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsList",
+      "path": "/shapes/com.cloudflare.iam#ListOauthClients"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsListRequest",
+      "path": "/shapes/com.cloudflare.iam#ListOauthClientsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListOauthClients/input/target",
+      "value": "com.cloudflare.iam#ListOauthClientsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsListResponse",
+      "path": "/shapes/com.cloudflare.iam#ListOauthClientsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListOauthClients/output/target",
+      "value": "com.cloudflare.iam#ListOauthClientsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListOauthClients/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

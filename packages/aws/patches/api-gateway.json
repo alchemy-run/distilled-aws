@@ -1,0 +1,14 @@
+{
+  "structures": {
+    "ApiKey": {
+      "members": {
+        "value": { "sensitive": true }
+      }
+    },
+    "CreateApiKeyRequest": {
+      "members": {
+        "value": { "sensitive": true }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "description": "privateNetworkEndpointNameAvailable returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#PrivateNetworkEndpointNameAvailableRequest/traits/com.railway.graphql#operation/query",
+      "value": "query privateNetworkEndpointNameAvailable($environmentId: String!, $prefix: String!, $privateNetworkId: String!) {\n  privateNetworkEndpointNameAvailable(environmentId: $environmentId, prefix: $prefix, privateNetworkId: $privateNetworkId)\n}"
+    }
+  ]
+}

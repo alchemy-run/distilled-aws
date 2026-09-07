@@ -1,0 +1,42 @@
+{
+  "description": "Align intel#IndicatorFeedsPermissionsDelete with distilled cloudflare/intel deleteIndicatorFeedPermission",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsDelete",
+      "path": "/shapes/com.cloudflare.intel#DeleteIndicatorFeedPermission"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsDeleteRequest",
+      "path": "/shapes/com.cloudflare.intel#DeleteIndicatorFeedPermissionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#DeleteIndicatorFeedPermission/input/target",
+      "value": "com.cloudflare.intel#DeleteIndicatorFeedPermissionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsDeleteResponse",
+      "path": "/shapes/com.cloudflare.intel#DeleteIndicatorFeedPermissionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#DeleteIndicatorFeedPermission/output/target",
+      "value": "com.cloudflare.intel#DeleteIndicatorFeedPermissionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#DeleteIndicatorFeedPermission/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedNotFound"
+        },
+        {
+          "target": "com.cloudflare.intel#Forbidden"
+        }
+      ]
+    }
+  ]
+}

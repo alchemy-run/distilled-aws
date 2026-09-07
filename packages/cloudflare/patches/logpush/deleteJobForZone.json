@@ -1,0 +1,39 @@
+{
+  "description": "Align logpush#JobsDeleteForZone with distilled cloudflare/logpush deleteJobForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsDeleteForZone",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsDeleteForZoneRequest",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForZone/input/target",
+      "value": "com.cloudflare.logpush#DeleteJobForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsDeleteForZoneResponse",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForZone/output/target",
+      "value": "com.cloudflare.logpush#DeleteJobForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logpush#JobNotFound"
+        }
+      ]
+    }
+  ]
+}

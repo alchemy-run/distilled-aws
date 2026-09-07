@@ -1,0 +1,626 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.observability#GetObservabilityConfigurationProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.observability#GetObservabilityConfigurationProjectsResponseDisabledProjectsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "disabledAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilityConfigurationProjectsResponseDisabledProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.observability#GetObservabilityConfigurationProjectsResponseDisabledProjectsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilityConfigurationProjectsResponse": {
+      "type": "structure",
+      "members": {
+        "disabledProjects": {
+          "target": "com.vercel.observability#GetObservabilityConfigurationProjectsResponseDisabledProjectsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.observability#GetObservabilityConfigurationProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.observability#GetObservabilityConfigurationProjectsRequest"
+      },
+      "output": {
+        "target": "com.vercel.observability#GetObservabilityConfigurationProjectsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.observability#BadRequest"
+        },
+        {
+          "target": "com.vercel.observability#Forbidden"
+        },
+        {
+          "target": "com.vercel.observability#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/observability/manage/configuration/projects",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists disabled Observability Plus projects\n\nLists the projects that are currently configured as disabled for Observability Plus on a team."
+      }
+    },
+    "com.vercel.observability#UpdateObservabilityConfigurationProjectRequest": {
+      "type": "structure",
+      "members": {
+        "projectIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or name of the project to update"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Observability Plus should be disabled for the project",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.observability#UpdateObservabilityConfigurationProjectResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "disabledAt": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.observability#UpdateObservabilityConfigurationProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.observability#UpdateObservabilityConfigurationProjectRequest"
+      },
+      "output": {
+        "target": "com.vercel.observability#UpdateObservabilityConfigurationProjectResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.observability#BadRequest"
+        },
+        {
+          "target": "com.vercel.observability#Forbidden"
+        },
+        {
+          "target": "com.vercel.observability#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v1/observability/manage/configuration/projects/{projectIdOrName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates a disabled Observability Plus project setting\n\nUpdates whether Observability Plus is disabled for a single project."
+      }
+    },
+    "com.vercel.observability#CreateObservabilityQueryRequestGroupByList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Dimensions to group results by. JSON dimensions support nested refs, for example event_data/checkout_step. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' or event_data/'some property''s/value'."
+      }
+    },
+    "com.vercel.observability#CreateObservabilityQueryRequestOrderDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Direction to order grouped results by. Defaults to desc."
+      }
+    },
+    "com.vercel.observability#CreateObservabilityQueryRequest": {
+      "type": "structure",
+      "members": {
+        "metric": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric id",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Owner or project scope for the query",
+            "smithy.api#required": {}
+          }
+        },
+        "aggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation function to apply. Some aggregations require a dimension: use <agg>/<dimension>, for example unique/visitor_id."
+          }
+        },
+        "groupBy": {
+          "target": "com.vercel.observability#CreateObservabilityQueryRequestGroupByList",
+          "traits": {
+            "smithy.api#documentation": "Dimensions to group results by. JSON dimensions support nested refs, for example event_data/checkout_step. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' or event_data/'some property''s/value'."
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter to apply to the query. JSON dimensions support nested refs, for example event_data/checkout_step eq 'payment'. Nested keys containing characters that OData cannot parse as an identifier, such as '-', spaces, quotes, or '/', must be wrapped in single quotes (escape embedded single quotes by doubling them), for example flags/'enable-comments-view' eq true or event_data/'some property''s/value' eq true."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rollup column to order grouped results by. Use the generated rollup key for the requested metric and aggregation. Defaults to the query engine count rollup."
+          }
+        },
+        "orderDirection": {
+          "target": "com.vercel.observability#CreateObservabilityQueryRequestOrderDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to order grouped results by. Defaults to desc."
+          }
+        },
+        "granularity": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Time bucket size"
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start timestamp"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End timestamp"
+          }
+        },
+        "bucketTimezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone (e.g. Europe/Paris) used only to align calendar buckets (1d/1mo) to that zone's day/month boundaries. startTime/endTime and all output timestamps are always UTC. No effect on sub-day granularities."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.observability#CreateObservabilityQueryResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.observability#CreateObservabilityQuery": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.observability#CreateObservabilityQueryRequest"
+      },
+      "output": {
+        "target": "com.vercel.observability#CreateObservabilityQueryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.observability#BadRequest"
+        },
+        {
+          "target": "com.vercel.observability#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.observability#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/observability/query",
+          "code": 200
+        }
+      }
+    },
+    "com.vercel.observability#GetObservabilitySchemaResponseMetricsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaResponseMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.observability#GetObservabilitySchemaResponseMetricsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaResponse": {
+      "type": "structure",
+      "members": {
+        "metrics": {
+          "target": "com.vercel.observability#GetObservabilitySchemaResponseMetricsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.observability#GetObservabilitySchema": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.vercel.observability#GetObservabilitySchemaResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.observability#BadRequest"
+        },
+        {
+          "target": "com.vercel.observability#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/observability/schema",
+          "code": 200
+        }
+      }
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdRequest": {
+      "type": "structure",
+      "members": {
+        "metricId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItemDimensionsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItemDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItemDimensionsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItemAggregationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "dimensions": {
+          "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItemDimensionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "aggregations": {
+          "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItemAggregationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "defaultAggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.observability#GetObservabilitySchemaByMetricId": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdRequest"
+      },
+      "output": {
+        "target": "com.vercel.observability#GetObservabilitySchemaByMetricIdResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.observability#BadRequest"
+        },
+        {
+          "target": "com.vercel.observability#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/observability/schema/{metricId}",
+          "code": 200
+        }
+      }
+    },
+    "com.vercel.observability#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.observability#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.observability#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.observability#PaymentRequired": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 402,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 402
+          }
+        ]
+      }
+    },
+    "com.vercel.observability#Observability": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.observability#GetObservabilityConfigurationProjects"
+        },
+        {
+          "target": "com.vercel.observability#UpdateObservabilityConfigurationProject"
+        },
+        {
+          "target": "com.vercel.observability#CreateObservabilityQuery"
+        },
+        {
+          "target": "com.vercel.observability#GetObservabilitySchema"
+        },
+        {
+          "target": "com.vercel.observability#GetObservabilitySchemaByMetricId"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

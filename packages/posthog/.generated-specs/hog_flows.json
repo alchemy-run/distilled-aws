@@ -1,0 +1,3727 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.hog_flows#HogFlowsListRequestStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "archived"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_at"
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "created_by"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowsListRequestStatus",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "updated_at"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#PaginatedHogFlowMinimalList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.hog_flows#PaginatedHogFlowMinimalListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowMinimal": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "version": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.hog_flows#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "trigger": {
+          "target": "smithy.api#Document"
+        },
+        "trigger_masking": {
+          "target": "smithy.api#Document"
+        },
+        "conversion": {
+          "target": "smithy.api#Document"
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum"
+        },
+        "edges": {
+          "target": "smithy.api#Document"
+        },
+        "actions": {
+          "target": "smithy.api#Document"
+        },
+        "abort_action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "variables": {
+          "target": "smithy.api#Document"
+        },
+        "billable_action_types": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "archived"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+      }
+    },
+    "com.posthog.hog_flows#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.hog_flows#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.hog_flows#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.hog_flows#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.hog_flows#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.hog_flows#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#ExitConditionEnum": {
+      "type": "enum",
+      "members": {
+        "EXIT_ON_CONVERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exit_on_conversion"
+          }
+        },
+        "EXIT_ON_TRIGGER_NOT_MATCHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exit_on_trigger_not_matched"
+          }
+        },
+        "EXIT_ON_TRIGGER_NOT_MATCHED_OR_CONVERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exit_on_trigger_not_matched_or_conversion"
+          }
+        },
+        "EXIT_ONLY_AT_END": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exit_only_at_end"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+      }
+    },
+    "com.posthog.hog_flows#PaginatedHogFlowMinimalListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowMinimal"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#PaginatedHogFlowMinimalList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowMasking": {
+      "type": "structure",
+      "members": {
+        "ttl": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seconds (60 to ~94M / 3y) to suppress repeat firings of the same hash.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Fire once per N matches of the same hash within ttl — a sampler: N=3 fires on the 1st, 4th, 7th… match. Omit to fire on the first match, then suppress repeats within ttl.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HogQL template defining the dedup/grouping key, e.g. '{person.id}' (once per person) within ttl."
+          }
+        },
+        "bytecode": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Auto-compiled from hash. Do not set."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowConversion": {
+      "type": "structure",
+      "members": {
+        "filters": {
+          "target": "com.posthog.hog_flows#HogFlowConversionFiltersList",
+          "traits": {
+            "smithy.api#documentation": "Property-based conversion conditions, as an ARRAY of property filters: [{key, value, operator, type: event|person|group}, ...]. Event-based goals do NOT go here — put them in 'events'. Empty array = any event within the window converts."
+          }
+        },
+        "events": {
+          "target": "com.posthog.hog_flows#HogFlowConversionEventsList",
+          "traits": {
+            "smithy.api#documentation": "Event-based conversion goals: [{filters: {events: [{id, name, type: 'events'}], ...}}]."
+          }
+        },
+        "window_minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Conversion window in minutes after a person enters the workflow. null = no explicit window.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bytecode": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Compiled server-side from 'filters'. Do not set; ignored if sent."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowConversionFiltersItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowConversionFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowConversionFiltersItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Property-based conversion conditions, as an ARRAY of property filters: [{key, value, operator, type: event|person|group}, ...]. Event-based goals do NOT go here — put them in 'events'. Empty array = any event within the window converts."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowConversionEvent": {
+      "type": "structure",
+      "members": {
+        "filters": {
+          "target": "com.posthog.hog_flows#HogFunctionFilters",
+          "traits": {
+            "smithy.api#documentation": "Event/action filters for this conversion event, same shape as trigger filters: {events: [{id, name, type: 'events', properties?: [<cond>]}], actions?: [...], properties?: [<cond>]}. bytecode is compiled server-side.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFilters": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.posthog.hog_flows#HogFunctionFiltersSourceEnum"
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFunctionFiltersActionsList"
+        },
+        "events": {
+          "target": "com.posthog.hog_flows#HogFunctionFiltersEventsList"
+        },
+        "data_warehouse": {
+          "target": "com.posthog.hog_flows#HogFunctionFiltersDataWarehouseList"
+        },
+        "properties": {
+          "target": "com.posthog.hog_flows#HogFunctionFiltersPropertiesList"
+        },
+        "bytecode": {
+          "target": "smithy.api#Document"
+        },
+        "transpiled": {
+          "target": "smithy.api#Document"
+        },
+        "filter_test_accounts": {
+          "target": "smithy.api#Boolean"
+        },
+        "bytecode_error": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersSourceEnum": {
+      "type": "enum",
+      "members": {
+        "EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "events"
+          }
+        },
+        "PERSON_UPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "person-updates"
+          }
+        },
+        "DATA_WAREHOUSE_TABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data-warehouse-table"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `events` - events\n* `person-updates` - person-updates\n* `data-warehouse-table` - data-warehouse-table"
+      }
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersActionsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFunctionFiltersActionsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersEventsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFunctionFiltersEventsItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersDataWarehouseItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersDataWarehouseList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFunctionFiltersDataWarehouseItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersPropertiesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFunctionFiltersPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFunctionFiltersPropertiesItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowConversionEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowConversionEvent"
+      },
+      "traits": {
+        "smithy.api#documentation": "Event-based conversion goals: [{filters: {events: [{id, name, type: 'events'}], ...}}]."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowEdge": {
+      "type": "structure",
+      "members": {
+        "to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target action id.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.hog_flows#HogFlowEdgeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "continue: fall-through (sequential or the no-match path of conditional_branch). branch: requires 'index' matching config.conditions[index].\n\n* `continue` - continue\n* `branch` - branch",
+            "smithy.api#required": {}
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required for type='branch'. conditional_branch: index into config.conditions[index]. wait_until_condition: use index:0 — it advances via the index:0 branch edge when it resolves (a condition match or an events entry firing)."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source action id.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowEdgeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CONTINUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "continue"
+          }
+        },
+        "BRANCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `continue` - continue\n* `branch` - branch"
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsCreateRequestEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique node ID within the workflow."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "on_error": {
+          "target": "com.posthog.hog_flows#OnErrorEnum",
+          "traits": {
+            "smithy.api#documentation": "On failure: continue (skip the action and proceed) or abort (stop the run).\n\n* `continue` - continue\n* `abort` - abort",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Created at (epoch ms). Frontend-managed."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Updated at (epoch ms). Frontend-managed."
+          }
+        },
+        "filters": {
+          "target": "com.posthog.hog_flows#HogFunctionFilters",
+          "traits": {
+            "smithy.api#documentation": "Property filters gating this action.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "trigger | function | function_email | function_sms | delay | conditional_branch | wait_until_condition | wait_until_time_window | random_cohort_branch | exit."
+          }
+        },
+        "config": {
+          "target": "com.posthog.hog_flows#HogFlowActionConfig",
+          "traits": {
+            "smithy.api#documentation": "Type-specific config keyed by action type. trigger: {type: event|webhook|manual|batch|schedule|tracking_pixel, filters?}. filters shape: {events: [{id, name, type:'events', properties:[<cond>]}], properties:[<cond>], actions:[...], filter_test_accounts:<bool>}. <cond>: {key, value, operator, type: event|person|group}. function*: {template_id, inputs: {<key>: {value: <str>}}}. Wrap values in {value:...} to enable hog templating ({person.x}, {event.x}); flat strings won't interpolate. Dictionary input values are template strings too — write booleans/numbers as single-expression templates ('{true}', '{42}'), which evaluate to the typed value. delay: {delay_duration: '<number><unit>'} where unit is m|h|d. Fractions OK ('0.5m'=30s; seconds unsupported). Per-unit max m<=60, h<=24, d<=30; values above are SILENTLY CLAMPED. Max 30d. conditional_branch: {conditions: [{filters}, ...]}. Index N matches the 'branch' edge with index:N. wait_until_condition: {condition: {filters}, events?: [{filters: {events: [{id, name, type: 'events'}], actions?: [...]}, name?}], max_wait_duration: <duration>} (same rules as delay). Continues when condition.filters match OR any events entry fires; each events entry must target at least one event or action. On resolution (a condition match or any events entry firing) it advances via the 'branch' edge with index:0; the max_wait_duration timeout falls through the 'continue' edge. exit: {reason}."
+          }
+        },
+        "output_variable": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Output variable definition for downstream actions."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#OnErrorEnum": {
+      "type": "enum",
+      "members": {
+        "CONTINUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "continue"
+          }
+        },
+        "ABORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abort"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `continue` - continue\n* `abort` - abort"
+      }
+    },
+    "com.posthog.hog_flows#HogFlowActionConfigCase0Map": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Config for every action type except wait_until_condition — see the field description for per-type shapes."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowActionConfigCase1Condition": {
+      "type": "structure",
+      "members": {
+        "filters": {
+          "target": "com.posthog.hog_flows#HogFunctionFilters",
+          "traits": {
+            "smithy.api#documentation": "Property conditions, e.g. {properties: [{key, value, operator, type}]}.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Property-based wait condition; continues when the person matches. A condition with no property filters is ignored — the wait then relies on 'events' and the max_wait_duration timeout."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowActionConfigCase1EventsItem": {
+      "type": "structure",
+      "members": {
+        "filters": {
+          "target": "com.posthog.hog_flows#HogFunctionFilters",
+          "traits": {
+            "smithy.api#documentation": "Event/action filters; the workflow wakes when a matching event fires. Must target at least one event or action (entries targeting neither are dropped).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional display name."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowActionConfigCase1EventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowActionConfigCase1EventsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Events to wait for: continues when ANY entry fires (OR'd with 'condition'). Each entry: {filters: {events: [{id, name, type: 'events'}], actions?: [...]}, name?}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowActionConfigCase1": {
+      "type": "structure",
+      "members": {
+        "condition": {
+          "target": "com.posthog.hog_flows#HogFlowActionConfigCase1Condition",
+          "traits": {
+            "smithy.api#documentation": "Property-based wait condition; continues when the person matches. A condition with no property filters is ignored — the wait then relies on 'events' and the max_wait_duration timeout."
+          }
+        },
+        "events": {
+          "target": "com.posthog.hog_flows#HogFlowActionConfigCase1EventsList",
+          "traits": {
+            "smithy.api#documentation": "Events to wait for: continues when ANY entry fires (OR'd with 'condition'). Each entry: {filters: {events: [{id, name, type: 'events'}], actions?: [...]}, name?}."
+          }
+        },
+        "max_wait_duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "'<number><unit>' with unit m|h|d, e.g. '30m' (same rules as delay).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Config for type='wait_until_condition'. Provide 'condition' and/or 'events' — an events-only wait (no condition) is valid."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowActionConfig": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.posthog.hog_flows#HogFlowActionConfigCase0Map"
+        },
+        "Case1": {
+          "target": "com.posthog.hog_flows#HogFlowActionConfigCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type-specific config keyed by action type. trigger: {type: event|webhook|manual|batch|schedule|tracking_pixel, filters?}. filters shape: {events: [{id, name, type:'events', properties:[<cond>]}], properties:[<cond>], actions:[...], filter_test_accounts:<bool>}. <cond>: {key, value, operator, type: event|person|group}. function*: {template_id, inputs: {<key>: {value: <str>}}}. Wrap values in {value:...} to enable hog templating ({person.x}, {event.x}); flat strings won't interpolate. Dictionary input values are template strings too — write booleans/numbers as single-expression templates ('{true}', '{42}'), which evaluate to the typed value. delay: {delay_duration: '<number><unit>'} where unit is m|h|d. Fractions OK ('0.5m'=30s; seconds unsupported). Per-unit max m<=60, h<=24, d<=30; values above are SILENTLY CLAMPED. Max 30d. conditional_branch: {conditions: [{filters}, ...]}. Index N matches the 'branch' edge with index:N. wait_until_condition: {condition: {filters}, events?: [{filters: {events: [{id, name, type: 'events'}], actions?: [...]}, name?}], max_wait_duration: <duration>} (same rules as delay). Continues when condition.filters match OR any events entry fires; each events entry must target at least one event or action. On resolution (a condition match or any events entry firing) it advances via the 'branch' edge with index:0; the max_wait_duration timeout falls through the 'continue' edge. exit: {reason}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsCreateRequestActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsCreateRequestVariablesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variable: {key, type: string|number|boolean, default}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsCreateRequestVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowsCreateRequestVariablesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workflow name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "draft (no execution), active (live), archived (disabled).\n\n* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "trigger_masking": {
+          "target": "com.posthog.hog_flows#HogFlowMasking",
+          "traits": {
+            "smithy.api#documentation": "Optional dedup/throttle on an already-matched trigger: {hash: <HogQL template>, ttl: <seconds, 60-94608000>, threshold?: <int>}. Without threshold: fire once per hash, then suppress repeats within ttl (hash '{person.id}' = once per person per ttl). With threshold N: fire once per N matches of the same hash — a sampler, the 1st then every Nth. Throttles an already-qualifying trigger; it doesn't decide who enters. Server compiles bytecode from hash; omit to disable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversion": {
+          "target": "com.posthog.hog_flows#HogFlowConversion",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal. filters: ARRAY of property conditions [{key, value, operator, type: event|person|group}]; events: event-based goals [{filters: {events: [...]}}]; window_minutes: minutes after entry. Required for exit_on_conversion / exit_on_trigger_not_matched_or_conversion. bytecode compiled server-side.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum",
+          "traits": {
+            "smithy.api#documentation": "exit_only_at_end: only at exit node (default). exit_on_conversion: also on conversion (needs 'conversion'; silent no-op otherwise). exit_on_trigger_not_matched: also when trigger filter stops matching. exit_on_trigger_not_matched_or_conversion: both (needs 'conversion').\n\n* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowsCreateRequestEdgesList",
+          "traits": {
+            "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+          }
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFlowsCreateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+          }
+        },
+        "variables": {
+          "target": "com.posthog.hog_flows#HogFlowsCreateRequestVariablesList",
+          "traits": {
+            "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlow": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workflow name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "draft (no execution), active (live), archived (disabled).\n\n* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.hog_flows#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "trigger": {
+          "target": "smithy.api#Document"
+        },
+        "trigger_masking": {
+          "target": "com.posthog.hog_flows#HogFlowMasking",
+          "traits": {
+            "smithy.api#documentation": "Optional dedup/throttle on an already-matched trigger: {hash: <HogQL template>, ttl: <seconds, 60-94608000>, threshold?: <int>}. Without threshold: fire once per hash, then suppress repeats within ttl (hash '{person.id}' = once per person per ttl). With threshold N: fire once per N matches of the same hash — a sampler, the 1st then every Nth. Throttles an already-qualifying trigger; it doesn't decide who enters. Server compiles bytecode from hash; omit to disable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversion": {
+          "target": "com.posthog.hog_flows#HogFlowConversion",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal. filters: ARRAY of property conditions [{key, value, operator, type: event|person|group}]; events: event-based goals [{filters: {events: [...]}}]; window_minutes: minutes after entry. Required for exit_on_conversion / exit_on_trigger_not_matched_or_conversion. bytecode compiled server-side.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum",
+          "traits": {
+            "smithy.api#documentation": "exit_only_at_end: only at exit node (default). exit_on_conversion: also on conversion (needs 'conversion'; silent no-op otherwise). exit_on_trigger_not_matched: also when trigger filter stops matching. exit_on_trigger_not_matched_or_conversion: both (needs 'conversion').\n\n* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowEdgesList",
+          "traits": {
+            "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+          }
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFlowActionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+          }
+        },
+        "abort_action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "variables": {
+          "target": "com.posthog.hog_flows#HogFlowVariablesList",
+          "traits": {
+            "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+          }
+        },
+        "billable_action_types": {
+          "target": "smithy.api#Document"
+        },
+        "schedules": {
+          "target": "com.posthog.hog_flows#HogFlowSchedulesList",
+          "traits": {
+            "smithy.api#documentation": "Recurring schedules attached to this workflow (read-only here; manage via the schedules sub-resource). A batch/schedule workflow only fires when it's active AND has an active schedule. Empty for non-scheduled workflows."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowVariablesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variable: {key, type: string|number|boolean, default}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowVariablesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowSchedule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iCalendar RRULE string (e.g. 'FREQ=DAILY;INTERVAL=1'). Must produce occurrences at most once per hour."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 datetime the schedule starts from."
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone for interpreting the RRULE (default 'UTC')."
+          }
+        },
+        "variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variable value overrides merged with the workflow defaults on each run."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowScheduleStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "active, paused, or completed (set once the RRULE's COUNT/UNTIL is exhausted).\n\n* `active` - Active\n* `paused` - Paused\n* `completed` - Completed"
+          }
+        },
+        "next_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Next scheduled fire time, computed by the scheduler.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowScheduleStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paused"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `active` - Active\n* `paused` - Paused\n* `completed` - Completed"
+      }
+    },
+    "com.posthog.hog_flows#HogFlowSchedulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowSchedule"
+      },
+      "traits": {
+        "smithy.api#documentation": "Recurring schedules attached to this workflow (read-only here; manage via the schedules sub-resource). A batch/schedule workflow only fires when it's active AND has an active schedule. Empty for non-scheduled workflows."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlow"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/hog_flows/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlow"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUpdateRequestEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUpdateRequestActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUpdateRequestVariablesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variable: {key, type: string|number|boolean, default}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUpdateRequestVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowsUpdateRequestVariablesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workflow name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "draft (no execution), active (live), archived (disabled).\n\n* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "trigger_masking": {
+          "target": "com.posthog.hog_flows#HogFlowMasking",
+          "traits": {
+            "smithy.api#documentation": "Optional dedup/throttle on an already-matched trigger: {hash: <HogQL template>, ttl: <seconds, 60-94608000>, threshold?: <int>}. Without threshold: fire once per hash, then suppress repeats within ttl (hash '{person.id}' = once per person per ttl). With threshold N: fire once per N matches of the same hash — a sampler, the 1st then every Nth. Throttles an already-qualifying trigger; it doesn't decide who enters. Server compiles bytecode from hash; omit to disable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversion": {
+          "target": "com.posthog.hog_flows#HogFlowConversion",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal. filters: ARRAY of property conditions [{key, value, operator, type: event|person|group}]; events: event-based goals [{filters: {events: [...]}}]; window_minutes: minutes after entry. Required for exit_on_conversion / exit_on_trigger_not_matched_or_conversion. bytecode compiled server-side.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum",
+          "traits": {
+            "smithy.api#documentation": "exit_only_at_end: only at exit node (default). exit_on_conversion: also on conversion (needs 'conversion'; silent no-op otherwise). exit_on_trigger_not_matched: also when trigger filter stops matching. exit_on_trigger_not_matched_or_conversion: both (needs 'conversion').\n\n* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowsUpdateRequestEdgesList",
+          "traits": {
+            "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+          }
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFlowsUpdateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+          }
+        },
+        "variables": {
+          "target": "com.posthog.hog_flows#HogFlowsUpdateRequestVariablesList",
+          "traits": {
+            "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlow"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsPartialUpdateRequestEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsPartialUpdateRequestActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsPartialUpdateRequestVariablesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variable: {key, type: string|number|boolean, default}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsPartialUpdateRequestVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowsPartialUpdateRequestVariablesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workflow name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "draft (no execution), active (live), archived (disabled).\n\n* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "trigger_masking": {
+          "target": "com.posthog.hog_flows#HogFlowMasking",
+          "traits": {
+            "smithy.api#documentation": "Optional dedup/throttle on an already-matched trigger: {hash: <HogQL template>, ttl: <seconds, 60-94608000>, threshold?: <int>}. Without threshold: fire once per hash, then suppress repeats within ttl (hash '{person.id}' = once per person per ttl). With threshold N: fire once per N matches of the same hash — a sampler, the 1st then every Nth. Throttles an already-qualifying trigger; it doesn't decide who enters. Server compiles bytecode from hash; omit to disable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversion": {
+          "target": "com.posthog.hog_flows#HogFlowConversion",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal. filters: ARRAY of property conditions [{key, value, operator, type: event|person|group}]; events: event-based goals [{filters: {events: [...]}}]; window_minutes: minutes after entry. Required for exit_on_conversion / exit_on_trigger_not_matched_or_conversion. bytecode compiled server-side.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum",
+          "traits": {
+            "smithy.api#documentation": "exit_only_at_end: only at exit node (default). exit_on_conversion: also on conversion (needs 'conversion'; silent no-op otherwise). exit_on_trigger_not_matched: also when trigger filter stops matching. exit_on_trigger_not_matched_or_conversion: both (needs 'conversion').\n\n* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowsPartialUpdateRequestEdgesList",
+          "traits": {
+            "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+          }
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFlowsPartialUpdateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+          }
+        },
+        "variables": {
+          "target": "com.posthog.hog_flows#HogFlowsPartialUpdateRequestVariablesList",
+          "traits": {
+            "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlow"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBatchJobsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowBatchJob": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowBatchJobStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Not currently tracked — stays at its initial value. Use the workflow logs/metrics endpoints for run outcome.\n\n* `waiting` - Waiting\n* `queued` - Queued\n* `active` - Active\n* `completed` - Completed\n* `cancelled` - Cancelled\n* `failed` - Failed"
+          }
+        },
+        "hog_flow": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the workflow this batch run belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "filters": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Audience snapshot the run fanned out to, taken from the workflow's batch trigger filters."
+          }
+        },
+        "variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variable value overrides applied to this run."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.hog_flows#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowBatchJobStatusEnum": {
+      "type": "enum",
+      "members": {
+        "WAITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waiting"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `waiting` - Waiting\n* `queued` - Queued\n* `active` - Active\n* `completed` - Completed\n* `cancelled` - Cancelled\n* `failed` - Failed"
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBatchJobsListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowBatchJob"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsBatchJobsListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.hog_flows#HogFlowsBatchJobsListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBatchJobsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsBatchJobsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowsBatchJobsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/batch_jobs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBatchJobsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowBatchJobStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Not currently tracked — stays at its initial value. Use the workflow logs/metrics endpoints for run outcome.\n\n* `waiting` - Waiting\n* `queued` - Queued\n* `active` - Active\n* `completed` - Completed\n* `cancelled` - Cancelled\n* `failed` - Failed"
+          }
+        },
+        "hog_flow": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the workflow this batch run belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "filters": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Audience snapshot the run fanned out to, taken from the workflow's batch trigger filters."
+          }
+        },
+        "variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variable value overrides applied to this run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBatchJobsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsBatchJobsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowBatchJob"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/batch_jobs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowGraphOperation": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "com.posthog.hog_flows#HogFlowGraphOperationOpEnum",
+          "traits": {
+            "smithy.api#documentation": "Graph edit. update_action {id, patch}: deep-merge patch into the action's fields (a null leaf deletes that key) — the surgical path for tweaking one config value. add_action {action}: append a full action node. remove_action {id}: delete a node and reconnect its incoming edges to its first outgoer. add_edge {edge} / remove_edge {edge}: add or delete one edge. replace_action_edges {id, edges}: replace this action's outgoing edges with the given set (use when adding/removing branch conditions); incoming edges are left intact.\n\n* `update_action` - update_action\n* `add_action` - add_action\n* `remove_action` - remove_action\n* `add_edge` - add_edge\n* `remove_edge` - remove_edge\n* `replace_action_edges` - replace_action_edges",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Action id. Required for update_action, remove_action, replace_action_edges."
+          }
+        },
+        "patch": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "update_action only. Partial action fields, deep-merged into the existing action; a null leaf deletes that key. e.g. {config: {inputs: {subject: {value: 'Hi'}}}} changes only that input."
+          }
+        },
+        "action": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "add_action only. A full action node {id, name, type, config, ...}; same shape as in actions."
+          }
+        },
+        "edge": {
+          "target": "com.posthog.hog_flows#HogFlowEdge",
+          "traits": {
+            "smithy.api#documentation": "add_edge / remove_edge only. The edge {from, to, type, index?}."
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowGraphOperationEdgesList",
+          "traits": {
+            "smithy.api#documentation": "replace_action_edges only. The complete set of the action's outgoing edges; incoming edges are preserved."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowGraphOperationOpEnum": {
+      "type": "enum",
+      "members": {
+        "UPDATE_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "update_action"
+          }
+        },
+        "ADD_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add_action"
+          }
+        },
+        "REMOVE_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove_action"
+          }
+        },
+        "ADD_EDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add_edge"
+          }
+        },
+        "REMOVE_EDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove_edge"
+          }
+        },
+        "REPLACE_ACTION_EDGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replace_action_edges"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `update_action` - update_action\n* `add_action` - add_action\n* `remove_action` - remove_action\n* `add_edge` - add_edge\n* `remove_edge` - remove_edge\n* `replace_action_edges` - replace_action_edges"
+      }
+    },
+    "com.posthog.hog_flows#HogFlowGraphOperationEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "replace_action_edges only. The complete set of the action's outgoing edges; incoming edges are preserved."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsGraphPartialUpdateRequestOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowGraphOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered graph edits applied atomically to a draft workflow: the stored graph is read, the ops are applied in order, the result is fully validated, and it's saved only if valid — otherwise the workflow is unchanged. Reference nodes/edges by id so you never resend the whole graph. The full updated workflow is returned."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsGraphPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "operations": {
+          "target": "com.posthog.hog_flows#HogFlowsGraphPartialUpdateRequestOperationsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered graph edits applied atomically to a draft workflow: the stored graph is read, the ops are applied in order, the result is fully validated, and it's saved only if valid — otherwise the workflow is unchanged. Reference nodes/edges by id so you never resend the whole graph. The full updated workflow is returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsGraphPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsGraphPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlow"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/graph/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Start of the time range, matched on scheduled time. Relative ('-7d', '-24h') or ISO 8601. Defaults to -7d — bounds the ClickHouse partition scan, so widen it explicitly for older runs."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "End of the time range, matched on scheduled time. Same format as 'after'. Defaults to now."
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "distinct_id",
+            "smithy.api#documentation": "Only return invocations triggered for this distinct_id (the person the run executed for)."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of invocations to return (1-500, default 50)."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Comma-separated invocation statuses to include, e.g. 'failed' or 'success,failed'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogInvocationResult": {
+      "type": "structure",
+      "members": {
+        "invocation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error_kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "person_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "finished_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "duration_ms": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attempts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_retry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieveResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogInvocationResult"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieveResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/invocation_results/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationResultRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "invocation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogInvocationResultDetail": {
+      "type": "structure",
+      "members": {
+        "invocation_globals": {
+          "target": "com.posthog.hog_flows#HogInvocationResultDetailInvocationGlobalsMap",
+          "traits": {
+            "smithy.api#documentation": "The triggering payload (event/person/groups) the run executed against, as a JSON object.",
+            "smithy.api#required": {}
+          }
+        },
+        "invocation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error_kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "person_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "finished_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "duration_ms": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attempts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_retry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogInvocationResultDetailInvocationGlobalsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The triggering payload (event/person/groups) the run executed against, as a JSON object."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationResultRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsInvocationResultRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogInvocationResultDetail"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/invocation_results/{invocation_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workflow name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "draft (no execution), active (live), archived (disabled).\n\n* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "trigger_masking": {
+          "target": "com.posthog.hog_flows#HogFlowMasking",
+          "traits": {
+            "smithy.api#documentation": "Optional dedup/throttle on an already-matched trigger: {hash: <HogQL template>, ttl: <seconds, 60-94608000>, threshold?: <int>}. Without threshold: fire once per hash, then suppress repeats within ttl (hash '{person.id}' = once per person per ttl). With threshold N: fire once per N matches of the same hash — a sampler, the 1st then every Nth. Throttles an already-qualifying trigger; it doesn't decide who enters. Server compiles bytecode from hash; omit to disable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversion": {
+          "target": "com.posthog.hog_flows#HogFlowConversion",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal. filters: ARRAY of property conditions [{key, value, operator, type: event|person|group}]; events: event-based goals [{filters: {events: [...]}}]; window_minutes: minutes after entry. Required for exit_on_conversion / exit_on_trigger_not_matched_or_conversion. bytecode compiled server-side.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum",
+          "traits": {
+            "smithy.api#documentation": "exit_only_at_end: only at exit node (default). exit_on_conversion: also on conversion (needs 'conversion'; silent no-op otherwise). exit_on_trigger_not_matched: also when trigger filter stops matching. exit_on_trigger_not_matched_or_conversion: both (needs 'conversion').\n\n* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowInputEdgesList",
+          "traits": {
+            "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+          }
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFlowInputActionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+          }
+        },
+        "variables": {
+          "target": "com.posthog.hog_flows#HogFlowInputVariablesList",
+          "traits": {
+            "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowInputEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowInputActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowInputVariablesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variable: {key, type: string|number|boolean, default}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowInputVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowInputVariablesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationsCreateRequestGlobalsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Test trigger payload, typically {event, person, groups}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "configuration": {
+          "target": "com.posthog.hog_flows#HogFlowInput",
+          "traits": {
+            "smithy.api#documentation": "Optional override; omit to use saved definition."
+          }
+        },
+        "globals": {
+          "target": "com.posthog.hog_flows#HogFlowsInvocationsCreateRequestGlobalsMap",
+          "traits": {
+            "smithy.api#documentation": "Test trigger payload, typically {event, person, groups}."
+          }
+        },
+        "mock_async_functions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True (default) mocks HTTP/email/SMS. False fires real side effects."
+          }
+        },
+        "current_action_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start execution from this action ID instead of the trigger. Each test run executes a single node and returns the next action id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsInvocationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsInvocationsCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/invocations/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsLogsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Only return entries after this ISO 8601 timestamp."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "Only return entries before this ISO 8601 timestamp."
+          }
+        },
+        "instance_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "instance_id",
+            "smithy.api#documentation": "Filter logs to a specific execution instance."
+          }
+        },
+        "level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "level",
+            "smithy.api#documentation": "Comma-separated log levels to include, e.g. 'WARN,ERROR'. Valid levels: DEBUG, LOG, INFO, WARN, ERROR."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of log entries to return (1-500, default 50)."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Case-insensitive substring search across log messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsLogsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsLogsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/logs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsRetrieveRequestBreakdownBy": {
+      "type": "enum",
+      "members": {
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "KIND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kind"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsRetrieveRequestInterval": {
+      "type": "enum",
+      "members": {
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Start of the time range. Accepts relative formats like '-7d', '-24h' or ISO 8601 timestamps. Defaults to '-7d'."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "End of the time range. Same format as 'after'. Defaults to now."
+          }
+        },
+        "breakdown_by": {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsRetrieveRequestBreakdownBy",
+          "traits": {
+            "smithy.api#httpQuery": "breakdown_by",
+            "smithy.api#documentation": "Group the series by metric 'name' or 'kind'. Defaults to 'kind'.\n\n* `name` - name\n* `kind` - kind"
+          }
+        },
+        "instance_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "instance_id",
+            "smithy.api#documentation": "Filter metrics to a specific execution instance."
+          }
+        },
+        "interval": {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsRetrieveRequestInterval",
+          "traits": {
+            "smithy.api#httpQuery": "interval",
+            "smithy.api#documentation": "Time bucket size for the series. One of: hour, day, week. Defaults to 'day'.\n\n* `hour` - hour\n* `day` - day\n* `week` - week"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "Comma-separated metric kinds to filter by, e.g. 'success,failure'."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Comma-separated metric names to filter by."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#AppMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.posthog.hog_flows#AppMetricsResponseLabelsList"
+        },
+        "series": {
+          "target": "com.posthog.hog_flows#AppMetricsResponseSeriesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#AppMetricsResponseLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#AppMetricSeries": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "values": {
+          "target": "com.posthog.hog_flows#AppMetricSeriesValuesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#AppMetricSeriesValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#AppMetricsResponseSeriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#AppMetricSeries"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsMetricsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#AppMetricsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/metrics/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieveRequestBreakdownBy": {
+      "type": "enum",
+      "members": {
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "KIND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kind"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieveRequestInterval": {
+      "type": "enum",
+      "members": {
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Start of the time range. Accepts relative formats like '-7d', '-24h' or ISO 8601 timestamps. Defaults to '-7d'."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "End of the time range. Same format as 'after'. Defaults to now."
+          }
+        },
+        "breakdown_by": {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieveRequestBreakdownBy",
+          "traits": {
+            "smithy.api#httpQuery": "breakdown_by",
+            "smithy.api#documentation": "Group the series by metric 'name' or 'kind'. Defaults to 'kind'.\n\n* `name` - name\n* `kind` - kind"
+          }
+        },
+        "instance_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "instance_id",
+            "smithy.api#documentation": "Filter metrics to a specific execution instance."
+          }
+        },
+        "interval": {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieveRequestInterval",
+          "traits": {
+            "smithy.api#httpQuery": "interval",
+            "smithy.api#documentation": "Time bucket size for the series. One of: hour, day, week. Defaults to 'day'.\n\n* `hour` - hour\n* `day` - day\n* `week` - week"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "Comma-separated metric kinds to filter by, e.g. 'success,failure'."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Comma-separated metric names to filter by."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#AppMetricsTotalsResponse": {
+      "type": "structure",
+      "members": {
+        "totals": {
+          "target": "com.posthog.hog_flows#AppMetricsTotalsResponseTotalsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#AppMetricsTotalsResponseTotalsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#AppMetricsTotalsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/metrics/totals/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowSchedule"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.hog_flows#HogFlowsSchedulesListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsSchedulesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowsSchedulesListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/schedules/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iCalendar RRULE string (e.g. 'FREQ=DAILY;INTERVAL=1'). Must produce occurrences at most once per hour."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 datetime the schedule starts from."
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone for interpreting the RRULE (default 'UTC')."
+          }
+        },
+        "variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variable value overrides merged with the workflow defaults on each run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsSchedulesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowSchedule"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/schedules/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "schedule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iCalendar RRULE string (e.g. 'FREQ=DAILY;INTERVAL=1'). Must produce occurrences at most once per hour."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 datetime the schedule starts from."
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone for interpreting the RRULE (default 'UTC')."
+          }
+        },
+        "variables": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Variable value overrides merged with the workflow defaults on each run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsSchedulesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowSchedule"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/schedules/{schedule_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this hog flow."
+          }
+        },
+        "schedule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsSchedulesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsSchedulesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/hog_flows/{id}/schedules/{schedule_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestEdgesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowEdge"
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestVariablesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variable: {key, type: string|number|boolean, default}."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestVariablesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Workflow name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description."
+          }
+        },
+        "status": {
+          "target": "com.posthog.hog_flows#HogFlowStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "draft (no execution), active (live), archived (disabled).\n\n* `draft` - Draft\n* `active` - Active\n* `archived` - Archived"
+          }
+        },
+        "trigger_masking": {
+          "target": "com.posthog.hog_flows#HogFlowMasking",
+          "traits": {
+            "smithy.api#documentation": "Optional dedup/throttle on an already-matched trigger: {hash: <HogQL template>, ttl: <seconds, 60-94608000>, threshold?: <int>}. Without threshold: fire once per hash, then suppress repeats within ttl (hash '{person.id}' = once per person per ttl). With threshold N: fire once per N matches of the same hash — a sampler, the 1st then every Nth. Throttles an already-qualifying trigger; it doesn't decide who enters. Server compiles bytecode from hash; omit to disable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversion": {
+          "target": "com.posthog.hog_flows#HogFlowConversion",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal. filters: ARRAY of property conditions [{key, value, operator, type: event|person|group}]; events: event-based goals [{filters: {events: [...]}}]; window_minutes: minutes after entry. Required for exit_on_conversion / exit_on_trigger_not_matched_or_conversion. bytecode compiled server-side.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exit_condition": {
+          "target": "com.posthog.hog_flows#ExitConditionEnum",
+          "traits": {
+            "smithy.api#documentation": "exit_only_at_end: only at exit node (default). exit_on_conversion: also on conversion (needs 'conversion'; silent no-op otherwise). exit_on_trigger_not_matched: also when trigger filter stops matching. exit_on_trigger_not_matched_or_conversion: both (needs 'conversion').\n\n* `exit_on_conversion` - Conversion\n* `exit_on_trigger_not_matched` - Trigger Not Matched\n* `exit_on_trigger_not_matched_or_conversion` - Trigger Not Matched Or Conversion\n* `exit_only_at_end` - Only At End"
+          }
+        },
+        "edges": {
+          "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestEdgesList",
+          "traits": {
+            "smithy.api#documentation": "Graph edges: [{from, to, type: 'continue'|'branch', index?}]. 'continue' = fall-through (sequential, or no-match path of conditional_branch). 'branch' requires 'index': matches config.conditions[index] on conditional_branch / wait_until_condition. Every non-exit action needs a reachable next action ('No next action found' otherwise)."
+          }
+        },
+        "actions": {
+          "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered action nodes. Exactly one type='trigger' required. Typically one type='exit' too."
+          }
+        },
+        "variables": {
+          "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequestVariablesList",
+          "traits": {
+            "smithy.api#documentation": "Workflow vars (key, type, default). Total <5KB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsBulkDeleteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlow"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/hog_flows/bulk_delete/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Start of the window, matched on metric time. Relative ('-7d', '-24h') or ISO 8601. Defaults to -7d."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "End of the window. Same format as 'after'. Defaults to now."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#WorkflowStatsRow": {
+      "type": "structure",
+      "members": {
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The workflow these counts are for.",
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Successful invocations in the window.",
+            "smithy.api#required": {}
+          }
+        },
+        "failed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Failed invocations in the window.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieveResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.hog_flows#WorkflowStatsRow"
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieveResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/hog_flows/metrics/global/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUserBlastRadiusCreateRequestFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Property filters to apply"
+      }
+    },
+    "com.posthog.hog_flows#HogFlowsUserBlastRadiusCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "filters": {
+          "target": "com.posthog.hog_flows#HogFlowsUserBlastRadiusCreateRequestFiltersMap",
+          "traits": {
+            "smithy.api#documentation": "Property filters to apply"
+          }
+        },
+        "group_type_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Group type index for group-based targeting",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.hog_flows#BlastRadius": {
+      "type": "structure",
+      "members": {
+        "affected": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of users matching the filters"
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of users"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum allowed audience size for batch triggers for this team."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.hog_flows#HogFlowsUserBlastRadiusCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.hog_flows#HogFlowsUserBlastRadiusCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.hog_flows#BlastRadius"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.hog_flows#BadRequest"
+        },
+        {
+          "target": "com.posthog.hog_flows#Forbidden"
+        },
+        {
+          "target": "com.posthog.hog_flows#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/hog_flows/user_blast_radius/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.hog_flows#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.hog_flows#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.hog_flows#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.hog_flows#HogFlows": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.hog_flows#HogFlowsList"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsUpdate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsDestroy"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsBatchJobsList"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsBatchJobsCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsGraphPartialUpdate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsInvocationResultsRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsInvocationResultRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsInvocationsCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsLogsRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsTotalsRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsSchedulesList"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsSchedulesCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsSchedulesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsSchedulesDestroy"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsMetricsGlobalRetrieve"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsUserBlastRadiusCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

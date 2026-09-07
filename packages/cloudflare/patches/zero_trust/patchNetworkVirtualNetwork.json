@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#NetworksVirtualNetworksEdit with distilled cloudflare/zero-trust patchNetworkVirtualNetwork",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkVirtualNetwork"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkVirtualNetworkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkVirtualNetwork/input/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkVirtualNetworkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkVirtualNetworkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkVirtualNetwork/output/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkVirtualNetworkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkVirtualNetwork/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#VirtualNetworkNotFound"
+        }
+      ]
+    }
+  ]
+}

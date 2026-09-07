@@ -1,0 +1,20 @@
+{
+  "description": "Align ai_gateway#LogsDelete with distilled cloudflare/ai-gateway deleteLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsDelete",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteLog/input/target",
+      "value": "com.cloudflare.ai_gateway#DeleteLogRequest"
+    }
+  ]
+}

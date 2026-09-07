@@ -1,0 +1,34 @@
+{
+  "operations": {
+    "getRecord": {
+      "syntheticErrors": [
+        {
+          "name": "FeatureGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "Resource Not Found" }
+        }
+      ]
+    },
+    "putRecord": {
+      "syntheticErrors": [
+        {
+          "name": "FeatureGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "Resource Not Found" }
+        }
+      ]
+    },
+    "deleteRecord": {
+      "syntheticErrors": [
+        {
+          "name": "FeatureGroupNotFound",
+          "from": "ValidationError",
+          "message": { "includes": "Resource Not Found" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "FeatureGroupNotFound": ["NotFoundError"]
+  }
+}

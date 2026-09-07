@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#OrganizationsListForZone with distilled cloudflare/zero-trust listOrganizationsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsListForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#ListOrganizationsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsListForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListOrganizationsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListOrganizationsForZone/input/target",
+      "value": "com.cloudflare.zero_trust#ListOrganizationsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsListForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListOrganizationsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListOrganizationsForZone/output/target",
+      "value": "com.cloudflare.zero_trust#ListOrganizationsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListOrganizationsForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#OrganizationNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "description": "Select project.services so Service can list owned services scoped to owned projects (the public list API).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseServicesEdgesItemNode",
+      "value": {
+        "type": "structure",
+        "members": {
+          "createdAt": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "deletedAt": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "id": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "name": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "projectId": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseServicesEdgesItem",
+      "value": {
+        "type": "structure",
+        "members": {
+          "node": {
+            "target": "com.railway.api#ProjectResponseServicesEdgesItemNode",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseServicesEdgesList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.railway.api#ProjectResponseServicesEdgesItem"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseServices",
+      "value": {
+        "type": "structure",
+        "members": {
+          "edges": {
+            "target": "com.railway.api#ProjectResponseServicesEdgesList",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/services",
+      "value": {
+        "target": "com.railway.api#ProjectResponseServices",
+        "traits": { "smithy.api#required": {} }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ProjectRequest/traits/com.railway.graphql#operation/query",
+      "value": "query project($id: String!) {\n  project(id: $id) {\n    baseEnvironment {\n      canAccess\n      canvasGroupRefs\n      configEtag\n      createdAt\n      deletedAt\n      id\n      isEphemeral\n      name\n      projectId\n      unmergedChangesCount\n      updatedAt\n    }\n    baseEnvironmentId\n    botPrEnvironments\n    createdAt\n    deletedAt\n    description\n    expiredAt\n    featureFlags\n    focusedPrEnvironments\n    id\n    isPublic\n    isTempProject\n    members {\n      avatar\n      email\n      id\n      name\n      role\n    }\n    name\n    prDeploys\n    primaryEnvironmentId\n    subscriptionPlanLimit\n    subscriptionType\n    team {\n      adoptionLevel\n      avatar\n      createdAt\n      id\n      name\n      preferredRegion\n      slackChannelId\n      supportTierOverride\n      updatedAt\n    }\n    teamId\n    updatedAt\n    workspace {\n      adoptionLevel\n      allowDeprecatedRegions\n      avatar\n      banReason\n      createdAt\n      discordRole\n      has2FAEnforcement\n      hasAutomaticDiagnosis\n      hasGuardrailsAccess\n      hasHipaaBAA\n      hasSAML\n      id\n      name\n      plan\n      preferredRegion\n      redactedDueTo2FAPending\n      slackChannelId\n      subscriptionModel\n      subscriptionPlanLimit\n      supportTierOverride\n      updatedAt\n      usersWithout2FA\n    }\n    workspaceId\n    services(first: 50) {\n      edges {\n        node {\n          createdAt\n          deletedAt\n          id\n          name\n          projectId\n        }\n      }\n    }\n  }\n}"
+    }
+  ]
+}

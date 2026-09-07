@@ -1,0 +1,47 @@
+{
+  "description": "Align cloud_connector#RulesUpdate with distilled cloudflare/cloud-connector putRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloud_connector#RulesUpdate",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloud_connector#RulesUpdateRequest",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRule/input/target",
+      "value": "com.cloudflare.cloud_connector#PutRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloud_connector#RulesUpdateResponse",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRule/output/target",
+      "value": "com.cloudflare.cloud_connector#PutRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRule/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloud_connector#PutRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cloud_connector#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#WebhooksUpdate with distilled cloudflare/stream putWebhook",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WebhooksUpdate",
+      "path": "/shapes/com.cloudflare.stream#PutWebhook"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WebhooksUpdateRequest",
+      "path": "/shapes/com.cloudflare.stream#PutWebhookRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#PutWebhook/input/target",
+      "value": "com.cloudflare.stream#PutWebhookRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WebhooksUpdateResponse",
+      "path": "/shapes/com.cloudflare.stream#PutWebhookResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#PutWebhook/output/target",
+      "value": "com.cloudflare.stream#PutWebhookResponse"
+    }
+  ]
+}

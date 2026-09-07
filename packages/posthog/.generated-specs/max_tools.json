@@ -1,0 +1,128 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.max_tools#InsightTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TRENDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trends"
+          }
+        },
+        "FUNNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "funnel"
+          }
+        },
+        "RETENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "retention"
+          }
+        },
+        "SQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sql"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `trends` - trends\n* `funnel` - funnel\n* `retention` - retention\n* `sql` - sql"
+      }
+    },
+    "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String"
+        },
+        "insight_type": {
+          "target": "com.posthog.max_tools#InsightTypeEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreateResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreateResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/max_tools/create_and_query_insight/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max_tools#MaxTools": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.max_tools#MaxToolsCreateAndQueryInsightCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

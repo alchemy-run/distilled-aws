@@ -1,0 +1,41 @@
+{
+  "description": "Align accounts#RolesList with distilled cloudflare/accounts listRoles",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#RolesList",
+      "path": "/shapes/com.cloudflare.accounts#ListRoles"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#RolesListRequest",
+      "path": "/shapes/com.cloudflare.accounts#ListRolesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#ListRoles/input/target",
+      "value": "com.cloudflare.accounts#ListRolesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#RolesListResponse",
+      "path": "/shapes/com.cloudflare.accounts#ListRolesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#ListRoles/output/target",
+      "value": "com.cloudflare.accounts#ListRolesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#ListRoles/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "description": "custom DLP entry descriptions accept null to clear (consumer-proven, v0 parity)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomCreateRequestEntriesItemDLPNewCustomEntry/members/description/traits",
+      "value": {
+        "com.cloudflare.protocols#nullable": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdateRequestEntriesItemDLPNewCustomEntryWithID/members/description/traits",
+      "value": {
+        "com.cloudflare.protocols#nullable": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdateRequestEntriesItemDLPNewCustomEntry/members/description/traits",
+      "value": {
+        "com.cloudflare.protocols#nullable": {}
+      }
+    }
+  ]
+}

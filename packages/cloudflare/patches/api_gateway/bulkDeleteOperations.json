@@ -1,0 +1,29 @@
+{
+  "description": "Align api_gateway#OperationsBulkDelete with distilled cloudflare/api-gateway bulkDeleteOperations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsBulkDelete",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsBulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperations/input/target",
+      "value": "com.cloudflare.api_gateway#BulkDeleteOperationsRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperations/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

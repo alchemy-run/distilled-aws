@@ -1,0 +1,38 @@
+{
+  "description": "Align brand_protection#UrlInfo with distilled cloudflare/brand-protection urlInfoBrandProtection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#UrlInfo",
+      "path": "/shapes/com.cloudflare.brand_protection#UrlInfoBrandProtection"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#UrlInfoRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#UrlInfoBrandProtectionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#UrlInfoBrandProtection/input/target",
+      "value": "com.cloudflare.brand_protection#UrlInfoBrandProtectionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#UrlInfoResponse",
+      "path": "/shapes/com.cloudflare.brand_protection#UrlInfoBrandProtectionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#UrlInfoBrandProtection/output/target",
+      "value": "com.cloudflare.brand_protection#UrlInfoBrandProtectionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.brand_protection#UrlInfoBrandProtection/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

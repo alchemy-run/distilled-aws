@@ -1,0 +1,39 @@
+{
+  "description": "Align zones#Delete with distilled cloudflare/zones deleteZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#Delete",
+      "path": "/shapes/com.cloudflare.zones#DeleteZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#DeleteRequest",
+      "path": "/shapes/com.cloudflare.zones#DeleteZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteZone/input/target",
+      "value": "com.cloudflare.zones#DeleteZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#DeleteResponse",
+      "path": "/shapes/com.cloudflare.zones#DeleteZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteZone/output/target",
+      "value": "com.cloudflare.zones#DeleteZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#DeleteZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#InvalidZoneIdentifier"
+        }
+      ]
+    }
+  ]
+}

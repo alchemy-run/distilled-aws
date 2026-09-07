@@ -1,0 +1,45 @@
+{
+  "description": "Align workers#RoutesCreate with distilled cloudflare/workers createRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateRoute/input/target",
+      "value": "com.cloudflare.workers#CreateRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateRoute/output/target",
+      "value": "com.cloudflare.workers#CreateRouteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateRoute/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoutePattern"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2125 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.r2_data_catalog#DisableRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#Disable": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#DisableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/disable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable an R2 bucket as a catalog. This operation deactivates the catalog but preserves existing metadata and data files. The catalog can be re-enabled later."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#EnableRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#EnableResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to uniquely identify the activated catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the activated catalog.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#Enable": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#EnableRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#EnableResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable an R2 bucket as an Apache Iceberg catalog. This operation creates the necessary catalog infrastructure and activates the bucket for storing Iceberg metadata and data files."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseCredentialStatus": {
+      "type": "enum",
+      "members": {
+        "PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "present"
+          }
+        },
+        "ABSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "absent"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Sets the target file size for compaction in megabytes. Defaults to \"128\".",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum age for snapshots. The system deletes snapshots older than this age.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the minimum number of snapshots to retain. Defaults to 100.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfig": {
+      "type": "structure",
+      "members": {
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigCompaction",
+          "traits": {
+            "smithy.api#documentation": "Configures compaction for catalog maintenance."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfigSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Configures snapshot expiration settings."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to uniquely identify the catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the associated R2 bucket name.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the catalog name (generated from account and bucket name).",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates the status of the catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "credential_status": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseCredentialStatus",
+          "traits": {
+            "smithy.api#documentation": "Shows the credential configuration status."
+          }
+        },
+        "maintenance_config": {
+          "target": "com.cloudflare.r2_data_catalog#GetResponseMaintenanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Configures maintenance for the catalog."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve detailed information about a specific R2 catalog by bucket name. Returns catalog status, maintenance configuration, and credential status.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemCredentialStatus": {
+      "type": "enum",
+      "members": {
+        "PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "present"
+          }
+        },
+        "ABSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "absent"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Sets the target file size for compaction in megabytes. Defaults to \"128\".",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum age for snapshots. The system deletes snapshots older than this age.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the minimum number of snapshots to retain. Defaults to 100.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfig": {
+      "type": "structure",
+      "members": {
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigCompaction",
+          "traits": {
+            "smithy.api#documentation": "Configures compaction for catalog maintenance."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfigSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Configures snapshot expiration settings."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to uniquely identify the catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the associated R2 bucket name.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the catalog name (generated from account and bucket name).",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates the status of the catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "credential_status": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemCredentialStatus",
+          "traits": {
+            "smithy.api#documentation": "Shows the credential configuration status."
+          }
+        },
+        "maintenance_config": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItemMaintenanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Configures maintenance for the catalog."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponseWarehousesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesItem"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#ListResponse": {
+      "type": "structure",
+      "members": {
+        "warehouses": {
+          "target": "com.cloudflare.r2_data_catalog#ListResponseWarehousesList",
+          "traits": {
+            "smithy.api#documentation": "Lists catalogs in the account.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/r2-catalog",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of R2 buckets that have been enabled as Apache Iceberg catalogs for the specified account. Each catalog represents an R2 bucket configured to store Iceberg metadata and data files.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#CredentialsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provides the Cloudflare API token for accessing R2.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#CredentialsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#CredentialsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#CredentialsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#CredentialsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/credential",
+          "code": 200
+        },
+        "smithy.api#documentation": "Store authentication credentials for a catalog. These credentials are used to authenticate with R2 storage when performing catalog operations."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseCredentialStatus": {
+      "type": "enum",
+      "members": {
+        "PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "present"
+          }
+        },
+        "ABSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "absent"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Sets the target file size for compaction in megabytes. Defaults to \"128\".",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum age for snapshots. The system deletes snapshots older than this age.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the minimum number of snapshots to retain. Defaults to 100.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfig": {
+      "type": "structure",
+      "members": {
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigCompaction",
+          "traits": {
+            "smithy.api#documentation": "Configures compaction for catalog maintenance."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Configures snapshot expiration settings."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponse": {
+      "type": "structure",
+      "members": {
+        "credential_status": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseCredentialStatus",
+          "traits": {
+            "smithy.api#documentation": "Shows the credential configuration status.",
+            "smithy.api#required": {}
+          }
+        },
+        "maintenance_config": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponseMaintenanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Configures maintenance for the catalog.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/maintenance-configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the maintenance configuration for a specific catalog, including compaction settings and credential status.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Updates the state optionally."
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Updates the target file size optionally."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Updates the maximum age for snapshots optionally."
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Updates the minimum number of snapshots to retain optionally."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Updates the state optionally."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestCompaction",
+          "traits": {
+            "smithy.api#documentation": "Updates compaction configuration (all fields optional)."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequestSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Updates snapshot expiration configuration (all fields optional)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Sets the target file size for compaction in megabytes. Defaults to \"128\".",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum age for snapshots. The system deletes snapshots older than this age.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the minimum number of snapshots to retain. Defaults to 100.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseCompaction",
+          "traits": {
+            "smithy.api#documentation": "Configures compaction for catalog maintenance."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponseSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Configures snapshot expiration settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/maintenance-configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the maintenance configuration for a catalog. This allows you to enable or disable compaction and adjust target file sizes for optimization."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of namespaces to return per page.",
+            "smithy.api#httpQuery": "page_size"
+          }
+        },
+        "page_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque pagination token from a previous response.",
+            "smithy.api#httpQuery": "page_token"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parent namespace to filter by. Only returns direct children of this namespace.",
+            "smithy.api#httpQuery": "parent"
+          }
+        },
+        "return_details": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include additional metadata (timestamps).",
+            "smithy.api#httpQuery": "return_details"
+          }
+        },
+        "return_uuids": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include namespace UUIDs in the response.",
+            "smithy.api#httpQuery": "return_uuids"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponseNamespacesItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponseNamespacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesListResponseNamespacesItemList"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponseDetailsItemNamespaceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponseDetailsItem": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesListResponseDetailsItemNamespaceList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the hierarchical namespace parts as an array of strings.",
+            "smithy.api#required": {}
+          }
+        },
+        "namespace_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the UUID that persists across renames.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the creation timestamp in ISO 8601 format."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shows the last update timestamp in ISO 8601 format. Null if never updated."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponseDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesListResponseDetailsItem"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponseNamespaceUuidsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesListResponse": {
+      "type": "structure",
+      "members": {
+        "namespaces": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesListResponseNamespacesList",
+          "traits": {
+            "smithy.api#documentation": "Lists namespaces in the catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesListResponseDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Contains detailed metadata for each namespace when return_details is true."
+          }
+        },
+        "namespace_uuids": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesListResponseNamespaceUuidsList",
+          "traits": {
+            "smithy.api#documentation": "Contains UUIDs for each namespace when return_uuids is true."
+          }
+        },
+        "next_page_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this opaque token to fetch the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of namespaces in the specified R2 catalog. Supports hierarchical filtering and pagination for efficient traversal of large namespace hierarchies.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of tables to return per page.",
+            "smithy.api#httpQuery": "page_size"
+          }
+        },
+        "page_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque pagination token from a previous response.",
+            "smithy.api#httpQuery": "page_token"
+          }
+        },
+        "return_details": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include additional metadata (timestamps, locations).",
+            "smithy.api#httpQuery": "return_details"
+          }
+        },
+        "return_uuids": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include table UUIDs in the response.",
+            "smithy.api#httpQuery": "return_uuids"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseIdentifiersItemNamespaceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseIdentifiersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the table name.",
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseIdentifiersItemNamespaceList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the hierarchical namespace parts as an array of strings.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseIdentifiersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseIdentifiersItem"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsItemIdentifierNamespaceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsItemIdentifier": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the table name.",
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsItemIdentifierNamespaceList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the hierarchical namespace parts as an array of strings.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsItem": {
+      "type": "structure",
+      "members": {
+        "identifier": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsItemIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Specifies a unique table identifier within a catalog.",
+            "smithy.api#required": {}
+          }
+        },
+        "table_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the UUID that persists across renames.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the creation timestamp in ISO 8601 format."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the base S3 URI for table storage location."
+          }
+        },
+        "metadata_location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the S3 URI to table metadata file. Null for staged tables."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shows the last update timestamp in ISO 8601 format. Null if never updated."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsItem"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseTableUuidsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesListResponse": {
+      "type": "structure",
+      "members": {
+        "identifiers": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseIdentifiersList",
+          "traits": {
+            "smithy.api#documentation": "Lists tables in the namespace.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Contains detailed metadata for each table when return_details is true."
+          }
+        },
+        "next_page_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this opaque token to fetch the next page of results."
+          }
+        },
+        "table_uuids": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponseTableUuidsList",
+          "traits": {
+            "smithy.api#documentation": "Contains UUIDs for each table when return_uuids is true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of tables in the specified namespace within an R2 catalog. Supports pagination for efficient traversal of large table collections.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "table_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Sets the target file size for compaction in megabytes. Defaults to \"128\".",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum age for snapshots. The system deletes snapshots older than this age.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the minimum number of snapshots to retain. Defaults to 100.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfig": {
+      "type": "structure",
+      "members": {
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompaction",
+          "traits": {
+            "smithy.api#documentation": "Configures compaction settings for table optimization."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Configures snapshot expiration settings."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponse": {
+      "type": "structure",
+      "members": {
+        "maintenance_config": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Configures maintenance for the table.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the maintenance configuration for a specific table, including compaction settings.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Updates the state optionally."
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Updates the target file size optionally."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Updates the maximum age for snapshots optionally."
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Updates the minimum number of snapshots to retain optionally."
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Updates the state optionally."
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this to identify the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucket_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the R2 bucket name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "table_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestCompaction",
+          "traits": {
+            "smithy.api#documentation": "Updates compaction configuration (all fields optional)."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Updates snapshot expiration configuration (all fields optional)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseCompactionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseCompactionTargetSizeMb": {
+      "type": "enum",
+      "members": {
+        "_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "64"
+          }
+        },
+        "_128": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "128"
+          }
+        },
+        "_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "256"
+          }
+        },
+        "_512": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "512"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseCompaction": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseCompactionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "target_size_mb": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseCompactionTargetSizeMb",
+          "traits": {
+            "smithy.api#documentation": "Sets the target file size for compaction in megabytes. Defaults to \"128\".",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpirationState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpiration": {
+      "type": "structure",
+      "members": {
+        "max_snapshot_age": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum age for snapshots. The system deletes snapshots older than this age.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_snapshots_to_keep": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the minimum number of snapshots to retain. Defaults to 100.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpirationState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the state of maintenance operations.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "compaction": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseCompaction",
+          "traits": {
+            "smithy.api#documentation": "Configures compaction settings for table optimization."
+          }
+        },
+        "snapshot_expiration": {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpiration",
+          "traits": {
+            "smithy.api#documentation": "Configures snapshot expiration settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the maintenance configuration for a specific table. This allows you to enable or disable compaction and adjust target file sizes for optimization."
+      }
+    },
+    "com.cloudflare.r2_data_catalog#R2DataCatalog": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.r2_data_catalog#Disable"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#Enable"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#Get"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#List"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#CredentialsCreate"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsGet"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#MaintenanceConfigsUpdate"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesList"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesList"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsGet"
+        },
+        {
+          "target": "com.cloudflare.r2_data_catalog#NamespacesTablesMaintenanceConfigsUpdate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare R2DataCatalog",
+        "smithy.api#documentation": "Cloudflare API — r2_data_catalog resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

@@ -1,0 +1,760 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.docs#ListDocsResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#ListDocsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.docs#ListDocsResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#ListDocsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.docs#ListDocsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.docs#ListDocs": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.docs#ListDocsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/docs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List docs\n\nGet list of available documentation"
+      }
+    },
+    "com.huggingface.docs#SearchDocsRequestProduct": {
+      "type": "enum",
+      "members": {
+        "HUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hub"
+          }
+        },
+        "TRANSFORMERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "transformers"
+          }
+        },
+        "DIFFUSERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diffusers"
+          }
+        },
+        "DATASETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datasets"
+          }
+        },
+        "GRADIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gradio"
+          }
+        },
+        "TRACKIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trackio"
+          }
+        },
+        "SMOLAGENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "smolagents"
+          }
+        },
+        "HUGGINGFACE_HUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "huggingface_hub"
+          }
+        },
+        "CLI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cli"
+          }
+        },
+        "HUGGINGFACE_JS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "huggingface.js"
+          }
+        },
+        "TRANSFORMERS_JS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "transformers.js"
+          }
+        },
+        "INFERENCE_PROVIDERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inference-providers"
+          }
+        },
+        "INFERENCE_ENDPOINTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inference-endpoints"
+          }
+        },
+        "PEFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "peft"
+          }
+        },
+        "ACCELERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accelerate"
+          }
+        },
+        "OPTIMUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimum"
+          }
+        },
+        "OPTIMUM_HABANA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimum-habana"
+          }
+        },
+        "OPTIMUM_NEURON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimum-neuron"
+          }
+        },
+        "OPTIMUM_INTEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimum-intel"
+          }
+        },
+        "OPTIMUM_EXECUTORCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimum-executorch"
+          }
+        },
+        "OPTIMUM_TPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimum-tpu"
+          }
+        },
+        "TOKENIZERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tokenizers"
+          }
+        },
+        "LLM_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "llm-course"
+          }
+        },
+        "CONTEXT_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "context-course"
+          }
+        },
+        "ROBOTICS_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "robotics-course"
+          }
+        },
+        "MCP_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mcp-course"
+          }
+        },
+        "SMOL_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "smol-course"
+          }
+        },
+        "AGENTS_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "agents-course"
+          }
+        },
+        "DEEP_RL_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deep-rl-course"
+          }
+        },
+        "COMPUTER_VISION_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "computer-vision-course"
+          }
+        },
+        "EVALUATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "evaluate"
+          }
+        },
+        "TASKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tasks"
+          }
+        },
+        "DATASET_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset-viewer"
+          }
+        },
+        "TRL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trl"
+          }
+        },
+        "OPENENV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openenv"
+          }
+        },
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "SAGEMAKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sagemaker"
+          }
+        },
+        "TIMM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timm"
+          }
+        },
+        "SAFETENSORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "safetensors"
+          }
+        },
+        "TGI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tgi"
+          }
+        },
+        "SETFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setfit"
+          }
+        },
+        "AUDIO_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "audio-course"
+          }
+        },
+        "LEROBOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lerobot"
+          }
+        },
+        "REACHY_MINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reachy_mini"
+          }
+        },
+        "AUTOTRAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autotrain"
+          }
+        },
+        "TEI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tei"
+          }
+        },
+        "BITSANDBYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bitsandbytes"
+          }
+        },
+        "COOKBOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cookbook"
+          }
+        },
+        "SENTENCE_TRANSFORMERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sentence_transformers"
+          }
+        },
+        "ML_GAMES_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ml-games-course"
+          }
+        },
+        "DIFFUSION_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diffusion-course"
+          }
+        },
+        "ML_FOR_3D_COURSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ml-for-3d-course"
+          }
+        },
+        "CHAT_UI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "chat-ui"
+          }
+        },
+        "LEADERBOARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leaderboards"
+          }
+        },
+        "LIGHTEVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lighteval"
+          }
+        },
+        "ARGILLA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "argilla"
+          }
+        },
+        "DISTILABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "distilabel"
+          }
+        },
+        "MICROSOFT_AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "microsoft-azure"
+          }
+        },
+        "KERNELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernels"
+          }
+        },
+        "GOOGLE_CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-cloud"
+          }
+        },
+        "XET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xet"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#SearchDocsRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "com.huggingface.docs#SearchDocsRequestProduct",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.docs#SearchDocsResponseBodyItemVectorsEmbeddingsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#SearchDocsResponseBodyItemVectors": {
+      "type": "structure",
+      "members": {
+        "embeddings": {
+          "target": "com.huggingface.docs#SearchDocsResponseBodyItemVectorsEmbeddingsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#SearchDocsResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_vectors": {
+          "target": "com.huggingface.docs#SearchDocsResponseBodyItemVectors",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "heading1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "source_page_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "source_page_title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "heading2": {
+          "target": "smithy.api#String"
+        },
+        "heading3": {
+          "target": "smithy.api#String"
+        },
+        "heading4": {
+          "target": "smithy.api#String"
+        },
+        "heading5": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#SearchDocsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.docs#SearchDocsResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#SearchDocsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.docs#SearchDocsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.docs#SearchDocs": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.docs#SearchDocsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.docs#SearchDocsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/docs/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search docs\n\nSearch any Hugging Face documentation"
+      }
+    },
+    "com.huggingface.docs#FullTextSearchDocsRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.docs#FullTextSearchDocsResponseHitsItemFormatted": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl0": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl1": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl2": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl3": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl4": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl5": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl6": {
+          "target": "smithy.api#String"
+        },
+        "content": {
+          "target": "smithy.api#String"
+        },
+        "anchor": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#FullTextSearchDocsResponseHitsItem": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hierarchy_lvl0": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl1": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl2": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl3": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl4": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl5": {
+          "target": "smithy.api#String"
+        },
+        "hierarchy_lvl6": {
+          "target": "smithy.api#String"
+        },
+        "content": {
+          "target": "smithy.api#String"
+        },
+        "anchor": {
+          "target": "smithy.api#String"
+        },
+        "_formatted": {
+          "target": "com.huggingface.docs#FullTextSearchDocsResponseHitsItemFormatted"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#FullTextSearchDocsResponseHitsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.docs#FullTextSearchDocsResponseHitsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.docs#FullTextSearchDocsResponse": {
+      "type": "structure",
+      "members": {
+        "hits": {
+          "target": "com.huggingface.docs#FullTextSearchDocsResponseHitsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.docs#FullTextSearchDocs": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.docs#FullTextSearchDocsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.docs#FullTextSearchDocsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/docs/search/full-text",
+          "code": 200
+        },
+        "smithy.api#documentation": "Full-text search docs\n\nFull-text search across Hugging Face documentation"
+      }
+    },
+    "com.huggingface.docs#Docs": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.docs#ListDocs"
+        },
+        {
+          "target": "com.huggingface.docs#SearchDocs"
+        },
+        {
+          "target": "com.huggingface.docs#FullTextSearchDocs"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

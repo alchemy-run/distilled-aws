@@ -1,0 +1,45 @@
+{
+  "description": "Align user#TokensDelete with distilled cloudflare/user deleteToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensDelete",
+      "path": "/shapes/com.cloudflare.user#DeleteToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensDeleteRequest",
+      "path": "/shapes/com.cloudflare.user#DeleteTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#DeleteToken/input/target",
+      "value": "com.cloudflare.user#DeleteTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensDeleteResponse",
+      "path": "/shapes/com.cloudflare.user#DeleteTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#DeleteToken/output/target",
+      "value": "com.cloudflare.user#DeleteTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#DeleteToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.user#TokenNotFound"
+        }
+      ]
+    }
+  ]
+}

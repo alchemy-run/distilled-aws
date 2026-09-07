@@ -1,0 +1,89 @@
+{
+  "description": "Docs-absent op: GET /zones/{zone_id}/email/routing/rules (list routing rules, paginated) has no method page in the API docs — only create/delete/get/update exist there — but the endpoint is live and distilled exports it as listRules. Hand-authored; items reuse the RulesGetResponse shape.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#ListRulesRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "zone_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Identifier.",
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          },
+          "page": {
+            "target": "smithy.api#Double",
+            "traits": { "smithy.api#httpQuery": "page" }
+          },
+          "per_page": {
+            "target": "smithy.api#Double",
+            "traits": { "smithy.api#httpQuery": "per_page" }
+          },
+          "enabled": {
+            "target": "smithy.api#Boolean",
+            "traits": {
+              "smithy.api#documentation": "Filter by enabled routing rules.",
+              "smithy.api#httpQuery": "enabled"
+            }
+          }
+        },
+        "traits": { "smithy.api#input": {} }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#ListRulesResponseResultList",
+      "value": {
+        "type": "list",
+        "member": { "target": "com.cloudflare.email_routing#GetRuleResponse" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#ListRulesResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "com.cloudflare.email_routing#ListRulesResponseResultList",
+            "traits": {
+              "com.cloudflare.protocols#envelopePayload": {},
+              "smithy.api#documentation": "Routing rules for the zone."
+            }
+          }
+        },
+        "traits": { "smithy.api#output": {} }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#ListRules",
+      "value": {
+        "type": "operation",
+        "input": { "target": "com.cloudflare.email_routing#ListRulesRequest" },
+        "output": {
+          "target": "com.cloudflare.email_routing#ListRulesResponse"
+        },
+        "traits": {
+          "smithy.api#http": {
+            "method": "GET",
+            "uri": "/zones/{zone_id}/email/routing/rules",
+            "code": 200
+          },
+          "smithy.api#paginated": {
+            "mode": "page",
+            "inputToken": "page",
+            "outputToken": "resultInfo.page",
+            "items": "result",
+            "pageSize": "perPage"
+          },
+          "smithy.api#documentation": "List routing rules (docs-absent endpoint)."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Key dictionary / op aliases for csam_scanner (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "emailState": "email_state",
+        "modifiedOn": "modified_on",
+        "resendEmail": "resend_email",
+        "zonePlan": "zone_plan"
+      }
+    }
+  ]
+}

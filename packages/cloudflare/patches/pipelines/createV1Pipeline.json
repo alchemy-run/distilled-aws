@@ -1,0 +1,45 @@
+{
+  "description": "Align pipelines#CreateV1 with distilled cloudflare/pipelines createV1Pipeline",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#CreateV1",
+      "path": "/shapes/com.cloudflare.pipelines#CreateV1Pipeline"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#CreateV1Request",
+      "path": "/shapes/com.cloudflare.pipelines#CreateV1PipelineRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#CreateV1Pipeline/input/target",
+      "value": "com.cloudflare.pipelines#CreateV1PipelineRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#CreateV1Response",
+      "path": "/shapes/com.cloudflare.pipelines#CreateV1PipelineResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#CreateV1Pipeline/output/target",
+      "value": "com.cloudflare.pipelines#CreateV1PipelineResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#CreateV1Pipeline/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#TableNotFound"
+        },
+        {
+          "target": "com.cloudflare.pipelines#InvalidSql"
+        },
+        {
+          "target": "com.cloudflare.pipelines#PipelineAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

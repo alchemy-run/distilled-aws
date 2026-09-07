@@ -1,0 +1,39 @@
+{
+  "description": "Align iam#UserGroupsCreate with distilled cloudflare/iam createUserGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsCreate",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsCreateRequest",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroup/input/target",
+      "value": "com.cloudflare.iam#CreateUserGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsCreateResponse",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroup/output/target",
+      "value": "com.cloudflare.iam#CreateUserGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#UserGroupNameInUse"
+        }
+      ]
+    }
+  ]
+}

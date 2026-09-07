@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#AccessInfrastructureTargetsBulkUpdate with distilled cloudflare/zero-trust bulkPutAccessInfrastructureTargets",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsBulkUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargets"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsBulkUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargetsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargets/input/target",
+      "value": "com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargetsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsBulkUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargetsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargets/output/target",
+      "value": "com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargetsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#BulkPutAccessInfrastructureTargets/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

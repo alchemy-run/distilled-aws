@@ -1,0 +1,18 @@
+{
+  "description": "Select volumeInstances on the environments list connection so Volume.list can enumerate from the slim list query. Do not environment({id}) during nuke — that GET still selects canvasGroupRefs/meta.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentsResponseEdgesItemNode/members/volumeInstances",
+      "value": {
+        "target": "com.railway.api#EnvironmentResponseVolumeInstances",
+        "traits": { "smithy.api#required": {} }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#EnvironmentsRequest/traits/com.railway.graphql#operation/query",
+      "value": "query environments($after: String, $before: String, $first: Int, $isEphemeral: Boolean, $last: Int, $projectId: String!) {\n  environments(after: $after, before: $before, first: $first, isEphemeral: $isEphemeral, last: $last, projectId: $projectId) {\n    edges {\n      cursor\n      node {\n        createdAt\n        deletedAt\n        id\n        isEphemeral\n        name\n        projectId\n        updatedAt\n        volumeInstances(first: 200) {\n          edges {\n            node {\n              createdAt\n              currentSizeMB\n              deletedAt\n              environmentId\n              id\n              isPendingDeletion\n              mountPath\n              region\n              serviceId\n              sizeMB\n              state\n              volume {\n                createdAt\n                id\n                name\n                projectId\n              }\n              volumeId\n            }\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}"
+    }
+  ]
+}

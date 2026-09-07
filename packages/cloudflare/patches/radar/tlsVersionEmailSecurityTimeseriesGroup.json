@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecurityTimeseriesGroupsTlsVersion with distilled cloudflare/radar tlsVersionEmailSecurityTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsTlsVersion",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsTlsVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsTlsVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#TlsVersionEmailSecurityTimeseriesGroupResponse"
+    }
+  ]
+}

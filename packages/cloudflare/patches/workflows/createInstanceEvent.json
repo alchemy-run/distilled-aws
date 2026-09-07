@@ -1,0 +1,48 @@
+{
+  "description": "Align workflows#InstancesEventsCreate with distilled cloudflare/workflows createInstanceEvent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesEventsCreate",
+      "path": "/shapes/com.cloudflare.workflows#CreateInstanceEvent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesEventsCreateRequest",
+      "path": "/shapes/com.cloudflare.workflows#CreateInstanceEventRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#CreateInstanceEvent/input/target",
+      "value": "com.cloudflare.workflows#CreateInstanceEventRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesEventsCreateResponse",
+      "path": "/shapes/com.cloudflare.workflows#CreateInstanceEventResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#CreateInstanceEvent/output/target",
+      "value": "com.cloudflare.workflows#CreateInstanceEventResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#CreateInstanceEvent/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workflows#WorkflowNotFound"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workflows#InstanceNotFound"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidBody"
+        }
+      ]
+    }
+  ]
+}

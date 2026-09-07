@@ -1,0 +1,91 @@
+{
+  "description": "Select customer.usageLimit on workspace so UsageLimit can observe soft/hard dollar caps (maxDepth 2 omitted the nested UsageLimit).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#WorkspaceResponseCustomerUsageLimit",
+      "value": {
+        "type": "structure",
+        "members": {
+          "agentHardLimitCents": {
+            "target": "smithy.api#Integer",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "agentSoftLimitCents": {
+            "target": "smithy.api#Integer",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "customerId": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "hardLimit": {
+            "target": "smithy.api#Integer",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "isOverLimit": {
+            "target": "smithy.api#Boolean",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "softLimit": {
+            "target": "smithy.api#Integer",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#WorkspaceResponseCustomer/members/usageLimit",
+      "value": {
+        "target": "com.railway.api#WorkspaceResponseCustomerUsageLimit",
+        "traits": {
+          "smithy.api#required": {},
+          "com.railway.graphql#nullable": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#WorkspaceByCodeResponseCustomer/members/usageLimit",
+      "value": {
+        "target": "com.railway.api#WorkspaceResponseCustomerUsageLimit",
+        "traits": {
+          "smithy.api#required": {},
+          "com.railway.graphql#nullable": {}
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#WorkspaceRequest/traits/com.railway.graphql#operation/query",
+      "value": "query workspace($workspaceId: String!) {\n  workspace(workspaceId: $workspaceId) {\n    adoptionHistory {\n      adoptionLevel\n      createdAt\n      deltaLevel\n      id\n      matchedIcpEmail\n      monthlyEstimatedUsage\n      numConfigFile\n      numCronSchedule\n      numDeploys\n      numEnvs\n      numFailedDeploys\n      numHealthcheck\n      numIconConfig\n      numRegion\n      numReplicas\n      numRootDirectory\n      numSeats\n      numServices\n      numVariables\n      numWatchPatterns\n      totalCores\n      totalDisk\n      totalNetwork\n      updatedAt\n    }\n    adoptionLevel\n    allowDeprecatedRegions\n    apiTokenRateLimit {\n      remainingPoints\n      resetsAt\n    }\n    avatar\n    banReason\n    createdAt\n    customer {\n      appliedCredits\n      billingEmail\n      creditBalance\n      currentUsage\n      defaultPaymentMethodId\n      hasExhaustedFreePlan\n      id\n      isPrepaying\n      isTrialing\n      isUsageSubscriber\n      isWithdrawingToCredits\n      remainingUsageCreditBalance\n      state\n      stripeCustomerId\n      supportedWithdrawalPlatforms\n      trialDaysRemaining\n      usageLimit {\n        agentHardLimitCents\n        agentSoftLimitCents\n        customerId\n        hardLimit\n        id\n        isOverLimit\n        softLimit\n      }\n    }\n    discordRole\n    has2FAEnforcement\n    hasAutomaticDiagnosis\n    hasGuardrailsAccess\n    hasHipaaBAA\n    hasSAML\n    id\n    members {\n      avatar\n      email\n      featureFlags\n      id\n      name\n      role\n      twoFactorAuthEnabled\n    }\n    name\n    partnerProfile {\n      category\n      description\n      slug\n      type\n      website\n    }\n    plan\n    preferredRegion\n    redactedDueTo2FAPending\n    referredUsers {\n      code\n      id\n      status\n    }\n    slackChannelId\n    subscriptionModel\n    subscriptionPlanLimit\n    supportTierOverride\n    team {\n      adoptionLevel\n      avatar\n      createdAt\n      id\n      name\n      preferredRegion\n      slackChannelId\n      supportTierOverride\n      updatedAt\n    }\n    updatedAt\n    usersWithout2FA\n  }\n}"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#WorkspaceByCodeRequest/traits/com.railway.graphql#operation/query",
+      "value": "query workspaceByCode($code: String!) {\n  workspaceByCode(code: $code) {\n    adoptionHistory {\n      adoptionLevel\n      createdAt\n      deltaLevel\n      id\n      matchedIcpEmail\n      monthlyEstimatedUsage\n      numConfigFile\n      numCronSchedule\n      numDeploys\n      numEnvs\n      numFailedDeploys\n      numHealthcheck\n      numIconConfig\n      numRegion\n      numReplicas\n      numRootDirectory\n      numSeats\n      numServices\n      numVariables\n      numWatchPatterns\n      totalCores\n      totalDisk\n      totalNetwork\n      updatedAt\n    }\n    adoptionLevel\n    allowDeprecatedRegions\n    apiTokenRateLimit {\n      remainingPoints\n      resetsAt\n    }\n    avatar\n    banReason\n    createdAt\n    customer {\n      appliedCredits\n      billingEmail\n      creditBalance\n      currentUsage\n      defaultPaymentMethodId\n      hasExhaustedFreePlan\n      id\n      isPrepaying\n      isTrialing\n      isUsageSubscriber\n      isWithdrawingToCredits\n      remainingUsageCreditBalance\n      state\n      stripeCustomerId\n      supportedWithdrawalPlatforms\n      trialDaysRemaining\n      usageLimit {\n        agentHardLimitCents\n        agentSoftLimitCents\n        customerId\n        hardLimit\n        id\n        isOverLimit\n        softLimit\n      }\n    }\n    discordRole\n    has2FAEnforcement\n    hasAutomaticDiagnosis\n    hasGuardrailsAccess\n    hasHipaaBAA\n    hasSAML\n    id\n    members {\n      avatar\n      email\n      featureFlags\n      id\n      name\n      role\n      twoFactorAuthEnabled\n    }\n    name\n    partnerProfile {\n      category\n      description\n      slug\n      type\n      website\n    }\n    plan\n    preferredRegion\n    redactedDueTo2FAPending\n    referredUsers {\n      code\n      id\n      status\n    }\n    slackChannelId\n    subscriptionModel\n    subscriptionPlanLimit\n    supportTierOverride\n    team {\n      adoptionLevel\n      avatar\n      createdAt\n      id\n      name\n      preferredRegion\n      slackChannelId\n      supportTierOverride\n      updatedAt\n    }\n    updatedAt\n    usersWithout2FA\n  }\n}"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align waiting_rooms#PagePreview with distilled cloudflare/waiting-rooms previewPage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#PagePreview",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PreviewPage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#PagePreviewRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PreviewPageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PreviewPage/input/target",
+      "value": "com.cloudflare.waiting_rooms#PreviewPageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#PagePreviewResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PreviewPageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#PreviewPage/output/target",
+      "value": "com.cloudflare.waiting_rooms#PreviewPageResponse"
+    }
+  ]
+}

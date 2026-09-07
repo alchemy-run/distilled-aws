@@ -1,0 +1,30 @@
+{
+  "description": "Align healthchecks#Edit with distilled cloudflare/healthchecks patchHealthcheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#Edit",
+      "path": "/shapes/com.cloudflare.healthchecks#PatchHealthcheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#EditRequest",
+      "path": "/shapes/com.cloudflare.healthchecks#PatchHealthcheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#PatchHealthcheck/input/target",
+      "value": "com.cloudflare.healthchecks#PatchHealthcheckRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#EditResponse",
+      "path": "/shapes/com.cloudflare.healthchecks#PatchHealthcheckResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#PatchHealthcheck/output/target",
+      "value": "com.cloudflare.healthchecks#PatchHealthcheckResponse"
+    }
+  ]
+}

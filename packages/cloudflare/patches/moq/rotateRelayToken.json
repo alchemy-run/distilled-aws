@@ -1,0 +1,30 @@
+{
+  "description": "Align moq#RelaysTokensRotate with distilled cloudflare/moq rotateRelayToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysTokensRotate",
+      "path": "/shapes/com.cloudflare.moq#RotateRelayToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysTokensRotateRequest",
+      "path": "/shapes/com.cloudflare.moq#RotateRelayTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#RotateRelayToken/input/target",
+      "value": "com.cloudflare.moq#RotateRelayTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysTokensRotateResponse",
+      "path": "/shapes/com.cloudflare.moq#RotateRelayTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#RotateRelayToken/output/target",
+      "value": "com.cloudflare.moq#RotateRelayTokenResponse"
+    }
+  ]
+}

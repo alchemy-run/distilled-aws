@@ -1,0 +1,1087 @@
+import * as HttpClient from "effect/unstable/http/HttpClient";
+import * as redacted from "effect/Redacted";
+import * as S from "@distilled.cloud/core/schema";
+import * as API from "@distilled.cloud/core/api";
+import { AwsProtocol } from "../protocol.ts";
+import { Retry } from "../retry.ts";
+import * as T from "../traits.ts";
+import type { Credentials } from "../credentials.ts";
+import type { CommonErrors } from "../errors.ts";
+import { SensitiveString } from "../sensitive.ts";
+const svc = T.AwsApiService({
+  sdkId: "Cloud9",
+  serviceShapeName: "AWSCloud9WorkspaceManagementService",
+});
+const auth = T.AwsAuthSigv4({ name: "cloud9" });
+const ver = T.ServiceVersion("2017-09-23");
+const proto = T.AwsProtocolsAwsJson1_1();
+const rules = T.EndpointResolver((p, _) => {
+  const { Region, UseDualStack = false, UseFIPS = false, Endpoint } = p;
+  const e = (u: unknown, p = {}, h = {}): T.EndpointResolverResult => ({
+    type: "endpoint" as const,
+    endpoint: { url: u as string, properties: p, headers: h },
+  });
+  const err = (m: unknown): T.EndpointResolverResult => ({
+    type: "error" as const,
+    message: m as string,
+  });
+  if (Endpoint != null) {
+    if (UseFIPS === true) {
+      return err(
+        "Invalid Configuration: FIPS and custom endpoint are not supported",
+      );
+    }
+    if (UseDualStack === true) {
+      return err(
+        "Invalid Configuration: Dualstack and custom endpoint are not supported",
+      );
+    }
+    return e(Endpoint);
+  }
+  if (Region != null) {
+    {
+      const PartitionResult = _.partition(Region);
+      if (PartitionResult != null && PartitionResult !== false) {
+        if (UseFIPS === true && UseDualStack === true) {
+          if (
+            true === _.getAttr(PartitionResult, "supportsFIPS") &&
+            true === _.getAttr(PartitionResult, "supportsDualStack")
+          ) {
+            return e(
+              `https://cloud9-fips.${Region}.${_.getAttr(PartitionResult, "dualStackDnsSuffix")}`,
+            );
+          }
+          return err(
+            "FIPS and DualStack are enabled, but this partition does not support one or both",
+          );
+        }
+        if (UseFIPS === true) {
+          if (_.getAttr(PartitionResult, "supportsFIPS") === true) {
+            return e(
+              `https://cloud9-fips.${Region}.${_.getAttr(PartitionResult, "dnsSuffix")}`,
+            );
+          }
+          return err(
+            "FIPS is enabled but this partition does not support FIPS",
+          );
+        }
+        if (UseDualStack === true) {
+          if (true === _.getAttr(PartitionResult, "supportsDualStack")) {
+            return e(
+              `https://cloud9.${Region}.${_.getAttr(PartitionResult, "dualStackDnsSuffix")}`,
+            );
+          }
+          return err(
+            "DualStack is enabled but this partition does not support DualStack",
+          );
+        }
+        return e(
+          `https://cloud9.${Region}.${_.getAttr(PartitionResult, "dnsSuffix")}`,
+        );
+      }
+    }
+  }
+  return err("Invalid Configuration: Missing Region");
+});
+
+export class BadRequestException
+  extends /*@__PURE__*/ S.TaggedError<BadRequestException>()(
+    "BadRequestException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class ConcurrentAccessException
+  extends /*@__PURE__*/ S.TaggedError<ConcurrentAccessException>()(
+    "ConcurrentAccessException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class ConflictException
+  extends /*@__PURE__*/ S.TaggedError<ConflictException>()(
+    "ConflictException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class ForbiddenException
+  extends /*@__PURE__*/ S.TaggedError<ForbiddenException>()(
+    "ForbiddenException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class InternalServerErrorException
+  extends /*@__PURE__*/ S.TaggedError<InternalServerErrorException>()(
+    "InternalServerErrorException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class LimitExceededException
+  extends /*@__PURE__*/ S.TaggedError<LimitExceededException>()(
+    "LimitExceededException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class NotFoundException
+  extends /*@__PURE__*/ S.TaggedError<NotFoundException>()(
+    "NotFoundException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export class TooManyRequestsException
+  extends /*@__PURE__*/ S.TaggedError<TooManyRequestsException>()(
+    "TooManyRequestsException",
+    {
+      message: S.optional(S.String).pipe(T.ErrorMessage()),
+      className: S.optional(S.String),
+      code: S.optional(S.Number),
+    },
+  ) {}
+export type EnvironmentName = string;
+export type EnvironmentDescription = string | redacted.Redacted<string>;
+export type ClientRequestToken = string;
+export type InstanceType = string;
+export type SubnetId = string;
+export type ImageId = string;
+export type AutomaticStopTimeMinutes = number;
+export type UserArn = string;
+export type TagKey = string | redacted.Redacted<string>;
+export type TagValue = string | redacted.Redacted<string>;
+export interface Tag {
+  Key: string | redacted.Redacted<string>;
+  Value: string | redacted.Redacted<string>;
+}
+export const Tag = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ Key: SensitiveString, Value: SensitiveString }),
+).annotate({ identifier: "Tag" }) as any as S.Schema<Tag>;
+export type TagList = Tag[];
+export const TagList = /*@__PURE__*/ S.Array(Tag);
+export type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM" | (string & {});
+export const ConnectionType = /*@__PURE__*/ S.String;
+
+export interface CreateEnvironmentEC2Request {
+  name: string;
+  description?: string | redacted.Redacted<string>;
+  clientRequestToken?: string;
+  instanceType: string;
+  subnetId?: string;
+  imageId: string;
+  automaticStopTimeMinutes?: number;
+  ownerArn?: string;
+  tags?: Tag[];
+  connectionType?: ConnectionType;
+  dryRun?: boolean;
+}
+export const CreateEnvironmentEC2Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.optional(SensitiveString),
+    clientRequestToken: S.optional(S.String),
+    instanceType: S.String,
+    subnetId: S.optional(S.String),
+    imageId: S.String,
+    automaticStopTimeMinutes: S.optional(S.Number),
+    ownerArn: S.optional(S.String),
+    tags: S.optional(TagList),
+    connectionType: S.optional(ConnectionType),
+    dryRun: S.optional(S.Boolean),
+  }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "CreateEnvironmentEC2Request",
+}) as any as S.Schema<CreateEnvironmentEC2Request>;
+export type EnvironmentId = string;
+export interface CreateEnvironmentEC2Result {
+  environmentId?: string;
+}
+export const CreateEnvironmentEC2Result = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ environmentId: S.optional(S.String) }),
+).annotate({
+  identifier: "CreateEnvironmentEC2Result",
+}) as any as S.Schema<CreateEnvironmentEC2Result>;
+export type MemberPermissions = "read-write" | "read-only" | (string & {});
+export const MemberPermissions = /*@__PURE__*/ S.String;
+
+export interface CreateEnvironmentMembershipRequest {
+  environmentId: string;
+  userArn: string;
+  permissions: MemberPermissions;
+}
+export const CreateEnvironmentMembershipRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentId: S.String,
+    userArn: S.String,
+    permissions: MemberPermissions,
+  }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "CreateEnvironmentMembershipRequest",
+}) as any as S.Schema<CreateEnvironmentMembershipRequest>;
+export type Permissions = "owner" | "read-write" | "read-only" | (string & {});
+export const Permissions = /*@__PURE__*/ S.String;
+
+export interface EnvironmentMember {
+  permissions: Permissions;
+  userId: string;
+  userArn: string;
+  environmentId: string;
+  lastAccess?: Date;
+}
+export const EnvironmentMember = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    permissions: Permissions,
+    userId: S.String,
+    userArn: S.String,
+    environmentId: S.String,
+    lastAccess: S.optional(S.Date.pipe(T.TimestampFormat("epoch-seconds"))),
+  }),
+).annotate({
+  identifier: "EnvironmentMember",
+}) as any as S.Schema<EnvironmentMember>;
+export interface CreateEnvironmentMembershipResult {
+  membership: EnvironmentMember;
+}
+export const CreateEnvironmentMembershipResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ membership: EnvironmentMember }),
+).annotate({
+  identifier: "CreateEnvironmentMembershipResult",
+}) as any as S.Schema<CreateEnvironmentMembershipResult>;
+export interface DeleteEnvironmentRequest {
+  environmentId: string;
+}
+export const DeleteEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ environmentId: S.String }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "DeleteEnvironmentRequest",
+}) as any as S.Schema<DeleteEnvironmentRequest>;
+export interface DeleteEnvironmentResult {}
+export const DeleteEnvironmentResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnvironmentResult",
+}) as any as S.Schema<DeleteEnvironmentResult>;
+export interface DeleteEnvironmentMembershipRequest {
+  environmentId: string;
+  userArn: string;
+}
+export const DeleteEnvironmentMembershipRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ environmentId: S.String, userArn: S.String }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "DeleteEnvironmentMembershipRequest",
+}) as any as S.Schema<DeleteEnvironmentMembershipRequest>;
+export interface DeleteEnvironmentMembershipResult {}
+export const DeleteEnvironmentMembershipResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnvironmentMembershipResult",
+}) as any as S.Schema<DeleteEnvironmentMembershipResult>;
+export type PermissionsList = Permissions[];
+export const PermissionsList = /*@__PURE__*/ S.Array(Permissions);
+export type MaxResults = number;
+export interface DescribeEnvironmentMembershipsRequest {
+  userArn?: string;
+  environmentId?: string;
+  permissions?: Permissions[];
+  nextToken?: string;
+  maxResults?: number;
+}
+export const DescribeEnvironmentMembershipsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      userArn: S.optional(S.String),
+      environmentId: S.optional(S.String),
+      permissions: S.optional(PermissionsList),
+      nextToken: S.optional(S.String),
+      maxResults: S.optional(S.Number),
+    }).pipe(
+      T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+    ),
+).annotate({
+  identifier: "DescribeEnvironmentMembershipsRequest",
+}) as any as S.Schema<DescribeEnvironmentMembershipsRequest>;
+export type EnvironmentMembersList = EnvironmentMember[];
+export const EnvironmentMembersList = /*@__PURE__*/ S.Array(EnvironmentMember);
+export interface DescribeEnvironmentMembershipsResult {
+  memberships?: EnvironmentMember[];
+  nextToken?: string;
+}
+export const DescribeEnvironmentMembershipsResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      memberships: S.optional(EnvironmentMembersList),
+      nextToken: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DescribeEnvironmentMembershipsResult",
+}) as any as S.Schema<DescribeEnvironmentMembershipsResult>;
+export type BoundedEnvironmentIdList = string[];
+export const BoundedEnvironmentIdList = /*@__PURE__*/ S.Array(S.String);
+export interface DescribeEnvironmentsRequest {
+  environmentIds: string[];
+}
+export const DescribeEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ environmentIds: BoundedEnvironmentIdList }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "DescribeEnvironmentsRequest",
+}) as any as S.Schema<DescribeEnvironmentsRequest>;
+export type EnvironmentType = "ssh" | "ec2" | (string & {});
+export const EnvironmentType = /*@__PURE__*/ S.String;
+
+export type EnvironmentLifecycleStatus =
+  | "CREATING"
+  | "CREATED"
+  | "CREATE_FAILED"
+  | "DELETING"
+  | "DELETE_FAILED"
+  | (string & {});
+export const EnvironmentLifecycleStatus = /*@__PURE__*/ S.String;
+
+export interface EnvironmentLifecycle {
+  status?: EnvironmentLifecycleStatus;
+  reason?: string;
+  failureResource?: string;
+}
+export const EnvironmentLifecycle = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(EnvironmentLifecycleStatus),
+    reason: S.optional(S.String),
+    failureResource: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnvironmentLifecycle",
+}) as any as S.Schema<EnvironmentLifecycle>;
+export type ManagedCredentialsStatus =
+  | "ENABLED_ON_CREATE"
+  | "ENABLED_BY_OWNER"
+  | "DISABLED_BY_DEFAULT"
+  | "DISABLED_BY_OWNER"
+  | "DISABLED_BY_COLLABORATOR"
+  | "PENDING_REMOVAL_BY_COLLABORATOR"
+  | "PENDING_START_REMOVAL_BY_COLLABORATOR"
+  | "PENDING_REMOVAL_BY_OWNER"
+  | "PENDING_START_REMOVAL_BY_OWNER"
+  | "FAILED_REMOVAL_BY_COLLABORATOR"
+  | "FAILED_REMOVAL_BY_OWNER"
+  | (string & {});
+export const ManagedCredentialsStatus = /*@__PURE__*/ S.String;
+
+export interface Environment {
+  id?: string;
+  name?: string;
+  description?: string | redacted.Redacted<string>;
+  type: EnvironmentType;
+  connectionType?: ConnectionType;
+  arn: string;
+  ownerArn: string;
+  lifecycle?: EnvironmentLifecycle;
+  managedCredentialsStatus?: ManagedCredentialsStatus;
+}
+export const Environment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    description: S.optional(SensitiveString),
+    type: EnvironmentType,
+    connectionType: S.optional(ConnectionType),
+    arn: S.String,
+    ownerArn: S.String,
+    lifecycle: S.optional(EnvironmentLifecycle),
+    managedCredentialsStatus: S.optional(ManagedCredentialsStatus),
+  }),
+).annotate({ identifier: "Environment" }) as any as S.Schema<Environment>;
+export type EnvironmentList = Environment[];
+export const EnvironmentList = /*@__PURE__*/ S.Array(Environment);
+export interface DescribeEnvironmentsResult {
+  environments?: Environment[];
+}
+export const DescribeEnvironmentsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ environments: S.optional(EnvironmentList) }),
+).annotate({
+  identifier: "DescribeEnvironmentsResult",
+}) as any as S.Schema<DescribeEnvironmentsResult>;
+export interface DescribeEnvironmentStatusRequest {
+  environmentId: string;
+}
+export const DescribeEnvironmentStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ environmentId: S.String }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "DescribeEnvironmentStatusRequest",
+}) as any as S.Schema<DescribeEnvironmentStatusRequest>;
+export type EnvironmentStatus =
+  | "error"
+  | "creating"
+  | "connecting"
+  | "ready"
+  | "stopping"
+  | "stopped"
+  | "deleting"
+  | (string & {});
+export const EnvironmentStatus = /*@__PURE__*/ S.String;
+
+export interface DescribeEnvironmentStatusResult {
+  status: EnvironmentStatus;
+  message: string;
+}
+export const DescribeEnvironmentStatusResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ status: EnvironmentStatus, message: S.String }),
+).annotate({
+  identifier: "DescribeEnvironmentStatusResult",
+}) as any as S.Schema<DescribeEnvironmentStatusResult>;
+export interface ListEnvironmentsRequest {
+  nextToken?: string;
+  maxResults?: number;
+}
+export const ListEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextToken: S.optional(S.String),
+    maxResults: S.optional(S.Number),
+  }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "ListEnvironmentsRequest",
+}) as any as S.Schema<ListEnvironmentsRequest>;
+export type EnvironmentIdList = string[];
+export const EnvironmentIdList = /*@__PURE__*/ S.Array(S.String);
+export interface ListEnvironmentsResult {
+  nextToken?: string;
+  environmentIds?: string[];
+}
+export const ListEnvironmentsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextToken: S.optional(S.String),
+    environmentIds: S.optional(EnvironmentIdList),
+  }),
+).annotate({
+  identifier: "ListEnvironmentsResult",
+}) as any as S.Schema<ListEnvironmentsResult>;
+export type EnvironmentArn = string;
+export interface ListTagsForResourceRequest {
+  ResourceARN: string;
+}
+export const ListTagsForResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ ResourceARN: S.String }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "ListTagsForResourceRequest",
+}) as any as S.Schema<ListTagsForResourceRequest>;
+export interface ListTagsForResourceResponse {
+  Tags?: Tag[];
+}
+export const ListTagsForResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ Tags: S.optional(TagList) }),
+).annotate({
+  identifier: "ListTagsForResourceResponse",
+}) as any as S.Schema<ListTagsForResourceResponse>;
+export interface TagResourceRequest {
+  ResourceARN: string;
+  Tags: Tag[];
+}
+export const TagResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ ResourceARN: S.String, Tags: TagList }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "TagResourceRequest",
+}) as any as S.Schema<TagResourceRequest>;
+export interface TagResourceResponse {}
+export const TagResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TagResourceResponse",
+}) as any as S.Schema<TagResourceResponse>;
+export type TagKeyList = (string | redacted.Redacted<string>)[];
+export const TagKeyList = /*@__PURE__*/ S.Array(SensitiveString);
+export interface UntagResourceRequest {
+  ResourceARN: string;
+  TagKeys: (string | redacted.Redacted<string>)[];
+}
+export const UntagResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ ResourceARN: S.String, TagKeys: TagKeyList }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "UntagResourceRequest",
+}) as any as S.Schema<UntagResourceRequest>;
+export interface UntagResourceResponse {}
+export const UntagResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UntagResourceResponse",
+}) as any as S.Schema<UntagResourceResponse>;
+export type ManagedCredentialsAction = "ENABLE" | "DISABLE" | (string & {});
+export const ManagedCredentialsAction = /*@__PURE__*/ S.String;
+
+export interface UpdateEnvironmentRequest {
+  environmentId: string;
+  name?: string;
+  description?: string | redacted.Redacted<string>;
+  managedCredentialsAction?: ManagedCredentialsAction;
+}
+export const UpdateEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentId: S.String,
+    name: S.optional(S.String),
+    description: S.optional(SensitiveString),
+    managedCredentialsAction: S.optional(ManagedCredentialsAction),
+  }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "UpdateEnvironmentRequest",
+}) as any as S.Schema<UpdateEnvironmentRequest>;
+export interface UpdateEnvironmentResult {}
+export const UpdateEnvironmentResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateEnvironmentResult",
+}) as any as S.Schema<UpdateEnvironmentResult>;
+export interface UpdateEnvironmentMembershipRequest {
+  environmentId: string;
+  userArn: string;
+  permissions: MemberPermissions;
+}
+export const UpdateEnvironmentMembershipRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentId: S.String,
+    userArn: S.String,
+    permissions: MemberPermissions,
+  }).pipe(
+    T.all(T.Http({ method: "POST", uri: "/" }), svc, auth, proto, ver, rules),
+  ),
+).annotate({
+  identifier: "UpdateEnvironmentMembershipRequest",
+}) as any as S.Schema<UpdateEnvironmentMembershipRequest>;
+export interface UpdateEnvironmentMembershipResult {
+  membership?: EnvironmentMember;
+}
+export const UpdateEnvironmentMembershipResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({ membership: S.optional(EnvironmentMember) }),
+).annotate({
+  identifier: "UpdateEnvironmentMembershipResult",
+}) as any as S.Schema<UpdateEnvironmentMembershipResult>;
+export type CreateEnvironmentEC2Error =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Creates an Cloud9 development environment, launches an Amazon Elastic Compute Cloud (Amazon EC2) instance, and
+ * then connects from the instance to the environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const createEnvironmentEC2: API.OperationMethod<
+  CreateEnvironmentEC2Request,
+  CreateEnvironmentEC2Result,
+  CreateEnvironmentEC2Error,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEnvironmentEC2Request,
+  output: CreateEnvironmentEC2Result,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "CreateEnvironmentEC2",
+}));
+
+export type CreateEnvironmentMembershipError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Adds an environment member to an Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const createEnvironmentMembership: API.OperationMethod<
+  CreateEnvironmentMembershipRequest,
+  CreateEnvironmentMembershipResult,
+  CreateEnvironmentMembershipError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateEnvironmentMembershipRequest,
+  output: CreateEnvironmentMembershipResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "CreateEnvironmentMembership",
+}));
+
+export type DeleteEnvironmentError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected to the
+ * environment, also terminates the instance.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const deleteEnvironment: API.OperationMethod<
+  DeleteEnvironmentRequest,
+  DeleteEnvironmentResult,
+  DeleteEnvironmentError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEnvironmentRequest,
+  output: DeleteEnvironmentResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "DeleteEnvironment",
+}));
+
+export type DeleteEnvironmentMembershipError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Deletes an environment member from a development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const deleteEnvironmentMembership: API.OperationMethod<
+  DeleteEnvironmentMembershipRequest,
+  DeleteEnvironmentMembershipResult,
+  DeleteEnvironmentMembershipError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEnvironmentMembershipRequest,
+  output: DeleteEnvironmentMembershipResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "DeleteEnvironmentMembership",
+}));
+
+export type DescribeEnvironmentMembershipsError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Gets information about environment members for an Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const describeEnvironmentMemberships: API.PaginatedOperationMethod<
+  DescribeEnvironmentMembershipsRequest,
+  DescribeEnvironmentMembershipsResult,
+  DescribeEnvironmentMembershipsError,
+  Credentials | HttpClient.HttpClient,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(() => ({
+  input: DescribeEnvironmentMembershipsRequest,
+  output: DescribeEnvironmentMembershipsResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "DescribeEnvironmentMemberships",
+  pagination: {
+    inputToken: "nextToken",
+    outputToken: "nextToken",
+    pageSize: "maxResults",
+  } as const,
+})) as any;
+
+export type DescribeEnvironmentsError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Gets information about Cloud9 development environments.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const describeEnvironments: API.OperationMethod<
+  DescribeEnvironmentsRequest,
+  DescribeEnvironmentsResult,
+  DescribeEnvironmentsError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: DescribeEnvironmentsRequest,
+  output: DescribeEnvironmentsResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "DescribeEnvironments",
+}));
+
+export type DescribeEnvironmentStatusError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Gets status information for an Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const describeEnvironmentStatus: API.OperationMethod<
+  DescribeEnvironmentStatusRequest,
+  DescribeEnvironmentStatusResult,
+  DescribeEnvironmentStatusError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: DescribeEnvironmentStatusRequest,
+  output: DescribeEnvironmentStatusResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "DescribeEnvironmentStatus",
+}));
+
+export type ListEnvironmentsError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Gets a list of Cloud9 development environment identifiers.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const listEnvironments: API.PaginatedOperationMethod<
+  ListEnvironmentsRequest,
+  ListEnvironmentsResult,
+  ListEnvironmentsError,
+  Credentials | HttpClient.HttpClient,
+  unknown
+> = /*@__PURE__*/ API.makePaginated(() => ({
+  input: ListEnvironmentsRequest,
+  output: ListEnvironmentsResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "ListEnvironments",
+  pagination: {
+    inputToken: "nextToken",
+    outputToken: "nextToken",
+    pageSize: "maxResults",
+  } as const,
+})) as any;
+
+export type ListTagsForResourceError =
+  | BadRequestException
+  | InternalServerErrorException
+  | NotFoundException
+  | CommonErrors;
+/**
+ * Gets a list of the tags associated with an Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const listTagsForResource: API.OperationMethod<
+  ListTagsForResourceRequest,
+  ListTagsForResourceResponse,
+  ListTagsForResourceError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTagsForResourceRequest,
+  output: ListTagsForResourceResponse,
+  errors: [
+    BadRequestException,
+    InternalServerErrorException,
+    NotFoundException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "ListTagsForResource",
+}));
+
+export type TagResourceError =
+  | BadRequestException
+  | ConcurrentAccessException
+  | InternalServerErrorException
+  | NotFoundException
+  | CommonErrors;
+/**
+ * Adds tags to an Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ *
+ * Tags that you add to an Cloud9 environment by using this method will NOT be
+ * automatically propagated to underlying resources.
+ */
+export const tagResource: API.OperationMethod<
+  TagResourceRequest,
+  TagResourceResponse,
+  TagResourceError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: TagResourceRequest,
+  output: TagResourceResponse,
+  errors: [
+    BadRequestException,
+    ConcurrentAccessException,
+    InternalServerErrorException,
+    NotFoundException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "TagResource",
+}));
+
+export type UntagResourceError =
+  | BadRequestException
+  | ConcurrentAccessException
+  | InternalServerErrorException
+  | NotFoundException
+  | CommonErrors;
+/**
+ * Removes tags from an Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const untagResource: API.OperationMethod<
+  UntagResourceRequest,
+  UntagResourceResponse,
+  UntagResourceError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: UntagResourceRequest,
+  output: UntagResourceResponse,
+  errors: [
+    BadRequestException,
+    ConcurrentAccessException,
+    InternalServerErrorException,
+    NotFoundException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "UntagResource",
+}));
+
+export type UpdateEnvironmentError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Changes the settings of an existing Cloud9 development environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const updateEnvironment: API.OperationMethod<
+  UpdateEnvironmentRequest,
+  UpdateEnvironmentResult,
+  UpdateEnvironmentError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnvironmentRequest,
+  output: UpdateEnvironmentResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "UpdateEnvironment",
+}));
+
+export type UpdateEnvironmentMembershipError =
+  | BadRequestException
+  | ConflictException
+  | ForbiddenException
+  | InternalServerErrorException
+  | LimitExceededException
+  | NotFoundException
+  | TooManyRequestsException
+  | CommonErrors;
+/**
+ * Changes the settings of an existing environment member for an Cloud9 development
+ * environment.
+ *
+ * Cloud9 is no longer available to new customers. Existing customers of
+ * Cloud9 can continue to use the service as normal.
+ * Learn more"
+ */
+export const updateEnvironmentMembership: API.OperationMethod<
+  UpdateEnvironmentMembershipRequest,
+  UpdateEnvironmentMembershipResult,
+  UpdateEnvironmentMembershipError,
+  Credentials | HttpClient.HttpClient
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnvironmentMembershipRequest,
+  output: UpdateEnvironmentMembershipResult,
+  errors: [
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    InternalServerErrorException,
+    LimitExceededException,
+    NotFoundException,
+    TooManyRequestsException,
+  ],
+  protocol: AwsProtocol,
+  retry: Retry,
+  operationName: "UpdateEnvironmentMembership",
+}));

@@ -1,0 +1,29 @@
+{
+  "description": "id/created_on/modified_on are server-assigned — not part of the create/update payloads",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.spectrum#CreateAppRequest/members/id"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.spectrum#CreateAppRequest/members/created_on"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.spectrum#CreateAppRequest/members/modified_on"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateAppRequest/members/id"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateAppRequest/members/created_on"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.spectrum#UpdateAppRequest/members/modified_on"
+    }
+  ]
+}

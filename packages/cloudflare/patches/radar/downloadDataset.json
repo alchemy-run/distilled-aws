@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DatasetsDownload with distilled cloudflare/radar downloadDataset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsDownload",
+      "path": "/shapes/com.cloudflare.radar#DownloadDataset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsDownloadRequest",
+      "path": "/shapes/com.cloudflare.radar#DownloadDatasetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DownloadDataset/input/target",
+      "value": "com.cloudflare.radar#DownloadDatasetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsDownloadResponse",
+      "path": "/shapes/com.cloudflare.radar#DownloadDatasetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DownloadDataset/output/target",
+      "value": "com.cloudflare.radar#DownloadDatasetResponse"
+    }
+  ]
+}

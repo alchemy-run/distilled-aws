@@ -1,0 +1,7 @@
+{
+  "operations": {
+    "listManagedNotificationChildEvents": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  }
+}

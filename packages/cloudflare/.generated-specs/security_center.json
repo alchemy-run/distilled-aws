@@ -1,0 +1,3176 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.security_center#InsightsDismissForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismiss": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsDismissForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsDismissForAccountRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/security-center/insights/{issue_id}/dismiss",
+          "code": 200
+        },
+        "smithy.api#documentation": "Archives a Security Center insight for an account or zone, removing it from the active insights list while preserving historical data.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsDismissForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismiss": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsDismissForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsDismissForZoneRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/security-center/insights/{issue_id}/dismiss",
+          "code": 200
+        },
+        "smithy.api#documentation": "Archives a Security Center insight for an account or zone, removing it from the active insights list while preserving historical data.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the current page within paginated list of results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results per page of results.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemIssueType": {
+      "type": "enum",
+      "members": {
+        "COMPLIANCE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "compliance_violation"
+          }
+        },
+        "EMAIL_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email_security"
+          }
+        },
+        "EXPOSED_INFRASTRUCTURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exposed_infrastructure"
+          }
+        },
+        "INSECURE_CONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "insecure_configuration"
+          }
+        },
+        "WEAK_AUTHENTICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weak_authentication"
+          }
+        },
+        "CONFIGURATION_SUGGESTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configuration_suggestion"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemPayload": {
+      "type": "structure",
+      "members": {
+        "detection_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the method used to detect insight."
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemSeverity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Low"
+          }
+        },
+        "MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Moderate"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Critical"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resolved"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemUserClassification": {
+      "type": "enum",
+      "members": {
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false_positive"
+          }
+        },
+        "ACCEPT_RISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accept_risk"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_extended_context": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the insight has a large payload that requires fetching via the context endpoint."
+          }
+        },
+        "issue_class": {
+          "target": "smithy.api#String"
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemIssueType"
+        },
+        "payload": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemPayload"
+        },
+        "resolve_link": {
+          "target": "smithy.api#String"
+        },
+        "resolve_text": {
+          "target": "smithy.api#String"
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemSeverity"
+        },
+        "since": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the insight."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String"
+        },
+        "timestamp": {
+          "target": "smithy.api#String"
+        },
+        "user_classification": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItemUserClassification",
+          "traits": {
+            "smithy.api#documentation": "User-defined classification for the insight. Can be 'false_positive', 'accept_risk', 'other', or null."
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponseIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccountResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicates the total number of results."
+          }
+        },
+        "issues": {
+          "target": "com.cloudflare.security_center#InsightsListForAccountResponseIssuesList"
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the current page within paginated list of results."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results per page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsListForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsListForAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all Security Center insights for the account or zone, showing security findings and recommendations.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the current page within paginated list of results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results per page of results.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemIssueType": {
+      "type": "enum",
+      "members": {
+        "COMPLIANCE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "compliance_violation"
+          }
+        },
+        "EMAIL_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email_security"
+          }
+        },
+        "EXPOSED_INFRASTRUCTURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exposed_infrastructure"
+          }
+        },
+        "INSECURE_CONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "insecure_configuration"
+          }
+        },
+        "WEAK_AUTHENTICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weak_authentication"
+          }
+        },
+        "CONFIGURATION_SUGGESTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configuration_suggestion"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemPayload": {
+      "type": "structure",
+      "members": {
+        "detection_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the method used to detect insight."
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemSeverity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Low"
+          }
+        },
+        "MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Moderate"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Critical"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resolved"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemUserClassification": {
+      "type": "enum",
+      "members": {
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false_positive"
+          }
+        },
+        "ACCEPT_RISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accept_risk"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_extended_context": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the insight has a large payload that requires fetching via the context endpoint."
+          }
+        },
+        "issue_class": {
+          "target": "smithy.api#String"
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemIssueType"
+        },
+        "payload": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemPayload"
+        },
+        "resolve_link": {
+          "target": "smithy.api#String"
+        },
+        "resolve_text": {
+          "target": "smithy.api#String"
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemSeverity"
+        },
+        "since": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the insight."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String"
+        },
+        "timestamp": {
+          "target": "smithy.api#String"
+        },
+        "user_classification": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItemUserClassification",
+          "traits": {
+            "smithy.api#documentation": "User-defined classification for the insight. Can be 'false_positive', 'accept_risk', 'other', or null."
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponseIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZoneResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicates the total number of results."
+          }
+        },
+        "issues": {
+          "target": "com.cloudflare.security_center#InsightsListForZoneResponseIssuesList"
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the current page within paginated list of results."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results per page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.security_center#InsightsListForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsListForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsListForZoneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/insights",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all Security Center insights for the account or zone, showing security findings and recommendations.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountRequestFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed before this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by the actor that made the change.",
+            "smithy.api#httpQuery": "changed_by"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque cursor for pagination. Use the cursor value from result_info of the previous response.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountRequestFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "Filter by the field that was changed.",
+            "smithy.api#httpQuery": "field_changed"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Sort order for results. Use 'asc' for oldest first or 'desc' for newest first.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed at or after this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "since"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountResultItemFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUIDv7 identifier for the audit log entry, time-ordered."
+          }
+        },
+        "changed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the change occurred."
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actor that made the change. 'system' for automated changes, or a user identifier."
+          }
+        },
+        "current_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field after the change. Null if the field was cleared."
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountResultItemFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "The field that was changed."
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the insight this audit log entry relates to."
+          }
+        },
+        "previous_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field before the change. Null if the field was not previously set."
+          }
+        },
+        "rationale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional rationale provided for the change."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zone ID associated with the insight. Only present for zone-level insights."
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccountResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights/audit-log",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists audit log entries for all Security Center insights in the account or zone, showing changes to insight status and classification.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneRequestFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed before this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by the actor that made the change.",
+            "smithy.api#httpQuery": "changed_by"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque cursor for pagination. Use the cursor value from result_info of the previous response.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneRequestFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "Filter by the field that was changed.",
+            "smithy.api#httpQuery": "field_changed"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Sort order for results. Use 'asc' for oldest first or 'desc' for newest first.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed at or after this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "since"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneResultItemFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUIDv7 identifier for the audit log entry, time-ordered."
+          }
+        },
+        "changed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the change occurred."
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actor that made the change. 'system' for automated changes, or a user identifier."
+          }
+        },
+        "current_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field after the change. Null if the field was cleared."
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneResultItemFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "The field that was changed."
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the insight this audit log entry relates to."
+          }
+        },
+        "previous_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field before the change. Null if the field was not previously set."
+          }
+        },
+        "rationale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional rationale provided for the change."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zone ID associated with the insight. Only present for zone-level insights."
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZoneResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListForZoneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/insights/audit-log",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists audit log entries for all Security Center insights in the account or zone, showing changes to insight status and classification.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountRequestFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed before this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by the actor that made the change.",
+            "smithy.api#httpQuery": "changed_by"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque cursor for pagination. Use the cursor value from result_info of the previous response.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountRequestFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "Filter by the field that was changed.",
+            "smithy.api#httpQuery": "field_changed"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Sort order for results. Use 'asc' for oldest first or 'desc' for newest first.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed at or after this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "since"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResultItemFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUIDv7 identifier for the audit log entry, time-ordered."
+          }
+        },
+        "changed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the change occurred."
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actor that made the change. 'system' for automated changes, or a user identifier."
+          }
+        },
+        "current_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field after the change. Null if the field was cleared."
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResultItemFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "The field that was changed."
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the insight this audit log entry relates to."
+          }
+        },
+        "previous_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field before the change. Null if the field was not previously set."
+          }
+        },
+        "rationale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional rationale provided for the change."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zone ID associated with the insight. Only present for zone-level insights."
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights/{issue_id}/audit-log",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists audit log entries for a specific Security Center insight, showing changes to its status and classification over time.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequestFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequestOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed before this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by the actor that made the change.",
+            "smithy.api#httpQuery": "changed_by"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque cursor for pagination. Use the cursor value from result_info of the previous response.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequestFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "Filter by the field that was changed.",
+            "smithy.api#httpQuery": "field_changed"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Sort order for results. Use 'asc' for oldest first or 'desc' for newest first.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter entries changed at or after this timestamp (RFC 3339).",
+            "smithy.api#httpQuery": "since"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResultItemFieldChanged": {
+      "type": "enum",
+      "members": {
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "USER_CLASSIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_classification"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUIDv7 identifier for the audit log entry, time-ordered."
+          }
+        },
+        "changed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the change occurred."
+          }
+        },
+        "changed_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actor that made the change. 'system' for automated changes, or a user identifier."
+          }
+        },
+        "current_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field after the change. Null if the field was cleared."
+          }
+        },
+        "field_changed": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResultItemFieldChanged",
+          "traits": {
+            "smithy.api#documentation": "The field that was changed."
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the insight this audit log entry relates to."
+          }
+        },
+        "previous_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field before the change. Null if the field was not previously set."
+          }
+        },
+        "rationale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional rationale provided for the change."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The zone ID associated with the insight. Only present for zone-level insights."
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZoneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/insights/{issue_id}/audit-log",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists audit log entries for a specific Security Center insight, showing changes to its status and classification over time.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsClassGetForAccountResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccountResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccountResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsClassGetForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsClassGetForAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights/class",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center insight counts aggregated by classification class.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsClassGetForZoneResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZoneResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZoneResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassGetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsClassGetForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsClassGetForZoneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/insights/class",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center insight counts aggregated by classification class.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassificationUpdateForAccountRequestClassification": {
+      "type": "enum",
+      "members": {
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false_positive"
+          }
+        },
+        "ACCEPT_RISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accept_risk"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassificationUpdateForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "classification": {
+          "target": "com.cloudflare.security_center#InsightsClassificationUpdateForAccountRequestClassification",
+          "traits": {
+            "smithy.api#documentation": "User-defined classification for the insight. Can be 'false_positive', 'accept_risk', 'other', or null."
+          }
+        },
+        "rationale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rationale for the classification change. Required when classification is 'accept_risk' or 'other'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassificationUpdateForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsClassificationUpdateForAccountRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/security-center/insights/{issue_id}/classification",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the user classification for a Security Center insight. Valid values are 'false_positive' or 'accept_risk'. To reset, set classification to null. Cannot change directly between classification values - must reset to null first."
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassificationUpdateForZoneRequestClassification": {
+      "type": "enum",
+      "members": {
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false_positive"
+          }
+        },
+        "ACCEPT_RISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accept_risk"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassificationUpdateForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "classification": {
+          "target": "com.cloudflare.security_center#InsightsClassificationUpdateForZoneRequestClassification",
+          "traits": {
+            "smithy.api#documentation": "User-defined classification for the insight. Can be 'false_positive', 'accept_risk', 'other', or null."
+          }
+        },
+        "rationale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rationale for the classification change. Required when classification is 'accept_risk' or 'other'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsClassificationUpdateForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsClassificationUpdateForZoneRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/security-center/insights/{issue_id}/classification",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the user classification for a Security Center insight. Valid values are 'false_positive' or 'accept_risk'. To reset, set classification to null. Cannot change directly between classification values - must reset to null first."
+      }
+    },
+    "com.cloudflare.security_center#InsightsContextGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsContextGetResultMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.security_center#InsightsContextGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsContextGetResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsContextGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsContextGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsContextGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights/{issue_id}/context",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the full context payload for an insight. This endpoint is used for insights with large payloads that are not included inline in the list response.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccountResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsSeverityGetForAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights/severity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center insight counts aggregated by severity level (critical, high, medium, low).",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZoneResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsSeverityGetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsSeverityGetForZoneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/insights/severity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center insight counts aggregated by severity level (critical, high, medium, low).",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsTypeGetForAccountResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccountResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccountResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsTypeGetForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsTypeGetForAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/security-center/insights/type",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center insight counts aggregated by insight type.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.security_center#InsightsTypeGetForZoneResultItem"
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZoneResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZoneResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.security_center#InsightsTypeGetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_center#InsightsTypeGetForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_center#InsightsTypeGetForZoneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/insights/type",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center insight counts aggregated by insight type.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_center#SecurityCenter": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.security_center#InsightsDismissForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsDismissForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsListForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsListForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsClassGetForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsClassGetForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsClassificationUpdateForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsClassificationUpdateForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsContextGet"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsSeverityGetForZone"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForAccount"
+        },
+        {
+          "target": "com.cloudflare.security_center#InsightsTypeGetForZone"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare SecurityCenter",
+        "smithy.api#documentation": "Cloudflare API — security_center resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

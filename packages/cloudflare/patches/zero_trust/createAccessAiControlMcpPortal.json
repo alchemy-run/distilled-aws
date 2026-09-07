@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#AccessAiControlsMcpPortalsCreate with distilled cloudflare/zero-trust createAccessAiControlMcpPortal",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpPortalsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessAiControlMcpPortal"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpPortalsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessAiControlMcpPortalRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessAiControlMcpPortal/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessAiControlMcpPortalRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessAiControlsMcpPortalsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessAiControlMcpPortalResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessAiControlMcpPortal/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessAiControlMcpPortalResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessAiControlMcpPortal/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#McpPortalHostnameInUse"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_transit#AppsUpdate with distilled cloudflare/magic-transit updateApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateApp/input/target",
+      "value": "com.cloudflare.magic_transit#UpdateAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateApp/output/target",
+      "value": "com.cloudflare.magic_transit#UpdateAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#AppNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#MagicWanUnauthorized"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

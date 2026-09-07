@@ -1,0 +1,453 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.edge_cache#InvalidateByTagsRequestTagsCase0List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#InvalidateByTagsRequestTags": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.edge_cache#InvalidateByTagsRequestTagsCase0List"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#InvalidateByTagsRequestTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#InvalidateByTagsRequest": {
+      "type": "structure",
+      "members": {
+        "projectIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectIdOrName",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "tags": {
+          "target": "com.vercel.edge_cache#InvalidateByTagsRequestTags",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.edge_cache#InvalidateByTagsRequestTarget"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.edge_cache#InvalidateByTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.edge_cache#InvalidateByTagsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.edge_cache#BadRequest"
+        },
+        {
+          "target": "com.vercel.edge_cache#Forbidden"
+        },
+        {
+          "target": "com.vercel.edge_cache#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/edge-cache/invalidate-by-tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invalidate by tag\n\nMarks a cache tag as stale, causing cache entries associated with that tag to be revalidated in the background on the next request."
+      }
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteByTagsRequestTagsCase0List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteByTagsRequestTags": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.edge_cache#DangerouslyDeleteByTagsRequestTagsCase0List"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteByTagsRequestTarget": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteByTagsRequest": {
+      "type": "structure",
+      "members": {
+        "projectIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectIdOrName",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "revalidationDeadlineSeconds": {
+          "target": "smithy.api#Integer"
+        },
+        "tags": {
+          "target": "com.vercel.edge_cache#DangerouslyDeleteByTagsRequestTags",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.vercel.edge_cache#DangerouslyDeleteByTagsRequestTarget"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteByTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.edge_cache#DangerouslyDeleteByTagsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.edge_cache#BadRequest"
+        },
+        {
+          "target": "com.vercel.edge_cache#Forbidden"
+        },
+        {
+          "target": "com.vercel.edge_cache#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/edge-cache/dangerously-delete-by-tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Dangerously delete by tag\n\nMarks a cache tag as deleted, causing cache entries associated with that tag to be revalidated in the foreground on the next request. Use this method with caution because one tag can be associated with many paths and deleting the cache can cause many concurrent requests to the origin leading to cache stampede problem. This method is for advanced use cases and is not recommended; prefer using `invalidateByTag` instead."
+      }
+    },
+    "com.vercel.edge_cache#InvalidateBySrcImagesRequestSrcImagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#InvalidateBySrcImagesRequest": {
+      "type": "structure",
+      "members": {
+        "projectIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectIdOrName",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "srcImages": {
+          "target": "com.vercel.edge_cache#InvalidateBySrcImagesRequestSrcImagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.edge_cache#InvalidateBySrcImages": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.edge_cache#InvalidateBySrcImagesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.edge_cache#BadRequest"
+        },
+        {
+          "target": "com.vercel.edge_cache#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.edge_cache#Forbidden"
+        },
+        {
+          "target": "com.vercel.edge_cache#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/edge-cache/invalidate-by-src-images",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invalidate by source image\n\nMarks a source image as stale, causing its corresponding transformed images to be revalidated in the background on the next request."
+      }
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteBySrcImagesRequestSrcImagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteBySrcImagesRequest": {
+      "type": "structure",
+      "members": {
+        "projectIdOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectIdOrName",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "revalidationDeadlineSeconds": {
+          "target": "smithy.api#Integer"
+        },
+        "srcImages": {
+          "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImagesRequestSrcImagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.edge_cache#DangerouslyDeleteBySrcImages": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImagesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.edge_cache#BadRequest"
+        },
+        {
+          "target": "com.vercel.edge_cache#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.edge_cache#Forbidden"
+        },
+        {
+          "target": "com.vercel.edge_cache#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/edge-cache/dangerously-delete-by-src-images",
+          "code": 200
+        },
+        "smithy.api#documentation": "Dangerously delete by source image\n\nMarks a source image as deleted, causing cache entries associated with that source image to be revalidated in the foreground on the next request. Use this method with caution because one source image can be associated with many paths and deleting the cache can cause many concurrent requests to the origin leading to cache stampede problem. This method is for advanced use cases and is not recommended; prefer using `invalidateBySrcImage` instead."
+      }
+    },
+    "com.vercel.edge_cache#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.edge_cache#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.edge_cache#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.edge_cache#PaymentRequired": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 402,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 402
+          }
+        ]
+      }
+    },
+    "com.vercel.edge_cache#EdgeCache": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.edge_cache#InvalidateByTags"
+        },
+        {
+          "target": "com.vercel.edge_cache#DangerouslyDeleteByTags"
+        },
+        {
+          "target": "com.vercel.edge_cache#InvalidateBySrcImages"
+        },
+        {
+          "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImages"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

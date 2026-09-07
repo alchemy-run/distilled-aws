@@ -1,0 +1,38 @@
+{
+  "description": "Align d1#DatabaseRaw with distilled cloudflare/d1 rawDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseRaw",
+      "path": "/shapes/com.cloudflare.d1#RawDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseRawRequest",
+      "path": "/shapes/com.cloudflare.d1#RawDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#RawDatabase/input/target",
+      "value": "com.cloudflare.d1#RawDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseRawResponse",
+      "path": "/shapes/com.cloudflare.d1#RawDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#RawDatabase/output/target",
+      "value": "com.cloudflare.d1#RawDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#RawDatabase/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

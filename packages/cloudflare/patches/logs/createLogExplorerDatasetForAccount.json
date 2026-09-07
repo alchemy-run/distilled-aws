@@ -1,0 +1,30 @@
+{
+  "description": "Align logs#LogExplorerDatasetsCreateForAccount with distilled cloudflare/logs createLogExplorerDatasetForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsCreateForAccount",
+      "path": "/shapes/com.cloudflare.logs#CreateLogExplorerDatasetForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.logs#CreateLogExplorerDatasetForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#CreateLogExplorerDatasetForAccount/input/target",
+      "value": "com.cloudflare.logs#CreateLogExplorerDatasetForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.logs#CreateLogExplorerDatasetForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#CreateLogExplorerDatasetForAccount/output/target",
+      "value": "com.cloudflare.logs#CreateLogExplorerDatasetForAccountResponse"
+    }
+  ]
+}

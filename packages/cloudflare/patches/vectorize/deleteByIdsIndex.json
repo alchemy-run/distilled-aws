@@ -1,0 +1,30 @@
+{
+  "description": "Align vectorize#IndexesDeleteByIds with distilled cloudflare/vectorize deleteByIdsIndex",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesDeleteByIds",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteByIdsIndex"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesDeleteByIdsRequest",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteByIdsIndexRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteByIdsIndex/input/target",
+      "value": "com.cloudflare.vectorize#DeleteByIdsIndexRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesDeleteByIdsResponse",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteByIdsIndexResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#DeleteByIdsIndex/output/target",
+      "value": "com.cloudflare.vectorize#DeleteByIdsIndexResponse"
+    }
+  ]
+}

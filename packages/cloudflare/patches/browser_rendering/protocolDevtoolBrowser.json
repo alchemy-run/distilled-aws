@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#DevtoolsBrowserProtocol with distilled cloudflare/browser-rendering protocolDevtoolBrowser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserProtocol",
+      "path": "/shapes/com.cloudflare.browser_rendering#ProtocolDevtoolBrowser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserProtocolRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#ProtocolDevtoolBrowserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#ProtocolDevtoolBrowser/input/target",
+      "value": "com.cloudflare.browser_rendering#ProtocolDevtoolBrowserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserProtocolResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#ProtocolDevtoolBrowserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#ProtocolDevtoolBrowser/output/target",
+      "value": "com.cloudflare.browser_rendering#ProtocolDevtoolBrowserResponse"
+    }
+  ]
+}

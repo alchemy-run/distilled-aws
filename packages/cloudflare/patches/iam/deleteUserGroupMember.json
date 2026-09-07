@@ -1,0 +1,45 @@
+{
+  "description": "Align iam#UserGroupsMembersDelete with distilled cloudflare/iam deleteUserGroupMember",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersDelete",
+      "path": "/shapes/com.cloudflare.iam#DeleteUserGroupMember"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersDeleteRequest",
+      "path": "/shapes/com.cloudflare.iam#DeleteUserGroupMemberRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteUserGroupMember/input/target",
+      "value": "com.cloudflare.iam#DeleteUserGroupMemberRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersDeleteResponse",
+      "path": "/shapes/com.cloudflare.iam#DeleteUserGroupMemberResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteUserGroupMember/output/target",
+      "value": "com.cloudflare.iam#DeleteUserGroupMemberResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#DeleteUserGroupMember/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#InvalidMember"
+        },
+        {
+          "target": "com.cloudflare.iam#UserGroupMemberNotFound"
+        },
+        {
+          "target": "com.cloudflare.iam#UserGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "description": "DHCP reservations are a freeform MAC-to-IP map (v0 parity: Record<string, unknown>)",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansCreateRequestStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansCreateResultItemStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansDeleteResponseStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansEditRequestStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansEditResponseStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansGetResponseStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansListResultItemStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansUpdateRequestStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesLansUpdateResponseStaticAddressingDhcpServerReservationsMap/value/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

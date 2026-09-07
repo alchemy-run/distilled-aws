@@ -1,0 +1,39 @@
+{
+  "description": "Align url_normalization#Get with distilled cloudflare/url-normalization getUrlNormalization",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_normalization#Get",
+      "path": "/shapes/com.cloudflare.url_normalization#GetUrlNormalization"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_normalization#GetRequest",
+      "path": "/shapes/com.cloudflare.url_normalization#GetUrlNormalizationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_normalization#GetUrlNormalization/input/target",
+      "value": "com.cloudflare.url_normalization#GetUrlNormalizationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_normalization#GetResponse",
+      "path": "/shapes/com.cloudflare.url_normalization#GetUrlNormalizationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_normalization#GetUrlNormalization/output/target",
+      "value": "com.cloudflare.url_normalization#GetUrlNormalizationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.url_normalization#GetUrlNormalization/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.url_normalization#Forbidden"
+        }
+      ]
+    }
+  ]
+}

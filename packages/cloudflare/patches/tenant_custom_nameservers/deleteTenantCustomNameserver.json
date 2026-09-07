@@ -1,0 +1,38 @@
+{
+  "description": "Align tenant_custom_nameservers#Delete with distilled cloudflare/tenant-custom-nameservers deleteTenantCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#Delete",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteRequest",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserver/input/target",
+      "value": "com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteResponse",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserver/output/target",
+      "value": "com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserverResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#DeleteTenantCustomNameserver/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

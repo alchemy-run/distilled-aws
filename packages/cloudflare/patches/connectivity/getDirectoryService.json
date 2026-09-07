@@ -1,0 +1,42 @@
+{
+  "description": "Align connectivity#DirectoryServicesGet with distilled cloudflare/connectivity getDirectoryService",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesGet",
+      "path": "/shapes/com.cloudflare.connectivity#GetDirectoryService"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesGetRequest",
+      "path": "/shapes/com.cloudflare.connectivity#GetDirectoryServiceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#GetDirectoryService/input/target",
+      "value": "com.cloudflare.connectivity#GetDirectoryServiceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesGetResponse",
+      "path": "/shapes/com.cloudflare.connectivity#GetDirectoryServiceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#GetDirectoryService/output/target",
+      "value": "com.cloudflare.connectivity#GetDirectoryServiceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#GetDirectoryService/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.connectivity#VpcServiceNotFound"
+        },
+        {
+          "target": "com.cloudflare.connectivity#Forbidden"
+        }
+      ]
+    }
+  ]
+}

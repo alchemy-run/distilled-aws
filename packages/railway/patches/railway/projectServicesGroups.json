@@ -1,0 +1,117 @@
+{
+  "description": "Select project.groups and service.groupId so Group can observe canvas groups and member assignment.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseServicesEdgesItemNode/members/groupId",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#required": {},
+          "com.railway.graphql#nullable": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseGroupsEdgesItemNode",
+      "value": {
+        "type": "structure",
+        "members": {
+          "color": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "groupId": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "icon": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "id": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "isCollapsed": {
+            "target": "smithy.api#Boolean",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "projectId": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseGroupsEdgesItem",
+      "value": {
+        "type": "structure",
+        "members": {
+          "node": {
+            "target": "com.railway.api#ProjectResponseGroupsEdgesItemNode",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseGroupsEdgesList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.railway.api#ProjectResponseGroupsEdgesItem"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseGroups",
+      "value": {
+        "type": "structure",
+        "members": {
+          "edges": {
+            "target": "com.railway.api#ProjectResponseGroupsEdgesList",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponse/members/groups",
+      "value": {
+        "target": "com.railway.api#ProjectResponseGroups",
+        "traits": { "smithy.api#required": {} }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ProjectRequest/traits/com.railway.graphql#operation/query",
+      "value": "query project($id: String!) {\n  project(id: $id) {\n    baseEnvironment {\n      canAccess\n      canvasGroupRefs\n      configEtag\n      createdAt\n      deletedAt\n      id\n      isEphemeral\n      name\n      projectId\n      unmergedChangesCount\n      updatedAt\n    }\n    baseEnvironmentId\n    botPrEnvironments\n    createdAt\n    deletedAt\n    description\n    expiredAt\n    featureFlags\n    focusedPrEnvironments\n    id\n    isPublic\n    isTempProject\n    members {\n      avatar\n      email\n      id\n      name\n      role\n    }\n    name\n    prDeploys\n    primaryEnvironmentId\n    subscriptionPlanLimit\n    subscriptionType\n    team {\n      adoptionLevel\n      avatar\n      createdAt\n      id\n      name\n      preferredRegion\n      slackChannelId\n      supportTierOverride\n      updatedAt\n    }\n    teamId\n    updatedAt\n    workspace {\n      adoptionLevel\n      allowDeprecatedRegions\n      avatar\n      banReason\n      createdAt\n      discordRole\n      has2FAEnforcement\n      hasAutomaticDiagnosis\n      hasGuardrailsAccess\n      hasHipaaBAA\n      hasSAML\n      id\n      name\n      plan\n      preferredRegion\n      redactedDueTo2FAPending\n      slackChannelId\n      subscriptionModel\n      subscriptionPlanLimit\n      supportTierOverride\n      updatedAt\n      usersWithout2FA\n    }\n    workspaceId\n    services(first: 50) {\n      edges {\n        node {\n          createdAt\n          deletedAt\n          groupId\n          id\n          name\n          projectId\n        }\n      }\n    }\n    buckets(first: 50) {\n      edges {\n        node {\n          createdAt\n          groupId\n          id\n          name\n          projectId\n          updatedAt\n        }\n      }\n    }\n    groups(first: 50) {\n      edges {\n        node {\n          color\n          groupId\n          icon\n          id\n          isCollapsed\n          name\n          projectId\n        }\n      }\n    }\n  }\n}"
+    }
+  ]
+}

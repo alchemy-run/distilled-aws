@@ -1,0 +1,5313 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "ondemandscanning",
+    "version": "v1beta1",
+    "title": "On-Demand Scanning API",
+    "baseUrl": "https://ondemandscanning.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.ondemandscanning_v1beta1#Occurrence": {
+      "type": "structure",
+      "members": {
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this occurrence was last updated."
+          }
+        },
+        "aiSkillAnalysis": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AISkillAnalysisOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes an AI skill analysis."
+          }
+        },
+        "deployment": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DeploymentOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes the deployment of an artifact on a runtime."
+          }
+        },
+        "envelope": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Envelope",
+          "traits": {
+            "smithy.api#documentation": "https://github.com/secure-systems-lab/dsse"
+          }
+        },
+        "vulnerability": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes a security vulnerability."
+          }
+        },
+        "package": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes the installation of a package on the linked resource."
+          }
+        },
+        "sbomReference": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SBOMReferenceOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes a specific SBOM reference occurrences."
+          }
+        },
+        "compliance": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ComplianceOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes a compliance violation on a linked resource."
+          }
+        },
+        "image": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ImageOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes how this resource derives from the basis in the associated note."
+          }
+        },
+        "build": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BuildOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes a verifiable build."
+          }
+        },
+        "discovery": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DiscoveryOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes when a resource was discovered."
+          }
+        },
+        "dsseAttestation": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DSSEAttestationOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes an attestation of an artifact using dsse."
+          }
+        },
+        "kind": {
+          "target": "com.gcp.ondemandscanning_v1beta1#OccurrenceKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. This explicitly denotes which of the occurrence details are specified. This field can be used as a filter in list requests."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`."
+          }
+        },
+        "secret": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SecretOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes a secret."
+          }
+        },
+        "upgrade": {
+          "target": "com.gcp.ondemandscanning_v1beta1#UpgradeOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes an available package upgrade on the linked resource."
+          }
+        },
+        "advisoryPublishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this advisory was published by the source."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this occurrence was created."
+          }
+        },
+        "attestation": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AttestationOccurrence",
+          "traits": {
+            "smithy.api#documentation": "Describes an attestation of an artifact."
+          }
+        },
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. A URI that represents the resource for which the occurrence applies. For example, `https://gcr.io/project/image@sha256:123abc` for a Docker image."
+          }
+        },
+        "noteName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The analysis note associated with this occurrence, in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. This field can be used as a filter in list requests."
+          }
+        },
+        "remediation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of actions that can be taken to remedy the note."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An instance of an analysis type that has been found on a resource."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#OccurrenceKindEnum": {
+      "type": "enum",
+      "members": {
+        "NOTE_KIND_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTE_KIND_UNSPECIFIED"
+          }
+        },
+        "VULNERABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VULNERABILITY"
+          }
+        },
+        "BUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUILD"
+          }
+        },
+        "IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMAGE"
+          }
+        },
+        "PACKAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PACKAGE"
+          }
+        },
+        "DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPLOYMENT"
+          }
+        },
+        "DISCOVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY"
+          }
+        },
+        "ATTESTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTESTATION"
+          }
+        },
+        "UPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPGRADE"
+          }
+        },
+        "COMPLIANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLIANCE"
+          }
+        },
+        "DSSE_ATTESTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DSSE_ATTESTATION"
+          }
+        },
+        "VULNERABILITY_ASSESSMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VULNERABILITY_ASSESSMENT"
+          }
+        },
+        "SBOM_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SBOM_REFERENCE"
+          }
+        },
+        "SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET"
+          }
+        },
+        "AI_SKILL_ANALYSIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI_SKILL_ANALYSIS"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#InTotoStatement": {
+      "type": "structure",
+      "members": {
+        "slsaProvenanceZeroTwo": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaProvenanceZeroTwo"
+        },
+        "subject": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SubjectList"
+        },
+        "provenance": {
+          "target": "com.gcp.ondemandscanning_v1beta1#InTotoProvenance"
+        },
+        "_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Always `https://in-toto.io/Statement/v0.1`."
+          }
+        },
+        "slsaProvenance": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaProvenance"
+        },
+        "predicateType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`https://slsa.dev/provenance/v0.1` for SlsaProvenance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always \"application/vnd.in-toto+json\"."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SubjectList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Subject"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource URI of the container image being scanned."
+          }
+        },
+        "packages": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageDataList",
+          "traits": {
+            "smithy.api#documentation": "The packages to analyze."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AnalyzePackagesRequest is the request to analyze a list of packages and create Vulnerability Occurrences for it."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#PackageData"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GerritSourceContext": {
+      "type": "structure",
+      "members": {
+        "gerritProject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full project name within the host. Projects may be nested, so \"project/subproject\" is a valid project name. The \"repo name\" is the hostURI/project."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A revision (commit) ID."
+          }
+        },
+        "hostUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of a running Gerrit instance."
+          }
+        },
+        "aliasContext": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AliasContext",
+          "traits": {
+            "smithy.api#documentation": "An alias, which may be a branch or tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A SourceContext referring to a Gerrit project."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DiscoveryOccurrence": {
+      "type": "structure",
+      "members": {
+        "analysisStatus": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DiscoveryOccurrenceAnalysisStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of discovery for the resource."
+          }
+        },
+        "analysisError": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StatusList",
+          "traits": {
+            "smithy.api#documentation": "Indicates any errors encountered during analysis of a resource. There could be 0 or more of these errors."
+          }
+        },
+        "lastScanTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time this resource was scanned."
+          }
+        },
+        "archiveTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time occurrences related to this discovery occurrence were archived."
+          }
+        },
+        "analysisStatusError": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "When an error is encountered this will contain a LocalizedMessage under details to show to the user. The LocalizedMessage is output only and populated by the API."
+          }
+        },
+        "cpe": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CPE of the resource being scanned."
+          }
+        },
+        "analysisCompleted": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AnalysisCompleted"
+        },
+        "continuousAnalysis": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DiscoveryOccurrenceContinuousAnalysisEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the resource is continuously analyzed."
+          }
+        },
+        "files": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FileList",
+          "traits": {
+            "smithy.api#documentation": "Files that make up the resource described by the occurrence."
+          }
+        },
+        "sbomStatus": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SBOMStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of an SBOM generation."
+          }
+        },
+        "lastVulnerabilityUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time vulnerability scan results changed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides information about the analysis status of a discovered resource."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DiscoveryOccurrenceAnalysisStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ANALYSIS_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANALYSIS_STATUS_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "SCANNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCANNING"
+          }
+        },
+        "FINISHED_SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINISHED_SUCCESS"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        },
+        "FINISHED_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINISHED_FAILED"
+          }
+        },
+        "FINISHED_UNSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINISHED_UNSUPPORTED"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#StatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Status"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DiscoveryOccurrenceContinuousAnalysisEnum": {
+      "type": "enum",
+      "members": {
+        "CONTINUOUS_ANALYSIS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTINUOUS_ANALYSIS_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INACTIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FileList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#File"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SBOMStatus": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there was an error generating an SBOM, this will indicate what that error was."
+          }
+        },
+        "sbomState": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SBOMStatusSbomStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The progress of the SBOM generation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of an SBOM generation."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SBOMStatusSbomStateEnum": {
+      "type": "enum",
+      "members": {
+        "SBOM_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SBOM_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#RepoId": {
+      "type": "structure",
+      "members": {
+        "projectRepoId": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ProjectRepoId",
+          "traits": {
+            "smithy.api#documentation": "A combination of a project ID and a repo name."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A server-assigned, globally unique identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A unique identifier for a Cloud Repo."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness": {
+      "type": "structure",
+      "members": {
+        "parameters": {
+          "target": "smithy.api#Boolean"
+        },
+        "environment": {
+          "target": "smithy.api#Boolean"
+        },
+        "materials": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates that the builder claims certain fields in this message to be complete."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#UpgradeDistribution": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The severity as specified by the upstream operating system."
+          }
+        },
+        "cve": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The cve tied to this Upgrade."
+          }
+        },
+        "cpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required - The specific operating system this metadata applies to. See https://cpe.mitre.org/specification/."
+          }
+        },
+        "classification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operating system classification of this Upgrade, as specified by the upstream operating system upgrade feed. For Windows the classification is one of the category_ids listed at https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ff357803(v=vs.85)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Upgrade Distribution represents metadata about the Upgrade for each operating system (CPE). Some distributions have additional metadata around updates, classifying them into various categories and severities."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Identity": {
+      "type": "structure",
+      "members": {
+        "updateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The revision independent identifier of the update."
+          }
+        },
+        "revision": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The revision number of the update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The unique identifier of the update."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1BaseImage": {
+      "type": "structure",
+      "members": {
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository name in which the base image is from."
+          }
+        },
+        "layerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of layers that the base image is composed of."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the base image."
+          }
+        },
+        "registry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The registry in which the base image is from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "BaseImage describes a base image of a container image."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata": {
+      "type": "structure",
+      "members": {
+        "buildFinishedOn": {
+          "target": "smithy.api#String"
+        },
+        "reproducible": {
+          "target": "smithy.api#Boolean"
+        },
+        "buildStartedOn": {
+          "target": "smithy.api#String"
+        },
+        "completeness": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness"
+        },
+        "buildInvocationId": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Other properties of the build."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ListVulnerabilitiesResponse": {
+      "type": "structure",
+      "members": {
+        "occurrences": {
+          "target": "com.gcp.ondemandscanning_v1beta1#OccurrenceList",
+          "traits": {
+            "smithy.api#documentation": "The list of Vulnerability Occurrences resulting from a scan."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token that can be used in a subsequent call to ListVulnerabilities to continue retrieving results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ListVulnerabilitiesResponse contains a single page of vulnerabilities resulting from a scan."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#OccurrenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Occurrence"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "response": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GitSourceContext": {
+      "type": "structure",
+      "members": {
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git commit hash."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git repository URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitSourceContext denotes a particular revision in a third party Git repository (e.g., GitHub)."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Remediation": {
+      "type": "structure",
+      "members": {
+        "remediationUri": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RelatedUrl",
+          "traits": {
+            "smithy.api#documentation": "Contains the URL where to obtain the remediation."
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains a comprehensive human-readable discussion of the remediation."
+          }
+        },
+        "remediationType": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RemediationRemediationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of remediation that can be applied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies details on how to handle (and presumably, fix) a vulnerability."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#RemediationRemediationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "REMEDIATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMEDIATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "MITIGATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MITIGATION"
+          }
+        },
+        "NO_FIX_PLANNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_FIX_PLANNED"
+          }
+        },
+        "NONE_AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE_AVAILABLE"
+          }
+        },
+        "VENDOR_FIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VENDOR_FIX"
+          }
+        },
+        "WORKAROUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKAROUND"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Metadata": {
+      "type": "structure",
+      "members": {
+        "buildInvocationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec."
+          }
+        },
+        "buildStartedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when the build started."
+          }
+        },
+        "completeness": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Completeness",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the builder claims certain fields in this message to be complete."
+          }
+        },
+        "reproducible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output."
+          }
+        },
+        "buildFinishedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when the build completed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Other properties of the build."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Jwt": {
+      "type": "structure",
+      "members": {
+        "compactJwt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The compact encoding of a JWS, which is always three base64 encoded strings joined by periods. For details, see: https://tools.ietf.org/html/rfc7515.html#section-3.1"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VexAssessment": {
+      "type": "structure",
+      "members": {
+        "vulnerabilityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc."
+          }
+        },
+        "justification": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Justification",
+          "traits": {
+            "smithy.api#documentation": "Justification provides the justification when the state of the assessment if NOT_AFFECTED."
+          }
+        },
+        "cve": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs."
+          }
+        },
+        "relatedUris": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RelatedUrlList",
+          "traits": {
+            "smithy.api#documentation": "Holds a list of references associated with this vulnerability item and assessment."
+          }
+        },
+        "noteName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`."
+          }
+        },
+        "state": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VexAssessmentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Provides the state of this Vulnerability assessment."
+          }
+        },
+        "impacts": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the impact of this vulnerability, this will change with time."
+          }
+        },
+        "remediations": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RemediationList",
+          "traits": {
+            "smithy.api#documentation": "Specifies details on how to handle (and presumably, fix) a vulnerability."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VexAssessment provides all publisher provided Vex information that is related to this vulnerability."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#RelatedUrlList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#RelatedUrl"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VexAssessmentStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "AFFECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AFFECTED"
+          }
+        },
+        "NOT_AFFECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_AFFECTED"
+          }
+        },
+        "FIXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED"
+          }
+        },
+        "UNDER_INVESTIGATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNDER_INVESTIGATION"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#RemediationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Remediation"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation": {
+      "type": "structure",
+      "members": {
+        "configSource": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource"
+        },
+        "environment": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+        },
+        "parameters": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies the event that kicked off the build."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String"
+        },
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ComplianceVersion": {
+      "type": "structure",
+      "members": {
+        "cpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CPE URI (https://cpe.mitre.org/specification/) this benchmark is applicable to."
+          }
+        },
+        "benchmarkDocument": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the document that defines this benchmark, e.g. \"CIS Container-Optimized OS\"."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the benchmark. This is set to the version of the OS-specific CIS document the benchmark is defined in."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the CIS benchmark version that is applicable to a given OS and os version."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Material": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String"
+        },
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#File": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SourceContext": {
+      "type": "structure",
+      "members": {
+        "git": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GitSourceContext",
+          "traits": {
+            "smithy.api#documentation": "A SourceContext referring to any third party Git repo (e.g., GitHub)."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels with user defined metadata."
+          }
+        },
+        "cloudRepo": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CloudRepoSourceContext",
+          "traits": {
+            "smithy.api#documentation": "A SourceContext referring to a revision in a Google Cloud Source Repo."
+          }
+        },
+        "gerrit": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GerritSourceContext",
+          "traits": {
+            "smithy.api#documentation": "A SourceContext referring to a Gerrit project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A SourceContext is a reference to a tree of files. A SourceContext together with a path point to a unique revision of a single file or directory."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Completeness": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that recipe.environment is claimed to be complete."
+          }
+        },
+        "arguments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe."
+          }
+        },
+        "materials": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called \"hermetic\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates that the builder claims certain fields in this message to be complete."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretLocation": {
+      "type": "structure",
+      "members": {
+        "fileLocation": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1FileLocation",
+          "traits": {
+            "smithy.api#documentation": "The secret is found from a file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The location of the secret."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SbomReferenceIntotoPayload": {
+      "type": "structure",
+      "members": {
+        "_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the schema of the Statement."
+          }
+        },
+        "predicate": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SbomReferenceIntotoPredicate",
+          "traits": {
+            "smithy.api#documentation": "Additional parameters of the Predicate. Includes the actual data about the SBOM."
+          }
+        },
+        "predicateType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI identifying the type of the Predicate."
+          }
+        },
+        "subject": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SubjectList",
+          "traits": {
+            "smithy.api#documentation": "Set of software artifacts that the attestation applies to. Each element represents a single software artifact."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Risk": {
+      "type": "structure",
+      "members": {
+        "cisaKev": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CISAKnownExploitedVulnerabilities",
+          "traits": {
+            "smithy.api#documentation": "CISA maintains the authoritative source of vulnerabilities that have been exploited in the wild."
+          }
+        },
+        "epss": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ExploitPredictionScoringSystem",
+          "traits": {
+            "smithy.api#documentation": "The Exploit Prediction Scoring System (EPSS) estimates the likelihood (probability) that a software vulnerability will be exploited in the wild."
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies the entity that executed the recipe, which is trusted to have correctly performed the operation and populated this provenance."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretStatus": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SecretStatusStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The status of the secret."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time the secret status was last updated."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional message about the status code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the secret with a timestamp."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretStatusStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_UNSPECIFIED"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "VALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VALID"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrence": {
+      "type": "structure",
+      "members": {
+        "extraDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Occurrence-specific extra details about the vulnerability."
+          }
+        },
+        "shortDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A one sentence description of this vulnerability."
+          }
+        },
+        "packageIssue": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageIssueList",
+          "traits": {
+            "smithy.api#documentation": "Required. The set of affected locations and their fixes (if available) within the associated resource."
+          }
+        },
+        "longDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A detailed description of this vulnerability."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.)."
+          }
+        },
+        "cvssV4": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSS",
+          "traits": {
+            "smithy.api#documentation": "The cvss v4 score for the vulnerability."
+          }
+        },
+        "vexAssessment": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VexAssessment"
+        },
+        "risk": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Risk",
+          "traits": {
+            "smithy.api#documentation": "Risk information about the vulnerability, such as CISA, EPSS, etc."
+          }
+        },
+        "relatedUrls": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RelatedUrlList",
+          "traits": {
+            "smithy.api#documentation": "Output only. URLs related to this vulnerability."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrenceSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The note provider assigned severity of this vulnerability."
+          }
+        },
+        "cvssVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrenceCvssVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. CVSS version used to populate cvss_score and severity."
+          }
+        },
+        "cvssV2": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSS",
+          "traits": {
+            "smithy.api#documentation": "The cvss v2 score for the vulnerability."
+          }
+        },
+        "cvssScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity."
+          }
+        },
+        "fixAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether at least one of the affected packages has a fix available."
+          }
+        },
+        "cvssv3": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSS",
+          "traits": {
+            "smithy.api#documentation": "The cvss v3 score for the vulnerability."
+          }
+        },
+        "effectiveSeverity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrenceEffectiveSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An occurrence of a severity vulnerability on a resource."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#PackageIssue"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrenceSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "MINIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MINIMAL"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrenceCvssVersionEnum": {
+      "type": "enum",
+      "members": {
+        "CVSS_VERSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CVSS_VERSION_UNSPECIFIED"
+          }
+        },
+        "CVSS_VERSION_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CVSS_VERSION_2"
+          }
+        },
+        "CVSS_VERSION_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CVSS_VERSION_3"
+          }
+        },
+        "CVSS_VERSION_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CVSS_VERSION_4"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VulnerabilityOccurrenceEffectiveSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "MINIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MINIMAL"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ProjectRepoId": {
+      "type": "structure",
+      "members": {
+        "repoName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repo. Leave empty for the default repo."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AISkillAnalysisOccurrence": {
+      "type": "structure",
+      "members": {
+        "skillName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the skill that produced this analysis."
+          }
+        },
+        "findings": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FindingList",
+          "traits": {
+            "smithy.api#documentation": "Findings produced by the analysis."
+          }
+        },
+        "maxSeverity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AISkillAnalysisOccurrenceMaxSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Maximum severity found among findings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AISkillAnalysisOccurrence provides the results of an AI-based skill analysis."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Finding"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AISkillAnalysisOccurrenceMaxSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ResourceDescriptor": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "content": {
+          "target": "smithy.api#String"
+        },
+        "annotations": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+        },
+        "uri": {
+          "target": "smithy.api#String"
+        },
+        "downloadLocation": {
+          "target": "smithy.api#String"
+        },
+        "mediaType": {
+          "target": "smithy.api#String"
+        },
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaBuilder": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#NonCompliantFile": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Explains why a file is non compliant for a CIS check."
+          }
+        },
+        "displayCommand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command to display the non-compliant files."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Empty if `display_command` is set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about files that caused a compliance check to fail. display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Layer": {
+      "type": "structure",
+      "members": {
+        "directive": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The recovered Dockerfile directive used to construct this layer. See https://docs.docker.com/engine/reference/builder/ for more information."
+          }
+        },
+        "arguments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recovered arguments to the Dockerfile directive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Layer holds metadata specific to a layer of a Docker image."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ComplianceOccurrence": {
+      "type": "structure",
+      "members": {
+        "nonCompliantFiles": {
+          "target": "com.gcp.ondemandscanning_v1beta1#NonCompliantFileList"
+        },
+        "version": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ComplianceVersion",
+          "traits": {
+            "smithy.api#documentation": "The OS and config version the benchmark was run on."
+          }
+        },
+        "nonComplianceReason": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An indication that the compliance checks in the associated ComplianceNote were not satisfied for particular resources or a specified reason."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#NonCompliantFileList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#NonCompliantFile"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#UpgradeOccurrence": {
+      "type": "structure",
+      "members": {
+        "distribution": {
+          "target": "com.gcp.ondemandscanning_v1beta1#UpgradeDistribution",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the upgrade for available for the specific operating system for the resource_url. This allows efficient filtering, as well as making it easier to use the occurrence."
+          }
+        },
+        "windowsUpdate": {
+          "target": "com.gcp.ondemandscanning_v1beta1#WindowsUpdate",
+          "traits": {
+            "smithy.api#documentation": "Required for Windows OS. Represents the metadata about the Windows update."
+          }
+        },
+        "package": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for non-Windows OS. The package this Upgrade is for."
+          }
+        },
+        "parsedVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Version",
+          "traits": {
+            "smithy.api#documentation": "Required for non-Windows OS. The version of the package in a machine + human readable form."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Upgrade Occurrence represents that a specific resource_url could install a specific upgrade. This presence is supplied via local sources (i.e. it is present in the mirror and the running system has noticed its availability). For Windows, both distribution and windows_update contain information for the Windows update."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BaseImage": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the base image."
+          }
+        },
+        "registry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The registry in which the base image is from."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository name in which the base image is from."
+          }
+        },
+        "layerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of layers that the base image is composed of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "BaseImage describes a base image of a container image."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Subject": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "`\"\": \"\"` Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Finding": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Category of the finding."
+          }
+        },
+        "location": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FindingLocation",
+          "traits": {
+            "smithy.api#documentation": "Location (path and line) where the finding was detected."
+          }
+        },
+        "scanner": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FindingScannerEnum",
+          "traits": {
+            "smithy.api#documentation": "Scanner determines which engine (e.g. static, llm) emitted the finding."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FindingSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Severity of the finding."
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the finding category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Finding provides details for a single finding within an AISkillAnalysisOccurrence."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FindingScannerEnum": {
+      "type": "enum",
+      "members": {
+        "SCANNER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCANNER_UNSPECIFIED"
+          }
+        },
+        "STATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATIC"
+          }
+        },
+        "LLM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LLM"
+          }
+        },
+        "WS_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WS_POLICY"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FindingSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#WindowsUpdate": {
+      "type": "structure",
+      "members": {
+        "lastPublishedTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last published timestamp of the update."
+          }
+        },
+        "kbArticleIds": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The Microsoft Knowledge Base article IDs that are associated with the update."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized description of the update."
+          }
+        },
+        "categories": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CategoryList",
+          "traits": {
+            "smithy.api#documentation": "The list of categories to which the update belongs."
+          }
+        },
+        "supportUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hyperlink to the support information for the update."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized title of the update."
+          }
+        },
+        "identity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Identity",
+          "traits": {
+            "smithy.api#documentation": "Required - The unique identifier for the update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Windows Update represents the metadata about the update for the Windows operating system. The fields in this message come from the Windows Update API documented at https://docs.microsoft.com/en-us/windows/win32/api/wuapi/nn-wuapi-iupdate."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CategoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Category"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Artifact": {
+      "type": "structure",
+      "members": {
+        "checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hash or checksum value of a binary, or Docker Registry 2.0 digest of a container."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact ID, if any; for container images, this will be a URL by digest like `gcr.io/projectID/imagename@sha256:123456`."
+          }
+        },
+        "names": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Related artifact names. This may be the path to a binary or jar file, or in the case of a container build, the name used to push the container image to Google Container Registry, as presented to `docker push`. Note that a single Artifact ID can have multiple names, for example if two tags are applied to one image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Artifact describes a build product."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaProvenanceV1": {
+      "type": "structure",
+      "members": {
+        "buildDefinition": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BuildDefinition"
+        },
+        "runDetails": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RunDetails"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaRecipe": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials."
+          }
+        },
+        "definedInMaterial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were \"make\", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64."
+          }
+        },
+        "entryPoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were \"make\", then this would reference the directory in which to run make as well as which target to use."
+          }
+        },
+        "arguments": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were \"make\", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint. Depending on the recipe Type, the structure may be different."
+          }
+        },
+        "environment": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy. Depending on the recipe Type, the structure may be different."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#IngestionSource": {
+      "type": "structure",
+      "members": {
+        "resourceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource URL of the resource that was scanned to find this package."
+          }
+        },
+        "source": {
+          "target": "com.gcp.ondemandscanning_v1beta1#IngestionSourceSourceEnum"
+        },
+        "attachmentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The attachment URI that this package was extracted from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates where an extracted package originates from."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#IngestionSourceSourceEnum": {
+      "type": "enum",
+      "members": {
+        "SOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOURCE_UNSPECIFIED"
+          }
+        },
+        "DOCKER_IMAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCKER_IMAGE"
+          }
+        },
+        "SBOM_ATTACHMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SBOM_ATTACHMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Recipe": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials."
+          }
+        },
+        "environment": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy. Since the environment field can greatly vary in structure, depending on the builder and recipe type, this is of form \"Any\"."
+          }
+        },
+        "definedInMaterial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were \"make\", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64."
+          }
+        },
+        "entryPoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were \"make\", then this would reference the directory in which to run make as well as which target to use."
+          }
+        },
+        "arguments": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were \"make\", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint. Since the arguments field can greatly vary in structure, depending on the builder and recipe type, this is of form \"Any\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BuildOccurrence": {
+      "type": "structure",
+      "members": {
+        "provenanceBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serialized JSON representation of the provenance, used in generating the build signature in the corresponding build note. After verifying the signature, `provenance_bytes` can be unmarshalled and compared to the provenance to confirm that it is unchanged. A base64-encoded string representation of the provenance bytes is used for the signature in order to interoperate with openssl which expects this format for signature verification. The serialized form is captured both to avoid ambiguity in how the provenance is marshalled to json as well to prevent incompatibilities with future changes."
+          }
+        },
+        "provenance": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BuildProvenance",
+          "traits": {
+            "smithy.api#documentation": "The actual provenance for the build."
+          }
+        },
+        "intotoProvenance": {
+          "target": "com.gcp.ondemandscanning_v1beta1#InTotoProvenance",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec."
+          }
+        },
+        "intotoStatement": {
+          "target": "com.gcp.ondemandscanning_v1beta1#InTotoStatement",
+          "traits": {
+            "smithy.api#documentation": "In-toto Statement representation as defined in spec. The intoto_statement can contain any type of provenance. The serialized payload of the statement can be stored and signed in the Occurrence's envelope."
+          }
+        },
+        "inTotoSlsaProvenanceV1": {
+          "target": "com.gcp.ondemandscanning_v1beta1#InTotoSlsaProvenanceV1",
+          "traits": {
+            "smithy.api#documentation": "In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa spec, wrapped in an in-toto statement. This allows for direct jsonification of a to-spec in-toto slsa statement with a to-spec slsa provenance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a build occurrence."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.ondemandscanning_v1beta1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Operation"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Justification": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional details on why this justification was chosen."
+          }
+        },
+        "justificationType": {
+          "target": "com.gcp.ondemandscanning_v1beta1#JustificationJustificationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The justification type for this vulnerability."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Justification provides the justification when the state of the assessment if NOT_AFFECTED."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#JustificationJustificationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "JUSTIFICATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JUSTIFICATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "COMPONENT_NOT_PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPONENT_NOT_PRESENT"
+          }
+        },
+        "VULNERABLE_CODE_NOT_PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VULNERABLE_CODE_NOT_PRESENT"
+          }
+        },
+        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH"
+          }
+        },
+        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY"
+          }
+        },
+        "INLINE_MITIGATIONS_ALREADY_EXIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INLINE_MITIGATIONS_ALREADY_EXIST"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#RunDetails": {
+      "type": "structure",
+      "members": {
+        "builder": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ProvenanceBuilder"
+        },
+        "metadata": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BuildMetadata"
+        },
+        "byproducts": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ResourceDescriptorList"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ResourceDescriptorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#ResourceDescriptor"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesResponse": {
+      "type": "structure",
+      "members": {
+        "scan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the scan resource created by this successful scan."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AnalyzePackagesResponse contains the information necessary to find results for the given scan."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalysisCompleted": {
+      "type": "structure",
+      "members": {
+        "analysisType": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates which analysis completed successfully. Multiple types of analysis can be performed on a single resource."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AttestationOccurrence": {
+      "type": "structure",
+      "members": {
+        "serializedPayload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The serialized payload that is verified by one or more `signatures`."
+          }
+        },
+        "jwts": {
+          "target": "com.gcp.ondemandscanning_v1beta1#JwtList",
+          "traits": {
+            "smithy.api#documentation": "One or more JWTs encoding a self-contained attestation. Each JWT encodes the payload that it verifies within the JWT itself. Verifier implementation SHOULD ignore the `serialized_payload` field when verifying these JWTs. If only JWTs are present on this AttestationOccurrence, then the `serialized_payload` SHOULD be left empty. Each JWT SHOULD encode a claim specific to the `resource_uri` of this Occurrence, but this is not validated by Grafeas metadata API implementations. The JWT itself is opaque to Grafeas."
+          }
+        },
+        "signatures": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SignatureList",
+          "traits": {
+            "smithy.api#documentation": "One or more signatures over `serialized_payload`. Verifier implementations should consider this attestation message verified if at least one `signature` verifies `serialized_payload`. See `Signature` in common.proto for more details on signature structure and verification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Occurrence that represents a single \"attestation\". The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for lookup (how to find this attestation if you already know the authority and artifact to be verified) and intent (for which authority this attestation was intended to sign."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#JwtList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Jwt"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SignatureList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Signature"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Version": {
+      "type": "structure",
+      "members": {
+        "epoch": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Used to correct mistakes in the version numbering scheme."
+          }
+        },
+        "revision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The iteration of the package build from the above version."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this version is specifying part of an inclusive range. Grafeas does not have the capability to specify version ranges; instead we have fields that specify start version and end versions. At times this is insufficient - we also need to specify whether the version is included in the range or is excluded from the range. This boolean is expected to be set to true when the version is included in a range."
+          }
+        },
+        "kind": {
+          "target": "com.gcp.ondemandscanning_v1beta1#VersionKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Distinguishes between sentinel MIN/MAX versions and normal versions."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required only when version kind is NORMAL. The main part of the version name."
+          }
+        },
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable version string. This string is of the form :- and is only set when kind is NORMAL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Version contains structured information about the version of a package."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#VersionKindEnum": {
+      "type": "enum",
+      "members": {
+        "VERSION_KIND_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERSION_KIND_UNSPECIFIED"
+          }
+        },
+        "NORMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NORMAL"
+          }
+        },
+        "MINIMUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MINIMUM"
+          }
+        },
+        "MAXIMUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAXIMUM"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaProvenance": {
+      "type": "structure",
+      "members": {
+        "materials": {
+          "target": "com.gcp.ondemandscanning_v1beta1#MaterialList",
+          "traits": {
+            "smithy.api#documentation": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty."
+          }
+        },
+        "builder": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaBuilder",
+          "traits": {
+            "smithy.api#documentation": "required"
+          }
+        },
+        "recipe": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaRecipe",
+          "traits": {
+            "smithy.api#documentation": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaMetadata"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#MaterialList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Material"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ProvenanceBuilder": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "builderDependencies": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ResourceDescriptorList"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource": {
+      "type": "structure",
+      "members": {
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap"
+        },
+        "uri": {
+          "target": "smithy.api#String"
+        },
+        "entryPoint": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes where the config file that kicked off the build came from. This is effectively a pointer to the source where buildConfig came from."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Envelope": {
+      "type": "structure",
+      "members": {
+        "payloadType": {
+          "target": "smithy.api#String"
+        },
+        "signatures": {
+          "target": "com.gcp.ondemandscanning_v1beta1#EnvelopeSignatureList"
+        },
+        "payload": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MUST match https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An authenticated message of arbitrary type."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#EnvelopeSignatureList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#EnvelopeSignature"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageData": {
+      "type": "structure",
+      "members": {
+        "architecture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The architecture of the package."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the package being analysed"
+          }
+        },
+        "hashDigest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages."
+          }
+        },
+        "binaryVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageVersion",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED"
+          }
+        },
+        "unused": {
+          "target": "smithy.api#String"
+        },
+        "maintainer": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Maintainer",
+          "traits": {
+            "smithy.api#documentation": "The maintainer of the package."
+          }
+        },
+        "osVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the OS Used to generate the cpe_uri for OS packages"
+          }
+        },
+        "licenses": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses."
+          }
+        },
+        "packageType": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageDataPackageTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of package: os, maven, go, etc."
+          }
+        },
+        "os": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OS affected by a vulnerability Used to generate the cpe_uri for OS packages"
+          }
+        },
+        "binarySourceInfo": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BinarySourceInfoList",
+          "traits": {
+            "smithy.api#documentation": "A bundle containing the binary and source information."
+          }
+        },
+        "fileLocation": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FileLocationList",
+          "traits": {
+            "smithy.api#documentation": "The path to the jar file / go binary file."
+          }
+        },
+        "sourceVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageVersion",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED"
+          }
+        },
+        "package": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package being analysed for vulnerabilities"
+          }
+        },
+        "dependencyChain": {
+          "target": "com.gcp.ondemandscanning_v1beta1#LanguagePackageDependencyList",
+          "traits": {
+            "smithy.api#documentation": "The dependency chain between this package and the user's artifact. List in order from the customer's package under review first, to the current package last. Inclusive of the original package and the current package."
+          }
+        },
+        "ingestionSources": {
+          "target": "com.gcp.ondemandscanning_v1beta1#IngestionSourceList",
+          "traits": {
+            "smithy.api#documentation": "The list of sources that were scanned to find this package. This can be a Docker image, an SBOM attachment, or both, for example."
+          }
+        },
+        "layerDetails": {
+          "target": "com.gcp.ondemandscanning_v1beta1#LayerDetails"
+        },
+        "patchedCve": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "CVEs that this package is no longer vulnerable to"
+          }
+        },
+        "cpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar."
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageDataPackageTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PACKAGE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PACKAGE_TYPE_UNSPECIFIED"
+          }
+        },
+        "OS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OS"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAVEN"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GO"
+          }
+        },
+        "GO_STDLIB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GO_STDLIB"
+          }
+        },
+        "PYPI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PYPI"
+          }
+        },
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NPM"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NUGET"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUBYGEMS"
+          }
+        },
+        "RUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUST"
+          }
+        },
+        "COMPOSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPOSER"
+          }
+        },
+        "SWIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWIFT"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BinarySourceInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#BinarySourceInfo"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FileLocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#FileLocation"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#LanguagePackageDependencyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#LanguagePackageDependency"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#IngestionSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#IngestionSource"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageIssue": {
+      "type": "structure",
+      "members": {
+        "effectiveSeverity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageIssueEffectiveSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available."
+          }
+        },
+        "fileLocation": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1FileLocationList",
+          "traits": {
+            "smithy.api#documentation": "The location at which this package was found."
+          }
+        },
+        "affectedCpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The [CPE URI](https://cpe.mitre.org/specification/) this vulnerability was found in."
+          }
+        },
+        "fixedPackage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package this vulnerability was fixed in. It is possible for this to be different from the affected_package."
+          }
+        },
+        "packageType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of package (e.g. OS, MAVEN, GO)."
+          }
+        },
+        "affectedVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Version",
+          "traits": {
+            "smithy.api#documentation": "Required. The version of the package that is installed on the resource affected by this vulnerability."
+          }
+        },
+        "fixedCpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [CPE URI](https://cpe.mitre.org/specification/) this vulnerability was fixed in. It is possible for this to be different from the affected_cpe_uri."
+          }
+        },
+        "affectedPackage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The package this vulnerability was found in."
+          }
+        },
+        "fixedVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Version",
+          "traits": {
+            "smithy.api#documentation": "Required. The version of the package this vulnerability was fixed in. Setting this to VersionKind.MAXIMUM means no fix is yet available."
+          }
+        },
+        "fixAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether a fix is available for this package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A detail for a distro and package this vulnerability occurrence was found in and its associated fix (if one is available)."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageIssueEffectiveSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "MINIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MINIMAL"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1FileLocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1FileLocation"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#LanguagePackageDependency": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "smithy.api#String"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates a language package available between this package and the customer's resource artifact."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SBOMReferenceOccurrence": {
+      "type": "structure",
+      "members": {
+        "signatures": {
+          "target": "com.gcp.ondemandscanning_v1beta1#EnvelopeSignatureList",
+          "traits": {
+            "smithy.api#documentation": "The signatures over the payload."
+          }
+        },
+        "payloadType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'."
+          }
+        },
+        "payload": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SbomReferenceIntotoPayload",
+          "traits": {
+            "smithy.api#documentation": "The actual payload that contains the SBOM reference data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Command": {
+      "type": "structure",
+      "members": {
+        "dir": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Working directory (relative to project source root) used when running this command."
+          }
+        },
+        "waitFor": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The ID(s) of the command(s) that this command depends on."
+          }
+        },
+        "args": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Command-line arguments used when executing this command."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the command, as presented on the command line, or if the command is packaged as a Docker container, as presented to `docker pull`."
+          }
+        },
+        "env": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Environment variables set before running this command."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional unique identifier for this command, used in wait_for to reference this command as a dependency."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Command describes a step performed as part of the build pipeline."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Source": {
+      "type": "structure",
+      "members": {
+        "artifactStorageSourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If provided, the input binary artifacts for the build came from this location."
+          }
+        },
+        "fileHashes": {
+          "target": "com.gcp.ondemandscanning_v1beta1#FileHashesMap",
+          "traits": {
+            "smithy.api#documentation": "Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. The keys to this map are file paths used as build source and the values contain the hash values for those files. If the build source came in a single package such as a gzipped tarfile (.tar.gz), the FileHash will be for the single path to that file."
+          }
+        },
+        "additionalContexts": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SourceContextList",
+          "traits": {
+            "smithy.api#documentation": "If provided, some of the source code used for the build may be found in these locations, in the case where the source repository had multiple remotes or submodules. This list will not include the context specified in the context field."
+          }
+        },
+        "context": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SourceContext",
+          "traits": {
+            "smithy.api#documentation": "If provided, the source code used for the build came from this location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Source describes the location of the source used for the build."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FileHashesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.ondemandscanning_v1beta1#FileHashes"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SourceContextList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#SourceContext"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageOccurrence": {
+      "type": "structure",
+      "members": {
+        "cpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/) denoting the package manager version distributing a package. The cpe_uri will be blank for language packages."
+          }
+        },
+        "license": {
+          "target": "com.gcp.ondemandscanning_v1beta1#License",
+          "traits": {
+            "smithy.api#documentation": "Licenses that have been declared by the authors of the package."
+          }
+        },
+        "version": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Version",
+          "traits": {
+            "smithy.api#documentation": "Output only. The version of the package."
+          }
+        },
+        "architecture": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageOccurrenceArchitectureEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CPU architecture for which packages in this distribution channel were built. Architecture will be blank for language packages."
+          }
+        },
+        "packageType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.)."
+          }
+        },
+        "location": {
+          "target": "com.gcp.ondemandscanning_v1beta1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "All of the places within the filesystem versions of this package have been found."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Output only. The name of the installed package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details on how a particular software package was installed on a system."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageOccurrenceArchitectureEnum": {
+      "type": "enum",
+      "members": {
+        "ARCHITECTURE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHITECTURE_UNSPECIFIED"
+          }
+        },
+        "X86": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "X86"
+          }
+        },
+        "X64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "X64"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Location"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BuildProvenance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique identifier of the build."
+          }
+        },
+        "builderVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version string of the builder at the time this build was executed."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the project."
+          }
+        },
+        "commands": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CommandList",
+          "traits": {
+            "smithy.api#documentation": "Commands requested by the build."
+          }
+        },
+        "triggerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trigger identifier if the build was triggered automatically; empty if not."
+          }
+        },
+        "builtArtifacts": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ArtifactList",
+          "traits": {
+            "smithy.api#documentation": "Output of the build."
+          }
+        },
+        "buildOptions": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Special options applied to this build. This is a catch-all field where build providers can enter any desired additional details."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "E-mail address of the user who initiated this build. Note that this was the user's e-mail address at the time the build was initiated; this address may not represent the same end-user for all time."
+          }
+        },
+        "sourceProvenance": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Source",
+          "traits": {
+            "smithy.api#documentation": "Details of the Source input to the build."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which the build was created."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which execution of the build was started."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which execution of the build was finished."
+          }
+        },
+        "logsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI where any logs for this provenance were written."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provenance of a build. Contains all information needed to verify the full details about the build from source to completion."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CommandList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Command"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ArtifactList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Artifact"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaProvenanceZeroTwo": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata"
+        },
+        "invocation": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation"
+        },
+        "buildConfig": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+        },
+        "builder": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder"
+        },
+        "buildType": {
+          "target": "smithy.api#String"
+        },
+        "materials": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaMaterialList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See full explanation of fields at slsa.dev/provenance/v0.2."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaMaterialList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#PackageVersion": {
+      "type": "structure",
+      "members": {
+        "licenses": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The licenses associated with this package. Note that this has to go on the PackageVersion level, because we can have cases with images with the same source having different licences. E.g. in Alpine, musl and musl-utils both have the same origin musl, but have different sets of licenses."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FileLocation": {
+      "type": "structure",
+      "members": {
+        "lineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Line number in the file where the package is found. Applies only to source repository scanning. Note: this field is marked as `optional` in other corresponding protos, but in edition 2023, the \"optional\" keyword is redundant."
+          }
+        },
+        "filePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file."
+          }
+        },
+        "layerDetails": {
+          "target": "com.gcp.ondemandscanning_v1beta1#LayerDetails"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates the location at which a package was found."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1FileLocation": {
+      "type": "structure",
+      "members": {
+        "filePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file."
+          }
+        },
+        "layerDetails": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1LayerDetails",
+          "traits": {
+            "smithy.api#documentation": "Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package)."
+          }
+        },
+        "lineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Line number in the file where the package was found. Optional field that only applies to source repository scanning."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates the location at which a package was found."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#EnvelopeSignature": {
+      "type": "structure",
+      "members": {
+        "keyid": {
+          "target": "smithy.api#String"
+        },
+        "sig": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesMetadataV1": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the scan was created."
+          }
+        },
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource URI of the container image being scanned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AnalyzePackagesMetadata contains metadata for an active scan of a container image."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Hash": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of hash that was performed, e.g. \"SHA-256\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The hash value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container message for hash values."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CloudRepoSourceContext": {
+      "type": "structure",
+      "members": {
+        "aliasContext": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AliasContext",
+          "traits": {
+            "smithy.api#documentation": "An alias, which may be a branch or tag."
+          }
+        },
+        "repoId": {
+          "target": "com.gcp.ondemandscanning_v1beta1#RepoId",
+          "traits": {
+            "smithy.api#documentation": "The ID of the repo."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A revision ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A CloudRepoSourceContext denotes a particular revision in a Google Cloud Source Repo."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Category": {
+      "type": "structure",
+      "members": {
+        "categoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the category."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized name of the category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The category to which the update belongs."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Maintainer": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "kind": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FindingLocation": {
+      "type": "structure",
+      "members": {
+        "filePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative path of the file containing the finding."
+          }
+        },
+        "lineNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Line number (1-based), or 0 if whole File / unknown."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location details with file path and line number."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaMetadata": {
+      "type": "structure",
+      "members": {
+        "buildFinishedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when the build completed."
+          }
+        },
+        "buildStartedOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when the build started."
+          }
+        },
+        "completeness": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaCompleteness",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the builder claims certain fields in this message to be complete."
+          }
+        },
+        "reproducible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output."
+          }
+        },
+        "buildInvocationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Other properties of the build."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Location": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Version",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. The version installed at this location."
+          }
+        },
+        "cpeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path from which we gathered that this package/version is installed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An occurrence of a particular package installation found within a system's filesystem. E.g., glibc was found in `/var/lib/dpkg/status`."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#License": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Often a single license can be used to represent the licensing terms. Sometimes it is necessary to include a choice of one or more licenses or some combination of license identifiers. Examples: \"LGPL-2.1-only OR MIT\", \"LGPL-2.1-only AND MIT\", \"GPL-2.0-or-later WITH Bison-exception-2.2\"."
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comments"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "License information."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1LayerDetails": {
+      "type": "structure",
+      "members": {
+        "baseImages": {
+          "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1BaseImageList",
+          "traits": {
+            "smithy.api#documentation": "The base images the layer is found within."
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The index of the layer in the container image."
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built."
+          }
+        },
+        "diffId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The diff ID (typically a sha256 hash) of the layer in the container image."
+          }
+        },
+        "chainId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the layer a package was found in."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GrafeasV1BaseImageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#GrafeasV1BaseImage"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BinarySourceInfo": {
+      "type": "structure",
+      "members": {
+        "sourceVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageVersion",
+          "traits": {
+            "smithy.api#documentation": "The source package. Similar to the above, this is significant when the source is different than the binary itself. Since the top-level package/version fields are based on an if/else, we need a separate field for both binary and source if we want to know definitively where the data is coming from."
+          }
+        },
+        "binaryVersion": {
+          "target": "com.gcp.ondemandscanning_v1beta1#PackageVersion",
+          "traits": {
+            "smithy.api#documentation": "The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed."
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSS": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Scope (S). Defined in CVSS v3."
+          }
+        },
+        "attackComplexity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSAttackComplexityEnum",
+          "traits": {
+            "smithy.api#documentation": "Attack Complexity (AC). Defined in CVSS v2, v3, v4."
+          }
+        },
+        "attackRequirements": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSAttackRequirementsEnum",
+          "traits": {
+            "smithy.api#documentation": "Attack Requirements (AT). Defined in CVSS v4."
+          }
+        },
+        "vulnerableSystemAvailabilityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSVulnerableSystemAvailabilityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Vulnerable System Availability Impact (VA). Defined in CVSS v4."
+          }
+        },
+        "attackVector": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSAttackVectorEnum",
+          "traits": {
+            "smithy.api#documentation": "Attack Vector (AV). Defined in CVSS v2, v3, v4."
+          }
+        },
+        "vulnerableSystemConfidentialityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSVulnerableSystemConfidentialityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4."
+          }
+        },
+        "exploitMaturity": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSExploitMaturityEnum",
+          "traits": {
+            "smithy.api#documentation": "Exploit Maturity (E). Defined in CVSS v4."
+          }
+        },
+        "integrityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSIntegrityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Integrity Impact (I). Defined in CVSS v2, v3."
+          }
+        },
+        "subsequentSystemAvailabilityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSSubsequentSystemAvailabilityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Subsequent System Availability Impact (SA). Defined in CVSS v4."
+          }
+        },
+        "authentication": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSAuthenticationEnum",
+          "traits": {
+            "smithy.api#documentation": "Authentication (Au). Defined in CVSS v2."
+          }
+        },
+        "availabilityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSAvailabilityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Availability Impact (A). Defined in CVSS v2, v3."
+          }
+        },
+        "vulnerableSystemIntegrityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSVulnerableSystemIntegrityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Vulnerable System Integrity Impact (VI). Defined in CVSS v4."
+          }
+        },
+        "baseScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The base score is a function of the base metric scores."
+          }
+        },
+        "impactScore": {
+          "target": "smithy.api#Double"
+        },
+        "subsequentSystemIntegrityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSSubsequentSystemIntegrityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Subsequent System Integrity Impact (SI). Defined in CVSS v4."
+          }
+        },
+        "privilegesRequired": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSPrivilegesRequiredEnum",
+          "traits": {
+            "smithy.api#documentation": "Privileges Required (PR). Defined in CVSS v3, v4."
+          }
+        },
+        "confidentialityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSConfidentialityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Confidentiality Impact (C). Defined in CVSS v2, v3."
+          }
+        },
+        "subsequentSystemConfidentialityImpact": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSSubsequentSystemConfidentialityImpactEnum",
+          "traits": {
+            "smithy.api#documentation": "Subsequent System Confidentiality Impact (SC). Defined in CVSS v4."
+          }
+        },
+        "userInteraction": {
+          "target": "com.gcp.ondemandscanning_v1beta1#CVSSUserInteractionEnum",
+          "traits": {
+            "smithy.api#documentation": "User Interaction (UI). Defined in CVSS v3, v4."
+          }
+        },
+        "exploitabilityScore": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSScopeEnum": {
+      "type": "enum",
+      "members": {
+        "SCOPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOPE_UNSPECIFIED"
+          }
+        },
+        "SCOPE_UNCHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOPE_UNCHANGED"
+          }
+        },
+        "SCOPE_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOPE_CHANGED"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSAttackComplexityEnum": {
+      "type": "enum",
+      "members": {
+        "ATTACK_COMPLEXITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_COMPLEXITY_UNSPECIFIED"
+          }
+        },
+        "ATTACK_COMPLEXITY_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_COMPLEXITY_LOW"
+          }
+        },
+        "ATTACK_COMPLEXITY_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_COMPLEXITY_HIGH"
+          }
+        },
+        "ATTACK_COMPLEXITY_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_COMPLEXITY_MEDIUM"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSAttackRequirementsEnum": {
+      "type": "enum",
+      "members": {
+        "ATTACK_REQUIREMENTS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_REQUIREMENTS_UNSPECIFIED"
+          }
+        },
+        "ATTACK_REQUIREMENTS_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_REQUIREMENTS_NONE"
+          }
+        },
+        "ATTACK_REQUIREMENTS_PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_REQUIREMENTS_PRESENT"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSVulnerableSystemAvailabilityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSAttackVectorEnum": {
+      "type": "enum",
+      "members": {
+        "ATTACK_VECTOR_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_VECTOR_UNSPECIFIED"
+          }
+        },
+        "ATTACK_VECTOR_NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_VECTOR_NETWORK"
+          }
+        },
+        "ATTACK_VECTOR_ADJACENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_VECTOR_ADJACENT"
+          }
+        },
+        "ATTACK_VECTOR_LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_VECTOR_LOCAL"
+          }
+        },
+        "ATTACK_VECTOR_PHYSICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTACK_VECTOR_PHYSICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSVulnerableSystemConfidentialityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSExploitMaturityEnum": {
+      "type": "enum",
+      "members": {
+        "EXPLOIT_MATURITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_MATURITY_UNSPECIFIED"
+          }
+        },
+        "EXPLOIT_MATURITY_NOT_DEFINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_MATURITY_NOT_DEFINED"
+          }
+        },
+        "EXPLOIT_MATURITY_ATTACKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_MATURITY_ATTACKED"
+          }
+        },
+        "EXPLOIT_MATURITY_POC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_MATURITY_POC"
+          }
+        },
+        "EXPLOIT_MATURITY_UNREPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLOIT_MATURITY_UNREPORTED"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSIntegrityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSSubsequentSystemAvailabilityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSAuthenticationEnum": {
+      "type": "enum",
+      "members": {
+        "AUTHENTICATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHENTICATION_UNSPECIFIED"
+          }
+        },
+        "AUTHENTICATION_MULTIPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHENTICATION_MULTIPLE"
+          }
+        },
+        "AUTHENTICATION_SINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHENTICATION_SINGLE"
+          }
+        },
+        "AUTHENTICATION_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHENTICATION_NONE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSAvailabilityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSVulnerableSystemIntegrityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSSubsequentSystemIntegrityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSPrivilegesRequiredEnum": {
+      "type": "enum",
+      "members": {
+        "PRIVILEGES_REQUIRED_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVILEGES_REQUIRED_UNSPECIFIED"
+          }
+        },
+        "PRIVILEGES_REQUIRED_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVILEGES_REQUIRED_NONE"
+          }
+        },
+        "PRIVILEGES_REQUIRED_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVILEGES_REQUIRED_LOW"
+          }
+        },
+        "PRIVILEGES_REQUIRED_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIVILEGES_REQUIRED_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSConfidentialityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSSubsequentSystemConfidentialityImpactEnum": {
+      "type": "enum",
+      "members": {
+        "IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_UNSPECIFIED"
+          }
+        },
+        "IMPACT_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_HIGH"
+          }
+        },
+        "IMPACT_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_LOW"
+          }
+        },
+        "IMPACT_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_NONE"
+          }
+        },
+        "IMPACT_PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_PARTIAL"
+          }
+        },
+        "IMPACT_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPACT_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CVSSUserInteractionEnum": {
+      "type": "enum",
+      "members": {
+        "USER_INTERACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_INTERACTION_UNSPECIFIED"
+          }
+        },
+        "USER_INTERACTION_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_INTERACTION_NONE"
+          }
+        },
+        "USER_INTERACTION_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_INTERACTION_REQUIRED"
+          }
+        },
+        "USER_INTERACTION_PASSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_INTERACTION_PASSIVE"
+          }
+        },
+        "USER_INTERACTION_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_INTERACTION_ACTIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesMetadata": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource URI of the container image being scanned."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the scan was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AnalyzePackagesMetadata contains metadata for an active scan of a container image."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SbomReferenceIntotoPredicate": {
+      "type": "structure",
+      "members": {
+        "referrerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The person or system referring this predicate to the consumer."
+          }
+        },
+        "digest": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "A map of algorithm to digest of the contents of the SBOM."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the SBOM."
+          }
+        },
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mime type of the SBOM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A predicate which describes the SBOM being referenced."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretOccurrence": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SecretOccurrenceKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of secret."
+          }
+        },
+        "statuses": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SecretStatusList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Status of the secret."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SecretLocationList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Locations where the secret is detected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The occurrence provides details of a secret."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretOccurrenceKindEnum": {
+      "type": "enum",
+      "members": {
+        "SECRET_KIND_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_UNSPECIFIED"
+          }
+        },
+        "SECRET_KIND_UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_UNKNOWN"
+          }
+        },
+        "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY"
+          }
+        },
+        "SECRET_KIND_GCP_API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GCP_API_KEY"
+          }
+        },
+        "SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS"
+          }
+        },
+        "SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN"
+          }
+        },
+        "SECRET_KIND_ANTHROPIC_ADMIN_API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_ANTHROPIC_ADMIN_API_KEY"
+          }
+        },
+        "SECRET_KIND_ANTHROPIC_API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_ANTHROPIC_API_KEY"
+          }
+        },
+        "SECRET_KIND_AZURE_ACCESS_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_AZURE_ACCESS_TOKEN"
+          }
+        },
+        "SECRET_KIND_AZURE_IDENTITY_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_AZURE_IDENTITY_TOKEN"
+          }
+        },
+        "SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN"
+          }
+        },
+        "SECRET_KIND_GITHUB_APP_REFRESH_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GITHUB_APP_REFRESH_TOKEN"
+          }
+        },
+        "SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN"
+          }
+        },
+        "SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN"
+          }
+        },
+        "SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN"
+          }
+        },
+        "SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN"
+          }
+        },
+        "SECRET_KIND_GITHUB_OAUTH_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_GITHUB_OAUTH_TOKEN"
+          }
+        },
+        "SECRET_KIND_HUGGINGFACE_API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_HUGGINGFACE_API_KEY"
+          }
+        },
+        "SECRET_KIND_OPENAI_API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_OPENAI_API_KEY"
+          }
+        },
+        "SECRET_KIND_PERPLEXITY_API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_PERPLEXITY_API_KEY"
+          }
+        },
+        "SECRET_KIND_STRIPE_SECRET_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_STRIPE_SECRET_KEY"
+          }
+        },
+        "SECRET_KIND_STRIPE_RESTRICTED_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_STRIPE_RESTRICTED_KEY"
+          }
+        },
+        "SECRET_KIND_STRIPE_WEBHOOK_SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECRET_KIND_STRIPE_WEBHOOK_SECRET"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#SecretStatus"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SecretLocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#SecretLocation"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Status": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CISAKnownExploitedVulnerabilities": {
+      "type": "structure",
+      "members": {
+        "knownRansomwareCampaignUse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether the vulnerability is known to have been leveraged as part of a ransomware campaign."
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#FileHashes": {
+      "type": "structure",
+      "members": {
+        "fileHash": {
+          "target": "com.gcp.ondemandscanning_v1beta1#HashList",
+          "traits": {
+            "smithy.api#documentation": "Required. Collection of file hashes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container message for hashes of byte content of files, used in source messages to verify integrity of source input to the build."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#HashList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Hash"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#InTotoProvenance": {
+      "type": "structure",
+      "members": {
+        "materials": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty."
+          }
+        },
+        "recipe": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Recipe",
+          "traits": {
+            "smithy.api#documentation": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Metadata"
+        },
+        "builderConfig": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BuilderConfig",
+          "traits": {
+            "smithy.api#documentation": "required"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DSSEAttestationOccurrence": {
+      "type": "structure",
+      "members": {
+        "envelope": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Envelope",
+          "traits": {
+            "smithy.api#documentation": "If doing something security critical, make sure to verify the signatures in this metadata."
+          }
+        },
+        "statement": {
+          "target": "com.gcp.ondemandscanning_v1beta1#InTotoStatement"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deprecated. Prefer to use a regular Occurrence, and populate the Envelope at the top level of the Occurrence."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Signature": {
+      "type": "structure",
+      "members": {
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload."
+          }
+        },
+        "publicKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for the public key that verifies this signature. * The `public_key_id` is required. * The `public_key_id` SHOULD be an RFC3986 conformant URI. * When possible, the `public_key_id` SHOULD be an immutable reference, such as a cryptographic digest. Examples of valid `public_key_id`s: OpenPGP V4 public key fingerprint: * \"openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA\" See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme. RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization): * \"ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU\" * \"nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be \"attached\" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any \"attached\" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature)."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AliasContext": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alias name."
+          }
+        },
+        "kind": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AliasContextKindEnum",
+          "traits": {
+            "smithy.api#documentation": "The alias kind."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An alias to a repo revision."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AliasContextKindEnum": {
+      "type": "enum",
+      "members": {
+        "KIND_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KIND_UNSPECIFIED"
+          }
+        },
+        "FIXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED"
+          }
+        },
+        "MOVABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOVABLE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DeploymentOccurrence": {
+      "type": "structure",
+      "members": {
+        "undeployTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of the lifetime of this deployment."
+          }
+        },
+        "userEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity of the user that triggered this deployment."
+          }
+        },
+        "platform": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DeploymentOccurrencePlatformEnum",
+          "traits": {
+            "smithy.api#documentation": "Platform hosting this deployment."
+          }
+        },
+        "deployTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Beginning of the lifetime of this deployment."
+          }
+        },
+        "resourceUri": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource URI for the artifact being deployed taken from the deployable field with the same name."
+          }
+        },
+        "config": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Configuration used to create this deployment."
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Address of the runtime element hosting this deployment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The period during which some deployable was active in a runtime."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DeploymentOccurrencePlatformEnum": {
+      "type": "enum",
+      "members": {
+        "PLATFORM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_UNSPECIFIED"
+          }
+        },
+        "GKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GKE"
+          }
+        },
+        "FLEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLEX"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BuildMetadata": {
+      "type": "structure",
+      "members": {
+        "finishedOn": {
+          "target": "smithy.api#String"
+        },
+        "invocationId": {
+          "target": "smithy.api#String"
+        },
+        "startedOn": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#SlsaCompleteness": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that recipe.environment is claimed to be complete."
+          }
+        },
+        "arguments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe."
+          }
+        },
+        "materials": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called \"hermetic\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates that the builder claims certain fields in this message to be complete."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BuilderConfig": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#InTotoSlsaProvenanceV1": {
+      "type": "structure",
+      "members": {
+        "subject": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SubjectList"
+        },
+        "_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement"
+          }
+        },
+        "predicate": {
+          "target": "com.gcp.ondemandscanning_v1beta1#SlsaProvenanceV1"
+        },
+        "predicateType": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesResponseV1": {
+      "type": "structure",
+      "members": {
+        "scan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the scan resource created by this successful scan."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AnalyzePackagesResponse contains the information necessary to find results for the given scan."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#LayerDetails": {
+      "type": "structure",
+      "members": {
+        "baseImages": {
+          "target": "com.gcp.ondemandscanning_v1beta1#BaseImageList",
+          "traits": {
+            "smithy.api#documentation": "The base images the layer is found within."
+          }
+        },
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The index of the layer in the container image."
+          }
+        },
+        "diffId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The diff ID (sha256 hash) of the layer in the container image."
+          }
+        },
+        "chainId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The layer chain ID (sha256 hash) of the layer in the container image. https://github.com/opencontainers/image-spec/blob/main/config.md#layer-chainid"
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The layer build command that was used to build the layer. This may not be found in all layers depending on how the container image is built."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the layer a package was found in."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BaseImageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#BaseImage"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#RelatedUrl": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label to describe usage of the URL."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specific URL associated with the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for any related URL information."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Fingerprint": {
+      "type": "structure",
+      "members": {
+        "v2Blob": {
+          "target": "com.gcp.ondemandscanning_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The ordered list of v2 blobs that represent a given image."
+          }
+        },
+        "v1Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The layer ID of the final layer in the Docker image's v1 representation."
+          }
+        },
+        "v2Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the image's v2 blobs computed via: [bottom] := v2_blobbottom := sha256(v2_blob[N] + \" \" + v2_name[N+1]) Only the name of the final blob is kept."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of properties that uniquely identify a given Docker image."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ExploitPredictionScoringSystem": {
+      "type": "structure",
+      "members": {
+        "percentile": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score"
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ImageOccurrence": {
+      "type": "structure",
+      "members": {
+        "fingerprint": {
+          "target": "com.gcp.ondemandscanning_v1beta1#Fingerprint",
+          "traits": {
+            "smithy.api#documentation": "Required. The fingerprint of the derived image."
+          }
+        },
+        "distance": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of layers by which this image differs from the associated image basis."
+          }
+        },
+        "layerInfo": {
+          "target": "com.gcp.ondemandscanning_v1beta1#LayerList",
+          "traits": {
+            "smithy.api#documentation": "This contains layer-specific metadata, if populated it has length \"distance\" and is ordered with [distance] being the layer immediately following the base image and [1] being the final layer."
+          }
+        },
+        "baseResourceUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. This contains the base image URL for the derived image occurrence."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the derived image portion of the DockerImage relationship. This image would be produced from a Dockerfile with FROM ."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#LayerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Layer"
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BuildDefinition": {
+      "type": "structure",
+      "members": {
+        "buildType": {
+          "target": "smithy.api#String"
+        },
+        "externalParameters": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+        },
+        "resolvedDependencies": {
+          "target": "com.gcp.ondemandscanning_v1beta1#ResourceDescriptorList"
+        },
+        "internalParameters": {
+          "target": "com.gcp.ondemandscanning_v1beta1#DocumentMap"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#WaitProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to wait on.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+            "smithy.api#httpQuery": "timeout"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#WaitProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#WaitProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:wait"
+        },
+        "smithy.api#documentation": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesProjectsLocationsScansRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent of the resource for which analysis is requested. Format: projects/[project_name]/locations/[location]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesProjectsLocationsScans": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#AnalyzePackagesProjectsLocationsScansRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/scans:analyzePackages"
+        },
+        "smithy.api#documentation": "Initiates an analysis of the provided packages."
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ListProjectsLocationsScansVulnerabilitiesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent of the collection of Vulnerabilities being requested. Format: projects/[project_name]/locations/[location]/scans/[scan_id]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token, resulting from a previous call to ListVulnerabilities.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of vulnerabilities to retrieve.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.ondemandscanning_v1beta1#ListProjectsLocationsScansVulnerabilities": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ondemandscanning_v1beta1#ListProjectsLocationsScansVulnerabilitiesRequest"
+      },
+      "output": {
+        "target": "com.gcp.ondemandscanning_v1beta1#ListVulnerabilitiesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.ondemandscanning_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/vulnerabilities"
+        },
+        "smithy.api#documentation": "Lists vulnerabilities resulting from a successfully completed scan.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#QualitySpeedTopAses with distilled cloudflare/radar asesQualitySpeedTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedTopAses",
+      "path": "/shapes/com.cloudflare.radar#AsesQualitySpeedTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedTopAsesRequest",
+      "path": "/shapes/com.cloudflare.radar#AsesQualitySpeedTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesQualitySpeedTop/input/target",
+      "value": "com.cloudflare.radar#AsesQualitySpeedTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedTopAsesResponse",
+      "path": "/shapes/com.cloudflare.radar#AsesQualitySpeedTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesQualitySpeedTop/output/target",
+      "value": "com.cloudflare.radar#AsesQualitySpeedTopResponse"
+    }
+  ]
+}

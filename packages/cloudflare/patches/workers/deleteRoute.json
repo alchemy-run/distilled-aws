@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#RoutesDelete with distilled cloudflare/workers deleteRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteRoute/input/target",
+      "value": "com.cloudflare.workers#DeleteRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesDeleteResponse",
+      "path": "/shapes/com.cloudflare.workers#DeleteRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteRoute/output/target",
+      "value": "com.cloudflare.workers#DeleteRouteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteRoute/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#RouteNotFound"
+        }
+      ]
+    }
+  ]
+}

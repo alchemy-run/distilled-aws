@@ -1,0 +1,39 @@
+{
+  "description": "Align iam#ResourceGroupsUpdate with distilled cloudflare/iam updateResourceGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsUpdate",
+      "path": "/shapes/com.cloudflare.iam#UpdateResourceGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsUpdateRequest",
+      "path": "/shapes/com.cloudflare.iam#UpdateResourceGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#UpdateResourceGroup/input/target",
+      "value": "com.cloudflare.iam#UpdateResourceGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsUpdateResponse",
+      "path": "/shapes/com.cloudflare.iam#UpdateResourceGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#UpdateResourceGroup/output/target",
+      "value": "com.cloudflare.iam#UpdateResourceGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#UpdateResourceGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#ResourceGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

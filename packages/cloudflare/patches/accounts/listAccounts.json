@@ -1,0 +1,41 @@
+{
+  "description": "Align accounts#List with distilled cloudflare/accounts listAccounts",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#List",
+      "path": "/shapes/com.cloudflare.accounts#ListAccounts"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#ListRequest",
+      "path": "/shapes/com.cloudflare.accounts#ListAccountsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#ListAccounts/input/target",
+      "value": "com.cloudflare.accounts#ListAccountsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#ListResponse",
+      "path": "/shapes/com.cloudflare.accounts#ListAccountsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#ListAccounts/output/target",
+      "value": "com.cloudflare.accounts#ListAccountsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#ListAccounts/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

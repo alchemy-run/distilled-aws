@@ -1,0 +1,15 @@
+{
+  "description": "State the HTTP status these errors are returned with, the same way an AWS model states it. Both are wire code 7003 — a malformed or unroutable request — returned with 400. The generator reads `smithy.api#httpError` to classify the error (here: BadRequestError), which is what the runtime's category checks and the default retry policy act on. Without a status the error is emitted unclassified.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.abuse_reports#InvalidAccountId/traits/smithy.api#httpError",
+      "value": 400
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.abuse_reports#InvalidRequest/traits/smithy.api#httpError",
+      "value": 400
+    }
+  ]
+}

@@ -1,0 +1,1119 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.dashboard_templates#DashboardTemplatesListRequestOrdering": {
+      "type": "enum",
+      "members": {
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "TEMPLATE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-template_name"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "TEMPLATE_NAME_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "template_name"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesListRequestScope": {
+      "type": "enum",
+      "members": {
+        "FEATURE_FLAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature_flag"
+          }
+        },
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "is_featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "is_featured",
+            "smithy.api#documentation": "Omit for all templates. When set, filter by featured flag; parsed with str_to_bool (same as other API query booleans)."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "ordering": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesListRequestOrdering",
+          "traits": {
+            "smithy.api#httpQuery": "ordering",
+            "smithy.api#documentation": "Optional. When not using `search`, results are sorted with featured templates first (`is_featured=true`), then by `template_name` (case-insensitive A–Z; `-template_name` for Z–A) or by `created_at` (`-created_at` for newest first). When `search` is set, order is featured first, then relevance rank, then case-insensitive name for ties."
+          }
+        },
+        "scope": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesListRequestScope",
+          "traits": {
+            "smithy.api#httpQuery": "scope",
+            "smithy.api#documentation": "Optional. `global`: official templates only. `team`: this project's saved templates only (`scope=team` rows for the current project). `organization`: templates shared across all projects in this organization. `feature_flag`: feature-flag dashboard templates only. Omit for official, organization, and this project's templates (default dashboard template picker behavior)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#PaginatedDashboardTemplateList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.dashboard_templates#PaginatedDashboardTemplateListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "template_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_filters": {
+          "target": "smithy.api#Document"
+        },
+        "tags": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateTagsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tiles": {
+          "target": "smithy.api#Document"
+        },
+        "variables": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.dashboard_templates#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "image_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateScope",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "availability_contexts": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateAvailabilityContextsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Manually curated; used to highlight templates in the UI."
+          }
+        },
+        "non_portable_references": {
+          "target": "com.posthog.dashboard_templates#NonPortableReferences",
+          "traits": {
+            "smithy.api#documentation": "Read-only. Project-specific references (actions, cohorts, data warehouse tables) embedded in this template's tiles that may not resolve when it is used in another project. Events and properties are matched by name and are portable, so they are not reported here."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplateTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.dashboard_templates#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.dashboard_templates#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.dashboard_templates#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.dashboard_templates#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.dashboard_templates#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplateScopeEnum": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "global"
+          }
+        },
+        "FEATURE_FLAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature_flag"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `team` - Only team\n* `organization` - Organization\n* `global` - Global\n* `feature_flag` - Feature Flag"
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplateScope": {
+      "type": "union",
+      "members": {
+        "DashboardTemplateScopeEnum": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateScopeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.dashboard_templates#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplateAvailabilityContextsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#NonPortableReferences": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of distinct action references in the template's tiles that are specific to the source project.",
+            "smithy.api#required": {}
+          }
+        },
+        "cohorts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of distinct cohort references in the template's tiles that are specific to the source project.",
+            "smithy.api#required": {}
+          }
+        },
+        "warehouse_tables": {
+          "target": "com.posthog.dashboard_templates#NonPortableReferencesWarehouseTablesList",
+          "traits": {
+            "smithy.api#documentation": "Names of data warehouse tables referenced by the template's tiles that are specific to the source project.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#NonPortableReferencesWarehouseTablesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Names of data warehouse tables referenced by the template's tiles that are specific to the source project."
+      }
+    },
+    "com.posthog.dashboard_templates#PaginatedDashboardTemplateListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplate"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.dashboard_templates#PaginatedDashboardTemplateList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/dashboard_templates/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestScope": {
+      "type": "union",
+      "members": {
+        "DashboardTemplateScopeEnum": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateScopeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.dashboard_templates#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestAvailabilityContextsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "template_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_filters": {
+          "target": "smithy.api#Document"
+        },
+        "tags": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestTagsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tiles": {
+          "target": "smithy.api#Document"
+        },
+        "variables": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "image_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestScope",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "availability_contexts": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestAvailabilityContextsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Manually curated; used to highlight templates in the UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplate"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/dashboard_templates/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this dashboard template."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplate"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/dashboard_templates/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestScope": {
+      "type": "union",
+      "members": {
+        "DashboardTemplateScopeEnum": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateScopeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.dashboard_templates#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestAvailabilityContextsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this dashboard template."
+          }
+        },
+        "template_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_filters": {
+          "target": "smithy.api#Document"
+        },
+        "tags": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestTagsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tiles": {
+          "target": "smithy.api#Document"
+        },
+        "variables": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "image_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestScope",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "availability_contexts": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestAvailabilityContextsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Manually curated; used to highlight templates in the UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplate"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/dashboard_templates/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestScope": {
+      "type": "union",
+      "members": {
+        "DashboardTemplateScopeEnum": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplateScopeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.dashboard_templates#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestAvailabilityContextsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this dashboard template."
+          }
+        },
+        "template_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_filters": {
+          "target": "smithy.api#Document"
+        },
+        "tags": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestTagsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tiles": {
+          "target": "smithy.api#Document"
+        },
+        "variables": {
+          "target": "smithy.api#Document"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "image_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestScope",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "availability_contexts": {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestAvailabilityContextsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Manually curated; used to highlight templates in the UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplate"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/dashboard_templates/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this dashboard template."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/dashboard_templates/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "source_template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of a team-scoped template in the same organization. Global and feature-flag templates cannot be copied with this endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.dashboard_templates#DashboardTemplate"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.dashboard_templates#BadRequest"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#Forbidden"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/dashboard_templates/copy_between_projects/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Copy a team template to this project\n\nCreates a new team-scoped template in the **target** project (URL) from a **team-scoped** source template in the same organization. Global and feature-flag templates return 400. Cross-organization or inaccessible sources return 404. Source and destination projects must differ (400 if equal). Conflicting `template_name` values on the destination are auto-suffixed with `(copy)`, `(copy 2)`, …"
+      }
+    },
+    "com.posthog.dashboard_templates#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.dashboard_templates#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.dashboard_templates#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.dashboard_templates#DashboardTemplates": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesList"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreate"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesRetrieve"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdate"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesDestroy"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

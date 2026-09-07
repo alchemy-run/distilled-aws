@@ -1,0 +1,39 @@
+{
+  "description": "Align custom_hostnames#Create with distilled cloudflare/custom-hostnames createCustomHostname",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#Create",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateCustomHostname"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CreateRequest",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateCustomHostnameRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateCustomHostname/input/target",
+      "value": "com.cloudflare.custom_hostnames#CreateCustomHostnameRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CreateResponse",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateCustomHostnameResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateCustomHostname/output/target",
+      "value": "com.cloudflare.custom_hostnames#CreateCustomHostnameResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateCustomHostname/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated"
+        }
+      ]
+    }
+  ]
+}

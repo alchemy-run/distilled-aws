@@ -1,0 +1,15 @@
+{
+  "description": "Key dictionary / op aliases for durable_objects (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "totalCount": "total_count",
+        "useSqlite": "use_sqlite"
+      }
+    }
+  ]
+}

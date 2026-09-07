@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#DatasetsDelete with distilled cloudflare/ai-gateway deleteDataset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DatasetsDelete",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteDataset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DatasetsDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteDatasetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteDataset/input/target",
+      "value": "com.cloudflare.ai_gateway#DeleteDatasetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DatasetsDeleteResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteDatasetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteDataset/output/target",
+      "value": "com.cloudflare.ai_gateway#DeleteDatasetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteDataset/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#DatasetNotFound"
+        }
+      ]
+    }
+  ]
+}

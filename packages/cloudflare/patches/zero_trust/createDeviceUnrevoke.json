@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesUnrevokeCreate with distilled cloudflare/zero-trust createDeviceUnrevoke",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesUnrevokeCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceUnrevoke"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesUnrevokeCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceUnrevokeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceUnrevoke/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceUnrevokeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesUnrevokeCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceUnrevokeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceUnrevoke/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceUnrevokeResponse"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align api_gateway#OperationsLabelsBulkDelete with distilled cloudflare/api-gateway bulkDeleteOperationLabels",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsBulkDelete",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationLabels"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsBulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationLabelsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationLabels/input/target",
+      "value": "com.cloudflare.api_gateway#BulkDeleteOperationLabelsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsBulkDeleteResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationLabelsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationLabels/output/target",
+      "value": "com.cloudflare.api_gateway#BulkDeleteOperationLabelsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteOperationLabels/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "playgrouping",
+    "version": "v1alpha1",
+    "title": "Google Play Grouping API",
+    "baseUrl": "https://playgrouping.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.playgrouping_v1alpha1#CreateOrUpdateTagsRequest": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.gcp.playgrouping_v1alpha1#TagList",
+          "traits": {
+            "smithy.api#documentation": "Tags to be inserted or updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for CreateOrUpdateTags. VerifyToken."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#TagList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.playgrouping_v1alpha1#Tag"
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#VerifyTokenResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response message for VerifyToken."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#Tag": {
+      "type": "structure",
+      "members": {
+        "int64Value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A signed 64-bit integer value of the tag."
+          }
+        },
+        "timeValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A time value of the tag."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Key for the tag."
+          }
+        },
+        "booleanValue": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean value of the tag."
+          }
+        },
+        "stringValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string value of the tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A tag is associated with exactly one package name and user."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#CreateOrUpdateTagsResponse": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.gcp.playgrouping_v1alpha1#TagList",
+          "traits": {
+            "smithy.api#documentation": "All requested tags are returned, including pre-existing ones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for CreateOrUpdateTags."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#VerifyTokenRequest": {
+      "type": "structure",
+      "members": {
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Persona represented by the token. Format: personas/{persona}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for VerifyToken."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#VerifyAppsTokensRequest": {
+      "type": "structure",
+      "members": {
+        "appPackage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. App the token belongs to. Format: apps/{package_name}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The token to be verified. Format: tokens/{token}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.playgrouping_v1alpha1#VerifyTokenRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#VerifyAppsTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.playgrouping_v1alpha1#VerifyAppsTokensRequest"
+      },
+      "output": {
+        "target": "com.gcp.playgrouping_v1alpha1#VerifyTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+appPackage}/{+token}:verify"
+        },
+        "smithy.api#documentation": "Verify an API token by asserting the app and persona it belongs to. The verification is a protection against client-side attacks and will fail if the contents of the token don't match the provided values. A token must be verified before it can be used to manipulate user tags."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#CreateOrUpdateAppsTokensTagsRequest": {
+      "type": "structure",
+      "members": {
+        "appPackage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. App whose tags are being manipulated. Format: apps/{package_name}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Token for which the tags are being inserted or updated. Format: tokens/{token}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.playgrouping_v1alpha1#CreateOrUpdateTagsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#CreateOrUpdateAppsTokensTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.playgrouping_v1alpha1#CreateOrUpdateAppsTokensTagsRequest"
+      },
+      "output": {
+        "target": "com.gcp.playgrouping_v1alpha1#CreateOrUpdateTagsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.playgrouping_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+appPackage}/{+token}/tags:createOrUpdate"
+        },
+        "smithy.api#documentation": "Create or update tags for the user and app that are represented by the given token."
+      }
+    }
+  }
+}

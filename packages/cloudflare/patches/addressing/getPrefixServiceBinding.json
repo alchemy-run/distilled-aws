@@ -1,0 +1,45 @@
+{
+  "description": "Align addressing#PrefixesServiceBindingsGet with distilled cloudflare/addressing getPrefixServiceBinding",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsGet",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixServiceBinding"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsGetRequest",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixServiceBindingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixServiceBinding/input/target",
+      "value": "com.cloudflare.addressing#GetPrefixServiceBindingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsGetResponse",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixServiceBindingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixServiceBinding/output/target",
+      "value": "com.cloudflare.addressing#GetPrefixServiceBindingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#GetPrefixServiceBinding/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#BindingNotFound"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.addressing#PrefixNotFound"
+        }
+      ]
+    }
+  ]
+}

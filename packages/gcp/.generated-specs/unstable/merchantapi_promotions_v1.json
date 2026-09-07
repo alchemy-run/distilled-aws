@@ -1,0 +1,1734 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "merchantapi",
+    "version": "promotions_v1",
+    "title": "Merchant API",
+    "baseUrl": "https://merchantapi.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.merchantapi_promotions_v1#Promotion": {
+      "type": "structure",
+      "members": {
+        "customAttributes": {
+          "target": "com.gcp.merchantapi_promotions_v1#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the promotion. Format: `accounts/{account}/promotions/{promotion}`"
+          }
+        },
+        "targetCountry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target country used as part of the unique identifier. Represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml). Promotions are only available in selected countries, [Free Listings and Shopping ads](https://support.google.com/merchants/answer/4588460) [Local Inventory ads](https://support.google.com/merchants/answer/10146326)"
+          }
+        },
+        "promotionStatus": {
+          "target": "com.gcp.merchantapi_promotions_v1#PromotionStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The [status of a promotion](https://support.google.com/merchants/answer/3398326?ref_topic=7322924&sjid=5155774230887277618-NC), data validation issues, that is, information about a promotion computed asynchronously."
+          }
+        },
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The primary data source of the promotion."
+          }
+        },
+        "redemptionChannel": {
+          "target": "com.gcp.merchantapi_promotions_v1#PromotionRedemptionChannelItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. [Redemption channel](https://support.google.com/merchants/answer/13837674?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion. At least one channel is required."
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.merchantapi_promotions_v1#Attributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of promotion attributes."
+          }
+        },
+        "contentLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the promotion. Promotions is only for [selected languages](https://support.google.com/merchants/answer/4588281?ref_topic=6396150&sjid=18314938579342094533-NC#option3&zippy=)."
+          }
+        },
+        "promotionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user provided promotion ID to uniquely identify the promotion. Follow [minimum requirements](https://support.google.com/merchants/answer/7050148?ref_topic=7322920&sjid=871860036916537104-NC#minimum_requirements) to prevent promotion disapprovals."
+          }
+        },
+        "versionNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Represents the existing version (freshness) of the promotion, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing promotion. Re-insertion (for example, promotion refresh after 30 days) can be performed with the current `version_number`. If the operation is prevented, the aborted exception will be thrown."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a promotion. See the following articles for more details. Required promotion input attributes to pass data validation checks are primarily defined below: * [Promotions data specification](https://support.google.com/merchants/answer/2906014) * [Local promotions data specification](https://support.google.com/merchants/answer/10146130) After inserting, updating a promotion input, it may take several minutes before the final promotion can be retrieved."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#CustomAttributeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#CustomAttribute"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#PromotionRedemptionChannelItemEnum": {
+      "type": "enum",
+      "members": {
+        "REDEMPTION_CHANNEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDEMPTION_CHANNEL_UNSPECIFIED"
+          }
+        },
+        "IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_STORE"
+          }
+        },
+        "ONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#PromotionRedemptionChannelItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#PromotionRedemptionChannelItemEnum"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#DestinationStatus": {
+      "type": "structure",
+      "members": {
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_promotions_v1#DestinationStatusReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the promotion destination."
+          }
+        },
+        "status": {
+          "target": "com.gcp.merchantapi_promotions_v1#DestinationStatusStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status for the specified destination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status for the specified destination."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#DestinationStatusReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#DestinationStatusStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_REVIEW"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REJECTED"
+          }
+        },
+        "LIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIVE"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPED"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPIRED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ItemLevelIssue": {
+      "type": "structure",
+      "members": {
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A detailed issue description in English."
+          }
+        },
+        "documentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URL of a web page to help with resolving this issue."
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_promotions_v1#ItemLevelIssueReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The destination the issue applies to."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The error code of the issue."
+          }
+        },
+        "applicableCountries": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of country codes (ISO 3166-1 alpha-2) where issue applies to the offer."
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the issue can be resolved by the merchant."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A short issue description in English."
+          }
+        },
+        "attribute": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The attribute's name, if the issue is caused by a single attribute."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.merchantapi_promotions_v1#ItemLevelIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. How this issue affects serving of the promotion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The issue associated with the promotion."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ItemLevelIssueReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ItemLevelIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "NOT_IMPACTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IMPACTED"
+          }
+        },
+        "DEMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMOTED"
+          }
+        },
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISAPPROVED"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ListPromotionsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "promotions": {
+          "target": "com.gcp.merchantapi_promotions_v1#PromotionList",
+          "traits": {
+            "smithy.api#documentation": "The processed promotions from the specified account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the `ListPromotions` method."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#PromotionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#Promotion"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#Price": {
+      "type": "structure",
+      "members": {
+        "amountMicros": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The price represented as a number in micros (1 million micros is an equivalent to one's currency standard unit, for example, 1 USD = 1000000 micros)."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The price represented as a number and currency."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#Attributes": {
+      "type": "structure",
+      "members": {
+        "freeGiftDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Free gift description](https://support.google.com/merchants/answer/13847245?ref_topic=13773355) for the promotion."
+          }
+        },
+        "minimumPurchaseAmount": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Minimum purchase amount](https://support.google.com/merchants/answer/13837705?ref_topic=13773355) for the promotion."
+          }
+        },
+        "promotionUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. URL to the page on the merchant's site where the promotion shows. Local Inventory ads promotions throw an error if no `promotion_url` is included. URL is used to confirm that the promotion is valid and can be redeemed."
+          }
+        },
+        "couponValueType": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesCouponValueTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The [coupon value type] (https://support.google.com/merchants/answer/13861986?ref_topic=13773355) attribute to signal the type of promotion that you are running. Depending on type of the selected coupon value [some attributes are required](https://support.google.com/merchants/answer/6393006?ref_topic=7322920)."
+          }
+        },
+        "minPercentOff": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minimum percent off for a promotion with `PERCENT_OFF_RANGE` coupon value type. At least one of `min_percent_off` or `max_percent_off` must be present when the coupon value type is `PERCENT_OFF_RANGE`. If neither is provided an `INVALID_PROMOTION_MISSING_BENEFIT_OR_RESTRICTION` error is returned."
+          }
+        },
+        "promotionEffectiveTimePeriod": {
+          "target": "com.gcp.merchantapi_promotions_v1#Interval",
+          "traits": {
+            "smithy.api#documentation": "Required. `TimePeriod` representation of the promotion's effective dates. This attribute specifies that the promotion can be tested on your online store during this time period."
+          }
+        },
+        "redemptionRestriction": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesRedemptionRestrictionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. A restriction customers must meet before they can redeem the promotion."
+          }
+        },
+        "brandInclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by brand for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        },
+        "genericRedemptionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Generic redemption code for the promotion. To be used with the `offerType` field and must meet the [minimum requirements](https://support.google.com/merchants/answer/13837405?ref_topic=13773355)."
+          }
+        },
+        "minimumPurchaseQuantity": {
+          "target": "smithy.api#String"
+        },
+        "maxMoneyOffAmount": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum money off amount for a promotion with `MONEY_OFF_RANGE` coupon value type. At least one of `min_money_off_amount` or `max_money_off_amount` must be present when the coupon value type is `MONEY_OFF_RANGE`. If neither is provided an `INVALID_PROMOTION_MISSING_BENEFIT_OR_RESTRICTION` error is returned."
+          }
+        },
+        "productTypeInclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by product type for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        },
+        "freeGiftValue": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Free gift value](https://support.google.com/merchants/answer/13844477?ref_topic=13773355) for the promotion."
+          }
+        },
+        "promotionDestinations": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesPromotionDestinationsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) where the promotion applies to. If you don't specify a destination by including a supported value in your data source, your promotion will display in Shopping ads and free listings by default. You may have previously submitted the following values as destinations for your products: Shopping Actions, Surfaces across Google, Local surfaces across Google. To represent these values use `FREE_LISTINGS`, `FREE_LOCAL_LISTINGS`, `LOCAL_INVENTORY_ADS`. For more details see [Promotion destination](https://support.google.com/merchants/answer/13837465)"
+          }
+        },
+        "storeCodesInclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Store codes to include](https://support.google.com/merchants/answer/13857470?ref_topic=13773355) for the promotion. The store filter attributes only applies when the `store_applicability` attribute is set to [specific_stores](https://support.google.com/merchants/answer/13857563?ref_topic=13773355). Store code (the store ID from your Business Profile) of the physical store the product is sold in. See the [Local product inventory data specification](https://support.google.com/merchants/answer/3061342) for more information."
+          }
+        },
+        "freeGiftItemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Free gift item ID](https://support.google.com/merchants/answer/13857152?ref_topic=13773355) for the promotion."
+          }
+        },
+        "moneyOffAmount": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [money off amount](https://support.google.com/merchants/answer/13838101?ref_topic=13773355) offered in the promotion."
+          }
+        },
+        "storeApplicability": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesStoreApplicabilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the promotion applies to [all stores, or only specified stores](https://support.google.com/merchants/answer/13857563?sjid=17642868584668136159-NC). Local Inventory ads promotions throw an error if no store applicability is included. An `INVALID_ARGUMENT` error is thrown if `store_applicability` is set to `ALL_STORES` and `store_codes_inclusion` or `score_code_exclusion` is set to a value."
+          }
+        },
+        "maxDiscountAmount": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum monetary discount a customer can receive for the promotion. This field is only supported with the `Percent off` coupon value type."
+          }
+        },
+        "googleProductCategories": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of Google product categories for this promotion. Set if `EventApplicability` is `SPECIFIC_CATEGORIES`. Up to 5 product categories can be specified. For more details on eligible values for product categories, checkout the `google_product_category` attribute in the [Promotion data specification](https://support.google.com/merchants/answer/2906014)."
+          }
+        },
+        "itemGroupIdExclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by [item group ID](https://support.google.com/merchants/answer/13837298?ref_topic=13773355). The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355). exclusion for the promotion."
+          }
+        },
+        "limitQuantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Maximum purchase quantity](https://support.google.com/merchants/answer/13861564?ref_topic=13773355) for the promotion."
+          }
+        },
+        "audience": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesAudienceEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. This field defines the audience a promotion will be visible to."
+          }
+        },
+        "itemGroupIdInclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by item group ID for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability [product_applicability] attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        },
+        "minMoneyOffAmount": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minimum money off amount for a promotion with `MONEY_OFF_RANGE` coupon value type. At least one of `min_money_off_amount` or `max_money_off_amount` must be present when the coupon value type is `MONEY_OFF_RANGE`. If neither is provided an `INVALID_PROMOTION_MISSING_BENEFIT_OR_RESTRICTION` error is returned."
+          }
+        },
+        "storeCodesExclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Store codes to exclude](https://support.google.com/merchants/answer/13859586?ref_topic=13773355) for the promotion. The store filter attributes only applies when the `store_applicability` attribute is set to [specific_stores](https://support.google.com/merchants/answer/13857563?ref_topic=13773355)."
+          }
+        },
+        "brandExclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by [brand exclusion](https://support.google.com/merchants/answer/13861679?ref_topic=13773355) for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        },
+        "productTypeExclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by [product type exclusion](https://support.google.com/merchants/answer/13863746?ref_topic=13773355) for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        },
+        "promotionDisplayTimePeriod": {
+          "target": "com.gcp.merchantapi_promotions_v1#Interval",
+          "traits": {
+            "smithy.api#documentation": "Optional. `TimePeriod` representation of the promotion's display dates. This attribute specifies the date and time frame when the promotion will be live on Google.com and Shopping ads. If the display time period for promotion `promotion_display_time_period` attribute is not specified, the promotion effective time period `promotion_effective_time_period` determines the date and time frame when the promotion will be live on Google.com and Shopping ads."
+          }
+        },
+        "limitValue": {
+          "target": "com.gcp.merchantapi_promotions_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. [Maximum product price](https://support.google.com/merchants/answer/2906014) for promotion."
+          }
+        },
+        "getThisQuantityDiscounted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of items discounted in the promotion. The attribute is set when `couponValueType` is equal to `buy_m_get_n_money_off` or `buy_m_get_n_percent_off`."
+          }
+        },
+        "offerType": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesOfferTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. [Type](https://support.google.com/merchants/answer/13837405?ref_topic=13773355) of the promotion. Use this attribute to indicate whether or not customers need a coupon code to redeem your promotion."
+          }
+        },
+        "customRedemptionRestriction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The custom redemption restriction for the promotion. If the `redemption_restriction` field is set to `CUSTOM`, this field must be set."
+          }
+        },
+        "eventApplicability": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesEventApplicabilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Event applicability for this promotion. When present, this field indicates you are creating a [sales event](https://support.google.com/merchants/answer/15523289) and not a product promotion. Exactly one of `product_applicability` or `event_applicability` must be set."
+          }
+        },
+        "productApplicability": {
+          "target": "com.gcp.merchantapi_promotions_v1#AttributesProductApplicabilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Applicability of the promotion to either all products or [only specific products](https://support.google.com/merchants/answer/6396257). Exactly one of `product_applicability` or `event_applicability` must be set."
+          }
+        },
+        "maxPercentOff": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum percent off for a promotion with `PERCENT_OFF_RANGE` coupon value type. At least one of `min_percent_off` or `max_percent_off` must be present when the coupon value type is `PERCENT_OFF_RANGE`. If neither is provided an `INVALID_PROMOTION_MISSING_BENEFIT_OR_RESTRICTION` error is returned."
+          }
+        },
+        "percentOff": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [percentage discount](https://support.google.com/merchants/answer/13837404?sjid=17642868584668136159-NC) offered in the promotion."
+          }
+        },
+        "longTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. [Long title](https://support.google.com/merchants/answer/13838102?ref_topic=13773355) for the promotion."
+          }
+        },
+        "regionIdInclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of [regions](https://support.google.com/merchants/answer/15406457?#howregionswork) where the promotion is applicable. Must be set if `audience` is set to `LOCATION`."
+          }
+        },
+        "itemIdInclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by [item ID](https://support.google.com/merchants/answer/13861565?ref_topic=13773355) for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        },
+        "itemIdExclusion": {
+          "target": "com.gcp.merchantapi_promotions_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Product filter by [item ID exclusion](https://support.google.com/merchants/answer/13863524?ref_topic=13773355) for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attributes."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesCouponValueTypeEnum": {
+      "type": "enum",
+      "members": {
+        "COUPON_VALUE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUPON_VALUE_TYPE_UNSPECIFIED"
+          }
+        },
+        "MONEY_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONEY_OFF"
+          }
+        },
+        "PERCENT_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERCENT_OFF"
+          }
+        },
+        "BUY_M_GET_N_MONEY_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUY_M_GET_N_MONEY_OFF"
+          }
+        },
+        "BUY_M_GET_N_PERCENT_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUY_M_GET_N_PERCENT_OFF"
+          }
+        },
+        "BUY_M_GET_MONEY_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUY_M_GET_MONEY_OFF"
+          }
+        },
+        "BUY_M_GET_PERCENT_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUY_M_GET_PERCENT_OFF"
+          }
+        },
+        "FREE_GIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_GIFT"
+          }
+        },
+        "FREE_GIFT_WITH_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_GIFT_WITH_VALUE"
+          }
+        },
+        "FREE_GIFT_WITH_ITEM_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_GIFT_WITH_ITEM_ID"
+          }
+        },
+        "FREE_SHIPPING_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_SHIPPING_STANDARD"
+          }
+        },
+        "FREE_SHIPPING_OVERNIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_SHIPPING_OVERNIGHT"
+          }
+        },
+        "FREE_SHIPPING_TWO_DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_SHIPPING_TWO_DAY"
+          }
+        },
+        "MONEY_OFF_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONEY_OFF_RANGE"
+          }
+        },
+        "PERCENT_OFF_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERCENT_OFF_RANGE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesRedemptionRestrictionEnum": {
+      "type": "enum",
+      "members": {
+        "REDEMPTION_RESTRICTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REDEMPTION_RESTRICTION_UNSPECIFIED"
+          }
+        },
+        "SUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE"
+          }
+        },
+        "FIRST_ORDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_ORDER"
+          }
+        },
+        "SIGNUP_FOR_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIGNUP_FOR_EMAIL"
+          }
+        },
+        "SIGNUP_FOR_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIGNUP_FOR_TEXT"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesPromotionDestinationsItemEnum": {
+      "type": "enum",
+      "members": {
+        "DESTINATION_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESTINATION_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "YOUTUBE_SHOPPING_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING_CHECKOUT"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "FREE_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_VEHICLE_LISTINGS"
+          }
+        },
+        "VEHICLE_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_ADS"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesPromotionDestinationsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#AttributesPromotionDestinationsItemEnum"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesStoreApplicabilityEnum": {
+      "type": "enum",
+      "members": {
+        "STORE_APPLICABILITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORE_APPLICABILITY_UNSPECIFIED"
+          }
+        },
+        "ALL_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_STORES"
+          }
+        },
+        "SPECIFIC_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIFIC_STORES"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesAudienceEnum": {
+      "type": "enum",
+      "members": {
+        "AUDIENCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUDIENCE_UNSPECIFIED"
+          }
+        },
+        "NEW_CUSTOMERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_CUSTOMERS"
+          }
+        },
+        "LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCATION"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesOfferTypeEnum": {
+      "type": "enum",
+      "members": {
+        "OFFER_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFFER_TYPE_UNSPECIFIED"
+          }
+        },
+        "NO_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_CODE"
+          }
+        },
+        "GENERIC_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERIC_CODE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesEventApplicabilityEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT_APPLICABILITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT_APPLICABILITY_UNSPECIFIED"
+          }
+        },
+        "SITEWIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SITEWIDE"
+          }
+        },
+        "SPECIFIC_CATEGORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIFIC_CATEGORIES"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#AttributesProductApplicabilityEnum": {
+      "type": "enum",
+      "members": {
+        "PRODUCT_APPLICABILITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_APPLICABILITY_UNSPECIFIED"
+          }
+        },
+        "ALL_PRODUCTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_PRODUCTS"
+          }
+        },
+        "SPECIFIC_PRODUCTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIFIC_PRODUCTS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ProductChange": {
+      "type": "structure",
+      "members": {
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_promotions_v1#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ProductChangeReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#Interval": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#CustomAttribute": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the attribute. If `value` is not empty, `group_values` must be empty."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the attribute."
+          }
+        },
+        "groupValues": {
+          "target": "com.gcp.merchantapi_promotions_v1#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#PromotionStatus": {
+      "type": "structure",
+      "members": {
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Date on which the promotion has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example `2020-01-02T09:00:00+01:00` or `2020-01-02T09:00:00Z`"
+          }
+        },
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Date on which the promotion status has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example `2020-01-02T09:00:00+01:00` or `2020-01-02T09:00:00Z`"
+          }
+        },
+        "destinationStatuses": {
+          "target": "com.gcp.merchantapi_promotions_v1#DestinationStatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The intended destinations for the promotion."
+          }
+        },
+        "itemLevelIssues": {
+          "target": "com.gcp.merchantapi_promotions_v1#ItemLevelIssueList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of issues associated with the promotion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the promotion."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#DestinationStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#DestinationStatus"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ItemLevelIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#ItemLevelIssue"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#InsertPromotionRequest": {
+      "type": "structure",
+      "members": {
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The data source of the [promotion](https://support.google.com/merchants/answer/6396268?sjid=5155774230887277618-NC) Format: `accounts/{account}/dataSources/{datasource}`."
+          }
+        },
+        "promotion": {
+          "target": "com.gcp.merchantapi_promotions_v1#Promotion",
+          "traits": {
+            "smithy.api#documentation": "Required. The promotion to insert."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for the `InsertPromotion` method."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ProductStatusChangeMessage": {
+      "type": "structure",
+      "members": {
+        "changes": {
+          "target": "com.gcp.merchantapi_promotions_v1#ProductChangeList",
+          "traits": {
+            "smithy.api#documentation": "A message to describe the change that happened to the product"
+          }
+        },
+        "managingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.merchantapi_promotions_v1#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
+          }
+        },
+        "attribute": {
+          "target": "com.gcp.merchantapi_promotions_v1#ProductStatusChangeMessageAttributeEnum",
+          "traits": {
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_promotions_v1#ProductChange"
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ProductStatusChangeMessageResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT"
+          }
+        },
+        "ACCOUNT_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SERVICE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ProductStatusChangeMessageAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#InsertAccountsPromotionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account where the promotion will be inserted. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_promotions_v1#InsertPromotionRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#InsertAccountsPromotions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_promotions_v1#InsertAccountsPromotionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_promotions_v1#Promotion"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "promotions/v1/{+parent}/promotions:insert"
+        },
+        "smithy.api#documentation": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead."
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ListAccountsPromotionsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account to list processed promotions for. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#ListAccountsPromotions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_promotions_v1#ListAccountsPromotionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_promotions_v1#ListPromotionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "promotions/v1/{+parent}/promotions"
+        },
+        "smithy.api#documentation": "Lists the promotions in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting or updating a promotion, it may take several minutes before the updated processed promotion can be retrieved.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#GetAccountsPromotionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the promotion to retrieve. Format: `accounts/{account}/promotions/{promotions}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_promotions_v1#GetAccountsPromotions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_promotions_v1#GetAccountsPromotionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_promotions_v1#Promotion"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_promotions_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "promotions/v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves the promotion from your Merchant Center account. After inserting or updating a promotion input, it may take several minutes before the updated promotion can be retrieved."
+      }
+    }
+  }
+}

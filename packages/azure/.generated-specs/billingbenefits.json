@@ -1,0 +1,2694 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.billingbenefits#ReservationOrderAliasCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#ReservationOrderAliasCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#ReservationOrderAliasCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.BillingBenefits/reservationOrderAliases/{reservationOrderAliasName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Create a reservation order alias.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Reservation order SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the reserved resource lives."
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Reservation order alias response properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasResponseProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "reservationOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the reservation order created"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.billingbenefits#ProvisioningState"
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total Quantity of the SKUs purchased in the Reservation."
+          }
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        },
+        "reservedResourceType": {
+          "target": "com.azure.billingbenefits#ReservedResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource that is being reserved."
+          }
+        },
+        "reviewDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the Reservation needs to be reviewed."
+          }
+        },
+        "reservedResourceProperties": {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasResponsePropertiesReservedResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation properties"
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasResponsePropertiesReservedResourceProperties": {
+      "type": "structure",
+      "members": {
+        "instanceFlexibility": {
+          "target": "com.azure.billingbenefits#InstanceFlexibility"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
+      }
+    },
+    "com.azure.billingbenefits#InstanceFlexibility": {
+      "type": "enum",
+      "members": {
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "On"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Off"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Turning this on will apply the reservation discount to other VMs in the same VM size group."
+      }
+    },
+    "com.azure.billingbenefits#ReservedResourceType": {
+      "type": "enum",
+      "members": {
+        "VIRTUALMACHINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VirtualMachines"
+          }
+        },
+        "SQLDATABASES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlDatabases"
+          }
+        },
+        "SUSELINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SuseLinux"
+          }
+        },
+        "COSMOSDB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CosmosDb"
+          }
+        },
+        "REDHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RedHat"
+          }
+        },
+        "SQLDATAWAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlDataWarehouse"
+          }
+        },
+        "VMWARECLOUDSIMPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMwareCloudSimple"
+          }
+        },
+        "REDHATOSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RedHatOsa"
+          }
+        },
+        "DATABRICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Databricks"
+          }
+        },
+        "APPSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AppService"
+          }
+        },
+        "MANAGEDDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedDisk"
+          }
+        },
+        "BLOCKBLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BlockBlob"
+          }
+        },
+        "REDISCACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RedisCache"
+          }
+        },
+        "AZUREDATAEXPLORER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureDataExplorer"
+          }
+        },
+        "MYSQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MySql"
+          }
+        },
+        "MARIADB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MariaDb"
+          }
+        },
+        "POSTGRESQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PostgreSql"
+          }
+        },
+        "DEDICATEDHOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DedicatedHost"
+          }
+        },
+        "SAPHANA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SapHana"
+          }
+        },
+        "SQLAZUREHYBRIDBENEFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlAzureHybridBenefit"
+          }
+        },
+        "AVS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVS"
+          }
+        },
+        "DATAFACTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataFactory"
+          }
+        },
+        "NETAPPSTORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NetAppStorage"
+          }
+        },
+        "AZUREFILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureFiles"
+          }
+        },
+        "SQLEDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SqlEdge"
+          }
+        },
+        "VIRTUALMACHINESOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VirtualMachineSoftware"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the resource that is being reserved."
+      }
+    },
+    "com.azure.billingbenefits#AppliedScopeProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String"
+        },
+        "managementGroupId": {
+          "target": "smithy.api#String"
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String"
+        },
+        "resourceGroupId": {
+          "target": "smithy.api#String"
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to applied scope type. Not required if not applicable."
+      }
+    },
+    "com.azure.billingbenefits#AppliedScopeType": {
+      "type": "enum",
+      "members": {
+        "SINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Single"
+          }
+        },
+        "SHARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Shared"
+          }
+        },
+        "MANAGEMENTGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagementGroup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Applied Scope."
+      }
+    },
+    "com.azure.billingbenefits#BillingPlan": {
+      "type": "enum",
+      "members": {
+        "P1M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1M"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the billing plan in ISO 8601 format. Required only for monthly billing plans."
+      }
+    },
+    "com.azure.billingbenefits#Term": {
+      "type": "enum",
+      "members": {
+        "P1Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1Y"
+          }
+        },
+        "P3Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P3Y"
+          }
+        },
+        "P5Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P5Y"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent benefit term in ISO 8601 format."
+      }
+    },
+    "com.azure.billingbenefits#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "PENDINGBILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingBilling"
+          }
+        },
+        "CONFIRMEDBILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConfirmedBilling"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state"
+      }
+    },
+    "com.azure.billingbenefits#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU to be applied"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU to be applied for this resource"
+      }
+    },
+    "com.azure.billingbenefits#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.billingbenefits#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.billingbenefits#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.billingbenefits#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.billingbenefits#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasCreateRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderAliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the reservation order alias"
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Reservation order SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the reservation benefits are applied to."
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Reservation order alias request properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasRequestProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total Quantity of the SKUs purchased in the Reservation."
+          }
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        },
+        "reservedResourceType": {
+          "target": "com.azure.billingbenefits#ReservedResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource that is being reserved."
+          }
+        },
+        "reviewDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the date-time when the Azure Hybrid Benefit needs to be reviewed."
+          }
+        },
+        "reservedResourceProperties": {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasRequestPropertiesReservedResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reservation properties"
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasRequestPropertiesReservedResourceProperties": {
+      "type": "structure",
+      "members": {
+        "instanceFlexibility": {
+          "target": "com.azure.billingbenefits#InstanceFlexibility"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#ReservationOrderAliasGetRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#ReservationOrderAliasGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/reservationOrderAliases/{reservationOrderAliasName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get a reservation order alias.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Reservation order SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Region where the reserved resource lives."
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Reservation order alias response properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#ReservationOrderAliasGetRequest": {
+      "type": "structure",
+      "members": {
+        "reservationOrderAliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the reservation order alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#ValidatePurchase": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#ValidatePurchaseRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanValidateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.BillingBenefits/validate",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Validate savings plan purchase.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanValidateResponse": {
+      "type": "structure",
+      "members": {
+        "benefits": {
+          "target": "com.azure.billingbenefits#SavingsPlanValidateResponseBenefitsList"
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanValidateResponseBenefitsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanValidResponseProperty"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanValidResponseProperty": {
+      "type": "structure",
+      "members": {
+        "valid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the provided input was valid"
+          }
+        },
+        "reasonCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Failure reason code if the provided input was invalid"
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Failure reason if the provided input was invalid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Benefit scope response property"
+      }
+    },
+    "com.azure.billingbenefits#ValidatePurchaseRequest": {
+      "type": "structure",
+      "members": {
+        "benefits": {
+          "target": "com.azure.billingbenefits#ValidatePurchaseRequestBenefitsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#ValidatePurchaseRequestBenefitsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasModelInput"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasModelInput": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider kind"
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Savings plan order alias properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan order alias"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        },
+        "commitment": {
+          "target": "com.azure.billingbenefits#Commitment"
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan properties"
+      }
+    },
+    "com.azure.billingbenefits#Commitment": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        },
+        "grain": {
+          "target": "com.azure.billingbenefits#CommitmentGrain",
+          "traits": {
+            "smithy.api#documentation": "Commitment grain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Commitment towards the benefit."
+      }
+    },
+    "com.azure.billingbenefits#CommitmentGrain": {
+      "type": "enum",
+      "members": {
+        "HOURLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hourly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Commitment grain."
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanValidateUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanValidateUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanValidateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}/validate",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Validate savings plan patch.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanValidateUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order ID of the savings plan"
+          }
+        },
+        "savingsPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the savings plan"
+          }
+        },
+        "benefits": {
+          "target": "com.azure.billingbenefits#SavingsPlanValidateUpdateRequestBenefitsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanValidateUpdateRequestBenefitsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanUpdateRequestPropertiesInput"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanUpdateRequestPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        },
+        "renewProperties": {
+          "target": "com.azure.billingbenefits#RenewPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan patch request"
+      }
+    },
+    "com.azure.billingbenefits#RenewPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "purchaseProperties": {
+          "target": "com.azure.billingbenefits#PurchaseRequestInput"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#PurchaseRequestInput": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku"
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#PurchaseRequestPropertiesInput"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#PurchaseRequestPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name of the savings plan"
+          }
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "commitment": {
+          "target": "com.azure.billingbenefits#Commitment"
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Update savings plan.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanModelProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "provisioningState": {
+          "target": "com.azure.billingbenefits#ProvisioningState"
+        },
+        "displayProvisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the savings plan for display, e.g. Succeeded"
+          }
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "billingProfileId": {
+          "target": "smithy.api#String"
+        },
+        "customerId": {
+          "target": "smithy.api#String"
+        },
+        "billingAccountId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "userFriendlyAppliedScopeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The applied scope type of the savings plan for display, e.g. Shared"
+          }
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        },
+        "commitment": {
+          "target": "com.azure.billingbenefits#Commitment"
+        },
+        "effectiveDateTime": {
+          "target": "smithy.api#String"
+        },
+        "expiryDateTime": {
+          "target": "smithy.api#String"
+        },
+        "purchaseDateTime": {
+          "target": "smithy.api#String"
+        },
+        "benefitStartTime": {
+          "target": "smithy.api#String"
+        },
+        "extendedStatusInfo": {
+          "target": "com.azure.billingbenefits#ExtendedStatusInfo"
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        },
+        "utilization": {
+          "target": "com.azure.billingbenefits#Utilization"
+        },
+        "renewSource": {
+          "target": "smithy.api#String"
+        },
+        "renewDestination": {
+          "target": "smithy.api#String"
+        },
+        "renewProperties": {
+          "target": "com.azure.billingbenefits#RenewProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan properties"
+      }
+    },
+    "com.azure.billingbenefits#RenewProperties": {
+      "type": "structure",
+      "members": {
+        "purchaseProperties": {
+          "target": "com.azure.billingbenefits#PurchaseRequest"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#PurchaseRequest": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku"
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#PurchaseRequestProperties"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#PurchaseRequestProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly name of the savings plan"
+          }
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "commitment": {
+          "target": "com.azure.billingbenefits#Commitment"
+        },
+        "effectiveDateTime": {
+          "target": "smithy.api#String"
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#Utilization": {
+      "type": "structure",
+      "members": {
+        "trend": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of days trend for a savings plan"
+          }
+        },
+        "aggregates": {
+          "target": "com.azure.billingbenefits#UtilizationAggregatesList",
+          "traits": {
+            "smithy.api#documentation": "The array of aggregates of a savings plan's utilization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan utilization"
+      }
+    },
+    "com.azure.billingbenefits#UtilizationAggregatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#UtilizationAggregates"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of aggregates of a savings plan's utilization"
+      }
+    },
+    "com.azure.billingbenefits#UtilizationAggregates": {
+      "type": "structure",
+      "members": {
+        "grain": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The grain of the aggregate"
+          }
+        },
+        "grainUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The grain unit of the aggregate"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The aggregate value"
+          }
+        },
+        "valueUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The aggregate value unit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The aggregate values of savings plan utilization"
+      }
+    },
+    "com.azure.billingbenefits#ExtendedStatusInfo": {
+      "type": "structure",
+      "members": {
+        "statusCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status code providing additional information."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message giving detailed information about the status code."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order ID of the savings plan"
+          }
+        },
+        "savingsPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the savings plan"
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanUpdateRequestPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanGetRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get savings plan.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanGetRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order ID of the savings plan"
+          }
+        },
+        "savingsPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the savings plan"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "May be used to expand the detail information of some properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanListAll": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanListAllRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanModelListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlans",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "List savings plans.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanModelListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.billingbenefits#SavingsPlanModelListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of savings plans."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page."
+          }
+        },
+        "additionalProperties": {
+          "target": "com.azure.billingbenefits#SavingsPlanModelListResultAdditionalPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "The roll out count summary of the savings plans"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanModelListResultAdditionalPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanSummary"
+      },
+      "traits": {
+        "smithy.api#documentation": "The roll out count summary of the savings plans"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanSummary": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This property has value 'summary'"
+          }
+        },
+        "value": {
+          "target": "com.azure.billingbenefits#SavingsPlanSummaryCount"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plans list summary"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanSummaryCount": {
+      "type": "structure",
+      "members": {
+        "succeededCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Succeeded state"
+          }
+        },
+        "failedCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Failed state"
+          }
+        },
+        "expiringCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Expiring state"
+          }
+        },
+        "expiredCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Expired state"
+          }
+        },
+        "pendingCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Pending state"
+          }
+        },
+        "cancelledCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Cancelled state"
+          }
+        },
+        "processingCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Processing state"
+          }
+        },
+        "noBenefitCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in No Benefit state"
+          }
+        },
+        "warningCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of savings plans in Warning state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The roll up count summary of savings plans in each state"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanModelListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanModel"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of savings plans."
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanModel": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanListAllRequest": {
+      "type": "structure",
+      "members": {
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does not currently support 'ne', 'gt', 'le', 'ge', or 'not'. Reservation properties include sku/name, properties/{appliedScopeType, archived, displayName, displayProvisioningState, effectiveDateTime, expiryDate, provisioningState, quantity, renew, reservedResourceType, term, userFriendlyAppliedScopeType, userFriendlyRenewState}"
+          }
+        },
+        "_orderby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$orderby",
+            "smithy.api#documentation": "May be used to sort order by reservation properties."
+          }
+        },
+        "refreshSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "refreshSummary",
+            "smithy.api#documentation": "To indicate whether to refresh the roll up counts of the savings plans group by provisioning states"
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "The number of savings plans to skip from the list before returning results"
+          }
+        },
+        "selectedState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "selectedState",
+            "smithy.api#documentation": "The selected provisioning state"
+          }
+        },
+        "take": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "take",
+            "smithy.api#documentation": "To number of savings plans to return"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanListRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanModelList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "List savings plans in an order.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanModelList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.billingbenefits#SavingsPlanModelListValueList"
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanModelListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanModel"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanListRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order ID of the savings plan"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderModelList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "List all Savings plan orders.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderModelList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderModelListValueList"
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderModelListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderModel"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderModel": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan order properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan order"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderModelProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "provisioningState": {
+          "target": "com.azure.billingbenefits#ProvisioningState"
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "billingProfileId": {
+          "target": "smithy.api#String"
+        },
+        "customerId": {
+          "target": "smithy.api#String"
+        },
+        "billingAccountId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "expiryDateTime": {
+          "target": "smithy.api#String"
+        },
+        "benefitStartTime": {
+          "target": "smithy.api#String"
+        },
+        "planInformation": {
+          "target": "com.azure.billingbenefits#BillingPlanInformation"
+        },
+        "savingsPlans": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderModelPropertiesSavingsPlansList"
+        },
+        "extendedStatusInfo": {
+          "target": "com.azure.billingbenefits#ExtendedStatusInfo"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan order properties"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderModelPropertiesSavingsPlansList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#BillingPlanInformation": {
+      "type": "structure",
+      "members": {
+        "pricingCurrencyTotal": {
+          "target": "com.azure.billingbenefits#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount of money to be paid for the Order. Tax is not included."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the billing plan has started."
+          }
+        },
+        "nextPaymentDueDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For recurring billing plans, indicates the date when next payment will be processed. Null when total is paid off."
+          }
+        },
+        "transactions": {
+          "target": "com.azure.billingbenefits#BillingPlanInformationTransactionsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information describing the type of billing plan for this savings plan."
+      }
+    },
+    "com.azure.billingbenefits#BillingPlanInformationTransactionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#PaymentDetail"
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#PaymentDetail": {
+      "type": "structure",
+      "members": {
+        "dueDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the payment needs to be done."
+          }
+        },
+        "paymentDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the transaction is completed. Is null when it is scheduled."
+          }
+        },
+        "pricingCurrencyTotal": {
+          "target": "com.azure.billingbenefits#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount in pricing currency. Tax not included."
+          }
+        },
+        "billingCurrencyTotal": {
+          "target": "com.azure.billingbenefits#Price",
+          "traits": {
+            "smithy.api#documentation": "Amount charged in Billing currency. Tax not included. Is null for future payments"
+          }
+        },
+        "status": {
+          "target": "com.azure.billingbenefits#PaymentStatus"
+        },
+        "extendedStatusInfo": {
+          "target": "com.azure.billingbenefits#ExtendedStatusInfo"
+        },
+        "billingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing account"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about payment related to a savings plan order."
+      }
+    },
+    "com.azure.billingbenefits#PaymentStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scheduled"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes whether the payment is completed, failed, cancelled or scheduled in the future."
+      }
+    },
+    "com.azure.billingbenefits#Price": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO 4217 3-letter currency code for the currency used by this purchase record."
+          }
+        },
+        "amount": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderElevate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderElevateRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#RoleAssignmentEntity"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}/elevate",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Elevate as owner on savings plan order based on billing permissions.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#RoleAssignmentEntity": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role assignment entity id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role assignment entity name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#RoleAssignmentEntityProperties",
+          "traits": {
+            "smithy.api#documentation": "Role assignment entity properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role assignment entity"
+      }
+    },
+    "com.azure.billingbenefits#RoleAssignmentEntityProperties": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Principal Id"
+          }
+        },
+        "roleDefinitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role definition id"
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scope of the role assignment entity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role assignment entity properties"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderElevateRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order ID of the savings plan"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderGetRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrders/{savingsPlanOrderId}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get a savings plan order.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderModelProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan order properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderGetRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Order ID of the savings plan"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "May be used to expand the detail information of some properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrderAliases/{savingsPlanOrderAliasName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Create a savings plan. Learn more about permissions needed at https://go.microsoft.com/fwlink/?linkid=2215851",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider kind"
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan order alias properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String"
+        },
+        "savingsPlanOrderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the savings plan created"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.billingbenefits#ProvisioningState"
+        },
+        "billingScopeId": {
+          "target": "smithy.api#String"
+        },
+        "term": {
+          "target": "com.azure.billingbenefits#Term"
+        },
+        "billingPlan": {
+          "target": "com.azure.billingbenefits#BillingPlan"
+        },
+        "appliedScopeType": {
+          "target": "com.azure.billingbenefits#AppliedScopeType"
+        },
+        "appliedScopeProperties": {
+          "target": "com.azure.billingbenefits#AppliedScopeProperties"
+        },
+        "commitment": {
+          "target": "com.azure.billingbenefits#Commitment"
+        },
+        "renew": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Savings plan properties"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasCreateRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderAliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the savings plan order alias"
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider kind"
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Savings plan order alias properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasGetRequest"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/savingsPlanOrderAliases/{savingsPlanOrderAliasName}",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get a savings plan.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.billingbenefits#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "sku": {
+          "target": "com.azure.billingbenefits#Sku",
+          "traits": {
+            "smithy.api#documentation": "Savings plan SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider kind"
+          }
+        },
+        "properties": {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasProperties",
+          "traits": {
+            "smithy.api#documentation": "Savings plan order alias properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#SavingsPlanOrderAliasGetRequest": {
+      "type": "structure",
+      "members": {
+        "savingsPlanOrderAliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the savings plan order alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.billingbenefits#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.billingbenefits#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BillingBenefits/operations",
+          "code": 200,
+          "apiVersion": "2022-11-01"
+        },
+        "smithy.api#documentation": "Get operations.\n\nList all the operations.",
+        "com.distilled.openapi#apiVersion": "2022-11-01"
+      }
+    },
+    "com.azure.billingbenefits#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.billingbenefits#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.billingbenefits#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.billingbenefits#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.billingbenefits#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.billingbenefits#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.billingbenefits#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.billingbenefits#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.billingbenefits#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.billingbenefits#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.billingbenefits#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.billingbenefits#Billingbenefits": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasCreate"
+        },
+        {
+          "target": "com.azure.billingbenefits#ReservationOrderAliasGet"
+        },
+        {
+          "target": "com.azure.billingbenefits#ValidatePurchase"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanValidateUpdate"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanUpdate"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanGet"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanListAll"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanList"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderList"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderElevate"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderGet"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasCreate"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasGet"
+        },
+        {
+          "target": "com.azure.billingbenefits#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Billingbenefits",
+        "smithy.api#documentation": "Azure Billingbenefits API — merged from the billingbenefits resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

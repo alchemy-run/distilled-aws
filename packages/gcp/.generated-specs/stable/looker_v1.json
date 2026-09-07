@@ -1,0 +1,2671 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "looker",
+    "version": "v1",
+    "title": "Looker (Google Cloud core) API",
+    "baseUrl": "https://looker.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.looker_v1#ExportMetadata": {
+      "type": "structure",
+      "members": {
+        "lookerVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of instance when the export was created."
+          }
+        },
+        "lookerInstance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the exported instance. Format: projects/{project}/locations/{location}/instances/{instance}"
+          }
+        },
+        "exportEncryptionKey": {
+          "target": "com.gcp.looker_v1#ExportMetadataEncryptionKey",
+          "traits": {
+            "smithy.api#documentation": "Encryption key that was used to encrypt the export artifacts."
+          }
+        },
+        "lookerPlatformEdition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Platform edition of the exported instance."
+          }
+        },
+        "filePaths": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of files created as part of export artifact (excluding the metadata). The paths are relative to the folder containing the metadata."
+          }
+        },
+        "source": {
+          "target": "com.gcp.looker_v1#ExportMetadataSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "The source type of the migration."
+          }
+        },
+        "lookerEncryptionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Looker encryption key, encrypted with the provided export encryption key. This value will only be populated if the looker instance uses Looker managed encryption instead of CMEK."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExportMetadata represents the metadata of the exported artifacts. The metadata.json file in export artifact can be parsed as this message"
+      }
+    },
+    "com.gcp.looker_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.looker_v1#ExportMetadataSourceEnum": {
+      "type": "enum",
+      "members": {
+        "SOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOURCE_UNSPECIFIED"
+          }
+        },
+        "LOOKER_CORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE"
+          }
+        },
+        "LOOKER_ORIGINAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_ORIGINAL"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#RestartInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request options for restarting an instance."
+      }
+    },
+    "com.gcp.looker_v1#Instance": {
+      "type": "structure",
+      "members": {
+        "publicIpEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether public IP is enabled on the Looker instance."
+          }
+        },
+        "lookerVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Looker version that the instance is using."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the Looker instance provisioning was first requested."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the Looker instance was last updated."
+          }
+        },
+        "maintenanceWindow": {
+          "target": "com.gcp.looker_v1#MaintenanceWindow",
+          "traits": {
+            "smithy.api#documentation": "Maintenance window for this instance."
+          }
+        },
+        "encryptionConfig": {
+          "target": "com.gcp.looker_v1#EncryptionConfig",
+          "traits": {
+            "smithy.api#documentation": "Encryption configuration (CMEK). Only set if CMEK has been enabled on the instance."
+          }
+        },
+        "ingressPrivateIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Private Ingress IP (IPv4)."
+          }
+        },
+        "reservedRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a reserved IP address range within the Instance.consumer_network, to be used for private services access connection. May or may not be specified in a create request."
+          }
+        },
+        "adminSettings": {
+          "target": "com.gcp.looker_v1#AdminSettings",
+          "traits": {
+            "smithy.api#documentation": "Looker Instance Admin settings."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Format: `projects/{project}/locations/{location}/instances/{instance}`."
+          }
+        },
+        "consumerNetwork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Network name in the consumer project. Format: `projects/{project}/global/networks/{network}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance."
+          }
+        },
+        "linkedLspProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Linked Google Cloud Project Number for Looker Studio Pro."
+          }
+        },
+        "egressPublicIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Public Egress IP (IPv4)."
+          }
+        },
+        "pscEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to use Private Service Connect (PSC) for private IP connectivity. If true, neither `public_ip_enabled` nor `private_ip_enabled` can be true."
+          }
+        },
+        "ingressPublicIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Public Ingress IP (IPv4)."
+          }
+        },
+        "state": {
+          "target": "com.gcp.looker_v1#InstanceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the instance."
+          }
+        },
+        "privateIpEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether private IP is enabled on the Looker instance."
+          }
+        },
+        "acceleratedSecurityPatchEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Accelerated security patch enabled for the instance."
+          }
+        },
+        "lastDenyMaintenancePeriod": {
+          "target": "com.gcp.looker_v1#DenyMaintenancePeriod",
+          "traits": {
+            "smithy.api#documentation": "Output only. Last computed maintenance denial period for this instance."
+          }
+        },
+        "catalogIntegrationOptOut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates whether catalog integration is disabled for the Looker instance."
+          }
+        },
+        "oauthConfig": {
+          "target": "com.gcp.looker_v1#OAuthConfig",
+          "traits": {
+            "smithy.api#documentation": "Looker instance OAuth login settings."
+          }
+        },
+        "customDomain": {
+          "target": "com.gcp.looker_v1#CustomDomain",
+          "traits": {
+            "smithy.api#documentation": "Custom domain configuration for the instance."
+          }
+        },
+        "userMetadata": {
+          "target": "com.gcp.looker_v1#UserMetadata",
+          "traits": {
+            "smithy.api#documentation": "Optional. User metadata."
+          }
+        },
+        "softDeleteReason": {
+          "target": "com.gcp.looker_v1#InstanceSoftDeleteReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The reason for the instance being in a soft-deleted state."
+          }
+        },
+        "controlledEgressConfig": {
+          "target": "com.gcp.looker_v1#ControlledEgressConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Controlled egress configuration."
+          }
+        },
+        "lookerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Looker instance URI which can be used to access the Looker Instance UI."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "maintenanceSchedule": {
+          "target": "com.gcp.looker_v1#MaintenanceSchedule",
+          "traits": {
+            "smithy.api#documentation": "Maintenance schedule for this instance."
+          }
+        },
+        "periodicExportConfig": {
+          "target": "com.gcp.looker_v1#PeriodicExportConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for periodic export."
+          }
+        },
+        "ingressIpAllowlistConfig": {
+          "target": "com.gcp.looker_v1#IngressIpAllowlistConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Ingress IP allowlist configuration for the Looker instance."
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "classType": {
+          "target": "com.gcp.looker_v1#InstanceClassTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Storage class of the instance."
+          }
+        },
+        "platformEdition": {
+          "target": "com.gcp.looker_v1#InstancePlatformEditionEnum",
+          "traits": {
+            "smithy.api#documentation": "Platform edition."
+          }
+        },
+        "suspendedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the Looker instance was suspended (soft deleted)."
+          }
+        },
+        "pscConfig": {
+          "target": "com.gcp.looker_v1#PscConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. PSC configuration. Used when `psc_enabled` is true."
+          }
+        },
+        "denyMaintenancePeriod": {
+          "target": "com.gcp.looker_v1#DenyMaintenancePeriod",
+          "traits": {
+            "smithy.api#documentation": "Maintenance denial period for this instance."
+          }
+        },
+        "releaseChannel": {
+          "target": "com.gcp.looker_v1#InstanceReleaseChannelEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The selected release channel for the instance."
+          }
+        },
+        "controlledEgressEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether controlled egress is enabled on the Looker instance."
+          }
+        },
+        "fipsEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether FIPS is enabled on the Looker instance."
+          }
+        },
+        "geminiEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether Gemini feature is enabled on the Looker instance or not."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Looker instance."
+      }
+    },
+    "com.gcp.looker_v1#InstanceStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "EXPORTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPORTING"
+          }
+        },
+        "IMPORTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMPORTING"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#InstanceSoftDeleteReasonEnum": {
+      "type": "enum",
+      "members": {
+        "SOFT_DELETE_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOFT_DELETE_REASON_UNSPECIFIED"
+          }
+        },
+        "BILLING_ACCOUNT_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING_ACCOUNT_ISSUE"
+          }
+        },
+        "TRIAL_EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL_EXPIRED"
+          }
+        },
+        "CUSTOMER_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOMER_REQUEST"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#InstanceClassTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CLASS_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLASS_TYPE_UNSPECIFIED"
+          }
+        },
+        "R1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "R1"
+          }
+        },
+        "P1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#InstancePlatformEditionEnum": {
+      "type": "enum",
+      "members": {
+        "PLATFORM_EDITION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_EDITION_UNSPECIFIED"
+          }
+        },
+        "LOOKER_CORE_TRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_TRIAL"
+          }
+        },
+        "LOOKER_CORE_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_STANDARD"
+          }
+        },
+        "LOOKER_CORE_STANDARD_ANNUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_STANDARD_ANNUAL"
+          }
+        },
+        "LOOKER_CORE_ENTERPRISE_ANNUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_ENTERPRISE_ANNUAL"
+          }
+        },
+        "LOOKER_CORE_EMBED_ANNUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_EMBED_ANNUAL"
+          }
+        },
+        "LOOKER_CORE_NONPROD_STANDARD_ANNUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_NONPROD_STANDARD_ANNUAL"
+          }
+        },
+        "LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL"
+          }
+        },
+        "LOOKER_CORE_NONPROD_EMBED_ANNUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_NONPROD_EMBED_ANNUAL"
+          }
+        },
+        "LOOKER_CORE_TRIAL_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_TRIAL_STANDARD"
+          }
+        },
+        "LOOKER_CORE_TRIAL_ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_TRIAL_ENTERPRISE"
+          }
+        },
+        "LOOKER_CORE_TRIAL_EMBED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOOKER_CORE_TRIAL_EMBED"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#InstanceReleaseChannelEnum": {
+      "type": "enum",
+      "members": {
+        "RELEASE_CHANNEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_CHANNEL_UNSPECIFIED"
+          }
+        },
+        "RAPID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RAPID"
+          }
+        },
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR"
+          }
+        },
+        "STABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STABLE"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#CustomDomain": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name."
+          }
+        },
+        "state": {
+          "target": "com.gcp.looker_v1#CustomDomainStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom domain information."
+      }
+    },
+    "com.gcp.looker_v1#CustomDomainStateEnum": {
+      "type": "enum",
+      "members": {
+        "CUSTOM_DOMAIN_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_DOMAIN_STATE_UNSPECIFIED"
+          }
+        },
+        "UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNVERIFIED"
+          }
+        },
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFIED"
+          }
+        },
+        "MODIFYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODIFYING"
+          }
+        },
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVAILABLE"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ListInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If provided, a page token that can look up the next ListInstancesRequest.pageSize results. If empty, the results list is exhausted."
+          }
+        },
+        "instances": {
+          "target": "com.gcp.looker_v1#InstanceList",
+          "traits": {
+            "smithy.api#documentation": "The list of instances matching the request filters, up to the requested ListInstancesRequest.pageSize."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from ListInstances."
+      }
+    },
+    "com.gcp.looker_v1#InstanceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#Instance"
+      }
+    },
+    "com.gcp.looker_v1#MaintenanceWindow": {
+      "type": "structure",
+      "members": {
+        "dayOfWeek": {
+          "target": "com.gcp.looker_v1#MaintenanceWindowDayOfWeekEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Day of the week for this MaintenanceWindow (in UTC)."
+          }
+        },
+        "startTime": {
+          "target": "com.gcp.looker_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Time in UTC when the period starts. Maintenance will be scheduled within 60 minutes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the recurring maintenance window."
+      }
+    },
+    "com.gcp.looker_v1#MaintenanceWindowDayOfWeekEnum": {
+      "type": "enum",
+      "members": {
+        "DAY_OF_WEEK_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
+          }
+        },
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONDAY"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TUESDAY"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEDNESDAY"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THURSDAY"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIDAY"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SATURDAY"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUNDAY"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#IngressIpAllowlistConfig": {
+      "type": "structure",
+      "members": {
+        "allowlistRules": {
+          "target": "com.gcp.looker_v1#IngressIpAllowlistRuleList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of IP range rules to allow ingress traffic."
+          }
+        },
+        "googleServicesEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether google service connections are enabled for the instance."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether ingress IP allowlist functionality is enabled on the Looker instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingress IP allowlist configuration."
+      }
+    },
+    "com.gcp.looker_v1#IngressIpAllowlistRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#IngressIpAllowlistRule"
+      }
+    },
+    "com.gcp.looker_v1#MaintenanceSchedule": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scheduled start time for the maintenance."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scheduled end time for the maintenance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Published upcoming future maintenance schedule."
+      }
+    },
+    "com.gcp.looker_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation finished running."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the verb executed by the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation was created."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server-defined resource path for the target of the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API version used to start the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.looker_v1#PeriodicExportConfig": {
+      "type": "structure",
+      "members": {
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the CMEK key in KMS. Format: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}"
+          }
+        },
+        "startTime": {
+          "target": "com.gcp.looker_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Time in UTC to start the periodic export job."
+          }
+        },
+        "gcsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Cloud Storage bucket URI for periodic export. Format: gs://{bucket_name}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for periodic export."
+      }
+    },
+    "com.gcp.looker_v1#EncryptionConfig": {
+      "type": "structure",
+      "members": {
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the CMEK key in KMS (input parameter)."
+          }
+        },
+        "kmsKeyNameVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Full name and version of the CMEK key currently in use to encrypt Looker data. Format: `projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}/cryptoKeyVersions/{version}`. Empty if CMEK is not configured in this instance."
+          }
+        },
+        "kmsKeyState": {
+          "target": "com.gcp.looker_v1#EncryptionConfigKmsKeyStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Status of the CMEK key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption configuration (i.e. CMEK)."
+      }
+    },
+    "com.gcp.looker_v1#EncryptionConfigKmsKeyStateEnum": {
+      "type": "enum",
+      "members": {
+        "KMS_KEY_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KMS_KEY_STATE_UNSPECIFIED"
+          }
+        },
+        "VALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VALID"
+          }
+        },
+        "REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVOKED"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "response": {
+          "target": "com.gcp.looker_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.looker_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.looker_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.looker_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.looker_v1#UserMetadata": {
+      "type": "structure",
+      "members": {
+        "additionalDeveloperUserCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of additional developer users the instance owner has purchased."
+          }
+        },
+        "additionalStandardUserCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of additional standard users the instance owner has purchased."
+          }
+        },
+        "additionalViewerUserCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of additional viewer users the instance owner has purchased."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about users for a Looker instance."
+      }
+    },
+    "com.gcp.looker_v1#InstanceBackup": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The relative resource name of the backup, in the following form: `projects/{project_number}/locations/{location_id}/instances/{instance_id}/backups/{backup}`"
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the backup will be deleted."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the backup was started."
+          }
+        },
+        "state": {
+          "target": "com.gcp.looker_v1#InstanceBackupStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of the backup."
+          }
+        },
+        "encryptionConfig": {
+          "target": "com.gcp.looker_v1#EncryptionConfig",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current status of the CMEK encryption"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of a backup resource."
+      }
+    },
+    "com.gcp.looker_v1#InstanceBackupStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ServiceAttachment": {
+      "type": "structure",
+      "members": {
+        "failureReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reason the service attachment creation failed. This value will only be populated if the service attachment encounters an issue during provisioning."
+          }
+        },
+        "localFqdns": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of fully qualified domain names that will be used in the private DNS record created for the service attachment."
+          }
+        },
+        "localFqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Fully qualified domain name that will be used in the private DNS record created for the service attachment."
+          }
+        },
+        "targetServiceAttachmentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. URI of the service attachment to connect to. Format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}"
+          }
+        },
+        "connectionStatus": {
+          "target": "com.gcp.looker_v1#ServiceAttachmentConnectionStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Connection status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service attachment configuration."
+      }
+    },
+    "com.gcp.looker_v1#ServiceAttachmentConnectionStatusEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCEPTED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REJECTED"
+          }
+        },
+        "NEEDS_ATTENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_ATTENTION"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOSED"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#UndeleteInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request options for undeleting an instance."
+      }
+    },
+    "com.gcp.looker_v1#DenyMaintenancePeriod": {
+      "type": "structure",
+      "members": {
+        "endDate": {
+          "target": "com.gcp.looker_v1#Looker_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. End date of the deny maintenance period."
+          }
+        },
+        "time": {
+          "target": "com.gcp.looker_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Time in UTC when the period starts and ends."
+          }
+        },
+        "startDate": {
+          "target": "com.gcp.looker_v1#Looker_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. Start date of the deny maintenance period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the maintenance denial period."
+      }
+    },
+    "com.gcp.looker_v1#ListInstanceBackupsResponse": {
+      "type": "structure",
+      "members": {
+        "instanceBackups": {
+          "target": "com.gcp.looker_v1#InstanceBackupList",
+          "traits": {
+            "smithy.api#documentation": "The list of instances matching the request filters, up to the requested `page_size`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If provided, a page token that can look up the next `page_size` results. If empty, the results list is exhausted."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from listing Looker instance backups."
+      }
+    },
+    "com.gcp.looker_v1#InstanceBackupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#InstanceBackup"
+      }
+    },
+    "com.gcp.looker_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.looker_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.looker_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#DocumentMap"
+      }
+    },
+    "com.gcp.looker_v1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.looker_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.looker_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.looker_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.looker_v1#ControlledEgressConfig": {
+      "type": "structure",
+      "members": {
+        "egressFqdns": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of fully qualified domain names to be added to the allowlist for outbound traffic."
+          }
+        },
+        "webProxyIps": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of IP addresses used by Secure Web Proxy for outbound traffic."
+          }
+        },
+        "marketplaceEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether marketplace is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Controlled egress configuration."
+      }
+    },
+    "com.gcp.looker_v1#TimeOfDay": {
+      "type": "structure",
+      "members": {
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59."
+          }
+        },
+        "seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`."
+      }
+    },
+    "com.gcp.looker_v1#Looker_Date": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.looker_v1#OAuthConfig": {
+      "type": "structure",
+      "members": {
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Client ID from an external OAuth application. This is an input-only field, and thus will not be set in any responses."
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Client secret from an external OAuth application. This is an input-only field, and thus will not be set in any responses."
+          }
+        },
+        "sharedOauthClientEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to use the shared OAuth client. Instances specifying this field do not need to provide client_id and client_secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Looker instance OAuth login settings."
+      }
+    },
+    "com.gcp.looker_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.looker_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.looker_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#Location"
+      }
+    },
+    "com.gcp.looker_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.looker_v1#PscConfig": {
+      "type": "structure",
+      "members": {
+        "allowedVpcs": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of VPCs that are allowed ingress into looker. Format: projects/{project}/global/networks/{network}"
+          }
+        },
+        "lookerServiceAttachmentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. URI of the Looker service attachment."
+          }
+        },
+        "serviceAttachments": {
+          "target": "com.gcp.looker_v1#ServiceAttachmentList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of egress service attachment configurations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information for Private Service Connect (PSC) setup for a Looker instance."
+      }
+    },
+    "com.gcp.looker_v1#ServiceAttachmentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#ServiceAttachment"
+      }
+    },
+    "com.gcp.looker_v1#IngressIpAllowlistRule": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description for the IP range."
+          }
+        },
+        "ipRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IP range to allow ingress traffic from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ingress IP allowlist rule."
+      }
+    },
+    "com.gcp.looker_v1#ExportEncryptionConfig": {
+      "type": "structure",
+      "members": {
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the CMEK key in KMS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for Encryption - e.g. CMEK."
+      }
+    },
+    "com.gcp.looker_v1#RestoreInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "backup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Backup being used to restore the instance Format: projects/{project}/locations/{location}/instances/{instance}/backups/{backup}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request options for restoring an instance"
+      }
+    },
+    "com.gcp.looker_v1#AdminSettings": {
+      "type": "structure",
+      "members": {
+        "allowedEmailDomains": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Email domain allowlist for the instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Looker instance Admin settings fields."
+      }
+    },
+    "com.gcp.looker_v1#ExportMetadataEncryptionKey": {
+      "type": "structure",
+      "members": {
+        "cmek": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the CMEK."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the CMEK."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption key details for the exported artifact."
+      }
+    },
+    "com.gcp.looker_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.looker_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.looker_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.looker_v1#Operation"
+      }
+    },
+    "com.gcp.looker_v1#ExportInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "gcsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path to the folder in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/folderName`."
+          }
+        },
+        "encryptionConfig": {
+          "target": "com.gcp.looker_v1#ExportEncryptionConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Encryption configuration (CMEK). For CMEK enabled instances it should be same as looker CMEK."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request options for exporting data of an Instance."
+      }
+    },
+    "com.gcp.looker_v1#ImportInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "gcsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to the import folder in Google Cloud Storage, in the form `gs://bucketName/folderName`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Requestion options for importing looker data to an Instance"
+      }
+    },
+    "com.gcp.looker_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.looker_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.looker_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.looker_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.looker_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.looker_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.looker_v1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.looker_v1#DeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to force cascading delete.",
+            "smithy.api#httpQuery": "force"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#DeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#DeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete instance."
+      }
+    },
+    "com.gcp.looker_v1#RestartProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#RestartInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#RestartProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#RestartProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:restart"
+        },
+        "smithy.api#documentation": "Restart instance."
+      }
+    },
+    "com.gcp.looker_v1#CreateProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The unique instance identifier. Must contain only lowercase letters, numbers, or hyphens, with the first character a letter and the last a letter or a number. 63 characters maximum.",
+            "smithy.api#httpQuery": "instanceId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#CreateProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#CreateProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Creates a new Instance in a given project and location."
+      }
+    },
+    "com.gcp.looker_v1#ImportProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#ImportInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ImportProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#ImportProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:import"
+        },
+        "smithy.api#documentation": "Import instance."
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of instances to return. If unspecified at most 256 will be returned. The maximum possible value is 2048.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from a previous ListInstancesRequest.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to include deleted instances in the response.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#ListProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#ListInstancesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Lists Instances in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.looker_v1#UndeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#UndeleteInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#UndeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#UndeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Undeletes Looker instance."
+      }
+    },
+    "com.gcp.looker_v1#ExportProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#ExportInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ExportProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#ExportProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:export"
+        },
+        "smithy.api#documentation": "Export instance."
+      }
+    },
+    "com.gcp.looker_v1#RestoreProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Instance being restored Format: projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#RestoreInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#RestoreProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#RestoreProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:restore"
+        },
+        "smithy.api#documentation": "Restore Looker instance."
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#GetProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Instance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Instance."
+      }
+    },
+    "com.gcp.looker_v1#PatchProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Format: `projects/{project}/locations/{location}/instances/{instance}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Field mask used to specify the fields to be overwritten in the Instance resource by the update. The fields specified in the mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#PatchProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#PatchProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update Instance."
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsInstancesBackupsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of instances to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: projects/{project}/locations/{location}/instances/{instance}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from a previous ListInstances request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sort results. Default order is \"create_time desc\". Other supported fields are \"state\" and \"expire_time\". https://google.aip.dev/132#ordering",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#ListProjectsLocationsInstancesBackups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#ListProjectsLocationsInstancesBackupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#ListInstanceBackupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/backups"
+        },
+        "smithy.api#documentation": "List backups of Looker instance.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsInstancesBackupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance}/backups/{backup}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#GetProjectsLocationsInstancesBackups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#GetProjectsLocationsInstancesBackupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#InstanceBackup"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        }
+      }
+    },
+    "com.gcp.looker_v1#CreateProjectsLocationsInstancesBackupsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.looker_v1#InstanceBackup",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#CreateProjectsLocationsInstancesBackups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#CreateProjectsLocationsInstancesBackupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/backups"
+        },
+        "smithy.api#documentation": "Backup Looker instance."
+      }
+    },
+    "com.gcp.looker_v1#DeleteProjectsLocationsInstancesBackupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: projects/{project}/locations/{location}/instances/{instance}/backups/{backup}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.looker_v1#DeleteProjectsLocationsInstancesBackups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.looker_v1#DeleteProjectsLocationsInstancesBackupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.looker_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.looker_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.looker_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.looker_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.looker_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete backup."
+      }
+    }
+  }
+}

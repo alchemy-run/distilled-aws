@@ -1,0 +1,20 @@
+{
+  "description": "Align intel#AttackSurfaceReportIssuesDismiss with distilled cloudflare/intel dismissAttackSurfaceReportIssue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesDismiss",
+      "path": "/shapes/com.cloudflare.intel#DismissAttackSurfaceReportIssue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesDismissRequest",
+      "path": "/shapes/com.cloudflare.intel#DismissAttackSurfaceReportIssueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#DismissAttackSurfaceReportIssue/input/target",
+      "value": "com.cloudflare.intel#DismissAttackSurfaceReportIssueRequest"
+    }
+  ]
+}

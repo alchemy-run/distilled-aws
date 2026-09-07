@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#RecordsBatch with distilled cloudflare/dns batchRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsBatch",
+      "path": "/shapes/com.cloudflare.dns#BatchRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsBatchRequest",
+      "path": "/shapes/com.cloudflare.dns#BatchRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#BatchRecord/input/target",
+      "value": "com.cloudflare.dns#BatchRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsBatchResponse",
+      "path": "/shapes/com.cloudflare.dns#BatchRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#BatchRecord/output/target",
+      "value": "com.cloudflare.dns#BatchRecordResponse"
+    }
+  ]
+}

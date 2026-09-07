@@ -1,0 +1,30 @@
+{
+  "description": "Align healthchecks#PreviewsCreate with distilled cloudflare/healthchecks createPreview",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#PreviewsCreate",
+      "path": "/shapes/com.cloudflare.healthchecks#CreatePreview"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#PreviewsCreateRequest",
+      "path": "/shapes/com.cloudflare.healthchecks#CreatePreviewRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#CreatePreview/input/target",
+      "value": "com.cloudflare.healthchecks#CreatePreviewRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#PreviewsCreateResponse",
+      "path": "/shapes/com.cloudflare.healthchecks#CreatePreviewResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#CreatePreview/output/target",
+      "value": "com.cloudflare.healthchecks#CreatePreviewResponse"
+    }
+  ]
+}

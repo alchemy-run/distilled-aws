@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#SettingsAccountViewsCreate with distilled cloudflare/dns createSettingAccountView",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsCreate",
+      "path": "/shapes/com.cloudflare.dns#CreateSettingAccountView"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsCreateRequest",
+      "path": "/shapes/com.cloudflare.dns#CreateSettingAccountViewRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateSettingAccountView/input/target",
+      "value": "com.cloudflare.dns#CreateSettingAccountViewRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsCreateResponse",
+      "path": "/shapes/com.cloudflare.dns#CreateSettingAccountViewResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateSettingAccountView/output/target",
+      "value": "com.cloudflare.dns#CreateSettingAccountViewResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#CreateSettingAccountView/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#InternalDnsNotAvailable"
+        }
+      ]
+    }
+  ]
+}

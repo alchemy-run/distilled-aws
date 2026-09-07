@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#GatewayConfigurationsEdit with distilled cloudflare/zero-trust patchGatewayConfiguration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayConfigurationsEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayConfiguration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayConfigurationsEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayConfigurationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayConfiguration/input/target",
+      "value": "com.cloudflare.zero_trust#PatchGatewayConfigurationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayConfigurationsEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayConfigurationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayConfiguration/output/target",
+      "value": "com.cloudflare.zero_trust#PatchGatewayConfigurationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchGatewayConfiguration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

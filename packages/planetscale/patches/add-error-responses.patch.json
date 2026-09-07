@@ -1,0 +1,19 @@
+{
+  "description": "Add missing error responses to branch and role delete operations",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1organizations~1{organization}~1databases~1{database}~1branches~1{branch}/delete/responses/422",
+      "value": {
+        "description": "Unprocessable Entity"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1organizations~1{organization}~1databases~1{database}~1branches~1{branch}~1roles~1{id}/delete/responses/422",
+      "value": {
+        "description": "Unprocessable Entity"
+      }
+    }
+  ]
+}

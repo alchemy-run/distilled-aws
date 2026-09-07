@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#Update with distilled cloudflare/ai-gateway updateAiGateway",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#Update",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGateway"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#UpdateRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGatewayRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGateway/input/target",
+      "value": "com.cloudflare.ai_gateway#UpdateAiGatewayRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#UpdateResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGatewayResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGateway/output/target",
+      "value": "com.cloudflare.ai_gateway#UpdateAiGatewayResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGateway/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#GatewayNotFound"
+        }
+      ]
+    }
+  ]
+}

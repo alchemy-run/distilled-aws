@@ -1,0 +1,10 @@
+{
+  "description": "Turnstile answers a missing widget two different ways. Inside the standard envelope it is `{ success: false, errors: [{ code: 10404 | 10407 }] }`, which the imported matchers already cover. But getWidget/deleteWidget also return a BARE 404 — no envelope, so no error code at all — and that response matched nothing, fell through to the generic HTTP-status class, and surfaced as a `NotFound` that the operation's error union does not even declare. Callers were left testing for CloudflareError + status 404 instead of catching the typed error. A status matcher is only ever consulted among the operation's own declared error classes, and WidgetNotFound is declared by exactly those two operations, so matching 404 there means \"this widget is missing\" and nothing else.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.turnstile#WidgetNotFound/traits/com.cloudflare.protocols#errorMatchers/-",
+      "value": { "status": 404 }
+    }
+  ]
+}

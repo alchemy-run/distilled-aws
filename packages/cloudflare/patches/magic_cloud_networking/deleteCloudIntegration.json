@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_cloud_networking#CloudIntegrationsDelete with distilled cloudflare/magic-cloud-networking deleteCloudIntegration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsDelete",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DeleteCloudIntegration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DeleteCloudIntegrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DeleteCloudIntegration/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#DeleteCloudIntegrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DeleteCloudIntegrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DeleteCloudIntegration/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#DeleteCloudIntegrationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#DeleteCloudIntegration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_cloud_networking#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationNotFound"
+        }
+      ]
+    }
+  ]
+}

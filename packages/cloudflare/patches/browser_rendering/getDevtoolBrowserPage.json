@@ -1,0 +1,20 @@
+{
+  "description": "Align browser_rendering#DevtoolsBrowserPageGet with distilled cloudflare/browser-rendering getDevtoolBrowserPage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserPageGet",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetDevtoolBrowserPage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserPageGetRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetDevtoolBrowserPageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetDevtoolBrowserPage/input/target",
+      "value": "com.cloudflare.browser_rendering#GetDevtoolBrowserPageRequest"
+    }
+  ]
+}

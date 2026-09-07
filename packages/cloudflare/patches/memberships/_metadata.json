@@ -1,0 +1,26 @@
+{
+  "description": "Key dictionary / op aliases for memberships (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "abuseContactEmail": "abuse_contact_email",
+        "apiAccessEnabled": "api_access_enabled",
+        "cachePurge": "cache_purge",
+        "createdOn": "created_on",
+        "dnsRecords": "dns_records",
+        "enforceTwofactor": "enforce_twofactor",
+        "managedBy": "managed_by",
+        "parentOrgId": "parent_org_id",
+        "parentOrgName": "parent_org_name",
+        "perPage": "per_page",
+        "permissionGroups": "permission_groups",
+        "resourceGroups": "resource_groups",
+        "resultInfo": "result_info",
+        "totalCount": "total_count",
+        "zoneSettings": "zone_settings"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3318 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "firebaseappdistribution",
+    "version": "v1alpha",
+    "title": "Firebase App Distribution API",
+    "baseUrl": "https://firebaseappdistribution.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalAction": {
+      "type": "structure",
+      "members": {
+        "cachingType": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalActionCachingTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of caching used to determine the action."
+          }
+        },
+        "explanation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. An explanation justifying why the action was taken."
+          }
+        },
+        "terminalAction": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTerminalAction",
+          "traits": {
+            "smithy.api#documentation": "Output only. An action taken by the AI to end the goal."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the action started."
+          }
+        },
+        "deviceAction": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceAction",
+          "traits": {
+            "smithy.api#documentation": "Output only. A high level action taken by the AI on the device."
+          }
+        },
+        "debugInfo": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. Debug information explaining why the agent to the specific action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An action taken by the AI agent while attempting to accomplish a goal."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalActionCachingTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CACHING_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CACHING_TYPE_UNSPECIFIED"
+          }
+        },
+        "NO_CACHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_CACHING"
+          }
+        },
+        "CACHE_AND_MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CACHE_AND_MODEL"
+          }
+        },
+        "CACHE_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CACHE_ONLY"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRoboCrawler": {
+      "type": "structure",
+      "members": {
+        "loginCredential": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaLoginCredential",
+          "traits": {
+            "smithy.api#documentation": "Optional. Login credential for automated tests"
+          }
+        },
+        "aiInstructions": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiInstructions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Instructions for AI driven test"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for Robo crawler"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestQuota": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Maximum number of `ReleaseTests` allotted for the current month."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the `TestQuota` resource. Format: `projects/{project_number}/testQuota`"
+          }
+        },
+        "usage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of `ReleaseTests` run in the current month"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customer quota information for `ReleaseTests`. Note: This quota only applies to tests with `AiInstructions` and is separate from the quota which might apply to the device time used by any tests."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1ReleaseNotes": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The text of the release notes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Notes that belong to a release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaJwt": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JWT token (three Base64URL-encoded strings joined by dots)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JWT token."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestConfig": {
+      "type": "structure",
+      "members": {
+        "testDevices": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestDeviceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Tests will be run on this list of devices"
+          }
+        },
+        "resultsBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The custom Cloud Storage bucket where test results are stored. Format: `projects/{project_number}/buckets/{bucket}` If not provided, the default test lab bucket is used."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app}/testConfig`"
+          }
+        },
+        "roboCrawler": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRoboCrawler",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for Robo crawler"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name of the AI driven test. Required if the release test is created with multiple goals."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for automated tests"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestDeviceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestDevice"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop": {
+      "type": "structure",
+      "members": {
+        "end": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint",
+          "traits": {
+            "smithy.api#documentation": "Output only. The end point of the drag and drop."
+          }
+        },
+        "start": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint",
+          "traits": {
+            "smithy.api#documentation": "Output only. The start point of the drag and drop."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A drag and drop action."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo": {
+      "type": "structure",
+      "members": {
+        "annotatedScreenshotUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. URI of the screenshot with elements labeled which was used by the agent."
+          }
+        },
+        "jsonUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Structured data explaining the agent's choice."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information to help the customer understand why the agent took this action."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The response message for `CreateReleaseNotes`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTesterUdid": {
+      "type": "structure",
+      "members": {
+        "udid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UDID of the tester's device"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the tester's device"
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The platform of the tester's device"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The UDIDs of a tester's iOS device"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaLoginCredentialFieldHints": {
+      "type": "structure",
+      "members": {
+        "usernameResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Android resource name of the username UI element. For example, in Java: R.string.foo in xml: @string/foo Only the \"foo\" part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html"
+          }
+        },
+        "passwordResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Android resource name of the password UI element. For example, in Java: R.string.foo in xml: @string/foo Only the \"foo\" part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hints to the crawler for identifying input fields"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The response message for `EnableAccessOnRelease`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTerminalAction": {
+      "type": "structure",
+      "members": {
+        "screenshot": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaScreenshot",
+          "traits": {
+            "smithy.api#documentation": "Output only. The screenshot used in the context of this terminal action."
+          }
+        },
+        "reason": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTerminalActionReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The reason why this goal was ended."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An action taken by the AI to end the goal."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTerminalActionReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "GOAL_IMPOSSIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOAL_IMPOSSIBLE"
+          }
+        },
+        "GOAL_COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOAL_COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetTesterUdidsResponse": {
+      "type": "structure",
+      "members": {
+        "testerUdids": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTesterUdidList",
+          "traits": {
+            "smithy.api#documentation": "The UDIDs of tester iOS devices in a project"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the UDIDs of tester iOS devices in a project"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTesterUdidList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTesterUdid"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepResult": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepResultStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of the step"
+          }
+        },
+        "step": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStep",
+          "traits": {
+            "smithy.api#documentation": "Required. The step performed by the AI"
+          }
+        },
+        "assertionDetails": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAssertionDetails",
+          "traits": {
+            "smithy.api#documentation": "Output only. Details for an assertion step."
+          }
+        },
+        "goalDetails": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalDetails",
+          "traits": {
+            "smithy.api#documentation": "Output only. Details for a goal step."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Captures the results of an AiStep"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepResultStateEnum": {
+      "type": "enum",
+      "members": {
+        "STEP_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STEP_STATE_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIMED_OUT"
+          }
+        },
+        "GOAL_ACTION_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOAL_ACTION_LIMIT_REACHED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaListTestCasesResponse": {
+      "type": "structure",
+      "members": {
+        "testCases": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCaseList",
+          "traits": {
+            "smithy.api#documentation": "The test cases from the specified app."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for `ListTestCases`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiInstructions": {
+      "type": "structure",
+      "members": {
+        "steps": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepList",
+          "traits": {
+            "smithy.api#documentation": "Required. Steps to be accomplished by the AI"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStep"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetReleaseByUploadHashResponse": {
+      "type": "structure",
+      "members": {
+        "release": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRelease",
+          "traits": {
+            "smithy.api#documentation": "Release object"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response object to get the release given a upload hash"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAssertionDetails": {
+      "type": "structure",
+      "members": {
+        "screenshot": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaScreenshot",
+          "traits": {
+            "smithy.api#documentation": "Output only. The screenshot used in the context of this assertion."
+          }
+        },
+        "result": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. The result of the assertion."
+          }
+        },
+        "explanation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. An explanation justifying the assertion result."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details for an assertion step."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseNotes": {
+      "type": "structure",
+      "members": {
+        "releaseNotes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actual release notes text from the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Release notes for a release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest": {
+      "type": "structure",
+      "members": {
+        "releaseNotes": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseNotes",
+          "traits": {
+            "smithy.api#documentation": "The actual release notes body from the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `CreateReleaseNotes`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "displayVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Ignored. Used to be display version of the app release if an instance identifier was provided for the release_id."
+          }
+        },
+        "emails": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. An email address which should get access to this release, for example rebeccahe@google.com"
+          }
+        },
+        "groupIds": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A repeated list of group aliases to enable access to a release for Note: This field is misnamed, but can't be changed because we need to maintain compatibility with old build tools"
+          }
+        },
+        "buildVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Ignored. Used to be build version of the app release if an instance identifier was provided for the release_id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `EnableAccessOnRelease`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint",
+          "traits": {
+            "smithy.api#documentation": "Output only. The start point of the swipe."
+          }
+        },
+        "end": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint",
+          "traits": {
+            "smithy.api#documentation": "Output only. The end point of the swipe."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A swipe action."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteraction": {
+      "type": "structure",
+      "members": {
+        "screenshot": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaScreenshot",
+          "traits": {
+            "smithy.api#documentation": "Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken."
+          }
+        },
+        "tap": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint",
+          "traits": {
+            "smithy.api#documentation": "Output only. A tap action."
+          }
+        },
+        "enterText": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText",
+          "traits": {
+            "smithy.api#documentation": "Output only. A text entry action, that enters text into a particular text field, clearing any existing text in the field. Unlike `text_input` this action does not require any other actions such as a tap to be performed before it can enter the text."
+          }
+        },
+        "backAction": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionBack",
+          "traits": {
+            "smithy.api#documentation": "Output only. A back action."
+          }
+        },
+        "longPress": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint",
+          "traits": {
+            "smithy.api#documentation": "Output only. A long press (tap and hold) action."
+          }
+        },
+        "targetFoldedState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The target folded state of the device in a set folded state action. The valid string values are device-dependent, and can be found using `adb shell cmd device_state print-states`."
+          }
+        },
+        "swipe": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe",
+          "traits": {
+            "smithy.api#documentation": "Output only. A swipe action."
+          }
+        },
+        "textInput": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A text input action, that types some text into whatever field is currently focused, if any. Unlike `enter_text` this action requires that the field be brought into focus first, for example by emitting a tap action before this one."
+          }
+        },
+        "dragAndDrop": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop",
+          "traits": {
+            "smithy.api#documentation": "Output only. A drag and drop action."
+          }
+        },
+        "targetOrientation": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionTargetOrientationEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The target orientation of the device in a set orientation action."
+          }
+        },
+        "wait": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionWait",
+          "traits": {
+            "smithy.api#documentation": "Output only. A wait action."
+          }
+        },
+        "keyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Key code for a key event action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An interaction with the device, such as a tap, text entry, wait, etc."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionTargetOrientationEnum": {
+      "type": "enum",
+      "members": {
+        "ORIENTATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORIENTATION_UNSPECIFIED"
+          }
+        },
+        "PORTRAIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PORTRAIT"
+          }
+        },
+        "LANDSCAPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LANDSCAPE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestDevice": {
+      "type": "structure",
+      "members": {
+        "orientation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The orientation of the device during the test."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The locale of the device (e.g. \"en_US\" for US English) during the test."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The version of the device (API level on Android)."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The device model."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A device on which automated tests can be run."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaLoginCredential": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Username for automated tests"
+          }
+        },
+        "fieldHints": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaLoginCredentialFieldHints",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hints to the crawler for identifying input fields"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Password for automated tests"
+          }
+        },
+        "google": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Are these credentials for Google?"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Login credential for automated tests"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAabCertificate": {
+      "type": "structure",
+      "members": {
+        "certificateHashMd5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 hash of the certificate used to resign the AAB"
+          }
+        },
+        "certificateHashSha1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA1 hash of the certificate used to resign the AAB"
+          }
+        },
+        "certificateHashSha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 hash of the certificate used to resign the AAB"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "App bundle test certificate"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceAction": {
+      "type": "structure",
+      "members": {
+        "deviceInteractions": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The interactions made with the device as part of this higher level action taken by the agent, such as taps, text entries, waits, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A short description of the high level action taken by the AI agent."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A high level action taken by the AI on the device, potentially involving multiple taps, text entries, waits, etc."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteraction"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaScreenshot": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URI of the screenshot."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The height of the screenshot, in pixels."
+          }
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The width of the screenshot, in pixels."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A device screenshot taken during a test."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1UploadReleaseResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1UploadReleaseResponseResultEnum",
+          "traits": {
+            "smithy.api#documentation": "Result of upload release."
+          }
+        },
+        "release": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1Release",
+          "traits": {
+            "smithy.api#documentation": "Release associated with the uploaded binary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `UploadRelease`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1UploadReleaseResponseResultEnum": {
+      "type": "enum",
+      "members": {
+        "UPLOAD_RELEASE_RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPLOAD_RELEASE_RESULT_UNSPECIFIED"
+          }
+        },
+        "RELEASE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_CREATED"
+          }
+        },
+        "RELEASE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_UPDATED"
+          }
+        },
+        "RELEASE_UNMODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_UNMODIFIED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The text to enter."
+          }
+        },
+        "elementBounds": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputRectangle",
+          "traits": {
+            "smithy.api#documentation": "Output only. The visible bounds of the element to enter text into."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A text entry action, that enters text into a particular text field, clearing any existing text in the field."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecution": {
+      "type": "structure",
+      "members": {
+        "roboStats": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRoboStats",
+          "traits": {
+            "smithy.api#documentation": "Output only. The statistics collected during the Robo test."
+          }
+        },
+        "finalAiAssertionMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates that the test replayed saved actions and concluded without a final AI assertion."
+          }
+        },
+        "failedReason": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionFailedReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The reason why the test failed."
+          }
+        },
+        "executionType": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionExecutionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of execution for the test."
+          }
+        },
+        "device": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestDevice",
+          "traits": {
+            "smithy.api#documentation": "Required. The device that the test was run on."
+          }
+        },
+        "aiStepResults": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepResultList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Results of the AI steps if passed in"
+          }
+        },
+        "videoUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A URI to a video of the test run."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the device execution resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}/deviceExecutions/{device_execution}`"
+          }
+        },
+        "videoStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the video started recording."
+          }
+        },
+        "screenshotUris": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of screenshot image URIs taken from the Robo crawl. The file names are numbered by the order in which they were taken."
+          }
+        },
+        "originDeviceExecution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The device execution from which cached steps were used during this execution. Note: This field is only populated for ACTION_BASED_REPLAY executions. If the original device execution no longer exists, this field will be empty. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}/deviceExecutions/{device_execution}`"
+          }
+        },
+        "appCrash": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAppCrash",
+          "traits": {
+            "smithy.api#documentation": "Output only. An app crash, if any occurred during the test."
+          }
+        },
+        "inconclusiveReason": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionInconclusiveReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The reason why the test was inconclusive."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the test."
+          }
+        },
+        "resultsStoragePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The path to a directory in Cloud Storage that will eventually contain the results for this execution. For example, gs://bucket/Nexus5-18-en-portrait."
+          }
+        },
+        "crawlGraphUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A URI to an image of the Robo crawl graph."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of running an automated test on a particular device."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionFailedReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FAILED_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_REASON_UNSPECIFIED"
+          }
+        },
+        "CRASHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRASHED"
+          }
+        },
+        "NOT_INSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_INSTALLED"
+          }
+        },
+        "UNABLE_TO_CRAWL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNABLE_TO_CRAWL"
+          }
+        },
+        "DEVICE_OUT_OF_MEMORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_OUT_OF_MEMORY"
+          }
+        },
+        "FAILED_AI_STEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_AI_STEP"
+          }
+        },
+        "TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIMED_OUT"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionExecutionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EXECUTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXECUTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI"
+          }
+        },
+        "ACTION_BASED_REPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_BASED_REPLAY"
+          }
+        },
+        "AI_REPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI_REPLAY"
+          }
+        },
+        "RANDOM_CRAWL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RANDOM_CRAWL"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStepResult"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionInconclusiveReasonEnum": {
+      "type": "enum",
+      "members": {
+        "INCONCLUSIVE_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCONCLUSIVE_REASON_UNSPECIFIED"
+          }
+        },
+        "QUOTA_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUOTA_EXCEEDED"
+          }
+        },
+        "INFRASTRUCTURE_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFRASTRUCTURE_FAILURE"
+          }
+        },
+        "SERVICE_NOT_ACTIVATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_NOT_ACTIVATED"
+          }
+        },
+        "NO_SIGNATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SIGNATURE"
+          }
+        },
+        "NO_LAUNCHER_ACTIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_LAUNCHER_ACTIVITY"
+          }
+        },
+        "FORBIDDEN_PERMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORBIDDEN_PERMISSIONS"
+          }
+        },
+        "DEVICE_ADMIN_RECEIVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_ADMIN_RECEIVER"
+          }
+        },
+        "NO_CODE_APK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_CODE_APK"
+          }
+        },
+        "INVALID_APK_PREVIEW_SDK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_APK_PREVIEW_SDK"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionStateEnum": {
+      "type": "enum",
+      "members": {
+        "TEST_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEST_STATE_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "INCONCLUSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCONCLUSIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the release test resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}`"
+          }
+        },
+        "deviceExecutions": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionList",
+          "traits": {
+            "smithy.api#documentation": "Required. The results of the test on each device."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name of the release test. Required if the release test is created with multiple goals."
+          }
+        },
+        "loginCredential": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaLoginCredential",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Login credentials for the test. Input only."
+          }
+        },
+        "testState": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTestTestStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the release test."
+          }
+        },
+        "resultsBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. The custom Cloud Storage bucket where test results are stored. Format: `projects/{project_number}/buckets/{bucket}` If not provided, the default test lab bucket is used."
+          }
+        },
+        "aiInstructions": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiInstructions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Instructions for AI driven test."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the test was run."
+          }
+        },
+        "testCase": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The test case that was used to generate this release test. Note: The test case may have changed or been deleted since the release test was created. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Instance of an automated test for a release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecutionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceExecution"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTestTestStateEnum": {
+      "type": "enum",
+      "members": {
+        "TEST_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEST_STATE_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "INCONCLUSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCONCLUSIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputPoint": {
+      "type": "structure",
+      "members": {
+        "xCoordinate": {
+          "target": "smithy.api#Integer"
+        },
+        "yCoordinate": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Point for describing bounding boxes tap locations Top left is 0,0"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRoboStats": {
+      "type": "structure",
+      "members": {
+        "mainActivityCrawlTimedOut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the main activity crawl timed out."
+          }
+        },
+        "crawlDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Duration of crawl."
+          }
+        },
+        "distinctVisitedScreens": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of distinct screens visited."
+          }
+        },
+        "actionsPerformed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of actions that crawler performed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Statistics collected during a Robo test."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse": {
+      "type": "structure",
+      "members": {
+        "release": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRelease",
+          "traits": {
+            "smithy.api#documentation": "The release that was created from the upload (only set on \"SUCCESS\")"
+          }
+        },
+        "status": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the upload"
+          }
+        },
+        "errorCode": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseErrorCodeEnum",
+          "traits": {
+            "smithy.api#documentation": "The error code associated with (only set on \"FAILURE\")"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any additional context for the given upload status (e.g. error message) Meant to be displayed to the client"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for `GetUploadStatus`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "ALREADY_UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALREADY_UPLOADED"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseErrorCodeEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_UNSPECIFIED"
+          }
+        },
+        "INVALID_ZIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_ZIP"
+          }
+        },
+        "MISSING_PLIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_PLIST"
+          }
+        },
+        "MISSING_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_PROFILE"
+          }
+        },
+        "VERSION_TOO_LONG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERSION_TOO_LONG"
+          }
+        },
+        "MISSING_UUIDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_UUIDS"
+          }
+        },
+        "MISSING_RESOURCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_RESOURCES"
+          }
+        },
+        "MISSING_MANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING_MANIFEST"
+          }
+        },
+        "IOS_METADATA_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS_METADATA_ERROR"
+          }
+        },
+        "ANDROID_METADATA_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID_METADATA_ERROR"
+          }
+        },
+        "UNSUPPORTED_PLATFORM_TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSUPPORTED_PLATFORM_TYPE"
+          }
+        },
+        "BUNDLE_ID_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUNDLE_ID_MISMATCH"
+          }
+        },
+        "APK_NOT_ZIP_ALIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APK_NOT_ZIP_ALIGNED"
+          }
+        },
+        "INVALID_CERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_CERTIFICATE"
+          }
+        },
+        "APK_TOO_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APK_TOO_LARGE"
+          }
+        },
+        "AAB_NOT_PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_NOT_PUBLISHED"
+          }
+        },
+        "INVALID_PLIST_DEVICE_FAMILIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_PLIST_DEVICE_FAMILIES"
+          }
+        },
+        "AAB_TOS_NOT_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_TOS_NOT_ACCEPTED"
+          }
+        },
+        "APP_NAME_TOO_LONG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_NAME_TOO_LONG"
+          }
+        },
+        "AAB_DEVELOPER_ACCOUNT_NOT_LINKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_DEVELOPER_ACCOUNT_NOT_LINKED"
+          }
+        },
+        "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT"
+          }
+        },
+        "AAB_UPLOAD_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_UPLOAD_ERROR"
+          }
+        },
+        "APP_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_NOT_FOUND"
+          }
+        },
+        "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED"
+          }
+        },
+        "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#AndroidxCrawlerOutputRectangle": {
+      "type": "structure",
+      "members": {
+        "left": {
+          "target": "smithy.api#Integer"
+        },
+        "right": {
+          "target": "smithy.api#Integer"
+        },
+        "top": {
+          "target": "smithy.api#Integer"
+        },
+        "bottom": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Rectangle for describing bounding boxes"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse": {
+      "type": "structure",
+      "members": {
+        "testCases": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCaseList",
+          "traits": {
+            "smithy.api#documentation": "The updated test cases."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for `BatchUpdateTestCase`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalDetails": {
+      "type": "structure",
+      "members": {
+        "goalActions": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalActionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The actions taken by the AI while attempting to accomplish the goal."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details for a goal step."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalActionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGoalAction"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaRelease": {
+      "type": "structure",
+      "members": {
+        "distributedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the release was created"
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Instance id of the release"
+          }
+        },
+        "openInvitationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of testers who have open invitations for the release"
+          }
+        },
+        "receivedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "unused. "
+          }
+        },
+        "releaseNotesSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Release notes summary"
+          }
+        },
+        "lastActivityAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last activity timestamp"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Release Id"
+          }
+        },
+        "testerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of testers added to the release"
+          }
+        },
+        "buildVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Release build version"
+          }
+        },
+        "testerWithInstallCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of testers who have installed the release"
+          }
+        },
+        "displayVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Release version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Proto defining a release object"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1UploadReleaseMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Operation metadata for `UploadRelease`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response empty (google.protobuf.Empty) message for `ClearTestCaseCache`"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest": {
+      "type": "structure",
+      "members": {
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, and the test case is not found, a new test case will be created."
+          }
+        },
+        "testCase": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase",
+          "traits": {
+            "smithy.api#documentation": "Required. The test case to update. The test case's `name` field is used to identify the test case to update. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `UpdateTestCase`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionWait": {
+      "type": "structure",
+      "members": {
+        "duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The duration of the wait."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A wait action."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest": {
+      "type": "structure",
+      "members": {
+        "testDevices": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestDeviceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of devices for which to clear the cache. If not present, clear all of them."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `ClearTestCaseCache`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "requests": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequestList",
+          "traits": {
+            "smithy.api#documentation": "Required. The update requests. A maximum number of 1000 test cases can be updated in one batch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `BatchUpdateTestCase`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaUpdateTestCaseRequest"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "names": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the test cases to delete. A maximum number of 1000 test cases can be deleted in one batch Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `BatchDeleteTestCase`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAppCrash": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The message associated with the crash."
+          }
+        },
+        "stackTrace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The raw stack trace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An app crash that occurred during an automated test."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The (empty) response message for `CancelReleaseTest`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaDeviceInteractionBack": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A back action."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase": {
+      "type": "structure",
+      "members": {
+        "prerequisiteTestCase": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Test case that must be run before this test case."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the test case was created"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name of the test case."
+          }
+        },
+        "aiInstructions": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiInstructions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Instructions for AI driven test."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`"
+          }
+        },
+        "dependentTestCases": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Other test cases that depend on this test case as a prerequisite."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AI test cases"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAiStep": {
+      "type": "structure",
+      "members": {
+        "goal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A goal to be accomplished by the AI"
+          }
+        },
+        "successCriteria": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A visual description of the screen's expected state after the step has been successfully completed. This is referred to as the \"final screen assertion\" in the Firebase console and CLI tools. This field must be provided for the last step in a test case, and is optional for all other steps."
+          }
+        },
+        "assertion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An assertion to be checked by the AI"
+          }
+        },
+        "testCase": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The test case that contained this step. Note: The test case may have changed or been deleted since this step was created. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`"
+          }
+        },
+        "hint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint text containing suggestions to help the agent accomplish the goal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A step to be accomplished by the AI"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1Release": {
+      "type": "structure",
+      "members": {
+        "releaseNotes": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1ReleaseNotes",
+          "traits": {
+            "smithy.api#documentation": "Notes of the release."
+          }
+        },
+        "testingUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`"
+          }
+        },
+        "firebaseConsoleUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A link to the Firebase console displaying a single release."
+          }
+        },
+        "binaryDownloadUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the release was created."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the release will expire."
+          }
+        },
+        "buildVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Build version of the release. For an Android release, the build version is the `versionCode`. For an iOS release, the build version is the `CFBundleVersion`."
+          }
+        },
+        "displayVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Display version of the release. For an Android release, the display version is the `versionName`. For an iOS release, the display version is the `CFBundleShortVersionString`."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the release was last updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A release of a Firebase app."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaApp": {
+      "type": "structure",
+      "members": {
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iOS or Android"
+          }
+        },
+        "contactEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Developer contact email for testers to reach out to about privacy or support issues."
+          }
+        },
+        "projectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Project number of the Firebase project, for example 300830567303."
+          }
+        },
+        "bundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bundle identifier"
+          }
+        },
+        "aabCertificate": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAabCertificate",
+          "traits": {
+            "smithy.api#documentation": "App bundle test certificate generated for the app."
+          }
+        },
+        "aabState": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAppAabStateEnum",
+          "traits": {
+            "smithy.api#documentation": "App bundle state. Only valid for android apps. The app_view field in the request must be set to FULL in order for this to be populated."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firebase gmp app id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An app."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaAppAabStateEnum": {
+      "type": "enum",
+      "members": {
+        "AAB_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "PLAY_ACCOUNT_NOT_LINKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_ACCOUNT_NOT_LINKED"
+          }
+        },
+        "NO_APP_WITH_GIVEN_BUNDLE_ID_IN_PLAY_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_APP_WITH_GIVEN_BUNDLE_ID_IN_PLAY_ACCOUNT"
+          }
+        },
+        "APP_NOT_PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_NOT_PUBLISHED"
+          }
+        },
+        "AAB_STATE_UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_STATE_UNAVAILABLE"
+          }
+        },
+        "PLAY_IAS_TERMS_NOT_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_IAS_TERMS_NOT_ACCEPTED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaListReleaseTestsResponse": {
+      "type": "structure",
+      "members": {
+        "releaseTests": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTestList",
+          "traits": {
+            "smithy.api#documentation": "The tests listed."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short-lived token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for `ListReleaseTests`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTest"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetTestQuotaProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the `TestQuota` resource to retrieve. Format: `projects/{project_number}/testQuota`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetTestQuotaProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetTestQuotaProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestQuota"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Get information about the quota for `ReleaseTests`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#UpdateTestConfigProjectsAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app}/testConfig`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#UpdateTestConfigProjectsApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#UpdateTestConfigProjectsAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Updates automated test configuration."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetTestConfigProjectsAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number}/apps/{app}/testConfig`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetTestConfigProjectsApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetTestConfigProjectsAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Gets configuration for automated tests."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CancelProjectsAppsReleasesTestsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CancelProjectsAppsReleasesTests": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#CancelProjectsAppsReleasesTestsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Abort automated test run on release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsReleasesTestsViewEnum": {
+      "type": "enum",
+      "members": {
+        "RELEASE_TEST_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_TEST_VIEW_UNSPECIFIED"
+          }
+        },
+        "RELEASE_TEST_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_TEST_VIEW_BASIC"
+          }
+        },
+        "RELEASE_TEST_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_TEST_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsReleasesTestsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListReleaseTests` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "view": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsReleasesTestsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The requested view on the returned ReleaseTests. Defaults to the basic view.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of tests to return. The service may return fewer than this value.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number}/apps/{app}/releases/{release}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsReleasesTests": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsReleasesTestsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaListReleaseTestsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+parent}/tests"
+        },
+        "smithy.api#documentation": "List results for automated tests run on release.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CreateProjectsAppsReleasesTestsRequest": {
+      "type": "structure",
+      "members": {
+        "releaseTestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ID to use for the test, which will become the final component of the test's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. If it is not provided one will be automatically generated.",
+            "smithy.api#httpQuery": "releaseTestId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number}/apps/{app}/releases/{release}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CreateProjectsAppsReleasesTests": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#CreateProjectsAppsReleasesTestsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+parent}/tests"
+        },
+        "smithy.api#documentation": "Run automated test(s) on release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetProjectsAppsReleasesTestsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/tests/{test}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetProjectsAppsReleasesTests": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetProjectsAppsReleasesTestsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaReleaseTest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Get results for automated test run on release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#BatchUpdateProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource of the test cases being updated. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#BatchUpdateProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#BatchUpdateProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+parent}/testCases:batchUpdate"
+        },
+        "smithy.api#documentation": "Updates multiple test cases."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ClearTestCaseCacheProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "testCase": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ClearTestCaseCacheProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#ClearTestCaseCacheProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaClearTestCaseCacheResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+testCase}:clearTestCaseCache"
+        },
+        "smithy.api#documentation": "Clears cached test runs for a specific test case and device(s)."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#DeleteProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the test case resource to delete. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#DeleteProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#DeleteProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Delete a test case."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CreateProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource where this test case will be created. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "testCaseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ID to use for the test case, which will become the final component of the test case's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.",
+            "smithy.api#httpQuery": "testCaseId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CreateProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#CreateProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+parent}/testCases"
+        },
+        "smithy.api#documentation": "Create a new test case."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the test case resource to retrieve. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Get a test case."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource from which to list test cases. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of test cases to return. The service may return fewer than this value. If unspecified, at most 50 test cases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListTestCases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTestCases` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#ListProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaListTestCasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+parent}/testCases"
+        },
+        "smithy.api#documentation": "List test cases.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#PatchProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, and the test case is not found, a new test case will be created.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#PatchProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#PatchProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaTestCase"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Update a test case."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#BatchDeleteProjectsAppsTestCasesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource of the test cases being deleted. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#BatchDeleteProjectsAppsTestCases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#BatchDeleteProjectsAppsTestCasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/{+parent}/testCases:batchDelete"
+        },
+        "smithy.api#documentation": "Deletes multiple test cases."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetUdidsProjectsTestersRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpQuery": "mobilesdkAppId"
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project, which is the parent of testers Format: `projects/{project_number}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetUdidsProjectsTesters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetUdidsProjectsTestersRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetTesterUdidsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+project}/testers:udids"
+        },
+        "smithy.api#documentation": "Get UDIDs of tester iOS devices in a project"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetJwtAppsRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetJwtApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetJwtAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaJwt"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{mobilesdkAppId}/jwt"
+        },
+        "smithy.api#documentation": "Get a JWT token"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetAppsAppViewEnum": {
+      "type": "enum",
+      "members": {
+        "APP_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_VIEW_UNSPECIFIED"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetAppsRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "appView": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GetAppsAppViewEnum",
+          "traits": {
+            "smithy.api#documentation": "App view. When unset or set to BASIC, returns an App with everything set except for aab_state. When set to FULL, returns an App with aab_state set.",
+            "smithy.api#httpQuery": "appView"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{mobilesdkAppId}"
+        },
+        "smithy.api#documentation": "Get the app, if it exists"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#Enable_accessAppsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "releaseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Release identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#Enable_accessAppsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#Enable_accessAppsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/apps/{mobilesdkAppId}/releases/{releaseId}/enable_access"
+        },
+        "smithy.api#documentation": "Enable access on a release for testers."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CreateAppsReleasesNotesRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "releaseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Release identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#CreateAppsReleasesNotes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#CreateAppsReleasesNotesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha/apps/{mobilesdkAppId}/releases/{releaseId}/notes"
+        },
+        "smithy.api#documentation": "Create release notes on a release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetAppsRelease_by_hashRequest": {
+      "type": "structure",
+      "members": {
+        "uploadHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The hash for the upload",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetAppsRelease_by_hash": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetAppsRelease_by_hashRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetReleaseByUploadHashResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{mobilesdkAppId}/release_by_hash/{uploadHash}"
+        },
+        "smithy.api#documentation": "GET Release by binary upload hash"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetTesterUdidsAppsTestersRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the project, which is the parent of testers Format: `projects/{project_number}`",
+            "smithy.api#httpQuery": "project"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetTesterUdidsAppsTesters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetTesterUdidsAppsTestersRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetTesterUdidsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{mobilesdkAppId}/testers:getTesterUdids"
+        },
+        "smithy.api#documentation": "Get UDIDs of tester iOS devices in a project"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetAppsUpload_statusRequest": {
+      "type": "structure",
+      "members": {
+        "mobilesdkAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "uploadToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The token for the upload",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1alpha#GetAppsUpload_status": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GetAppsUpload_statusRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1alpha#GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/apps/{mobilesdkAppId}/upload_status/{uploadToken}"
+        },
+        "smithy.api#documentation": "GET Binary upload status by token"
+      }
+    }
+  }
+}

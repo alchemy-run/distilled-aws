@@ -1,0 +1,20 @@
+{
+  "description": "Align stream#Delete with distilled cloudflare/stream deleteStream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#Delete",
+      "path": "/shapes/com.cloudflare.stream#DeleteStream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#DeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteStreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteStream/input/target",
+      "value": "com.cloudflare.stream#DeleteStreamRequest"
+    }
+  ]
+}

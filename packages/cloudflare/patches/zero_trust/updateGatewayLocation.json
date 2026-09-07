@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#GatewayLocationsUpdate with distilled cloudflare/zero-trust updateGatewayLocation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLocationsUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayLocation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLocationsUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayLocationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayLocation/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateGatewayLocationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLocationsUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayLocationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayLocation/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateGatewayLocationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateGatewayLocation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#GatewayLocationNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#CannotDemoteDefaultGatewayLocation"
+        }
+      ]
+    }
+  ]
+}

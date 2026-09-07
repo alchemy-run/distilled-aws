@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpAsesBrowserFamilyGet with distilled cloudflare/radar getHttpAsBrowserFamily",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesBrowserFamilyGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsBrowserFamily"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesBrowserFamilyGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsBrowserFamilyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsBrowserFamily/input/target",
+      "value": "com.cloudflare.radar#GetHttpAsBrowserFamilyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesBrowserFamilyGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsBrowserFamilyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsBrowserFamily/output/target",
+      "value": "com.cloudflare.radar#GetHttpAsBrowserFamilyResponse"
+    }
+  ]
+}

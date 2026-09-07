@@ -1,0 +1,151 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.flag_value#FlagValueValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "key",
+            "smithy.api#documentation": "The flag ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.flag_value#FlagValueResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.flag_value#FlagValueResponseResultsList"
+        },
+        "refreshing": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.flag_value#FlagValueItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.flag_value#FlagValueResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.flag_value#FlagValueItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.flag_value#FlagValueValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.flag_value#FlagValueValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.flag_value#FlagValueResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.flag_value#BadRequest"
+        },
+        {
+          "target": "com.posthog.flag_value#Forbidden"
+        },
+        {
+          "target": "com.posthog.flag_value#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/flag_value/values/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get possible values for a feature flag.\n\nQuery parameters:\n- key: The flag ID (required)\nReturns:\n\n- Array of objects with 'name' field containing possible values"
+      }
+    },
+    "com.posthog.flag_value#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.flag_value#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.flag_value#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.flag_value#FlagValue": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.flag_value#FlagValueValuesRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

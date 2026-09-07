@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#TunnelsWarpConnectorConnectionsGet with distilled cloudflare/zero-trust getTunnelWarpConnectorConnection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorConnectionsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConnection"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorConnectionsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConnectionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConnection/input/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelWarpConnectorConnectionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorConnectionsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConnectionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConnection/output/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelWarpConnectorConnectionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelWarpConnectorConnection/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

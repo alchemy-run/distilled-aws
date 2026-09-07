@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#DomainsGet with distilled cloudflare/intel getDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainsGet",
+      "path": "/shapes/com.cloudflare.intel#GetDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainsGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetDomain/input/target",
+      "value": "com.cloudflare.intel#GetDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainsGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetDomain/output/target",
+      "value": "com.cloudflare.intel#GetDomainResponse"
+    }
+  ]
+}

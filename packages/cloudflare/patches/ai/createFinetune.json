@@ -1,0 +1,42 @@
+{
+  "description": "Align ai#FinetunesCreate with distilled cloudflare/ai createFinetune",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesCreate",
+      "path": "/shapes/com.cloudflare.ai#CreateFinetune"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesCreateRequest",
+      "path": "/shapes/com.cloudflare.ai#CreateFinetuneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#CreateFinetune/input/target",
+      "value": "com.cloudflare.ai#CreateFinetuneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesCreateResponse",
+      "path": "/shapes/com.cloudflare.ai#CreateFinetuneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#CreateFinetune/output/target",
+      "value": "com.cloudflare.ai#CreateFinetuneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#CreateFinetune/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai#ModelNotSupported"
+        },
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    }
+  ]
+}

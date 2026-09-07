@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessGroupsCreateForAccount with distilled cloudflare/zero-trust createAccessGroupForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsCreateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessGroupForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGroupsCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessGroupForAccountResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#LivestreamsGetAllLivestreams with distilled cloudflare/realtime-kit getAllLivestreamsLivestream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetAllLivestreams",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetAllLivestreamsLivestream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetAllLivestreamsRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetAllLivestreamsLivestreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetAllLivestreamsLivestream/input/target",
+      "value": "com.cloudflare.realtime_kit#GetAllLivestreamsLivestreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetAllLivestreamsResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetAllLivestreamsLivestreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetAllLivestreamsLivestream/output/target",
+      "value": "com.cloudflare.realtime_kit#GetAllLivestreamsLivestreamResponse"
+    }
+  ]
+}

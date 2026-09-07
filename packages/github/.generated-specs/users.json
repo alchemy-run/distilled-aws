@@ -1,0 +1,4408 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.users#PrivateUser": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "blog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hireable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bio": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "twitter_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "public_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_gists": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private_gists": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_private_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owned_private_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "disk_usage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "two_factor_authentication": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.github.users#PrivateUserPlan"
+        },
+        "business_plus": {
+          "target": "smithy.api#Boolean"
+        },
+        "ldap_dn": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private User"
+      }
+    },
+    "com.github.users#PrivateUserPlan": {
+      "type": "structure",
+      "members": {
+        "collaborators": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "space": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#PublicUser": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "blog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hireable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bio": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "twitter_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "public_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_gists": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.github.users#PublicUserPlan"
+        },
+        "private_gists": {
+          "target": "smithy.api#Integer"
+        },
+        "total_private_repos": {
+          "target": "smithy.api#Integer"
+        },
+        "owned_private_repos": {
+          "target": "smithy.api#Integer"
+        },
+        "disk_usage": {
+          "target": "smithy.api#Integer"
+        },
+        "collaborators": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public User"
+      }
+    },
+    "com.github.users#PublicUserPlan": {
+      "type": "structure",
+      "members": {
+        "collaborators": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "space": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GetAuthenticatedResponseBody": {
+      "type": "union",
+      "members": {
+        "PrivateUser": {
+          "target": "com.github.users#PrivateUser"
+        },
+        "PublicUser": {
+          "target": "com.github.users#PublicUser"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GetAuthenticatedResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#GetAuthenticatedResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#GetAuthenticated": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.users#GetAuthenticatedResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the authenticated user\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope in order for the response to include private profile information."
+      }
+    },
+    "com.github.users#UpdateAuthenticatedRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new name of the user."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The publicly visible email address of the user."
+          }
+        },
+        "blog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new blog URL of the user."
+          }
+        },
+        "twitter_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new Twitter username of the user.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new company of the user."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new location of the user."
+          }
+        },
+        "hireable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The new hiring availability of the user."
+          }
+        },
+        "bio": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new short biography of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#UpdateAuthenticated": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#UpdateAuthenticatedRequest"
+      },
+      "output": {
+        "target": "com.github.users#PrivateUser"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the authenticated user\n\n**Note:** If your email is set to private and you send an `email` parameter as part of this request to update your profile, your privacy settings are still enforced: the email address will not be displayed on your public profile or via the API."
+      }
+    },
+    "com.github.users#ListBlockedByAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.users#ListBlockedByAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListBlockedByAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListBlockedByAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListBlockedByAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListBlockedByAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListBlockedByAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/blocks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List users blocked by the authenticated user\n\nList the users you've blocked on your personal account."
+      }
+    },
+    "com.github.users#CheckBlockedRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#CheckBlocked": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#CheckBlockedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/blocks/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a user is blocked by the authenticated user\n\nReturns a 204 if the given user is blocked by the authenticated user. Returns a 404 if the given user is not blocked by the authenticated user, or if the given user account has been identified as spam by GitHub."
+      }
+    },
+    "com.github.users#BlockRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Block": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#BlockRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/user/blocks/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Block a user\n\nBlocks the given user and returns a 204. If the authenticated user cannot block the given user a 422 is returned."
+      }
+    },
+    "com.github.users#UnblockRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Unblock": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#UnblockRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/blocks/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unblock a user\n\nUnblocks the given user and returns a 204."
+      }
+    },
+    "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Denotes whether an email is publicly visible."
+      }
+    },
+    "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "visibility": {
+          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "Denotes whether an email is publicly visible.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Email": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Email"
+      }
+    },
+    "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#Email"
+      },
+      "traits": {}
+    },
+    "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/user/email/visibility",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set primary email visibility for the authenticated user\n\nSets the visibility for your primary email addresses."
+      }
+    },
+    "com.github.users#ListEmailsForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListEmailsForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#Email"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListEmailsForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListEmailsForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListEmailsForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListEmailsForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListEmailsForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "List email addresses for the authenticated user\n\nLists all of your email addresses, and specifies which one is visible\nto the public.\n\nOAuth app tokens and personal access tokens (classic) need the `user:email` scope to use this endpoint."
+      }
+    },
+    "com.github.users#AddEmailForAuthenticatedUserRequestBodyCase0EmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Adds one or more email addresses to your GitHub account. Must contain at least one email address. **Note:** Alternatively, you can pass a single email address or an `array` of emails addresses directly, but we recommend that you pass an object using the `emails` key."
+      }
+    },
+    "com.github.users#AddEmailForAuthenticatedUserRequestBodyCase0": {
+      "type": "structure",
+      "members": {
+        "emails": {
+          "target": "com.github.users#AddEmailForAuthenticatedUserRequestBodyCase0EmailsList",
+          "traits": {
+            "smithy.api#documentation": "Adds one or more email addresses to your GitHub account. Must contain at least one email address. **Note:** Alternatively, you can pass a single email address or an `array` of emails addresses directly, but we recommend that you pass an object using the `emails` key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#AddEmailForAuthenticatedUserRequestBodyCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.users#AddEmailForAuthenticatedUserRequestBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.users#AddEmailForAuthenticatedUserRequestBodyCase0"
+        },
+        "Case1": {
+          "target": "com.github.users#AddEmailForAuthenticatedUserRequestBodyCase1List"
+        },
+        "Case2": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#AddEmailForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#AddEmailForAuthenticatedUserRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#AddEmailForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#Email"
+      },
+      "traits": {}
+    },
+    "com.github.users#AddEmailForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#AddEmailForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#AddEmailForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#AddEmailForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#AddEmailForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add an email address for the authenticated user\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.users#DeleteEmailForAuthenticatedUserRequestBodyCase0EmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Email addresses associated with the GitHub user account."
+      }
+    },
+    "com.github.users#DeleteEmailForAuthenticatedUserRequestBodyCase0": {
+      "type": "structure",
+      "members": {
+        "emails": {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUserRequestBodyCase0EmailsList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses associated with the GitHub user account.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deletes one or more email addresses from your GitHub account. Must contain at least one email address. **Note:** Alternatively, you can pass a single email address or an `array` of emails addresses directly, but we recommend that you pass an object using the `emails` key."
+      }
+    },
+    "com.github.users#DeleteEmailForAuthenticatedUserRequestBodyCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.users#DeleteEmailForAuthenticatedUserRequestBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUserRequestBodyCase0"
+        },
+        "Case1": {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUserRequestBodyCase1List"
+        },
+        "Case2": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#DeleteEmailForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUserRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteEmailForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteEmailForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an email address for the authenticated user\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListFollowersForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListFollowersForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListFollowersForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListFollowersForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListFollowersForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListFollowersForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListFollowersForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/followers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List followers of the authenticated user\n\nLists the people following the authenticated user."
+      }
+    },
+    "com.github.users#ListFollowedByAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListFollowedByAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListFollowedByAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListFollowedByAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListFollowedByAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListFollowedByAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListFollowedByAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/following",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the people the authenticated user follows\n\nLists the people who the authenticated user follows."
+      }
+    },
+    "com.github.users#CheckPersonIsFollowedByAuthenticatedRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#CheckPersonIsFollowedByAuthenticated": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#CheckPersonIsFollowedByAuthenticatedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/following/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a person is followed by the authenticated user"
+      }
+    },
+    "com.github.users#FollowRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Follow": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#FollowRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/user/following/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Follow a user\n\nNote that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see \"[HTTP verbs](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method).\"\n\nOAuth app tokens and personal access tokens (classic) need the `user:follow` scope to use this endpoint."
+      }
+    },
+    "com.github.users#UnfollowRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Unfollow": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#UnfollowRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/following/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unfollow a user\n\nOAuth app tokens and personal access tokens (classic) need the `user:follow` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListGpgKeysForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#GpgKey": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "primary_key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.github.users#GpgKeyEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subkeys": {
+          "target": "com.github.users#GpgKeySubkeysList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "can_sign": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "can_encrypt_comms": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "can_encrypt_storage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "can_certify": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "revoked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "raw_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A unique encryption key"
+      }
+    },
+    "com.github.users#GpgKeyEmailsItem": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GpgKeyEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#GpgKeyEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.github.users#GpgKeySubkeysItemEmailsItem": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GpgKeySubkeysItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#GpgKeySubkeysItemEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.github.users#GpgKeySubkeysItemSubkeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.users#GpgKeySubkeysItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "primary_key_id": {
+          "target": "smithy.api#Integer"
+        },
+        "key_id": {
+          "target": "smithy.api#String"
+        },
+        "public_key": {
+          "target": "smithy.api#String"
+        },
+        "emails": {
+          "target": "com.github.users#GpgKeySubkeysItemEmailsList"
+        },
+        "subkeys": {
+          "target": "com.github.users#GpgKeySubkeysItemSubkeysList"
+        },
+        "can_sign": {
+          "target": "smithy.api#Boolean"
+        },
+        "can_encrypt_comms": {
+          "target": "smithy.api#Boolean"
+        },
+        "can_encrypt_storage": {
+          "target": "smithy.api#Boolean"
+        },
+        "can_certify": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "raw_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "revoked": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GpgKeySubkeysList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#GpgKeySubkeysItem"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListGpgKeysForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#GpgKey"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListGpgKeysForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListGpgKeysForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListGpgKeysForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListGpgKeysForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListGpgKeysForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/gpg_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List GPG keys for the authenticated user\n\nLists the current user's GPG keys.\n\nOAuth app tokens and personal access tokens (classic) need the `read:gpg_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#CreateGpgKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A descriptive name for the new key."
+          }
+        },
+        "armored_public_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A GPG key in ASCII-armored format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#CreateGpgKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#CreateGpgKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#GpgKey"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/gpg_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a GPG key for the authenticated user\n\nAdds a GPG key to the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `write:gpg_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#GetGpgKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "gpg_key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the GPG key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#GetGpgKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#GetGpgKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#GpgKey"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/gpg_keys/{gpg_key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a GPG key for the authenticated user\n\nView extended details for a single GPG key.\n\nOAuth app tokens and personal access tokens (classic) need the `read:gpg_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#DeleteGpgKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "gpg_key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the GPG key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteGpgKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteGpgKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/gpg_keys/{gpg_key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a GPG key for the authenticated user\n\nRemoves a GPG key from the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:gpg_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListPublicSshKeysForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Key": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "read_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_used": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key"
+      }
+    },
+    "com.github.users#ListPublicSshKeysForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#Key"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListPublicSshKeysForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListPublicSshKeysForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListPublicSshKeysForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListPublicSshKeysForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListPublicSshKeysForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List public SSH keys for the authenticated user\n\nLists the public SSH keys for the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `read:public_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#CreatePublicSshKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A descriptive name for the new key."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The public SSH key to add to your GitHub account.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#CreatePublicSshKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#CreatePublicSshKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#Key"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a public SSH key for the authenticated user\n\nAdds a public SSH key to the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `write:public_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#GetPublicSshKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#GetPublicSshKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#GetPublicSshKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#Key"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/keys/{key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a public SSH key for the authenticated user\n\nView extended details for a single public SSH key.\n\nOAuth app tokens and personal access tokens (classic) need the `read:public_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#DeletePublicSshKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeletePublicSshKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeletePublicSshKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/keys/{key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a public SSH key for the authenticated user\n\nRemoves a public SSH key from the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:public_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListPublicEmailsForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListPublicEmailsForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#Email"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListPublicEmailsForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListPublicEmailsForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListPublicEmailsForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListPublicEmailsForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListPublicEmailsForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/public_emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "List public email addresses for the authenticated user\n\nLists your publicly visible email address, which you can set with the\n[Set primary email visibility for the authenticated user](https://docs.github.com/rest/users/emails#set-primary-email-visibility-for-the-authenticated-user)\nendpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `user:email` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListSocialAccountsForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#SocialAccount": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Social media account"
+      }
+    },
+    "com.github.users#ListSocialAccountsForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SocialAccount"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListSocialAccountsForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListSocialAccountsForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListSocialAccountsForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListSocialAccountsForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListSocialAccountsForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/social_accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "List social accounts for the authenticated user\n\nLists all of your social accounts."
+      }
+    },
+    "com.github.users#AddSocialAccountForAuthenticatedUserRequestAccountUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Full URLs for the social media profiles to add."
+      }
+    },
+    "com.github.users#AddSocialAccountForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "account_urls": {
+          "target": "com.github.users#AddSocialAccountForAuthenticatedUserRequestAccountUrlsList",
+          "traits": {
+            "smithy.api#documentation": "Full URLs for the social media profiles to add.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#AddSocialAccountForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SocialAccount"
+      },
+      "traits": {}
+    },
+    "com.github.users#AddSocialAccountForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#AddSocialAccountForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#AddSocialAccountForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#AddSocialAccountForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#AddSocialAccountForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/social_accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add social accounts for the authenticated user\n\nAdd one or more social accounts to the authenticated user's profile.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.users#DeleteSocialAccountForAuthenticatedUserRequestAccountUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Full URLs for the social media profiles to delete."
+      }
+    },
+    "com.github.users#DeleteSocialAccountForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "account_urls": {
+          "target": "com.github.users#DeleteSocialAccountForAuthenticatedUserRequestAccountUrlsList",
+          "traits": {
+            "smithy.api#documentation": "Full URLs for the social media profiles to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteSocialAccountForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteSocialAccountForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/social_accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete social accounts for the authenticated user\n\nDeletes one or more social accounts from the authenticated user's profile.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListSshSigningKeysForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#SshSigningKey": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A public SSH key used to sign Git commits"
+      }
+    },
+    "com.github.users#ListSshSigningKeysForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SshSigningKey"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListSshSigningKeysForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListSshSigningKeysForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListSshSigningKeysForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListSshSigningKeysForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListSshSigningKeysForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/ssh_signing_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List SSH signing keys for the authenticated user\n\nLists the SSH signing keys for the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#CreateSshSigningKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A descriptive name for the new key."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The public SSH key to add to your GitHub account. For more information, see \"[Checking for existing SSH keys](https://docs.github.com/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys).\"",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#CreateSshSigningKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#CreateSshSigningKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#SshSigningKey"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/ssh_signing_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a SSH signing key for the authenticated user\n\nCreates an SSH signing key for the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `write:ssh_signing_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#GetSshSigningKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "ssh_signing_key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the SSH signing key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#GetSshSigningKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#GetSshSigningKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#SshSigningKey"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/ssh_signing_keys/{ssh_signing_key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an SSH signing key for the authenticated user\n\nGets extended details for an SSH signing key.\n\nOAuth app tokens and personal access tokens (classic) need the `read:ssh_signing_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#DeleteSshSigningKeyForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "ssh_signing_key_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the SSH signing key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteSshSigningKeyForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteSshSigningKeyForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/ssh_signing_keys/{ssh_signing_key_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an SSH signing key for the authenticated user\n\nDeletes an SSH signing key from the authenticated user's GitHub account.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:ssh_signing_key` scope to use this endpoint."
+      }
+    },
+    "com.github.users#GetByIdRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "account_id parameter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#GetByIdResponseBody": {
+      "type": "union",
+      "members": {
+        "PrivateUser": {
+          "target": "com.github.users#PrivateUser"
+        },
+        "PublicUser": {
+          "target": "com.github.users#PublicUser"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GetByIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#GetByIdResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#GetById": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#GetByIdRequest"
+      },
+      "output": {
+        "target": "com.github.users#GetByIdResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/{account_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a user using their ID\n\nProvides publicly available information about someone with a GitHub account. This method takes their durable user `ID` instead of their `login`, which can change over time.\n\nIf you are requesting information about an [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users), or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are not authorized, the request will return a `404 Not Found` status.\n\nThe `email` key in the following response is the publicly visible email address from your GitHub [profile page](https://github.com/settings/profile). When setting up your profile, you can select a primary email address to be public which provides an email entry for this endpoint. If you do not set a public email address for `email`, then it will have a value of `null`. You only see publicly visible email addresses when authenticated with GitHub. For more information, see [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication).\n\nThe Emails API enables you to list all of your email addresses, and toggle a primary email to be visible publicly. For more information, see [Emails API](https://docs.github.com/rest/users/emails)."
+      }
+    },
+    "com.github.users#ListRequest": {
+      "type": "structure",
+      "members": {
+        "since": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "A user ID. Only return users with an ID greater than this ID."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "List users\n\nLists all users, in the order that they signed up on GitHub. This list includes personal user accounts and organization accounts.\n\nNote: Pagination is powered exclusively by the `since` parameter. Use the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers) to get the URL for the next page of users."
+      }
+    },
+    "com.github.users#GetByUsernameRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#GetByUsernameResponseBody": {
+      "type": "union",
+      "members": {
+        "PrivateUser": {
+          "target": "com.github.users#PrivateUser"
+        },
+        "PublicUser": {
+          "target": "com.github.users#PublicUser"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GetByUsernameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#GetByUsernameResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#GetByUsername": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#GetByUsernameRequest"
+      },
+      "output": {
+        "target": "com.github.users#GetByUsernameResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a user\n\nProvides publicly available information about someone with a GitHub account.\n\nIf you are requesting information about an [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users), or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are not authorized, the request will return a `404 Not Found` status.\n\nThe `email` key in the following response is the publicly visible email address from your GitHub [profile page](https://github.com/settings/profile). When setting up your profile, you can select a primary email address to be public which provides an email entry for this endpoint. If you do not set a public email address for `email`, then it will have a value of `null`. You only see publicly visible email addresses when authenticated with GitHub. For more information, see [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication).\n\nThe Emails API enables you to list all of your email addresses, and toggle a primary email to be visible publicly. For more information, see [Emails API](https://docs.github.com/rest/users/emails)."
+      }
+    },
+    "com.github.users#ListAttestationsBulkRequestSubjectDigestsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subject digests to fetch attestations for."
+      }
+    },
+    "com.github.users#ListAttestationsBulkRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "subject_digests": {
+          "target": "com.github.users#ListAttestationsBulkRequestSubjectDigestsList",
+          "traits": {
+            "smithy.api#documentation": "List of subject digests to fetch attestations for.",
+            "smithy.api#required": {}
+          }
+        },
+        "predicate_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional filter for fetching attestations with a given predicate type.\nThis option accepts `provenance`, `sbom`, `release`, or freeform text\nfor custom predicate types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItemBundleVerificationMaterialMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItemBundleDsseEnvelopeMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItemBundle": {
+      "type": "structure",
+      "members": {
+        "mediaType": {
+          "target": "smithy.api#String"
+        },
+        "verificationMaterial": {
+          "target": "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItemBundleVerificationMaterialMap"
+        },
+        "dsseEnvelope": {
+          "target": "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItemBundleDsseEnvelopeMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bundle of the attestation."
+      }
+    },
+    "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItem": {
+      "type": "structure",
+      "members": {
+        "bundle": {
+          "target": "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItemBundle",
+          "traits": {
+            "smithy.api#documentation": "The bundle of the attestation."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer"
+        },
+        "bundle_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueItem"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsValueList"
+      },
+      "traits": {
+        "smithy.api#documentation": "Mapping of subject digest to bundles."
+      }
+    },
+    "com.github.users#ListAttestationsBulkResponsePageInfo": {
+      "type": "structure",
+      "members": {
+        "has_next": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether there is a next page."
+          }
+        },
+        "has_previous": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether there is a previous page."
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cursor to the next page."
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cursor to the previous page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the current page."
+      }
+    },
+    "com.github.users#ListAttestationsBulkResponse": {
+      "type": "structure",
+      "members": {
+        "attestations_subject_digests": {
+          "target": "com.github.users#ListAttestationsBulkResponseAttestationsSubjectDigestsMap",
+          "traits": {
+            "smithy.api#documentation": "Mapping of subject digest to bundles."
+          }
+        },
+        "page_info": {
+          "target": "com.github.users#ListAttestationsBulkResponsePageInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the current page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListAttestationsBulk": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListAttestationsBulkRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListAttestationsBulkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/attestations/bulk-list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List attestations by bulk subject digests\n\nList a collection of artifact attestations associated with any entry in a list of subject digests owned by a user.\n\nThe collection of attestations returned by this endpoint is filtered according to the authenticated user's permissions; if the authenticated user cannot read a repository, the attestations associated with that repository will not be included in the response. In addition, when using a fine-grained access token the `attestations:read` permission is required.\n\n**Please note:** in order to offer meaningful security benefits, an attestation's signature and timestamps **must** be cryptographically verified, and the identity of the attestation signer **must** be validated. Attestations can be verified using the [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify). For more information, see [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds)."
+      }
+    },
+    "com.github.users#DeleteAttestationsBulkRequestBodyCase0SubjectDigestsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of subject digests associated with the artifact attestations to delete."
+      }
+    },
+    "com.github.users#DeleteAttestationsBulkRequestBodyCase0": {
+      "type": "structure",
+      "members": {
+        "subject_digests": {
+          "target": "com.github.users#DeleteAttestationsBulkRequestBodyCase0SubjectDigestsList",
+          "traits": {
+            "smithy.api#documentation": "List of subject digests associated with the artifact attestations to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#DeleteAttestationsBulkRequestBodyCase1AttestationIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of unique IDs associated with the artifact attestations to delete."
+      }
+    },
+    "com.github.users#DeleteAttestationsBulkRequestBodyCase1": {
+      "type": "structure",
+      "members": {
+        "attestation_ids": {
+          "target": "com.github.users#DeleteAttestationsBulkRequestBodyCase1AttestationIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of unique IDs associated with the artifact attestations to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#DeleteAttestationsBulkRequestBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.users#DeleteAttestationsBulkRequestBodyCase0"
+        },
+        "Case1": {
+          "target": "com.github.users#DeleteAttestationsBulkRequestBodyCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request body must include either `subject_digests` or `attestation_ids`, but not both."
+      }
+    },
+    "com.github.users#DeleteAttestationsBulkRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "body": {
+          "target": "com.github.users#DeleteAttestationsBulkRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteAttestationsBulk": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteAttestationsBulkRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/attestations/delete-request",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete attestations in bulk\n\nDelete artifact attestations in bulk by either subject digests or unique ID."
+      }
+    },
+    "com.github.users#DeleteAttestationsBySubjectDigestRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "subject_digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subject Digest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteAttestationsBySubjectDigest": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteAttestationsBySubjectDigestRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/attestations/digest/{subject_digest}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete attestations by subject digest\n\nDelete an artifact attestation by subject digest."
+      }
+    },
+    "com.github.users#DeleteAttestationsByIdRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "attestation_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Attestation ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#DeleteAttestationsById": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#DeleteAttestationsByIdRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#Forbidden"
+        },
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/attestations/{attestation_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete attestations by ID\n\nDelete an artifact attestation by unique ID that is associated with a repository owned by a user."
+      }
+    },
+    "com.github.users#ListAttestationsRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "subject_digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subject Digest"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "predicate_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "predicate_type",
+            "smithy.api#documentation": "Optional filter for fetching attestations with a given predicate type.\nThis option accepts `provenance`, `sbom`, `release`, or freeform text\nfor custom predicate types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListAttestationsResponseAttestationsItemBundleVerificationMaterialMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsResponseAttestationsItemBundleDsseEnvelopeMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsResponseAttestationsItemBundle": {
+      "type": "structure",
+      "members": {
+        "mediaType": {
+          "target": "smithy.api#String"
+        },
+        "verificationMaterial": {
+          "target": "com.github.users#ListAttestationsResponseAttestationsItemBundleVerificationMaterialMap"
+        },
+        "dsseEnvelope": {
+          "target": "com.github.users#ListAttestationsResponseAttestationsItemBundleDsseEnvelopeMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The attestation's Sigstore Bundle.\nRefer to the [Sigstore Bundle Specification](https://github.com/sigstore/protobuf-specs/blob/main/protos/sigstore_bundle.proto) for more information."
+      }
+    },
+    "com.github.users#ListAttestationsResponseAttestationsItem": {
+      "type": "structure",
+      "members": {
+        "bundle": {
+          "target": "com.github.users#ListAttestationsResponseAttestationsItemBundle",
+          "traits": {
+            "smithy.api#documentation": "The attestation's Sigstore Bundle.\nRefer to the [Sigstore Bundle Specification](https://github.com/sigstore/protobuf-specs/blob/main/protos/sigstore_bundle.proto) for more information."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer"
+        },
+        "bundle_url": {
+          "target": "smithy.api#String"
+        },
+        "initiator": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsResponseAttestationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#ListAttestationsResponseAttestationsItem"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListAttestationsResponse": {
+      "type": "structure",
+      "members": {
+        "attestations": {
+          "target": "com.github.users#ListAttestationsResponseAttestationsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListAttestations": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListAttestationsRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListAttestationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/attestations/{subject_digest}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List attestations\n\nList a collection of artifact attestations with a given subject digest that are associated with repositories owned by a user.\n\nThe collection of attestations returned by this endpoint is filtered according to the authenticated user's permissions; if the authenticated user cannot read a repository, the attestations associated with that repository will not be included in the response. In addition, when using a fine-grained access token the `attestations:read` permission is required.\n\n**Please note:** in order to offer meaningful security benefits, an attestation's signature and timestamps **must** be cryptographically verified, and the identity of the attestation signer **must** be validated. Attestations can be verified using the [GitHub CLI `attestation verify` command](https://cli.github.com/manual/gh_attestation_verify). For more information, see [our guide on how to use artifact attestations to establish a build's provenance](https://docs.github.com/actions/security-guides/using-artifact-attestations-to-establish-provenance-for-builds)."
+      }
+    },
+    "com.github.users#ListFollowersForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListFollowersForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListFollowersForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListFollowersForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListFollowersForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListFollowersForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListFollowersForUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/followers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List followers of a user\n\nLists the people following the specified user."
+      }
+    },
+    "com.github.users#ListFollowingForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListFollowingForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListFollowingForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListFollowingForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListFollowingForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListFollowingForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListFollowingForUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/following",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the people a user follows\n\nLists the people who the specified user follows."
+      }
+    },
+    "com.github.users#CheckFollowingForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "target_user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#CheckFollowingForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#CheckFollowingForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/following/{target_user}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a user follows another user"
+      }
+    },
+    "com.github.users#ListGpgKeysForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListGpgKeysForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#GpgKey"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListGpgKeysForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListGpgKeysForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListGpgKeysForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListGpgKeysForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListGpgKeysForUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/gpg_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List GPG keys for a user\n\nLists the GPG keys for a user. This information is accessible by anyone."
+      }
+    },
+    "com.github.users#GetContextForUserRequestSubjectType": {
+      "type": "enum",
+      "members": {
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issue"
+          }
+        },
+        "PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pull_request"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#GetContextForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "subject_type": {
+          "target": "com.github.users#GetContextForUserRequestSubjectType",
+          "traits": {
+            "smithy.api#httpQuery": "subject_type",
+            "smithy.api#documentation": "Identifies which additional information you'd like to receive about the person's hovercard. Can be `organization`, `repository`, `issue`, `pull_request`. **Required** when using `subject_id`."
+          }
+        },
+        "subject_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "subject_id",
+            "smithy.api#documentation": "Uses the ID for the `subject_type` you specified. **Required** when using `subject_type`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#Hovercard": {
+      "type": "structure",
+      "members": {
+        "contexts": {
+          "target": "com.github.users#HovercardContextsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hovercard"
+      }
+    },
+    "com.github.users#HovercardContextsItem": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "octicon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.users#HovercardContextsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#HovercardContextsItem"
+      },
+      "traits": {}
+    },
+    "com.github.users#GetContextForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#GetContextForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#Hovercard"
+      },
+      "errors": [
+        {
+          "target": "com.github.users#NotFound"
+        },
+        {
+          "target": "com.github.users#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/hovercard",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get contextual information for a user\n\nProvides hovercard information. You can find out more about someone in relation to their pull requests, issues, repositories, and organizations.\n\n  The `subject_type` and `subject_id` parameters provide context for the person's hovercard, which returns more information than without the parameters. For example, if you wanted to find out more about `octocat` who owns the `Spoon-Knife` repository, you would use a `subject_type` value of `repository` and a `subject_id` value of `1300192` (the ID of the `Spoon-Knife` repository).\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.users#ListPublicKeysForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#KeySimple": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "last_used": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key Simple"
+      }
+    },
+    "com.github.users#ListPublicKeysForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#KeySimple"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListPublicKeysForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListPublicKeysForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListPublicKeysForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListPublicKeysForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListPublicKeysForUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List public keys for a user\n\nLists the _verified_ public SSH keys for a user. This is accessible by anyone."
+      }
+    },
+    "com.github.users#ListSocialAccountsForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListSocialAccountsForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SocialAccount"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListSocialAccountsForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListSocialAccountsForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListSocialAccountsForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListSocialAccountsForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListSocialAccountsForUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/social_accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "List social accounts for a user\n\nLists social media accounts for a user. This endpoint is accessible by anyone."
+      }
+    },
+    "com.github.users#ListSshSigningKeysForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.users#ListSshSigningKeysForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.users#SshSigningKey"
+      },
+      "traits": {}
+    },
+    "com.github.users#ListSshSigningKeysForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.users#ListSshSigningKeysForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.users#ListSshSigningKeysForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.users#ListSshSigningKeysForUserRequest"
+      },
+      "output": {
+        "target": "com.github.users#ListSshSigningKeysForUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/ssh_signing_keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List SSH signing keys for a user\n\nLists the SSH signing keys for a user. This operation is accessible by anyone."
+      }
+    },
+    "com.github.users#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.users#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.users#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.users#Users": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.users#GetAuthenticated"
+        },
+        {
+          "target": "com.github.users#UpdateAuthenticated"
+        },
+        {
+          "target": "com.github.users#ListBlockedByAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CheckBlocked"
+        },
+        {
+          "target": "com.github.users#Block"
+        },
+        {
+          "target": "com.github.users#Unblock"
+        },
+        {
+          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListEmailsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#AddEmailForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListFollowersForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListFollowedByAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CheckPersonIsFollowedByAuthenticated"
+        },
+        {
+          "target": "com.github.users#Follow"
+        },
+        {
+          "target": "com.github.users#Unfollow"
+        },
+        {
+          "target": "com.github.users#ListGpgKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreateGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListPublicSshKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreatePublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetPublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeletePublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListPublicEmailsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListSocialAccountsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#AddSocialAccountForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteSocialAccountForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListSshSigningKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreateSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetById"
+        },
+        {
+          "target": "com.github.users#List"
+        },
+        {
+          "target": "com.github.users#GetByUsername"
+        },
+        {
+          "target": "com.github.users#ListAttestationsBulk"
+        },
+        {
+          "target": "com.github.users#DeleteAttestationsBulk"
+        },
+        {
+          "target": "com.github.users#DeleteAttestationsBySubjectDigest"
+        },
+        {
+          "target": "com.github.users#DeleteAttestationsById"
+        },
+        {
+          "target": "com.github.users#ListAttestations"
+        },
+        {
+          "target": "com.github.users#ListFollowersForUser"
+        },
+        {
+          "target": "com.github.users#ListFollowingForUser"
+        },
+        {
+          "target": "com.github.users#CheckFollowingForUser"
+        },
+        {
+          "target": "com.github.users#ListGpgKeysForUser"
+        },
+        {
+          "target": "com.github.users#GetContextForUser"
+        },
+        {
+          "target": "com.github.users#ListPublicKeysForUser"
+        },
+        {
+          "target": "com.github.users#ListSocialAccountsForUser"
+        },
+        {
+          "target": "com.github.users#ListSshSigningKeysForUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

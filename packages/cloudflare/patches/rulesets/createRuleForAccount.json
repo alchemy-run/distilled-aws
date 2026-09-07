@@ -1,0 +1,30 @@
+{
+  "description": "Align rulesets#RulesCreateForAccount with distilled cloudflare/rulesets createRuleForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesCreateForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRuleForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRuleForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRuleForAccount/input/target",
+      "value": "com.cloudflare.rulesets#CreateRuleForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#RulesCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRuleForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRuleForAccount/output/target",
+      "value": "com.cloudflare.rulesets#CreateRuleForAccountResponse"
+    }
+  ]
+}

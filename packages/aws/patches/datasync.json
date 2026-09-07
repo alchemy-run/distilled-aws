@@ -1,0 +1,134 @@
+{
+  "operations": {
+    "createLocationS3": {
+      "syntheticErrors": [
+        {
+          "name": "LocationRoleNotAssumable",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "Invalid IAM role"
+          }
+        },
+        {
+          "name": "LocationAccessTestFailed",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "location access test failed"
+          }
+        }
+      ]
+    },
+    "createLocationEfs": {
+      "syntheticErrors": [
+        {
+          "name": "LocationRoleNotAssumable",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "Invalid IAM role"
+          }
+        },
+        {
+          "name": "LocationAccessTestFailed",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "location access test failed"
+          }
+        }
+      ]
+    },
+    "describeLocationS3": {
+      "syntheticErrors": [
+        {
+          "name": "LocationNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Location .* is not found"
+          }
+        }
+      ]
+    },
+    "describeLocationEfs": {
+      "syntheticErrors": [
+        {
+          "name": "LocationNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Location .* is not found"
+          }
+        }
+      ]
+    },
+    "deleteLocation": {
+      "syntheticErrors": [
+        {
+          "name": "LocationNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Location .* is not found"
+          }
+        }
+      ]
+    },
+    "describeTask": {
+      "syntheticErrors": [
+        {
+          "name": "TaskNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Task .* is not found"
+          }
+        }
+      ]
+    },
+    "updateTask": {
+      "syntheticErrors": [
+        {
+          "name": "TaskNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Task .* is not found"
+          }
+        }
+      ]
+    },
+    "deleteTask": {
+      "syntheticErrors": [
+        {
+          "name": "TaskNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Task .* is not found"
+          }
+        }
+      ]
+    },
+    "startTaskExecution": {
+      "syntheticErrors": [
+        {
+          "name": "LocationAccessTestFailed",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "location access test failed"
+          }
+        }
+      ]
+    },
+    "createTask": {
+      "syntheticErrors": [
+        {
+          "name": "LocationAccessTestFailed",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "location access test failed"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "LocationNotFound": ["NotFoundError"],
+    "TaskNotFound": ["NotFoundError"],
+    "LocationRoleNotAssumable": ["RetryableError"],
+    "LocationAccessTestFailed": ["RetryableError"]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.mcp_servers#McpServersListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.mcp_servers#PaginatedMCPServerTemplateList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.mcp_servers#PaginatedMCPServerTemplateListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.mcp_servers#MCPServerTemplate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "docs_url": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "auth_type": {
+          "target": "com.posthog.mcp_servers#MCPAuthTypeEnum"
+        },
+        "icon_key": {
+          "target": "smithy.api#String"
+        },
+        "category": {
+          "target": "com.posthog.mcp_servers#MCPServerTemplateCategoryEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.mcp_servers#MCPAuthTypeEnum": {
+      "type": "enum",
+      "members": {
+        "API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api_key"
+          }
+        },
+        "OAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oauth"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `api_key` - API Key\n* `oauth` - OAuth"
+      }
+    },
+    "com.posthog.mcp_servers#MCPServerTemplateCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "business"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "DESIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "design"
+          }
+        },
+        "DEV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dev"
+          }
+        },
+        "INFRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "infra"
+          }
+        },
+        "PRODUCTIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "productivity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `business` - Business Operations\n* `data` - Data & Analytics\n* `design` - Design & Content\n* `dev` - Developer Tools & APIs\n* `infra` - Infrastructure\n* `productivity` - Productivity & Collaboration"
+      }
+    },
+    "com.posthog.mcp_servers#PaginatedMCPServerTemplateListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.mcp_servers#MCPServerTemplate"
+      },
+      "traits": {}
+    },
+    "com.posthog.mcp_servers#McpServersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.mcp_servers#McpServersListRequest"
+      },
+      "output": {
+        "target": "com.posthog.mcp_servers#PaginatedMCPServerTemplateList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/mcp_servers/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists curated MCP server templates that users can install with one click.\n\nTemplates are seeded by PostHog operators and carry shared, encrypted\nOAuth client credentials. Inactive templates are hidden from the catalog."
+      }
+    },
+    "com.posthog.mcp_servers#McpServers": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.mcp_servers#McpServersList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

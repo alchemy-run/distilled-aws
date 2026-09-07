@@ -1,0 +1,20 @@
+{
+  "description": "Align url_scanner#ScansScreenshot with distilled cloudflare/url-scanner screenshotScan",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansScreenshot",
+      "path": "/shapes/com.cloudflare.url_scanner#ScreenshotScan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansScreenshotRequest",
+      "path": "/shapes/com.cloudflare.url_scanner#ScreenshotScanRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#ScreenshotScan/input/target",
+      "value": "com.cloudflare.url_scanner#ScreenshotScanRequest"
+    }
+  ]
+}

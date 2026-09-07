@@ -1,0 +1,83 @@
+{
+  "description": "Fix ServiceToken schema: make fields optional that may not be present in all responses, and mark nullable fields",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/definitions/ServiceToken/required",
+      "value": [
+        "id",
+        "display_name",
+        "avatar_url",
+        "created_at",
+        "updated_at",
+        "actor_id",
+        "actor_display_name",
+        "actor_type"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/token/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/plain_text_refresh_token/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/expires_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ServiceToken/properties/last_used_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedServiceToken/properties/data/items/required",
+      "value": [
+        "id",
+        "display_name",
+        "avatar_url",
+        "created_at",
+        "updated_at",
+        "actor_id",
+        "actor_display_name",
+        "actor_type"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/data/items/properties/name/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/data/items/properties/token/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/data/items/properties/plain_text_refresh_token/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/data/items/properties/expires_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedServiceToken/properties/data/items/properties/last_used_at/x-nullable",
+      "value": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Docs gap: GET /zones/{zone_id}/secondary_dns/outgoing/status documents `result: EnableTransfer` with no structure, but the wire result is a status string (the page's own example shows \"result\": \"Enabled\"). v0 typed it string.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetZoneTransferOutgoingStatusResponse/members/result/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align billing#UsagePaygo with distilled cloudflare/billing paygoUsage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.billing#UsagePaygo",
+      "path": "/shapes/com.cloudflare.billing#PaygoUsage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.billing#UsagePaygoRequest",
+      "path": "/shapes/com.cloudflare.billing#PaygoUsageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.billing#PaygoUsage/input/target",
+      "value": "com.cloudflare.billing#PaygoUsageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.billing#UsagePaygoResponse",
+      "path": "/shapes/com.cloudflare.billing#PaygoUsageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.billing#PaygoUsage/output/target",
+      "value": "com.cloudflare.billing#PaygoUsageResponse"
+    }
+  ]
+}

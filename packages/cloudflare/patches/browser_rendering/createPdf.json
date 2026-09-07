@@ -1,0 +1,20 @@
+{
+  "description": "Align browser_rendering#PdfCreate with distilled cloudflare/browser-rendering createPdf",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#PdfCreate",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreatePdf"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#PdfCreateRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreatePdfRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreatePdf/input/target",
+      "value": "com.cloudflare.browser_rendering#CreatePdfRequest"
+    }
+  ]
+}

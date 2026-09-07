@@ -1,0 +1,38 @@
+{
+  "description": "Align email_security#PhishguardReportsList with distilled cloudflare/email-security listPhishguardReports",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#PhishguardReportsList",
+      "path": "/shapes/com.cloudflare.email_security#ListPhishguardReports"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#PhishguardReportsListRequest",
+      "path": "/shapes/com.cloudflare.email_security#ListPhishguardReportsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListPhishguardReports/input/target",
+      "value": "com.cloudflare.email_security#ListPhishguardReportsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#PhishguardReportsListResponse",
+      "path": "/shapes/com.cloudflare.email_security#ListPhishguardReportsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListPhishguardReports/output/target",
+      "value": "com.cloudflare.email_security#ListPhishguardReportsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#ListPhishguardReports/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

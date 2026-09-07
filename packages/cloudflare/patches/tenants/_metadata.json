@@ -1,0 +1,43 @@
+{
+  "description": "Key dictionary / op aliases for tenants (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "abuseContactEmail": "abuse_contact_email",
+        "accessApprovalExpiry": "access_approval_expiry",
+        "allowAddSubdomain": "allow_add_subdomain",
+        "allowAutoAcceptInvites": "allow_auto_accept_invites",
+        "apiAccessEnabled": "api_access_enabled",
+        "cnameSetupAllowed": "cname_setup_allowed",
+        "createdOn": "created_on",
+        "customEntitlements": "custom_entitlements",
+        "customerId": "customer_id",
+        "defaultNameservers": "default_nameservers",
+        "enforceTwofactor": "enforce_twofactor",
+        "mhsCertificateCount": "mhs_certificate_count",
+        "nsPool": "ns_pool",
+        "partialSetupAllowed": "partial_setup_allowed",
+        "tenantContacts": "tenant_contacts",
+        "tenantLabels": "tenant_labels",
+        "tenantMetadata": "tenant_metadata",
+        "tenantName": "tenant_name",
+        "tenantNetwork": "tenant_network",
+        "tenantStatus": "tenant_status",
+        "tenantTag": "tenant_tag",
+        "tenantType": "tenant_type",
+        "tenantUnits": "tenant_units",
+        "unitMemberships": "unit_memberships",
+        "unitMetadata": "unit_metadata",
+        "unitName": "unit_name",
+        "unitStatus": "unit_status",
+        "unitTag": "unit_tag",
+        "useAccountCustomNsByDefault": "use_account_custom_ns_by_default",
+        "userEmail": "user_email",
+        "userName": "user_name",
+        "userTag": "user_tag"
+      }
+    }
+  ]
+}

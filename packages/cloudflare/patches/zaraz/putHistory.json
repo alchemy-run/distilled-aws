@@ -1,0 +1,30 @@
+{
+  "description": "Align zaraz#HistoryUpdate with distilled cloudflare/zaraz putHistory",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryUpdate",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistory"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryUpdateRequest",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistoryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistory/input/target",
+      "value": "com.cloudflare.zaraz#PutHistoryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#HistoryUpdateResponse",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistoryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#PutHistory/output/target",
+      "value": "com.cloudflare.zaraz#PutHistoryResponse"
+    }
+  ]
+}

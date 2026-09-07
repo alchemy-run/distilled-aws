@@ -1,0 +1,30 @@
+{
+  "description": "Align filters#Get with distilled cloudflare/filters getFilter",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#Get",
+      "path": "/shapes/com.cloudflare.filters#GetFilter"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#GetRequest",
+      "path": "/shapes/com.cloudflare.filters#GetFilterRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#GetFilter/input/target",
+      "value": "com.cloudflare.filters#GetFilterRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#GetResponse",
+      "path": "/shapes/com.cloudflare.filters#GetFilterResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#GetFilter/output/target",
+      "value": "com.cloudflare.filters#GetFilterResponse"
+    }
+  ]
+}

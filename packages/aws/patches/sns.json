@@ -1,0 +1,82 @@
+{
+  "errorCategories": {
+    "Throttled": ["ThrottlingError", "RetryableError"],
+    "KMSThrottling": ["ThrottlingError", "RetryableError"],
+    "InternalError": ["ServerError", "RetryableError"],
+    "ConcurrentAccess": ["ConflictError", "RetryableError"],
+    "StaleTag": ["ConflictError", "RetryableError"],
+    "TopicLimitExceeded": ["QuotaError"],
+    "SubscriptionLimitExceeded": ["QuotaError"],
+    "FilterPolicyLimitExceeded": ["QuotaError"],
+    "ReplayLimitExceeded": ["QuotaError"],
+    "TagLimitExceeded": ["QuotaError"],
+    "NotFound": ["NotFoundError"],
+    "ResourceNotFound": ["NotFoundError"],
+    "KMSNotFound": ["NotFoundError"]
+  },
+  "operations": {
+    "getTopicAttributes": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "deleteTopic": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "setTopicAttributes": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "subscribe": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "tagResource": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "untagResource": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "listTagsForResource": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "getDataProtectionPolicy": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "putDataProtectionPolicy": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "addPermission": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "removePermission": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "getPlatformApplicationAttributes": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "deletePlatformApplication": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "createPlatformEndpoint": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "setPlatformApplicationAttributes": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "listSubscriptionsByTopic": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "listEndpointsByPlatformApplication": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "publish": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "getEndpointAttributes": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "setEndpointAttributes": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    },
+    "deleteEndpoint": {
+      "errors": ["RequestLimitExceeded", "InvalidClientTokenId"]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align alerting#DestinationsWebhooksUpdate with distilled cloudflare/alerting updateDestinationWebhook",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksUpdate",
+      "path": "/shapes/com.cloudflare.alerting#UpdateDestinationWebhook"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksUpdateRequest",
+      "path": "/shapes/com.cloudflare.alerting#UpdateDestinationWebhookRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#UpdateDestinationWebhook/input/target",
+      "value": "com.cloudflare.alerting#UpdateDestinationWebhookRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksUpdateResponse",
+      "path": "/shapes/com.cloudflare.alerting#UpdateDestinationWebhookResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#UpdateDestinationWebhook/output/target",
+      "value": "com.cloudflare.alerting#UpdateDestinationWebhookResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#UpdateDestinationWebhook/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidWebhookId"
+        },
+        {
+          "target": "com.cloudflare.alerting#WebhookTestFailed"
+        }
+      ]
+    }
+  ]
+}

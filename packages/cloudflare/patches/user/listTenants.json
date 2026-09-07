@@ -1,0 +1,28 @@
+{
+  "description": "Align user#TenantsList with distilled cloudflare/user listTenants",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TenantsList",
+      "path": "/shapes/com.cloudflare.user#ListTenants"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TenantsListResponse",
+      "path": "/shapes/com.cloudflare.user#ListTenantsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListTenants/output/target",
+      "value": "com.cloudflare.user#ListTenantsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#ListTenants/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

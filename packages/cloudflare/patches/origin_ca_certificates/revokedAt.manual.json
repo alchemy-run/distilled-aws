@@ -1,0 +1,35 @@
+{
+  "description": "Docs drift: revoked Origin CA certificates keep returning from GET/list with `revoked_at` set on the live wire (distilled models it; the delete response already has it in the docs), but the docs omit the field from get/create/list shapes — so callers polling for revocation (alchemy's provider and its test) spin forever on an undefined revokedAt.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificateResponse/members/revoked_at",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "When the certificate was revoked; absent while the certificate is live."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#CreateOriginCaCertificateResponse/members/revoked_at",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "When the certificate was revoked; absent while the certificate is live."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#ListResultItem/members/revoked_at",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "When the certificate was revoked; absent while the certificate is live."
+        }
+      }
+    }
+  ]
+}

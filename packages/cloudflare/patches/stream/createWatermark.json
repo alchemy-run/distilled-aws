@@ -1,0 +1,42 @@
+{
+  "description": "Align stream#WatermarksCreate with distilled cloudflare/stream createWatermark",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksCreate",
+      "path": "/shapes/com.cloudflare.stream#CreateWatermark"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksCreateRequest",
+      "path": "/shapes/com.cloudflare.stream#CreateWatermarkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateWatermark/input/target",
+      "value": "com.cloudflare.stream#CreateWatermarkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksCreateResponse",
+      "path": "/shapes/com.cloudflare.stream#CreateWatermarkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateWatermark/output/target",
+      "value": "com.cloudflare.stream#CreateWatermarkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#CreateWatermark/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#WatermarkImageInvalid"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#TokenCreate with distilled cloudflare/stream createToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#TokenCreate",
+      "path": "/shapes/com.cloudflare.stream#CreateToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#TokenCreateRequest",
+      "path": "/shapes/com.cloudflare.stream#CreateTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateToken/input/target",
+      "value": "com.cloudflare.stream#CreateTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#TokenCreateResponse",
+      "path": "/shapes/com.cloudflare.stream#CreateTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateToken/output/target",
+      "value": "com.cloudflare.stream#CreateTokenResponse"
+    }
+  ]
+}

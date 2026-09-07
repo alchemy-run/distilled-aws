@@ -1,0 +1,30 @@
+{
+  "description": "Align api_gateway#LabelsManagedGet with distilled cloudflare/api-gateway getLabelManaged",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsManagedGet",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelManaged"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsManagedGetRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelManagedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelManaged/input/target",
+      "value": "com.cloudflare.api_gateway#GetLabelManagedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsManagedGetResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelManagedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetLabelManaged/output/target",
+      "value": "com.cloudflare.api_gateway#GetLabelManagedResponse"
+    }
+  ]
+}

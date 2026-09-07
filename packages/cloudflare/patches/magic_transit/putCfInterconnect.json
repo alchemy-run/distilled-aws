@@ -1,0 +1,35 @@
+{
+  "description": "Align magic_transit#CfInterconnectsUpdate with distilled cloudflare/magic-transit putCfInterconnect",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#CfInterconnectsUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#PutCfInterconnect"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#CfInterconnectsUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#PutCfInterconnectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#PutCfInterconnect/input/target",
+      "value": "com.cloudflare.magic_transit#PutCfInterconnectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#CfInterconnectsUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#PutCfInterconnectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#PutCfInterconnect/output/target",
+      "value": "com.cloudflare.magic_transit#PutCfInterconnectResponse"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PutCfInterconnectRequest/members/x_magic_new_hc_target",
+      "path": "/shapes/com.cloudflare.magic_transit#PutCfInterconnectRequest/members/xMagicNewHcTarget"
+    }
+  ]
+}

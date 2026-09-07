@@ -1,0 +1,39 @@
+{
+  "description": "Align calls#TurnCreate with distilled cloudflare/calls createTurn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnCreate",
+      "path": "/shapes/com.cloudflare.calls#CreateTurn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnCreateRequest",
+      "path": "/shapes/com.cloudflare.calls#CreateTurnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#CreateTurn/input/target",
+      "value": "com.cloudflare.calls#CreateTurnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnCreateResponse",
+      "path": "/shapes/com.cloudflare.calls#CreateTurnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#CreateTurn/output/target",
+      "value": "com.cloudflare.calls#CreateTurnResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.calls#CreateTurn/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.calls#Forbidden"
+        }
+      ]
+    }
+  ]
+}

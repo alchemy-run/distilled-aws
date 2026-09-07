@@ -1,0 +1,15 @@
+{
+  "description": "Docs drift: POST/PUT /accounts/{account_id}/iam/user_groups/{id}/members take a BARE JSON array of members as the request body, not an object wrapper — the docs model a `members` field, and sending {\"members\": [...]} gets rejected with \"Invalid type 'object' in JSON input\". Mark the member as the whole body (httpPayload), matching distilled's T.HttpBody().",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#CreateUserGroupMemberRequest/members/members/traits/smithy.api#httpPayload",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroupMemberRequest/members/members/traits/smithy.api#httpPayload",
+      "value": {}
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Align security_center#InsightsDismissForZone with distilled cloudflare/security-center dismissInsightForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsDismissForZone",
+      "path": "/shapes/com.cloudflare.security_center#DismissInsightForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsDismissForZoneRequest",
+      "path": "/shapes/com.cloudflare.security_center#DismissInsightForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#DismissInsightForZone/input/target",
+      "value": "com.cloudflare.security_center#DismissInsightForZoneRequest"
+    }
+  ]
+}

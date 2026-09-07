@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessBookmarksDelete with distilled cloudflare/zero-trust deleteAccessBookmark",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessBookmark"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessBookmarkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessBookmark/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessBookmarkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessBookmarkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessBookmark/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessBookmarkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessBookmark/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessBookmarkNotFound"
+        }
+      ]
+    }
+  ]
+}

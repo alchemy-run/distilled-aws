@@ -1,0 +1,39 @@
+{
+  "description": "Align pipelines#Get with distilled cloudflare/pipelines getPipeline",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#Get",
+      "path": "/shapes/com.cloudflare.pipelines#GetPipeline"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#GetRequest",
+      "path": "/shapes/com.cloudflare.pipelines#GetPipelineRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#GetPipeline/input/target",
+      "value": "com.cloudflare.pipelines#GetPipelineRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#GetResponse",
+      "path": "/shapes/com.cloudflare.pipelines#GetPipelineResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#GetPipeline/output/target",
+      "value": "com.cloudflare.pipelines#GetPipelineResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#GetPipeline/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#PipelineNotExists"
+        }
+      ]
+    }
+  ]
+}

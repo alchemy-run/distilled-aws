@@ -1,0 +1,515 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#PaginatedFileSystemShortcutList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.desktop_file_system_shortcut#PaginatedFileSystemShortcutListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.desktop_file_system_shortcut#FileSystemShortcut": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display path of the shortcut in the sidebar."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the linked item (e.g. 'folder', 'insight'), or blank."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the linked item, scoped to its type. Null for href-only shortcuts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination URL the shortcut opens. Null when the shortcut points at an item by ref.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Display order within the user's shortcut list, ascending."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.desktop_file_system_shortcut#PaginatedFileSystemShortcutListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.desktop_file_system_shortcut#FileSystemShortcut"
+      },
+      "traits": {}
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutListRequest"
+      },
+      "output": {
+        "target": "com.posthog.desktop_file_system_shortcut#PaginatedFileSystemShortcutList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sidebar shortcuts for the desktop product surface. Reuses all FileSystemShortcutViewSet\nbehaviour but is scoped to the \"desktop\" surface, so its shortcuts are fully isolated from\nthe default \"web\" surface."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display path of the shortcut in the sidebar."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the linked item (e.g. 'folder', 'insight'), or blank."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the linked item, scoped to its type. Null for href-only shortcuts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination URL the shortcut opens. Null when the shortcut points at an item by ref.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Display order within the user's shortcut list, ascending."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.desktop_file_system_shortcut#FileSystemShortcut"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sidebar shortcuts for the desktop product surface. Reuses all FileSystemShortcutViewSet\nbehaviour but is scoped to the \"desktop\" surface, so its shortcuts are fully isolated from\nthe default \"web\" surface."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system shortcut."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.desktop_file_system_shortcut#FileSystemShortcut"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sidebar shortcuts for the desktop product surface. Reuses all FileSystemShortcutViewSet\nbehaviour but is scoped to the \"desktop\" surface, so its shortcuts are fully isolated from\nthe default \"web\" surface."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system shortcut."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display path of the shortcut in the sidebar."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the linked item (e.g. 'folder', 'insight'), or blank."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the linked item, scoped to its type. Null for href-only shortcuts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination URL the shortcut opens. Null when the shortcut points at an item by ref.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Display order within the user's shortcut list, ascending."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.desktop_file_system_shortcut#FileSystemShortcut"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sidebar shortcuts for the desktop product surface. Reuses all FileSystemShortcutViewSet\nbehaviour but is scoped to the \"desktop\" surface, so its shortcuts are fully isolated from\nthe default \"web\" surface."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system shortcut."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display path of the shortcut in the sidebar."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the linked item (e.g. 'folder', 'insight'), or blank."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the linked item, scoped to its type. Null for href-only shortcuts.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination URL the shortcut opens. Null when the shortcut points at an item by ref.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "order": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Display order within the user's shortcut list, ascending."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.desktop_file_system_shortcut#FileSystemShortcut"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sidebar shortcuts for the desktop product surface. Reuses all FileSystemShortcutViewSet\nbehaviour but is scoped to the \"desktop\" surface, so its shortcuts are fully isolated from\nthe default \"web\" surface."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system shortcut."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Sidebar shortcuts for the desktop product surface. Reuses all FileSystemShortcutViewSet\nbehaviour but is scoped to the \"desktop\" surface, so its shortcuts are fully isolated from\nthe default \"web\" surface."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutReorderCreateRequestOrderedIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of the current user's shortcuts in the desired display order."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutReorderCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "ordered_ids": {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutReorderCreateRequestOrderedIdsList",
+          "traits": {
+            "smithy.api#documentation": "IDs of the current user's shortcuts in the desired display order.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutReorderCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutReorderCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.desktop_file_system_shortcut#PaginatedFileSystemShortcutList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/desktop_file_system_shortcut/reorder/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the display order of the current user's shortcuts. `ordered_ids` becomes the new top-to-bottom order; any unknown IDs are rejected."
+      }
+    },
+    "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcut": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutList"
+        },
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutCreate"
+        },
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutRetrieve"
+        },
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutUpdate"
+        },
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutPartialUpdate"
+        },
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutDestroy"
+        },
+        {
+          "target": "com.posthog.desktop_file_system_shortcut#DesktopFileSystemShortcutReorderCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

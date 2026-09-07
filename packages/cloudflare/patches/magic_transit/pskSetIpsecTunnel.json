@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#IpsecTunnelsPskSet with distilled cloudflare/magic-transit pskSetIpsecTunnel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#IpsecTunnelsPskSet",
+      "path": "/shapes/com.cloudflare.magic_transit#PskSetIpsecTunnel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#IpsecTunnelsPskSetRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#PskSetIpsecTunnelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#PskSetIpsecTunnel/input/target",
+      "value": "com.cloudflare.magic_transit#PskSetIpsecTunnelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#IpsecTunnelsPskSetResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#PskSetIpsecTunnelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#PskSetIpsecTunnel/output/target",
+      "value": "com.cloudflare.magic_transit#PskSetIpsecTunnelResponse"
+    }
+  ]
+}

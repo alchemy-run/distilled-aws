@@ -1,0 +1,411 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_profile_configs#PaginatedCustomerProfileConfigList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.customer_profile_configs#PaginatedCustomerProfileConfigListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfig": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigScopeEnum"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "sidebar": {
+          "target": "smithy.api#Document"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigScopeEnum": {
+      "type": "enum",
+      "members": {
+        "PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "person"
+          }
+        },
+        "GROUP_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group_0"
+          }
+        },
+        "GROUP_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group_1"
+          }
+        },
+        "GROUP_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group_2"
+          }
+        },
+        "GROUP_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group_3"
+          }
+        },
+        "GROUP_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group_4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `person` - Person\n* `group_0` - Group 0\n* `group_1` - Group 1\n* `group_2` - Group 2\n* `group_3` - Group 3\n* `group_4` - Group 4"
+      }
+    },
+    "com.posthog.customer_profile_configs#PaginatedCustomerProfileConfigListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_profile_configs#PaginatedCustomerProfileConfigList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/customer_profile_configs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "scope": {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigScopeEnum"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "sidebar": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/customer_profile_configs/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/customer_profile_configs/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigScopeEnum"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "sidebar": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/customer_profile_configs/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigScopeEnum"
+        },
+        "content": {
+          "target": "smithy.api#Document"
+        },
+        "sidebar": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/customer_profile_configs/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/customer_profile_configs/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_profile_configs#CustomerProfileConfigs": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsList"
+        },
+        {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsCreate"
+        },
+        {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieve"
+        },
+        {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdate"
+        },
+        {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

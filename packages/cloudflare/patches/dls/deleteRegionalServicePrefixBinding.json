@@ -1,0 +1,20 @@
+{
+  "description": "Align dls#RegionalServicesPrefixBindingsDelete with distilled cloudflare/dls deleteRegionalServicePrefixBinding",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsDelete",
+      "path": "/shapes/com.cloudflare.dls#DeleteRegionalServicePrefixBinding"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dls#RegionalServicesPrefixBindingsDeleteRequest",
+      "path": "/shapes/com.cloudflare.dls#DeleteRegionalServicePrefixBindingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dls#DeleteRegionalServicePrefixBinding/input/target",
+      "value": "com.cloudflare.dls#DeleteRegionalServicePrefixBindingRequest"
+    }
+  ]
+}

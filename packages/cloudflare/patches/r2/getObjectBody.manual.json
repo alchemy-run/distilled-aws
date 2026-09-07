@@ -1,0 +1,140 @@
+{
+  "description": "Raw object GET: the response is the object body as a byte stream plus header-projected metadata (etag, content-*, caching headers, cf-r2-storage-class) — the docs model no response for this endpoint. Shape transcribed from distilled v0.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObjectResponseCfR2StorageClass",
+      "value": {
+        "type": "enum",
+        "members": {
+          "STANDARD": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "Standard"
+            }
+          },
+          "INFREQUENT_ACCESS": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "InfrequentAccess"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObjectResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "body": {
+            "target": "smithy.api#Document",
+            "traits": {
+              "smithy.api#required": {},
+              "com.cloudflare.protocols#binaryResponseBody": {},
+              "smithy.api#documentation": "Raw object body as an Effect Stream."
+            }
+          },
+          "etag": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "etag",
+              "smithy.api#documentation": "Entity tag of the object (raw hex digest)."
+            }
+          },
+          "content_type": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "content-type",
+              "smithy.api#documentation": "MIME type of the object."
+            }
+          },
+          "content_length": {
+            "target": "smithy.api#Long",
+            "traits": {
+              "smithy.api#httpHeader": "content-length",
+              "smithy.api#documentation": "Object size in bytes."
+            }
+          },
+          "content_encoding": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "content-encoding",
+              "smithy.api#documentation": "Content encoding of the object (e.g. `gzip`)."
+            }
+          },
+          "content_disposition": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "content-disposition",
+              "smithy.api#documentation": "Content disposition header for the object."
+            }
+          },
+          "content_language": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "content-language",
+              "smithy.api#documentation": "Content language of the object."
+            }
+          },
+          "content_range": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "content-range",
+              "smithy.api#documentation": "Byte range returned (set when the request used `Range`)."
+            }
+          },
+          "cache_control": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "cache-control",
+              "smithy.api#documentation": "Cache-Control directives associated with the object."
+            }
+          },
+          "expires": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "expires",
+              "smithy.api#documentation": "Expiration date of the object."
+            }
+          },
+          "last_modified": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "last-modified",
+              "smithy.api#documentation": "When the object was last modified (RFC 7231 date)."
+            }
+          },
+          "cf_r2_storage_class": {
+            "target": "com.cloudflare.r2#GetBucketObjectResponseCfR2StorageClass",
+            "traits": {
+              "smithy.api#httpHeader": "cf-r2-storage-class",
+              "smithy.api#documentation": "Storage class of the object (`Standard` or `InfrequentAccess`)."
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObject/output/target",
+      "value": "com.cloudflare.r2#GetBucketObjectResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObject/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.r2#NoSuchKey"
+        }
+      ]
+    }
+  ]
+}

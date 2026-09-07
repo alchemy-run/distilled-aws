@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#RankingDomainGet with distilled cloudflare/radar getRankingDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingDomainGet",
+      "path": "/shapes/com.cloudflare.radar#GetRankingDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingDomainGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetRankingDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetRankingDomain/input/target",
+      "value": "com.cloudflare.radar#GetRankingDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingDomainGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetRankingDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetRankingDomain/output/target",
+      "value": "com.cloudflare.radar#GetRankingDomainResponse"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align tenants#MembershipsList with distilled cloudflare/tenants listMemberships",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#MembershipsList",
+      "path": "/shapes/com.cloudflare.tenants#ListMemberships"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#MembershipsListRequest",
+      "path": "/shapes/com.cloudflare.tenants#ListMembershipsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#ListMemberships/input/target",
+      "value": "com.cloudflare.tenants#ListMembershipsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#MembershipsListResponse",
+      "path": "/shapes/com.cloudflare.tenants#ListMembershipsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#ListMemberships/output/target",
+      "value": "com.cloudflare.tenants#ListMembershipsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.tenants#ListMemberships/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

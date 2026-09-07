@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingTopupConfigDelete with distilled cloudflare/ai-gateway deleteBillingTopupConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingTopupConfigDelete",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingTopupConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingTopupConfigDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingTopupConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingTopupConfig/input/target",
+      "value": "com.cloudflare.ai_gateway#DeleteBillingTopupConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingTopupConfigDeleteResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingTopupConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteBillingTopupConfig/output/target",
+      "value": "com.cloudflare.ai_gateway#DeleteBillingTopupConfigResponse"
+    }
+  ]
+}

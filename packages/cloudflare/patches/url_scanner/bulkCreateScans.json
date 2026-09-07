@@ -1,0 +1,30 @@
+{
+  "description": "Align url_scanner#ScansBulkCreate with distilled cloudflare/url-scanner bulkCreateScans",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansBulkCreate",
+      "path": "/shapes/com.cloudflare.url_scanner#BulkCreateScans"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansBulkCreateRequest",
+      "path": "/shapes/com.cloudflare.url_scanner#BulkCreateScansRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#BulkCreateScans/input/target",
+      "value": "com.cloudflare.url_scanner#BulkCreateScansRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansBulkCreateResponse",
+      "path": "/shapes/com.cloudflare.url_scanner#BulkCreateScansResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#BulkCreateScans/output/target",
+      "value": "com.cloudflare.url_scanner#BulkCreateScansResponse"
+    }
+  ]
+}

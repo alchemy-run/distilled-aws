@@ -1,0 +1,42 @@
+{
+  "description": "Align turnstile#WidgetsGet with distilled cloudflare/turnstile getWidget",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsGet",
+      "path": "/shapes/com.cloudflare.turnstile#GetWidget"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsGetRequest",
+      "path": "/shapes/com.cloudflare.turnstile#GetWidgetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#GetWidget/input/target",
+      "value": "com.cloudflare.turnstile#GetWidgetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsGetResponse",
+      "path": "/shapes/com.cloudflare.turnstile#GetWidgetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#GetWidget/output/target",
+      "value": "com.cloudflare.turnstile#GetWidgetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.turnstile#GetWidget/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.turnstile#WidgetNotFound"
+        },
+        {
+          "target": "com.cloudflare.turnstile#Forbidden"
+        }
+      ]
+    }
+  ]
+}

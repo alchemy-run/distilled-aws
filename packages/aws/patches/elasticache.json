@@ -1,0 +1,39 @@
+{
+  "structures": {
+    "CreateCacheClusterMessage": {
+      "members": {
+        "AuthToken": { "sensitive": true }
+      }
+    },
+    "ModifyCacheClusterMessage": {
+      "members": {
+        "AuthToken": { "sensitive": true }
+      }
+    },
+    "CreateReplicationGroupMessage": {
+      "members": {
+        "AuthToken": { "sensitive": true }
+      }
+    },
+    "ModifyReplicationGroupMessage": {
+      "members": {
+        "AuthToken": { "sensitive": true }
+      }
+    },
+    "AuthenticationMode": {
+      "members": {
+        "Passwords": { "sensitive": true }
+      }
+    },
+    "CreateUserMessage": {
+      "members": {
+        "Passwords": { "sensitive": true }
+      }
+    },
+    "ModifyUserMessage": {
+      "members": {
+        "Passwords": { "sensitive": true }
+      }
+    }
+  }
+}

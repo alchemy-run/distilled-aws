@@ -1,0 +1,20 @@
+{
+  "description": "Align kv#NamespacesKeysBulkUpdate with distilled cloudflare/kv bulkPutNamespaces (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#NamespacesKeysBulkUpdate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

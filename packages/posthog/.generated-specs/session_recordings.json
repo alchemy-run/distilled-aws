@@ -1,0 +1,383 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.session_recordings#SessionRecordingsSharingListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "recording_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_recordings#SharingConfiguration": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "settings": {
+          "target": "smithy.api#Document"
+        },
+        "password_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "share_passwords": {
+          "target": "com.posthog.session_recordings#SharingConfigurationSharePasswordsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_recordings#SharePassword": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by_email": {
+          "target": "smithy.api#String"
+        },
+        "is_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_recordings#SharingConfigurationSharePasswordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.session_recordings#SharePassword"
+      },
+      "traits": {}
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.session_recordings#SharingConfiguration"
+      },
+      "traits": {}
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.session_recordings#SessionRecordingsSharingListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_recordings#SessionRecordingsSharingListRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_recordings#SessionRecordingsSharingListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_recordings#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_recordings#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/session_recordings/{recording_id}/sharing/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "recording_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "settings": {
+          "target": "smithy.api#Document"
+        },
+        "password_required": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_recordings#SharingConfiguration"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_recordings#BadRequest"
+        },
+        {
+          "target": "com.posthog.session_recordings#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_recordings#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/session_recordings/{recording_id}/sharing/passwords/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new password for the sharing configuration."
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingPasswordsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "recording_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "password_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingPasswordsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_recordings#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_recordings#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/session_recordings/{recording_id}/sharing/passwords/{password_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a password from the sharing configuration."
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingRefreshCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "recording_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "settings": {
+          "target": "smithy.api#Document"
+        },
+        "password_required": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordingsSharingRefreshCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_recordings#SessionRecordingsSharingRefreshCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_recordings#SharingConfiguration"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_recordings#BadRequest"
+        },
+        {
+          "target": "com.posthog.session_recordings#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_recordings#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/session_recordings/{recording_id}/sharing/refresh/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.session_recordings#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.session_recordings#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.session_recordings#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.session_recordings#SessionRecordings": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.session_recordings#SessionRecordingsSharingList"
+        },
+        {
+          "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreate"
+        },
+        {
+          "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsDestroy"
+        },
+        {
+          "target": "com.posthog.session_recordings#SessionRecordingsSharingRefreshCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

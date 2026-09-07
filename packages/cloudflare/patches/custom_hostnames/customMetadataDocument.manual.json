@@ -1,0 +1,40 @@
+{
+  "description": "custom_metadata values are freeform JSON (v0 parity: Record<string, unknown>) — the docs wrongly type them as strings",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateRequestCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CreateResponseCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#EditRequestCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#EditResponseCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#GetResponseCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#ListResultItemCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateResponseCustomMetadataMap/value/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

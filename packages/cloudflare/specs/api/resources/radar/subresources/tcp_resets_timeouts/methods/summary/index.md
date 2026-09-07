@@ -1,0 +1,266 @@
+## Get TCP resets and timeouts summary
+
+**get** `/radar/tcp_resets_timeouts/summary`
+
+Retrieves the distribution of connection stage by TCP connections terminated within the first 10 packets by a reset or timeout.
+
+### Query Parameters
+
+- `asn: optional array of string`
+
+  Filters results by Autonomous System. Specify one or more Autonomous System Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from results. For example, `-174, 3356` excludes results from AS174, but includes results from AS3356.
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { later_in_flow, no_match, post_ack, 2 more }`
+
+    - `later_in_flow: string`
+
+      Connection resets within the first 10 packets from the client, but after the server has received multiple data packets.
+
+    - `no_match: string`
+
+      All other connections.
+
+    - `post_ack: string`
+
+      Connection resets or timeouts after the server received both a SYN packet and an ACK packet, meaning the connection was successfully established.
+
+    - `post_psh: string`
+
+      Connection resets or timeouts after the server received a packet with PSH flag set, following connection establishment.
+
+    - `post_syn: string`
+
+      Connection resets or timeouts after the server received only a single SYN packet.
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/tcp_resets_timeouts/summary \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "later_in_flow": "10",
+      "no_match": "65",
+      "post_ack": "5",
+      "post_psh": "10",
+      "post_syn": "10"
+    }
+  },
+  "success": true
+}
+```

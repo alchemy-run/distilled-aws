@@ -1,0 +1,30 @@
+{
+  "description": "Align page_shield#ScriptsGet with distilled cloudflare/page-shield getScript",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ScriptsGet",
+      "path": "/shapes/com.cloudflare.page_shield#GetScript"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ScriptsGetRequest",
+      "path": "/shapes/com.cloudflare.page_shield#GetScriptRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetScript/input/target",
+      "value": "com.cloudflare.page_shield#GetScriptRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ScriptsGetResponse",
+      "path": "/shapes/com.cloudflare.page_shield#GetScriptResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetScript/output/target",
+      "value": "com.cloudflare.page_shield#GetScriptResponse"
+    }
+  ]
+}

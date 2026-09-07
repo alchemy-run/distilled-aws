@@ -1,0 +1,30 @@
+{
+  "description": "Align email_sending#SendRaw with distilled cloudflare/email-sending sendRawEmailSending",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SendRaw",
+      "path": "/shapes/com.cloudflare.email_sending#SendRawEmailSending"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SendRawRequest",
+      "path": "/shapes/com.cloudflare.email_sending#SendRawEmailSendingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#SendRawEmailSending/input/target",
+      "value": "com.cloudflare.email_sending#SendRawEmailSendingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SendRawResponse",
+      "path": "/shapes/com.cloudflare.email_sending#SendRawEmailSendingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#SendRawEmailSending/output/target",
+      "value": "com.cloudflare.email_sending#SendRawEmailSendingResponse"
+    }
+  ]
+}

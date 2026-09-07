@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_hostnames#CertificatePackCertificatesUpdate with distilled cloudflare/custom-hostnames putCertificatePackCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdate",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutCertificatePackCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateRequest",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutCertificatePackCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutCertificatePackCertificate/input/target",
+      "value": "com.cloudflare.custom_hostnames#PutCertificatePackCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateResponse",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutCertificatePackCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutCertificatePackCertificate/output/target",
+      "value": "com.cloudflare.custom_hostnames#PutCertificatePackCertificateResponse"
+    }
+  ]
+}

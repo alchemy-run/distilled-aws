@@ -1,0 +1,30 @@
+{
+  "description": "Align workflows#InstancesStep with distilled cloudflare/workflows stepInstance",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesStep",
+      "path": "/shapes/com.cloudflare.workflows#StepInstance"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesStepRequest",
+      "path": "/shapes/com.cloudflare.workflows#StepInstanceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#StepInstance/input/target",
+      "value": "com.cloudflare.workflows#StepInstanceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesStepResponse",
+      "path": "/shapes/com.cloudflare.workflows#StepInstanceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#StepInstance/output/target",
+      "value": "com.cloudflare.workflows#StepInstanceResponse"
+    }
+  ]
+}

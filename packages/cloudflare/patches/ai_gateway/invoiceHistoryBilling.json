@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingInvoiceHistory with distilled cloudflare/ai-gateway invoiceHistoryBilling",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingInvoiceHistory",
+      "path": "/shapes/com.cloudflare.ai_gateway#InvoiceHistoryBilling"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingInvoiceHistoryRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#InvoiceHistoryBillingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#InvoiceHistoryBilling/input/target",
+      "value": "com.cloudflare.ai_gateway#InvoiceHistoryBillingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingInvoiceHistoryResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#InvoiceHistoryBillingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#InvoiceHistoryBilling/output/target",
+      "value": "com.cloudflare.ai_gateway#InvoiceHistoryBillingResponse"
+    }
+  ]
+}

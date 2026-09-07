@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112TimeseriesGroupsResponseCodes with distilled cloudflare/radar responseCodesAs112TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsResponseCodes",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsResponseCodesRequest",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#ResponseCodesAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsResponseCodesResponse",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodesAs112TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#ResponseCodesAs112TimeseriesGroupResponse"
+    }
+  ]
+}

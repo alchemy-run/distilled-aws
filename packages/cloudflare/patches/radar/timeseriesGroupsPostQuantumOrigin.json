@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#PostQuantumOriginTimeseriesGroups with distilled cloudflare/radar timeseriesGroupsPostQuantumOrigin",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumOriginTimeseriesGroups",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsPostQuantumOrigin"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumOriginTimeseriesGroupsRequest",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsPostQuantumOriginRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsPostQuantumOrigin/input/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsPostQuantumOriginRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumOriginTimeseriesGroupsResponse",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsPostQuantumOriginResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsPostQuantumOrigin/output/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsPostQuantumOriginResponse"
+    }
+  ]
+}

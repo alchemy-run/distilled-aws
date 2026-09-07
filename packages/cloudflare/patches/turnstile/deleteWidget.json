@@ -1,0 +1,42 @@
+{
+  "description": "Align turnstile#WidgetsDelete with distilled cloudflare/turnstile deleteWidget",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsDelete",
+      "path": "/shapes/com.cloudflare.turnstile#DeleteWidget"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsDeleteRequest",
+      "path": "/shapes/com.cloudflare.turnstile#DeleteWidgetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#DeleteWidget/input/target",
+      "value": "com.cloudflare.turnstile#DeleteWidgetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsDeleteResponse",
+      "path": "/shapes/com.cloudflare.turnstile#DeleteWidgetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#DeleteWidget/output/target",
+      "value": "com.cloudflare.turnstile#DeleteWidgetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.turnstile#DeleteWidget/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.turnstile#WidgetNotFound"
+        },
+        {
+          "target": "com.cloudflare.turnstile#Forbidden"
+        }
+      ]
+    }
+  ]
+}

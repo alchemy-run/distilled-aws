@@ -1,0 +1,5156 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.datalake_analytics#AccountsCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#NameAvailabilityInformation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/locations/{location}/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Checks whether the specified account name is available or taken.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#NameAvailabilityInformation": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The Boolean value of true or false to indicate whether the Data Lake Analytics account name is available or not."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason why the Data Lake Analytics account name is not available, if nameAvailable is false."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message describing why the Data Lake Analytics account name is not available, if nameAvailable is false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Analytics account name availability result information."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource location without whitespace."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Analytics name to check availability for.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.azure.datalake_analytics#AccountsCheckNameAvailabilityRequestType",
+          "traits": {
+            "smithy.api#documentation": "The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCheckNameAvailabilityRequestType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_DATALAKEANALYTICS_ACCOUNTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.DataLakeAnalytics/accounts"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts"
+      }
+    },
+    "com.azure.datalake_analytics#LocationsGetCapability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#LocationsGetCapabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#CapabilityInformation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/locations/{location}/capability",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets subscription-level properties and limits for Data Lake Analytics specified by resource location.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#CapabilityInformation": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subscription credentials that uniquely identifies the subscription."
+          }
+        },
+        "state": {
+          "target": "com.azure.datalake_analytics#CapabilityInformationState",
+          "traits": {
+            "smithy.api#documentation": "The subscription state."
+          }
+        },
+        "maxAccountCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported number of accounts under this subscription."
+          }
+        },
+        "accountCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current number of accounts under this subscription."
+          }
+        },
+        "migrationState": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The Boolean value of true or false to indicate the maintenance state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription-level properties and limits for Data Lake Analytics."
+      }
+    },
+    "com.azure.datalake_analytics#CapabilityInformationState": {
+      "type": "enum",
+      "members": {
+        "REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Registered"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "UNREGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unregistered"
+          }
+        },
+        "WARNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Warned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The subscription state."
+      }
+    },
+    "com.azure.datalake_analytics#LocationsGetCapabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource location without whitespace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DataLakeAnalytics/operations",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Lists all of the available Data Lake Analytics REST API operations.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of available operations for Data Lake Analytics."
+      }
+    },
+    "com.azure.datalake_analytics#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation."
+          }
+        },
+        "display": {
+          "target": "com.azure.datalake_analytics#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The display information for the operation."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#OperationMetaPropertyInfo",
+          "traits": {
+            "smithy.api#documentation": "The OperationMetaPropertyInfo for the operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.datalake_analytics#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An available operation for Data Lake Analytics."
+      }
+    },
+    "com.azure.datalake_analytics#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation."
+      }
+    },
+    "com.azure.datalake_analytics#OperationMetaPropertyInfo": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.datalake_analytics#OperationMetaServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "The operations OperationMetaServiceSpecification."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#OperationMetaServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.datalake_analytics#OperationMetaServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "The metricSpecifications for OperationMetaServiceSpecification."
+          }
+        },
+        "logSpecifications": {
+          "target": "com.azure.datalake_analytics#OperationMetaServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "The logSpecifications for OperationMetaServiceSpecification."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#OperationMetaServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#OperationMetaLogSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "The logSpecifications for OperationMetaServiceSpecification."
+      }
+    },
+    "com.azure.datalake_analytics#OperationMetaLogSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name for OperationMetaLogSpecification."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayName for OperationMetaLogSpecification."
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blobDuration for OperationMetaLogSpecification."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#OperationMetaServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#OperationMetaMetricSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "The metricSpecifications for OperationMetaServiceSpecification."
+      }
+    },
+    "com.azure.datalake_analytics#OperationMetaMetricSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name for OperationMetaMetricSpecification."
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayName for OperationMetaMetricSpecification."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The displayName for OperationMetaMetricSpecification."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit for OperationMetaMetricSpecification."
+          }
+        },
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The aggregationType for OperationMetaMetricSpecification."
+          }
+        },
+        "availabilities": {
+          "target": "com.azure.datalake_analytics#OperationMetaMetricSpecificationAvailabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "The availabilities for OperationMetaMetricSpecification."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#OperationMetaMetricSpecificationAvailabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#OperationMetaMetricAvailabilitiesSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availabilities for OperationMetaMetricSpecification."
+      }
+    },
+    "com.azure.datalake_analytics#OperationMetaMetricAvailabilitiesSpecification": {
+      "type": "structure",
+      "members": {
+        "timeGrain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timegrain for OperationMetaMetricAvailabilitiesSpecification."
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blobDuration for OperationMetaMetricAvailabilitiesSpecification."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource provider of the operation."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type of the operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A friendly name of the operation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A friendly description of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The display information for a particular operation."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#FirewallRulesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Deletes the specified firewall rule from the specified Data Lake Analytics account",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "firewallRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firewall rule to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#FirewallRulesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#FirewallRulesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified firewall rule.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#FirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRuleProperties": {
+      "type": "structure",
+      "members": {
+        "startIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start IP address for the firewall rule. This can be either ipv4 or ipv6. Start and End should be in the same protocol."
+          }
+        },
+        "endIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end IP address for the firewall rule. This can be either ipv4 or ipv6. Start and End should be in the same protocol."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The firewall rule properties."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "firewallRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firewall rule to update."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateFirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties to use when updating a firewall rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#UpdateFirewallRuleProperties": {
+      "type": "structure",
+      "members": {
+        "startIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start IP address for the firewall rule. This can be either ipv4 or ipv6. Start and End should be in the same protocol."
+          }
+        },
+        "endIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end IP address for the firewall rule. This can be either ipv4 or ipv6. Start and End should be in the same protocol."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The firewall rule properties to use when updating a firewall rule."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Creates or updates the specified firewall rule. During update, the firewall rule with the specified name will be replaced with this new firewall rule.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#FirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "firewallRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firewall rule to create or update."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#CreateOrUpdateFirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties to use when creating a new firewall rule.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#CreateOrUpdateFirewallRuleProperties": {
+      "type": "structure",
+      "members": {
+        "startIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start IP address for the firewall rule. This can be either ipv4 or ipv6. Start and End should be in the same protocol.",
+            "smithy.api#required": {}
+          }
+        },
+        "endIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end IP address for the firewall rule. This can be either ipv4 or ipv6. Start and End should be in the same protocol.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The firewall rule properties to use when creating a new firewall rule."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#FirewallRulesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#FirewallRulesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the specified Data Lake Analytics firewall rule.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#FirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "firewallRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firewall rule to retrieve."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#FirewallRulesListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#FirewallRuleListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Lists the Data Lake Analytics firewall rules within the specified Data Lake Analytics account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRuleListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#FirewallRuleListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Analytics firewall rule list information."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRuleListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#FirewallRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#FirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Analytics firewall rule information."
+      }
+    },
+    "com.azure.datalake_analytics#FirewallRulesListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Deletes the specified compute policy from the specified Data Lake Analytics account",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "computePolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the compute policy to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified compute policy.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#ComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#ComputePolicyProperties": {
+      "type": "structure",
+      "members": {
+        "objectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD object identifier for the entity to create a policy for."
+          }
+        },
+        "objectType": {
+          "target": "com.azure.datalake_analytics#ComputePolicyPropertiesObjectType",
+          "traits": {
+            "smithy.api#documentation": "The type of AAD object the object identifier refers to."
+          }
+        },
+        "maxDegreeOfParallelismPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum degree of parallelism per job this user can use to submit jobs."
+          }
+        },
+        "minPriorityPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum priority per job this user can use to submit jobs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The compute policy properties."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePolicyPropertiesObjectType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        },
+        "SERVICEPRINCIPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServicePrincipal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of AAD object the object identifier refers to."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "computePolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the compute policy to update."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties to use when updating a compute policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#UpdateComputePolicyProperties": {
+      "type": "structure",
+      "members": {
+        "objectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD object identifier for the entity to create a policy for."
+          }
+        },
+        "objectType": {
+          "target": "com.azure.datalake_analytics#UpdateComputePolicyPropertiesObjectType",
+          "traits": {
+            "smithy.api#documentation": "The type of AAD object the object identifier refers to."
+          }
+        },
+        "maxDegreeOfParallelismPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum degree of parallelism per job this user can use to submit jobs. This property, the min priority per job property, or both must be passed."
+          }
+        },
+        "minPriorityPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum priority per job this user can use to submit jobs. This property, the max degree of parallelism per job property, or both must be passed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The compute policy properties to use when updating a compute policy."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateComputePolicyPropertiesObjectType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        },
+        "SERVICEPRINCIPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServicePrincipal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of AAD object the object identifier refers to."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Creates or updates the specified compute policy. During update, the compute policy with the specified name will be replaced with this new compute policy. An account supports, at most, 50 policies",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#ComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "computePolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the compute policy to create or update."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#CreateOrUpdateComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties to use when creating a new compute policy.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#CreateOrUpdateComputePolicyProperties": {
+      "type": "structure",
+      "members": {
+        "objectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD object identifier for the entity to create a policy for.",
+            "smithy.api#required": {}
+          }
+        },
+        "objectType": {
+          "target": "com.azure.datalake_analytics#CreateOrUpdateComputePolicyPropertiesObjectType",
+          "traits": {
+            "smithy.api#documentation": "The type of AAD object the object identifier refers to.",
+            "smithy.api#required": {}
+          }
+        },
+        "maxDegreeOfParallelismPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum degree of parallelism per job this user can use to submit jobs. This property, the min priority per job property, or both must be passed."
+          }
+        },
+        "minPriorityPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum priority per job this user can use to submit jobs. This property, the max degree of parallelism per job property, or both must be passed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The compute policy properties to use when creating a new compute policy."
+      }
+    },
+    "com.azure.datalake_analytics#CreateOrUpdateComputePolicyPropertiesObjectType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        },
+        "SERVICEPRINCIPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServicePrincipal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of AAD object the object identifier refers to."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the specified Data Lake Analytics compute policy.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#ComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "computePolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the compute policy to retrieve."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#ComputePoliciesListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#ComputePolicyListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Lists the Data Lake Analytics compute policies within the specified Data Lake Analytics account. An account supports, at most, 50 policies",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#ComputePolicyListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#ComputePolicyListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of compute policies in the account."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePolicyListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#ComputePolicy"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#ComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Analytics compute policy information."
+      }
+    },
+    "com.azure.datalake_analytics#ComputePoliciesListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsListSasTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsListSasTokensRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#SasTokenInformationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers/{containerName}/listSasTokens",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the SAS token associated with the specified Data Lake Analytics and Azure Storage account and container combination.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#SasTokenInformationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#SasTokenInformationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SAS response that contains the storage account, container and associated SAS token for connection use."
+      }
+    },
+    "com.azure.datalake_analytics#SasTokenInformationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#SasTokenInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#SasTokenInformation": {
+      "type": "structure",
+      "members": {
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access token for the associated Azure Storage Container.",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SAS token information."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsListSasTokensRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure storage account for which the SAS token is being requested."
+          }
+        },
+        "containerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure storage container for which the SAS token is being requested."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsGetStorageContainer": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsGetStorageContainerRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#StorageAccountsGetStorageContainerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers/{containerName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the specified Azure Storage container associated with the given Data Lake Analytics and Azure Storage accounts.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsGetStorageContainerResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#StorageContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the blob container."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageContainerProperties": {
+      "type": "structure",
+      "members": {
+        "lastModifiedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modified time of the blob container."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Storage blob container properties information."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsGetStorageContainerRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure storage account from which to retrieve the blob container."
+          }
+        },
+        "containerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure storage container to retrieve"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsListStorageContainers": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsListStorageContainersRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#StorageContainerListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Lists the Azure Storage containers, if any, associated with the specified Data Lake Analytics and Azure Storage account combination. The response includes a link to the next page of results, if any.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageContainerListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#StorageContainerListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of blob containers associated with the storage account attached to the Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#StorageContainerListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#StorageContainer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#StorageContainer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#StorageContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the blob container."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Storage blob container information."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsListStorageContainersRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure storage account from which to list blob containers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified Data Lake Analytics account to remove an Azure Storage account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Storage account to remove"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the Data Lake Analytics account to replace Azure Storage blob account details, such as the access key and/or suffix.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure Storage account to modify"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateStorageAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The Azure Storage account properties to use when updating an Azure Storage account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#UpdateStorageAccountProperties": {
+      "type": "structure",
+      "members": {
+        "accessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The updated access key associated with this Azure Storage account that will be used to connect to it."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The optional suffix for the storage account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Azure Storage account properties to use when updating an Azure Storage account."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsAdd": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsAddRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified Data Lake Analytics account to add an Azure Storage account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsAddRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Storage account to add"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#AddStorageAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The Azure Storage account properties to use when adding a new Azure Storage account.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AddStorageAccountProperties": {
+      "type": "structure",
+      "members": {
+        "accessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access key associated with this Azure Storage account that will be used to connect to it.",
+            "smithy.api#required": {}
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The optional suffix for the storage account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Azure Storage account properties to use when adding a new Azure Storage account."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#StorageAccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the specified Azure Storage account linked to the given Data Lake Analytics account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#StorageAccountInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The Azure Storage account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountInformationProperties": {
+      "type": "structure",
+      "members": {
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The optional suffix for the storage account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Azure Storage account properties."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "storageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure Storage account for which to retrieve the details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#StorageAccountsListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#StorageAccountInformationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the first page of Azure Storage accounts, if any, linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountInformationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#StorageAccountInformationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Storage account list information."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountInformationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#StorageAccountInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountInformation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#StorageAccountInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The Azure Storage account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Storage account information."
+      }
+    },
+    "com.azure.datalake_analytics#StorageAccountsListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The OData filter. Optional."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of items to return. Optional."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of items to skip over before returning elements. Optional."
+          }
+        },
+        "_select": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$select",
+            "smithy.api#documentation": "OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional."
+          }
+        },
+        "_orderby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$orderby",
+            "smithy.api#documentation": "OrderBy clause. One or more comma-separated expressions with an optional \"asc\" (the default) or \"desc\" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional."
+          }
+        },
+        "_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "$count",
+            "smithy.api#documentation": "The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the Data Lake Analytics account specified to remove the specified Data Lake Store account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "dataLakeStoreAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Store account to remove"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsAdd": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountsAddRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the specified Data Lake Analytics account to include the additional Data Lake Store account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsAddRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "dataLakeStoreAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Store account to add."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#AddDataLakeStoreProperties",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Store account properties to use when adding a new Data Lake Store account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AddDataLakeStoreProperties": {
+      "type": "structure",
+      "members": {
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The optional suffix for the Data Lake Store account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Data Lake Store account properties to use when adding a new Data Lake Store account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the specified Data Lake Store account details in the specified Data Lake Analytics account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Store account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountInformationProperties": {
+      "type": "structure",
+      "members": {
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The optional suffix for the Data Lake Store account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Data Lake Store account properties."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "dataLakeStoreAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Store account to retrieve"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountsListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the first page of Data Lake Store accounts linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountInformationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Store account list information."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountInformationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountInformation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Store account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Store account information."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeStoreAccountsListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "OData filter. Optional."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of items to return. Optional."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of items to skip over before returning elements. Optional."
+          }
+        },
+        "_select": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$select",
+            "smithy.api#documentation": "OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional."
+          }
+        },
+        "_orderby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$orderby",
+            "smithy.api#documentation": "OrderBy clause. One or more comma-separated expressions with an optional \"asc\" (the default) or \"desc\" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional."
+          }
+        },
+        "_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "$count",
+            "smithy.api#documentation": "The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Begins the delete process for the Data Lake Analytics account object specified by the account name.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#AccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#AccountsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Updates the Data Lake Analytics account object specified by the accountName with the contents of the account object.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#AccountsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.datalake_analytics#AccountsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties defined by Data Lake Analytics all properties are specific to each resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountProperties": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier associated with this Data Lake Analytics account."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning status of the Data Lake Analytics account."
+          }
+        },
+        "state": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Data Lake Analytics account."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account creation time."
+          }
+        },
+        "lastModifiedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account last modified time."
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full CName endpoint for this account."
+          }
+        },
+        "defaultDataLakeStoreAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default Data Lake Store account associated with this account."
+          }
+        },
+        "dataLakeStoreAccounts": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+          }
+        },
+        "publicDataLakeStoreAccounts": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesPublicDataLakeStoreAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+          }
+        },
+        "storageAccounts": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesStorageAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Azure Blob Storage accounts associated with this account."
+          }
+        },
+        "computePolicies": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesComputePoliciesList",
+          "traits": {
+            "smithy.api#documentation": "The list of compute policies associated with this account."
+          }
+        },
+        "hiveMetastores": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesHiveMetastoresList",
+          "traits": {
+            "smithy.api#documentation": "The list of hiveMetastores associated with this account."
+          }
+        },
+        "virtualNetworkRules": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesVirtualNetworkRulesList",
+          "traits": {
+            "smithy.api#documentation": "The list of virtualNetwork rules associated with this account."
+          }
+        },
+        "firewallRules": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesFirewallRulesList",
+          "traits": {
+            "smithy.api#documentation": "The list of firewall rules associated with this account."
+          }
+        },
+        "firewallState": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesFirewallState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the IP address firewall for this account."
+          }
+        },
+        "firewallAllowAzureIps": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesFirewallAllowAzureIps",
+          "traits": {
+            "smithy.api#documentation": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced."
+          }
+        },
+        "newTier": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesNewTier",
+          "traits": {
+            "smithy.api#documentation": "The commitment tier for the next month."
+          }
+        },
+        "currentTier": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesCurrentTier",
+          "traits": {
+            "smithy.api#documentation": "The commitment tier in use for the current month."
+          }
+        },
+        "maxJobCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported jobs running under the account at the same time."
+          }
+        },
+        "maxActiveJobCountPerUser": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported active jobs under the account at the same time."
+          }
+        },
+        "maxQueuedJobCountPerUser": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported jobs queued under the account at the same time."
+          }
+        },
+        "maxJobRunningTimeInMin": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported active jobs under the account at the same time."
+          }
+        },
+        "systemMaxJobCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The system defined maximum supported jobs running under the account at the same time, which restricts the maximum number of running jobs the user can set for the account."
+          }
+        },
+        "maxDegreeOfParallelism": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported degree of parallelism for this account."
+          }
+        },
+        "systemMaxDegreeOfParallelism": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The system defined maximum supported degree of parallelism for this account, which restricts the maximum value of parallelism the user can set for the account."
+          }
+        },
+        "maxDegreeOfParallelismPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported degree of parallelism per job for this account."
+          }
+        },
+        "minPriorityPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum supported priority per job for this account."
+          }
+        },
+        "queryStoreRetention": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of days that job metadata is retained."
+          }
+        },
+        "debugDataAccessLevel": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesDebugDataAccessLevel",
+          "traits": {
+            "smithy.api#documentation": "The current state of the DebugDataAccessLevel for this account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The account specific properties that are associated with an underlying Data Lake Analytics account. Returned only when retrieving a specific account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesDebugDataAccessLevel": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All"
+          }
+        },
+        "CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Customer"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the DebugDataAccessLevel for this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesCurrentTier": {
+      "type": "enum",
+      "members": {
+        "CONSUMPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consumption"
+          }
+        },
+        "COMMITMENT_100AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100AUHours"
+          }
+        },
+        "COMMITMENT_500AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500AUHours"
+          }
+        },
+        "COMMITMENT_1000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_1000AUHours"
+          }
+        },
+        "COMMITMENT_5000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_5000AUHours"
+          }
+        },
+        "COMMITMENT_10000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_10000AUHours"
+          }
+        },
+        "COMMITMENT_50000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_50000AUHours"
+          }
+        },
+        "COMMITMENT_100000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100000AUHours"
+          }
+        },
+        "COMMITMENT_500000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500000AUHours"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The commitment tier in use for the current month."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesNewTier": {
+      "type": "enum",
+      "members": {
+        "CONSUMPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consumption"
+          }
+        },
+        "COMMITMENT_100AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100AUHours"
+          }
+        },
+        "COMMITMENT_500AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500AUHours"
+          }
+        },
+        "COMMITMENT_1000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_1000AUHours"
+          }
+        },
+        "COMMITMENT_5000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_5000AUHours"
+          }
+        },
+        "COMMITMENT_10000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_10000AUHours"
+          }
+        },
+        "COMMITMENT_50000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_50000AUHours"
+          }
+        },
+        "COMMITMENT_100000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100000AUHours"
+          }
+        },
+        "COMMITMENT_500000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500000AUHours"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The commitment tier for the next month."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesFirewallAllowAzureIps": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesFirewallState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the IP address firewall for this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#FirewallRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of firewall rules associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesVirtualNetworkRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#VirtualNetworkRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of virtualNetwork rules associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#VirtualNetworkRule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#VirtualNetworkRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The  VirtualNetwork rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Analytics  VirtualNetwork Rule information."
+      }
+    },
+    "com.azure.datalake_analytics#VirtualNetworkRuleProperties": {
+      "type": "structure",
+      "members": {
+        "subnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier for the subnet"
+          }
+        },
+        "virtualNetworkRuleState": {
+          "target": "com.azure.datalake_analytics#VirtualNetworkRuleState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the VirtualNetwork Rule"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The VirtualNetwork Rule properties."
+      }
+    },
+    "com.azure.datalake_analytics#VirtualNetworkRuleState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "NETWORKSOURCEDELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NetworkSourceDeleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the VirtualNetworkRule for this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesHiveMetastoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#HiveMetastore"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of hiveMetastores associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#HiveMetastore": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#HiveMetastoreProperties",
+          "traits": {
+            "smithy.api#documentation": "The  HiveMetastoreProperties rule properties."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#HiveMetastoreProperties": {
+      "type": "structure",
+      "members": {
+        "serverUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serverUri for the Hive MetaStore"
+          }
+        },
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The databaseName for the Hive MetaStore"
+          }
+        },
+        "runtimeVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runtimeVersion for the Hive MetaStore"
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The userName for the Hive MetaStore"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The password for the Hive MetaStore",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "nestedResourceProvisioningState": {
+          "target": "com.azure.datalake_analytics#NestedResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the NestedResource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HiveMetastore  properties."
+      }
+    },
+    "com.azure.datalake_analytics#NestedResourceProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the NestedResourceProvisioning for this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesComputePoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#ComputePolicy"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of compute policies associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesStorageAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#StorageAccountInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Azure Blob Storage accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesPublicDataLakeStoreAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#DataLakeStoreAccountInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "PATCHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Patching"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "UNDELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Undeleting"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning status of the Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "tags": {
+          "target": "com.azure.datalake_analytics#AccountsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties that can be updated in an existing Data Lake Analytics account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountProperties": {
+      "type": "structure",
+      "members": {
+        "dataLakeStoreAccounts": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+          }
+        },
+        "storageAccounts": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesStorageAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Azure Blob storage accounts associated with this account."
+          }
+        },
+        "computePolicies": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesComputePoliciesList",
+          "traits": {
+            "smithy.api#documentation": "The list of compute policies associated with this account."
+          }
+        },
+        "firewallRules": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesFirewallRulesList",
+          "traits": {
+            "smithy.api#documentation": "The list of firewall rules associated with this account."
+          }
+        },
+        "firewallState": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesFirewallState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the IP address firewall for this account. Disabling the firewall does not remove existing rules, they will just be ignored until the firewall is re-enabled."
+          }
+        },
+        "firewallAllowAzureIps": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesFirewallAllowAzureIps",
+          "traits": {
+            "smithy.api#documentation": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced."
+          }
+        },
+        "newTier": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesNewTier",
+          "traits": {
+            "smithy.api#documentation": "The commitment tier to use for next month."
+          }
+        },
+        "maxJobCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported jobs running under the account at the same time."
+          }
+        },
+        "maxDegreeOfParallelism": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported degree of parallelism for this account."
+          }
+        },
+        "maxDegreeOfParallelismPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported degree of parallelism per job for this account."
+          }
+        },
+        "minPriorityPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum supported priority per job for this account."
+          }
+        },
+        "queryStoreRetention": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of days that job metadata is retained."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties to update that are associated with an underlying Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesNewTier": {
+      "type": "enum",
+      "members": {
+        "CONSUMPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consumption"
+          }
+        },
+        "COMMITMENT_100AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100AUHours"
+          }
+        },
+        "COMMITMENT_500AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500AUHours"
+          }
+        },
+        "COMMITMENT_1000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_1000AUHours"
+          }
+        },
+        "COMMITMENT_5000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_5000AUHours"
+          }
+        },
+        "COMMITMENT_10000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_10000AUHours"
+          }
+        },
+        "COMMITMENT_50000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_50000AUHours"
+          }
+        },
+        "COMMITMENT_100000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100000AUHours"
+          }
+        },
+        "COMMITMENT_500000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500000AUHours"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The commitment tier to use for next month."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesFirewallAllowAzureIps": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesFirewallState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the IP address firewall for this account. Disabling the firewall does not remove existing rules, they will just be ignored until the firewall is re-enabled."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#UpdateFirewallRuleWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of firewall rules associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateFirewallRuleWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the firewall rule to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateFirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties to use when updating a firewall rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to update a firewall rule while updating a Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesComputePoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#UpdateComputePolicyWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of compute policies associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateComputePolicyWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the compute policy to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties to use when updating a compute policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to update a compute policy while updating a Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesStorageAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#UpdateStorageAccountWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Azure Blob storage accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateStorageAccountWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the Azure Storage account to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateStorageAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The Azure Storage account properties to use when updating an Azure Storage account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to update an Azure Storage account while updating a Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#UpdateDataLakeStoreWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeStoreWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the Data Lake Store account to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#UpdateDataLakeStoreProperties",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Store account properties to use when updating a Data Lake Store account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to update a Data Lake Store account while updating a Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#UpdateDataLakeStoreProperties": {
+      "type": "structure",
+      "members": {
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The optional suffix for the Data Lake Store account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Data Lake Store account properties to use when updating a Data Lake Store account."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#AccountsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Creates the specified Data Lake Analytics account. This supplies the user with computation services for Data Lake Analytics workloads.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.datalake_analytics#AccountsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties defined by Data Lake Analytics all properties are specific to each resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.azure.datalake_analytics#AccountsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Analytics account properties to use for creating.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountProperties": {
+      "type": "structure",
+      "members": {
+        "defaultDataLakeStoreAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default Data Lake Store account associated with this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "dataLakeStoreAccounts": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "storageAccounts": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Azure Blob Storage accounts associated with this account."
+          }
+        },
+        "computePolicies": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesComputePoliciesList",
+          "traits": {
+            "smithy.api#documentation": "The list of compute policies associated with this account."
+          }
+        },
+        "firewallRules": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesFirewallRulesList",
+          "traits": {
+            "smithy.api#documentation": "The list of firewall rules associated with this account."
+          }
+        },
+        "firewallState": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesFirewallState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the IP address firewall for this account."
+          }
+        },
+        "firewallAllowAzureIps": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesFirewallAllowAzureIps",
+          "traits": {
+            "smithy.api#documentation": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced."
+          }
+        },
+        "newTier": {
+          "target": "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesNewTier",
+          "traits": {
+            "smithy.api#documentation": "The commitment tier for the next month."
+          }
+        },
+        "maxJobCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported jobs running under the account at the same time."
+          }
+        },
+        "maxDegreeOfParallelism": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported degree of parallelism for this account."
+          }
+        },
+        "maxDegreeOfParallelismPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum supported degree of parallelism per job for this account."
+          }
+        },
+        "minPriorityPerJob": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The minimum supported priority per job for this account."
+          }
+        },
+        "queryStoreRetention": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of days that job metadata is retained."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesNewTier": {
+      "type": "enum",
+      "members": {
+        "CONSUMPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consumption"
+          }
+        },
+        "COMMITMENT_100AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100AUHours"
+          }
+        },
+        "COMMITMENT_500AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500AUHours"
+          }
+        },
+        "COMMITMENT_1000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_1000AUHours"
+          }
+        },
+        "COMMITMENT_5000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_5000AUHours"
+          }
+        },
+        "COMMITMENT_10000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_10000AUHours"
+          }
+        },
+        "COMMITMENT_50000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_50000AUHours"
+          }
+        },
+        "COMMITMENT_100000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_100000AUHours"
+          }
+        },
+        "COMMITMENT_500000AUHOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commitment_500000AUHours"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The commitment tier for the next month."
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesFirewallAllowAzureIps": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced."
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesFirewallState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the IP address firewall for this account."
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#CreateFirewallRuleWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of firewall rules associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#CreateFirewallRuleWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the firewall rule to create.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#CreateOrUpdateFirewallRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The firewall rule properties to use when creating a new firewall rule.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to create a new firewall rule while creating a new Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesComputePoliciesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#CreateComputePolicyWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of compute policies associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#CreateComputePolicyWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the compute policy to create.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#CreateOrUpdateComputePolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "The compute policy properties to use when creating a new compute policy.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to create a new compute policy while creating a new Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#AddStorageAccountWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Azure Blob Storage accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#AddStorageAccountWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the Azure Storage account to add.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#AddStorageAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The Azure Storage account properties to use when adding a new Azure Storage account.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to add a new Azure Storage account while creating a new Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#AddDataLakeStoreWithAccountParameters"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Data Lake Store accounts associated with this account."
+      }
+    },
+    "com.azure.datalake_analytics#AddDataLakeStoreWithAccountParameters": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the Data Lake Store account to add.",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#AddDataLakeStoreProperties",
+          "traits": {
+            "smithy.api#documentation": "The Data Lake Store account properties to use when adding a new Data Lake Store account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters used to add a new Data Lake Store account while creating a new Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#AccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets details of the specified Data Lake Analytics account.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#AccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.datalake_analytics#AccountsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties defined by Data Lake Analytics all properties are specific to each resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Data Lake Analytics account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the first page of Data Lake Analytics accounts, if any, within a specific resource group. This includes a link to the next page, if any.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The results of the list operation."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current number of data lake analytics accounts under this subscription."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data Lake Analytics account list information."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountBasic"
+      },
+      "traits": {
+        "smithy.api#documentation": "The results of the list operation."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountBasicTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesBasic",
+          "traits": {
+            "smithy.api#documentation": "The properties defined by Data Lake Analytics all properties are specific to each resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Data Lake Analytics account object, containing all information associated with the named Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesBasic": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier associated with this Data Lake Analytics account."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesBasicProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning status of the Data Lake Analytics account."
+          }
+        },
+        "state": {
+          "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesBasicState",
+          "traits": {
+            "smithy.api#documentation": "The state of the Data Lake Analytics account."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account creation time."
+          }
+        },
+        "lastModifiedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account last modified time."
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full CName endpoint for this account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The basic account specific properties that are associated with an underlying Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesBasicState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountPropertiesBasicProvisioningState": {
+      "type": "enum",
+      "members": {
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "PATCHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Patching"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "UNDELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Undeleting"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning status of the Data Lake Analytics account."
+      }
+    },
+    "com.azure.datalake_analytics#DataLakeAnalyticsAccountBasicTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.datalake_analytics#AccountsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource group."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "OData filter. Optional."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of items to return. Optional."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of items to skip over before returning elements. Optional."
+          }
+        },
+        "_select": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$select",
+            "smithy.api#documentation": "OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional."
+          }
+        },
+        "_orderby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$orderby",
+            "smithy.api#documentation": "OrderBy clause. One or more comma-separated expressions with an optional \"asc\" (the default) or \"desc\" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional."
+          }
+        },
+        "_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "$count",
+            "smithy.api#documentation": "The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#AccountsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datalake_analytics#AccountsListRequest"
+      },
+      "output": {
+        "target": "com.azure.datalake_analytics#DataLakeAnalyticsAccountListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/accounts",
+          "code": 200,
+          "apiVersion": "2016-11-01"
+        },
+        "smithy.api#documentation": "Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This includes a link to the next page, if any.",
+        "com.distilled.openapi#apiVersion": "2016-11-01"
+      }
+    },
+    "com.azure.datalake_analytics#AccountsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "OData filter. Optional."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of items to return. Optional."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of items to skip over before returning elements. Optional."
+          }
+        },
+        "_select": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$select",
+            "smithy.api#documentation": "OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional."
+          }
+        },
+        "_orderby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$orderby",
+            "smithy.api#documentation": "OrderBy clause. One or more comma-separated expressions with an optional \"asc\" (the default) or \"desc\" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional."
+          }
+        },
+        "_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "$count",
+            "smithy.api#documentation": "The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datalake_analytics#DatalakeAnalytics": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.datalake_analytics#AccountsCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.datalake_analytics#LocationsGetCapability"
+        },
+        {
+          "target": "com.azure.datalake_analytics#OperationsList"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesDelete"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesGet"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesListByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ComputePoliciesDelete"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ComputePoliciesUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ComputePoliciesGet"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ComputePoliciesListByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsListSasTokens"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsGetStorageContainer"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsListStorageContainers"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsDelete"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsAdd"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsGet"
+        },
+        {
+          "target": "com.azure.datalake_analytics#StorageAccountsListByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountsDelete"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountsAdd"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountsGet"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DataLakeStoreAccountsListByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AccountsDelete"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AccountsUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AccountsCreate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AccountsGet"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AccountsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AccountsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure DatalakeAnalytics",
+        "smithy.api#documentation": "Azure DatalakeAnalytics API — merged from the datalake-analytics resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

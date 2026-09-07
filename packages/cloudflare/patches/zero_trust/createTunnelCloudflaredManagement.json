@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#TunnelsCloudflaredManagementCreate with distilled cloudflare/zero-trust createTunnelCloudflaredManagement",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredManagementCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateTunnelCloudflaredManagement"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredManagementCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateTunnelCloudflaredManagementRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateTunnelCloudflaredManagement/input/target",
+      "value": "com.cloudflare.zero_trust#CreateTunnelCloudflaredManagementRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredManagementCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateTunnelCloudflaredManagementResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateTunnelCloudflaredManagement/output/target",
+      "value": "com.cloudflare.zero_trust#CreateTunnelCloudflaredManagementResponse"
+    }
+  ]
+}

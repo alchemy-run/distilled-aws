@@ -1,0 +1,2728 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "merchantapi",
+    "version": "reports_v1",
+    "title": "Merchant API",
+    "baseUrl": "https://merchantapi.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.merchantapi_reports_v1#IssueSeverityPerReportingContext": {
+      "type": "structure",
+      "members": {
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_reports_v1#IssueSeverityPerReportingContextReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting context the issue applies to."
+          }
+        },
+        "disapprovedCountries": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of disapproved countries in the reporting context, represented in ISO 3166 format."
+          }
+        },
+        "demotedCountries": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of demoted countries in the reporting context, represented in ISO 3166 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issue severity per reporting context."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#IssueSeverityPerReportingContextReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#StatusPerReportingContext": {
+      "type": "structure",
+      "members": {
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_reports_v1#StatusPerReportingContextReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting context the status applies to."
+          }
+        },
+        "disapprovedCountries": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of disapproved countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`."
+          }
+        },
+        "approvedCountries": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of approved countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`."
+          }
+        },
+        "pendingCountries": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of pending countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the product for a specific reporting context. Equivalent to `DestinationStatus` in Products API."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#StatusPerReportingContextReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductChange": {
+      "type": "structure",
+      "members": {
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductChangeReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersBrandView": {
+      "type": "structure",
+      "members": {
+        "reportGranularity": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersBrandViewReportGranularityEnum",
+          "traits": {
+            "smithy.api#documentation": "Granularity of the report. The ranking can be done over a week or a month timeframe. Required in the `SELECT` clause. Condition on `report_granularity` is required in the `WHERE` clause."
+          }
+        },
+        "previousRank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Popularity rank in the previous week or month."
+          }
+        },
+        "relativeDemandChange": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersBrandViewRelativeDemandChangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Change in the estimated demand. Whether it rose, sank or remained flat."
+          }
+        },
+        "rank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Popularity of the brand on Ads and organic surfaces, in the selected category and country, based on the estimated number of units sold."
+          }
+        },
+        "reportDate": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Report date. The value of this field can only be one of the following: * The first day of the week (Monday) for weekly reports, * The first day of the month for monthly reports. Required in the `SELECT` clause. If a `WHERE` condition on `report_date` is not specified in the query, the latest available weekly or monthly report is returned."
+          }
+        },
+        "relativeDemand": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersBrandViewRelativeDemandEnum",
+          "traits": {
+            "smithy.api#documentation": "Estimated demand in relation to the brand with the highest popularity rank in the same category and country."
+          }
+        },
+        "reportCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country where the ranking is calculated. Represented in the ISO 3166 format. Required in the `SELECT` clause. Condition on `report_country_code` is required in the `WHERE` clause."
+          }
+        },
+        "reportCategoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google product category ID to calculate the ranking for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. If a `WHERE` condition on `report_category_id` is not specified in the query, rankings for all top-level categories are returned."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the brand."
+          }
+        },
+        "previousRelativeDemand": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersBrandViewPreviousRelativeDemandEnum",
+          "traits": {
+            "smithy.api#documentation": "Estimated demand in relation to the brand with the highest popularity rank in the same category and country in the previous week or month."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `best_sellers_brand_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top brands. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersBrandViewReportGranularityEnum": {
+      "type": "enum",
+      "members": {
+        "REPORT_GRANULARITY_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTHLY"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersBrandViewRelativeDemandChangeEnum": {
+      "type": "enum",
+      "members": {
+        "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED"
+          }
+        },
+        "SINKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SINKER"
+          }
+        },
+        "FLAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLAT"
+          }
+        },
+        "RISER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RISER"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersBrandViewRelativeDemandEnum": {
+      "type": "enum",
+      "members": {
+        "RELATIVE_DEMAND_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
+          }
+        },
+        "VERY_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_LOW"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "VERY_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersBrandViewPreviousRelativeDemandEnum": {
+      "type": "enum",
+      "members": {
+        "RELATIVE_DEMAND_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
+          }
+        },
+        "VERY_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_LOW"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "VERY_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityCompetitorView": {
+      "type": "structure",
+      "members": {
+        "higherPositionRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Higher position rate] (https://support.google.com/merchants/answer/11366442#zippy=%2Chigher-position-rate) shows how often a competitor’s offer got placed in a higher position on the page than your offer. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "isYourDomain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this row contains data for your domain. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "rank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Position of the domain in the similar businesses ranking for the selected keys (`date`, `report_category_id`, `report_country_code`, `traffic_source`) based on impressions. 1 is the highest. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "relativeVisibility": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Relative visibility] (https://support.google.com/merchants/answer/11366442#zippy=%2Crelative-visibility) shows how often your competitors’ offers are shown compared to your offers. In other words, this is the number of displayed impressions of a competitor retailer divided by the number of your displayed impressions during a selected time range for a selected product category and country. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "trafficSource": {
+          "target": "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityCompetitorViewTrafficSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Traffic source of impressions. Required in the `SELECT` clause."
+          }
+        },
+        "adsOrganicRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cads-free-ratio) shows how often the domain receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "date": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Date of this row. A condition on `date` is required in the `WHERE` clause."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your competitor or your domain, if 'is_your_domain' is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "pageOverlapRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Page overlap rate] (https://support.google.com/merchants/answer/11366442#zippy=%2Cpage-overlap-rate) shows how frequently competing retailers’ offers are shown together with your offers on the same page. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "reportCategoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google product category ID to calculate the report for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. A condition on `report_category_id` is required in the `WHERE` clause."
+          }
+        },
+        "reportCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country where impressions appeared. Required in the `SELECT` clause. A condition on `report_country_code` is required in the `WHERE` clause."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `competitive_visibility_competitor_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with businesses with similar visibility. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityCompetitorViewTrafficSourceEnum": {
+      "type": "enum",
+      "members": {
+        "TRAFFIC_SOURCE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_ENUM_UNSPECIFIED"
+          }
+        },
+        "ORGANIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIC"
+          }
+        },
+        "ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductPerformanceView": {
+      "type": "structure",
+      "members": {
+        "productTypeL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product type (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment."
+          }
+        },
+        "customLabel4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 4 for custom grouping of products. Segment."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brand of the product. Segment."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the product. Segment."
+          }
+        },
+        "categoryL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product category (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment."
+          }
+        },
+        "categoryL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product category (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment."
+          }
+        },
+        "categoryL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product category (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment."
+          }
+        },
+        "date": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Date in the merchant timezone to which metrics apply. Segment. Condition on `date` is required in the `WHERE` clause."
+          }
+        },
+        "productTypeL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product type (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment."
+          }
+        },
+        "impressions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of times merchant's products are shown. Metric."
+          }
+        },
+        "categoryL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product category (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment."
+          }
+        },
+        "conversionValue": {
+          "target": "com.gcp.merchantapi_reports_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Value of conversions attributed to the product, reported on the conversion date. Metric. Available only for the `FREE` traffic source."
+          }
+        },
+        "productTypeL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product type (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment."
+          }
+        },
+        "customerCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Code of the country where the customer is located at the time of the event. Represented in the ISO 3166 format. Segment. If the customer country cannot be determined, a special 'ZZ' code is returned."
+          }
+        },
+        "clicks": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of clicks. Metric."
+          }
+        },
+        "productTypeL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product type (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment."
+          }
+        },
+        "customLabel0": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 0 for custom grouping of products. Segment."
+          }
+        },
+        "conversions": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of conversions attributed to the product, reported on the conversion date. Depending on the attribution model, a conversion might be distributed across multiple clicks, where each click gets its own credit assigned. This metric is a sum of all such credits. Metric. Available only for the `FREE` traffic source."
+          }
+        },
+        "customLabel1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 1 for custom grouping of products. Segment."
+          }
+        },
+        "conversionRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of conversions divided by the number of clicks, reported on the impression date. Metric. Available only for the `FREE` traffic source."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchant-provided id of the product. Segment."
+          }
+        },
+        "productTypeL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product type (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy. Segment."
+          }
+        },
+        "storeType": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductPerformanceViewStoreTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Store type to which metrics apply. Can be `ONLINE_STORE` or `LOCAL_STORES`. Segment. For `LOCAL_STORES` store type, further segmentation by a specific store is not available."
+          }
+        },
+        "customLabel2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 2 for custom grouping of products. Segment."
+          }
+        },
+        "clickThroughRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Click-through rate - the number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions). Metric."
+          }
+        },
+        "marketingMethod": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductPerformanceViewMarketingMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Marketing method to which metrics apply. Segment."
+          }
+        },
+        "customLabel3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom label 3 for custom grouping of products. Segment."
+          }
+        },
+        "week": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "First day of the week (Monday) of the metrics date in the merchant timezone. Segment."
+          }
+        },
+        "categoryL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Product category (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy. Segment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `product_performance_view` table. Product performance data for your account, including performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `offer_id`). Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the impression. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductPerformanceViewStoreTypeEnum": {
+      "type": "enum",
+      "members": {
+        "STORE_TYPE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORE_TYPE_ENUM_UNSPECIFIED"
+          }
+        },
+        "ONLINE_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_STORE"
+          }
+        },
+        "LOCAL_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_STORES"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductPerformanceViewMarketingMethodEnum": {
+      "type": "enum",
+      "members": {
+        "MARKETING_METHOD_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MARKETING_METHOD_ENUM_UNSPECIFIED"
+          }
+        },
+        "ORGANIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIC"
+          }
+        },
+        "ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductStatusChangeMessage": {
+      "type": "structure",
+      "members": {
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+          }
+        },
+        "managingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+          }
+        },
+        "changes": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductChangeList",
+          "traits": {
+            "smithy.api#documentation": "A message to describe the change that happened to the product"
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+          }
+        },
+        "attribute": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductStatusChangeMessageAttributeEnum",
+          "traits": {
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reports_v1#ProductChange"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductStatusChangeMessageAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductStatusChangeMessageResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT"
+          }
+        },
+        "ACCOUNT_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SERVICE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ItemIssueType": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error code of the issue, equivalent to the `code` of [Product issues](https://developers.google.com/shopping-content/guides/product-issues)."
+          }
+        },
+        "canonicalAttribute": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Canonical attribute name for attribute-specific issues."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issue type."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterView": {
+      "type": "structure",
+      "members": {
+        "categoryL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (5th level) of the product cluster, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "reportCategoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google product category ID to calculate the ranking for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. If a `WHERE` condition on `report_category_id` is not specified in the query, rankings for all top-level categories are returned."
+          }
+        },
+        "relativeDemand": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewRelativeDemandEnum",
+          "traits": {
+            "smithy.api#documentation": "Estimated demand in relation to the product cluster with the highest popularity rank in the same category and country."
+          }
+        },
+        "reportDate": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Report date. The value of this field can only be one of the following: * The first day of the week (Monday) for weekly reports, * The first day of the month for monthly reports. Required in the `SELECT` clause. If a `WHERE` condition on `report_date` is not specified in the query, the latest available weekly or monthly report is returned."
+          }
+        },
+        "reportGranularity": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewReportGranularityEnum",
+          "traits": {
+            "smithy.api#documentation": "Granularity of the report. The ranking can be done over a week or a month timeframe. Required in the `SELECT` clause. Condition on `report_granularity` is required in the `WHERE` clause."
+          }
+        },
+        "relativeDemandChange": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewRelativeDemandChangeEnum",
+          "traits": {
+            "smithy.api#documentation": "Change in the estimated demand. Whether it rose, sank or remained flat."
+          }
+        },
+        "categoryL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (3rd level) of the product cluster, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "previousRelativeDemand": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewPreviousRelativeDemandEnum",
+          "traits": {
+            "smithy.api#documentation": "Estimated demand in relation to the product cluster with the highest popularity rank in the same category and country in the previous week or month."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the product cluster."
+          }
+        },
+        "categoryL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (4th level) of the product cluster, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brand of the product cluster."
+          }
+        },
+        "variantGtins": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "GTINs of example variants of the product cluster."
+          }
+        },
+        "reportCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country where the ranking is calculated. Represented in the ISO 3166 format. Required in the `SELECT` clause. Condition on `report_country_code` is required in the `WHERE` clause."
+          }
+        },
+        "categoryL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (1st level) of the product cluster, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "categoryL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (2nd level) of the product cluster, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "inventoryStatus": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewInventoryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the product cluster is `IN_STOCK` in your product data source in at least one of the countries, `OUT_OF_STOCK` in your product data source in all countries, or `NOT_IN_INVENTORY` at all. The field doesn't take the Best sellers report country filter into account."
+          }
+        },
+        "brandInventoryStatus": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewBrandInventoryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether there is at least one product of the brand currently `IN_STOCK` in your product data source in at least one of the countries, all products are `OUT_OF_STOCK` in your product data source in all countries, or `NOT_IN_INVENTORY`. The field doesn't take the Best sellers report country filter into account."
+          }
+        },
+        "rank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Popularity of the product cluster on Ads and organic surfaces, in the selected category and country, based on the estimated number of units sold."
+          }
+        },
+        "previousRank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Popularity rank in the previous week or month."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `best_sellers_product_cluster_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top product clusters. A product cluster is a grouping for different offers and variants that represent the same product, for example, Google Pixel 7. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewRelativeDemandEnum": {
+      "type": "enum",
+      "members": {
+        "RELATIVE_DEMAND_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
+          }
+        },
+        "VERY_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_LOW"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "VERY_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewReportGranularityEnum": {
+      "type": "enum",
+      "members": {
+        "REPORT_GRANULARITY_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTHLY"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewRelativeDemandChangeEnum": {
+      "type": "enum",
+      "members": {
+        "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED"
+          }
+        },
+        "SINKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SINKER"
+          }
+        },
+        "FLAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLAT"
+          }
+        },
+        "RISER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RISER"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewPreviousRelativeDemandEnum": {
+      "type": "enum",
+      "members": {
+        "RELATIVE_DEMAND_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
+          }
+        },
+        "VERY_LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_LOW"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "VERY_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERY_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewInventoryStatusEnum": {
+      "type": "enum",
+      "members": {
+        "INVENTORY_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVENTORY_STATUS_UNSPECIFIED"
+          }
+        },
+        "IN_STOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_STOCK"
+          }
+        },
+        "OUT_OF_STOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUT_OF_STOCK"
+          }
+        },
+        "NOT_IN_INVENTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IN_INVENTORY"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BestSellersProductClusterViewBrandInventoryStatusEnum": {
+      "type": "enum",
+      "members": {
+        "INVENTORY_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVENTORY_STATUS_UNSPECIFIED"
+          }
+        },
+        "IN_STOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_STOCK"
+          }
+        },
+        "OUT_OF_STOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUT_OF_STOCK"
+          }
+        },
+        "NOT_IN_INVENTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IN_INVENTORY"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#Price": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)."
+          }
+        },
+        "amountMicros": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The price represented as a number in micros (1 million micros is an equivalent to one's currency standard unit, for example, 1 USD = 1000000 micros)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The price represented as a number and currency."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityTopMerchantView": {
+      "type": "structure",
+      "members": {
+        "higherPositionRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Higher position rate] (https://support.google.com/merchants/answer/11366442#zippy=%2Chigher-position-rate) shows how often a competitor’s offer got placed in a higher position on the page than your offer. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "trafficSource": {
+          "target": "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityTopMerchantViewTrafficSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Traffic source of impressions. Required in the `SELECT` clause."
+          }
+        },
+        "rank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Position of the domain in the top merchants ranking for the selected keys (`date`, `report_category_id`, `report_country_code`, `traffic_source`) based on impressions. 1 is the highest. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "isYourDomain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this row contains data for your domain. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "date": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Date of this row. Cannot be selected in the `SELECT` clause. A condition on `date` is required in the `WHERE` clause."
+          }
+        },
+        "adsOrganicRatio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cads-free-ratio) shows how often the domain receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "reportCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country where impressions appeared. Required in the `SELECT` clause. A condition on `report_country_code` is required in the `WHERE` clause."
+          }
+        },
+        "reportCategoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google product category ID to calculate the report for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. A condition on `report_category_id` is required in the `WHERE` clause."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your competitor or your domain, if 'is_your_domain' is true. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "pageOverlapRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "[Page overlap rate] (https://support.google.com/merchants/answer/11366442#zippy=%2Cpage-overlap-rate) shows how frequently competing retailers’ offers are shown together with your offers on the same page. Cannot be filtered on in the 'WHERE' clause."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `competitive_visibility_top_merchant_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with business with highest visibility. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityTopMerchantViewTrafficSourceEnum": {
+      "type": "enum",
+      "members": {
+        "TRAFFIC_SOURCE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_ENUM_UNSPECIFIED"
+          }
+        },
+        "ORGANIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIC"
+          }
+        },
+        "ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ReportRow": {
+      "type": "structure",
+      "members": {
+        "competitiveVisibilityTopMerchantView": {
+          "target": "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityTopMerchantView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `competitive_visibility_top_merchant_view` table."
+          }
+        },
+        "priceInsightsProductView": {
+          "target": "com.gcp.merchantapi_reports_v1#PriceInsightsProductView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `price_insights_product_view` table."
+          }
+        },
+        "competitiveVisibilityCompetitorView": {
+          "target": "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityCompetitorView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `competitive_visibility_competitor_view` table."
+          }
+        },
+        "competitiveVisibilityBenchmarkView": {
+          "target": "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityBenchmarkView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `competitive_visibility_benchmark_view` table."
+          }
+        },
+        "priceCompetitivenessProductView": {
+          "target": "com.gcp.merchantapi_reports_v1#PriceCompetitivenessProductView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `price_competitiveness_product_view` table."
+          }
+        },
+        "nonProductPerformanceView": {
+          "target": "com.gcp.merchantapi_reports_v1#NonProductPerformanceView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `non_product_performance_view` table."
+          }
+        },
+        "productView": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `product_view` table."
+          }
+        },
+        "bestSellersBrandView": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersBrandView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `best_sellers_brand_view` table."
+          }
+        },
+        "productPerformanceView": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductPerformanceView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `product_performance_view` table."
+          }
+        },
+        "bestSellersProductClusterView": {
+          "target": "com.gcp.merchantapi_reports_v1#BestSellersProductClusterView",
+          "traits": {
+            "smithy.api#documentation": "Fields available for query in `best_sellers_product_cluster_view` table."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result row returned from the search query. Only the message corresponding to the queried table is populated in the response. Within the populated message, only the fields requested explicitly in the query are populated."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#PriceInsightsProductView": {
+      "type": "structure",
+      "members": {
+        "predictedConversionsChangeFraction": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Predicted change in conversions as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in conversions)."
+          }
+        },
+        "predictedImpressionsChangeFraction": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Predicted change in impressions as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in impressions."
+          }
+        },
+        "productTypeL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (2nd level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "suggestedPrice": {
+          "target": "com.gcp.merchantapi_reports_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Latest suggested price for the product."
+          }
+        },
+        "price": {
+          "target": "com.gcp.merchantapi_reports_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Current price of the product."
+          }
+        },
+        "predictedClicksChangeFraction": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks."
+          }
+        },
+        "categoryL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (5th level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "productTypeL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (3rd level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "productTypeL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (1st level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "categoryL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (1st level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "categoryL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (2nd level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchant-provided id of the product."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the product."
+          }
+        },
+        "categoryL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (4th level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REST ID of the product, in the form of `channel~languageCode~feedLabel~offerId`. Can be used to join data with the `product_view` table. Required in the `SELECT` clause."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brand of the product."
+          }
+        },
+        "effectiveness": {
+          "target": "com.gcp.merchantapi_reports_v1#PriceInsightsProductViewEffectivenessEnum",
+          "traits": {
+            "smithy.api#documentation": "The predicted effectiveness of applying the price suggestion, bucketed."
+          }
+        },
+        "productTypeL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (4th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "categoryL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (3rd level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "productTypeL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (5th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `price_insights_product_view` table. [Price insights](https://support.google.com/merchants/answer/11916926) report. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#PriceInsightsProductViewEffectivenessEnum": {
+      "type": "enum",
+      "members": {
+        "EFFECTIVENESS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EFFECTIVENESS_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#NonProductPerformanceView": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Date in the merchant timezone to which metrics apply. Segment. Condition on `date` is required in the `WHERE` clause."
+          }
+        },
+        "clicks": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of clicks on images and online store links leading to your non-product pages. Metric."
+          }
+        },
+        "week": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "First day of the week (Monday) of the metrics date in the merchant timezone. Segment."
+          }
+        },
+        "impressions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of times images and online store links leading to your non-product pages were shown. Metric."
+          }
+        },
+        "clickThroughRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Click-through rate - the number of clicks (`clicks`) divided by the number of impressions (`impressions`) of images and online store links leading to your non-product pages. Metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `non_product_performance_view` table. Performance data on images and online store links leading to your non-product pages. This includes performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `date`). Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#SearchRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Token of the page to retrieve. If not specified, the first page of results is returned. In order to request the next page of results, the value obtained from `next_page_token` in the previous response should be used."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of `ReportRows` to retrieve in a single page. Defaults to 1000. Values above 100,000 are coerced to 100,000."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for the `ReportService.Search` method."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityBenchmarkView": {
+      "type": "structure",
+      "members": {
+        "reportCategoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google product category ID to calculate the report for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. A condition on `report_category_id` is required in the `WHERE` clause."
+          }
+        },
+        "trafficSource": {
+          "target": "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityBenchmarkViewTrafficSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Traffic source of impressions. Required in the `SELECT` clause."
+          }
+        },
+        "yourDomainVisibilityTrend": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Change in visibility based on impressions for your domain with respect to the start of the selected time range (or first day with non-zero impressions). Cannot be filtered on in the 'WHERE' clause."
+          }
+        },
+        "reportCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country where impressions appeared. Required in the `SELECT` clause. A condition on `report_country_code` is required in the `WHERE` clause."
+          }
+        },
+        "date": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Date of this row. Required in the `SELECT` clause. A condition on `date` is required in the `WHERE` clause."
+          }
+        },
+        "categoryBenchmarkVisibilityTrend": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Change in visibility based on impressions with respect to the start of the selected time range (or first day with non-zero impressions) for a combined set of merchants with highest visibility approximating the market. Cannot be filtered on in the 'WHERE' clause."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `competitive_visibility_benchmark_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with the category benchmark. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#CompetitiveVisibilityBenchmarkViewTrafficSourceEnum": {
+      "type": "enum",
+      "members": {
+        "TRAFFIC_SOURCE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAFFIC_SOURCE_ENUM_UNSPECIFIED"
+          }
+        },
+        "ORGANIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORGANIC"
+          }
+        },
+        "ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductView": {
+      "type": "structure",
+      "members": {
+        "categoryL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (3rd level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "productTypeL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (4th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "productTypeL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (5th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "expirationDate": {
+          "target": "com.gcp.merchantapi_reports_v1#Merchantapi_Date",
+          "traits": {
+            "smithy.api#documentation": "Expiration date for the product, specified on insertion."
+          }
+        },
+        "itemGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Item group id provided by the merchant for grouping variants together."
+          }
+        },
+        "categoryL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (1st level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "categoryL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (2nd level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REST ID of the product, in the form of `channel~languageCode~feedLabel~offerId`. Merchant API methods that operate on products take this as their `name` parameter. Required in the `SELECT` clause."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brand of the product."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the product."
+          }
+        },
+        "categoryL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (4th level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the merchant created the product in timestamp seconds."
+          }
+        },
+        "availability": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Availability](https://support.google.com/merchants/answer/6324448) of the product."
+          }
+        },
+        "feedLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Feed label of the product."
+          }
+        },
+        "productTypeL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (3rd level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "gtin": {
+          "target": "com.gcp.merchantapi_reports_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of Global Trade Item Numbers (GTINs) of the product."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Condition](https://support.google.com/merchants/answer/6324469) of the product."
+          }
+        },
+        "shippingLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Normalized [shipping label](https://support.google.com/merchants/answer/6324504) specified in the data source."
+          }
+        },
+        "productTypeL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (2nd level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "price": {
+          "target": "com.gcp.merchantapi_reports_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Product price. Absent if the information about the price of the product is not available."
+          }
+        },
+        "aggregatedReportingContextStatus": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductViewAggregatedReportingContextStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregated status across all reporting contexts. Reporting contexts included in the computation of the aggregated status can be restricted using a filter on the `reporting_context` field."
+          }
+        },
+        "statusPerReportingContext": {
+          "target": "com.gcp.merchantapi_reports_v1#StatusPerReportingContextList",
+          "traits": {
+            "smithy.api#documentation": "Detailed product status per reporting context. Reporting contexts included in this list can be restricted using a filter on the `reporting_context` field. Equivalent to `ProductStatus.destination_statuses` in Products API. **This field cannot be used for sorting or filtering the results.**"
+          }
+        },
+        "itemIssues": {
+          "target": "com.gcp.merchantapi_reports_v1#ItemIssueList",
+          "traits": {
+            "smithy.api#documentation": "List of item issues for the product. **This field cannot be used for sorting the results.** **Only selected attributes of this field (for example, `item_issues.severity.aggregated_severity`) can be used for filtering the results.**"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductViewReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting context to restrict the query to. Restricts the reporting contexts returned in `status_per_reporting_context` and `item_issues`, and used to compute `aggregated_reporting_context_status`. **This field can only be used in the `WHERE` clause and cannot be selected in the `SELECT` clause.**"
+          }
+        },
+        "productTypeL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (1st level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchant-provided id of the product."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Language code of the product in BCP 47 format."
+          }
+        },
+        "channel": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductViewChannelEnum",
+          "traits": {
+            "smithy.api#documentation": "Channel of the product. Can be `ONLINE` or `LOCAL`."
+          }
+        },
+        "clickPotential": {
+          "target": "com.gcp.merchantapi_reports_v1#ProductViewClickPotentialEnum",
+          "traits": {
+            "smithy.api#documentation": "Estimated performance potential compared to highest performing products of the merchant."
+          }
+        },
+        "categoryL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (5th level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "clickPotentialRank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Normalized click potential of the product. Values range from 1 to 1000, where 1 is the highest click potential and 1000 is the theoretical lowest."
+          }
+        },
+        "thumbnailLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the processed image of the product, hosted on the Google infrastructure."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductViewAggregatedReportingContextStatusEnum": {
+      "type": "enum",
+      "members": {
+        "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED"
+          }
+        },
+        "NOT_ELIGIBLE_OR_DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ELIGIBLE_OR_DISAPPROVED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "ELIGIBLE_LIMITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELIGIBLE_LIMITED"
+          }
+        },
+        "ELIGIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELIGIBLE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#StatusPerReportingContextList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reports_v1#StatusPerReportingContext"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ItemIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reports_v1#ItemIssue"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductViewReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductViewChannelEnum": {
+      "type": "enum",
+      "members": {
+        "CHANNEL_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHANNEL_ENUM_UNSPECIFIED"
+          }
+        },
+        "ONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE"
+          }
+        },
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ProductViewClickPotentialEnum": {
+      "type": "enum",
+      "members": {
+        "CLICK_POTENTIAL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLICK_POTENTIAL_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#PriceCompetitivenessProductView": {
+      "type": "structure",
+      "members": {
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchant-provided id of the product."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the product."
+          }
+        },
+        "categoryL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (4th level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REST ID of the product, in the form of `channel~languageCode~feedLabel~offerId`. Can be used to join data with the `product_view` table. Required in the `SELECT` clause."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brand of the product."
+          }
+        },
+        "productTypeL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (1st level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "reportCountryCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country of the price benchmark. Represented in the ISO 3166 format. Required in the `SELECT` clause."
+          }
+        },
+        "categoryL1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (1st level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "categoryL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (2nd level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "productTypeL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (5th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "productTypeL4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (4th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "categoryL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (3rd level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "productTypeL3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (3rd level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        },
+        "benchmarkPrice": {
+          "target": "com.gcp.merchantapi_reports_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Latest available price benchmark for the product's catalog in the benchmark country."
+          }
+        },
+        "categoryL5": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product category (5th level) in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436)."
+          }
+        },
+        "price": {
+          "target": "com.gcp.merchantapi_reports_v1#Price",
+          "traits": {
+            "smithy.api#documentation": "Current price of the product."
+          }
+        },
+        "productTypeL2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product type (2nd level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fields available for query in `price_competitiveness_product_view` table. [Price competitiveness](https://support.google.com/merchants/answer/9626903) report. Values are only set for fields requested explicitly in the request's search query."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#SearchResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.gcp.merchantapi_reports_v1#ReportRowList",
+          "traits": {
+            "smithy.api#documentation": "Rows that matched the search query."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token which can be sent as `page_token` to retrieve the next page. If omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the `ReportService.Search` method."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ReportRowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reports_v1#ReportRow"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ItemIssue": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.merchantapi_reports_v1#ItemIssueType",
+          "traits": {
+            "smithy.api#documentation": "Item issue type."
+          }
+        },
+        "resolution": {
+          "target": "com.gcp.merchantapi_reports_v1#ItemIssueResolutionEnum",
+          "traits": {
+            "smithy.api#documentation": "Item issue resolution."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.merchantapi_reports_v1#ItemIssueSeverity",
+          "traits": {
+            "smithy.api#documentation": "Item issue severity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Item issue associated with the product."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ItemIssueResolutionEnum": {
+      "type": "enum",
+      "members": {
+        "ITEM_ISSUE_RESOLUTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEM_ISSUE_RESOLUTION_UNSPECIFIED"
+          }
+        },
+        "MERCHANT_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_ACTION"
+          }
+        },
+        "PENDING_PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING_PROCESSING"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ItemIssueSeverity": {
+      "type": "structure",
+      "members": {
+        "severityPerReportingContext": {
+          "target": "com.gcp.merchantapi_reports_v1#IssueSeverityPerReportingContextList",
+          "traits": {
+            "smithy.api#documentation": "Issue severity per reporting context. Reporting contexts included in this list can be restricted using a filter on the `reporting_context` field."
+          }
+        },
+        "aggregatedSeverity": {
+          "target": "com.gcp.merchantapi_reports_v1#ItemIssueSeverityAggregatedSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregated severity of the issue for all reporting contexts it affects. Reporting contexts included in the computation of the aggregated severity can be restricted using a filter on the `reporting_context` field. **This field can be used for filtering the results.**"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the issue affects the serving of the product."
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#IssueSeverityPerReportingContextList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reports_v1#IssueSeverityPerReportingContext"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#ItemIssueSeverityAggregatedSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED"
+          }
+        },
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISAPPROVED"
+          }
+        },
+        "DEMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMOTED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#Merchantapi_Date": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#SearchAccountsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the account making the call. Must be a standalone account or a subaccount of an advanced account. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_reports_v1#SearchRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_reports_v1#SearchAccountsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_reports_v1#SearchAccountsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_reports_v1#SearchResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_reports_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_reports_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_reports_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_reports_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "reports/v1/{+parent}/reports:search"
+        },
+        "smithy.api#documentation": "Retrieves a report defined by a search query. The response might contain fewer rows than specified by `page_size`. Rely on `next_page_token` to determine if there are more rows to be requested."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align queues#GetMetrics with distilled cloudflare/queues getMetricsQueue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#GetMetrics",
+      "path": "/shapes/com.cloudflare.queues#GetMetricsQueue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#GetMetricsRequest",
+      "path": "/shapes/com.cloudflare.queues#GetMetricsQueueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#GetMetricsQueue/input/target",
+      "value": "com.cloudflare.queues#GetMetricsQueueRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#GetMetricsResponse",
+      "path": "/shapes/com.cloudflare.queues#GetMetricsQueueResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#GetMetricsQueue/output/target",
+      "value": "com.cloudflare.queues#GetMetricsQueueResponse"
+    }
+  ]
+}

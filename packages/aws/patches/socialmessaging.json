@@ -1,0 +1,12 @@
+{
+  "structures": {
+    "WhatsAppSignupCallback": {
+      "members": {
+        "accessToken": { "sensitive": true }
+      }
+    }
+  },
+  "operations": {
+    "sendWhatsAppMessage": { "errors": ["AccessDeniedByMetaException"] }
+  }
+}

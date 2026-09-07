@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpTimeseriesGroupsHttpProtocol with distilled cloudflare/radar httpProtocolHttpTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsHttpProtocol",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsHttpProtocolRequest",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#HttpProtocolHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsHttpProtocolResponse",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpProtocolHttpTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#HttpProtocolHttpTimeseriesGroupResponse"
+    }
+  ]
+}

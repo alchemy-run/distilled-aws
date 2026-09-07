@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#ConnectorsEventsGet with distilled cloudflare/magic-transit getConnectorEvent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsEventsGet",
+      "path": "/shapes/com.cloudflare.magic_transit#GetConnectorEvent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsEventsGetRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#GetConnectorEventRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetConnectorEvent/input/target",
+      "value": "com.cloudflare.magic_transit#GetConnectorEventRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsEventsGetResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#GetConnectorEventResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetConnectorEvent/output/target",
+      "value": "com.cloudflare.magic_transit#GetConnectorEventResponse"
+    }
+  ]
+}

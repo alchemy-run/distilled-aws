@@ -1,0 +1,35 @@
+{
+  "description": "Make webhook last_sent_* fields nullable - API returns null when webhook hasn't been triggered yet",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseWebhook/properties/last_sent_result/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseWebhook/properties/last_sent_success/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/DatabaseWebhook/properties/last_sent_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/data/items/properties/last_sent_result/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/data/items/properties/last_sent_success/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedDatabaseWebhook/properties/data/items/properties/last_sent_at/x-nullable",
+      "value": true
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "description": "Add missing error responses to database operations: NotFound and Forbidden for listDatabases/getDatabase, plus UnprocessableEntity for createDatabase",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1organizations~1{organization}~1databases/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity"
+      }
+    }
+  ]
+}

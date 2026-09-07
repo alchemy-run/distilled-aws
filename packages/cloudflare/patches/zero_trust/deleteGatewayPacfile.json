@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayPacfilesDelete with distilled cloudflare/zero-trust deleteGatewayPacfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayPacfilesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayPacfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayPacfilesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayPacfileRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayPacfile/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayPacfileRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayPacfilesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayPacfileResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayPacfile/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayPacfileResponse"
+    }
+  ]
+}

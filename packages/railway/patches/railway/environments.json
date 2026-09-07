@@ -1,0 +1,30 @@
+{
+  "description": "Select only Environment identity scalars on the `environments` connection. maxDepth 2 pulls canvasGroupRefs/meta; nuke's Volume/Variable/Group/CloudAgent list()s each walk every owned project's environments.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#EnvironmentsRequest/traits/com.railway.graphql#operation/query",
+      "value": "query environments($after: String, $before: String, $first: Int, $isEphemeral: Boolean, $last: Int, $projectId: String!) {\n  environments(after: $after, before: $before, first: $first, isEphemeral: $isEphemeral, last: $last, projectId: $projectId) {\n    edges {\n      cursor\n      node {\n        createdAt\n        deletedAt\n        id\n        isEphemeral\n        name\n        projectId\n        updatedAt\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#EnvironmentsResponseEdgesItemNode/members/canAccess"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#EnvironmentsResponseEdgesItemNode/members/canvasGroupRefs"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#EnvironmentsResponseEdgesItemNode/members/configEtag"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#EnvironmentsResponseEdgesItemNode/members/meta"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#EnvironmentsResponseEdgesItemNode/members/unmergedChangesCount"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "description": "CVE-2021-44228 output option keeps its v0 member name (wire CVE-2021-44228)",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForAccountResultItemOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForAccountResultItemOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForAccountResultItemOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForZoneResultItemOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForZoneResultItemOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForZoneResultItemOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForAccountRequestOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForAccountRequestOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForAccountRequestOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForAccountResponseOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForAccountResponseOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForAccountResponseOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForZoneRequestOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForZoneRequestOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForZoneRequestOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsCreateForZoneResponseOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForZoneResponseOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsCreateForZoneResponseOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForAccountResponseOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsGetForAccountResponseOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsGetForAccountResponseOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForZoneResponseOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsGetForZoneResponseOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsGetForZoneResponseOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsListForAccountResultItemOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsListForAccountResultItemOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsListForAccountResultItemOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsListForZoneResultItemOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsListForZoneResultItemOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsListForZoneResultItemOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountRequestOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountRequestOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountRequestOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountResponseOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountResponseOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountResponseOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneRequestOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneRequestOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneRequestOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneResponseOutputOptions/members/CVE_2021_44228",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneResponseOutputOptions/members/cve-2021-44228"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#JobsUpdateForZoneResponseOutputOptions/members/cve-2021-44228/traits/smithy.api~1jsonName",
+      "value": "CVE-2021-44228"
+    }
+  ]
+}

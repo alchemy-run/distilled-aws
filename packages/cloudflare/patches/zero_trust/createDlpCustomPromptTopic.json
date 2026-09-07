@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpCustomPromptTopicsCreate with distilled cloudflare/zero-trust createDlpCustomPromptTopic",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpCustomPromptTopic"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpCustomPromptTopicRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpCustomPromptTopic/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpCustomPromptTopicRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpCustomPromptTopicResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpCustomPromptTopic/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpCustomPromptTopicResponse"
+    }
+  ]
+}

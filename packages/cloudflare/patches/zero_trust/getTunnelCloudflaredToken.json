@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#TunnelsCloudflaredTokenGet with distilled cloudflare/zero-trust getTunnelCloudflaredToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredTokenGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredTokenGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredToken/input/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelCloudflaredTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredTokenGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredToken/output/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelCloudflaredTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#TunnelTokenNotFound"
+        }
+      ]
+    }
+  ]
+}

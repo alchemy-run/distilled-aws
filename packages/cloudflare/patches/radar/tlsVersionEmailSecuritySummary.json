@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummaryTlsVersion with distilled cloudflare/radar tlsVersionEmailSecuritySummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryTlsVersion",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecuritySummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryTlsVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecuritySummary/input/target",
+      "value": "com.cloudflare.radar#TlsVersionEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryTlsVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecuritySummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TlsVersionEmailSecuritySummary/output/target",
+      "value": "com.cloudflare.radar#TlsVersionEmailSecuritySummaryResponse"
+    }
+  ]
+}

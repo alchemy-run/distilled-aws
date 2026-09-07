@@ -1,0 +1,3852 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestType": {
+      "type": "enum",
+      "members": {
+        "REVIEWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reviewed"
+          }
+        },
+        "MALWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "malware"
+          }
+        },
+        "UNREVIEWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unreviewed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#SecurityAdvisoryEcosystems": {
+      "type": "enum",
+      "members": {
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "PIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pip"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "COMPOSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "RUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rust"
+          }
+        },
+        "ERLANG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "erlang"
+          }
+        },
+        "ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "actions"
+          }
+        },
+        "PUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pub"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        },
+        "SWIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "swift"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The package's language or package management ecosystem."
+      }
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestSeverity": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "critical"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestCwesCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestCwes": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestCwesCase1List"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestAffectsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestAffects": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestAffectsCase1List"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequestSort": {
+      "type": "enum",
+      "members": {
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        },
+        "EPSS_PERCENTAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "epss_percentage"
+          }
+        },
+        "EPSS_PERCENTILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "epss_percentile"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesRequest": {
+      "type": "structure",
+      "members": {
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ghsa_id",
+            "smithy.api#documentation": "If specified, only advisories with this GHSA (GitHub Security Advisory) identifier will be returned."
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestType",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "If specified, only advisories of this type will be returned. By default, a request with no other parameters defined will only return reviewed advisories that are not malware."
+          }
+        },
+        "cve_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cve_id",
+            "smithy.api#documentation": "If specified, only advisories with this CVE (Common Vulnerabilities and Exposures) identifier will be returned."
+          }
+        },
+        "ecosystem": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEcosystems",
+          "traits": {
+            "smithy.api#httpQuery": "ecosystem",
+            "smithy.api#documentation": "If specified, only advisories for these ecosystems will be returned."
+          }
+        },
+        "severity": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestSeverity",
+          "traits": {
+            "smithy.api#httpQuery": "severity",
+            "smithy.api#documentation": "If specified, only advisories with these severities will be returned."
+          }
+        },
+        "cwes": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestCwes",
+          "traits": {
+            "smithy.api#httpQuery": "cwes",
+            "smithy.api#documentation": "If specified, only advisories with these Common Weakness Enumerations (CWEs) will be returned.\n\nExample: `cwes=79,284,22` or `cwes[]=79&cwes[]=284&cwes[]=22`"
+          }
+        },
+        "is_withdrawn": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "is_withdrawn",
+            "smithy.api#documentation": "Whether to only return advisories that have been withdrawn."
+          }
+        },
+        "affects": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestAffects",
+          "traits": {
+            "smithy.api#httpQuery": "affects",
+            "smithy.api#documentation": "If specified, only return advisories that affect any of `package` or `package@version`. A maximum of 1000 packages can be specified.\nIf the query parameter causes the URL to exceed the maximum URL length supported by your client, you must specify fewer packages.\n\nExample: `affects=package1,package2@1.0.0,package3@2.0.0` or `affects[]=package1&affects[]=package2@1.0.0`"
+          }
+        },
+        "published": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "published",
+            "smithy.api#documentation": "If specified, only return advisories that were published on a date or date range.\n\nFor more information on the syntax of the date range, see \"[Understanding the search syntax](https://docs.github.com/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax#query-for-dates).\""
+          }
+        },
+        "updated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "updated",
+            "smithy.api#documentation": "If specified, only return advisories that were updated on a date or date range.\n\nFor more information on the syntax of the date range, see \"[Understanding the search syntax](https://docs.github.com/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax#query-for-dates).\""
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "modified",
+            "smithy.api#documentation": "If specified, only show advisories that were updated or published on a date or date range.\n\nFor more information on the syntax of the date range, see \"[Understanding the search syntax](https://docs.github.com/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax#query-for-dates).\""
+          }
+        },
+        "epss_percentage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "epss_percentage",
+            "smithy.api#documentation": "If specified, only return advisories that have an EPSS percentage score that matches the provided value.\nThe EPSS percentage represents the likelihood of a CVE being exploited."
+          }
+        },
+        "epss_percentile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "epss_percentile",
+            "smithy.api#documentation": "If specified, only return advisories that have an EPSS percentile score that matches the provided value.\nThe EPSS percentile represents the relative rank of the CVE's likelihood of being exploited compared to other CVEs."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "direction": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort the results by."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "sort": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "The property to sort the results by."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisory": {
+      "type": "structure",
+      "members": {
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GitHub Security Advisory ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "cve_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Common Vulnerabilities and Exposures (CVE) ID.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL for the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL for the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "repository_advisory_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL for the repository advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short summary of the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of what the advisory entails.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#GlobalAdvisoryType",
+          "traits": {
+            "smithy.api#documentation": "The type of advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "severity": {
+          "target": "com.github.security_advisories#GlobalAdvisorySeverity",
+          "traits": {
+            "smithy.api#documentation": "The severity of the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "source_code_location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the advisory's source code.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "identifiers": {
+          "target": "com.github.security_advisories#GlobalAdvisoryIdentifiersList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "references": {
+          "target": "com.github.security_advisories#GlobalAdvisoryReferencesList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "published_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was published, in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was last updated, in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "github_reviewed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was reviewed by GitHub, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nvd_published_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the advisory was published in the National Vulnerability Database, in ISO 8601 format.\nThis field is only populated when the advisory is imported from the National Vulnerability Database.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "withdrawn_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was withdrawn, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerabilities": {
+          "target": "com.github.security_advisories#GlobalAdvisoryVulnerabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "The products and respective version ranges affected by the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss": {
+          "target": "com.github.security_advisories#GlobalAdvisoryCvss",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss_severities": {
+          "target": "com.github.security_advisories#CvssSeverities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "epss": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEpss",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cwes": {
+          "target": "com.github.security_advisories#GlobalAdvisoryCwesList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "credits": {
+          "target": "com.github.security_advisories#GlobalAdvisoryCreditsList",
+          "traits": {
+            "smithy.api#documentation": "The users who contributed to the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub Security Advisory."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryType": {
+      "type": "enum",
+      "members": {
+        "REVIEWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reviewed"
+          }
+        },
+        "UNREVIEWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unreviewed"
+          }
+        },
+        "MALWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "malware"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of advisory."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisorySeverity": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "critical"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity of the advisory."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryIdentifiersItemType": {
+      "type": "enum",
+      "members": {
+        "CVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CVE"
+          }
+        },
+        "GHSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GHSA"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identifier."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryIdentifiersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.github.security_advisories#GlobalAdvisoryIdentifiersItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier value.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#GlobalAdvisoryIdentifiersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#GlobalAdvisoryIdentifiersItem"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#GlobalAdvisoryReferencesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#Vulnerability": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "com.github.security_advisories#VulnerabilityPackage",
+          "traits": {
+            "smithy.api#documentation": "The name of the package affected by the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_version_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The range of the package versions affected by the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_patched_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package version that resolves the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_functions": {
+          "target": "com.github.security_advisories#VulnerabilityVulnerableFunctionsList",
+          "traits": {
+            "smithy.api#documentation": "The functions in the package that are affected by the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A vulnerability describing the product and its affected versions within a GitHub Security Advisory."
+      }
+    },
+    "com.github.security_advisories#VulnerabilityPackage": {
+      "type": "structure",
+      "members": {
+        "ecosystem": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEcosystems",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique package name within its ecosystem.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the package affected by the vulnerability."
+      }
+    },
+    "com.github.security_advisories#VulnerabilityVulnerableFunctionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The functions in the package that are affected by the vulnerability."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryVulnerabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#Vulnerability"
+      },
+      "traits": {
+        "smithy.api#documentation": "The products and respective version ranges affected by the advisory."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryCvss": {
+      "type": "structure",
+      "members": {
+        "vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS vector.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The CVSS score.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#CvssSeverities": {
+      "type": "structure",
+      "members": {
+        "cvss_v3": {
+          "target": "com.github.security_advisories#CvssSeveritiesCvssV3",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss_v4": {
+          "target": "com.github.security_advisories#CvssSeveritiesCvssV4",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#CvssSeveritiesCvssV3": {
+      "type": "structure",
+      "members": {
+        "vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS 3 vector string.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The CVSS 3 score.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#CvssSeveritiesCvssV4": {
+      "type": "structure",
+      "members": {
+        "vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS 4 vector string.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The CVSS 4 score.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#SecurityAdvisoryEpss": {
+      "type": "structure",
+      "members": {
+        "percentage": {
+          "target": "smithy.api#Double"
+        },
+        "percentile": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The EPSS scores as calculated by the [Exploit Prediction Scoring System](https://www.first.org/epss)."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryCwesItem": {
+      "type": "structure",
+      "members": {
+        "cwe_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Common Weakness Enumeration (CWE) identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the CWE.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#GlobalAdvisoryCwesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#GlobalAdvisoryCwesItem"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.security_advisories#SecurityAdvisoryCreditTypes": {
+      "type": "enum",
+      "members": {
+        "ANALYST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "analyst"
+          }
+        },
+        "FINDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finder"
+          }
+        },
+        "REPORTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reporter"
+          }
+        },
+        "COORDINATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "coordinator"
+          }
+        },
+        "REMEDIATION_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remediation_developer"
+          }
+        },
+        "REMEDIATION_REVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remediation_reviewer"
+          }
+        },
+        "REMEDIATION_VERIFIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remediation_verifier"
+          }
+        },
+        "TOOL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tool"
+          }
+        },
+        "SPONSOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sponsor"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of credit the user is receiving."
+      }
+    },
+    "com.github.security_advisories#GlobalAdvisoryCreditsItem": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "com.github.security_advisories#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#SecurityAdvisoryCreditTypes",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#GlobalAdvisoryCreditsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#GlobalAdvisoryCreditsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The users who contributed to the advisory."
+      }
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#GlobalAdvisory"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListGlobalAdvisoriesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.security_advisories#ListGlobalAdvisoriesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.security_advisories#ListGlobalAdvisories": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#ListGlobalAdvisoriesRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#ListGlobalAdvisoriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/advisories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List global security advisories\n\nLists all global security advisories that match the specified parameters. If no other parameters are defined, the request will return only GitHub-reviewed advisories that are not malware.\n\nBy default, all responses will exclude advisories for malware, because malware are not standard vulnerabilities. To list advisories for malware, you must include the `type` parameter in your request, with the value `malware`. For more information about the different types of security advisories, see \"[About the GitHub Advisory database](https://docs.github.com/code-security/security-advisories/global-security-advisories/about-the-github-advisory-database#about-types-of-security-advisories).\""
+      }
+    },
+    "com.github.security_advisories#GetGlobalAdvisoryRequest": {
+      "type": "structure",
+      "members": {
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GHSA (GitHub Security Advisory) identifier of the advisory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#GetGlobalAdvisory": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#GetGlobalAdvisoryRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#GlobalAdvisory"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/advisories/{ghsa_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a global security advisory\n\nGets a global security advisory using its GitHub Security Advisory (GHSA) identifier."
+      }
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequestSort": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequestState": {
+      "type": "enum",
+      "members": {
+        "TRIAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "triage"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "direction": {
+          "target": "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort the results by."
+          }
+        },
+        "sort": {
+          "target": "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "The property to sort the results by."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of advisories to return per page. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "state": {
+          "target": "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Filter by the state of the repository advisories. Only advisories of this state will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisory": {
+      "type": "structure",
+      "members": {
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GitHub Security Advisory ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "cve_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Common Vulnerabilities and Exposures (CVE) ID.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL for the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL for the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short summary of the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of what the advisory entails.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "severity": {
+          "target": "com.github.security_advisories#RepositoryAdvisorySeverity",
+          "traits": {
+            "smithy.api#documentation": "The severity of the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "author": {
+          "target": "com.github.security_advisories#SimpleUser",
+          "traits": {
+            "smithy.api#documentation": "The author of the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "publisher": {
+          "target": "com.github.security_advisories#SimpleUser",
+          "traits": {
+            "smithy.api#documentation": "The publisher of the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "identifiers": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryIdentifiersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryState",
+          "traits": {
+            "smithy.api#documentation": "The state of the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was created, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was last updated, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "published_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was published, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "closed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was closed, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "withdrawn_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time of when the advisory was withdrawn, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "submission": {
+          "target": "com.github.security_advisories#RepositoryAdvisorySubmission",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerabilities": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryVulnerabilitiesList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCvss",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss_severities": {
+          "target": "com.github.security_advisories#CvssSeverities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cwes": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCwesList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cwe_ids": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCweIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of only the CWE IDs.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "credits": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCreditsList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "credits_detailed": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCreditsDetailedList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "collaborating_users": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCollaboratingUsersList",
+          "traits": {
+            "smithy.api#documentation": "A list of users that collaborate on the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "collaborating_teams": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCollaboratingTeamsList",
+          "traits": {
+            "smithy.api#documentation": "A list of teams that collaborate on the advisory.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "private_fork": {
+          "target": "com.github.security_advisories#SimpleRepository",
+          "traits": {
+            "smithy.api#documentation": "A temporary private fork of the advisory's repository for collaborating on a fix.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A repository security advisory."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisorySeverity": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "critical"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity of the advisory."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryIdentifiersItemType": {
+      "type": "enum",
+      "members": {
+        "CVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CVE"
+          }
+        },
+        "GHSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GHSA"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identifier."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryIdentifiersItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryIdentifiersItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier value.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryIdentifiersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisoryIdentifiersItem"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryState": {
+      "type": "enum",
+      "members": {
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "WITHDRAWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "withdrawn"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "TRIAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "triage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the advisory."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisorySubmission": {
+      "type": "structure",
+      "members": {
+        "accepted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a private vulnerability report was accepted by the repository's administrators.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryVulnerability": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryVulnerabilityPackage",
+          "traits": {
+            "smithy.api#documentation": "The name of the package affected by the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_version_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The range of the package versions affected by the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "patched_versions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package version(s) that resolve the vulnerability.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_functions": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryVulnerabilityVulnerableFunctionsList",
+          "traits": {
+            "smithy.api#documentation": "The functions in the package that are affected.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A product affected by the vulnerability detailed in a repository security advisory."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryVulnerabilityPackage": {
+      "type": "structure",
+      "members": {
+        "ecosystem": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEcosystems",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique package name within its ecosystem.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the package affected by the vulnerability."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryVulnerabilityVulnerableFunctionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The functions in the package that are affected."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryVulnerabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisoryVulnerability"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCvss": {
+      "type": "structure",
+      "members": {
+        "vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS vector.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The CVSS score.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCwesItem": {
+      "type": "structure",
+      "members": {
+        "cwe_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Common Weakness Enumeration (CWE) identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the CWE.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCwesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisoryCwesItem"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCweIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of only the CWE IDs."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCreditsItem": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user credited."
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#SecurityAdvisoryCreditTypes"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCreditsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisoryCreditsItem"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCredit": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "com.github.security_advisories#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#SecurityAdvisoryCreditTypes",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.github.security_advisories#RepositoryAdvisoryCreditState",
+          "traits": {
+            "smithy.api#documentation": "The state of the user's acceptance of the credit.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A credit given to a user for a repository security advisory."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCreditState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accepted"
+          }
+        },
+        "DECLINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "declined"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the user's acceptance of the credit."
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCreditsDetailedList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisoryCredit"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCollaboratingUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#SimpleUser"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of users that collaborate on the advisory."
+      }
+    },
+    "com.github.security_advisories#Team": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String"
+        },
+        "notification_setting": {
+          "target": "smithy.api#String"
+        },
+        "permission": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.security_advisories#TeamPermissions"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#TeamType",
+          "traits": {
+            "smithy.api#documentation": "The ownership type of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "access_source": {
+          "target": "com.github.security_advisories#TeamAccessSource",
+          "traits": {
+            "smithy.api#documentation": "How the team's access to the repository was granted. This property is only\npresent when the team is returned in a repository context, such as\n`GET /repos/{owner}/{repo}/teams`."
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the organization to which this team belongs"
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise to which this team belongs"
+          }
+        },
+        "parent": {
+          "target": "com.github.security_advisories#NullableTeamSimple",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups of organization members that gives permissions on specified repositories."
+      }
+    },
+    "com.github.security_advisories#TeamPermissions": {
+      "type": "structure",
+      "members": {
+        "pull": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "push": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#TeamType": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ownership type of the team"
+      }
+    },
+    "com.github.security_advisories#TeamAccessSource": {
+      "type": "enum",
+      "members": {
+        "DIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "direct"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the team's access to the repository was granted. This property is only\npresent when the team is returned in a repository context, such as\n`GET /repos/{owner}/{repo}/teams`."
+      }
+    },
+    "com.github.security_advisories#NullableTeamSimple": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the team",
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the team",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permission": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permission that the team will have for its repositories",
+            "smithy.api#required": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The level of privacy this team should have"
+          }
+        },
+        "notification_setting": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The notification setting the team has set"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ldap_dn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinguished Name (DN) that team maps to within LDAP environment"
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#NullableTeamSimpleType",
+          "traits": {
+            "smithy.api#documentation": "The ownership type of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the organization to which this team belongs"
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise to which this team belongs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups of organization members that gives permissions on specified repositories."
+      }
+    },
+    "com.github.security_advisories#NullableTeamSimpleType": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ownership type of the team"
+      }
+    },
+    "com.github.security_advisories#RepositoryAdvisoryCollaboratingTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#Team"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of teams that collaborate on the advisory."
+      }
+    },
+    "com.github.security_advisories#SimpleRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GraphQL identifier of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full, globally unique, name of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.security_advisories#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is private.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to view the repository on GitHub.com.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository description.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is a fork.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get more information about the repository from the GitHub API.",
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to download the repository as an archive.",
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to list the available assignees for issues in the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to create or retrieve a raw Git blob in the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about branches in the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about collaborators of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about comments on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about commits on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to compare two commits or refs.",
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get the contents of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to list the contributors to the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the deployments of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the downloads on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the events of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the forks of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about Git commits of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about Git refs of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about Git tags of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about issue comments on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about issue events on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about issues on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about deploy keys on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about labels of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to get information about the languages of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to merge branches in the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about milestones of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about notifications on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about pull requests on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about releases on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the stargazers on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to get information about statuses of a commit.",
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the subscribers on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to subscribe to notifications for this repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to get information about tags on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the teams on the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A template for the API URL to create or retrieve a raw Git tree of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL to list the hooks on the repository.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub repository."
+      }
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisoriesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisory"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisoriesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.security_advisories#ListOrgRepositoryAdvisoriesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.security_advisories#ListOrgRepositoryAdvisories": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#ListOrgRepositoryAdvisoriesRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#ListOrgRepositoryAdvisoriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#BadRequest"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/security-advisories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository security advisories for an organization\n\nLists repository security advisories for an organization.\n\nThe authenticated user must be an owner or security manager for the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint."
+      }
+    },
+    "com.github.security_advisories#ListRepositoryAdvisoriesRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListRepositoryAdvisoriesRequestSort": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListRepositoryAdvisoriesRequestState": {
+      "type": "enum",
+      "members": {
+        "TRIAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "triage"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListRepositoryAdvisoriesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "direction": {
+          "target": "com.github.security_advisories#ListRepositoryAdvisoriesRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort the results by."
+          }
+        },
+        "sort": {
+          "target": "com.github.security_advisories#ListRepositoryAdvisoriesRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "The property to sort the results by."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of advisories to return per page. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "state": {
+          "target": "com.github.security_advisories#ListRepositoryAdvisoriesRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Filter by state of the repository advisories. Only advisories of this state will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#ListRepositoryAdvisoriesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#RepositoryAdvisory"
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#ListRepositoryAdvisoriesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.security_advisories#ListRepositoryAdvisoriesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.security_advisories#ListRepositoryAdvisories": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#ListRepositoryAdvisoriesRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#ListRepositoryAdvisoriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#BadRequest"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/security-advisories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository security advisories\n\nLists security advisories in a repository.\n\nThe authenticated user can access unpublished security advisories from a repository if they are a security manager or administrator of that repository, or if they are a collaborator on any security advisory.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to get a published security advisory in a private repository, or any unpublished security advisory that the authenticated user has access to."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesItemPackage": {
+      "type": "structure",
+      "members": {
+        "ecosystem": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEcosystems",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique package name within its ecosystem.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the package affected by the vulnerability."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesItemVulnerableFunctionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The functions in the package that are affected."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesItem": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesItemPackage",
+          "traits": {
+            "smithy.api#documentation": "The name of the package affected by the vulnerability.",
+            "smithy.api#required": {}
+          }
+        },
+        "vulnerable_version_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The range of the package versions affected by the vulnerability.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "patched_versions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package version(s) that resolve the vulnerability.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_functions": {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesItemVulnerableFunctionsList",
+          "traits": {
+            "smithy.api#documentation": "The functions in the package that are affected.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A product affected by the vulnerability detailed in a repository security advisory."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestCweIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Common Weakness Enumeration (CWE) IDs."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestCreditsItem": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user credited.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#SecurityAdvisoryCreditTypes",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestCreditsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestCreditsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of users receiving credit for their participation in the security advisory."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequestSeverity": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "critical"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity of the advisory. You must choose between setting this field or `cvss_vector_string`."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short summary of the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of what the advisory impacts.",
+            "smithy.api#required": {}
+          }
+        },
+        "cve_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Common Vulnerabilities and Exposures (CVE) ID.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerabilities": {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestVulnerabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "A product affected by the vulnerability detailed in a repository security advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "cwe_ids": {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestCweIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of Common Weakness Enumeration (CWE) IDs.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "credits": {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestCreditsList",
+          "traits": {
+            "smithy.api#documentation": "A list of users receiving credit for their participation in the security advisory.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "severity": {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequestSeverity",
+          "traits": {
+            "smithy.api#documentation": "The severity of the advisory. You must choose between setting this field or `cvss_vector_string`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss_vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS vector that calculates the severity of the advisory. You must choose between setting this field or `severity`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_private_fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to create a temporary private fork of the repository to collaborate on a fix."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisory": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#CreateRepositoryAdvisoryRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#RepositoryAdvisory"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#Forbidden"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        },
+        {
+          "target": "com.github.security_advisories#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/security-advisories",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a repository security advisory\n\nCreates a new repository security advisory.\n\nIn order to create a draft repository security advisory, the authenticated user must be a security manager or administrator of that repository.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint."
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesItemPackage": {
+      "type": "structure",
+      "members": {
+        "ecosystem": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEcosystems",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique package name within its ecosystem.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the package affected by the vulnerability."
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesItemVulnerableFunctionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The functions in the package that are affected."
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesItem": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesItemPackage",
+          "traits": {
+            "smithy.api#documentation": "The name of the package affected by the vulnerability.",
+            "smithy.api#required": {}
+          }
+        },
+        "vulnerable_version_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The range of the package versions affected by the vulnerability.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "patched_versions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package version(s) that resolve the vulnerability.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_functions": {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesItemVulnerableFunctionsList",
+          "traits": {
+            "smithy.api#documentation": "The functions in the package that are affected.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of products affected by the vulnerability detailed in a repository security advisory."
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestCweIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Common Weakness Enumeration (CWE) IDs."
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestSeverity": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "critical"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity of the advisory. You must choose between setting this field or `cvss_vector_string`."
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReportRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short summary of the advisory.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of what the advisory impacts.",
+            "smithy.api#required": {}
+          }
+        },
+        "vulnerabilities": {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestVulnerabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "An array of products affected by the vulnerability detailed in a repository security advisory.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cwe_ids": {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestCweIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of Common Weakness Enumeration (CWE) IDs.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "severity": {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequestSeverity",
+          "traits": {
+            "smithy.api#documentation": "The severity of the advisory. You must choose between setting this field or `cvss_vector_string`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss_vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS vector that calculates the severity of the advisory. You must choose between setting this field or `severity`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_private_fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to create a temporary private fork of the repository to collaborate on a fix."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#CreatePrivateVulnerabilityReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#CreatePrivateVulnerabilityReportRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#RepositoryAdvisory"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#Forbidden"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        },
+        {
+          "target": "com.github.security_advisories#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/security-advisories/reports",
+          "code": 200
+        },
+        "smithy.api#documentation": "Privately report a security vulnerability\n\nReport a security vulnerability to the maintainers of the repository.\nSee \"[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)\" for more information about private vulnerability reporting."
+      }
+    },
+    "com.github.security_advisories#GetRepositoryAdvisoryRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GHSA (GitHub Security Advisory) identifier of the advisory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#GetRepositoryAdvisory": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#GetRepositoryAdvisoryRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#RepositoryAdvisory"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#Forbidden"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository security advisory\n\nGet a repository security advisory using its GitHub Security Advisory (GHSA) identifier.\n\nAnyone can access any published security advisory on a public repository.\n\nThe authenticated user can access an unpublished security advisory from a repository if they are a security manager or administrator of that repository, or if they are a\ncollaborator on the security advisory.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:read` scope to to get a published security advisory in a private repository, or any unpublished security advisory that the authenticated user has access to."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesItemPackage": {
+      "type": "structure",
+      "members": {
+        "ecosystem": {
+          "target": "com.github.security_advisories#SecurityAdvisoryEcosystems",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique package name within its ecosystem.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the package affected by the vulnerability."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesItemVulnerableFunctionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The functions in the package that are affected."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesItem": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesItemPackage",
+          "traits": {
+            "smithy.api#documentation": "The name of the package affected by the vulnerability.",
+            "smithy.api#required": {}
+          }
+        },
+        "vulnerable_version_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The range of the package versions affected by the vulnerability.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "patched_versions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package version(s) that resolve the vulnerability.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerable_functions": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesItemVulnerableFunctionsList",
+          "traits": {
+            "smithy.api#documentation": "The functions in the package that are affected.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A product affected by the vulnerability detailed in a repository security advisory."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCweIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Common Weakness Enumeration (CWE) IDs."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCreditsItem": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user credited.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.security_advisories#SecurityAdvisoryCreditTypes",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCreditsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCreditsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of users receiving credit for their participation in the security advisory."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestSeverity": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "critical"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity of the advisory. You must choose between setting this field or `cvss_vector_string`."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestState": {
+      "type": "enum",
+      "members": {
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the advisory."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCollaboratingUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of usernames who have been granted write access to the advisory."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCollaboratingTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of team slugs which have been granted write access to the advisory."
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisoryRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GHSA (GitHub Security Advisory) identifier of the advisory."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short summary of the advisory."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of what the advisory impacts."
+          }
+        },
+        "cve_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Common Vulnerabilities and Exposures (CVE) ID.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vulnerabilities": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestVulnerabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "A product affected by the vulnerability detailed in a repository security advisory."
+          }
+        },
+        "cwe_ids": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCweIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of Common Weakness Enumeration (CWE) IDs.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "credits": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCreditsList",
+          "traits": {
+            "smithy.api#documentation": "A list of users receiving credit for their participation in the security advisory.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "severity": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestSeverity",
+          "traits": {
+            "smithy.api#documentation": "The severity of the advisory. You must choose between setting this field or `cvss_vector_string`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cvss_vector_string": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVSS vector that calculates the severity of the advisory. You must choose between setting this field or `severity`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestState",
+          "traits": {
+            "smithy.api#documentation": "The state of the advisory."
+          }
+        },
+        "collaborating_users": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCollaboratingUsersList",
+          "traits": {
+            "smithy.api#documentation": "A list of usernames who have been granted write access to the advisory.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "collaborating_teams": {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequestCollaboratingTeamsList",
+          "traits": {
+            "smithy.api#documentation": "A list of team slugs which have been granted write access to the advisory.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#UpdateRepositoryAdvisory": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#UpdateRepositoryAdvisoryRequest"
+      },
+      "output": {
+        "target": "com.github.security_advisories#RepositoryAdvisory"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#Forbidden"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        },
+        {
+          "target": "com.github.security_advisories#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a repository security advisory\n\nUpdate a repository security advisory using its GitHub Security Advisory (GHSA) identifier.\n\nIn order to update any security advisory, the authenticated user must be a security manager or administrator of that repository,\nor a collaborator on the repository security advisory.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint."
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryCveRequestRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GHSA (GitHub Security Advisory) identifier of the advisory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#CreateRepositoryAdvisoryCveRequest": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#CreateRepositoryAdvisoryCveRequestRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#BadRequest"
+        },
+        {
+          "target": "com.github.security_advisories#Forbidden"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        },
+        {
+          "target": "com.github.security_advisories#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}/cve",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request a CVE for a repository security advisory\n\nIf you want a CVE identification number for the security vulnerability in your project, and don't already have one, you can request a CVE identification number from GitHub. For more information see \"[Requesting a CVE identification number](https://docs.github.com/code-security/security-advisories/repository-security-advisories/publishing-a-repository-security-advisory#requesting-a-cve-identification-number-optional).\"\n\nYou may request a CVE for public repositories, but cannot do so for private repositories.\n\nIn order to request a CVE for a repository security advisory, the authenticated user must be a security manager or administrator of that repository.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` or `repository_advisories:write` scope to use this endpoint."
+      }
+    },
+    "com.github.security_advisories#CreateForkRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "ghsa_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GHSA (GitHub Security Advisory) identifier of the advisory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.security_advisories#CreateFork": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.security_advisories#CreateForkRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.security_advisories#BadRequest"
+        },
+        {
+          "target": "com.github.security_advisories#Forbidden"
+        },
+        {
+          "target": "com.github.security_advisories#NotFound"
+        },
+        {
+          "target": "com.github.security_advisories#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/security-advisories/{ghsa_id}/forks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a temporary private fork\n\nCreate a temporary private fork to collaborate on fixing a security vulnerability in your repository.\n\n> [!NOTE]\n> Forking a repository happens asynchronously. You may have to wait up to 5 minutes before you can access the fork."
+      }
+    },
+    "com.github.security_advisories#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.security_advisories#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.security_advisories#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.security_advisories#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.security_advisories#SecurityAdvisories": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.security_advisories#ListGlobalAdvisories"
+        },
+        {
+          "target": "com.github.security_advisories#GetGlobalAdvisory"
+        },
+        {
+          "target": "com.github.security_advisories#ListOrgRepositoryAdvisories"
+        },
+        {
+          "target": "com.github.security_advisories#ListRepositoryAdvisories"
+        },
+        {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisory"
+        },
+        {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReport"
+        },
+        {
+          "target": "com.github.security_advisories#GetRepositoryAdvisory"
+        },
+        {
+          "target": "com.github.security_advisories#UpdateRepositoryAdvisory"
+        },
+        {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryCveRequest"
+        },
+        {
+          "target": "com.github.security_advisories#CreateFork"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

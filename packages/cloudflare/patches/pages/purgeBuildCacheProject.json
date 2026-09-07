@@ -1,0 +1,30 @@
+{
+  "description": "Align pages#ProjectsPurgeBuildCache with distilled cloudflare/pages purgeBuildCacheProject",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsPurgeBuildCache",
+      "path": "/shapes/com.cloudflare.pages#PurgeBuildCacheProject"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsPurgeBuildCacheRequest",
+      "path": "/shapes/com.cloudflare.pages#PurgeBuildCacheProjectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#PurgeBuildCacheProject/input/target",
+      "value": "com.cloudflare.pages#PurgeBuildCacheProjectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsPurgeBuildCacheResponse",
+      "path": "/shapes/com.cloudflare.pages#PurgeBuildCacheProjectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#PurgeBuildCacheProject/output/target",
+      "value": "com.cloudflare.pages#PurgeBuildCacheProjectResponse"
+    }
+  ]
+}

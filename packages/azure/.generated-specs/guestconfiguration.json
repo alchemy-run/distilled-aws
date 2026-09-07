@@ -1,0 +1,4390 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}/reports/{reportId}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get a report for the guest configuration assignment, by reportId.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReport": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the report for the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GUID that identifies the guest configuration assignment report under a subscription, resource group."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the guest configuration report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Report for the guest configuration assignment. Report contains information such as compliance status, reason, and more."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportProperties": {
+      "type": "structure",
+      "members": {
+        "complianceStatus": {
+          "target": "com.azure.guestconfiguration#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+          }
+        },
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GUID that identifies the guest configuration assignment report under a subscription, resource group."
+          }
+        },
+        "assignment": {
+          "target": "com.azure.guestconfiguration#AssignmentInfo",
+          "traits": {
+            "smithy.api#documentation": "Configuration details of the guest configuration assignment."
+          }
+        },
+        "vm": {
+          "target": "com.azure.guestconfiguration#VMInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the VM."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of the guest configuration assignment compliance status check."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of the guest configuration assignment compliance status check."
+          }
+        },
+        "details": {
+          "target": "com.azure.guestconfiguration#AssignmentReportDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of the assignment report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vmssResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id of the VMSS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Report for the guest configuration assignment. Report contains information such as compliance status, reason, and more."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportDetails": {
+      "type": "structure",
+      "members": {
+        "complianceStatus": {
+          "target": "com.azure.guestconfiguration#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of the guest configuration assignment compliance status check."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of the guest configuration assignment compliance status check."
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GUID of the report."
+          }
+        },
+        "operationType": {
+          "target": "com.azure.guestconfiguration#Type",
+          "traits": {
+            "smithy.api#documentation": "Type of report, Consistency or Initial"
+          }
+        },
+        "resources": {
+          "target": "com.azure.guestconfiguration#AssignmentReportDetailsResourcesList",
+          "traits": {
+            "smithy.api#documentation": "The list of resources for which guest configuration assignment compliance is checked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the guest configuration assignment report."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportDetailsResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#AssignmentReportResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of resources for which guest configuration assignment compliance is checked."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportResource": {
+      "type": "structure",
+      "members": {
+        "complianceStatus": {
+          "target": "com.azure.guestconfiguration#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the guest configuration assignment resource setting."
+          }
+        },
+        "reasons": {
+          "target": "com.azure.guestconfiguration#AssignmentReportResourceReasonsList",
+          "traits": {
+            "smithy.api#documentation": "Compliance reason and reason code for a resource."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Properties of a guest configuration assignment resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The guest configuration assignment resource."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportResourceReasonsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#AssignmentReportResourceComplianceReason"
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance reason and reason code for a resource."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportResourceComplianceReason": {
+      "type": "structure",
+      "members": {
+        "phrase": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for the compliance of the guest configuration assignment resource."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Code for the compliance of the guest configuration assignment resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reason and code for the compliance of the guest configuration assignment resource."
+      }
+    },
+    "com.azure.guestconfiguration#ComplianceStatus": {
+      "type": "enum",
+      "members": {
+        "COMPLIANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Compliant"
+          }
+        },
+        "NONCOMPLIANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NonCompliant"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+      }
+    },
+    "com.azure.guestconfiguration#Type": {
+      "type": "enum",
+      "members": {
+        "CONSISTENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consistency"
+          }
+        },
+        "INITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Initial"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of report, Consistency or Initial"
+      }
+    },
+    "com.azure.guestconfiguration#VMInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id of the VM."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID(Universally Unique Identifier) of the VM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the VM."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentInfo": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the guest configuration assignment."
+          }
+        },
+        "configuration": {
+          "target": "com.azure.guestconfiguration#ConfigurationInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the guest configuration assignment."
+      }
+    },
+    "com.azure.guestconfiguration#ConfigurationInfo": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the configuration."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the configuration."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "machineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ARC machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GUID for the guest configuration assignment report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}/reports",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all reports for the guest configuration assignment, latest report first.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of reports for the guest configuration. Report contains information such as compliance status, reason and more."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of guest configuration assignment reports."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReport"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of reports for the guest configuration. Report contains information such as compliance status, reason and more."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "machineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ARC machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Delete a guest configuration assignment",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "machineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ARC machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Creates an association between a ARC machine and guest configuration",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties": {
+      "type": "structure",
+      "members": {
+        "targetResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "VM resource Id.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "guestConfiguration": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationNavigation",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration to assign."
+          }
+        },
+        "complianceStatus": {
+          "target": "com.azure.guestconfiguration#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+          }
+        },
+        "lastComplianceStatusChecked": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date and time when last compliance status was checked.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latestReportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the latest report for the guest configuration assignment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parameterHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "parameter hash for the guest configuration assignment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latestAssignmentReport": {
+          "target": "com.azure.guestconfiguration#AssignmentReport",
+          "traits": {
+            "smithy.api#documentation": "Last reported guest configuration assignment report."
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source which initiated the guest configuration assignment. Ex: Azure Policy"
+          }
+        },
+        "assignmentHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Combined hash of the configuration package and parameters.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.guestconfiguration#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state, which only appears in the response.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource - VMSS / VM",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vmssVMList": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesVmssVMListList",
+          "traits": {
+            "smithy.api#documentation": "The list of VM Compliance data for VMSS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest configuration assignment properties."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesVmssVMListList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#VMSSVMInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of VM Compliance data for VMSS"
+      }
+    },
+    "com.azure.guestconfiguration#VMSSVMInfo": {
+      "type": "structure",
+      "members": {
+        "vmId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the VM."
+          }
+        },
+        "vmResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id of the VM."
+          }
+        },
+        "complianceStatus": {
+          "target": "com.azure.guestconfiguration#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+          }
+        },
+        "latestReportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the latest report for the guest configuration assignment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastComplianceChecked": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date and time when last compliance status was checked.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about VMSS VM"
+      }
+    },
+    "com.azure.guestconfiguration#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state, which only appears in the response."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReport": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the report for the guest configuration assignment."
+          }
+        },
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GUID that identifies the guest configuration assignment report under a subscription, resource group."
+          }
+        },
+        "assignment": {
+          "target": "com.azure.guestconfiguration#AssignmentInfo",
+          "traits": {
+            "smithy.api#documentation": "Configuration details of the guest configuration assignment."
+          }
+        },
+        "vm": {
+          "target": "com.azure.guestconfiguration#VMInfo",
+          "traits": {
+            "smithy.api#documentation": "Information about the VM."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of the guest configuration assignment compliance status check."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of the guest configuration assignment compliance status check."
+          }
+        },
+        "complianceStatus": {
+          "target": "com.azure.guestconfiguration#ComplianceStatus",
+          "traits": {
+            "smithy.api#documentation": "A value indicating compliance status of the machine for the assigned guest configuration."
+          }
+        },
+        "operationType": {
+          "target": "com.azure.guestconfiguration#Type",
+          "traits": {
+            "smithy.api#documentation": "Type of report, Consistency or Initial"
+          }
+        },
+        "resources": {
+          "target": "com.azure.guestconfiguration#AssignmentReportResourcesList",
+          "traits": {
+            "smithy.api#documentation": "The list of resources for which guest configuration assignment compliance is checked."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.guestconfiguration#AssignmentReportResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#AssignmentReportResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of resources for which guest configuration assignment compliance is checked."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationNavigation": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.azure.guestconfiguration#Kind",
+          "traits": {
+            "smithy.api#documentation": "Kind of the guest configuration. For example:DSC"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the guest configuration."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the guest configuration."
+          }
+        },
+        "contentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri of the storage where guest configuration package is uploaded."
+          }
+        },
+        "contentHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Combined hash of the guest configuration package and configuration parameters."
+          }
+        },
+        "contentManagedIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Managed identity with storage access of the guest configuration package and configuration parameters."
+          }
+        },
+        "assignmentType": {
+          "target": "com.azure.guestconfiguration#AssignmentType",
+          "traits": {
+            "smithy.api#documentation": "Specifies the assignment type and execution of the configuration. Possible values are Audit, DeployAndAutoCorrect, ApplyAndAutoCorrect and ApplyAndMonitor."
+          }
+        },
+        "assignmentSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the origin of the configuration.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the content type of the configuration. Possible values could be Builtin or Custom.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "configurationParameter": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationNavigationConfigurationParameterList",
+          "traits": {
+            "smithy.api#documentation": "The configuration parameters for the guest configuration."
+          }
+        },
+        "configurationProtectedParameter": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationNavigationConfigurationProtectedParameterList",
+          "traits": {
+            "smithy.api#documentation": "The protected configuration parameters for the guest configuration."
+          }
+        },
+        "configurationSetting": {
+          "target": "com.azure.guestconfiguration#ConfigurationSetting",
+          "traits": {
+            "smithy.api#documentation": "The configuration setting for the guest configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest configuration is an artifact that encapsulates DSC configuration and its dependencies. The artifact is a zip file containing DSC configuration (as MOF) and dependent resources and other dependencies like modules."
+      }
+    },
+    "com.azure.guestconfiguration#ConfigurationSetting": {
+      "type": "structure",
+      "members": {
+        "configurationMode": {
+          "target": "com.azure.guestconfiguration#ConfigurationMode",
+          "traits": {
+            "smithy.api#documentation": "Specifies how the LCM(Local Configuration Manager) actually applies the configuration to the target nodes. Possible values are ApplyOnly, ApplyAndMonitor, and ApplyAndAutoCorrect."
+          }
+        },
+        "allowModuleOverwrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true - new configurations downloaded from the pull service are allowed to overwrite the old ones on the target node. Otherwise, false"
+          }
+        },
+        "actionAfterReboot": {
+          "target": "com.azure.guestconfiguration#ActionAfterReboot",
+          "traits": {
+            "smithy.api#documentation": "Specifies what happens after a reboot during the application of a configuration. The possible values are ContinueConfiguration and StopConfiguration"
+          }
+        },
+        "refreshFrequencyMins": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time interval, in minutes, at which the LCM checks a pull service to get updated configurations. This value is ignored if the LCM is not configured in pull mode. The default value is 30."
+          }
+        },
+        "rebootIfNeeded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set this to true to automatically reboot the node after a configuration that requires reboot is applied. Otherwise, you will have to manually reboot the node for any configuration that requires it. The default value is false. To use this setting when a reboot condition is enacted by something other than DSC (such as Windows Installer), combine this setting with the xPendingReboot module."
+          }
+        },
+        "configurationModeFrequencyMins": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How often, in minutes, the current configuration is checked and applied. This property is ignored if the ConfigurationMode property is set to ApplyOnly. The default value is 15."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration setting of LCM (Local Configuration Manager)."
+      }
+    },
+    "com.azure.guestconfiguration#ActionAfterReboot": {
+      "type": "enum",
+      "members": {
+        "CONTINUECONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ContinueConfiguration"
+          }
+        },
+        "STOPCONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StopConfiguration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies what happens after a reboot during the application of a configuration. The possible values are ContinueConfiguration and StopConfiguration"
+      }
+    },
+    "com.azure.guestconfiguration#ConfigurationMode": {
+      "type": "enum",
+      "members": {
+        "APPLYONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ApplyOnly"
+          }
+        },
+        "APPLYANDMONITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ApplyAndMonitor"
+          }
+        },
+        "APPLYANDAUTOCORRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ApplyAndAutoCorrect"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies how the LCM(Local Configuration Manager) actually applies the configuration to the target nodes. Possible values are ApplyOnly, ApplyAndMonitor, and ApplyAndAutoCorrect."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationNavigationConfigurationProtectedParameterList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#ConfigurationParameter"
+      },
+      "traits": {
+        "smithy.api#documentation": "The protected configuration parameters for the guest configuration."
+      }
+    },
+    "com.azure.guestconfiguration#ConfigurationParameter": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the configuration parameter."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the configuration parameter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a configuration parameter."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationNavigationConfigurationParameterList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#ConfigurationParameter"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration parameters for the guest configuration."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentType": {
+      "type": "enum",
+      "members": {
+        "AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Audit"
+          }
+        },
+        "DEPLOYANDAUTOCORRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DeployAndAutoCorrect"
+          }
+        },
+        "APPLYANDAUTOCORRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ApplyAndAutoCorrect"
+          }
+        },
+        "APPLYANDMONITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ApplyAndMonitor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the assignment type and execution of the configuration. Possible values are Audit, DeployAndAutoCorrect, ApplyAndAutoCorrect and ApplyAndMonitor."
+      }
+    },
+    "com.azure.guestconfiguration#Kind": {
+      "type": "enum",
+      "members": {
+        "DSC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DSC"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Kind of the guest configuration. For example:DSC"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "machineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ARC machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "guestConfiguration": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationNavigationInput",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration to assign."
+          }
+        },
+        "latestAssignmentReport": {
+          "target": "com.azure.guestconfiguration#AssignmentReportInput",
+          "traits": {
+            "smithy.api#documentation": "Last reported guest configuration assignment report."
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source which initiated the guest configuration assignment. Ex: Azure Policy"
+          }
+        },
+        "vmssVMList": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInputVmssVMListList",
+          "traits": {
+            "smithy.api#documentation": "The list of VM Compliance data for VMSS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest configuration assignment properties."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInputVmssVMListList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#VMSSVMInfoInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of VM Compliance data for VMSS"
+      }
+    },
+    "com.azure.guestconfiguration#VMSSVMInfoInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Information about VMSS VM"
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportInput": {
+      "type": "structure",
+      "members": {
+        "assignment": {
+          "target": "com.azure.guestconfiguration#AssignmentInfoInput",
+          "traits": {
+            "smithy.api#documentation": "Configuration details of the guest configuration assignment."
+          }
+        },
+        "vm": {
+          "target": "com.azure.guestconfiguration#VMInfoInput",
+          "traits": {
+            "smithy.api#documentation": "Information about the VM."
+          }
+        },
+        "resources": {
+          "target": "com.azure.guestconfiguration#AssignmentReportInputResourcesList",
+          "traits": {
+            "smithy.api#documentation": "The list of resources for which guest configuration assignment compliance is checked."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.guestconfiguration#AssignmentReportInputResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#AssignmentReportResourceInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of resources for which guest configuration assignment compliance is checked."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportResourceInput": {
+      "type": "structure",
+      "members": {
+        "reasons": {
+          "target": "com.azure.guestconfiguration#AssignmentReportResourceInputReasonsList",
+          "traits": {
+            "smithy.api#documentation": "Compliance reason and reason code for a resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The guest configuration assignment resource."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportResourceInputReasonsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#AssignmentReportResourceComplianceReasonInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Compliance reason and reason code for a resource."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentReportResourceComplianceReasonInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Reason and code for the compliance of the guest configuration assignment resource."
+      }
+    },
+    "com.azure.guestconfiguration#VMInfoInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Information about the VM."
+      }
+    },
+    "com.azure.guestconfiguration#AssignmentInfoInput": {
+      "type": "structure",
+      "members": {
+        "configuration": {
+          "target": "com.azure.guestconfiguration#ConfigurationInfoInput",
+          "traits": {
+            "smithy.api#documentation": "Information about the configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the guest configuration assignment."
+      }
+    },
+    "com.azure.guestconfiguration#ConfigurationInfoInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Information about the configuration."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationNavigationInput": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.azure.guestconfiguration#Kind",
+          "traits": {
+            "smithy.api#documentation": "Kind of the guest configuration. For example:DSC"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the guest configuration."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the guest configuration."
+          }
+        },
+        "contentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uri of the storage where guest configuration package is uploaded."
+          }
+        },
+        "contentHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Combined hash of the guest configuration package and configuration parameters."
+          }
+        },
+        "contentManagedIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Managed identity with storage access of the guest configuration package and configuration parameters."
+          }
+        },
+        "assignmentType": {
+          "target": "com.azure.guestconfiguration#AssignmentType",
+          "traits": {
+            "smithy.api#documentation": "Specifies the assignment type and execution of the configuration. Possible values are Audit, DeployAndAutoCorrect, ApplyAndAutoCorrect and ApplyAndMonitor."
+          }
+        },
+        "configurationParameter": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationNavigationInputConfigurationParameterList",
+          "traits": {
+            "smithy.api#documentation": "The configuration parameters for the guest configuration."
+          }
+        },
+        "configurationProtectedParameter": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationNavigationInputConfigurationProtectedParameterList",
+          "traits": {
+            "smithy.api#documentation": "The protected configuration parameters for the guest configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest configuration is an artifact that encapsulates DSC configuration and its dependencies. The artifact is a zip file containing DSC configuration (as MOF) and dependent resources and other dependencies like modules."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationNavigationInputConfigurationProtectedParameterList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#ConfigurationParameter"
+      },
+      "traits": {
+        "smithy.api#documentation": "The protected configuration parameters for the guest configuration."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationNavigationInputConfigurationParameterList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#ConfigurationParameter"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration parameters for the guest configuration."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get information about a guest configuration assignment",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "machineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ARC machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all guest configuration assignments for an ARC machine.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentListValueList",
+          "traits": {
+            "smithy.api#documentation": "Result of the list guest configuration assignment operation."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of the list guest configuration assignment operation."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignment"
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the list guest configuration assignment operation."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest configuration assignment is an association between a machine and guest configuration."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "machineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ARC machine."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsRGList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsRGListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all guest configuration assignments for a resource group.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsRGListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualmachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}/reports/{reportId}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get a report for the guest configuration assignment, by reportId.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GUID for the guest configuration assignment report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualmachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}/reports",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all reports for the guest configuration assignment, latest report first.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualmachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Delete a guest configuration assignment",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualmachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Creates an association between a Connected VM Sphere machine and guest configuration",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualmachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get information about a guest configuration assignment",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualmachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all guest configuration assignments for an ARC machine.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}/reports/{reportId}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get a report for the guest configuration assignment, by reportId.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GUID for the guest configuration assignment report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}/reports",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all reports for the guest configuration assignment, latest report first.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Delete a guest configuration assignment",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Creates an association between a VM and guest configuration",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{guestConfigurationAssignmentName}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get information about a guest configuration assignment",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        },
+        "guestConfigurationAssignmentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all guest configuration assignments for a virtual machine.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{name}/reports/{id}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get a report for the VMSS guest configuration assignment, by reportId.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmssName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine scale set."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GUID for the guest configuration assignment report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{name}/reports",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all reports for the VMSS guest configuration assignment, latest report first.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmssName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine scale set."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{name}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Delete a guest configuration assignment for VMSS",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmssName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine scale set."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{name}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Creates an association between a VMSS and guest configuration",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmssName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine scale set."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/{name}",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "Get information about a guest configuration assignment for VMSS",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id of the guest configuration assignment."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guest configuration assignment name.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region where the VM is located."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Guest configuration assignment."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmssName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine scale set."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The guest configuration assignment name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all guest configuration assignments for VMSS.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vmssName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the virtual machine scale set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsSubscriptionList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsSubscriptionListRequest"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List all guest configuration assignments for a subscription.",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#GuestConfigurationAssignmentsSubscriptionListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.guestconfiguration#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.guestconfiguration#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.GuestConfiguration/operations",
+          "code": 200,
+          "apiVersion": "2024-04-05"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-04-05"
+      }
+    },
+    "com.azure.guestconfiguration#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.guestconfiguration#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Automation operations supported by the Automation resource provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response model for the list of Automation operations."
+      }
+    },
+    "com.azure.guestconfiguration#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.guestconfiguration#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Automation operations supported by the Automation resource provider."
+      }
+    },
+    "com.azure.guestconfiguration#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: For example, providers/Microsoft.GuestConfiguration/guestConfigurationAssignments/write or read."
+          }
+        },
+        "display": {
+          "target": "com.azure.guestconfiguration#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Provider, Resource, Operation, and description values."
+          }
+        },
+        "properties": {
+          "target": "com.azure.guestconfiguration#OperationProperties",
+          "traits": {
+            "smithy.api#documentation": "Additional properties of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GuestConfiguration REST API operation."
+      }
+    },
+    "com.azure.guestconfiguration#OperationProperties": {
+      "type": "structure",
+      "members": {
+        "statusCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.GuestConfiguration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider, Resource, Operation and description values."
+      }
+    },
+    "com.azure.guestconfiguration#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.GuestConfiguration."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type: Read, write, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description about the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provider, Resource, Operation, and description values."
+      }
+    },
+    "com.azure.guestconfiguration#Guestconfiguration": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentReportsList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsDelete"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsRGList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsReportsList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsDelete"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsDelete"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentReportsVMSSList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSDelete"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSGet"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsSubscriptionList"
+        },
+        {
+          "target": "com.azure.guestconfiguration#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Guestconfiguration",
+        "smithy.api#documentation": "Azure Guestconfiguration API — merged from the guestconfiguration resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align queues#SubscriptionsGet with distilled cloudflare/queues getSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsGet",
+      "path": "/shapes/com.cloudflare.queues#GetSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsGetRequest",
+      "path": "/shapes/com.cloudflare.queues#GetSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#GetSubscription/input/target",
+      "value": "com.cloudflare.queues#GetSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsGetResponse",
+      "path": "/shapes/com.cloudflare.queues#GetSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#GetSubscription/output/target",
+      "value": "com.cloudflare.queues#GetSubscriptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#GetSubscription/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#UnrecognizedEventType"
+        },
+        {
+          "target": "com.cloudflare.queues#SubscriptionNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#Forbidden"
+        }
+      ]
+    }
+  ]
+}

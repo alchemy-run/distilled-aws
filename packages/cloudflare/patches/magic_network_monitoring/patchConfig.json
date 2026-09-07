@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_network_monitoring#ConfigsEdit with distilled cloudflare/magic-network-monitoring patchConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsEdit",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsEditRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchConfig/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#PatchConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsEditResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchConfig/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#PatchConfigResponse"
+    }
+  ]
+}

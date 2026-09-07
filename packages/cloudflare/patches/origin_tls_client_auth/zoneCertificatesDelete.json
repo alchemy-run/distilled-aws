@@ -1,0 +1,26 @@
+{
+  "description": "Align origin_tls_client_auth#ZoneCertificatesDelete with distilled cloudflare/origin-tls-client-auth deleteOriginTlsClientAuth (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ZoneCertificatesDelete/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificateAlreadyDeleted"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificatePendingDeployment"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ZoneClientCertConflict"
+        }
+      ]
+    }
+  ]
+}

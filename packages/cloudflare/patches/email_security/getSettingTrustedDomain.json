@@ -1,0 +1,45 @@
+{
+  "description": "Align email_security#SettingsTrustedDomainsGet with distilled cloudflare/email-security getSettingTrustedDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsTrustedDomainsGet",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingTrustedDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsTrustedDomainsGetRequest",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingTrustedDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingTrustedDomain/input/target",
+      "value": "com.cloudflare.email_security#GetSettingTrustedDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsTrustedDomainsGetResponse",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingTrustedDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingTrustedDomain/output/target",
+      "value": "com.cloudflare.email_security#GetSettingTrustedDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingTrustedDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_security#TrustedDomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.email_security#EmailSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.email_security#Forbidden"
+        }
+      ]
+    }
+  ]
+}

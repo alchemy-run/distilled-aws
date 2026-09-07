@@ -1,0 +1,32 @@
+{
+  "errorCategories": {
+    "UpdateInProgressException": ["ConflictError", "RetryableError"],
+    "ClusterContainsServicesException": ["DependencyViolationError"],
+    "ClusterContainsTasksException": ["DependencyViolationError"],
+    "ClusterContainsContainerInstancesException": ["DependencyViolationError"],
+    "ClusterContainsCapacityProviderException": ["DependencyViolationError"],
+    "ClusterNotFoundException": ["NotFoundError"],
+    "ServiceNotFoundException": ["NotFoundError"],
+    "ResourceNotFoundException": ["NotFoundError"],
+    "TaskSetNotFoundException": ["NotFoundError"],
+    "NamespaceNotFoundException": ["NotFoundError"],
+    "ServiceDeploymentNotFoundException": ["NotFoundError"],
+    "DaemonNotFoundException": ["NotFoundError"],
+    "LimitExceededException": ["QuotaError"],
+    "AttributeLimitExceededException": ["QuotaError"],
+    "InvalidParameterException": ["BadRequestError"],
+    "ClientException": ["BadRequestError"],
+    "UnsupportedFeatureException": ["BadRequestError"],
+    "BlockedException": ["BadRequestError"],
+    "MissingVersionException": ["BadRequestError"],
+    "PlatformUnknownException": ["BadRequestError"],
+    "PlatformTaskDefinitionIncompatibilityException": ["BadRequestError"],
+    "ServerException": ["ServerError", "RetryableError"],
+    "ResourceInUseException": ["ConflictError", "RetryableError"],
+    "ConflictException": ["ConflictError"],
+    "ServiceNotActiveException": ["ConflictError"],
+    "DaemonNotActiveException": ["ConflictError"],
+    "TargetNotConnectedException": ["ConflictError"],
+    "TargetNotFoundException": ["NotFoundError"]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesDevicesRevoke with distilled cloudflare/zero-trust revokeDeviceDevices",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDevicesRevoke",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeDeviceDevices"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDevicesRevokeRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeDeviceDevicesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeDeviceDevices/input/target",
+      "value": "com.cloudflare.zero_trust#RevokeDeviceDevicesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDevicesRevokeResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeDeviceDevicesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeDeviceDevices/output/target",
+      "value": "com.cloudflare.zero_trust#RevokeDeviceDevicesResponse"
+    }
+  ]
+}

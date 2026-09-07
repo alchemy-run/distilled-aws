@@ -1,0 +1,30 @@
+{
+  "description": "Align email_routing#AddressesDelete with distilled cloudflare/email-routing deleteAddress",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesDelete",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteAddress"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesDeleteRequest",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteAddressRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteAddress/input/target",
+      "value": "com.cloudflare.email_routing#DeleteAddressRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesDeleteResponse",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteAddressResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteAddress/output/target",
+      "value": "com.cloudflare.email_routing#DeleteAddressResponse"
+    }
+  ]
+}

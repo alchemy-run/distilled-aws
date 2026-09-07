@@ -1,0 +1,1814 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "fitness",
+    "version": "v1",
+    "title": "Fitness API",
+    "baseUrl": "https://fitness.googleapis.com/fitness/v1/users/"
+  },
+  "shapes": {
+    "com.gcp.fitness_v1#AggregateRequest": {
+      "type": "structure",
+      "members": {
+        "startTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive."
+          }
+        },
+        "endTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive. The maximum allowed difference between start_time_millis // and end_time_millis is 7776000000 (roughly 90 days)."
+          }
+        },
+        "bucketByActivityType": {
+          "target": "com.gcp.fitness_v1#BucketByActivity",
+          "traits": {
+            "smithy.api#documentation": "Specifies that data be aggregated by the type of activity being performed when the data was recorded. All data that was recorded during a certain activity type (.for the given time range) will be aggregated into the same bucket. Data that was recorded while the user was not active will not be included in the response. Mutually exclusive of other bucketing specifications."
+          }
+        },
+        "bucketByTime": {
+          "target": "com.gcp.fitness_v1#BucketByTime",
+          "traits": {
+            "smithy.api#documentation": "Specifies that data be aggregated by a single time interval. Mutually exclusive of other bucketing specifications."
+          }
+        },
+        "filteredDataQualityStandard": {
+          "target": "com.gcp.fitness_v1#AggregateRequestFilteredDataQualityStandardItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "DO NOT POPULATE THIS FIELD. It is ignored."
+          }
+        },
+        "bucketBySession": {
+          "target": "com.gcp.fitness_v1#BucketBySession",
+          "traits": {
+            "smithy.api#documentation": "Specifies that data be aggregated by user sessions. Data that does not fall within the time range of a session will not be included in the response. Mutually exclusive of other bucketing specifications."
+          }
+        },
+        "bucketByActivitySegment": {
+          "target": "com.gcp.fitness_v1#BucketByActivity",
+          "traits": {
+            "smithy.api#documentation": "Specifies that data be aggregated each activity segment recorded for a user. Similar to bucketByActivitySegment, but bucketing is done for each activity segment rather than all segments of the same type. Mutually exclusive of other bucketing specifications."
+          }
+        },
+        "aggregateBy": {
+          "target": "com.gcp.fitness_v1#AggregateByList",
+          "traits": {
+            "smithy.api#documentation": "The specification of data to be aggregated. At least one aggregateBy spec must be provided. All data that is specified will be aggregated using the same bucketing criteria. There will be one dataset in the response for every aggregateBy spec."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Next id: 10"
+      }
+    },
+    "com.gcp.fitness_v1#AggregateRequestFilteredDataQualityStandardItemEnum": {
+      "type": "enum",
+      "members": {
+        "DATAQUALITYUNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityUnknown"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREESH2002": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureEsh2002"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREESH2010": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureEsh2010"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREAAMI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureAami"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsAA"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsAB"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSBA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsBA"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSBB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsBB"
+          }
+        },
+        "DATAQUALITYBLOODGLUCOSEISO151972003": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodGlucoseIso151972003"
+          }
+        },
+        "DATAQUALITYBLOODGLUCOSEISO151972013": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodGlucoseIso151972013"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#AggregateRequestFilteredDataQualityStandardItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#AggregateRequestFilteredDataQualityStandardItemEnum"
+      }
+    },
+    "com.gcp.fitness_v1#AggregateByList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#AggregateBy"
+      }
+    },
+    "com.gcp.fitness_v1#ValueMapValEntry": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "com.gcp.fitness_v1#MapValue"
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataTypeField": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the name and format of data. Unlike data type names, field names are not namespaced, and only need to be unique within the data type."
+          }
+        },
+        "format": {
+          "target": "com.gcp.fitness_v1#DataTypeFieldFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The different supported formats for each field in a data type."
+          }
+        },
+        "optional": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "In case of multi-dimensional data (such as an accelerometer with x, y, and z axes) each field represents one dimension. Each data type field has a unique name which identifies it. The field also defines the format of the data (int, float, etc.). This message is only instantiated in code and not used for wire comms or stored in any way."
+      }
+    },
+    "com.gcp.fitness_v1#DataTypeFieldFormatEnum": {
+      "type": "enum",
+      "members": {
+        "INTEGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integer"
+          }
+        },
+        "FLOATPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "floatPoint"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "string"
+          }
+        },
+        "MAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "map"
+          }
+        },
+        "INTEGERLIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integerList"
+          }
+        },
+        "FLOATLIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "floatList"
+          }
+        },
+        "BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blob"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#Value": {
+      "type": "structure",
+      "members": {
+        "intVal": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Integer value. When this is set, other values must not be set."
+          }
+        },
+        "stringVal": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String value. When this is set, other values must not be set. Strings should be kept small whenever possible. Data streams with large string values and high data frequency may be down sampled."
+          }
+        },
+        "mapVal": {
+          "target": "com.gcp.fitness_v1#ValueMapValEntryList",
+          "traits": {
+            "smithy.api#documentation": "Map value. The valid key space and units for the corresponding value of each entry should be documented as part of the data type definition. Keys should be kept small whenever possible. Data streams with large keys and high data frequency may be down sampled."
+          }
+        },
+        "fpVal": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Floating point value. When this is set, other values must not be set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Holder object for the value of a single field in a data point. A field value has a particular format and is only ever set to one of an integer or a floating point value."
+      }
+    },
+    "com.gcp.fitness_v1#ValueMapValEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#ValueMapValEntry"
+      }
+    },
+    "com.gcp.fitness_v1#ListDataPointChangesResponse": {
+      "type": "structure",
+      "members": {
+        "deletedDataPoint": {
+          "target": "com.gcp.fitness_v1#DataPointList",
+          "traits": {
+            "smithy.api#documentation": "Deleted data points for the user. Note, for modifications this should be parsed before handling insertions."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results."
+          }
+        },
+        "insertedDataPoint": {
+          "target": "com.gcp.fitness_v1#DataPointList",
+          "traits": {
+            "smithy.api#documentation": "Inserted data points for the user."
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source with data point changes."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataPointList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#DataPoint"
+      }
+    },
+    "com.gcp.fitness_v1#AggregateBy": {
+      "type": "structure",
+      "members": {
+        "dataTypeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data type to aggregate. All data sources providing this data type will contribute data to the aggregation. The response will contain a single dataset for this data type name. The dataset will have a data source ID of derived::com.google.android.gms:aggregated. If the user has no data for this data type, an empty data set will be returned. Note: Data can be aggregated by either the dataTypeName or the dataSourceId, not both."
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A data source ID to aggregate. Only data from the specified data source ID will be included in the aggregation. If specified, this data source must exist; the OAuth scopes in the supplied credentials must grant read access to this data type. The dataset in the response will have the same data source ID. Note: Data can be aggregated by either the dataTypeName or the dataSourceId, not both."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The specification of which data to aggregate."
+      }
+    },
+    "com.gcp.fitness_v1#Device": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version string for the device hardware/software."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End-user visible model name for the device."
+          }
+        },
+        "manufacturer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Manufacturer of the product/hardware."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form. The obfuscation preserves equality; that is, given two IDs, if id1 == id2, obfuscated(id1) == obfuscated(id2)."
+          }
+        },
+        "type": {
+          "target": "com.gcp.fitness_v1#DeviceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "A constant representing the type of the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of an integrated device (such as a phone or a wearable) that can hold sensors. Each sensor is exposed as a data source. The main purpose of the device information contained in this class is to identify the hardware of a particular data source. This can be useful in different ways, including: - Distinguishing two similar sensors on different devices (the step counter on two nexus 5 phones, for instance) - Display the source of data to the user (by using the device make / model) - Treat data differently depending on sensor type (accelerometers on a watch may give different patterns than those on a phone) - Build different analysis models for each device/version. "
+      }
+    },
+    "com.gcp.fitness_v1#DeviceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phone"
+          }
+        },
+        "TABLET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tablet"
+          }
+        },
+        "WATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "watch"
+          }
+        },
+        "CHESTSTRAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "chestStrap"
+          }
+        },
+        "SCALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale"
+          }
+        },
+        "HEADMOUNTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "headMounted"
+          }
+        },
+        "SMARTDISPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "smartDisplay"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataSource": {
+      "type": "structure",
+      "members": {
+        "device": {
+          "target": "com.gcp.fitness_v1#Device",
+          "traits": {
+            "smithy.api#documentation": "Representation of an integrated device (such as a phone or a wearable) that can hold sensors."
+          }
+        },
+        "dataStreamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier for the data stream produced by this data source. The identifier includes: - The physical device's manufacturer, model, and serial number (UID). - The application's package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client. - The data source's type. - The data source's stream name. Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn't used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they're not equal. The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName When any of the optional fields that make up the data stream ID are absent, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number Finally, the developer project number and device UID are obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form. This means a client will see a different set of data_stream_ids than another client with different credentials."
+          }
+        },
+        "dataType": {
+          "target": "com.gcp.fitness_v1#DataType",
+          "traits": {
+            "smithy.api#documentation": "The data type defines the schema for a stream of data being collected by, inserted into, or queried from the Fitness API."
+          }
+        },
+        "dataQualityStandard": {
+          "target": "com.gcp.fitness_v1#DataSourceDataQualityStandardItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "DO NOT POPULATE THIS FIELD. It is never populated in responses from the platform, and is ignored in queries. It will be removed in a future version entirely."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An end-user visible name for this data source."
+          }
+        },
+        "dataStreamName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stream name uniquely identifies this particular data source among other data sources of the same type from the same underlying producer. Setting the stream name is optional, but should be done whenever an application exposes two streams for the same data type, or when a device has two equivalent sensors."
+          }
+        },
+        "type": {
+          "target": "com.gcp.fitness_v1#DataSourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "A constant describing the type of this data source. Indicates whether this data source produces raw or derived data."
+          }
+        },
+        "application": {
+          "target": "com.gcp.fitness_v1#Application",
+          "traits": {
+            "smithy.api#documentation": "Information about an application which feeds sensor data into the platform."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of a unique source of sensor data. Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point inserted into or read from this service has an associated data source. The data source contains enough information to uniquely identify its data, including the hardware device and the application that collected and/or transformed the data. It also holds useful metadata, such as the hardware and application versions, and the device type. Each data source produces a unique stream of data, with a unique identifier. Not all changes to data source affect the stream identifier, so that data collected by updated versions of the same application/device can still be considered to belong to the same data stream."
+      }
+    },
+    "com.gcp.fitness_v1#DataSourceDataQualityStandardItemEnum": {
+      "type": "enum",
+      "members": {
+        "DATAQUALITYUNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityUnknown"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREESH2002": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureEsh2002"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREESH2010": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureEsh2010"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREAAMI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureAami"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsAA"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsAB"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSBA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsBA"
+          }
+        },
+        "DATAQUALITYBLOODPRESSUREBHSBB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodPressureBhsBB"
+          }
+        },
+        "DATAQUALITYBLOODGLUCOSEISO151972003": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodGlucoseIso151972003"
+          }
+        },
+        "DATAQUALITYBLOODGLUCOSEISO151972013": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataQualityBloodGlucoseIso151972013"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataSourceDataQualityStandardItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#DataSourceDataQualityStandardItemEnum"
+      }
+    },
+    "com.gcp.fitness_v1#DataSourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "raw"
+          }
+        },
+        "DERIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "derived"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataType": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Each data type has a unique, namespaced, name. All data types in the com.google namespace are shared as part of the platform."
+          }
+        },
+        "field": {
+          "target": "com.gcp.fitness_v1#DataTypeFieldList",
+          "traits": {
+            "smithy.api#documentation": "A field represents one dimension of a data type."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataTypeFieldList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#DataTypeField"
+      }
+    },
+    "com.gcp.fitness_v1#DataPoint": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.gcp.fitness_v1#ValueList",
+          "traits": {
+            "smithy.api#documentation": "Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source. Only one of integer and floating point fields will be populated, depending on the format enum value within data source's type field."
+          }
+        },
+        "startTimeNanos": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the interval represented by this data point, in nanoseconds since epoch."
+          }
+        },
+        "endTimeNanos": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the interval represented by this data point, in nanoseconds since epoch."
+          }
+        },
+        "dataTypeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data type defining the format of the values in this data point."
+          }
+        },
+        "originDataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the data point is contained in a dataset for a derived data source, this field will be populated with the data source stream ID that created the data point originally. WARNING: do not rely on this field for anything other than debugging. The value of this field, if it is set at all, is an implementation detail and is not guaranteed to remain consistent."
+          }
+        },
+        "modifiedTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates the last time this data point was modified. Useful only in contexts where we are listing the data changes, rather than representing the current state of the data."
+          }
+        },
+        "rawTimestampNanos": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The raw timestamp from the original SensorEvent."
+          }
+        },
+        "computationTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DO NOT USE THIS FIELD. It is ignored, and not stored."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single data point, generated by a particular data source. A data point holds a value for each field, an end timestamp and an optional start time. The exact semantics of each of these attributes are specified in the documentation for the particular data type. A data point can represent an instantaneous measurement, reading or input observation, as well as averages or aggregates over a time interval. Check the data type documentation to determine which is the case for a particular data type. Data points always contain one value for each field of the data type."
+      }
+    },
+    "com.gcp.fitness_v1#ValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#Value"
+      }
+    },
+    "com.gcp.fitness_v1#MapValue": {
+      "type": "structure",
+      "members": {
+        "fpVal": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Floating point value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Holder object for the value of an entry in a map field of a data point. A map value supports a subset of the formats that the regular Value supports."
+      }
+    },
+    "com.gcp.fitness_v1#AggregateBucket": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.fitness_v1#AggregateBucketTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of a bucket signifies how the data aggregation is performed in the bucket."
+          }
+        },
+        "activity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Available for Bucket.Type.ACTIVITY_TYPE, Bucket.Type.ACTIVITY_SEGMENT"
+          }
+        },
+        "session": {
+          "target": "com.gcp.fitness_v1#Session",
+          "traits": {
+            "smithy.api#documentation": "Available for Bucket.Type.SESSION"
+          }
+        },
+        "startTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time for the aggregated data, in milliseconds since epoch, inclusive."
+          }
+        },
+        "endTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time for the aggregated data, in milliseconds since epoch, inclusive."
+          }
+        },
+        "dataset": {
+          "target": "com.gcp.fitness_v1#DatasetList",
+          "traits": {
+            "smithy.api#documentation": "There will be one dataset per AggregateBy in the request."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#AggregateBucketTypeEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "time"
+          }
+        },
+        "SESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session"
+          }
+        },
+        "ACTIVITYTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "activityType"
+          }
+        },
+        "ACTIVITYSEGMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "activitySegment"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DatasetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#Dataset"
+      }
+    },
+    "com.gcp.fitness_v1#Session": {
+      "type": "structure",
+      "members": {
+        "endTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An end time, in milliseconds since epoch, inclusive."
+          }
+        },
+        "modifiedTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A timestamp that indicates when the session was last modified."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A client-generated identifier that is unique across all sessions owned by this particular user."
+          }
+        },
+        "activeTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session active time. While start_time_millis and end_time_millis define the full session time, the active time can be shorter and specified by active_time_millis. If the inactive time during the session is known, it should also be inserted via a com.google.activity.segment data point with a STILL activity value"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for this session."
+          }
+        },
+        "startTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A start time, in milliseconds since epoch, inclusive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable name of the session."
+          }
+        },
+        "application": {
+          "target": "com.gcp.fitness_v1#Application",
+          "traits": {
+            "smithy.api#documentation": "The application that created the session."
+          }
+        },
+        "activityType": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The type of activity this session represents."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sessions contain metadata, such as a user-friendly name and time interval information."
+      }
+    },
+    "com.gcp.fitness_v1#BucketBySession": {
+      "type": "structure",
+      "members": {
+        "minDurationMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies that only sessions of duration longer than minDurationMillis are considered and used as a container for aggregated data."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#AggregateResponse": {
+      "type": "structure",
+      "members": {
+        "bucket": {
+          "target": "com.gcp.fitness_v1#AggregateBucketList",
+          "traits": {
+            "smithy.api#documentation": "A list of buckets containing the aggregated data."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#AggregateBucketList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#AggregateBucket"
+      }
+    },
+    "com.gcp.fitness_v1#BucketByTimePeriod": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.fitness_v1#BucketByTimePeriodTypeEnum"
+        },
+        "timeZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "org.joda.timezone.DateTimeZone"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Integer"
+        }
+      }
+    },
+    "com.gcp.fitness_v1#BucketByTimePeriodTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "month"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#ListSessionsResponse": {
+      "type": "structure",
+      "members": {
+        "session": {
+          "target": "com.gcp.fitness_v1#SessionList",
+          "traits": {
+            "smithy.api#documentation": "Sessions starting before endTime of the request and ending after startTime of the request up to (endTime of the request + 1 day)."
+          }
+        },
+        "deletedSession": {
+          "target": "com.gcp.fitness_v1#SessionList",
+          "traits": {
+            "smithy.api#documentation": "If includeDeleted is set to true in the request, and startTime and endTime are omitted, this will include sessions which were deleted since the last sync."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sync token which is used to sync further changes. This will only be provided if both startTime and endTime are omitted from the request."
+          }
+        },
+        "hasMoreData": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate server has more data to transfer. DO NOT USE THIS FIELD. It is never populated in responses from the server."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#SessionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#Session"
+      }
+    },
+    "com.gcp.fitness_v1#BucketByTime": {
+      "type": "structure",
+      "members": {
+        "durationMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies that result buckets aggregate data by exactly durationMillis time frames. Time frames that contain no data will be included in the response with an empty dataset."
+          }
+        },
+        "period": {
+          "target": "com.gcp.fitness_v1#BucketByTimePeriod"
+        }
+      }
+    },
+    "com.gcp.fitness_v1#BucketByActivity": {
+      "type": "structure",
+      "members": {
+        "minDurationMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies that only activity segments of duration longer than minDurationMillis are considered and used as a container for aggregated data."
+          }
+        },
+        "activityDataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default activity stream will be used if a specific activityDataSourceId is not specified."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#ListDataSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "dataSource": {
+          "target": "com.gcp.fitness_v1#DataSourceList",
+          "traits": {
+            "smithy.api#documentation": "A previously created data source."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DataSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.fitness_v1#DataSource"
+      }
+    },
+    "com.gcp.fitness_v1#Application": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the application. You should update this field whenever the application changes in a way that affects the computation of the data."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this application. This is required for REST clients, but we do not enforce uniqueness of this name. It is provided as a matter of convenience for other developers who would like to identify which REST created an Application or Data Source."
+          }
+        },
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Package name for this application. This is used as a unique identifier when created by Android applications, but cannot be specified by REST clients. REST clients will have their developer project number reflected into the Data Source data stream IDs, instead of the packageName."
+          }
+        },
+        "detailsUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional URI that can be used to link back to the application."
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#Dataset": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This token will be set when a dataset is received in response to a GET request and the dataset is too large to be included in a single response. Provide this value in a subsequent GET request to return the next page of data points within this dataset."
+          }
+        },
+        "point": {
+          "target": "com.gcp.fitness_v1#DataPointList",
+          "traits": {
+            "smithy.api#documentation": "A partial list of data points contained in the dataset, ordered by endTimeNanos. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response."
+          }
+        },
+        "maxEndTimeNs": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The largest end time of all data points in this possibly partial representation of the dataset. Time is in nanoseconds from epoch. This should also match the second part of the dataset identifier."
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source that created the points in this dataset."
+          }
+        },
+        "minStartTimeNs": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The smallest start time of all data points in this possibly partial representation of the dataset. Time is in nanoseconds from epoch. This should also match the first part of the dataset identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A dataset represents a projection container for data points. They do not carry any info of their own. Datasets represent a set of data points from a particular data source. A data point can be found in more than one dataset."
+      }
+    },
+    "com.gcp.fitness_v1#UpdateUsersSessionsRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the session to be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.fitness_v1#Session",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.fitness_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.fitness_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.fitness_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.fitness_v1#UpdateUsersSessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#UpdateUsersSessionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#Session"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "{userId}/sessions/{sessionId}"
+        },
+        "smithy.api#documentation": "Updates or insert a given session."
+      }
+    },
+    "com.gcp.fitness_v1#IntegerList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      }
+    },
+    "com.gcp.fitness_v1#ListUsersSessionsRequest": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An RFC3339 timestamp. Only sessions starting before endTime and ending after startTime up to (endTime + 1 day) will be included in the response. If this time is omitted but endTime is specified, all sessions starting before endTime and ending after the start of time up to (endTime + 1 day) will be returned.",
+            "smithy.api#httpQuery": "startTime"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An RFC3339 timestamp. Only sessions starting before endTime and ending after startTime up to (endTime + 1 day) will be included in the response. If this time is omitted but startTime is specified, all sessions ending after startTime to the end of time will be returned.",
+            "smithy.api#httpQuery": "endTime"
+          }
+        },
+        "activityType": {
+          "target": "com.gcp.fitness_v1#IntegerList",
+          "traits": {
+            "smithy.api#documentation": "If non-empty, only sessions with these activity types should be returned.",
+            "smithy.api#httpQuery": "activityType"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "includeDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, and if both startTime and endTime are omitted, session deletions will be returned.",
+            "smithy.api#httpQuery": "includeDeleted"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#ListUsersSessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#ListUsersSessionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#ListSessionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "{userId}/sessions"
+        },
+        "smithy.api#documentation": "Lists sessions previously created.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DeleteUsersSessionsRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the session to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DeleteUsersSessions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#DeleteUsersSessionsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "{userId}/sessions/{sessionId}"
+        },
+        "smithy.api#documentation": "Deletes a session specified by the given session ID."
+      }
+    },
+    "com.gcp.fitness_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.fitness_v1#ListUsersDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataTypeName": {
+          "target": "com.gcp.fitness_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The names of data types to include in the list. If not specified, all data sources will be returned.",
+            "smithy.api#httpQuery": "dataTypeName"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#ListUsersDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#ListUsersDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#ListDataSourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "{userId}/dataSources"
+        },
+        "smithy.api#documentation": "Lists all data sources that are visible to the developer, using the OAuth scopes provided. The list is not exhaustive; the user may have private data sources that are only visible to other developers, or calls using other scopes."
+      }
+    },
+    "com.gcp.fitness_v1#UpdateUsersDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.fitness_v1#DataSource",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#UpdateUsersDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#UpdateUsersDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#DataSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "{userId}/dataSources/{dataSourceId}"
+        },
+        "smithy.api#documentation": "Updates the specified data source. The dataStreamId, dataType, type, dataStreamName, and device properties with the exception of version, cannot be modified. Data sources are identified by their dataStreamId."
+      }
+    },
+    "com.gcp.fitness_v1#GetUsersDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#GetUsersDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#GetUsersDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#DataSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "{userId}/dataSources/{dataSourceId}"
+        },
+        "smithy.api#documentation": "Returns the specified data source."
+      }
+    },
+    "com.gcp.fitness_v1#CreateUsersDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.fitness_v1#DataSource",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#CreateUsersDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#CreateUsersDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#DataSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "{userId}/dataSources"
+        },
+        "smithy.api#documentation": "Creates a new data source that is unique across all data sources belonging to this user. A data source is a unique source of sensor data. Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point in every dataset inserted into or read from the Fitness API has an associated data source. Each data source produces a unique stream of dataset updates, with a unique data source identifier. Not all changes to data source affect the data stream ID, so that data collected by updated versions of the same application/device can still be considered to belong to the same data source. Data sources are identified using a string generated by the server, based on the contents of the source being created. The dataStreamId field should not be set when invoking this method. It will be automatically generated by the server with the correct format. If a dataStreamId is set, it must match the format that the server would generate. This format is a combination of some fields from the data source, and has a specific order. If it doesn't match, the request will fail with an error. Specifying a DataType which is not a known type (beginning with \"com.google.\") will create a DataSource with a *custom data type*. Custom data types are only readable by the application that created them. Custom data types are *deprecated*; use standard data types instead. In addition to the data source fields included in the data source ID, the developer project number that is authenticated when creating the data source is included. This developer project number is obfuscated when read by any other developer reading public data types."
+      }
+    },
+    "com.gcp.fitness_v1#DeleteUsersDataSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DeleteUsersDataSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#DeleteUsersDataSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#DataSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "{userId}/dataSources/{dataSourceId}"
+        },
+        "smithy.api#documentation": "Deletes the specified data source. The request will fail if the data source contains any data points."
+      }
+    },
+    "com.gcp.fitness_v1#PatchUsersDataSourcesDatasetsRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "datasetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field is not used, and can be safely omitted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source that created the dataset.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.fitness_v1#Dataset",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#PatchUsersDataSourcesDatasets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#PatchUsersDataSourcesDatasetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#Dataset"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "{userId}/dataSources/{dataSourceId}/datasets/{datasetId}"
+        },
+        "smithy.api#documentation": "Adds data points to a dataset. The dataset need not be previously created. All points within the given dataset will be returned with subsquent calls to retrieve this dataset. Data points can belong to more than one dataset. This method does not use patch semantics: the data points provided are merely inserted, with no existing data replaced."
+      }
+    },
+    "com.gcp.fitness_v1#GetUsersDataSourcesDatasetsRequest": {
+      "type": "structure",
+      "members": {
+        "datasetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: \"startTime-endTime\" where startTime and endTime are 64 bit integers.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response. The limit is applied from the end of the time range. That is, if pageToken is absent, the limit most recent data points will be returned.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source that created the dataset.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#GetUsersDataSourcesDatasets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#GetUsersDataSourcesDatasetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#Dataset"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "{userId}/dataSources/{dataSourceId}/datasets/{datasetId}"
+        },
+        "smithy.api#documentation": "Returns a dataset containing all data points whose start and end times overlap with the specified range of the dataset minimum start time and maximum end time. Specifically, any data point whose start time is less than or equal to the dataset end time and whose end time is greater than or equal to the dataset start time.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DeleteUsersDataSourcesDatasetsRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "datasetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: \"startTime-endTime\" where startTime and endTime are 64 bit integers.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source that created the dataset.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#DeleteUsersDataSourcesDatasets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#DeleteUsersDataSourcesDatasetsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "{userId}/dataSources/{dataSourceId}/datasets/{datasetId}"
+        },
+        "smithy.api#documentation": "Performs an inclusive delete of all data points whose start and end times have any overlap with the time range specified by the dataset ID. For most data types, the entire data point will be deleted. For data types where the time span represents a consistent value (such as com.google.activity.segment), and a data point straddles either end point of the dataset, only the overlapping portion of the data point will be deleted."
+      }
+    },
+    "com.gcp.fitness_v1#ListUsersDataSourcesDataPointChangesRequest": {
+      "type": "structure",
+      "members": {
+        "dataSourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The data stream ID of the data source that created the dataset.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List data points for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If specified, no more than this many data point changes will be included in the response.",
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#ListUsersDataSourcesDataPointChanges": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#ListUsersDataSourcesDataPointChangesRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#ListDataPointChangesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "{userId}/dataSources/{dataSourceId}/dataPointChanges"
+        },
+        "smithy.api#documentation": "Queries for user's data point changes for a particular data source.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.fitness_v1#AggregateUsersDatasetRequest": {
+      "type": "structure",
+      "members": {
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.fitness_v1#AggregateRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.fitness_v1#AggregateUsersDataset": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.fitness_v1#AggregateUsersDatasetRequest"
+      },
+      "output": {
+        "target": "com.gcp.fitness_v1#AggregateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.fitness_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.fitness_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.fitness_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "{userId}/dataset:aggregate"
+        },
+        "smithy.api#documentation": "Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggregated into exactly one bucket type per request."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align web3#HostnamesIpfsUniversalPathsContentListsEntriesCreate with distilled cloudflare/web3 createHostnameIpfsUniversalPathContentListEntry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesCreate",
+      "path": "/shapes/com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesCreateRequest",
+      "path": "/shapes/com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntry/input/target",
+      "value": "com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesCreateResponse",
+      "path": "/shapes/com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntry/output/target",
+      "value": "com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntryResponse"
+    }
+  ]
+}

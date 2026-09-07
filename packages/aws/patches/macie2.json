@@ -1,0 +1,60 @@
+{
+  "structures": {
+    "DetectedDataDetails": {
+      "members": {
+        "value": {
+          "sensitive": true
+        }
+      }
+    }
+  },
+  "operations": {
+    "createClassificationJob": {
+      "syntheticErrors": [
+        {
+          "name": "MacieNotEnabled",
+          "from": "AccessDeniedException",
+          "message": {
+            "matches": "Macie is(n[’']t| not) enabled"
+          }
+        }
+      ]
+    },
+    "createAllowList": {
+      "syntheticErrors": [
+        {
+          "name": "MacieNotEnabled",
+          "from": "AccessDeniedException",
+          "message": {
+            "matches": "Macie is(n[’']t| not) enabled"
+          }
+        }
+      ]
+    },
+    "createCustomDataIdentifier": {
+      "syntheticErrors": [
+        {
+          "name": "MacieNotEnabled",
+          "from": "AccessDeniedException",
+          "message": {
+            "matches": "Macie is(n[’']t| not) enabled"
+          }
+        }
+      ]
+    },
+    "createFindingsFilter": {
+      "syntheticErrors": [
+        {
+          "name": "MacieNotEnabled",
+          "from": "AccessDeniedException",
+          "message": {
+            "matches": "Macie is(n[’']t| not) enabled"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "MacieNotEnabled": ["RetryableError"]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align rules#ListsDelete with distilled cloudflare/rules deleteList",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsDelete",
+      "path": "/shapes/com.cloudflare.rules#DeleteList"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsDeleteRequest",
+      "path": "/shapes/com.cloudflare.rules#DeleteListRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#DeleteList/input/target",
+      "value": "com.cloudflare.rules#DeleteListRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsDeleteResponse",
+      "path": "/shapes/com.cloudflare.rules#DeleteListResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#DeleteList/output/target",
+      "value": "com.cloudflare.rules#DeleteListResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rules#DeleteList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rules#ListNotFound"
+        },
+        {
+          "target": "com.cloudflare.rules#Forbidden"
+        }
+      ]
+    }
+  ]
+}

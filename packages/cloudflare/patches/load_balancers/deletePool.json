@@ -1,0 +1,45 @@
+{
+  "description": "Align load_balancers#PoolsDelete with distilled cloudflare/load-balancers deletePool",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsDelete",
+      "path": "/shapes/com.cloudflare.load_balancers#DeletePool"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsDeleteRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#DeletePoolRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#DeletePool/input/target",
+      "value": "com.cloudflare.load_balancers#DeletePoolRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsDeleteResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#DeletePoolResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#DeletePool/output/target",
+      "value": "com.cloudflare.load_balancers#DeletePoolResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#DeletePool/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#PoolNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#PoolInUse"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

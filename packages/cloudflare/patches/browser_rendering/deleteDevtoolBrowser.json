@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#DevtoolsBrowserDelete with distilled cloudflare/browser-rendering deleteDevtoolBrowser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserDelete",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteDevtoolBrowser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserDeleteRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteDevtoolBrowserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteDevtoolBrowser/input/target",
+      "value": "com.cloudflare.browser_rendering#DeleteDevtoolBrowserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserDeleteResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteDevtoolBrowserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#DeleteDevtoolBrowser/output/target",
+      "value": "com.cloudflare.browser_rendering#DeleteDevtoolBrowserResponse"
+    }
+  ]
+}

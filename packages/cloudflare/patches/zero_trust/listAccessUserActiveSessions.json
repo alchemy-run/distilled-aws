@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#AccessUsersActiveSessionsList with distilled cloudflare/zero-trust listAccessUserActiveSessions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersActiveSessionsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserActiveSessions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersActiveSessionsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserActiveSessionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserActiveSessions/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessUserActiveSessionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersActiveSessionsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserActiveSessionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserActiveSessions/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessUserActiveSessionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessUserActiveSessions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "description": "The update body's `service_id` is the service object's own server-assigned id echoed into the write shape — the same service the path's {service_id} already names. The converter dedup surfaced it as the meaningless member `service_id_2`; drop it (v0 distilled omitted it too). Callers who really want to send it can still pass it via the unknown-key body passthrough.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryServiceRequest/members/service_id_2"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align email_security#SettingsSendingDomainRestrictionsEdit with distilled cloudflare/email-security patchSettingSendingDomainRestriction",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsSendingDomainRestrictionsEdit",
+      "path": "/shapes/com.cloudflare.email_security#PatchSettingSendingDomainRestriction"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsSendingDomainRestrictionsEditRequest",
+      "path": "/shapes/com.cloudflare.email_security#PatchSettingSendingDomainRestrictionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#PatchSettingSendingDomainRestriction/input/target",
+      "value": "com.cloudflare.email_security#PatchSettingSendingDomainRestrictionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsSendingDomainRestrictionsEditResponse",
+      "path": "/shapes/com.cloudflare.email_security#PatchSettingSendingDomainRestrictionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#PatchSettingSendingDomainRestriction/output/target",
+      "value": "com.cloudflare.email_security#PatchSettingSendingDomainRestrictionResponse"
+    }
+  ]
+}

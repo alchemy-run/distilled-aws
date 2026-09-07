@@ -1,0 +1,926 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "merchantapi",
+    "version": "conversions_v1beta",
+    "title": "Merchant API",
+    "baseUrl": "https://merchantapi.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.merchantapi_conversions_v1beta#ListConversionSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "conversionSources": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSourceList",
+          "traits": {
+            "smithy.api#documentation": "List of conversion sources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to be used to fetch the next results page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListConversionSources method."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ConversionSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource"
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#GoogleAnalyticsLink": {
+      "type": "structure",
+      "members": {
+        "propertyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. ID of the Google Analytics property the merchant is linked to."
+          }
+        },
+        "attributionSettings": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#AttributionSettings",
+          "traits": {
+            "smithy.api#documentation": "Output only. Attribution settings for the linked Google Analytics property."
+          }
+        },
+        "property": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the Google Analytics property the merchant is linked to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "\"Google Analytics Link\" sources can be used to get conversion data from an existing Google Analytics property into the linked Merchant Center account."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ConversionType": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Conversion event name, as it'll be reported by the client."
+          }
+        },
+        "report": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Option indicating if the type should be included in Merchant Center reporting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message representing the type of a conversion event."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ProductStatusChangeMessage": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+          }
+        },
+        "changes": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ProductChangeList",
+          "traits": {
+            "smithy.api#documentation": "A message to describe the change that happened to the product"
+          }
+        },
+        "managingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+          }
+        },
+        "attribute": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ProductStatusChangeMessageAttributeEnum",
+          "traits": {
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ProductStatusChangeMessageResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT"
+          }
+        },
+        "ACCOUNT_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SERVICE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ProductChange"
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ProductStatusChangeMessageAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#UndeleteConversionSourceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for the UndeleteConversionSource method."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#AttributionSettings": {
+      "type": "structure",
+      "members": {
+        "attributionLookbackWindowDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Lookback window (in days) used for attribution in this source. Supported values are `7`, `30` & `40`."
+          }
+        },
+        "conversionType": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ConversionTypeList",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Unordered list. List of different conversion types a conversion event can be classified as. A standard \"purchase\" type will be automatically created if this list is empty at creation time."
+          }
+        },
+        "attributionModel": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#AttributionSettingsAttributionModelEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Attribution model."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents attribution settings for conversion sources receiving pre-attribution data."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ConversionTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ConversionType"
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#AttributionSettingsAttributionModelEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTION_MODEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTION_MODEL_UNSPECIFIED"
+          }
+        },
+        "CROSS_CHANNEL_LAST_CLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSS_CHANNEL_LAST_CLICK"
+          }
+        },
+        "ADS_PREFERRED_LAST_CLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADS_PREFERRED_LAST_CLICK"
+          }
+        },
+        "CROSS_CHANNEL_DATA_DRIVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSS_CHANNEL_DATA_DRIVEN"
+          }
+        },
+        "CROSS_CHANNEL_FIRST_CLICK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSS_CHANNEL_FIRST_CLICK"
+          }
+        },
+        "CROSS_CHANNEL_LINEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSS_CHANNEL_LINEAR"
+          }
+        },
+        "CROSS_CHANNEL_POSITION_BASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSS_CHANNEL_POSITION_BASED"
+          }
+        },
+        "CROSS_CHANNEL_TIME_DECAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CROSS_CHANNEL_TIME_DECAY"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#MerchantCenterDestination": {
+      "type": "structure",
+      "members": {
+        "attributionSettings": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#AttributionSettings",
+          "traits": {
+            "smithy.api#documentation": "Required. Attribution settings used for the Merchant Center Destination."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Merchant-specified display name for the destination. This is the name that identifies the conversion source within the Merchant Center UI. The maximum length is 64 characters."
+          }
+        },
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Merchant Center Destination ID."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Three-letter currency code (ISO 4217). The currency code defines in which currency the conversions sent to this destination will be reported in Merchant Center."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "\"Merchant Center Destination\" sources can be used to send conversion events from an online store using a Google tag directly to a Merchant Center account where the source is created."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ConversionSource": {
+      "type": "structure",
+      "members": {
+        "googleAnalyticsLink": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#GoogleAnalyticsLink",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Conversion Source of type \"Link to Google Analytics Property\"."
+          }
+        },
+        "merchantCenterDestination": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#MerchantCenterDestination",
+          "traits": {
+            "smithy.api#documentation": "Conversion Source of type \"Merchant Center Tag Destination\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. Generated by the Content API upon creation of a new `ConversionSource`. Format: `[a-z]{4}:.+` The four characters before the colon represent the type of conversion source. Content after the colon represents the ID of the conversion source within that type. The ID of two different conversion sources might be the same across different types. The following type prefixes are supported: * `galk`: For GoogleAnalyticsLink sources. * `mcdn`: For MerchantCenterDestination sources."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when an archived conversion source becomes permanently deleted and is no longer available to undelete."
+          }
+        },
+        "state": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSourceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state of this conversion source. Can't be edited through the API."
+          }
+        },
+        "controller": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSourceControllerEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Controller of the conversion source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ConversionSourceStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHIVED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ConversionSourceControllerEnum": {
+      "type": "enum",
+      "members": {
+        "CONTROLLER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTROLLER_UNSPECIFIED"
+          }
+        },
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "YOUTUBE_AFFILIATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATES"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ProductChange": {
+      "type": "structure",
+      "members": {
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ProductChangeReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#CreateAccountsConversionSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The merchant account that will own the new conversion source. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#CreateAccountsConversionSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#CreateAccountsConversionSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "conversions/v1beta/{+parent}/conversionSources"
+        },
+        "smithy.api#documentation": "Creates a new conversion source."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#UndeleteAccountsConversionSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the conversion source to be undeleted. Format: `accounts/{account}/conversionSources/{conversion_source}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#UndeleteConversionSourceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#UndeleteAccountsConversionSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#UndeleteAccountsConversionSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "conversions/v1beta/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Re-enables an archived conversion source. Only Available for Merchant Center Destination conversion sources."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#DeleteAccountsConversionSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the conversion source to be deleted. Format: `accounts/{account}/conversionSources/{conversion_source}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#DeleteAccountsConversionSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#DeleteAccountsConversionSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "conversions/v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Archives an existing conversion source. If the conversion source is a Merchant Center Destination, it will be recoverable for 30 days. If the conversion source is a Google Analytics Link, it will be deleted immediately and can be restored by creating a new one."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ListAccountsConversionSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Show deleted (archived) conversion sources. By default, deleted conversion sources are not returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The merchant account who owns the collection of conversion sources. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of conversion sources to return in a page. If no `page_size` is specified, `100` is used as the default value. The maximum value is `200`. Values above `200` will be coerced to `200`. Regardless of pagination, at most `200` conversion sources are returned in total.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#ListAccountsConversionSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ListAccountsConversionSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ListConversionSourcesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "conversions/v1beta/{+parent}/conversionSources"
+        },
+        "smithy.api#documentation": "Retrieves the list of conversion sources the caller has access to.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#PatchAccountsConversionSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. Generated by the Content API upon creation of a new `ConversionSource`. Format: `[a-z]{4}:.+` The four characters before the colon represent the type of conversion source. Content after the colon represents the ID of the conversion source within that type. The ID of two different conversion sources might be the same across different types. The following type prefixes are supported: * `galk`: For GoogleAnalyticsLink sources. * `mcdn`: For MerchantCenterDestination sources.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of fields being updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#PatchAccountsConversionSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#PatchAccountsConversionSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "conversions/v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates information of an existing conversion source. Available only for Merchant Center Destination conversion sources."
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#GetAccountsConversionSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the conversion source to be fetched. Format: `accounts/{account}/conversionSources/{conversion_source}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_conversions_v1beta#GetAccountsConversionSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#GetAccountsConversionSourcesRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_conversions_v1beta#ConversionSource"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_conversions_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "conversions/v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Fetches a conversion source."
+      }
+    }
+  }
+}

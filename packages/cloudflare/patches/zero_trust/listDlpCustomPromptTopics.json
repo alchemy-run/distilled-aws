@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DlpCustomPromptTopicsList with distilled cloudflare/zero-trust listDlpCustomPromptTopics",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpCustomPromptTopics"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpCustomPromptTopicsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpCustomPromptTopics/input/target",
+      "value": "com.cloudflare.zero_trust#ListDlpCustomPromptTopicsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpCustomPromptTopicsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpCustomPromptTopicsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpCustomPromptTopics/output/target",
+      "value": "com.cloudflare.zero_trust#ListDlpCustomPromptTopicsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpCustomPromptTopics/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

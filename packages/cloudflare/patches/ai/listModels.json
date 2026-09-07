@@ -1,0 +1,41 @@
+{
+  "description": "Align ai#ModelsList with distilled cloudflare/ai listModels",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ModelsList",
+      "path": "/shapes/com.cloudflare.ai#ListModels"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ModelsListRequest",
+      "path": "/shapes/com.cloudflare.ai#ListModelsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListModels/input/target",
+      "value": "com.cloudflare.ai#ListModelsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ModelsListResponse",
+      "path": "/shapes/com.cloudflare.ai#ListModelsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListModels/output/target",
+      "value": "com.cloudflare.ai#ListModelsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#ListModels/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

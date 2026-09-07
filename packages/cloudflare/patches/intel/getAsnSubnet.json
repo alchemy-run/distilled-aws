@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#AsnSubnetsGet with distilled cloudflare/intel getAsnSubnet",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AsnSubnetsGet",
+      "path": "/shapes/com.cloudflare.intel#GetAsnSubnet"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AsnSubnetsGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetAsnSubnetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetAsnSubnet/input/target",
+      "value": "com.cloudflare.intel#GetAsnSubnetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AsnSubnetsGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetAsnSubnetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetAsnSubnet/output/target",
+      "value": "com.cloudflare.intel#GetAsnSubnetResponse"
+    }
+  ]
+}

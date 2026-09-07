@@ -1,0 +1,39 @@
+{
+  "description": "Align network_interconnects#SettingsGet with distilled cloudflare/network-interconnects getSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SettingsGet",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SettingsGetRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSetting/input/target",
+      "value": "com.cloudflare.network_interconnects#GetSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SettingsGetResponse",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSetting/output/target",
+      "value": "com.cloudflare.network_interconnects#GetSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.network_interconnects#Forbidden"
+        }
+      ]
+    }
+  ]
+}

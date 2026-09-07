@@ -1,0 +1,30 @@
+{
+  "description": "Align tenants#Get with distilled cloudflare/tenants getTenant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#Get",
+      "path": "/shapes/com.cloudflare.tenants#GetTenant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#GetRequest",
+      "path": "/shapes/com.cloudflare.tenants#GetTenantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#GetTenant/input/target",
+      "value": "com.cloudflare.tenants#GetTenantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#GetResponse",
+      "path": "/shapes/com.cloudflare.tenants#GetTenantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#GetTenant/output/target",
+      "value": "com.cloudflare.tenants#GetTenantResponse"
+    }
+  ]
+}

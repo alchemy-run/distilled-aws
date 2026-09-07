@@ -1,0 +1,2195 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.firewalls#ListFirewallsRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "NAME_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:asc"
+          }
+        },
+        "NAME_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:desc"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "CREATED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:asc"
+          }
+        },
+        "CREATED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#ListFirewallsRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsRequest": {
+      "type": "structure",
+      "members": {
+        "sort": {
+          "target": "com.hetzner.firewalls#ListFirewallsRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort resources by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter resources by their name.\n\nThe response will only contain the resources\nmatching exactly the specified name.\n"
+          }
+        },
+        "label_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "label_selector",
+            "smithy.api#documentation": "Filter resources by labels.\n\nThe response will only contain resources matching the label selector.\nFor more information, see \"[Label Selector](#description/label-selector)\".\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemDirection": {
+      "type": "enum",
+      "members": {
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "out"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemSourceIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemDestinationIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "udp"
+          }
+        },
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        },
+        "ESP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "esp"
+          }
+        },
+        "GRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network protocol to apply the rule for."
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItem": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the rule.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "direction": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemDirection",
+          "traits": {
+            "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "source_ips": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemSourceIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_ips": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemDestinationIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItemProtocol",
+          "traits": {
+            "smithy.api#documentation": "Network protocol to apply the rule for.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Port or port range to apply the rule for.\n\nOnly applicable for protocols `tcp` and `udp`.\n\nA port range can be specified by separating lower and upper bounds with a dash. `1024-5000` will include\nall ports starting from 1024 up to port 5000.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource to apply."
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of resource."
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of resource."
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource to apply.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+          }
+        },
+        "applied_to_resources": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Firewall](#tag/firewalls).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Firewall](#tag/firewalls).\n\nMust be unique per Project.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "rules": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemRulesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "applied_to": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItemAppliedToList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseFirewallsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.firewalls#ListFirewallsResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#ListFirewallsResponse": {
+      "type": "structure",
+      "members": {
+        "firewalls": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseFirewallsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.firewalls#ListFirewallsResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.firewalls#ListFirewalls": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.firewalls#ListFirewallsRequest"
+      },
+      "output": {
+        "target": "com.hetzner.firewalls#ListFirewallsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/firewalls",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Firewalls\n\nReturns all [Firewalls](#tag/firewalls).\n\nUse the provided URI parameters to modify the result.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "firewalls",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestRulesItemDirection": {
+      "type": "enum",
+      "members": {
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "out"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestRulesItemSourceIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestRulesItemDestinationIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestRulesItemProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "udp"
+          }
+        },
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        },
+        "ESP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "esp"
+          }
+        },
+        "GRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network protocol to apply the rule for."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestRulesItem": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the rule.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "direction": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestRulesItemDirection",
+          "traits": {
+            "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "source_ips": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestRulesItemSourceIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+          }
+        },
+        "destination_ips": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestRulesItemDestinationIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestRulesItemProtocol",
+          "traits": {
+            "smithy.api#documentation": "Network protocol to apply the rule for.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Port or port range to apply the rule for.\n\nOnly applicable for protocols `tcp` and `udp`.\n\nA port range can be specified by separating lower and upper bounds with a dash. `1024-5000` will include\nall ports starting from 1024 up to port 5000.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallRequestRulesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of rules.\n\nRules are limited to 50 entries per [Firewall](#tag/firewalls) and [500 effective rules](https://docs.hetzner.com/cloud/firewalls/overview#limits).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestApplyToItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestApplyToItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestApplyToItemLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestApplyToItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestApplyToItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestApplyToItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestApplyToItemLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallRequestApplyToList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallRequestApplyToItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to apply the [Firewall](#tag/firewalls) to.\n\nResources added directly are taking precedence over those added via a [Label Selector](#description/label-selector).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Firewall](#tag/firewalls).\n\nMust be unique per Project.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "rules": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestRulesList",
+          "traits": {
+            "smithy.api#documentation": "Array of rules.\n\nRules are limited to 50 entries per [Firewall](#tag/firewalls) and [500 effective rules](https://docs.hetzner.com/cloud/firewalls/overview#limits).\n"
+          }
+        },
+        "apply_to": {
+          "target": "com.hetzner.firewalls#CreateFirewallRequestApplyToList",
+          "traits": {
+            "smithy.api#documentation": "Resources to apply the [Firewall](#tag/firewalls) to.\n\nResources added directly are taking precedence over those added via a [Label Selector](#description/label-selector).\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemDirection": {
+      "type": "enum",
+      "members": {
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "out"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemSourceIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemDestinationIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "udp"
+          }
+        },
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        },
+        "ESP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "esp"
+          }
+        },
+        "GRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network protocol to apply the rule for."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItem": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the rule.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "direction": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemDirection",
+          "traits": {
+            "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "source_ips": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemSourceIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_ips": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemDestinationIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItemProtocol",
+          "traits": {
+            "smithy.api#documentation": "Network protocol to apply the rule for.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Port or port range to apply the rule for.\n\nOnly applicable for protocols `tcp` and `udp`.\n\nA port range can be specified by separating lower and upper bounds with a dash. `1024-5000` will include\nall ports starting from 1024 up to port 5000.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource to apply."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of resource."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of resource."
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource to apply.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+          }
+        },
+        "applied_to_resources": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseFirewall": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Firewall](#tag/firewalls).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Firewall](#tag/firewalls).\n\nMust be unique per Project.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "rules": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallRulesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "applied_to": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewallAppliedToList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseActionsItemStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseActionsItemResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseActionsItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallResponseActionsItemResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseActionsItemError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseActionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseActionsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseActionsItemResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseActionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponseActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#CreateFirewallResponseActionsItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#CreateFirewallResponse": {
+      "type": "structure",
+      "members": {
+        "firewall": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseFirewall"
+        },
+        "actions": {
+          "target": "com.hetzner.firewalls#CreateFirewallResponseActionsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.firewalls#CreateFirewall": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.firewalls#CreateFirewallRequest"
+      },
+      "output": {
+        "target": "com.hetzner.firewalls#CreateFirewallResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/firewalls",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Firewall\n\nCreate a [Firewall](#tag/firewalls).\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Firewall."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemDirection": {
+      "type": "enum",
+      "members": {
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "out"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemSourceIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemDestinationIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "udp"
+          }
+        },
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        },
+        "ESP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "esp"
+          }
+        },
+        "GRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network protocol to apply the rule for."
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItem": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the rule.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "direction": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemDirection",
+          "traits": {
+            "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "source_ips": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemSourceIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_ips": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemDestinationIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItemProtocol",
+          "traits": {
+            "smithy.api#documentation": "Network protocol to apply the rule for.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Port or port range to apply the rule for.\n\nOnly applicable for protocols `tcp` and `udp`.\n\nA port range can be specified by separating lower and upper bounds with a dash. `1024-5000` will include\nall ports starting from 1024 up to port 5000.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#GetFirewallResponseFirewallRulesItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource to apply."
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of resource."
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of resource."
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+      }
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource to apply.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+          }
+        },
+        "applied_to_resources": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItemAppliedToResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#GetFirewallResponseFirewall": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Firewall](#tag/firewalls).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Firewall](#tag/firewalls).\n\nMust be unique per Project.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "rules": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallRulesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "applied_to": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewallAppliedToList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#GetFirewallResponse": {
+      "type": "structure",
+      "members": {
+        "firewall": {
+          "target": "com.hetzner.firewalls#GetFirewallResponseFirewall",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.firewalls#GetFirewall": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.firewalls#GetFirewallRequest"
+      },
+      "output": {
+        "target": "com.hetzner.firewalls#GetFirewallResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/firewalls/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Firewall\n\nReturns a single [Firewall](#tag/firewalls)."
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Firewall."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Firewall](#tag/firewalls).\n\nMust be unique per Project.\n"
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.firewalls#UpdateFirewallRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemDirection": {
+      "type": "enum",
+      "members": {
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in"
+          }
+        },
+        "OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "out"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemSourceIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemDestinationIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "UDP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "udp"
+          }
+        },
+        "ICMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icmp"
+          }
+        },
+        "ESP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "esp"
+          }
+        },
+        "GRE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gre"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network protocol to apply the rule for."
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItem": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the rule.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "direction": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemDirection",
+          "traits": {
+            "smithy.api#documentation": "Traffic direction in which the rule should be applied to.\n\nUse `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "source_ips": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemSourceIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for incoming traffic.\n\nThe `direction` must be set to `in`.\n\nIPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_ips": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemDestinationIpsList",
+          "traits": {
+            "smithy.api#documentation": "List of permitted IPv4/IPv6 addresses for outgoing traffic.\n\nThe `direction` must be set to `out`.\n\nIPs must be in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR\nblocks at most.\n\nThe CIDR blocks may refer to networks (with empty host bits) or single hosts.\nFor example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`,\nand a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`.\n\nUse `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses.\n\nIPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4).\n",
+            "smithy.api#required": {}
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItemProtocol",
+          "traits": {
+            "smithy.api#documentation": "Network protocol to apply the rule for.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Port or port range to apply the rule for.\n\nOnly applicable for protocols `tcp` and `udp`.\n\nA port range can be specified by separating lower and upper bounds with a dash. `1024-5000` will include\nall ports starting from 1024 up to port 5000.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource to apply."
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of resource."
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Server](#tag/servers).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of resource."
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource to apply.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemServer",
+          "traits": {
+            "smithy.api#documentation": "[Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `server`, otherwise `null`.\n"
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "[Label Selector](#description/label-selector) the [Firewall](#tag/firewalls) is applied to.\n\nOnly set for `type` `label_selector`, otherwise `null`.\n"
+          }
+        },
+        "applied_to_resources": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources applied to via this [Label Selector](#description/label-selector).\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponseFirewall": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Firewall](#tag/firewalls).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Firewall](#tag/firewalls).\n\nMust be unique per Project.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "rules": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallRulesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "applied_to": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewallAppliedToList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.firewalls#UpdateFirewallResponse": {
+      "type": "structure",
+      "members": {
+        "firewall": {
+          "target": "com.hetzner.firewalls#UpdateFirewallResponseFirewall",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.firewalls#UpdateFirewall": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.firewalls#UpdateFirewallRequest"
+      },
+      "output": {
+        "target": "com.hetzner.firewalls#UpdateFirewallResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/firewalls/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Firewall\n\nUpdate a [Firewall](#tag/firewalls).\n\nIn case of a parallel running change on the [Firewall](#tag/firewalls) a `conflict` error will be returned."
+      }
+    },
+    "com.hetzner.firewalls#DeleteFirewallRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Firewall."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.firewalls#DeleteFirewall": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.firewalls#DeleteFirewallRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/firewalls/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Firewall\n\nDeletes the [Firewall](#tag/firewalls).\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.firewalls#Firewalls": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.firewalls#ListFirewalls"
+        },
+        {
+          "target": "com.hetzner.firewalls#CreateFirewall"
+        },
+        {
+          "target": "com.hetzner.firewalls#GetFirewall"
+        },
+        {
+          "target": "com.hetzner.firewalls#UpdateFirewall"
+        },
+        {
+          "target": "com.hetzner.firewalls#DeleteFirewall"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

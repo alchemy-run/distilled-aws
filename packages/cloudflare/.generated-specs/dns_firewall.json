@@ -1,0 +1,1798 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.dns_firewall#CreateRequestUpstreamIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#CreateRequestAttackMitigation": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, automatically mitigate random-prefix attacks to protect upstream DNS servers"
+          }
+        },
+        "only_when_upstream_unhealthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only mitigate attacks when upstream servers seem unhealthy"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS Firewall cluster name",
+            "smithy.api#required": {}
+          }
+        },
+        "upstream_ips": {
+          "target": "com.cloudflare.dns_firewall#CreateRequestUpstreamIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attack_mitigation": {
+          "target": "com.cloudflare.dns_firewall#CreateRequestAttackMitigation",
+          "traits": {
+            "smithy.api#documentation": "Attack mitigation settings"
+          }
+        },
+        "deprecate_any_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to refuse to answer queries for the ANY type"
+          }
+        },
+        "dns_firewall_ip_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of IPv4 addresses to assign to the DNS Firewall cluster. Only used during cluster creation and cannot be changed later."
+          }
+        },
+        "ecs_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent"
+          }
+        },
+        "maximum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as"
+          }
+        },
+        "minimum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as"
+          }
+        },
+        "negative_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This setting controls how long DNS Firewall should cache negative"
+          }
+        },
+        "ratelimit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of DNS queries per second that will be forwarded to your upstream nameservers. The limit is enforced per server, where each server receives a fraction of the configured value. The actual aggregate rate for a data center may vary depending on how many servers are present. Responses served from cache do not count toward this limit. Set to null to disable rate limiting."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of retries for fetching DNS responses from upstream nameservers (not counting the initial attempt)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#CreateResponseDnsFirewallIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#CreateResponseUpstreamIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#CreateResponseAttackMitigation": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, automatically mitigate random-prefix attacks to protect upstream DNS servers"
+          }
+        },
+        "only_when_upstream_unhealthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only mitigate attacks when upstream servers seem unhealthy"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecate_any_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to refuse to answer queries for the ANY type",
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_ips": {
+          "target": "com.cloudflare.dns_firewall#CreateResponseDnsFirewallIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ecs_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent",
+            "smithy.api#required": {}
+          }
+        },
+        "maximum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "minimum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification of DNS Firewall cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS Firewall cluster name",
+            "smithy.api#required": {}
+          }
+        },
+        "negative_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This setting controls how long DNS Firewall should cache negative",
+            "smithy.api#required": {}
+          }
+        },
+        "ratelimit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of DNS queries per second that will be forwarded to your upstream nameservers. The limit is enforced per server, where each server receives a fraction of the configured value. The actual aggregate rate for a data center may vary depending on how many servers are present. Responses served from cache do not count toward this limit. Set to null to disable rate limiting.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of retries for fetching DNS responses from upstream nameservers (not counting the initial attempt)",
+            "smithy.api#required": {}
+          }
+        },
+        "upstream_ips": {
+          "target": "com.cloudflare.dns_firewall#CreateResponseUpstreamIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attack_mitigation": {
+          "target": "com.cloudflare.dns_firewall#CreateResponseAttackMitigation",
+          "traits": {
+            "smithy.api#documentation": "Attack mitigation settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/dns_firewall",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a DNS Firewall cluster"
+      }
+    },
+    "com.cloudflare.dns_firewall#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#DeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a DNS Firewall cluster",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#EditRequestAttackMitigation": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, automatically mitigate random-prefix attacks to protect upstream DNS servers"
+          }
+        },
+        "only_when_upstream_unhealthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only mitigate attacks when upstream servers seem unhealthy"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#EditRequestUpstreamIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#EditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "attack_mitigation": {
+          "target": "com.cloudflare.dns_firewall#EditRequestAttackMitigation",
+          "traits": {
+            "smithy.api#documentation": "Attack mitigation settings"
+          }
+        },
+        "deprecate_any_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to refuse to answer queries for the ANY type"
+          }
+        },
+        "ecs_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent"
+          }
+        },
+        "maximum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as"
+          }
+        },
+        "minimum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS Firewall cluster name"
+          }
+        },
+        "negative_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This setting controls how long DNS Firewall should cache negative"
+          }
+        },
+        "ratelimit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of DNS queries per second that will be forwarded to your upstream nameservers. The limit is enforced per server, where each server receives a fraction of the configured value. The actual aggregate rate for a data center may vary depending on how many servers are present. Responses served from cache do not count toward this limit. Set to null to disable rate limiting."
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of retries for fetching DNS responses from upstream nameservers (not counting the initial attempt)"
+          }
+        },
+        "upstream_ips": {
+          "target": "com.cloudflare.dns_firewall#EditRequestUpstreamIpsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#EditResponseDnsFirewallIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#EditResponseUpstreamIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#EditResponseAttackMitigation": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, automatically mitigate random-prefix attacks to protect upstream DNS servers"
+          }
+        },
+        "only_when_upstream_unhealthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only mitigate attacks when upstream servers seem unhealthy"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#EditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecate_any_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to refuse to answer queries for the ANY type",
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_ips": {
+          "target": "com.cloudflare.dns_firewall#EditResponseDnsFirewallIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ecs_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent",
+            "smithy.api#required": {}
+          }
+        },
+        "maximum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "minimum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification of DNS Firewall cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS Firewall cluster name",
+            "smithy.api#required": {}
+          }
+        },
+        "negative_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This setting controls how long DNS Firewall should cache negative",
+            "smithy.api#required": {}
+          }
+        },
+        "ratelimit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of DNS queries per second that will be forwarded to your upstream nameservers. The limit is enforced per server, where each server receives a fraction of the configured value. The actual aggregate rate for a data center may vary depending on how many servers are present. Responses served from cache do not count toward this limit. Set to null to disable rate limiting.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of retries for fetching DNS responses from upstream nameservers (not counting the initial attempt)",
+            "smithy.api#required": {}
+          }
+        },
+        "upstream_ips": {
+          "target": "com.cloudflare.dns_firewall#EditResponseUpstreamIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attack_mitigation": {
+          "target": "com.cloudflare.dns_firewall#EditResponseAttackMitigation",
+          "traits": {
+            "smithy.api#documentation": "Attack mitigation settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#Edit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#EditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#EditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Modify the configuration of a DNS Firewall cluster"
+      }
+    },
+    "com.cloudflare.dns_firewall#GetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#GetResponseDnsFirewallIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#GetResponseUpstreamIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#GetResponseAttackMitigation": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, automatically mitigate random-prefix attacks to protect upstream DNS servers"
+          }
+        },
+        "only_when_upstream_unhealthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only mitigate attacks when upstream servers seem unhealthy"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecate_any_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to refuse to answer queries for the ANY type",
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_ips": {
+          "target": "com.cloudflare.dns_firewall#GetResponseDnsFirewallIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ecs_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent",
+            "smithy.api#required": {}
+          }
+        },
+        "maximum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "minimum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification of DNS Firewall cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS Firewall cluster name",
+            "smithy.api#required": {}
+          }
+        },
+        "negative_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This setting controls how long DNS Firewall should cache negative",
+            "smithy.api#required": {}
+          }
+        },
+        "ratelimit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of DNS queries per second that will be forwarded to your upstream nameservers. The limit is enforced per server, where each server receives a fraction of the configured value. The actual aggregate rate for a data center may vary depending on how many servers are present. Responses served from cache do not count toward this limit. Set to null to disable rate limiting.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of retries for fetching DNS responses from upstream nameservers (not counting the initial attempt)",
+            "smithy.api#required": {}
+          }
+        },
+        "upstream_ips": {
+          "target": "com.cloudflare.dns_firewall#GetResponseUpstreamIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attack_mitigation": {
+          "target": "com.cloudflare.dns_firewall#GetResponseAttackMitigation",
+          "traits": {
+            "smithy.api#documentation": "Attack mitigation settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show a single DNS Firewall cluster for an account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#ListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of clusters per page",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#ListResultItemDnsFirewallIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#ListResultItemUpstreamIpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.dns_firewall#ListResultItemAttackMitigation": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, automatically mitigate random-prefix attacks to protect upstream DNS servers"
+          }
+        },
+        "only_when_upstream_unhealthy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only mitigate attacks when upstream servers seem unhealthy"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#ListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecate_any_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to refuse to answer queries for the ANY type",
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_ips": {
+          "target": "com.cloudflare.dns_firewall#ListResultItemDnsFirewallIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ecs_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent",
+            "smithy.api#required": {}
+          }
+        },
+        "maximum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "minimum_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "By default, Cloudflare attempts to cache responses for as long as",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification of DNS Firewall cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS Firewall cluster name",
+            "smithy.api#required": {}
+          }
+        },
+        "negative_cache_ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This setting controls how long DNS Firewall should cache negative",
+            "smithy.api#required": {}
+          }
+        },
+        "ratelimit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of DNS queries per second that will be forwarded to your upstream nameservers. The limit is enforced per server, where each server receives a fraction of the configured value. The actual aggregate rate for a data center may vary depending on how many servers are present. Responses served from cache do not count toward this limit. Set to null to disable rate limiting.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of retries for fetching DNS responses from upstream nameservers (not counting the initial attempt)",
+            "smithy.api#required": {}
+          }
+        },
+        "upstream_ips": {
+          "target": "com.cloudflare.dns_firewall#ListResultItemUpstreamIpsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attack_mitigation": {
+          "target": "com.cloudflare.dns_firewall#ListResultItemAttackMitigation",
+          "traits": {
+            "smithy.api#documentation": "Attack mitigation settings"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#ListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.dns_firewall#ListResultItem"
+      }
+    },
+    "com.cloudflare.dns_firewall#ListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.dns_firewall#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dns_firewall",
+          "code": 200
+        },
+        "smithy.api#documentation": "List DNS Firewall clusters for an account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dimensions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of dimensions to group results by.",
+            "smithy.api#httpQuery": "dimensions"
+          }
+        },
+        "filters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Segmentation filter in 'attribute operator value' format.",
+            "smithy.api#httpQuery": "filters"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit number of returned metrics.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "metrics": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of metrics to query.",
+            "smithy.api#httpQuery": "metrics"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#httpQuery": "since"
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of dimensions to sort by, where each dimension may be prefixed by - (descending) or + (ascending).",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataItemDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataItemMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataItem": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataItemDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Array of dimension values, representing the combination of dimension values corresponding to this row.",
+            "smithy.api#required": {}
+          }
+        },
+        "metrics": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataItemMetricsList",
+          "traits": {
+            "smithy.api#documentation": "Array with one item per requested metric. Each item is a single value.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataItem"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQueryDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQueryMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQuerySortList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQuery": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQueryDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Array of dimension names.",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit number of returned metrics.",
+            "smithy.api#required": {}
+          }
+        },
+        "metrics": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQueryMetricsList",
+          "traits": {
+            "smithy.api#documentation": "Array of metric names.",
+            "smithy.api#required": {}
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "filters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Segmentation filter in 'attribute operator value' format."
+          }
+        },
+        "sort": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQuerySortList",
+          "traits": {
+            "smithy.api#documentation": "Array of dimensions to sort by, where each dimension may be prefixed by - (descending) or + (ascending)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGetResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseDataList",
+          "traits": {
+            "smithy.api#documentation": "Array with one row per combination of dimension values.",
+            "smithy.api#required": {}
+          }
+        },
+        "data_lag": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of seconds between current time and last processed event, in another words how many seconds of data could be missing.",
+            "smithy.api#required": {}
+          }
+        },
+        "max": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Maximum results for each metric (object mapping metric names to values). Currently always an empty object.",
+            "smithy.api#required": {}
+          }
+        },
+        "min": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Minimum results for each metric (object mapping metric names to values). Currently always an empty object.",
+            "smithy.api#required": {}
+          }
+        },
+        "query": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponseQuery",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "rows": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total number of rows in the result.",
+            "smithy.api#required": {}
+          }
+        },
+        "totals": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Total results for metrics across all data (object mapping metric names to values).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves a list of summarised aggregate metrics over a given time period. See [Analytics API properties](https://developers.cloudflare.com/dns/reference/analytics-api-properties/) for detailed information about the available query parameters.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetRequestTimeDelta": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "YEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "year"
+          }
+        },
+        "QUARTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "quarter"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "month"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour"
+          }
+        },
+        "DEKAMINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dekaminute"
+          }
+        },
+        "MINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "minute"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dimensions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of dimensions to group results by.",
+            "smithy.api#httpQuery": "dimensions"
+          }
+        },
+        "filters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Segmentation filter in 'attribute operator value' format.",
+            "smithy.api#httpQuery": "filters"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit number of returned metrics.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "metrics": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of metrics to query.",
+            "smithy.api#httpQuery": "metrics"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#httpQuery": "since"
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of dimensions to sort by, where each dimension may be prefixed by - (descending) or + (ascending).",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "time_delta": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetRequestTimeDelta",
+          "traits": {
+            "smithy.api#documentation": "Unit of time to group data by.",
+            "smithy.api#httpQuery": "time_delta"
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#httpQuery": "until"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItemDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItemMetricsItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItemMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItemMetricsItemList"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItem": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItemDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Array of dimension values, representing the combination of dimension values corresponding to this row.",
+            "smithy.api#required": {}
+          }
+        },
+        "metrics": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItemMetricsList",
+          "traits": {
+            "smithy.api#documentation": "Array with one item per requested metric. Each item is an array of values, broken down by time interval.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataItem"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQueryDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQueryMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQueryTimeDelta": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "YEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "year"
+          }
+        },
+        "QUARTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "quarter"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "month"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour"
+          }
+        },
+        "DEKAMINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dekaminute"
+          }
+        },
+        "MINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "minute"
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQuerySortList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQuery": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQueryDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Array of dimension names.",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit number of returned metrics.",
+            "smithy.api#required": {}
+          }
+        },
+        "metrics": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQueryMetricsList",
+          "traits": {
+            "smithy.api#documentation": "Array of metric names.",
+            "smithy.api#required": {}
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "time_delta": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQueryTimeDelta",
+          "traits": {
+            "smithy.api#documentation": "Unit of time to group data by.",
+            "smithy.api#required": {}
+          }
+        },
+        "until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End date and time of requesting data period in ISO 8601 format.",
+            "smithy.api#required": {}
+          }
+        },
+        "filters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Segmentation filter in 'attribute operator value' format."
+          }
+        },
+        "sort": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQuerySortList",
+          "traits": {
+            "smithy.api#documentation": "Array of dimensions to sort by, where each dimension may be prefixed by - (descending) or + (ascending)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseTimeIntervalsItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseTimeIntervalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseTimeIntervalsItemList"
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseDataList",
+          "traits": {
+            "smithy.api#documentation": "Array with one row per combination of dimension values.",
+            "smithy.api#required": {}
+          }
+        },
+        "data_lag": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of seconds between current time and last processed event, in another words how many seconds of data could be missing.",
+            "smithy.api#required": {}
+          }
+        },
+        "max": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Maximum results for each metric (object mapping metric names to values). Currently always an empty object.",
+            "smithy.api#required": {}
+          }
+        },
+        "min": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Minimum results for each metric (object mapping metric names to values). Currently always an empty object.",
+            "smithy.api#required": {}
+          }
+        },
+        "query": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseQuery",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "rows": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total number of rows in the result.",
+            "smithy.api#required": {}
+          }
+        },
+        "time_intervals": {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponseTimeIntervalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of time intervals in the response data. Each interval is represented as an array containing two values: the start time, and the end time.",
+            "smithy.api#required": {}
+          }
+        },
+        "totals": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Total results for metrics across all data (object mapping metric names to values).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report/bytime",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves a list of aggregate metrics grouped by time interval. See [Analytics API properties](https://developers.cloudflare.com/dns/reference/analytics-api-properties/) for detailed information about the available query parameters.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsEditRequestPtrMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ptr": {
+          "target": "com.cloudflare.dns_firewall#ReverseDnsEditRequestPtrMap",
+          "traits": {
+            "smithy.api#documentation": "Map of cluster IP addresses to PTR record contents"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsEditResponsePtrMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsEditResponse": {
+      "type": "structure",
+      "members": {
+        "ptr": {
+          "target": "com.cloudflare.dns_firewall#ReverseDnsEditResponsePtrMap",
+          "traits": {
+            "smithy.api#documentation": "Map of cluster IP addresses to PTR record contents",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#ReverseDnsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#ReverseDnsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}/reverse_dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update reverse DNS configuration (PTR records) for a DNS Firewall cluster"
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dns_firewall_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsGetResponsePtrMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsGetResponse": {
+      "type": "structure",
+      "members": {
+        "ptr": {
+          "target": "com.cloudflare.dns_firewall#ReverseDnsGetResponsePtrMap",
+          "traits": {
+            "smithy.api#documentation": "Map of cluster IP addresses to PTR record contents",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dns_firewall#ReverseDnsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dns_firewall#ReverseDnsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dns_firewall#ReverseDnsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dns_firewall/{dns_firewall_id}/reverse_dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show reverse DNS configuration (PTR records) for a DNS Firewall cluster",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dns_firewall#DnsFirewall": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.dns_firewall#Create"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#Delete"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#Edit"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#Get"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#List"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGet"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGet"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#ReverseDnsEdit"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#ReverseDnsGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare DnsFirewall",
+        "smithy.api#documentation": "Cloudflare API — dns_firewall resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#TcpResetsTimeoutsTimeseriesGroups with distilled cloudflare/radar timeseriesGroupsTcpResetsTimeout",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TcpResetsTimeoutsTimeseriesGroups",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeout"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TcpResetsTimeoutsTimeseriesGroupsRequest",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeoutRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeout/input/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeoutRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TcpResetsTimeoutsTimeseriesGroupsResponse",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeoutResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeout/output/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsTcpResetsTimeoutResponse"
+    }
+  ]
+}

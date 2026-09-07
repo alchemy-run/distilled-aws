@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#DynamicRoutingCreateVersion with distilled cloudflare/ai-gateway createVersionDynamicRouting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersion",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRouting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersionRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRoutingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRouting/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateVersionDynamicRoutingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateVersionResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRoutingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRouting/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateVersionDynamicRoutingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRouting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#RouteNotFound"
+        }
+      ]
+    }
+  ]
+}

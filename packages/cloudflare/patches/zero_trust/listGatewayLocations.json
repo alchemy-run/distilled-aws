@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#GatewayLocationsList with distilled cloudflare/zero-trust listGatewayLocations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLocationsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayLocations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLocationsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayLocationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayLocations/input/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayLocationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLocationsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayLocationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayLocations/output/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayLocationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayLocations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

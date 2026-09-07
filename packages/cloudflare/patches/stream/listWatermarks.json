@@ -1,0 +1,38 @@
+{
+  "description": "Align stream#WatermarksList with distilled cloudflare/stream listWatermarks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksList",
+      "path": "/shapes/com.cloudflare.stream#ListWatermarks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksListRequest",
+      "path": "/shapes/com.cloudflare.stream#ListWatermarksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#ListWatermarks/input/target",
+      "value": "com.cloudflare.stream#ListWatermarksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksListResponse",
+      "path": "/shapes/com.cloudflare.stream#ListWatermarksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#ListWatermarks/output/target",
+      "value": "com.cloudflare.stream#ListWatermarksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#ListWatermarks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

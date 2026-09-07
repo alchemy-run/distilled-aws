@@ -1,0 +1,41 @@
+{
+  "description": "Align ai_gateway#EvaluationTypesList with distilled cloudflare/ai-gateway listEvaluationTypes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationTypesList",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListEvaluationTypes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationTypesListRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListEvaluationTypesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListEvaluationTypes/input/target",
+      "value": "com.cloudflare.ai_gateway#ListEvaluationTypesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationTypesListResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListEvaluationTypesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListEvaluationTypes/output/target",
+      "value": "com.cloudflare.ai_gateway#ListEvaluationTypesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListEvaluationTypes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

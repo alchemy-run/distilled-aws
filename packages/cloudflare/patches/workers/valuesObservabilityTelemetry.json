@@ -1,0 +1,47 @@
+{
+  "description": "Align workers#ObservabilityTelemetryValues with distilled cloudflare/workers valuesObservabilityTelemetry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryValues",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryValuesRequest",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetry/input/target",
+      "value": "com.cloudflare.workers#ValuesObservabilityTelemetryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryValuesResponse",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetry/output/target",
+      "value": "com.cloudflare.workers#ValuesObservabilityTelemetryResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetry/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ValuesObservabilityTelemetry/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpLimitsList with distilled cloudflare/zero-trust listDlpLimits",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpLimitsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpLimits"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpLimitsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpLimitsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpLimits/input/target",
+      "value": "com.cloudflare.zero_trust#ListDlpLimitsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpLimitsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpLimitsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpLimits/output/target",
+      "value": "com.cloudflare.zero_trust#ListDlpLimitsResponse"
+    }
+  ]
+}

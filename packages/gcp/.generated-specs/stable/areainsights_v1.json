@@ -1,0 +1,492 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "areainsights",
+    "version": "v1",
+    "title": "Places Aggregate API",
+    "baseUrl": "https://areainsights.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.areainsights_v1#TypeFilter": {
+      "type": "structure",
+      "members": {
+        "excludedTypes": {
+          "target": "com.gcp.areainsights_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Excluded Place types."
+          }
+        },
+        "includedTypes": {
+          "target": "com.gcp.areainsights_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Included Place types."
+          }
+        },
+        "includedPrimaryTypes": {
+          "target": "com.gcp.areainsights_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Included primary Place types."
+          }
+        },
+        "excludedPrimaryTypes": {
+          "target": "com.gcp.areainsights_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Excluded primary Place types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Place type filters. Only Place types from [Table a](https://developers.google.com/maps/documentation/places/web-service/place-types#table-a) are supported. A place can only have a single primary type associated with it. For example, the primary type might be \"mexican_restaurant\" or \"steak_house\". Use included_primary_types and excluded_primary_types to filter the results on a place's primary type. A place can also have multiple type values associated with it. For example a restaurant might have the following types: \"seafood_restaurant\", \"restaurant\", \"food\", \"point_of_interest\", \"establishment\". Use included_types and excluded_types to filter the results on the list of types associated with a place. If a search is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if you specify {\"included_types\": [\"restaurant\"], \"excluded_primary_types\": [\"steak_house\"]}, the returned places provide \"restaurant\" related services but do not operate primarily as a \"steak_house\". If there are any conflicting types, i.e. a type appears in both included_types and excluded_types types or included_primary_types and excluded_primary_types, an INVALID_ARGUMENT error is returned. One of included_types or included_primary_types must be set."
+      }
+    },
+    "com.gcp.areainsights_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.areainsights_v1#PlaceInsight": {
+      "type": "structure",
+      "members": {
+        "place": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the place. This resource name can be used to retrieve details about the place using the [Places API](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places/get)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Holds information about a place"
+      }
+    },
+    "com.gcp.areainsights_v1#CustomArea": {
+      "type": "structure",
+      "members": {
+        "polygon": {
+          "target": "com.gcp.areainsights_v1#Polygon",
+          "traits": {
+            "smithy.api#documentation": "Required. The custom area represented as a polygon"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom Area."
+      }
+    },
+    "com.gcp.areainsights_v1#RatingFilter": {
+      "type": "structure",
+      "members": {
+        "minRating": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restricts results to places whose average user rating is greater than or equal to min_rating. Values must be between 1.0 and 5.0."
+          }
+        },
+        "maxRating": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restricts results to places whose average user rating is strictly less than or equal to max_rating. Values must be between 1.0 and 5.0."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Average user rating filters."
+      }
+    },
+    "com.gcp.areainsights_v1#ComputeInsightsRequest": {
+      "type": "structure",
+      "members": {
+        "insights": {
+          "target": "com.gcp.areainsights_v1#ComputeInsightsRequestInsightsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Insights to compute. Currently only INSIGHT_COUNT and INSIGHT_PLACES are supported."
+          }
+        },
+        "filter": {
+          "target": "com.gcp.areainsights_v1#Filter",
+          "traits": {
+            "smithy.api#documentation": "Required. Insight filter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for the ComputeInsights RPC."
+      }
+    },
+    "com.gcp.areainsights_v1#ComputeInsightsRequestInsightsItemEnum": {
+      "type": "enum",
+      "members": {
+        "INSIGHT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSIGHT_UNSPECIFIED"
+          }
+        },
+        "INSIGHT_COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSIGHT_COUNT"
+          }
+        },
+        "INSIGHT_PLACES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSIGHT_PLACES"
+          }
+        }
+      }
+    },
+    "com.gcp.areainsights_v1#ComputeInsightsRequestInsightsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.areainsights_v1#ComputeInsightsRequestInsightsItemEnum"
+      }
+    },
+    "com.gcp.areainsights_v1#LatLng": {
+      "type": "structure",
+      "members": {
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The longitude in degrees. It must be in the range [-180.0, +180.0]."
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The latitude in degrees. It must be in the range [-90.0, +90.0]."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges."
+      }
+    },
+    "com.gcp.areainsights_v1#Region": {
+      "type": "structure",
+      "members": {
+        "place": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [place ID](https://developers.google.com/maps/documentation/places/web-service/place-id) of the geographic region. Not all region types are supported; see documentation for details. **Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJPV4oX_65j4ARVW8IJ6IJUYs`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A region is a geographic boundary such as: cities, postal codes, counties, states, etc."
+      }
+    },
+    "com.gcp.areainsights_v1#LocationFilter": {
+      "type": "structure",
+      "members": {
+        "circle": {
+          "target": "com.gcp.areainsights_v1#Circle",
+          "traits": {
+            "smithy.api#documentation": "Area as a circle."
+          }
+        },
+        "customArea": {
+          "target": "com.gcp.areainsights_v1#CustomArea",
+          "traits": {
+            "smithy.api#documentation": "Custom area specified by a polygon."
+          }
+        },
+        "region": {
+          "target": "com.gcp.areainsights_v1#Region",
+          "traits": {
+            "smithy.api#documentation": "Area as region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location filters. Specifies the area of interest for the insight."
+      }
+    },
+    "com.gcp.areainsights_v1#Circle": {
+      "type": "structure",
+      "members": {
+        "latLng": {
+          "target": "com.gcp.areainsights_v1#LatLng",
+          "traits": {
+            "smithy.api#documentation": "The latitude and longitude of the center of the circle."
+          }
+        },
+        "radius": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The radius of the circle in meters"
+          }
+        },
+        "place": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJgUbEo8cfqokR5lP9_Wh_DaM`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A circle is defined by a center point and radius in meters."
+      }
+    },
+    "com.gcp.areainsights_v1#Filter": {
+      "type": "structure",
+      "members": {
+        "ratingFilter": {
+          "target": "com.gcp.areainsights_v1#RatingFilter",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restricts results to places whose average user ratings are in the range specified by rating_filter. If rating_filter is not set, all ratings are included in the result."
+          }
+        },
+        "typeFilter": {
+          "target": "com.gcp.areainsights_v1#TypeFilter",
+          "traits": {
+            "smithy.api#documentation": "Required. Place type filters."
+          }
+        },
+        "priceLevels": {
+          "target": "com.gcp.areainsights_v1#FilterPriceLevelsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restricts results to places whose price level is included on this list. If `price_levels` is not set, all price levels are included in the results."
+          }
+        },
+        "operatingStatus": {
+          "target": "com.gcp.areainsights_v1#FilterOperatingStatusItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restricts results to places whose operating status is included on this list. If operating_status is not set, OPERATING_STATUS_OPERATIONAL is used as default."
+          }
+        },
+        "locationFilter": {
+          "target": "com.gcp.areainsights_v1#LocationFilter",
+          "traits": {
+            "smithy.api#documentation": "Required. Restricts results to places which are located in the area specified by location filters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filters for the ComputeInsights RPC."
+      }
+    },
+    "com.gcp.areainsights_v1#FilterPriceLevelsItemEnum": {
+      "type": "enum",
+      "members": {
+        "PRICE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRICE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "PRICE_LEVEL_FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRICE_LEVEL_FREE"
+          }
+        },
+        "PRICE_LEVEL_INEXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRICE_LEVEL_INEXPENSIVE"
+          }
+        },
+        "PRICE_LEVEL_MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRICE_LEVEL_MODERATE"
+          }
+        },
+        "PRICE_LEVEL_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRICE_LEVEL_EXPENSIVE"
+          }
+        },
+        "PRICE_LEVEL_VERY_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRICE_LEVEL_VERY_EXPENSIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.areainsights_v1#FilterPriceLevelsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.areainsights_v1#FilterPriceLevelsItemEnum"
+      }
+    },
+    "com.gcp.areainsights_v1#FilterOperatingStatusItemEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATING_STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATING_STATUS_UNSPECIFIED"
+          }
+        },
+        "OPERATING_STATUS_OPERATIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATING_STATUS_OPERATIONAL"
+          }
+        },
+        "OPERATING_STATUS_PERMANENTLY_CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATING_STATUS_PERMANENTLY_CLOSED"
+          }
+        },
+        "OPERATING_STATUS_TEMPORARILY_CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATING_STATUS_TEMPORARILY_CLOSED"
+          }
+        }
+      }
+    },
+    "com.gcp.areainsights_v1#FilterOperatingStatusItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.areainsights_v1#FilterOperatingStatusItemEnum"
+      }
+    },
+    "com.gcp.areainsights_v1#ComputeInsightsResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Result for Insights.INSIGHT_COUNT."
+          }
+        },
+        "placeInsights": {
+          "target": "com.gcp.areainsights_v1#PlaceInsightList",
+          "traits": {
+            "smithy.api#documentation": "Result for Insights.INSIGHT_PLACES."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the ComputeInsights RPC."
+      }
+    },
+    "com.gcp.areainsights_v1#PlaceInsightList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.areainsights_v1#PlaceInsight"
+      }
+    },
+    "com.gcp.areainsights_v1#Polygon": {
+      "type": "structure",
+      "members": {
+        "coordinates": {
+          "target": "com.gcp.areainsights_v1#LatLngList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The coordinates that define the polygon."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A polygon is represented by a series of connected coordinates in an counterclockwise ordered sequence. The coordinates form a closed loop and define a filled region. The first and last coordinates are equivalent, and they must contain identical values. The format is a simplified version of GeoJSON polygons (we only support one counterclockwise exterior ring)."
+      }
+    },
+    "com.gcp.areainsights_v1#LatLngList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.areainsights_v1#LatLng"
+      }
+    },
+    "com.gcp.areainsights_v1#ComputeInsightsV1Request": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.areainsights_v1#ComputeInsightsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.areainsights_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.areainsights_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.areainsights_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.areainsights_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.areainsights_v1#ComputeInsightsV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.areainsights_v1#ComputeInsightsV1Request"
+      },
+      "output": {
+        "target": "com.gcp.areainsights_v1#ComputeInsightsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.areainsights_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.areainsights_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.areainsights_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.areainsights_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1:computeInsights"
+        },
+        "smithy.api#documentation": "This method lets you retrieve insights about areas using a variety of filter such as: area, place type, operating status, price level and ratings. Currently \"count\" and \"places\" insights are supported. With \"count\" insights you can answer questions such as \"How many restaurant are located in California that are operational, are inexpensive and have an average rating of at least 4 stars\" (see `insight` enum for more details). With \"places\" insights, you can determine which places match the requested filter. Clients can then use those place resource names to fetch more details about each individual place using the Places API."
+      }
+    }
+  }
+}

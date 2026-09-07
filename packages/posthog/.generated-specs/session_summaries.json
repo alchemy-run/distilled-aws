@@ -1,0 +1,240 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.session_summaries#RetrieveSessionSummariesConfigRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_summaries#SessionSummariesConfig": {
+      "type": "structure",
+      "members": {
+        "product_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form description of the team's product, used to tailor AI-generated single-session replay summaries. Injected into the system prompt of every summary generated for this team via the replay page."
+          }
+        },
+        "custom_tags": {
+          "target": "com.posthog.session_summaries#SessionSummariesConfigCustomTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Team-defined tags layered on top of the fixed taxonomy, as a {name: description} map. Names must be lowercase snake_case (max 60 chars), descriptions max 200 chars, max 15 entries."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_summaries#SessionSummariesConfigCustomTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Team-defined tags layered on top of the fixed taxonomy, as a {name: description} map. Names must be lowercase snake_case (max 60 chars), descriptions max 200 chars, max 15 entries."
+      }
+    },
+    "com.posthog.session_summaries#RetrieveSessionSummariesConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_summaries#RetrieveSessionSummariesConfigRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_summaries#SessionSummariesConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/session_summaries/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the team's session summaries configuration (product context used to tailor single-session replay summaries)."
+      }
+    },
+    "com.posthog.session_summaries#UpdateSessionSummariesConfigRequestCustomTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Team-defined tags layered on top of the fixed taxonomy, as a {name: description} map. Names must be lowercase snake_case (max 60 chars), descriptions max 200 chars, max 15 entries."
+      }
+    },
+    "com.posthog.session_summaries#UpdateSessionSummariesConfigRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "product_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form description of the team's product, used to tailor AI-generated single-session replay summaries. Injected into the system prompt of every summary generated for this team via the replay page."
+          }
+        },
+        "custom_tags": {
+          "target": "com.posthog.session_summaries#UpdateSessionSummariesConfigRequestCustomTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Team-defined tags layered on top of the fixed taxonomy, as a {name: description} map. Names must be lowercase snake_case (max 60 chars), descriptions max 200 chars, max 15 entries."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_summaries#UpdateSessionSummariesConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_summaries#UpdateSessionSummariesConfigRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_summaries#SessionSummariesConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/session_summaries/config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the team's session summaries configuration (product context used to tailor single-session replay summaries)."
+      }
+    },
+    "com.posthog.session_summaries#CreateSessionSummariesRequestSessionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of session IDs to summarize (max 300)"
+      }
+    },
+    "com.posthog.session_summaries#CreateSessionSummariesRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "session_ids": {
+          "target": "com.posthog.session_summaries#CreateSessionSummariesRequestSessionIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of session IDs to summarize (max 300)"
+          }
+        },
+        "focus_area": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional focus area for the summarization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_summaries#SessionSummaries2": {
+      "type": "structure",
+      "members": {
+        "session_ids": {
+          "target": "com.posthog.session_summaries#SessionSummariesSessionIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of session IDs to summarize (max 300)"
+          }
+        },
+        "focus_area": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional focus area for the summarization"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_summaries#SessionSummariesSessionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of session IDs to summarize (max 300)"
+      }
+    },
+    "com.posthog.session_summaries#CreateSessionSummaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_summaries#CreateSessionSummariesRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_summaries#SessionSummaries2"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/session_summaries/create_session_summaries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate AI summary for a group of session recordings to find patterns and generate a notebook."
+      }
+    },
+    "com.posthog.session_summaries#SessionSummaries": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.session_summaries#RetrieveSessionSummariesConfig"
+        },
+        {
+          "target": "com.posthog.session_summaries#UpdateSessionSummariesConfig"
+        },
+        {
+          "target": "com.posthog.session_summaries#CreateSessionSummaries"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

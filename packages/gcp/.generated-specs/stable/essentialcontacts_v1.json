@@ -1,0 +1,1590 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "essentialcontacts",
+    "version": "v1",
+    "title": "Essential Contacts API",
+    "baseUrl": "https://essentialcontacts.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The email address to send notifications to. The email address does not need to be a Google Account."
+          }
+        },
+        "notificationCategorySubscriptions": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactNotificationCategorySubscriptionsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. The categories of notifications that the contact will receive communications for."
+          }
+        },
+        "languageTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages."
+          }
+        },
+        "validationState": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactValidationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The validity of the contact. A contact is considered valid if it is the correct recipient for notifications for a particular resource."
+          }
+        },
+        "validateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time the validation_state was updated, either manually or automatically. A contact is considered stale if its validation state was updated more than 1 year ago."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A contact that will receive notifications from Google Cloud."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactNotificationCategorySubscriptionsItemEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTIFICATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "SUSPENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENSION"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "TECHNICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        },
+        "PRODUCT_UPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_UPDATES"
+          }
+        },
+        "TECHNICAL_INCIDENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL_INCIDENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactNotificationCategorySubscriptionsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactNotificationCategorySubscriptionsItemEnum"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactValidationStateEnum": {
+      "type": "enum",
+      "members": {
+        "VALIDATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VALIDATION_STATE_UNSPECIFIED"
+          }
+        },
+        "VALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VALID"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ListContactsResponse": {
+      "type": "structure",
+      "members": {
+        "contacts": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactList",
+          "traits": {
+            "smithy.api#documentation": "The contacts for the specified resource."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token` and the rest of the parameters the same as the original request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListContacts method."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ComputeContactsResponse": {
+      "type": "structure",
+      "members": {
+        "contacts": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ContactList",
+          "traits": {
+            "smithy.api#documentation": "All contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token` and the rest of the parameters the same as the original request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ComputeContacts method."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1SendTestMessageRequest": {
+      "type": "structure",
+      "members": {
+        "contacts": {
+          "target": "com.gcp.essentialcontacts_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The list of names of the contacts to send a test message to. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)"
+          }
+        },
+        "notificationCategory": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1SendTestMessageRequestNotificationCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The notification category to send the test message for. All contacts must be subscribed to this category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for the SendTestMessage method."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1SendTestMessageRequestNotificationCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTIFICATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "SUSPENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENSION"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "TECHNICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        },
+        "PRODUCT_UPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_UPDATES"
+          }
+        },
+        "TECHNICAL_INCIDENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL_INCIDENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#CreateProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource to save this contact for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.essentialcontacts_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.essentialcontacts_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.essentialcontacts_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.essentialcontacts_v1#CreateProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#CreateProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/contacts"
+        },
+        "smithy.api#documentation": "Adds a new contact for a resource."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#PatchProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#PatchProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#PatchProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a contact. Note: A contact's email address cannot be changed."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ListProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ListProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#ListProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ListContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/contacts"
+        },
+        "smithy.api#documentation": "Lists the contacts that have been set on a resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GetProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the contact to retrieve. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GetProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#GetProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a single contact."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#DeleteProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the contact to delete. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#DeleteProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#DeleteProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a contact."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeProjectsContactsNotificationCategoriesEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTIFICATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "SUSPENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENSION"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "TECHNICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        },
+        "PRODUCT_UPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_UPDATES"
+          }
+        },
+        "TECHNICAL_INCIDENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL_INCIDENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeProjectsContactsNotificationCategoriesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.essentialcontacts_v1#ComputeProjectsContactsNotificationCategoriesEnum"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to compute contacts for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "notificationCategories": {
+          "target": "com.gcp.essentialcontacts_v1#ComputeProjectsContactsNotificationCategoriesEnumList",
+          "traits": {
+            "smithy.api#documentation": "The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.",
+            "smithy.api#httpQuery": "notificationCategories"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#ComputeProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ComputeContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/contacts:compute"
+        },
+        "smithy.api#documentation": "Lists all contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#SendTestMessageProjectsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1SendTestMessageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#SendTestMessageProjectsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#SendTestMessageProjectsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}/contacts:sendTestMessage"
+        },
+        "smithy.api#documentation": "Allows a contact admin to send a test message to contact to verify that it has been configured correctly."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#CreateFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource to save this contact for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#CreateFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#CreateFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/contacts"
+        },
+        "smithy.api#documentation": "Adds a new contact for a resource."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#PatchFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#PatchFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#PatchFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a contact. Note: A contact's email address cannot be changed."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ListFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ListFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#ListFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ListContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/contacts"
+        },
+        "smithy.api#documentation": "Lists the contacts that have been set on a resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GetFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the contact to retrieve. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GetFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#GetFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a single contact."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#DeleteFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the contact to delete. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#DeleteFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#DeleteFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a contact."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeFoldersContactsNotificationCategoriesEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTIFICATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "SUSPENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENSION"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "TECHNICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        },
+        "PRODUCT_UPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_UPDATES"
+          }
+        },
+        "TECHNICAL_INCIDENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL_INCIDENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeFoldersContactsNotificationCategoriesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.essentialcontacts_v1#ComputeFoldersContactsNotificationCategoriesEnum"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to compute contacts for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "notificationCategories": {
+          "target": "com.gcp.essentialcontacts_v1#ComputeFoldersContactsNotificationCategoriesEnumList",
+          "traits": {
+            "smithy.api#documentation": "The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.",
+            "smithy.api#httpQuery": "notificationCategories"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#ComputeFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ComputeContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/contacts:compute"
+        },
+        "smithy.api#documentation": "Lists all contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#SendTestMessageFoldersContactsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1SendTestMessageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#SendTestMessageFoldersContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#SendTestMessageFoldersContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}/contacts:sendTestMessage"
+        },
+        "smithy.api#documentation": "Allows a contact admin to send a test message to contact to verify that it has been configured correctly."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#CreateOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource to save this contact for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#CreateOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#CreateOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/contacts"
+        },
+        "smithy.api#documentation": "Adds a new contact for a resource."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#PatchOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The update mask applied to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#PatchOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#PatchOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a contact. Note: A contact's email address cannot be changed."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ListOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ListOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#ListOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ListContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/contacts"
+        },
+        "smithy.api#documentation": "Lists the contacts that have been set on a resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GetOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the contact to retrieve. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#GetOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#GetOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1Contact"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a single contact."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#DeleteOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the contact to delete. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#DeleteOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#DeleteOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a contact."
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeOrganizationsContactsNotificationCategoriesEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION_CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOTIFICATION_CATEGORY_UNSPECIFIED"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL"
+          }
+        },
+        "SUSPENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENSION"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "TECHNICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        },
+        "PRODUCT_UPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_UPDATES"
+          }
+        },
+        "TECHNICAL_INCIDENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TECHNICAL_INCIDENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeOrganizationsContactsNotificationCategoriesEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.essentialcontacts_v1#ComputeOrganizationsContactsNotificationCategoriesEnum"
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to compute contacts for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "notificationCategories": {
+          "target": "com.gcp.essentialcontacts_v1#ComputeOrganizationsContactsNotificationCategoriesEnumList",
+          "traits": {
+            "smithy.api#documentation": "The categories of notifications to compute contacts for. If ALL is included in this list, contacts subscribed to any notification category will be returned.",
+            "smithy.api#httpQuery": "notificationCategories"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available. If not specified, the default page_size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#ComputeOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#ComputeOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1ComputeContactsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/contacts:compute"
+        },
+        "smithy.api#documentation": "Lists all contacts for the resource that are subscribed to the specified notification categories, including contacts inherited from any parent resources.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#SendTestMessageOrganizationsContactsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.essentialcontacts_v1#GoogleCloudEssentialcontactsV1SendTestMessageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.essentialcontacts_v1#SendTestMessageOrganizationsContacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.essentialcontacts_v1#SendTestMessageOrganizationsContactsRequest"
+      },
+      "output": {
+        "target": "com.gcp.essentialcontacts_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.essentialcontacts_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.essentialcontacts_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}/contacts:sendTestMessage"
+        },
+        "smithy.api#documentation": "Allows a contact admin to send a test message to contact to verify that it has been configured correctly."
+      }
+    }
+  }
+}

@@ -1,0 +1,1650 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.evaluations#EvaluationsListRequestEvaluationType": {
+      "type": "enum",
+      "members": {
+        "HOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hog"
+          }
+        },
+        "LLM_JUDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "llm_judge"
+          }
+        },
+        "SENTIMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sentiment"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsListRequestIdInList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsListRequestOrderByItem": {
+      "type": "enum",
+      "members": {
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-name"
+          }
+        },
+        "UPDATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-updated_at"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "NAME_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "UPDATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated_at"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsListRequestOrderByList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationsListRequestOrderByItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "enabled",
+            "smithy.api#documentation": "Filter by enabled status"
+          }
+        },
+        "evaluation_type": {
+          "target": "com.posthog.evaluations#EvaluationsListRequestEvaluationType",
+          "traits": {
+            "smithy.api#httpQuery": "evaluation_type",
+            "smithy.api#documentation": "Filter by evaluation type\n\n* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
+          }
+        },
+        "id__in": {
+          "target": "com.posthog.evaluations#EvaluationsListRequestIdInList",
+          "traits": {
+            "smithy.api#httpQuery": "id__in",
+            "smithy.api#documentation": "Multiple values may be separated by commas."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "com.posthog.evaluations#EvaluationsListRequestOrderByList",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Ordering\n\n* `created_at` - Created At\n* `-created_at` - Created At (descending)\n* `updated_at` - Updated At\n* `-updated_at` - Updated At (descending)\n* `name` - Name\n* `-name` - Name (descending)"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search in name or description"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#PaginatedEvaluationList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.evaluations#PaginatedEvaluationListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#Evaluation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the evaluation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what this evaluation checks."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation runs automatically on new $ai_generation events."
+          }
+        },
+        "status": {
+          "target": "com.posthog.evaluations#EvaluationStatusEnum"
+        },
+        "status_reason": {
+          "target": "com.posthog.evaluations#StatusReasonEnum",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status_reason_detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional detail for the current system-disabled status. This is only populated when the detail is safe to show in the evaluation UI.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "evaluation_type": {
+          "target": "com.posthog.evaluations#EvaluationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "'llm_judge' uses an LLM to score outputs against a prompt; 'hog' runs deterministic Hog code; 'sentiment' classifies user-message sentiment.\n\n* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
+          }
+        },
+        "evaluation_config": {
+          "target": "com.posthog.evaluations#EvaluationEvaluationConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+          }
+        },
+        "output_type": {
+          "target": "com.posthog.evaluations#OutputTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output format. Use 'boolean' for pass/fail evaluations and 'sentiment' for sentiment analysis.\n\n* `boolean` - Boolean (Pass/Fail)\n* `sentiment` - Sentiment"
+          }
+        },
+        "output_config": {
+          "target": "com.posthog.evaluations#EvaluationOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.evaluations#EvaluationConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.evaluations#ModelConfiguration",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.evaluations#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete the evaluation."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paused"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `active` - Active\n* `paused` - Paused\n* `error` - Error"
+      }
+    },
+    "com.posthog.evaluations#StatusReasonEnum": {
+      "type": "enum",
+      "members": {
+        "TRIAL_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trial_limit_reached"
+          }
+        },
+        "MODEL_NOT_ALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model_not_allowed"
+          }
+        },
+        "PROVIDER_KEY_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provider_key_deleted"
+          }
+        },
+        "NO_DEFAULT_MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_default_model"
+          }
+        },
+        "PROVIDER_KEY_INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provider_key_invalid"
+          }
+        },
+        "PROVIDER_KEY_PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provider_key_permission_denied"
+          }
+        },
+        "PROVIDER_KEY_QUOTA_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provider_key_quota_exceeded"
+          }
+        },
+        "PROVIDER_KEY_RATE_LIMITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provider_key_rate_limited"
+          }
+        },
+        "MODEL_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model_not_found"
+          }
+        },
+        "HOG_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hog_error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `trial_limit_reached` - Trial evaluation limit reached\n* `model_not_allowed` - Model not available on the trial plan\n* `provider_key_deleted` - Provider API key was deleted\n* `no_default_model` - No default model available for the selected provider\n* `provider_key_invalid` - Provider API key is invalid\n* `provider_key_permission_denied` - Provider API key lacks model access\n* `provider_key_quota_exceeded` - Provider API key quota exceeded\n* `provider_key_rate_limited` - Provider API key is rate limited\n* `model_not_found` - Model not found\n* `hog_error` - Hog evaluation code failed"
+      }
+    },
+    "com.posthog.evaluations#EvaluationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LLM_JUDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "llm_judge"
+          }
+        },
+        "HOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hog"
+          }
+        },
+        "SENTIMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sentiment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
+      }
+    },
+    "com.posthog.evaluations#EvaluationEvaluationConfigCase0": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Evaluation criteria for the LLM judge. Describe what makes a good vs bad response.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationEvaluationConfigCase1": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code. Must return true (pass), false (fail), or null for N/A.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationEvaluationConfigCase2Source": {
+      "type": "enum",
+      "members": {
+        "USER_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_messages"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+      }
+    },
+    "com.posthog.evaluations#EvaluationEvaluationConfigCase2": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.posthog.evaluations#EvaluationEvaluationConfigCase2Source",
+          "traits": {
+            "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationEvaluationConfig": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.posthog.evaluations#EvaluationEvaluationConfigCase0"
+        },
+        "Case1": {
+          "target": "com.posthog.evaluations#EvaluationEvaluationConfigCase1"
+        },
+        "Case2": {
+          "target": "com.posthog.evaluations#EvaluationEvaluationConfigCase2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+      }
+    },
+    "com.posthog.evaluations#OutputTypeEnum": {
+      "type": "enum",
+      "members": {
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "boolean"
+          }
+        },
+        "SENTIMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sentiment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `boolean` - Boolean (Pass/Fail)\n* `sentiment` - Sentiment"
+      }
+    },
+    "com.posthog.evaluations#EvaluationOutputConfig": {
+      "type": "structure",
+      "members": {
+        "allows_na": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation can return N/A for non-applicable generations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+      }
+    },
+    "com.posthog.evaluations#EvaluationCondition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for this condition set.",
+            "smithy.api#required": {}
+          }
+        },
+        "rollout_percentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage (0-100) of matching events to sample for this evaluation. Defaults to 100."
+          }
+        },
+        "properties": {
+          "target": "com.posthog.evaluations#EvaluationConditionPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "Property filters (event or person) that scope which generations match this condition set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A trigger condition set controlling which generations an evaluation runs on."
+      }
+    },
+    "com.posthog.evaluations#EvaluationConditionPropertiesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationConditionPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationConditionPropertiesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Property filters (event or person) that scope which generations match this condition set."
+      }
+    },
+    "com.posthog.evaluations#EvaluationConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+      }
+    },
+    "com.posthog.evaluations#ModelConfiguration": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.posthog.evaluations#LLMProviderEnum"
+        },
+        "model": {
+          "target": "smithy.api#String"
+        },
+        "provider_key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Team provider key to run this eval with (same provider as `provider`). Leave null only for brief pre-key testing; real evals should set it.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "provider_key_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Nested serializer for model configuration."
+      }
+    },
+    "com.posthog.evaluations#LLMProviderEnum": {
+      "type": "enum",
+      "members": {
+        "OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai"
+          }
+        },
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "GEMINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gemini"
+          }
+        },
+        "OPENROUTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openrouter"
+          }
+        },
+        "FIREWORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fireworks"
+          }
+        },
+        "AZURE_OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure_openai"
+          }
+        },
+        "TOGETHER_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "together_ai"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `openai` - Openai\n* `anthropic` - Anthropic\n* `gemini` - Gemini\n* `openrouter` - Openrouter\n* `fireworks` - Fireworks\n* `azure_openai` - Azure OpenAI\n* `together_ai` - Together AI"
+      }
+    },
+    "com.posthog.evaluations#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.evaluations#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.evaluations#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.evaluations#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.evaluations#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.evaluations#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#PaginatedEvaluationListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#Evaluation"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.evaluations#PaginatedEvaluationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/evaluations/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase0": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Evaluation criteria for the LLM judge. Describe what makes a good vs bad response.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase1": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code. Must return true (pass), false (fail), or null for N/A.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2Source": {
+      "type": "enum",
+      "members": {
+        "USER_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_messages"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2Source",
+          "traits": {
+            "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfig": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase0"
+        },
+        "Case1": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase1"
+        },
+        "Case2": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestOutputConfig": {
+      "type": "structure",
+      "members": {
+        "allows_na": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation can return N/A for non-applicable generations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+      }
+    },
+    "com.posthog.evaluations#ModelConfigurationInput": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.posthog.evaluations#LLMProviderEnum"
+        },
+        "model": {
+          "target": "smithy.api#String"
+        },
+        "provider_key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Team provider key to run this eval with (same provider as `provider`). Leave null only for brief pre-key testing; real evals should set it.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Nested serializer for model configuration."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the evaluation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what this evaluation checks."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation runs automatically on new $ai_generation events."
+          }
+        },
+        "evaluation_type": {
+          "target": "com.posthog.evaluations#EvaluationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "'llm_judge' uses an LLM to score outputs against a prompt; 'hog' runs deterministic Hog code; 'sentiment' classifies user-message sentiment.\n\n* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
+          }
+        },
+        "evaluation_config": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+          }
+        },
+        "output_type": {
+          "target": "com.posthog.evaluations#OutputTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output format. Use 'boolean' for pass/fail evaluations and 'sentiment' for sentiment analysis.\n\n* `boolean` - Boolean (Pass/Fail)\n* `sentiment` - Sentiment"
+          }
+        },
+        "output_config": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.evaluations#EvaluationsCreateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.evaluations#ModelConfigurationInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete the evaluation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#EvaluationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.evaluations#Evaluation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/evaluations/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.evaluations#EvaluationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#EvaluationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.evaluations#Evaluation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/evaluations/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase0": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Evaluation criteria for the LLM judge. Describe what makes a good vs bad response.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase1": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code. Must return true (pass), false (fail), or null for N/A.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2Source": {
+      "type": "enum",
+      "members": {
+        "USER_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_messages"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2Source",
+          "traits": {
+            "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfig": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase0"
+        },
+        "Case1": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase1"
+        },
+        "Case2": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestOutputConfig": {
+      "type": "structure",
+      "members": {
+        "allows_na": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation can return N/A for non-applicable generations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the evaluation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what this evaluation checks."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation runs automatically on new $ai_generation events."
+          }
+        },
+        "evaluation_type": {
+          "target": "com.posthog.evaluations#EvaluationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "'llm_judge' uses an LLM to score outputs against a prompt; 'hog' runs deterministic Hog code; 'sentiment' classifies user-message sentiment.\n\n* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
+          }
+        },
+        "evaluation_config": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+          }
+        },
+        "output_type": {
+          "target": "com.posthog.evaluations#OutputTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output format. Use 'boolean' for pass/fail evaluations and 'sentiment' for sentiment analysis.\n\n* `boolean` - Boolean (Pass/Fail)\n* `sentiment` - Sentiment"
+          }
+        },
+        "output_config": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.evaluations#EvaluationsUpdateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.evaluations#ModelConfigurationInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete the evaluation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#EvaluationsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.evaluations#Evaluation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/evaluations/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase0": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Evaluation criteria for the LLM judge. Describe what makes a good vs bad response.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase1": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code. Must return true (pass), false (fail), or null for N/A.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2Source": {
+      "type": "enum",
+      "members": {
+        "USER_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_messages"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2Source",
+          "traits": {
+            "smithy.api#documentation": "Classify sentiment from user messages in the generation input."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfig": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase0"
+        },
+        "Case1": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase1"
+        },
+        "Case2": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestOutputConfig": {
+      "type": "structure",
+      "members": {
+        "allows_na": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation can return N/A for non-applicable generations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the evaluation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what this evaluation checks."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation runs automatically on new $ai_generation events."
+          }
+        },
+        "evaluation_type": {
+          "target": "com.posthog.evaluations#EvaluationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "'llm_judge' uses an LLM to score outputs against a prompt; 'hog' runs deterministic Hog code; 'sentiment' classifies user-message sentiment.\n\n* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
+          }
+        },
+        "evaluation_config": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
+          }
+        },
+        "output_type": {
+          "target": "com.posthog.evaluations#OutputTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output format. Use 'boolean' for pass/fail evaluations and 'sentiment' for sentiment analysis.\n\n* `boolean` - Boolean (Pass/Fail)\n* `sentiment` - Sentiment"
+          }
+        },
+        "output_config": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.evaluations#ModelConfigurationInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete the evaluation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#EvaluationsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.evaluations#Evaluation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/evaluations/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.evaluations#EvaluationsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#EvaluationsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/evaluations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional trigger conditions to filter which events are sampled."
+      }
+    },
+    "com.posthog.evaluations#EvaluationsTestHogCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code to test. Must return a boolean (true = pass, false = fail) or null for N/A."
+          }
+        },
+        "sample_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of recent $ai_generation events to test against (1–10, default 5)."
+          }
+        },
+        "allows_na": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the evaluation can return N/A for non-applicable generations."
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Optional trigger conditions to filter which events are sampled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.evaluations#TestHogResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.evaluations#TestHogResponseResultsList"
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message, e.g. when no recent events were found."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#TestHogResultItem": {
+      "type": "structure",
+      "members": {
+        "event_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the $ai_generation event."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID if available.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "input_preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First 200 chars of the generation input."
+          }
+        },
+        "output_preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First 200 chars of the generation output."
+          }
+        },
+        "result": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True = pass, False = fail, null = N/A or error.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reasoning": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog evaluation reasoning string, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message if the Hog code raised an exception.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#TestHogResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.evaluations#TestHogResultItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.evaluations#EvaluationsTestHogCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.evaluations#EvaluationsTestHogCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.evaluations#TestHogResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/evaluations/test_hog/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Test Hog evaluation code against sample events without saving."
+      }
+    },
+    "com.posthog.evaluations#Evaluations": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.evaluations#EvaluationsList"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsCreate"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsRetrieve"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsUpdate"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsDestroy"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsTestHogCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

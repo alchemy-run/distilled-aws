@@ -1,0 +1,27 @@
+{
+  "operations": {
+    "listGroupingStatuses": {
+      "errors": ["NotFoundException"]
+    },
+    "createGroup": {
+      "syntheticErrors": [
+        {
+          "name": "GroupAlreadyExists",
+          "from": "BadRequestException",
+          "message": { "includes": "group already exists" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "GroupAlreadyExists": ["AlreadyExistsError"]
+  },
+  "structures": {
+    "GetGroupOutput": {
+      "members": { "Group": { "optional": false } }
+    },
+    "CreateGroupOutput": {
+      "members": { "Group": { "optional": false } }
+    }
+  }
+}

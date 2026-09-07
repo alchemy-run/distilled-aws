@@ -1,0 +1,3281 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "firebase",
+    "version": "v1beta1",
+    "title": "Firebase Management API",
+    "baseUrl": "https://firebase.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.firebase_v1beta1#OperationMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Describes the progress of an LRO. It is included in the `metadata` field of the `Operation`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListAvailableLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.firebase_v1beta1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "One page of results from a call to `ListAvailableLocations`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results and all available locations have been listed. This token can be used in a subsequent call to `ListAvailableLocations` to find more locations. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#Location"
+      }
+    },
+    "com.gcp.firebase_v1beta1#WebApp": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id))."
+          }
+        },
+        "apiKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The globally unique, Google-assigned identifier (UID) for the Firebase API key associated with the `WebApp`. Be aware that this value is the UID of the API key, _not_ the [`keyString`](https://cloud.google.com/api-keys/docs/reference/rest/v2/projects.locations.keys#Key.FIELDS.key_string) of the API key. The `keyString` is the value that can be found in the App's [configuration artifact](../../rest/v1beta1/projects.webApps/getConfig). If `api_key_id` is not set in requests to [`webApps.Create`](../../rest/v1beta1/projects.webApps/create), then Firebase automatically associates an `api_key_id` with the `WebApp`. This auto-associated key may be an existing valid key or, if no valid key exists, a new one will be provisioned. In patch requests, `api_key_id` cannot be set to an empty value, and the new UID must have no restrictions or only have restrictions that are valid for the associated `WebApp`. We recommend using the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) to manage API keys."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state."
+          }
+        },
+        "appUrls": {
+          "target": "com.gcp.firebase_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The URLs where the `WebApp` is hosted."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebase_v1beta1#WebAppStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the App."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `WebApp`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-assigned display name for the `WebApp`."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified."
+          }
+        },
+        "webId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. A unique, Firebase-assigned identifier for the `WebApp`. This identifier is only used to populate the `namespace` value for the `WebApp`. For most use cases, use `appId` to identify or reference the App. The `webId` value is only unique within a `FirebaseProject` and its associated Apps."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a Firebase App for the web."
+      }
+    },
+    "com.gcp.firebase_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firebase_v1beta1#WebAppStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveAnalyticsRequest": {
+      "type": "structure",
+      "members": {
+        "analyticsPropertyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ID of the Google Analytics property associated with the specified `FirebaseProject`. - If not set, then the Google Analytics property that is currently associated with the specified `FirebaseProject` is removed. - If set, and the specified `FirebaseProject` is currently associated with a *different* Google Analytics property, then the response is a `412 Precondition Failed` error. "
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#IosApp": {
+      "type": "structure",
+      "members": {
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `IosApp`."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebase_v1beta1#IosAppStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the App."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id))."
+          }
+        },
+        "apiKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The globally unique, Google-assigned identifier (UID) for the Firebase API key associated with the `IosApp`. Be aware that this value is the UID of the API key, _not_ the [`keyString`](https://cloud.google.com/api-keys/docs/reference/rest/v2/projects.locations.keys#Key.FIELDS.key_string) of the API key. The `keyString` is the value that can be found in the App's [configuration artifact](../../rest/v1beta1/projects.iosApps/getConfig). If `api_key_id` is not set in requests to [`iosApps.Create`](../../rest/v1beta1/projects.iosApps/create), then Firebase automatically associates an `api_key_id` with the `IosApp`. This auto-associated key may be an existing valid key or, if no valid key exists, a new one will be provisioned. In patch requests, `api_key_id` cannot be set to an empty value, and the new UID must have no restrictions or only have restrictions that are valid for the associated `IosApp`. We recommend using the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) to manage API keys."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Apple Developer Team ID associated with the App in the App Store."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `IosApp`. This identifier should be treated as an opaque token, as the data format is not specified."
+          }
+        },
+        "bundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The canonical bundle ID of the iOS app as it would appear in the iOS AppStore."
+          }
+        },
+        "appStoreId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The automatically generated Apple ID assigned to the iOS app by Apple in the iOS App Store."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-assigned display name for the `IosApp`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a Firebase App for iOS."
+      }
+    },
+    "com.gcp.firebase_v1beta1#IosAppStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseAppInfo": {
+      "type": "structure",
+      "members": {
+        "platform": {
+          "target": "com.gcp.firebase_v1beta1#FirebaseAppInfoPlatformEnum",
+          "traits": {
+            "smithy.api#documentation": "The platform of the Firebase App."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-assigned display name of the Firebase App."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The platform-specific identifier of the App. *Note:* For most use cases, use `appId`, which is the canonical, globally unique identifier for referencing an App. This string is derived from a native identifier for each platform: `packageName` for an `AndroidApp`, `bundleId` for an `IosApp`, and `webId` for a `WebApp`. Its contents should be treated as opaque, as the native identifier format may change as platforms evolve. This string is only unique within a `FirebaseProject` and its associated Apps."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Firebase App, in the format: projects/PROJECT_ID /iosApps/APP_ID or projects/PROJECT_ID/androidApps/APP_ID or projects/ PROJECT_ID/webApps/APP_ID"
+          }
+        },
+        "apiKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The globally unique, Google-assigned identifier (UID) for the Firebase API key associated with the App. Be aware that this value is the UID of the API key, _not_ the [`keyString`](https://cloud.google.com/api-keys/docs/reference/rest/v2/projects.locations.keys#Key.FIELDS.key_string) of the API key. The `keyString` is the value that can be found in the App's configuration artifact ([`AndroidApp`](../../rest/v1beta1/projects.androidApps/getConfig) | [`IosApp`](../../rest/v1beta1/projects.iosApps/getConfig) | [`WebApp`](../../rest/v1beta1/projects.webApps/getConfig)). If `api_key_id` is not set in requests to create the App ([`AndroidApp`](../../rest/v1beta1/projects.androidApps/create) | [`IosApp`](../../rest/v1beta1/projects.iosApps/create) | [`WebApp`](../../rest/v1beta1/projects.webApps/create)), then Firebase automatically associates an `api_key_id` with the App. This auto-associated key may be an existing valid key or, if no valid key exists, a new one will be provisioned."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebase_v1beta1#FirebaseAppInfoStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the App."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A high-level summary of an App."
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseAppInfoPlatformEnum": {
+      "type": "enum",
+      "members": {
+        "PLATFORM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_UNSPECIFIED"
+          }
+        },
+        "IOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS"
+          }
+        },
+        "ANDROID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID"
+          }
+        },
+        "WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseAppInfoStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#AnalyticsProperty": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The globally unique, Google-assigned identifier of the Google Analytics property associated with the specified `FirebaseProject`. If you called [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) to link the `FirebaseProject` with a Google Analytics account, the value in this `id` field is the same as the ID of the property either specified or provisioned with that call to `AddGoogleAnalytics`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the Google Analytics property associated with the specified `FirebaseProject`."
+          }
+        },
+        "analyticsAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID of the [Google Analytics account](https://www.google.com/analytics/) for the Google Analytics property associated with the specified FirebaseProject."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a Google Analytics property"
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteAndroidAppRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, the request is only validated. The App will _not_ be undeleted."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Checksum provided in the AndroidApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ProjectInfo": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-assigned display name of the Google Cloud `Project`, for example: `My App`."
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Google Cloud `Project` to which Firebase resources can be added, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED** _Instead, use product-specific REST APIs to work with the location of each resource in a Project. This field may not be populated, especially for newly provisioned projects after October 30, 2024._ The ID of the Project's [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location). The location is one of the available [Google App Engine locations](https://cloud.google.com/about/locations#region). Not all Projects will have this field populated. If it is not populated, it means that the Project does not yet have a location for default Google Cloud resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A reference to a Google Cloud `Project`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#StreamMapping": {
+      "type": "structure",
+      "members": {
+        "streamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323)."
+          }
+        },
+        "measurementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Applicable for Firebase Web Apps only. The unique Google-assigned identifier of the Google Analytics web stream associated with the Firebase Web App. Firebase SDKs use this ID to interact with Google Analytics APIs. Learn more about this ID and Google Analytics web streams in the [Analytics documentation](https://support.google.com/analytics/answer/9304153)."
+          }
+        },
+        "app": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Firebase App associated with the Google Analytics data stream, in the format: projects/PROJECT_IDENTIFIER/androidApps/APP_ID or projects/PROJECT_IDENTIFIER/iosApps/APP_ID or projects/PROJECT_IDENTIFIER /webApps/APP_ID Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A mapping of a Firebase App to a Google Analytics data stream"
+      }
+    },
+    "com.gcp.firebase_v1beta1#SearchFirebaseAppsResponse": {
+      "type": "structure",
+      "members": {
+        "apps": {
+          "target": "com.gcp.firebase_v1beta1#FirebaseAppInfoList",
+          "traits": {
+            "smithy.api#documentation": "One page of results from a call to `SearchFirebaseApps`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. This token can be used in a subsequent calls to `SearchFirebaseApps` to find the next group of Apps. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseAppInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#FirebaseAppInfo"
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListFirebaseProjectsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent calls to `ListFirebaseProjects` to find the next group of Projects. Page tokens are short-lived and should not be persisted."
+          }
+        },
+        "results": {
+          "target": "com.gcp.firebase_v1beta1#FirebaseProjectList",
+          "traits": {
+            "smithy.api#documentation": "One page of the list of Projects that are accessible to the caller."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseProjectList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#FirebaseProject"
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListAvailableProjectsResponse": {
+      "type": "structure",
+      "members": {
+        "projectInfo": {
+          "target": "com.gcp.firebase_v1beta1#ProjectInfoList",
+          "traits": {
+            "smithy.api#documentation": "The list of Google Cloud `Projects` which can have Firebase resources added to them."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent calls to `ListAvailableProjects` to find the next group of Projects. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ProjectInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#ProjectInfo"
+      }
+    },
+    "com.gcp.firebase_v1beta1#AddGoogleAnalyticsRequest": {
+      "type": "structure",
+      "members": {
+        "analyticsAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the existing [Google Analytics account](http://www.google.com/analytics/) that you want to link with the `FirebaseProject`. Specifying this field will provision a new Google Analytics property in your Google Analytics account and associate the new property with the `FirebaseProject`."
+          }
+        },
+        "analyticsPropertyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the existing Google Analytics property that you want to associate with the `FirebaseProject`."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#AndroidApp": {
+      "type": "structure",
+      "members": {
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The canonical package name of the Android app as would appear in the Google Play Developer Console."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The globally unique, Firebase-assigned identifier for the `AndroidApp`. This identifier should be treated as an opaque token, as the data format is not specified."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-assigned display name for the `AndroidApp`."
+          }
+        },
+        "sha1Hashes": {
+          "target": "com.gcp.firebase_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The SHA1 certificate hashes for the AndroidApp."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebase_v1beta1#AndroidAppStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the App."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. A user-assigned unique identifier of the parent FirebaseProject for the `AndroidApp`."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id))."
+          }
+        },
+        "apiKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The globally unique, Google-assigned identifier (UID) for the Firebase API key associated with the `AndroidApp`. Be aware that this value is the UID of the API key, _not_ the [`keyString`](https://cloud.google.com/api-keys/docs/reference/rest/v2/projects.locations.keys#Key.FIELDS.key_string) of the API key. The `keyString` is the value that can be found in the App's [configuration artifact](../../rest/v1beta1/projects.androidApps/getConfig). If `api_key_id` is not set in requests to [`androidApps.Create`](../../rest/v1beta1/projects.androidApps/create), then Firebase automatically associates an `api_key_id` with the `AndroidApp`. This auto-associated key may be an existing valid key or, if no valid key exists, a new one will be provisioned. In patch requests, `api_key_id` cannot be set to an empty value, and the new UID must have no restrictions or only have restrictions that are valid for the associated `AndroidApp`. We recommend using the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) to manage API keys."
+          }
+        },
+        "sha256Hashes": {
+          "target": "com.gcp.firebase_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The SHA256 certificate hashes for the AndroidApp."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a Firebase App for Android."
+      }
+    },
+    "com.gcp.firebase_v1beta1#AndroidAppStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ShaCertificate": {
+      "type": "structure",
+      "members": {
+        "certType": {
+          "target": "com.gcp.firebase_v1beta1#ShaCertificateCertTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of SHA certificate encoded in the hash."
+          }
+        },
+        "shaHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate hash for the `AndroidApp`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the ShaCertificate for the AndroidApp, in the format: projects/PROJECT_IDENTIFIER/androidApps/APP_ID/sha/SHA_HASH * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)). * SHA_HASH: the certificate hash for the App (see [`shaHash`](../projects.androidApps.sha#ShaCertificate.FIELDS.sha_hash))."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A SHA-1 or SHA-256 certificate associated with the AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ShaCertificateCertTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SHA_CERTIFICATE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHA_CERTIFICATE_TYPE_UNSPECIFIED"
+          }
+        },
+        "SHA_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHA_1"
+          }
+        },
+        "SHA_256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHA_256"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#MessageSet": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a \"bridge\" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListShaCertificatesResponse": {
+      "type": "structure",
+      "members": {
+        "certificates": {
+          "target": "com.gcp.firebase_v1beta1#ShaCertificateList",
+          "traits": {
+            "smithy.api#documentation": "The list of each `ShaCertificate` associated with the `AndroidApp`."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ShaCertificateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#ShaCertificate"
+      }
+    },
+    "com.gcp.firebase_v1beta1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.firebase_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.firebase_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.firebase_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.firebase_v1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.firebase_v1beta1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.firebase_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.firebase_v1beta1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#DocumentMap"
+      }
+    },
+    "com.gcp.firebase_v1beta1#DefaultResources": {
+      "type": "structure",
+      "members": {
+        "realtimeDatabaseInstance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED.** _Instead, find the name of the default Realtime Database instance using the [list endpoint](https://firebase.google.com/docs/reference/rest/database/database-management/rest/v1beta/projects.locations.instances/list) within the Firebase Realtime Database REST API. If the default Realtime Database instance for a Project has not yet been provisioned, the return might not contain a default instance._ The default Firebase Realtime Database instance name, in the format: PROJECT_ID Though rare, your `projectId` might already be used as the name for an existing Realtime Database instance in another project (learn more about [database sharding](https://firebase.google.com/docs/database/usage/sharding)). In these cases, your `projectId` is appended with a hyphen then five alphanumeric characters to create your default Realtime Database instance name. For example, if your `projectId` is `myproject123`, your default database instance name might be: `myproject123-a5c16`"
+          }
+        },
+        "storageBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED.** _Instead, find the name of the default Cloud Storage for Firebase bucket using the [list endpoint](https://firebase.google.com/docs/reference/rest/storage/rest/v1beta/projects.buckets/list) within the Cloud Storage for Firebase REST API. If the default bucket for the Project has not yet been provisioned, the return might not contain a default bucket._ The name of the default Cloud Storage for Firebase bucket, in one of the following formats: * If provisioned _before_ October 30, 2024: PROJECT_ID.firebasestorage.app * If provisioned _on or after_ October 30, 2024: PROJECT_ID.firebasestorage.app"
+          }
+        },
+        "hostingSite": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED.** _Instead, find the name of the default Firebase Hosting site using [ListSites](https://firebase.google.com/docs/reference/hosting/rest/v1beta1/projects.sites/list) within the Firebase Hosting REST API. If the default Hosting site for the Project has not yet been provisioned, the return might not contain a default site._ The name of the default Firebase Hosting site, in the format: PROJECT_ID Though rare, your `projectId` might already be used as the name for an existing Hosting site in another project (learn more about creating non-default, [additional sites](https://firebase.google.com/docs/hosting/multisites)). In these cases, your `projectId` is appended with a hyphen then five alphanumeric characters to create your default Hosting site name. For example, if your `projectId` is `myproject123`, your default Hosting site name might be: `myproject123-a5c16`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED.** _Instead, use product-specific REST APIs to find the location of each resource in a Project. This field may not be populated, especially for newly provisioned projects after October 30, 2024._ The ID of the Project's [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location), which are resources associated with Google App Engine. The location is one of the available [Google App Engine locations](https://cloud.google.com/about/locations#region). This field is omitted if the location for default Google Cloud resources has not been set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED.** _Auto-provisioning of these resources is changing, so this object no longer reliably provides information about the resources within the Project. Instead, retrieve information about each resource directly from its resource-specific API._ The default auto-provisioned resources associated with the Project."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ProductMetadata": {
+      "type": "structure",
+      "members": {
+        "warningMessages": {
+          "target": "com.gcp.firebase_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of warnings related to the associated operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a long-running Product operation."
+      }
+    },
+    "com.gcp.firebase_v1beta1#AndroidAppConfig": {
+      "type": "structure",
+      "members": {
+        "configFilename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filename that the configuration artifact for the `AndroidApp` is typically saved as. For example: `google-services.json`"
+          }
+        },
+        "configFileContents": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contents of the JSON configuration file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration metadata of a single Firebase App for Android."
+      }
+    },
+    "com.gcp.firebase_v1beta1#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the Project's location for default Google Cloud resources. It will be one of the available [Google App Engine locations](https://cloud.google.com/about/locations#region)."
+          }
+        },
+        "features": {
+          "target": "com.gcp.firebase_v1beta1#LocationFeaturesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Products and services that are available in the location for default Google Cloud resources."
+          }
+        },
+        "type": {
+          "target": "com.gcp.firebase_v1beta1#LocationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the location for default Google Cloud resources is a [regional or multi-regional location](https://firebase.google.com/docs/projects/locations#types) for data replication."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "**DEPRECATED.** _This Location is no longer used to determine Firebase resource locations. Instead, consult product documentation to determine valid locations for each resource used in your Project._ A [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location) that can be selected for a FirebaseProject. These are resources associated with Google App Engine."
+      }
+    },
+    "com.gcp.firebase_v1beta1#LocationFeaturesItemEnum": {
+      "type": "enum",
+      "members": {
+        "LOCATION_FEATURE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCATION_FEATURE_UNSPECIFIED"
+          }
+        },
+        "FIRESTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRESTORE"
+          }
+        },
+        "DEFAULT_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT_STORAGE"
+          }
+        },
+        "FUNCTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNCTIONS"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#LocationFeaturesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#LocationFeaturesItemEnum"
+      }
+    },
+    "com.gcp.firebase_v1beta1#LocationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LOCATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGIONAL"
+          }
+        },
+        "MULTI_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTI_REGIONAL"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListIosAppsResponse": {
+      "type": "structure",
+      "members": {
+        "apps": {
+          "target": "com.gcp.firebase_v1beta1#IosAppList",
+          "traits": {
+            "smithy.api#documentation": "List of each `IosApp` associated with the specified `FirebaseProject`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListIosApps` to find the next group of Apps. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#IosAppList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#IosApp"
+      }
+    },
+    "com.gcp.firebase_v1beta1#AnalyticsDetails": {
+      "type": "structure",
+      "members": {
+        "analyticsProperty": {
+          "target": "com.gcp.firebase_v1beta1#AnalyticsProperty",
+          "traits": {
+            "smithy.api#documentation": "The Analytics Property object associated with the specified `FirebaseProject`. This object contains the details of the Google Analytics property associated with the Project."
+          }
+        },
+        "streamMappings": {
+          "target": "com.gcp.firebase_v1beta1#StreamMappingList",
+          "traits": {
+            "smithy.api#documentation": " - For `AndroidApps` and `IosApps`: a map of `app` to `streamId` for each Firebase App in the specified `FirebaseProject`. Each `app` and `streamId` appears only once. - For `WebApps`: a map of `app` to `streamId` and `measurementId` for each `WebApp` in the specified `FirebaseProject`. Each `app`, `streamId`, and `measurementId` appears only once."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#StreamMappingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#StreamMapping"
+      }
+    },
+    "com.gcp.firebase_v1beta1#FinalizeDefaultLocationRequest": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED** The ID of the Project's [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location), which are resources associated with Google App Engine. The location must be one of the available [Google App Engine locations](https://cloud.google.com/about/locations#region)."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteIosAppRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, the request is only validated. The App will _not_ be undeleted."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Checksum provided in the IosApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteWebAppRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, the request is only validated. The App will _not_ be undeleted."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Checksum provided in the WebApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#StatusProto": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;"
+          }
+        },
+        "canonicalCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;"
+          }
+        },
+        "messageSet": {
+          "target": "com.gcp.firebase_v1beta1#MessageSet",
+          "traits": {
+            "smithy.api#documentation": "message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;"
+          }
+        },
+        "space": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wire-format for a Status object"
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListAndroidAppsResponse": {
+      "type": "structure",
+      "members": {
+        "apps": {
+          "target": "com.gcp.firebase_v1beta1#AndroidAppList",
+          "traits": {
+            "smithy.api#documentation": "List of each `AndroidApp` associated with the specified `FirebaseProject`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListAndroidApps` to find the next group of Apps. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#AndroidAppList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#AndroidApp"
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveAndroidAppRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, the request is only validated. The App will _not_ be removed."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Checksum provided in the AndroidApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding."
+          }
+        },
+        "immediate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines whether to _immediately_ delete the AndroidApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteAndroidApp."
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, and the App is not found, the request will succeed but no action will be taken on the server."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveIosAppRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, the request is only validated. The App will _not_ be removed."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Checksum provided in the IosApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding."
+          }
+        },
+        "immediate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines whether to _immediately_ delete the IosApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteIosApp"
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, and the App is not found, the request will succeed but no action will be taken on the server."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#IosAppConfig": {
+      "type": "structure",
+      "members": {
+        "configFileContents": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content of the XML configuration file."
+          }
+        },
+        "configFilename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filename that the configuration artifact for the `IosApp` is typically saved as. For example: `GoogleService-Info.plist`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration metadata of a single Firebase App for iOS."
+      }
+    },
+    "com.gcp.firebase_v1beta1#AdminSdkConfig": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. A user-assigned unique identifier for the `FirebaseProject`. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project."
+          }
+        },
+        "databaseURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, find the URL of the default Realtime Database instance using the [list endpoint](https://firebase.google.com/docs/reference/rest/database/database-management/rest/v1beta/projects.locations.instances/list) within the Firebase Realtime Database REST API. If the default instance for the Project has not yet been provisioned, the return might not contain a default instance. Note that the config that's generated for the Firebase console or the Firebase CLI uses the Realtime Database endpoint to populate this value for that config._ The URL of the default Firebase Realtime Database instance."
+          }
+        },
+        "storageBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, find the name of the default Cloud Storage for Firebase bucket using the [list endpoint](https://firebase.google.com/docs/reference/rest/storage/rest/v1beta/projects.buckets/list) within the Cloud Storage for Firebase REST API. If the default bucket for the Project has not yet been provisioned, the return might not contain a default bucket. Note that the config that's generated for the Firebase console or the Firebase CLI uses the Cloud Storage for Firebase endpoint to populate this value for that config._ The name of the default Cloud Storage for Firebase bucket."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, use product-specific REST APIs to find the location of each resource in a Project. This field may not be populated, especially for newly provisioned projects after October 30, 2024._ The ID of the Project's [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location), which are resources associated with Google App Engine. The location is one of the available [App Engine locations](https://cloud.google.com/about/locations#region). This field is omitted if the location for default Google Cloud resources has not been set."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListWebAppsResponse": {
+      "type": "structure",
+      "members": {
+        "apps": {
+          "target": "com.gcp.firebase_v1beta1#WebAppList",
+          "traits": {
+            "smithy.api#documentation": "List of each `WebApp` associated with the specified `FirebaseProject`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListWebApps` to find the next group of Apps. Page tokens are short-lived and should not be persisted."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#WebAppList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebase_v1beta1#WebApp"
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseProject": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-assigned display name of the Project."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`."
+          }
+        },
+        "resources": {
+          "target": "com.gcp.firebase_v1beta1#DefaultResources",
+          "traits": {
+            "smithy.api#documentation": "Output only. **DEPRECATED.** _Auto-provisioning of these resources is changing, so this object no longer reliably provides information about the Project. Instead, retrieve information about each resource directly from its resource-specific API._ The default Firebase resources associated with the Project."
+          }
+        },
+        "projectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Firebase or third-party services."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebase_v1beta1#FirebaseProjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The lifecycle state of the Project."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.firebase_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "A set of user-defined annotations for the FirebaseProject. Learn more about annotations in Google's [AIP-128 standard](https://google.aip.dev/128#annotations). These annotations are intended solely for developers and client-side tools. Firebase services will not mutate this annotations set."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This checksum is computed by the server based on the value of other fields, and it may be sent with update requests to ensure the client has an up-to-date value before proceeding. Learn more about `etag` in Google's [AIP-154 standard](https://google.aip.dev/154#declarative-friendly-resources). This etag is strongly validated."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. A user-assigned unique identifier for the Project. This identifier may appear in URLs or names for some Firebase resources associated with the Project, but it should generally be treated as a convenience alias to reference the Project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A `FirebaseProject` is the top-level Firebase entity. It is the container for Firebase Apps, Firebase Hosting sites, storage systems (Firebase Realtime Database, Cloud Firestore, Cloud Storage buckets), and other Firebase and Google Cloud resources. You create a `FirebaseProject` by calling AddFirebase and specifying an *existing* [Google Cloud `Project`](https://cloud.google.com/resource-manager/reference/rest/v1/projects). This adds Firebase resources to the existing Google Cloud `Project`. Since a FirebaseProject is actually also a Google Cloud `Project`, a `FirebaseProject` has the same underlying Google Cloud identifiers (`projectNumber` and `projectId`). This allows for easy interop with Google APIs."
+      }
+    },
+    "com.gcp.firebase_v1beta1#FirebaseProjectStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveWebAppRequest": {
+      "type": "structure",
+      "members": {
+        "immediate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines whether to _immediately_ delete the WebApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteWebApp"
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, the request is only validated. The App will _not_ be removed."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Checksum provided in the WebApp resource. If provided, this checksum ensures that the client has an up-to-date value before proceeding."
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, and the App is not found, the request will succeed but no action will be taken on the server."
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#WebAppConfig": {
+      "type": "structure",
+      "members": {
+        "measurementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique Google-assigned identifier of the Google Analytics web stream associated with the `WebApp`. Firebase SDKs use this ID to interact with Google Analytics APIs. This field is only present if the `WebApp` is linked to a web stream in a Google Analytics App + Web property. Learn more about this ID and Google Analytics web streams in the [Analytics documentation](https://support.google.com/analytics/answer/9304153). To generate a `measurementId` and link the `WebApp` with a Google Analytics web stream, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics). For apps using the Firebase JavaScript SDK v7.20.0 and later, Firebase dynamically fetches the `measurementId` when your app initializes Analytics. Having this ID in your config object is optional, but it does serve as a fallback in the rare case that the dynamic fetch fails."
+          }
+        },
+        "databaseURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, find the URL of the default Realtime Database instance using the [list endpoint](https://firebase.google.com/docs/reference/rest/database/database-management/rest/v1beta/projects.locations.instances/list) within the Firebase Realtime Database REST API. If the default instance for the Project has not yet been provisioned, the return might not contain a default instance. Note that the config that's generated for the Firebase console or the Firebase CLI uses the Realtime Database endpoint to populate this value for that config._ The URL of the default Firebase Realtime Database instance."
+          }
+        },
+        "storageBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, find the name of the default Cloud Storage for Firebase bucket using the [list endpoint](https://firebase.google.com/docs/reference/rest/storage/rest/v1beta/projects.buckets/list) within the Cloud Storage for Firebase REST API. If the default bucket for the Project has not yet been provisioned, the return might not contain a default bucket. Note that the config that's generated for the Firebase console or the Firebase CLI uses the Cloud Storage for Firebase endpoint to populate this value for that config._ The name of the default Cloud Storage for Firebase bucket."
+          }
+        },
+        "realtimeDatabaseUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Duplicate field for the URL of the default Realtime Database instances (if the default instance has been provisioned). If the request asks for the V2 config format, this field will be populated instead of `realtime_database_instance_uri`."
+          }
+        },
+        "recaptchaSiteKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Recaptcha Enterprise site key associated with the Firebase App."
+          }
+        },
+        "apiKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [`keyString`](https://cloud.google.com/api-keys/docs/reference/rest/v2/projects.locations.keys#Key.FIELDS.key_string) of the API key associated with the `WebApp`. Note that this value is _not_ the [`apiKeyId`](../projects.webApps#WebApp.FIELDS.api_key_id) (the UID) of the API key associated with the `WebApp`."
+          }
+        },
+        "messagingSenderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sender ID for use with Firebase Cloud Messaging."
+          }
+        },
+        "projectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The globally unique, Google-assigned canonical identifier for the Project. Use this identifier when configuring integrations and/or making API calls to Google Cloud or third-party services."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, use product-specific REST APIs to find the location of each resource in a Project. This field may not be populated, especially for newly provisioned projects after October 30, 2024._ The ID of the Project's [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location), which are resources associated with Google App Engine. The location is one of the available [App Engine locations](https://cloud.google.com/about/locations#region). This field is omitted if the location for default Google Cloud resources has not been set."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`."
+          }
+        },
+        "authDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain Firebase Auth configures for OAuth redirects, in the format: PROJECT_ID.firebaseapp.com"
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. A user-assigned unique identifier for the `FirebaseProject`."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the config specification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration metadata of a single Firebase App for the web."
+      }
+    },
+    "com.gcp.firebase_v1beta1#AddFirebaseRequest": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**DEPRECATED.** _Instead, use product-specific REST APIs to work with the location of each resource in a Project. This field may be ignored, especially for newly provisioned projects after October 30, 2024._ The ID of the Project's [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location), which are resources associated with Google App Engine. The location must be one of the available [Google App Engine locations](https://cloud.google.com/about/locations#region)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All fields are required."
+      }
+    },
+    "com.gcp.firebase_v1beta1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetAdminSdkConfigProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the FirebaseProject, in the format: projects/ PROJECT_IDENTIFIER/adminSdkConfig Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firebase_v1beta1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetAdminSdkConfigProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetAdminSdkConfigProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#AdminSdkConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the configuration artifact associated with the specified FirebaseProject, which can be used by servers to simplify initialization. Typically, this configuration is used with the Firebase Admin SDK [initializeApp](https://firebase.google.com/docs/admin/setup#initialize_the_sdk) command."
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveAnalyticsProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the FirebaseProject to unlink from its Google Analytics account, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#RemoveAnalyticsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.firebase_v1beta1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveAnalyticsProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#RemoveAnalyticsProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}:removeAnalytics"
+        },
+        "smithy.api#documentation": "Unlinks the specified FirebaseProject from its Google Analytics account. This call removes the association of the specified `FirebaseProject` with its current Google Analytics property. However, this call does not delete the Google Analytics resources, such as the Google Analytics property or any data streams. These resources may be re-associated later to the `FirebaseProject` by calling [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) and specifying the same `analyticsPropertyId`. For Android Apps and iOS Apps, this call re-links data streams with their corresponding apps. However, for Web Apps, this call provisions a *new* data stream for each Web App. To call `RemoveAnalytics`, a project member must be an Owner for the `FirebaseProject`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the FirebaseProject, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#FirebaseProject"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the specified FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetAnalyticsDetailsProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the FirebaseProject, in the format: projects/ PROJECT_IDENTIFIER/analyticsDetails Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetAnalyticsDetailsProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetAnalyticsDetailsProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#AnalyticsDetails"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the Google Analytics details currently associated with the specified FirebaseProject. If the `FirebaseProject` is not yet linked to Google Analytics, then the response to `GetAnalyticsDetails` is `NOT_FOUND`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Controls whether Projects in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Projects will be returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `ListFirebaseProjects` indicating where in the set of Projects to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Projects to return in the response. The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. This value cannot be negative.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListFirebaseProjectsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/projects"
+        },
+        "smithy.api#documentation": "Lists each FirebaseProject accessible to the caller. The elements are returned in no particular order, but they will be a consistent view of the Projects when additional requests are made with a `pageToken`. This method is eventually consistent with Project mutations, which means newly provisioned Projects and recent modifications to existing Projects might not be reflected in the set of Projects. The list will include only ACTIVE Projects. Use GetFirebaseProject for consistent reads as well as for additional Project details.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#AddFirebaseProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Google Cloud `Project` in which Firebase resources will be added and Firebase services enabled, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values. After calling `AddFirebase`, the unique Project identifiers ( [`projectNumber`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_number) and [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id)) of the underlying Google Cloud `Project` are also the identifiers of the FirebaseProject.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#AddFirebaseRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#AddFirebaseProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#AddFirebaseProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+project}:addFirebase"
+        },
+        "smithy.api#documentation": "Adds Firebase resources and enables Firebase services in the specified existing [Google Cloud `Project`](https://cloud.google.com/resource-manager/reference/rest/v1/projects). Since a FirebaseProject is actually also a Google Cloud `Project`, a `FirebaseProject` has the same underlying Google Cloud identifiers (`projectNumber` and `projectId`). This allows for easy interop with Google APIs. The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a FirebaseProject; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. This method does not modify any billing account information on the underlying Google Cloud `Project`. To call `AddFirebase`, a project member or service account must have the following permissions (the IAM roles of Editor and Owner contain these permissions): `firebase.projects.update`, `resourcemanager.projects.get`, `serviceusage.services.enable`, and `serviceusage.services.get`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#AddGoogleAnalyticsProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the FirebaseProject to link to an existing Google Analytics account, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#AddGoogleAnalyticsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#AddGoogleAnalyticsProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#AddGoogleAnalyticsProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}:addGoogleAnalytics"
+        },
+        "smithy.api#documentation": "Links the specified FirebaseProject with an existing [Google Analytics account](http://www.google.com/analytics/). Using this call, you can either: - Specify an `analyticsAccountId` to provision a new Google Analytics property within the specified account and associate the new property with the `FirebaseProject`. - Specify an existing `analyticsPropertyId` to associate the property with the `FirebaseProject`. Note that when you call `AddGoogleAnalytics`: 1. The first check determines if any existing data streams in the Google Analytics property correspond to any existing Firebase Apps in the `FirebaseProject` (based on the `packageName` or `bundleId` associated with the data stream). Then, as applicable, the data streams and apps are linked. Note that this auto-linking only applies to `AndroidApps` and `IosApps`. 2. If no corresponding data streams are found for the Firebase Apps, new data streams are provisioned in the Google Analytics property for each of the Firebase Apps. Note that a new data stream is always provisioned for a Web App even if it was previously associated with a data stream in the Analytics property. Learn more about the hierarchy and structure of Google Analytics accounts in the [Analytics documentation](https://support.google.com/analytics/answer/9303323). The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to an AnalyticsDetails; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. To call `AddGoogleAnalytics`, a project member must be an Owner for the existing `FirebaseProject` and have the [`Edit` permission](https://support.google.com/analytics/answer/2884495) for the Google Analytics account. If the `FirebaseProject` already has Google Analytics enabled, and you call `AddGoogleAnalytics` using an `analyticsPropertyId` that's different from the currently associated property, then the call will fail. Analytics may have already been enabled in the Firebase console or by specifying `timeZone` and `regionCode` in the call to [`AddFirebase`](../../v1beta1/projects/addFirebase)."
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Project, in the format: projects/PROJECT_IDENTIFIER PROJECT_IDENTIFIER: the Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies which fields of the FirebaseProject to update. Note that the following fields are immutable: `name`, `project_id`, and `project_number`. To update `state`, use any of the following Google Cloud endpoints: [`projects.delete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/delete) or [`projects.undelete`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/undelete)",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#FirebaseProject",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#PatchProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#FirebaseProject"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the attributes of the specified FirebaseProject. All [query parameters](#query-parameters) are required."
+      }
+    },
+    "com.gcp.firebase_v1beta1#SearchAppsProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Controls whether Apps in the DELETED state should be returned. If not specified, only `ACTIVE` Apps will be returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `SearchFirebaseApps` indicating where in the set of Apps to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The parent FirebaseProject for which to list Apps, in the format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A query string compatible with Google's [AIP-160 standard](https://google.aip.dev/160). Use any of the following fields in a query: * [`app_id`](../projects/searchApps#FirebaseAppInfo.FIELDS.app_id) * [`namespace`](../projects/searchApps#FirebaseAppInfo.FIELDS.namespace) * [`platform`](../projects/searchApps#FirebaseAppInfo.FIELDS.platform) This query also supports the following \"virtual\" fields. These are fields which are not actually part of the returned resource object, but they can be queried as if they are pre-populated with specific values. * `sha1_hash` or `sha1_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-1 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `sha256_hash` or `sha256_hashes`: This field is considered to be a _repeated_ `string` field, populated with the list of all SHA-256 certificate fingerprints registered with the AndroidApp. This list is empty if the App is not an `AndroidApp`. * `app_store_id`: This field is considered to be a _singular_ `string` field, populated with the Apple App Store ID registered with the IosApp. This field is empty if the App is not an `IosApp`. * `team_id`: This field is considered to be a _singular_ `string` field, populated with the Apple team ID registered with the IosApp. This field is empty if the App is not an `IosApp`.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#SearchAppsProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#SearchAppsProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#SearchFirebaseAppsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}:searchApps"
+        },
+        "smithy.api#documentation": "Lists all available Apps for the specified FirebaseProject. This is a convenience method. Typically, interaction with an App should be done using the platform-specific service, but some tool use-cases require a summary of all known Apps (such as for App selector interfaces).",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#FinalizeProjectsDefaultLocationRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the FirebaseProject for which the [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location) will be set, in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#FinalizeDefaultLocationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#FinalizeProjectsDefaultLocation": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#FinalizeProjectsDefaultLocationRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/defaultLocation:finalize"
+        },
+        "smithy.api#documentation": "**DECOMMISSIONED.** **If called, this endpoint will return a 404 error.** _Instead, use the applicable resource-specific REST API to set the location for each resource used in your Project._ Sets the [\"location for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location) for the specified FirebaseProject. This method creates a Google App Engine application with a [default Cloud Storage bucket](https://cloud.google.com/appengine/docs/standard/python/googlecloudstorageclient/setting-up-cloud-storage#activating_a_cloud_storage_bucket), located in the specified [`locationId`](#body.request_body.FIELDS.location_id). This location must be one of the available [App Engine locations](https://cloud.google.com/about/locations#region). After the location for default Google Cloud resources is finalized, or if it was already set, it cannot be changed. The location for default Google Cloud resources for the specified `FirebaseProject` might already be set because either the underlying Google Cloud `Project` already has an App Engine application or `FinalizeDefaultLocation` was previously called with a specified `locationId`. The result of this call is an [`Operation`](../../v1beta1/operations), which can be used to track the provisioning process. The [`response`](../../v1beta1/operations#Operation.FIELDS.response) type of the `Operation` is google.protobuf.Empty. The `Operation` can be polled by its `name` using GetOperation until `done` is true. When `done` is true, the `Operation` has either succeeded or failed. If the `Operation` has succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) will be set to a google.protobuf.Empty; if the `Operation` has failed, its `error` will be set to a google.rpc.Status. The `Operation` is automatically deleted after completion, so there is no need to call DeleteOperation. All fields listed in the [request body](#request-body) are required. To call `FinalizeDefaultLocation`, a member must be an Owner of the Project."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#AndroidApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the specified AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Apps to return in the response. The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `ListAndroidApps` indicating where in the set of Apps to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent FirebaseProject for which to list each associated AndroidApp, in the format: projects/PROJECT_IDENTIFIER /androidApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListAndroidAppsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/androidApps"
+        },
+        "smithy.api#documentation": "Lists each AndroidApp associated with the specified FirebaseProject. The elements are returned in no particular order, but will be a consistent view of the Apps when additional requests are made with a `pageToken`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#RemoveAndroidAppRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#RemoveProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:remove"
+        },
+        "smithy.api#documentation": "Removes the specified AndroidApp from the FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent FirebaseProject in which to create an AndroidApp, in the format: projects/PROJECT_IDENTIFIER/androidApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#AndroidApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#CreateProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/androidApps"
+        },
+        "smithy.api#documentation": "Requests the creation of a new AndroidApp in the specified FirebaseProject. The result of this call is an `Operation` which can be used to track the provisioning process. The `Operation` is automatically deleted after completion, so there is no need to call `DeleteOperation`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the AndroidApp [name](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#UndeleteAndroidAppRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#UndeleteProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Restores the specified AndroidApp to the FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies which fields of the AndroidApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `package_name`. To update `state`, use any of the following endpoints: RemoveAndroidApp or UndeleteAndroidApp.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the AndroidApp, in the format: projects/ PROJECT_IDENTIFIER/androidApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.androidApps#AndroidApp.FIELDS.app_id)).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#AndroidApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#PatchProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#AndroidApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the attributes of the specified AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetConfigProjectsAndroidAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the AndroidApp configuration to download, in the format: projects/PROJECT_IDENTIFIER/androidApps/APP_ID/config Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetConfigProjectsAndroidApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetConfigProjectsAndroidAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#AndroidAppConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the configuration artifact associated with the specified AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#DeleteProjectsAndroidAppsShaRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the ShaCertificate to remove from the parent AndroidApp, in the format: projects/PROJECT_IDENTIFIER/androidApps/APP_ID /sha/SHA_HASH Refer to the `ShaCertificate` [`name`](../projects.androidApps.sha#ShaCertificate.FIELDS.name) field for details about PROJECT_IDENTIFIER, APP_ID, and SHA_HASH values. You can obtain the full resource name of the `ShaCertificate` from the response of [`ListShaCertificates`](../projects.androidApps.sha/list) or the original [`CreateShaCertificate`](../projects.androidApps.sha/create).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#DeleteProjectsAndroidAppsSha": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#DeleteProjectsAndroidAppsShaRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Removes a ShaCertificate from the specified AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsAndroidAppsShaRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent AndroidApp for which to list each associated ShaCertificate, in the format: projects/PROJECT_IDENTIFIER /androidApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsAndroidAppsSha": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListProjectsAndroidAppsShaRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListShaCertificatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/sha"
+        },
+        "smithy.api#documentation": "Lists the SHA-1 and SHA-256 certificates for the specified AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsAndroidAppsShaRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent AndroidApp to which to add a ShaCertificate, in the format: projects/PROJECT_IDENTIFIER/androidApps/ APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/androidApps/APP_ID Refer to the `AndroidApp` [`name`](../projects.androidApps#AndroidApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#ShaCertificate",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsAndroidAppsSha": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#CreateProjectsAndroidAppsShaRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ShaCertificate"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/sha"
+        },
+        "smithy.api#documentation": "Adds a ShaCertificate to the specified AndroidApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsAvailableLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of locations to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit. This value cannot be negative.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `ListAvailableLocations` indicating where in the list of locations to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FirebaseProject for which to list [locations for default Google Cloud resources](https://firebase.google.com/docs/projects/locations#default-cloud-location), in the format: projects/PROJECT_IDENTIFIER Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values. If no unique project identifier is specified (that is, `projects/-`), the returned list does not take into account org-specific or project-specific location restrictions.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsAvailableLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListProjectsAvailableLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListAvailableLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/availableLocations"
+        },
+        "smithy.api#documentation": "**DECOMMISSIONED.** **If called, this endpoint will return a 404 error.** _Instead, use the applicable resource-specific REST API (or associated documentation, as needed) to determine valid locations for each resource used in your Project._ Lists the valid [\"locations for default Google Cloud resources\"](https://firebase.google.com/docs/projects/locations#default-cloud-location) for the specified Project (including a FirebaseProject). One of these locations can be selected as the Project's location for default Google Cloud resources, which is the geographical location where the Project's resources associated with Google App Engine (such as the default Cloud Firestore instance) will be provisioned by default. However, if the location for default Google Cloud resources has already been set for the Project, then this setting cannot be changed. This call checks for any possible [location restrictions](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations) for the specified Project and, thus, might return a subset of all possible locations. To list all locations (regardless of any restrictions), call the endpoint without specifying a unique project identifier (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the Project. Calls without a specified project do not require any specific project permissions.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent FirebaseProject in which to create a WebApp, in the format: projects/PROJECT_IDENTIFIER/webApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#WebApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#CreateProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/webApps"
+        },
+        "smithy.api#documentation": "Requests the creation of a new WebApp in the specified FirebaseProject. The result of this call is an `Operation` which can be used to track the provisioning process. The `Operation` is automatically deleted after completion, so there is no need to call `DeleteOperation`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the `WebApp` [`name`](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#WebApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the specified WebApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `ListWebApps` indicating where in the set of Apps to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Apps to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent FirebaseProject for which to list each associated WebApp, in the format: projects/PROJECT_IDENTIFIER/webApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListWebAppsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/webApps"
+        },
+        "smithy.api#documentation": "Lists each WebApp associated with the specified FirebaseProject. The elements are returned in no particular order, but will be a consistent view of the Apps when additional requests are made with a `pageToken`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#RemoveWebAppRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#RemoveProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:remove"
+        },
+        "smithy.api#documentation": "Removes the specified WebApp from the FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the WebApp, in the format: projects/PROJECT_IDENTIFIER /webApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.webApps#WebApp.FIELDS.app_id)).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies which fields of the WebApp to update. Note that the following fields are immutable: `name`, `app_id`, and `project_id`. To update `state`, use any of the following endpoints: RemoveWebApp or UndeleteWebApp.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#WebApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#PatchProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#WebApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the attributes of the specified WebApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetConfigProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the WebApp configuration to download, in the format: projects/PROJECT_IDENTIFIER/webApps/APP_ID/config Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the `WebApp` [`name`](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetConfigProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetConfigProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#WebAppConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the configuration artifact associated with the specified WebApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteProjectsWebAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the WebApp, in the format: projects/ PROJECT_IDENTIFIER/webApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/webApps/APP_ID Refer to the WebApp [name](../projects.webApps#WebApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#UndeleteWebAppRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteProjectsWebApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#UndeleteProjectsWebAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Restores the specified WebApp to the FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#UndeleteIosAppRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#UndeleteProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#UndeleteProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Restores the specified IosApp to the FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID * PROJECT_IDENTIFIER: the parent Project's [`ProjectNumber`](../projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](../projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510). Note that the value for PROJECT_IDENTIFIER in any response body will be the `ProjectId`. * APP_ID: the globally unique, Firebase-assigned identifier for the App (see [`appId`](../projects.iosApps#IosApp.FIELDS.app_id)).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies which fields of the IosApp to update. Note that the following fields are immutable: `name`, `app_id`, `project_id`, and `bundle_id`. To update `state`, use any of the following endpoints: RemoveIosApp or UndeleteIosApp.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#IosApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#PatchProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#PatchProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#IosApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the attributes of the specified IosApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetConfigProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the App configuration to download, in the format: projects/PROJECT_IDENTIFIER/iosApps/APP_ID/config Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the `IosApp` [`name`](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetConfigProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetConfigProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#IosAppConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the configuration artifact associated with the specified IosApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `ListIosApps` indicating where in the set of Apps to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Apps to return in the response. The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent FirebaseProject for which to list each associated IosApp, in the format: projects/PROJECT_IDENTIFIER/iosApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Controls whether Apps in the DELETED state should be returned in the response. If not specified, only `ACTIVE` Apps will be returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListIosAppsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/iosApps"
+        },
+        "smithy.api#documentation": "Lists each IosApp associated with the specified FirebaseProject. The elements are returned in no particular order, but will be a consistent view of the Apps when additional requests are made with a `pageToken`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the IosApp, in the format: projects/ PROJECT_IDENTIFIER/iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the IosApp [name](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#RemoveIosAppRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#RemoveProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#RemoveProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:remove"
+        },
+        "smithy.api#documentation": "Removes the specified IosApp from the FirebaseProject."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the IosApp, in the format: projects/PROJECT_IDENTIFIER /iosApps/APP_ID Since an APP_ID is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: projects/-/iosApps/APP_ID Refer to the `IosApp` [`name`](../projects.iosApps#IosApp.FIELDS.name) field for details about PROJECT_IDENTIFIER and APP_ID values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#IosApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the specified IosApp."
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsIosAppsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the parent FirebaseProject in which to create an IosApp, in the format: projects/PROJECT_IDENTIFIER/iosApps Refer to the `FirebaseProject` [`name`](../projects#FirebaseProject.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebase_v1beta1#IosApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#CreateProjectsIosApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#CreateProjectsIosAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/iosApps"
+        },
+        "smithy.api#documentation": "Requests the creation of a new IosApp in the specified FirebaseProject. The result of this call is an `Operation` which can be used to track the provisioning process. The `Operation` is automatically deleted after completion, so there is no need to call `DeleteOperation`."
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#GetOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#GetOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListAvailableProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Projects to return in the response. The server may return fewer than this value at its discretion. If no value is specified (or too large a value is specified), the server will impose its own limit. This value cannot be negative.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token returned from a previous call to `ListAvailableProjects` indicating where in the set of Projects to resume listing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.firebase_v1beta1#ListAvailableProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebase_v1beta1#ListAvailableProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebase_v1beta1#ListAvailableProjectsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebase_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebase_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/availableProjects"
+        },
+        "smithy.api#documentation": "Lists each [Google Cloud `Project`](https://cloud.google.com/resource-manager/reference/rest/v1/projects) that can have Firebase resources added and Firebase services enabled. A Project will only be listed if: - The caller has sufficient [Google IAM](https://cloud.google.com/iam) permissions to call AddFirebase. - The Project is not already a FirebaseProject. - The Project is not in an Organization which has policies that prevent Firebase resources from being added. ",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

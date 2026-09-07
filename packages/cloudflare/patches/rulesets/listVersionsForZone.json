@@ -1,0 +1,38 @@
+{
+  "description": "Align rulesets#VersionsListForZone with distilled cloudflare/rulesets listVersionsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsListForZone",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsListForZoneRequest",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForZone/input/target",
+      "value": "com.cloudflare.rulesets#ListVersionsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsListForZoneResponse",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForZone/output/target",
+      "value": "com.cloudflare.rulesets#ListVersionsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#ListVersionsForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

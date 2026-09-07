@@ -1,0 +1,29 @@
+{
+  "description": "Align security_txt#Delete with distilled cloudflare/security-txt deleteSecurityTxt",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#Delete",
+      "path": "/shapes/com.cloudflare.security_txt#DeleteSecurityTxt"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#DeleteRequest",
+      "path": "/shapes/com.cloudflare.security_txt#DeleteSecurityTxtRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_txt#DeleteSecurityTxt/input/target",
+      "value": "com.cloudflare.security_txt#DeleteSecurityTxtRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.security_txt#DeleteSecurityTxt/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.security_txt#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,628 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.file_system#FileSystemListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "A search term."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#PaginatedFileSystemList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.file_system#PaginatedFileSystemListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.file_system#FileSystem2": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "depth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document"
+        },
+        "shortcut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "last_viewed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.file_system#PaginatedFileSystemListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.file_system#FileSystem2"
+      },
+      "traits": {}
+    },
+    "com.posthog.file_system#FileSystemList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemListRequest"
+      },
+      "output": {
+        "target": "com.posthog.file_system#PaginatedFileSystemList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#BadRequest"
+        },
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/file_system/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#FileSystemCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document"
+        },
+        "shortcut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#FileSystemCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.file_system#FileSystem2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#BadRequest"
+        },
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/file_system/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#FileSystemRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#FileSystemRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.file_system#FileSystem2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/file_system/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#FileSystemUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document"
+        },
+        "shortcut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#FileSystemUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.file_system#FileSystem2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#BadRequest"
+        },
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/file_system/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#FileSystemPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document"
+        },
+        "shortcut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#FileSystemPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.file_system#FileSystem2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#BadRequest"
+        },
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/file_system/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#FileSystemDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this file system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#FileSystemDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/file_system/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#FileSystemUndoDeleteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document"
+        },
+        "shortcut": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.file_system#FileSystemUndoDeleteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.file_system#FileSystemUndoDeleteCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.file_system#BadRequest"
+        },
+        {
+          "target": "com.posthog.file_system#Forbidden"
+        },
+        {
+          "target": "com.posthog.file_system#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/file_system/undo_delete/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.file_system#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.file_system#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.file_system#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.file_system#FileSystem": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.file_system#FileSystemList"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemCreate"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemRetrieve"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemUpdate"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemPartialUpdate"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemDestroy"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemUndoDeleteCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

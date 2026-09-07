@@ -1,0 +1,18 @@
+{
+  "description": "Key dictionary / op aliases for origin_ca_certificates (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "expiresOn": "expires_on",
+        "perPage": "per_page",
+        "requestType": "request_type",
+        "requestedValidity": "requested_validity",
+        "resultInfo": "result_info",
+        "revokedAt": "revoked_at",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

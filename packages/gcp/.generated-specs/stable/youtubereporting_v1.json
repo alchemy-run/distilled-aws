@@ -1,0 +1,1367 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "youtubereporting",
+    "version": "v1",
+    "title": "YouTube Reporting API",
+    "baseUrl": "https://youtubereporting.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.youtubereporting_v1#GdataMedia": {
+      "type": "structure",
+      "members": {
+        "length": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "contentTypeInfo": {
+          "target": "com.gcp.youtubereporting_v1#GdataContentTypeInfo",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "hashVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "sha256Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "diffUploadRequest": {
+          "target": "com.gcp.youtubereporting_v1#GdataDiffUploadRequest",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "blobstore2Info": {
+          "target": "com.gcp.youtubereporting_v1#GdataBlobstore2Info",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "diffVersionResponse": {
+          "target": "com.gcp.youtubereporting_v1#GdataDiffVersionResponse",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "mediaId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "sha1Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "downloadParameters": {
+          "target": "com.gcp.youtubereporting_v1#GdataDownloadParameters",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "cosmoBinaryReference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "bigstoreObjectRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "diffChecksumsResponse": {
+          "target": "com.gcp.youtubereporting_v1#GdataDiffChecksumsResponse",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "diffUploadResponse": {
+          "target": "com.gcp.youtubereporting_v1#GdataDiffUploadResponse",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "referenceType": {
+          "target": "com.gcp.youtubereporting_v1#GdataMediaReferenceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "compositeMedia": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMediaList",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "sha512Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "blobRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "diffDownloadResponse": {
+          "target": "com.gcp.youtubereporting_v1#GdataDiffDownloadResponse",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "algorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectId": {
+          "target": "com.gcp.youtubereporting_v1#GdataObjectId",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "crc32cHash": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "isPotentialRetry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "inline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "md5Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataMediaReferenceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATH"
+          }
+        },
+        "BLOB_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOB_REF"
+          }
+        },
+        "INLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INLINE"
+          }
+        },
+        "GET_MEDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET_MEDIA"
+          }
+        },
+        "COMPOSITE_MEDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPOSITE_MEDIA"
+          }
+        },
+        "BIGSTORE_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIGSTORE_REF"
+          }
+        },
+        "DIFF_VERSION_RESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIFF_VERSION_RESPONSE"
+          }
+        },
+        "DIFF_CHECKSUMS_RESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIFF_CHECKSUMS_RESPONSE"
+          }
+        },
+        "DIFF_DOWNLOAD_RESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIFF_DOWNLOAD_RESPONSE"
+          }
+        },
+        "DIFF_UPLOAD_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIFF_UPLOAD_REQUEST"
+          }
+        },
+        "DIFF_UPLOAD_RESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIFF_UPLOAD_RESPONSE"
+          }
+        },
+        "COSMO_BINARY_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COSMO_BINARY_REFERENCE"
+          }
+        },
+        "ARBITRARY_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARBITRARY_BYTES"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataCompositeMediaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataBlobstore2Info": {
+      "type": "structure",
+      "members": {
+        "readToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "uploadMetadataContainer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "downloadReadHandle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "uploadFragmentListCreationInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "blobGeneration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "downloadExternalReadToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "blobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListJobsResponse": {
+      "type": "structure",
+      "members": {
+        "jobs": {
+          "target": "com.gcp.youtubereporting_v1#JobList",
+          "traits": {
+            "smithy.api#documentation": "The list of jobs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token to retrieve next page of results. Pass this value in the ListJobsRequest.page_token field in the subsequent call to `ListJobs` method to retrieve the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ReportingService.ListJobs."
+      }
+    },
+    "com.gcp.youtubereporting_v1#JobList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubereporting_v1#Job"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataObjectId": {
+      "type": "structure",
+      "members": {
+        "objectName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "generation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#Job": {
+      "type": "structure",
+      "members": {
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date/time when this job will expire/expired. After a job expired, no new reports are generated."
+          }
+        },
+        "reportTypeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of reports this job creates. Corresponds to the ID of a ReportType."
+          }
+        },
+        "systemManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this a system-managed job that cannot be modified by the user; otherwise false."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation date/time of the job."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the job (max. 100 characters)."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-generated ID of the job (max. 40 characters)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A job creating reports of a specific type."
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataDiffChecksumsResponse": {
+      "type": "structure",
+      "members": {
+        "checksumsLocation": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "chunkSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectLocation": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#Report": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of the time period that the report instance covers. The value is exclusive."
+          }
+        },
+        "jobExpireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date/time when the job this report belongs to will expire/expired."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start of the time period that the report instance covers. The value is inclusive."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date/time when this report was created."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-generated ID of the report."
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the job that created this report."
+          }
+        },
+        "downloadUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL from which the report can be downloaded (max. 1000 characters)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A report's metadata including the URL from which the report itself can be downloaded."
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataCompositeMedia": {
+      "type": "structure",
+      "members": {
+        "crc32cHash": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "sha1Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "length": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectId": {
+          "target": "com.gcp.youtubereporting_v1#GdataObjectId",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "blobstore2Info": {
+          "target": "com.gcp.youtubereporting_v1#GdataBlobstore2Info",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "blobRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "inline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "md5Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "referenceType": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMediaReferenceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "cosmoBinaryReference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataCompositeMediaReferenceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATH"
+          }
+        },
+        "BLOB_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOB_REF"
+          }
+        },
+        "INLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INLINE"
+          }
+        },
+        "BIGSTORE_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIGSTORE_REF"
+          }
+        },
+        "COSMO_BINARY_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COSMO_BINARY_REFERENCE"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListReportTypesResponse": {
+      "type": "structure",
+      "members": {
+        "reportTypes": {
+          "target": "com.gcp.youtubereporting_v1#ReportTypeList",
+          "traits": {
+            "smithy.api#documentation": "The list of report types."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token to retrieve next page of results. Pass this value in the ListReportTypesRequest.page_token field in the subsequent call to `ListReportTypes` method to retrieve the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ReportingService.ListReportTypes."
+      }
+    },
+    "com.gcp.youtubereporting_v1#ReportTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubereporting_v1#ReportType"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataContentTypeInfo": {
+      "type": "structure",
+      "members": {
+        "fromBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "fusionIdDetectionMetadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "bestGuess": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "fromFileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "fromHeader": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "fromFusionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "fromUrlPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataDiffDownloadResponse": {
+      "type": "structure",
+      "members": {
+        "objectLocation": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListReportsResponse": {
+      "type": "structure",
+      "members": {
+        "reports": {
+          "target": "com.gcp.youtubereporting_v1#ReportList",
+          "traits": {
+            "smithy.api#documentation": "The list of report types."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token to retrieve next page of results. Pass this value in the ListReportsRequest.page_token field in the subsequent call to `ListReports` method to retrieve the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ReportingService.ListReports."
+      }
+    },
+    "com.gcp.youtubereporting_v1#ReportList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubereporting_v1#Report"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataDiffUploadRequest": {
+      "type": "structure",
+      "members": {
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectInfo": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "checksumsInfo": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataDiffVersionResponse": {
+      "type": "structure",
+      "members": {
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "objectSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataDiffUploadResponse": {
+      "type": "structure",
+      "members": {
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "originalObject": {
+          "target": "com.gcp.youtubereporting_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#GdataDownloadParameters": {
+      "type": "structure",
+      "members": {
+        "allowGzipCompression": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        },
+        "ignoreRange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "gdata"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "gdata"
+      }
+    },
+    "com.gcp.youtubereporting_v1#ReportType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the report type (max. 100 characters)."
+          }
+        },
+        "systemManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this a system-managed report type; otherwise false. Reporting jobs for system-managed report types are created automatically and can thus not be used in the `CreateJob` method."
+          }
+        },
+        "deprecateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date/time when this report type was/will be deprecated."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the report type (max. 100 characters)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A report type."
+      }
+    },
+    "com.gcp.youtubereporting_v1#DeleteJobsRequest": {
+      "type": "structure",
+      "members": {
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the job to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.youtubereporting_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.youtubereporting_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.youtubereporting_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.youtubereporting_v1#DeleteJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#DeleteJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/jobs/{jobId}"
+        },
+        "smithy.api#documentation": "Deletes a job."
+      }
+    },
+    "com.gcp.youtubereporting_v1#GetJobsRequest": {
+      "type": "structure",
+      "members": {
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the job to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#GetJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#GetJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#Job"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/jobs/{jobId}"
+        },
+        "smithy.api#documentation": "Gets a job."
+      }
+    },
+    "com.gcp.youtubereporting_v1#CreateJobsRequest": {
+      "type": "structure",
+      "members": {
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "body": {
+          "target": "com.gcp.youtubereporting_v1#Job",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#CreateJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#CreateJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#Job"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/jobs"
+        },
+        "smithy.api#documentation": "Creates a job and returns it."
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListJobsRequest": {
+      "type": "structure",
+      "members": {
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "includeSystemManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.",
+            "smithy.api#httpQuery": "includeSystemManaged"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#ListJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#ListJobsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/jobs"
+        },
+        "smithy.api#documentation": "Lists jobs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListJobsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "startTimeAtOrAfter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, only reports whose start time is greater than or equal the specified date/time are returned.",
+            "smithy.api#httpQuery": "startTimeAtOrAfter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return. Typically, this is the value of ListReportsResponse.next_page_token returned in response to the previous call to the `ListReports` method.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the job.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startTimeBefore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, only reports whose start time is smaller than the specified date/time are returned.",
+            "smithy.api#httpQuery": "startTimeBefore"
+          }
+        },
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "createdAfter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, only reports created after the specified date/time are returned.",
+            "smithy.api#httpQuery": "createdAfter"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListJobsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#ListJobsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#ListReportsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/jobs/{jobId}/reports"
+        },
+        "smithy.api#documentation": "Lists reports created by a specific job. Returns NOT_FOUND if the job does not exist.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#GetJobsReportsRequest": {
+      "type": "structure",
+      "members": {
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the report to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the job.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#GetJobsReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#GetJobsReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#Report"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/jobs/{jobId}/reports/{reportId}"
+        },
+        "smithy.api#documentation": "Gets the metadata of a specific report."
+      }
+    },
+    "com.gcp.youtubereporting_v1#DownloadMediaRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the media that is being downloaded.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#DownloadMedia": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#DownloadMediaRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#GdataMedia"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/media/{+resourceName}"
+        },
+        "smithy.api#documentation": "Method for media download. Download is supported on the URI `/v1/media/{+name}?alt=media`."
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListReportTypesRequest": {
+      "type": "structure",
+      "members": {
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "includeSystemManaged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.",
+            "smithy.api#httpQuery": "includeSystemManaged"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubereporting_v1#ListReportTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubereporting_v1#ListReportTypesRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubereporting_v1#ListReportTypesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubereporting_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubereporting_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/reportTypes"
+        },
+        "smithy.api#documentation": "Lists report types.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

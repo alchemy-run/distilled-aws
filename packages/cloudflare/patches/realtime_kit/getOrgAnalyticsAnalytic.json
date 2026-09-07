@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#AnalyticsGetOrgAnalytics with distilled cloudflare/realtime-kit getOrgAnalyticsAnalytic",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#AnalyticsGetOrgAnalytics",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetOrgAnalyticsAnalytic"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#AnalyticsGetOrgAnalyticsRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetOrgAnalyticsAnalyticRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetOrgAnalyticsAnalytic/input/target",
+      "value": "com.cloudflare.realtime_kit#GetOrgAnalyticsAnalyticRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#AnalyticsGetOrgAnalyticsResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetOrgAnalyticsAnalyticResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetOrgAnalyticsAnalytic/output/target",
+      "value": "com.cloudflare.realtime_kit#GetOrgAnalyticsAnalyticResponse"
+    }
+  ]
+}

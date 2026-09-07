@@ -1,0 +1,42 @@
+{
+  "description": "Align stream#WebhooksGet with distilled cloudflare/stream getWebhook",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WebhooksGet",
+      "path": "/shapes/com.cloudflare.stream#GetWebhook"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WebhooksGetRequest",
+      "path": "/shapes/com.cloudflare.stream#GetWebhookRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetWebhook/input/target",
+      "value": "com.cloudflare.stream#GetWebhookRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WebhooksGetResponse",
+      "path": "/shapes/com.cloudflare.stream#GetWebhookResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetWebhook/output/target",
+      "value": "com.cloudflare.stream#GetWebhookResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#GetWebhook/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#WebhookNotFound"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,820 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.user_interviews#UserInterviewsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "classifications": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "classifications",
+            "smithy.api#documentation": "Comma-separated classifications; returns responses carrying any of them (OR). Valid values: abandoned, off-topic."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "topic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#PaginatedUserInterviewListOutput": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.user_interviews#PaginatedUserInterviewListOutputResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.user_interviews#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interviews#UserInterviewOutputIntervieweeEmailsList"
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String"
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "transcript": {
+          "target": "smithy.api#String"
+        },
+        "summary": {
+          "target": "smithy.api#String"
+        },
+        "classifications": {
+          "target": "com.posthog.user_interviews#UserInterviewOutputClassificationsList",
+          "traits": {
+            "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.user_interviews#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.user_interviews#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.user_interviews#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.user_interviews#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.user_interviews#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewOutputIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#ClassificationsEnum": {
+      "type": "enum",
+      "members": {
+        "ABANDONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abandoned"
+          }
+        },
+        "OFF_TOPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off-topic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `abandoned` - Abandoned\n* `off-topic` - Off-topic"
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewOutputClassificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#ClassificationsEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+      }
+    },
+    "com.posthog.user_interviews#PaginatedUserInterviewListOutputResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#UserInterviewOutput"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interviews#PaginatedUserInterviewListOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interviews/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsCreateRequestIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewsCreateRequestClassificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#ClassificationsEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interviews#UserInterviewsCreateRequestIntervieweeEmailsList"
+        },
+        "summary": {
+          "target": "smithy.api#String"
+        },
+        "classifications": {
+          "target": "com.posthog.user_interviews#UserInterviewsCreateRequestClassificationsList",
+          "traits": {
+            "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+          }
+        },
+        "audio": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interviews#UserInterviewOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interviews/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interviews#UserInterviewOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsUpdateRequestIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewsUpdateRequestClassificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#ClassificationsEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview."
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interviews#UserInterviewsUpdateRequestIntervieweeEmailsList"
+        },
+        "summary": {
+          "target": "smithy.api#String"
+        },
+        "classifications": {
+          "target": "com.posthog.user_interviews#UserInterviewsUpdateRequestClassificationsList",
+          "traits": {
+            "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+          }
+        },
+        "audio": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interviews#UserInterviewOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/user_interviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestClassificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#ClassificationsEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview."
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestIntervieweeEmailsList"
+        },
+        "summary": {
+          "target": "smithy.api#String"
+        },
+        "classifications": {
+          "target": "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestClassificationsList",
+          "traits": {
+            "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
+          }
+        },
+        "audio": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interviews#UserInterviewOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/user_interviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/user_interviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewSearchDocumentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "transcript"
+          }
+        },
+        "SUMMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "summary"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `transcript` - transcript\n* `summary` - summary"
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsSearchCreateRequestDocumentTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#UserInterviewSearchDocumentTypeEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search."
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsSearchCreateRequestClassificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#ClassificationsEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND."
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsSearchCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Natural-language query to match semantically against interview transcripts and summaries.",
+            "smithy.api#required": {}
+          }
+        },
+        "document_types": {
+          "target": "com.posthog.user_interviews#UserInterviewsSearchCreateRequestDocumentTypesList",
+          "traits": {
+            "smithy.api#documentation": "Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restrict results to interviews belonging to a specific UserInterviewTopic.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "classifications": {
+          "target": "com.posthog.user_interviews#UserInterviewsSearchCreateRequestClassificationsList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of matches to return (1-50). Defaults to 10. Two matches per interview are possible — one for the transcript, one for the summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewSearchResult": {
+      "type": "structure",
+      "members": {
+        "interview_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the matched UserInterview.",
+            "smithy.api#required": {}
+          }
+        },
+        "document_type": {
+          "target": "com.posthog.user_interviews#UserInterviewSearchDocumentTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Which document type matched — `transcript` is the raw conversation, `summary` is the AI-generated abstract.\n\n* `transcript` - transcript\n* `summary` - summary",
+            "smithy.api#required": {}
+          }
+        },
+        "similarity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cosine similarity in [0, 1]; higher is closer to the query. Computed as `1 - cosineDistance`.",
+            "smithy.api#required": {}
+          }
+        },
+        "content_snippet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Excerpt of the matched document (first 500 characters).",
+            "smithy.api#required": {}
+          }
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email or PostHog distinct ID of the interviewee.",
+            "smithy.api#required": {}
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the UserInterviewTopic the interview was conducted for, or null if detached.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the interview row was created.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewsSearchCreateResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interviews#UserInterviewSearchResult"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interviews#UserInterviewsSearchCreateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.user_interviews#UserInterviewsSearchCreateResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.user_interviews#UserInterviewsSearchCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interviews#UserInterviewsSearchCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interviews#UserInterviewsSearchCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interviews/search/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search interview responses by semantic similarity\n\nEmbed `query` with the same model used to index interview transcripts and summaries, then return the top matches by cosine distance. Each match is a single (interview, document_type) pair — an interview can appear up to twice if both its transcript and summary score above other interviews. Useful for surfacing relevant interview snippets in natural language, without exact keyword matches."
+      }
+    },
+    "com.posthog.user_interviews#UserInterviews": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsList"
+        },
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsCreate"
+        },
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsRetrieve"
+        },
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsUpdate"
+        },
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsDestroy"
+        },
+        {
+          "target": "com.posthog.user_interviews#UserInterviewsSearchCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

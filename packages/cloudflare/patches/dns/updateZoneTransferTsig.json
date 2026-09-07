@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#ZoneTransfersTsigsUpdate with distilled cloudflare/dns updateZoneTransferTsig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersTsigsUpdate",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferTsig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersTsigsUpdateRequest",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferTsigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferTsig/input/target",
+      "value": "com.cloudflare.dns#UpdateZoneTransferTsigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersTsigsUpdateResponse",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferTsigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferTsig/output/target",
+      "value": "com.cloudflare.dns#UpdateZoneTransferTsigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferTsig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#TsigNotFound"
+        }
+      ]
+    }
+  ]
+}

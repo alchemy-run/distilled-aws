@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#ResourceGroupsCreate with distilled cloudflare/iam createResourceGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsCreate",
+      "path": "/shapes/com.cloudflare.iam#CreateResourceGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsCreateRequest",
+      "path": "/shapes/com.cloudflare.iam#CreateResourceGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateResourceGroup/input/target",
+      "value": "com.cloudflare.iam#CreateResourceGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsCreateResponse",
+      "path": "/shapes/com.cloudflare.iam#CreateResourceGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateResourceGroup/output/target",
+      "value": "com.cloudflare.iam#CreateResourceGroupResponse"
+    }
+  ]
+}

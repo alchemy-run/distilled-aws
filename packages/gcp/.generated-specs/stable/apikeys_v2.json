@@ -1,0 +1,867 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "apikeys",
+    "version": "v2",
+    "title": "API Keys API",
+    "baseUrl": "https://apikeys.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.apikeys_v2#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.apikeys_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.apikeys_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.apikeys_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apikeys_v2#DocumentMap"
+      }
+    },
+    "com.gcp.apikeys_v2#V2UndeleteKeyRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for `UndeleteKey` method."
+      }
+    },
+    "com.gcp.apikeys_v2#V2Key": {
+      "type": "structure",
+      "members": {
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique id in UUID4 format."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A timestamp when this key was deleted. If the resource is not deleted, this must be empty."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.apikeys_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A checksum computed by the server based on the current value of the Key resource. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. See https://google.aip.dev/154."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`."
+          }
+        },
+        "serviceAccountEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The email address of [the service account](https://cloud.google.com/iam/docs/service-accounts) the key is bound to."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable display name of this key that you can modify. The maximum length is 63 characters."
+          }
+        },
+        "restrictions": {
+          "target": "com.gcp.apikeys_v2#V2Restrictions",
+          "traits": {
+            "smithy.api#documentation": "Key restrictions."
+          }
+        },
+        "keyString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. An encrypted and signed value held by this key. This field can be accessed only through the `GetKeyString` method."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A timestamp identifying the time this key was originally created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A timestamp identifying the time this key was last updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The representation of a key managed by the API Keys API."
+      }
+    },
+    "com.gcp.apikeys_v2#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.apikeys_v2#V2ApiTarget": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.gcp.apikeys_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of one or more methods that can be called. If empty, all methods for the service are allowed. A wildcard (*) can be used as the last symbol. Valid examples: `google.cloud.translate.v2.TranslateService.GetSupportedLanguage` `TranslateText` `Get*` `translate.googleapis.com.Get*`"
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service for this restriction. It should be the canonical service name, for example: `translate.googleapis.com`. You can use [`gcloud services list`](https://cloud.google.com/sdk/gcloud/reference/services/list) to get a list of services that are enabled in the project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A restriction for a specific service and optionally one or multiple specific methods. Both fields are case insensitive."
+      }
+    },
+    "com.gcp.apikeys_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.apikeys_v2#V2LookupKeyResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the API key. If the API key has been purged, resource name is empty."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project that owns the key with the value specified in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `LookupKey` method."
+      }
+    },
+    "com.gcp.apikeys_v2#V2ServerKeyRestrictions": {
+      "type": "structure",
+      "members": {
+        "allowedIps": {
+          "target": "com.gcp.apikeys_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of the caller IP addresses that are allowed to make API calls with this key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The IP addresses of callers that are allowed to use the key."
+      }
+    },
+    "com.gcp.apikeys_v2#V2GetKeyStringResponse": {
+      "type": "structure",
+      "members": {
+        "keyString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An encrypted and signed value of the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `GetKeyString` method."
+      }
+    },
+    "com.gcp.apikeys_v2#V2IosKeyRestrictions": {
+      "type": "structure",
+      "members": {
+        "allowedBundleIds": {
+          "target": "com.gcp.apikeys_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of bundle IDs that are allowed when making API calls with this key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The iOS apps that are allowed to use the key."
+      }
+    },
+    "com.gcp.apikeys_v2#V2BrowserKeyRestrictions": {
+      "type": "structure",
+      "members": {
+        "allowedReferrers": {
+          "target": "com.gcp.apikeys_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of regular expressions for the referrer URLs that are allowed to make API calls with this key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP referrers (websites) that are allowed to use the key."
+      }
+    },
+    "com.gcp.apikeys_v2#V2AndroidApplication": {
+      "type": "structure",
+      "members": {
+        "sha1Fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SHA1 fingerprint of the application. For example, both sha1 formats are acceptable : DA:39:A3:EE:5E:6B:4B:0D:32:55:BF:EF:95:60:18:90:AF:D8:07:09 or DA39A3EE5E6B4B0D3255BFEF95601890AFD80709. Output format is the latter."
+          }
+        },
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package name of the application."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifier of an Android application for key use."
+      }
+    },
+    "com.gcp.apikeys_v2#V2ListKeysResponse": {
+      "type": "structure",
+      "members": {
+        "keys": {
+          "target": "com.gcp.apikeys_v2#V2KeyList",
+          "traits": {
+            "smithy.api#documentation": "A list of API keys."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `ListKeys` method."
+      }
+    },
+    "com.gcp.apikeys_v2#V2KeyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apikeys_v2#V2Key"
+      }
+    },
+    "com.gcp.apikeys_v2#Operation": {
+      "type": "structure",
+      "members": {
+        "response": {
+          "target": "com.gcp.apikeys_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.apikeys_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.apikeys_v2#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.apikeys_v2#V2Restrictions": {
+      "type": "structure",
+      "members": {
+        "apiTargets": {
+          "target": "com.gcp.apikeys_v2#V2ApiTargetList",
+          "traits": {
+            "smithy.api#documentation": "A restriction for a specific service and optionally one or more specific methods. Requests are allowed if they match any of these restrictions. If no restrictions are specified, all targets are allowed."
+          }
+        },
+        "browserKeyRestrictions": {
+          "target": "com.gcp.apikeys_v2#V2BrowserKeyRestrictions",
+          "traits": {
+            "smithy.api#documentation": "The HTTP referrers (websites) that are allowed to use the key."
+          }
+        },
+        "androidKeyRestrictions": {
+          "target": "com.gcp.apikeys_v2#V2AndroidKeyRestrictions",
+          "traits": {
+            "smithy.api#documentation": "The Android apps that are allowed to use the key."
+          }
+        },
+        "serverKeyRestrictions": {
+          "target": "com.gcp.apikeys_v2#V2ServerKeyRestrictions",
+          "traits": {
+            "smithy.api#documentation": "The IP addresses of callers that are allowed to use the key."
+          }
+        },
+        "iosKeyRestrictions": {
+          "target": "com.gcp.apikeys_v2#V2IosKeyRestrictions",
+          "traits": {
+            "smithy.api#documentation": "The iOS apps that are allowed to use the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the restrictions on the key."
+      }
+    },
+    "com.gcp.apikeys_v2#V2ApiTargetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apikeys_v2#V2ApiTarget"
+      }
+    },
+    "com.gcp.apikeys_v2#V2AndroidKeyRestrictions": {
+      "type": "structure",
+      "members": {
+        "allowedApplications": {
+          "target": "com.gcp.apikeys_v2#V2AndroidApplicationList",
+          "traits": {
+            "smithy.api#documentation": "A list of Android applications that are allowed to make API calls with this key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Android apps that are allowed to use the key."
+      }
+    },
+    "com.gcp.apikeys_v2#V2AndroidApplicationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apikeys_v2#V2AndroidApplication"
+      }
+    },
+    "com.gcp.apikeys_v2#LookupKeyKeysRequest": {
+      "type": "structure",
+      "members": {
+        "keyString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Finds the project that owns the key string value.",
+            "smithy.api#httpQuery": "keyString"
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.apikeys_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.apikeys_v2#LookupKeyKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#LookupKeyKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#V2LookupKeyResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/keys:lookupKey"
+        },
+        "smithy.api#documentation": "Find the parent project and resource name of the API key that matches the key string in the request. If the API key has been purged, resource name will not be set. The service account must have the `apikeys.keys.lookup` permission on the parent project."
+      }
+    },
+    "com.gcp.apikeys_v2#GetOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#GetOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#GetOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.apikeys_v2#CreateProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project in which the API key is created. The parent field must be in format of \"projects//locations/global\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "keyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User specified key id (optional). If specified, it will become the final component of the key resource name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. In another word, the id must match the regular expression: `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`. The id must NOT be a UUID-like string.",
+            "smithy.api#httpQuery": "keyId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.apikeys_v2#V2Key",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.apikeys_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.apikeys_v2#CreateProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#CreateProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/keys"
+        },
+        "smithy.api#documentation": "Creates a new API key. NOTE: Key is a global resource; hence the only supported value for location is `global`."
+      }
+    },
+    "com.gcp.apikeys_v2#DeleteProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the API key to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The etag known to the client for the expected state of the key. This is to be used for optimistic concurrency.",
+            "smithy.api#httpQuery": "etag"
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#DeleteProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#DeleteProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an API key. Deleted key can be retrieved within 30 days of deletion. Afterward, key will be purged from the project. NOTE: Key is a global resource; hence the only supported value for location is `global`."
+      }
+    },
+    "com.gcp.apikeys_v2#PatchProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`, `restrictions`, and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value \"*\", the service treats it equivalent to replace all allowed mutable fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.apikeys_v2#V2Key",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#PatchProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#PatchProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Patches the modifiable fields of an API key. The key string of the API key isn't included in the response. NOTE: Key is a global resource; hence the only supported value for location is `global`."
+      }
+    },
+    "com.gcp.apikeys_v2#UndeleteProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the API key to be undeleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.apikeys_v2#V2UndeleteKeyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#UndeleteProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#UndeleteProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:undelete"
+        },
+        "smithy.api#documentation": "Undeletes an API key which was deleted within 30 days. NOTE: Key is a global resource; hence the only supported value for location is `global`."
+      }
+    },
+    "com.gcp.apikeys_v2#GetProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the API key to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#GetProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#GetProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#V2Key"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the metadata for an API key. The key string of the API key isn't included in the response. NOTE: Key is a global resource; hence the only supported value for location is `global`."
+      }
+    },
+    "com.gcp.apikeys_v2#ListProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Lists all API keys associated with this project. The parent field must be in format of \"projects//locations/global\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the maximum number of results to be returned at a time.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicate that keys deleted in the past 30 days should also be returned.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requests a specific page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#ListProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#ListProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#V2ListKeysResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/keys"
+        },
+        "smithy.api#documentation": "Lists the API keys owned by a project. The key string of the API key isn't included in the response. NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#GetKeyStringProjectsLocationsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the API key to be retrieved.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apikeys_v2#GetKeyStringProjectsLocationsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apikeys_v2#GetKeyStringProjectsLocationsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apikeys_v2#V2GetKeyStringResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apikeys_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.apikeys_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/keyString"
+        },
+        "smithy.api#documentation": "Get the key string for an API key. NOTE: Key is a global resource; hence the only supported value for location is `global`."
+      }
+    }
+  }
+}

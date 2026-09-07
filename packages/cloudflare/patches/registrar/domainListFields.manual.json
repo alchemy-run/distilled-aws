@@ -1,0 +1,38 @@
+{
+  "description": "Docs gap: the registrar domain list result omits `name`, `auto_renew` and `privacy`, which the API returns on the wire and v0 typed. Add them (optional + nullable, matching v0's string|null / boolean|null).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.registrar#DomainsListResultItem/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "com.cloudflare.protocols#nullable": {},
+          "smithy.api#documentation": "Domain name."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.registrar#DomainsListResultItem/members/auto_renew",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "com.cloudflare.protocols#nullable": {},
+          "smithy.api#documentation": "Whether the domain auto-renews."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.registrar#DomainsListResultItem/members/privacy",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "com.cloudflare.protocols#nullable": {},
+          "smithy.api#documentation": "Whether WHOIS privacy is enabled."
+        }
+      }
+    }
+  ]
+}

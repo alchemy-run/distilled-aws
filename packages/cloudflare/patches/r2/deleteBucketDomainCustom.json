@@ -1,0 +1,47 @@
+{
+  "description": "Align r2#BucketsDomainsCustomDelete with distilled cloudflare/r2 deleteBucketDomainCustom",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsCustomDelete",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustom"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsCustomDeleteRequest",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustomRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustom/input/target",
+      "value": "com.cloudflare.r2#DeleteBucketDomainCustomRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsCustomDeleteResponse",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustomResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustom/output/target",
+      "value": "com.cloudflare.r2#DeleteBucketDomainCustomResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustom/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#DomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustomRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketDomainCustomRequest/members/jurisdiction"
+    }
+  ]
+}

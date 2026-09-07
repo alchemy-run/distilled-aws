@@ -1,0 +1,10 @@
+{
+  "description": "deploymentStop returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#DeploymentStopRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation deploymentStop($id: String!) {\n  deploymentStop(id: $id)\n}"
+    }
+  ]
+}

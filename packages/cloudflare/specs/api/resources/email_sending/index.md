@@ -1,0 +1,1346 @@
+# Email Sending
+
+## Send an email
+
+**post** `/accounts/{account_id}/email/sending/send`
+
+Send an email
+
+### Path Parameters
+
+- `account_id: string`
+
+  Identifier of the account.
+
+### Body Parameters
+
+- `from: string or object { address, name }`
+
+  Sender email address. Either a plain string or an object with address and name.
+
+  - `EmailSendingEmailAddressString = string`
+
+    An email address as a plain string.
+
+  - `EmailSendingEmailAddressObject object { address, name }`
+
+    - `address: string`
+
+      Email address (e.g., 'user@example.com').
+
+    - `name: optional string`
+
+      Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+- `subject: string`
+
+  Email subject line.
+
+- `attachments: optional array of object { content, content_id, disposition, 2 more }  or object { content, disposition, filename, type }`
+
+  File attachments and inline images.
+
+  - `Inline object { content, content_id, disposition, 2 more }`
+
+    - `content: string`
+
+      Base64-encoded content of the attachment.
+
+    - `content_id: string`
+
+      Content ID used to reference this attachment in HTML via cid: URI (e.g., <img src="cid:logo">).
+
+    - `disposition: "inline"`
+
+      Must be 'inline'. Indicates the attachment is embedded in the email body.
+
+      - `"inline"`
+
+    - `filename: string`
+
+      Filename for the attachment.
+
+    - `type: string`
+
+      MIME type of the attachment (e.g., 'image/png', 'text/plain').
+
+  - `Attachment object { content, disposition, filename, type }`
+
+    - `content: string`
+
+      Base64-encoded content of the attachment.
+
+    - `disposition: "attachment"`
+
+      Must be 'attachment'. Indicates a standard file attachment.
+
+      - `"attachment"`
+
+    - `filename: string`
+
+      Filename for the attachment.
+
+    - `type: string`
+
+      MIME type of the attachment (e.g., 'application/pdf', 'text/plain').
+
+- `bcc: optional string or object { address, name }  or array of string or object { address, name }`
+
+  BCC recipient(s). A single email string, a named address object, or an array of either.
+
+  - `EmailSendingEmailAddressString = string`
+
+    An email address as a plain string.
+
+  - `EmailSendingEmailAddressObject object { address, name }`
+
+    - `address: string`
+
+      Email address (e.g., 'user@example.com').
+
+    - `name: optional string`
+
+      Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+  - `array of string or object { address, name }`
+
+    - `EmailSendingEmailAddressString = string`
+
+      An email address as a plain string.
+
+    - `EmailSendingEmailAddressObject object { address, name }`
+
+      - `address: string`
+
+        Email address (e.g., 'user@example.com').
+
+      - `name: optional string`
+
+        Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+- `cc: optional string or object { address, name }  or array of string or object { address, name }`
+
+  CC recipient(s). A single email string, a named address object, or an array of either.
+
+  - `EmailSendingEmailAddressString = string`
+
+    An email address as a plain string.
+
+  - `EmailSendingEmailAddressObject object { address, name }`
+
+    - `address: string`
+
+      Email address (e.g., 'user@example.com').
+
+    - `name: optional string`
+
+      Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+  - `array of string or object { address, name }`
+
+    - `EmailSendingEmailAddressString = string`
+
+      An email address as a plain string.
+
+    - `EmailSendingEmailAddressObject object { address, name }`
+
+      - `address: string`
+
+        Email address (e.g., 'user@example.com').
+
+      - `name: optional string`
+
+        Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+- `headers: optional map[string]`
+
+  Custom email headers as key-value pairs.
+
+- `html: optional string`
+
+  HTML body of the email. At least one of text or html must be provided (non-empty).
+
+- `reply_to: optional string or object { address, name }`
+
+  Reply-to address. Either a plain string or an object with address and name.
+
+  - `EmailSendingEmailAddressString = string`
+
+    An email address as a plain string.
+
+  - `EmailSendingEmailAddressObject object { address, name }`
+
+    - `address: string`
+
+      Email address (e.g., 'user@example.com').
+
+    - `name: optional string`
+
+      Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+- `text: optional string`
+
+  Plain text body of the email. At least one of text or html must be provided (non-empty).
+
+- `to: optional string or object { address, name }  or array of string or object { address, name }`
+
+  Recipient(s). Optional if cc or bcc is provided. A single email string, a named address object, or an array of either.
+
+  - `EmailSendingEmailAddressString = string`
+
+    An email address as a plain string.
+
+  - `EmailSendingEmailAddressObject object { address, name }`
+
+    - `address: string`
+
+      Email address (e.g., 'user@example.com').
+
+    - `name: optional string`
+
+      Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+  - `array of string or object { address, name }`
+
+    - `EmailSendingEmailAddressString = string`
+
+      An email address as a plain string.
+
+    - `EmailSendingEmailAddressObject object { address, name }`
+
+      - `address: string`
+
+        Email address (e.g., 'user@example.com').
+
+      - `name: optional string`
+
+        Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name.
+
+### Returns
+
+- `errors: array of object { code, message }`
+
+  - `code: number`
+
+  - `message: string`
+
+- `messages: array of object { code, message }`
+
+  - `code: number`
+
+  - `message: string`
+
+- `result: object { delivered, message_id, permanent_bounces, queued }`
+
+  - `delivered: array of string`
+
+    Email addresses to which the message was delivered immediately.
+
+  - `message_id: string`
+
+    Message ID of the sent email.
+
+  - `permanent_bounces: array of string`
+
+    Email addresses that permanently bounced.
+
+  - `queued: array of string`
+
+    Email addresses for which delivery was queued for later.
+
+- `success: true`
+
+  - `true`
+
+- `result_info: optional object { count, per_page, total_count, 2 more }`
+
+  - `count: number`
+
+  - `per_page: number`
+
+  - `total_count: number`
+
+  - `cursor: optional string`
+
+  - `page: optional number`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/email/sending/send \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "from": "sender@example.com",
+          "subject": "Monthly Report",
+          "bcc": [
+            "recipient-a@example.com",
+            {
+              "address": "recipient-b@example.com",
+              "name": "Recipient B"
+            }
+          ],
+          "cc": [
+            "recipient-a@example.com",
+            {
+              "address": "recipient-b@example.com",
+              "name": "Recipient B"
+            }
+          ],
+          "headers": {
+            "X-Custom-Header": "value"
+          },
+          "html": "<h1>Hello</h1><p>Please find your report attached.</p>",
+          "text": "Hello\\n\\nPlease find your report attached.",
+          "to": [
+            "recipient@example.com"
+          ]
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 0,
+      "message": "message"
+    }
+  ],
+  "messages": [
+    {
+      "code": 0,
+      "message": "message"
+    }
+  ],
+  "result": {
+    "delivered": [
+      "recipient@example.com"
+    ],
+    "message_id": "<aB3xK9mP2qR5sT8uV0wX1yZ4cD6fG7hJ9kL0@example.com>",
+    "permanent_bounces": [
+      "string"
+    ],
+    "queued": [
+      "string"
+    ]
+  },
+  "success": true,
+  "result_info": {
+    "count": 0,
+    "per_page": 0,
+    "total_count": 0,
+    "cursor": "cursor",
+    "page": 0
+  }
+}
+```
+
+## Send a raw MIME email
+
+**post** `/accounts/{account_id}/email/sending/send_raw`
+
+Send a raw MIME email
+
+### Path Parameters
+
+- `account_id: string`
+
+  Identifier of the account.
+
+### Body Parameters
+
+- `from: string`
+
+  Sender email address.
+
+- `mime_message: string`
+
+  The full MIME-encoded email message. Should include standard RFC 5322 headers such as From, To, Subject, and Content-Type. The from and recipients fields in the request body control SMTP envelope routing; the From and To headers in the MIME message control what the recipient's email client displays.
+
+- `recipients: array of string`
+
+  List of recipient email addresses.
+
+### Returns
+
+- `errors: array of object { code, message }`
+
+  - `code: number`
+
+  - `message: string`
+
+- `messages: array of object { code, message }`
+
+  - `code: number`
+
+  - `message: string`
+
+- `result: object { delivered, message_id, permanent_bounces, queued }`
+
+  - `delivered: array of string`
+
+    Email addresses to which the message was delivered immediately.
+
+  - `message_id: string`
+
+    Message ID of the sent email.
+
+  - `permanent_bounces: array of string`
+
+    Email addresses that permanently bounced.
+
+  - `queued: array of string`
+
+    Email addresses for which delivery was queued for later.
+
+- `success: true`
+
+  - `true`
+
+- `result_info: optional object { count, per_page, total_count, 2 more }`
+
+  - `count: number`
+
+  - `per_page: number`
+
+  - `total_count: number`
+
+  - `cursor: optional string`
+
+  - `page: optional number`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/email/sending/send_raw \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "from": "sender@example.com",
+          "mime_message": "From: sender@example.com\\r\\nTo: recipient@example.com\\r\\nSubject: Hello\\r\\nContent-Type: text/plain\\r\\n\\r\\nHello, World!",
+          "recipients": [
+            "recipient@example.com"
+          ]
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 0,
+      "message": "message"
+    }
+  ],
+  "messages": [
+    {
+      "code": 0,
+      "message": "message"
+    }
+  ],
+  "result": {
+    "delivered": [
+      "recipient@example.com"
+    ],
+    "message_id": "<aB3xK9mP2qR5sT8uV0wX1yZ4cD6fG7hJ9kL0@example.com>",
+    "permanent_bounces": [
+      "string"
+    ],
+    "queued": [
+      "string"
+    ]
+  },
+  "success": true,
+  "result_info": {
+    "count": 0,
+    "per_page": 0,
+    "total_count": 0,
+    "cursor": "cursor",
+    "page": 0
+  }
+}
+```
+
+## Domain Types
+
+### Email Sending Send Response
+
+- `EmailSendingSendResponse object { delivered, message_id, permanent_bounces, queued }`
+
+  - `delivered: array of string`
+
+    Email addresses to which the message was delivered immediately.
+
+  - `message_id: string`
+
+    Message ID of the sent email.
+
+  - `permanent_bounces: array of string`
+
+    Email addresses that permanently bounced.
+
+  - `queued: array of string`
+
+    Email addresses for which delivery was queued for later.
+
+### Email Sending Send Raw Response
+
+- `EmailSendingSendRawResponse object { delivered, message_id, permanent_bounces, queued }`
+
+  - `delivered: array of string`
+
+    Email addresses to which the message was delivered immediately.
+
+  - `message_id: string`
+
+    Message ID of the sent email.
+
+  - `permanent_bounces: array of string`
+
+    Email addresses that permanently bounced.
+
+  - `queued: array of string`
+
+    Email addresses for which delivery was queued for later.
+
+# Subdomains
+
+## List sending subdomains
+
+**get** `/zones/{zone_id}/email/sending/subdomains`
+
+Lists all sending-enabled subdomains for the zone.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional array of object { enabled, name, tag, 5 more }`
+
+  - `enabled: boolean`
+
+    Whether Email Sending is enabled on this subdomain.
+
+  - `name: string`
+
+    The subdomain domain name.
+
+  - `tag: string`
+
+    Sending subdomain identifier.
+
+  - `created: optional string`
+
+    The date and time the destination address has been created.
+
+  - `dkim_selector: optional string`
+
+    The DKIM selector used for email signing.
+
+  - `modified: optional string`
+
+    The date and time the destination address was last modified.
+
+  - `preview_enabled: optional boolean`
+
+    Whether sent messages from this subdomain can be previewed in the activity log.
+
+  - `return_path_domain: optional string`
+
+    The return-path domain used for bounce handling.
+
+- `result_info: optional object { count, page, per_page, 2 more }`
+
+  - `count: optional number`
+
+    Total number of results for the requested service.
+
+  - `page: optional number`
+
+    Current page within paginated list of results.
+
+  - `per_page: optional number`
+
+    Number of results per page of results.
+
+  - `total_count: optional number`
+
+    Total results available without any search parameters.
+
+  - `total_pages: optional number`
+
+    The number of total pages in the entire result set.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/email/sending/subdomains \
+    -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+    -H "X-Auth-Key: $CLOUDFLARE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": [
+    {
+      "enabled": true,
+      "name": "sub.example.com",
+      "tag": "aabbccdd11223344aabbccdd11223344",
+      "created": "2014-01-02T02:20:00Z",
+      "dkim_selector": "cf-bounce",
+      "modified": "2014-01-02T02:20:00Z",
+      "preview_enabled": true,
+      "return_path_domain": "cf-bounce.sub.example.com"
+    }
+  ],
+  "result_info": {
+    "count": 1,
+    "page": 1,
+    "per_page": 20,
+    "total_count": 2000,
+    "total_pages": 100
+  }
+}
+```
+
+## Get a sending subdomain
+
+**get** `/zones/{zone_id}/email/sending/subdomains/{subdomain_id}`
+
+Gets information for a specific sending subdomain.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+- `subdomain_id: string`
+
+  Sending subdomain identifier.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { enabled, name, tag, 5 more }`
+
+  - `enabled: boolean`
+
+    Whether Email Sending is enabled on this subdomain.
+
+  - `name: string`
+
+    The subdomain domain name.
+
+  - `tag: string`
+
+    Sending subdomain identifier.
+
+  - `created: optional string`
+
+    The date and time the destination address has been created.
+
+  - `dkim_selector: optional string`
+
+    The DKIM selector used for email signing.
+
+  - `modified: optional string`
+
+    The date and time the destination address was last modified.
+
+  - `preview_enabled: optional boolean`
+
+    Whether sent messages from this subdomain can be previewed in the activity log.
+
+  - `return_path_domain: optional string`
+
+    The return-path domain used for bounce handling.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/email/sending/subdomains/$SUBDOMAIN_ID \
+    -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+    -H "X-Auth-Key: $CLOUDFLARE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "enabled": true,
+    "name": "sub.example.com",
+    "tag": "aabbccdd11223344aabbccdd11223344",
+    "created": "2014-01-02T02:20:00Z",
+    "dkim_selector": "cf-bounce",
+    "modified": "2014-01-02T02:20:00Z",
+    "preview_enabled": true,
+    "return_path_domain": "cf-bounce.sub.example.com"
+  }
+}
+```
+
+## Create a sending subdomain
+
+**post** `/zones/{zone_id}/email/sending/subdomains`
+
+Creates a new sending subdomain or re-enables sending on an existing subdomain that had it disabled. If zone-level Email Sending has not been enabled yet, the zone flag is automatically set when the entitlement is present.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+### Body Parameters
+
+- `name: string`
+
+  The subdomain name. Must be within the zone.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { enabled, name, tag, 5 more }`
+
+  - `enabled: boolean`
+
+    Whether Email Sending is enabled on this subdomain.
+
+  - `name: string`
+
+    The subdomain domain name.
+
+  - `tag: string`
+
+    Sending subdomain identifier.
+
+  - `created: optional string`
+
+    The date and time the destination address has been created.
+
+  - `dkim_selector: optional string`
+
+    The DKIM selector used for email signing.
+
+  - `modified: optional string`
+
+    The date and time the destination address was last modified.
+
+  - `preview_enabled: optional boolean`
+
+    Whether sent messages from this subdomain can be previewed in the activity log.
+
+  - `return_path_domain: optional string`
+
+    The return-path domain used for bounce handling.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/email/sending/subdomains \
+    -H 'Content-Type: application/json' \
+    -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+    -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+    -d '{
+          "name": "sub.example.com"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "enabled": true,
+    "name": "sub.example.com",
+    "tag": "aabbccdd11223344aabbccdd11223344",
+    "created": "2014-01-02T02:20:00Z",
+    "dkim_selector": "cf-bounce",
+    "modified": "2014-01-02T02:20:00Z",
+    "preview_enabled": true,
+    "return_path_domain": "cf-bounce.sub.example.com"
+  }
+}
+```
+
+## Delete a sending subdomain
+
+**delete** `/zones/{zone_id}/email/sending/subdomains/{subdomain_id}`
+
+Disables sending on a subdomain and removes its DNS records. If routing is still active on the subdomain, only sending is disabled.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+- `subdomain_id: string`
+
+  Sending subdomain identifier.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/email/sending/subdomains/$SUBDOMAIN_ID \
+    -X DELETE \
+    -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+    -H "X-Auth-Key: $CLOUDFLARE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true
+}
+```
+
+## Domain Types
+
+### Subdomain List Response
+
+- `SubdomainListResponse object { enabled, name, tag, 5 more }`
+
+  - `enabled: boolean`
+
+    Whether Email Sending is enabled on this subdomain.
+
+  - `name: string`
+
+    The subdomain domain name.
+
+  - `tag: string`
+
+    Sending subdomain identifier.
+
+  - `created: optional string`
+
+    The date and time the destination address has been created.
+
+  - `dkim_selector: optional string`
+
+    The DKIM selector used for email signing.
+
+  - `modified: optional string`
+
+    The date and time the destination address was last modified.
+
+  - `preview_enabled: optional boolean`
+
+    Whether sent messages from this subdomain can be previewed in the activity log.
+
+  - `return_path_domain: optional string`
+
+    The return-path domain used for bounce handling.
+
+### Subdomain Get Response
+
+- `SubdomainGetResponse object { enabled, name, tag, 5 more }`
+
+  - `enabled: boolean`
+
+    Whether Email Sending is enabled on this subdomain.
+
+  - `name: string`
+
+    The subdomain domain name.
+
+  - `tag: string`
+
+    Sending subdomain identifier.
+
+  - `created: optional string`
+
+    The date and time the destination address has been created.
+
+  - `dkim_selector: optional string`
+
+    The DKIM selector used for email signing.
+
+  - `modified: optional string`
+
+    The date and time the destination address was last modified.
+
+  - `preview_enabled: optional boolean`
+
+    Whether sent messages from this subdomain can be previewed in the activity log.
+
+  - `return_path_domain: optional string`
+
+    The return-path domain used for bounce handling.
+
+### Subdomain Create Response
+
+- `SubdomainCreateResponse object { enabled, name, tag, 5 more }`
+
+  - `enabled: boolean`
+
+    Whether Email Sending is enabled on this subdomain.
+
+  - `name: string`
+
+    The subdomain domain name.
+
+  - `tag: string`
+
+    Sending subdomain identifier.
+
+  - `created: optional string`
+
+    The date and time the destination address has been created.
+
+  - `dkim_selector: optional string`
+
+    The DKIM selector used for email signing.
+
+  - `modified: optional string`
+
+    The date and time the destination address was last modified.
+
+  - `preview_enabled: optional boolean`
+
+    Whether sent messages from this subdomain can be previewed in the activity log.
+
+  - `return_path_domain: optional string`
+
+    The return-path domain used for bounce handling.
+
+### Subdomain Delete Response
+
+- `SubdomainDeleteResponse object { errors, messages, success }`
+
+  - `errors: array of object { code, message, documentation_url, source }`
+
+    - `code: number`
+
+    - `message: string`
+
+    - `documentation_url: optional string`
+
+    - `source: optional object { pointer }`
+
+      - `pointer: optional string`
+
+  - `messages: array of object { code, message, documentation_url, source }`
+
+    - `code: number`
+
+    - `message: string`
+
+    - `documentation_url: optional string`
+
+    - `source: optional object { pointer }`
+
+      - `pointer: optional string`
+
+  - `success: true`
+
+    Whether the API call was successful.
+
+    - `true`
+
+# DNS
+
+## Get sending subdomain DNS records
+
+**get** `/zones/{zone_id}/email/sending/subdomains/{subdomain_id}/dns`
+
+Returns the expected DNS records for a sending subdomain.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+- `subdomain_id: string`
+
+  Sending subdomain identifier.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional array of DNSRecord`
+
+  - `content: optional string`
+
+    DNS record content.
+
+  - `name: optional string`
+
+    DNS record name (or @ for the zone apex).
+
+  - `priority: optional number`
+
+    Required for MX, SRV and URI records. Unused by other record types. Records with lower priorities are preferred.
+
+  - `ttl: optional number or 1`
+
+    Time to live, in seconds, of the DNS record. Must be between 60 and 86400, or 1 for 'automatic'.
+
+    - `number`
+
+    - `1`
+
+      Time to live, in seconds, of the DNS record. Must be between 60 and 86400, or 1 for 'automatic'.
+
+      - `1`
+
+  - `type: optional "A" or "AAAA" or "CNAME" or 15 more`
+
+    DNS record type.
+
+    - `"A"`
+
+    - `"AAAA"`
+
+    - `"CNAME"`
+
+    - `"HTTPS"`
+
+    - `"TXT"`
+
+    - `"SRV"`
+
+    - `"LOC"`
+
+    - `"MX"`
+
+    - `"NS"`
+
+    - `"CERT"`
+
+    - `"DNSKEY"`
+
+    - `"DS"`
+
+    - `"NAPTR"`
+
+    - `"SMIMEA"`
+
+    - `"SSHFP"`
+
+    - `"SVCB"`
+
+    - `"TLSA"`
+
+    - `"URI"`
+
+- `result_info: optional object { count, page, per_page, 2 more }`
+
+  - `count: optional number`
+
+    Total number of results for the requested service.
+
+  - `page: optional number`
+
+    Current page within paginated list of results.
+
+  - `per_page: optional number`
+
+    Number of results per page of results.
+
+  - `total_count: optional number`
+
+    Total results available without any search parameters.
+
+  - `total_pages: optional number`
+
+    The number of total pages in the entire result set.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/email/sending/subdomains/$SUBDOMAIN_ID/dns \
+    -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+    -H "X-Auth-Key: $CLOUDFLARE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": [
+    {
+      "content": "route1.mx.cloudflare.net",
+      "name": "example.com",
+      "priority": 12,
+      "ttl": 1,
+      "type": "NS"
+    }
+  ],
+  "result_info": {
+    "count": 1,
+    "page": 1,
+    "per_page": 20,
+    "total_count": 2000,
+    "total_pages": 100
+  }
+}
+```

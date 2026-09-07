@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#RecordingsGetRecordings with distilled cloudflare/realtime-kit getRecordingsRecording",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#RecordingsGetRecordings",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetRecordingsRecording"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#RecordingsGetRecordingsRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetRecordingsRecordingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetRecordingsRecording/input/target",
+      "value": "com.cloudflare.realtime_kit#GetRecordingsRecordingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#RecordingsGetRecordingsResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetRecordingsRecordingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetRecordingsRecording/output/target",
+      "value": "com.cloudflare.realtime_kit#GetRecordingsRecordingResponse"
+    }
+  ]
+}

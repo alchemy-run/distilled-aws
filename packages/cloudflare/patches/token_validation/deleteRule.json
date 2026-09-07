@@ -1,0 +1,45 @@
+{
+  "description": "Align token_validation#RulesDelete with distilled cloudflare/token-validation deleteRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#RulesDelete",
+      "path": "/shapes/com.cloudflare.token_validation#DeleteRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#RulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.token_validation#DeleteRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.token_validation#DeleteRule/input/target",
+      "value": "com.cloudflare.token_validation#DeleteRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#RulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.token_validation#DeleteRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.token_validation#DeleteRule/output/target",
+      "value": "com.cloudflare.token_validation#DeleteRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.token_validation#DeleteRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.token_validation#TokenValidationRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.token_validation#TokenValidationNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.token_validation#Forbidden"
+        }
+      ]
+    }
+  ]
+}

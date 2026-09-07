@@ -1,0 +1,1499 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.edgemarketplace#PublishersListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#PublishersListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#PublisherListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeMarketplace/publishers",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "List Publisher resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#PublisherListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.edgemarketplace#PublisherListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Publisher items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Publisher list operation."
+      }
+    },
+    "com.azure.edgemarketplace#PublisherListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.edgemarketplace#Publisher"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Publisher items on this page"
+      }
+    },
+    "com.azure.edgemarketplace#Publisher": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.edgemarketplace#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.edgemarketplace#PublisherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A publisher who provides offers."
+      }
+    },
+    "com.azure.edgemarketplace#PublisherProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.edgemarketplace#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Publisher properties"
+      }
+    },
+    "com.azure.edgemarketplace#AzureResourceManagerResourceProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of a resource type."
+      }
+    },
+    "com.azure.edgemarketplace#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.edgemarketplace#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.edgemarketplace#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.edgemarketplace#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.edgemarketplace#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.edgemarketplace#PublishersListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#OffersListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#OffersListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#OfferListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeMarketplace/offers",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "List Offer resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#OfferListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.edgemarketplace#OfferListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Offer items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Offer list operation."
+      }
+    },
+    "com.azure.edgemarketplace#OfferListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.edgemarketplace#Offer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Offer items on this page"
+      }
+    },
+    "com.azure.edgemarketplace#Offer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.edgemarketplace#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.edgemarketplace#OfferProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An offer."
+      }
+    },
+    "com.azure.edgemarketplace#OfferProperties": {
+      "type": "structure",
+      "members": {
+        "contentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content version"
+          }
+        },
+        "contentUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content url"
+          }
+        },
+        "offerContent": {
+          "target": "com.azure.edgemarketplace#OfferContent",
+          "traits": {
+            "smithy.api#documentation": "The offer content",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.edgemarketplace#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The resource provisioning state"
+          }
+        },
+        "marketplaceSkus": {
+          "target": "com.azure.edgemarketplace#OfferPropertiesMarketplaceSkusList",
+          "traits": {
+            "smithy.api#documentation": "The marketplace skus"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The offer properties"
+      }
+    },
+    "com.azure.edgemarketplace#OfferPropertiesMarketplaceSkusList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.edgemarketplace#MarketplaceSku"
+      },
+      "traits": {
+        "smithy.api#documentation": "The marketplace skus"
+      }
+    },
+    "com.azure.edgemarketplace#MarketplaceSku": {
+      "type": "structure",
+      "members": {
+        "catalogPlanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The catalog plan id",
+            "smithy.api#required": {}
+          }
+        },
+        "marketplaceSkuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The marketplace sku id",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of marketplace sku"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of marketplace sku"
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The summary"
+          }
+        },
+        "longSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The long summary"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description"
+          }
+        },
+        "generation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generation"
+          }
+        },
+        "displayRank": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The display rank of the sku"
+          }
+        },
+        "operatingSystem": {
+          "target": "com.azure.edgemarketplace#SkuOperatingSystem",
+          "traits": {
+            "smithy.api#documentation": "The operating system supported"
+          }
+        },
+        "marketplaceSkuVersions": {
+          "target": "com.azure.edgemarketplace#MarketplaceSkuMarketplaceSkuVersionsList",
+          "traits": {
+            "smithy.api#documentation": "The marketplace sku version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The marketplace sku"
+      }
+    },
+    "com.azure.edgemarketplace#MarketplaceSkuMarketplaceSkuVersionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.edgemarketplace#MarketplaceSkuVersion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The marketplace sku version"
+      }
+    },
+    "com.azure.edgemarketplace#MarketplaceSkuVersion": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of sku version",
+            "smithy.api#required": {}
+          }
+        },
+        "sizeOnDiskInMb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the image"
+          }
+        },
+        "minimumDownloadSizeInMb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the download"
+          }
+        },
+        "stageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stage name"
+          }
+        },
+        "launchType": {
+          "target": "com.azure.edgemarketplace#OfferLaunchType",
+          "traits": {
+            "smithy.api#documentation": "The launch type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The marketplace sku version"
+      }
+    },
+    "com.azure.edgemarketplace#OfferLaunchType": {
+      "type": "enum",
+      "members": {
+        "TRUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Trusted"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Offer launch type Enum"
+      }
+    },
+    "com.azure.edgemarketplace#SkuOperatingSystem": {
+      "type": "structure",
+      "members": {
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The family of the operating system"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the operating system"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operating system",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The sku operating system"
+      }
+    },
+    "com.azure.edgemarketplace#OfferContent": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the offer",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The summary"
+          }
+        },
+        "longSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The long summary"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description"
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The offer id",
+            "smithy.api#required": {}
+          }
+        },
+        "offerType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The offer type"
+          }
+        },
+        "supportUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The support uri"
+          }
+        },
+        "popularity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The popularity of the offer"
+          }
+        },
+        "offerPublisher": {
+          "target": "com.azure.edgemarketplace#OfferPublisher",
+          "traits": {
+            "smithy.api#documentation": "The publisher of the offer"
+          }
+        },
+        "availability": {
+          "target": "com.azure.edgemarketplace#OfferAvailability",
+          "traits": {
+            "smithy.api#documentation": "The availability of the offer"
+          }
+        },
+        "releaseType": {
+          "target": "com.azure.edgemarketplace#OfferReleaseType",
+          "traits": {
+            "smithy.api#documentation": "The release type of the offer"
+          }
+        },
+        "iconFileUris": {
+          "target": "com.azure.edgemarketplace#IconFileUris",
+          "traits": {
+            "smithy.api#documentation": "The icon files"
+          }
+        },
+        "termsAndConditions": {
+          "target": "com.azure.edgemarketplace#TermsAndConditions",
+          "traits": {
+            "smithy.api#documentation": "The terms and conditions"
+          }
+        },
+        "categoryIds": {
+          "target": "com.azure.edgemarketplace#OfferContentCategoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "The category ids "
+          }
+        },
+        "operatingSystems": {
+          "target": "com.azure.edgemarketplace#OfferContentOperatingSystemsList",
+          "traits": {
+            "smithy.api#documentation": "The operating systems"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The offer content"
+      }
+    },
+    "com.azure.edgemarketplace#OfferContentOperatingSystemsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operating systems"
+      }
+    },
+    "com.azure.edgemarketplace#OfferContentCategoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The category ids "
+      }
+    },
+    "com.azure.edgemarketplace#TermsAndConditions": {
+      "type": "structure",
+      "members": {
+        "legalTermsUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The legal terms and conditions uri"
+          }
+        },
+        "legalTermsType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of legal terms"
+          }
+        },
+        "privacyPolicyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The privacy policy uri"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Terms and conditions"
+      }
+    },
+    "com.azure.edgemarketplace#IconFileUris": {
+      "type": "structure",
+      "members": {
+        "small": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "uri of small icon"
+          }
+        },
+        "medium": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "uri of medium icon"
+          }
+        },
+        "wide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "uri of wide icon"
+          }
+        },
+        "large": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "uri of large icon"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Icon files"
+      }
+    },
+    "com.azure.edgemarketplace#OfferReleaseType": {
+      "type": "enum",
+      "members": {
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Preview"
+          }
+        },
+        "GA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GA"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Offer release type Enum"
+      }
+    },
+    "com.azure.edgemarketplace#OfferAvailability": {
+      "type": "enum",
+      "members": {
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Private"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Public"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OfferAvailability Enum"
+      }
+    },
+    "com.azure.edgemarketplace#OfferPublisher": {
+      "type": "structure",
+      "members": {
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The publisher Id",
+            "smithy.api#required": {}
+          }
+        },
+        "publisherDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The publisher name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The offer publisher"
+      }
+    },
+    "com.azure.edgemarketplace#OffersListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.EdgeMarketplace/operations",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.edgemarketplace#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.edgemarketplace#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.edgemarketplace#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.edgemarketplace#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.edgemarketplace#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.edgemarketplace#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.edgemarketplace#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.edgemarketplace#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.edgemarketplace#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.edgemarketplace#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.edgemarketplace#PublishersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#PublishersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#PublishersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.EdgeMarketplace/publishers/{publisherName}",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "Get a Publisher",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#PublishersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.edgemarketplace#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.edgemarketplace#PublisherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.edgemarketplace#PublishersGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "publisherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the publisher"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#PublishersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#PublishersListRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#PublisherListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.EdgeMarketplace/publishers",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "List Publisher resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#PublishersListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "Skip over when retrieving results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#OffersGetAccessToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#OffersGetAccessTokenRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#DiskAccessToken"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.EdgeMarketplace/offers/{offerId}/getAccessToken",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "get access token.",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#DiskAccessToken": {
+      "type": "structure",
+      "members": {
+        "diskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The disk id."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access token creation status."
+          }
+        },
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access token.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The disk access token"
+      }
+    },
+    "com.azure.edgemarketplace#OffersGetAccessTokenRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the offer"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the publisher.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#OffersGenerateAccessToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#OffersGenerateAccessTokenRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#DiskAccessToken"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.EdgeMarketplace/offers/{offerId}/generateAccessToken",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "A long-running resource action.",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#OffersGenerateAccessTokenRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the offer"
+          }
+        },
+        "publisherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the publisher."
+          }
+        },
+        "edgeMarketPlaceRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region where the disk will be created.",
+            "smithy.api#required": {}
+          }
+        },
+        "egeMarketPlaceResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region where the disk will be created."
+          }
+        },
+        "hypervGeneration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hyperv version."
+          }
+        },
+        "marketPlaceSku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The marketplace sku."
+          }
+        },
+        "marketPlaceSkuVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The marketplace sku version."
+          }
+        },
+        "deviceSku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device sku."
+          }
+        },
+        "deviceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The device sku version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#OffersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#OffersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#OffersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.EdgeMarketplace/offers/{offerId}",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "Get a Offer",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#OffersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.edgemarketplace#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.edgemarketplace#OfferProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.edgemarketplace#OffersGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#OffersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.edgemarketplace#OffersListRequest"
+      },
+      "output": {
+        "target": "com.azure.edgemarketplace#OfferListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.EdgeMarketplace/offers",
+          "code": 200,
+          "apiVersion": "2024-10-01"
+        },
+        "smithy.api#documentation": "List Offer resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-10-01"
+      }
+    },
+    "com.azure.edgemarketplace#OffersListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "Skip over when retrieving results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.edgemarketplace#Edgemarketplace": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.edgemarketplace#PublishersListBySubscription"
+        },
+        {
+          "target": "com.azure.edgemarketplace#OffersListBySubscription"
+        },
+        {
+          "target": "com.azure.edgemarketplace#OperationsList"
+        },
+        {
+          "target": "com.azure.edgemarketplace#PublishersGet"
+        },
+        {
+          "target": "com.azure.edgemarketplace#PublishersList"
+        },
+        {
+          "target": "com.azure.edgemarketplace#OffersGetAccessToken"
+        },
+        {
+          "target": "com.azure.edgemarketplace#OffersGenerateAccessToken"
+        },
+        {
+          "target": "com.azure.edgemarketplace#OffersGet"
+        },
+        {
+          "target": "com.azure.edgemarketplace#OffersList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Edgemarketplace",
+        "smithy.api#documentation": "Azure Edgemarketplace API — merged from the edgemarketplace resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

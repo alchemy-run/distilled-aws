@@ -1,0 +1,3330 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "osconfig",
+    "version": "v2",
+    "title": "OS Config API",
+    "baseUrl": "https://osconfig.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceDeb": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFile",
+          "traits": {
+            "smithy.api#documentation": "Required. A deb package."
+          }
+        },
+        "pullDeps": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether dependencies should also be installed. - install when false: `dpkg -i package` - install when true: `apt-get update && apt-get -y install package.deb`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A deb package file. dpkg packages only support INSTALLED state."
+      }
+    },
+    "com.gcp.osconfig_v2#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.osconfig_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.osconfig_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.osconfig_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#DocumentMap"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyInventoryFilter": {
+      "type": "structure",
+      "members": {
+        "osVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions."
+          }
+        },
+        "osShortName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The OS short name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filtering criteria to select VMs based on inventory details."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The id of the OS policy with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the assignment."
+          }
+        },
+        "resourceGroups": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceGroupList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of resource groups for the policy. For a particular VM, resource groups are evaluated in the order specified and the first resource group that is applicable is selected and the rest are ignored. If none of the resource groups are applicable for a VM, the VM is considered to be non-compliant w.r.t this policy. This behavior can be toggled by the flag `allow_no_resource_group_match`"
+          }
+        },
+        "mode": {
+          "target": "com.gcp.osconfig_v2#OSPolicyModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Policy mode"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy description. Length of the description is limited to 1024 characters."
+          }
+        },
+        "allowNoResourceGroupMatch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This flag determines the OS policy compliance status when none of the resource groups within the policy are applicable for a VM. Set this value to `true` if the policy needs to be reported as compliant even if the policy has nothing to validate or enforce."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An OS policy defines the desired state configuration for a VM."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#OSPolicyResourceGroup"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyModeEnum": {
+      "type": "enum",
+      "members": {
+        "MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODE_UNSPECIFIED"
+          }
+        },
+        "VALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VALIDATION"
+          }
+        },
+        "ENFORCEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENFORCEMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentInstanceFilter": {
+      "type": "structure",
+      "members": {
+        "inclusionLabels": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentLabelSetList",
+          "traits": {
+            "smithy.api#documentation": "List of label sets used for VM inclusion. If the list has more than one `LabelSet`, the VM is included if any of the label sets are applicable for the VM."
+          }
+        },
+        "all": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Target all VMs in the project. If true, no other criteria is permitted."
+          }
+        },
+        "exclusionLabels": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentLabelSetList",
+          "traits": {
+            "smithy.api#documentation": "List of label sets used for VM exclusion. If the list has more than one label set, the VM is excluded if any of the label sets are applicable for the VM."
+          }
+        },
+        "inventories": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentInstanceFilterInventoryList",
+          "traits": {
+            "smithy.api#documentation": "List of inventories to select VMs. A VM is selected if its inventory data matches at least one of the following inventories."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filters to select target VMs for an assignment. If more than one filter criteria is specified below, a VM will be selected if and only if it satisfies all of them."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentLabelSetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#OSPolicyAssignmentLabelSet"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentInstanceFilterInventoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#OSPolicyAssignmentInstanceFilterInventory"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceMSI": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFile",
+          "traits": {
+            "smithy.api#documentation": "Required. The MSI package."
+          }
+        },
+        "properties": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional properties to use during installation. This should be in the format of Property=Setting. Appended to the defaults of `ACTION=INSTALL REBOOT=ReallySuppress`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An MSI package. MSI packages only support INSTALLED state."
+      }
+    },
+    "com.gcp.osconfig_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The id of the resource with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the OS policy."
+          }
+        },
+        "repository": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResource",
+          "traits": {
+            "smithy.api#documentation": "Package repository resource"
+          }
+        },
+        "exec": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceExecResource",
+          "traits": {
+            "smithy.api#documentation": "Exec resource"
+          }
+        },
+        "file": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFileResource",
+          "traits": {
+            "smithy.api#documentation": "File resource"
+          }
+        },
+        "pkg": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResource",
+          "traits": {
+            "smithy.api#documentation": "Package resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An OS policy resource is used to define the desired state configuration and provides a specific functionality like installing/removing packages, executing a script etc. The system ensures that resources are always in their desired state by taking necessary actions if they have drifted from their desired state."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceExecResource": {
+      "type": "structure",
+      "members": {
+        "validate": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceExecResourceExec",
+          "traits": {
+            "smithy.api#documentation": "Required. What to run to validate this resource is in the desired state. An exit code of 100 indicates \"in desired state\", and exit code of 101 indicates \"not in desired state\". Any other exit code indicates a failure running validate."
+          }
+        },
+        "enforce": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceExecResourceExec",
+          "traits": {
+            "smithy.api#documentation": "What to run to bring this resource into the desired state. An exit code of 100 indicates \"success\", any other exit code indicates a failure running enforce."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that allows executing scripts on the VM. The `ExecResource` has 2 stages: `validate` and `enforce` and both stages accept a script as an argument to execute. When the `ExecResource` is applied by the agent, it first executes the script in the `validate` stage. The `validate` stage can signal that the `ExecResource` is already in the desired state by returning an exit code of `100`. If the `ExecResource` is not in the desired state, it should return an exit code of `101`. Any other exit code returned by this stage is considered an error. If the `ExecResource` is not in the desired state based on the exit code from the `validate` stage, the agent proceeds to execute the script from the `enforce` stage. If the `ExecResource` is already in the desired state, the `enforce` stage will not be run. Similar to `validate` stage, the `enforce` stage should return an exit code of `100` to indicate that the resource in now in its desired state. Any other exit code is considered an error. NOTE: An exit code of `100` was chosen over `0` (and `101` vs `1`) to have an explicit indicator of `in desired state`, `not in desired state` and errors. Because, for example, Powershell will always return an exit code of `0` unless an `exit` statement is provided in the script. So, for reasons of consistency and being explicit, exit codes `100` and `101` were chosen."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "policyOrchestrators": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestratorList",
+          "traits": {
+            "smithy.api#documentation": "The policy orchestrators for the specified parent resource."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the list policy orchestrator resources."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestratorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator"
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector": {
+      "type": "structure",
+      "members": {
+        "includedFolders": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Names of the folders in scope. Format: `folders/{folder_id}`"
+          }
+        },
+        "includedProjects": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Names of the projects in scope. Format: `projects/{project_number}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Selector containing Cloud Resource Manager resource hierarchy nodes."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__OrchestrationScope": {
+      "type": "structure",
+      "members": {
+        "selectors": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_SelectorList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Selectors of the orchestration scope. There is a logical AND between each selector defined. When there is no explicit `ResourceHierarchySelector` selector specified, the scope is by default bounded to the parent of the policy orchestrator resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a set of selectors which drive which resources are in scope of policy orchestration."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_SelectorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_Selector"
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__OrchestratedResource": {
+      "type": "structure",
+      "members": {
+        "osPolicyAssignmentV1Payload": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignment",
+          "traits": {
+            "smithy.api#documentation": "Optional. OSPolicyAssignment resource to be created, updated or deleted. Name field is ignored and replace with a generated value. With this field set, orchestrator will perform actions on `project/{project}/locations/{zone}/osPolicyAssignments/{resource_id}` resources, where `project` and `zone` pairs come from the expanded scope, and `resource_id` comes from the `resource_id` field of orchestrator resource."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. ID of the resource to be used while generating set of affected resources. For UPSERT action the value is auto-generated during PolicyOrchestrator creation when not set. When the value is set it should following next restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project. For DELETE action, ID must be specified explicitly during PolicyOrchestrator creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a resource that is being orchestrated by the policy orchestrator."
+      }
+    },
+    "com.gcp.osconfig_v2#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceGooRepository": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the repository."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The url of the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a Goo package repository. These are added to a repo file that is managed at `C:/ProgramData/GooGet/repos/google_osconfig.repo`."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceFileRemote": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. URI from which to fetch the object. It should contain both the protocol and path following the format `{protocol}://{location}`."
+          }
+        },
+        "sha256Checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 checksum of the remote file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a file available via some URI."
+      }
+    },
+    "com.gcp.osconfig_v2#StatusProto": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;"
+          }
+        },
+        "space": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs"
+          }
+        },
+        "messageSet": {
+          "target": "com.gcp.osconfig_v2#MessageSet",
+          "traits": {
+            "smithy.api#documentation": "message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;"
+          }
+        },
+        "canonicalCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Wire-format for a Status object"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceZypperRepository": {
+      "type": "structure",
+      "members": {
+        "gpgKeys": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "URIs of GPG keys."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A one word, unique name for this repository. This is the `repo id` in the zypper config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for GuestPolicy conflicts."
+          }
+        },
+        "baseUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The location of the repository directory."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single zypper package repository. These are added to a repo file that is managed at `/etc/zypp/repos.d/google_osconfig.repo`."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceRPM": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFile",
+          "traits": {
+            "smithy.api#documentation": "Required. An rpm package."
+          }
+        },
+        "pullDeps": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether dependencies should also be installed. - install when false: `rpm --upgrade --replacepkgs package.rpm` - install when true: `yum -y install package.rpm` or `zypper -y install package.rpm`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An RPM package file. RPM packages only support INSTALLED state."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator": {
+      "type": "structure",
+      "members": {
+        "orchestratedResource": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__OrchestratedResource",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource to be orchestrated by the policy orchestrator."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Set to true, if there are ongoing changes being applied by the orchestrator."
+          }
+        },
+        "orchestrationScope": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__OrchestrationScope",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines scope for the orchestration, in context of the enclosing PolicyOrchestrator resource. Scope is expanded into a list of pairs, in which the rollout action will take place. Expansion starts with a Folder resource parenting the PolicyOrchestrator resource: - All the descendant projects are listed. - List of project is cross joined with a list of all available zones. - Resulting list of pairs is filtered according to the selectors."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the policy orchestrator resource was created."
+          }
+        },
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Action to be done by the orchestrator in `projects/{project_id}/zones/{zone_id}` locations defined by the `orchestration_scope`. Allowed values: - `UPSERT` - Orchestrator will create or update target resources. - `DELETE` - Orchestrator will delete target resources, if they exist"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.osconfig_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Labels as key value pairs"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Freeform text describing the purpose of the resource."
+          }
+        },
+        "orchestrationState": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the orchestration."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the policy orchestrator resource was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Identifier. In the following format: * `organizations/{organization_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `folders/{folder_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `projects/{project_id_or_number}/locations/global/policyOrchestrators/{orchestrator_id}`"
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. State of the orchestrator. Can be updated to change orchestrator behaviour. Allowed values: - `ACTIVE` - orchestrator is actively looking for actions to be taken. - `STOPPED` - orchestrator won't make any changes. Note: There might be more states added in the future. We use string here instead of an enum, to avoid the need of propagating new states to all the client code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A policy orchestrator manages project-level and zone-level policy resources, such as OS policy assignments. It provides methods to create, update, and delete these resources across projects and locations at scale. The policy orchestrator operates as a continuous loop. In each iteration, the orchestrator identifies the set of resources to be modified and progressively applies changes. If the set of resources changes over time (for example, if you add new projects), subsequent iterations address those changes. The orchestrator can either upsert or delete policy resources. For more details, see the `action` and `orchestrated_resource` fields. The policy orchestrator does not manage the lifecycle of the resources it creates. Each iteration is independent and, besides Cloud Logging, the orchestrator retains only a minimal history of past actions. Deleting the orchestrator does not affect previously created resources; these resources remain in their current state. Similarly, removing projects from the orchestrator's scope does not affect existing resources."
+      }
+    },
+    "com.gcp.osconfig_v2#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceYUM": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Package name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A package managed by YUM. - install: `yum -y install package` - remove: `yum -y remove package`"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceFileGcs": {
+      "type": "structure",
+      "members": {
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Bucket of the Cloud Storage object."
+          }
+        },
+        "object": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the Cloud Storage object."
+          }
+        },
+        "generation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generation number of the Cloud Storage object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a file available as a Cloud Storage Object."
+      }
+    },
+    "com.gcp.osconfig_v2#FixedOrPercent": {
+      "type": "structure",
+      "members": {
+        "fixed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies a fixed value."
+          }
+        },
+        "percent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the relative value defined as a percentage, which will be multiplied by a reference value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message encapsulating a value that can be either absolute (\"fixed\") or relative (\"percent\") to a value."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentInstanceFilterInventory": {
+      "type": "structure",
+      "members": {
+        "osVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions."
+          }
+        },
+        "osShortName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The OS short name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VM inventory details."
+      }
+    },
+    "com.gcp.osconfig_v2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceZypper": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Package name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A package managed by Zypper. - install: `zypper -y install package` - remove: `zypper -y rm package`"
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Start time of the wave iteration."
+          }
+        },
+        "error": {
+          "target": "com.gcp.osconfig_v2#Status",
+          "traits": {
+            "smithy.api#documentation": "Output only. Error thrown in the wave iteration."
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. An estimated percentage of the progress. Number between 0 and 100."
+          }
+        },
+        "state": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_IterationStateStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the iteration."
+          }
+        },
+        "failedActions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of orchestration actions which failed so far. For more details, query the Cloud Logs."
+          }
+        },
+        "performedActions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Overall number of actions done by the orchestrator so far."
+          }
+        },
+        "iterationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique identifier of the iteration."
+          }
+        },
+        "finishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Finish time of the wave iteration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the state of a single iteration of the orchestrator."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_IterationStateStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentRollout": {
+      "type": "structure",
+      "members": {
+        "disruptionBudget": {
+          "target": "com.gcp.osconfig_v2#FixedOrPercent",
+          "traits": {
+            "smithy.api#documentation": "Required. The maximum number (or percentage) of VMs per zone to disrupt at any given moment."
+          }
+        },
+        "minWaitDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. This determines the minimum duration of time to wait after the configuration changes are applied through the current rollout. A VM continues to count towards the `disruption_budget` at least until this duration of time has passed after configuration changes are applied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message to configure the rollout at the zonal level for the OS policy assignment."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignment": {
+      "type": "structure",
+      "members": {
+        "rollout": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentRollout",
+          "traits": {
+            "smithy.api#documentation": "Required. Rollout to deploy the OS policy assignment. A rollout is triggered in the following situations: 1) OSPolicyAssignment is created. 2) OSPolicyAssignment is updated and the update contains changes to one of the following fields: - instance_filter - os_policies 3) OSPolicyAssignment is deleted."
+          }
+        },
+        "instanceFilter": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentInstanceFilter",
+          "traits": {
+            "smithy.api#documentation": "Required. Filter to select VMs."
+          }
+        },
+        "rolloutState": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentRolloutStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. OS policy assignment rollout state"
+          }
+        },
+        "baseline": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates that this revision has been successfully rolled out in this zone and new VMs will be assigned OS policies from this revision. For a given OS policy assignment, there is only one revision with a value of `true` for this field."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates that this revision deletes the OS policy assignment."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OS policy assignment description. Length of the description is limited to 1024 characters."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The etag for this OS policy assignment. If this is provided on update, it must match the server's etag."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server generated unique id for the OS policy assignment resource."
+          }
+        },
+        "revisionCreateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp that the revision was created."
+          }
+        },
+        "osPolicies": {
+          "target": "com.gcp.osconfig_v2#OSPolicyList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of OS policies to be applied to the VMs."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates that reconciliation is in progress for the revision. This value is `true` when the `rollout_state` is one of: * IN_PROGRESS * CANCELLING"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id}` This field is ignored when you create an OS policy assignment."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The assignment revision ID A new revision is committed whenever a rollout is triggered for a OS policy assignment"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OS policy assignment is an API resource that is used to apply a set of OS policies to a dynamically targeted group of Compute Engine VM instances. An OS policy is used to define the desired state configuration for a Compute Engine VM instance through a set of configuration resources that provide capabilities such as installing or removing software packages, or executing a script. For more information about the OS policy resource definitions and examples, see [OS policy and OS policy assignment](https://cloud.google.com/compute/docs/os-configuration-management/working-with-os-policies)."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentRolloutStateEnum": {
+      "type": "enum",
+      "members": {
+        "ROLLOUT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLLOUT_STATE_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#OSPolicy"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceExecResourceExec": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFile",
+          "traits": {
+            "smithy.api#documentation": "A remote or local file."
+          }
+        },
+        "script": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An inline script. The size of the script is limited to 32KiB."
+          }
+        },
+        "args": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional arguments to pass to the source during execution."
+          }
+        },
+        "interpreter": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceExecResourceExecInterpreterEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The script interpreter to use."
+          }
+        },
+        "outputFilePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 500K bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A file or script to execute."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceExecResourceExecInterpreterEnum": {
+      "type": "enum",
+      "members": {
+        "INTERPRETER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERPRETER_UNSPECIFIED"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "SHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHELL"
+          }
+        },
+        "POWERSHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POWERSHELL"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceYumRepository": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the repository."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A one word, unique name for this repository. This is the `repo id` in the yum config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for resource conflicts."
+          }
+        },
+        "baseUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The location of the repository directory."
+          }
+        },
+        "gpgKeys": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "URIs of GPG keys."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single yum package repository. These are added to a repo file that is managed at `/etc/yum.repos.d/google_osconfig.repo`."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResource": {
+      "type": "structure",
+      "members": {
+        "yum": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceYUM",
+          "traits": {
+            "smithy.api#documentation": "A package managed by YUM."
+          }
+        },
+        "zypper": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceZypper",
+          "traits": {
+            "smithy.api#documentation": "A package managed by Zypper."
+          }
+        },
+        "rpm": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceRPM",
+          "traits": {
+            "smithy.api#documentation": "An rpm package file."
+          }
+        },
+        "desiredState": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceDesiredStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The desired state the agent should maintain for this package."
+          }
+        },
+        "deb": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceDeb",
+          "traits": {
+            "smithy.api#documentation": "A deb package file."
+          }
+        },
+        "apt": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceAPT",
+          "traits": {
+            "smithy.api#documentation": "A package managed by Apt."
+          }
+        },
+        "googet": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceGooGet",
+          "traits": {
+            "smithy.api#documentation": "A package managed by GooGet."
+          }
+        },
+        "msi": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceMSI",
+          "traits": {
+            "smithy.api#documentation": "An MSI package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that manages a system package."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceDesiredStateEnum": {
+      "type": "enum",
+      "members": {
+        "DESIRED_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESIRED_STATE_UNSPECIFIED"
+          }
+        },
+        "INSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLED"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVED"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_OrchestrationState": {
+      "type": "structure",
+      "members": {
+        "currentIterationState": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current Wave iteration state."
+          }
+        },
+        "previousIterationState": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_PolicyOrchestrator_IterationState",
+          "traits": {
+            "smithy.api#documentation": "Output only. Previous Wave iteration state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the state of the orchestration process."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceGroup": {
+      "type": "structure",
+      "members": {
+        "inventoryFilters": {
+          "target": "com.gcp.osconfig_v2#OSPolicyInventoryFilterList",
+          "traits": {
+            "smithy.api#documentation": "List of inventory filters for the resource group. The resources in this resource group are applied to the target VM if it satisfies at least one of the following inventory filters. For example, to apply this resource group to VMs running either `RHEL` or `CentOS` operating systems, specify 2 items for the list with following values: inventory_filters[0].os_short_name='rhel' and inventory_filters[1].os_short_name='centos' If the list is empty, this resource group will be applied to the target VM unconditionally."
+          }
+        },
+        "resources": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of resources configured for this resource group. The resources are executed in the exact order specified here."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource groups provide a mechanism to group OS policy resources. Resource groups enable OS policy authors to create a single OS policy to be applied to VMs running different operating Systems. When the OS policy is applied to a target VM, the appropriate resource group within the OS policy is selected based on the `OSFilter` specified within the resource group."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyInventoryFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#OSPolicyInventoryFilter"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#OSPolicyResource"
+      }
+    },
+    "com.gcp.osconfig_v2#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.osconfig_v2#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.osconfig_v2#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceFile": {
+      "type": "structure",
+      "members": {
+        "remote": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFileRemote",
+          "traits": {
+            "smithy.api#documentation": "A generic remote file."
+          }
+        },
+        "gcs": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFileGcs",
+          "traits": {
+            "smithy.api#documentation": "A Cloud Storage object."
+          }
+        },
+        "allowInsecure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified."
+          }
+        },
+        "localPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A local path within the VM to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A remote or local file."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceGooGet": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Package name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A package managed by GooGet. - install: `googet -noconfirm install package` - remove: `googet -noconfirm remove package`"
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourcePackageResourceAPT": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Package name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A package managed by APT. - install: `apt-get update && apt-get -y install [name]` - remove: `apt-get -y remove [name]`"
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2beta__OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentLabelSet": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.osconfig_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels are identified by key/value pairs in this map. A VM should contain all the key/value pairs specified in this map to be selected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message representing label set. * A label is a key value pair set for a VM. * A LabelSet is a set of labels. * Labels within a LabelSet are ANDed. In other words, a LabelSet is applicable for a VM only if it matches all the labels in the LabelSet. * Example: A LabelSet with 2 labels: `env=prod` and `type=webserver` will only be applicable for those VMs with both labels present."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "apiMethod": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentOperationMetadataApiMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "The OS policy assignment API method."
+          }
+        },
+        "rolloutStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rollout start time"
+          }
+        },
+        "rolloutState": {
+          "target": "com.gcp.osconfig_v2#OSPolicyAssignmentOperationMetadataRolloutStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the rollout"
+          }
+        },
+        "rolloutUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rollout update time"
+          }
+        },
+        "osPolicyAssignment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentOperationMetadataApiMethodEnum": {
+      "type": "enum",
+      "members": {
+        "API_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_METHOD_UNSPECIFIED"
+          }
+        },
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE"
+          }
+        },
+        "UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyAssignmentOperationMetadataRolloutStateEnum": {
+      "type": "enum",
+      "members": {
+        "ROLLOUT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLLOUT_STATE_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceFileResource": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A file with this content. The size of the content is limited to 32KiB."
+          }
+        },
+        "state": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFileResourceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Desired state of the file."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The absolute path of the file within the VM."
+          }
+        },
+        "permissions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755. Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4"
+          }
+        },
+        "file": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceFile",
+          "traits": {
+            "smithy.api#documentation": "A remote or local source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that manages the state of a file."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceFileResourceStateEnum": {
+      "type": "enum",
+      "members": {
+        "DESIRED_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESIRED_STATE_UNSPECIFIED"
+          }
+        },
+        "PRESENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRESENT"
+          }
+        },
+        "ABSENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABSENT"
+          }
+        },
+        "CONTENTS_MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENTS_MATCH"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#Operation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.osconfig_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.osconfig_v2#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.osconfig_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_Selector": {
+      "type": "structure",
+      "members": {
+        "locationSelector": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector",
+          "traits": {
+            "smithy.api#documentation": "Selector for selecting locations."
+          }
+        },
+        "resourceHierarchySelector": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_ResourceHierarchySelector",
+          "traits": {
+            "smithy.api#documentation": "Selector for selecting resource hierarchy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Selector for the resources in scope of orchestration."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV2_OrchestrationScope_LocationSelector": {
+      "type": "structure",
+      "members": {
+        "includedLocations": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Names of the locations in scope. Format: `us-central1-a`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Selector containing locations in scope."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceAptRepository": {
+      "type": "structure",
+      "members": {
+        "distribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Distribution of this repository."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. URI for this repository."
+          }
+        },
+        "components": {
+          "target": "com.gcp.osconfig_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of components for this repository. Must contain at least one item."
+          }
+        },
+        "archiveType": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of archive files in this repository."
+          }
+        },
+        "gpgKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI of the key file for this repository. The agent maintains a keyring at `/etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single apt package repository. These will be added to a repo file that will be managed at `/etc/apt/sources.list.d/google_osconfig.list`."
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ARCHIVE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHIVE_TYPE_UNSPECIFIED"
+          }
+        },
+        "DEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEB"
+          }
+        },
+        "DEB_SRC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEB_SRC"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResource": {
+      "type": "structure",
+      "members": {
+        "yum": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceYumRepository",
+          "traits": {
+            "smithy.api#documentation": "A Yum Repository."
+          }
+        },
+        "zypper": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceZypperRepository",
+          "traits": {
+            "smithy.api#documentation": "A Zypper Repository."
+          }
+        },
+        "goo": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceGooRepository",
+          "traits": {
+            "smithy.api#documentation": "A Goo Repository."
+          }
+        },
+        "apt": {
+          "target": "com.gcp.osconfig_v2#OSPolicyResourceRepositoryResourceAptRepository",
+          "traits": {
+            "smithy.api#documentation": "An Apt Repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that manages a package repository."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "apiMethod": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadataApiMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "The OS policy assignment API method."
+          }
+        },
+        "rolloutStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rollout start time"
+          }
+        },
+        "rolloutState": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadataRolloutStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of the rollout"
+          }
+        },
+        "rolloutUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rollout update time"
+          }
+        },
+        "osPolicyAssignment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations."
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadataApiMethodEnum": {
+      "type": "enum",
+      "members": {
+        "API_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_METHOD_UNSPECIFIED"
+          }
+        },
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE"
+          }
+        },
+        "UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadataRolloutStateEnum": {
+      "type": "enum",
+      "members": {
+        "ROLLOUT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLLOUT_STATE_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#MessageSet": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a \"bridge\" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments."
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteFoldersLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.osconfig_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.osconfig_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.osconfig_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteFoldersLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#DeleteFoldersLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.osconfig_v2#CancelFoldersLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#CancelFoldersLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#CancelFoldersLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.osconfig_v2#ListFoldersLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#ListFoldersLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#ListFoldersLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetFoldersLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetFoldersLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#GetFoldersLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.osconfig_v2#PatchFoldersLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Identifier. In the following format: * `organizations/{organization_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `folders/{folder_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `projects/{project_id_or_number}/locations/global/policyOrchestrators/{orchestrator_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to merge into the existing policy orchestrator. A special [\"*\"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask (or its paths) is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#PatchFoldersLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#PatchFoldersLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing policy orchestrator, parented by a folder."
+      }
+    },
+    "com.gcp.osconfig_v2#ListFoldersLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#ListFoldersLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#ListFoldersLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policyOrchestrators"
+        },
+        "smithy.api#documentation": "Lists the policy orchestrators under the given parent folder resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetFoldersLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetFoldersLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#GetFoldersLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves an existing policy orchestrator, parented by a folder."
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteFoldersLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current etag of the policy orchestrator. If an etag is provided and does not match the current etag of the policy orchestrator, deletion will be blocked and an ABORTED error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteFoldersLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#DeleteFoldersLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an existing policy orchestrator resource, parented by a folder."
+      }
+    },
+    "com.gcp.osconfig_v2#CreateFoldersLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name in the form of: * `organizations/{organization_id}/locations/global` * `folders/{folder_id}/locations/global` * `projects/{project_id_or_number}/locations/global`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policyOrchestratorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The logical identifier of the policy orchestrator, with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the parent.",
+            "smithy.api#httpQuery": "policyOrchestratorId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#CreateFoldersLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#CreateFoldersLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/policyOrchestrators"
+        },
+        "smithy.api#documentation": "Creates a new policy orchestrator under the given folder resource. `name` field of the given orchestrator are ignored and instead replaced by a product of `parent` and `policy_orchestrator_id`. Orchestrator state field might be only set to `ACTIVE`, `STOPPED` or omitted (in which case, the created resource will be in `ACTIVE` state anyway)."
+      }
+    },
+    "com.gcp.osconfig_v2#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.osconfig_v2#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.osconfig_v2#ListProjectsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#ListProjectsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#ListProjectsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policyOrchestrators"
+        },
+        "smithy.api#documentation": "Lists the policy orchestrators under the given parent project resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetProjectsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetProjectsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#GetProjectsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves an existing policy orchestrator, parented by a project."
+      }
+    },
+    "com.gcp.osconfig_v2#PatchProjectsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Identifier. In the following format: * `organizations/{organization_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `folders/{folder_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `projects/{project_id_or_number}/locations/global/policyOrchestrators/{orchestrator_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to merge into the existing policy orchestrator. A special [\"*\"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask (or its paths) is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#PatchProjectsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#PatchProjectsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing policy orchestrator, parented by a project."
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteProjectsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current etag of the policy orchestrator. If an etag is provided and does not match the current etag of the policy orchestrator, deletion will be blocked and an ABORTED error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteProjectsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#DeleteProjectsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an existing policy orchestrator resource, parented by a project."
+      }
+    },
+    "com.gcp.osconfig_v2#CreateProjectsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "policyOrchestratorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The logical identifier of the policy orchestrator, with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the parent.",
+            "smithy.api#httpQuery": "policyOrchestratorId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name in the form of: * `organizations/{organization_id}/locations/global` * `folders/{folder_id}/locations/global` * `projects/{project_id_or_number}/locations/global`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#CreateProjectsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#CreateProjectsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/policyOrchestrators"
+        },
+        "smithy.api#documentation": "Creates a new policy orchestrator under the given project resource. `name` field of the given orchestrator are ignored and instead replaced by a product of `parent` and `policy_orchestrator_id`. Orchestrator state field might be only set to `ACTIVE`, `STOPPED` or omitted (in which case, the created resource will be in `ACTIVE` state anyway)."
+      }
+    },
+    "com.gcp.osconfig_v2#CancelOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#CancelOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#CancelOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#DeleteOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.osconfig_v2#ListOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#ListOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#ListOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#GetOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteOrganizationsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current etag of the policy orchestrator. If an etag is provided and does not match the current etag of the policy orchestrator, deletion will be blocked and an ABORTED error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#DeleteOrganizationsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#DeleteOrganizationsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an existing policy orchestrator resource, parented by an organization."
+      }
+    },
+    "com.gcp.osconfig_v2#PatchOrganizationsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Identifier. In the following format: * `organizations/{organization_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `folders/{folder_id}/locations/global/policyOrchestrators/{orchestrator_id}` * `projects/{project_id_or_number}/locations/global/policyOrchestrators/{orchestrator_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to merge into the existing policy orchestrator. A special [\"*\"] field mask can be used to simply replace the entire resource. Otherwise, for all paths referenced in the mask, following merge rules are used: * output only fields are ignored, * primitive fields are replaced, * repeated fields are replaced, * map fields are merged key by key, * message fields are cleared if not set in the request, otherwise they are merged recursively (in particular - message fields set to an empty message has no side effects) If field mask (or its paths) is not specified, it is automatically inferred from the request using following rules: * primitive fields are listed, if set to a non-default value (as there is no way to distinguish between default and unset value), * map and repeated fields are listed, * `google.protobuf.Any` fields are listed, * other message fields are traversed recursively. Note: implicit mask does not allow clearing fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#PatchOrganizationsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#PatchOrganizationsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing policy orchestrator, parented by an organization."
+      }
+    },
+    "com.gcp.osconfig_v2#ListOrganizationsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#ListOrganizationsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#ListOrganizationsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__ListPolicyOrchestratorsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policyOrchestrators"
+        },
+        "smithy.api#documentation": "Lists the policy orchestrators under the given parent organization resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetOrganizationsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#GetOrganizationsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#GetOrganizationsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves an existing policy orchestrator, parented by an organization."
+      }
+    },
+    "com.gcp.osconfig_v2#CreateOrganizationsLocationsGlobalPolicyOrchestratorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name in the form of: * `organizations/{organization_id}/locations/global` * `folders/{folder_id}/locations/global` * `projects/{project_id_or_number}/locations/global`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policyOrchestratorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The logical identifier of the policy orchestrator, with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the parent.",
+            "smithy.api#httpQuery": "policyOrchestratorId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.osconfig_v2#GoogleCloudOsconfigV2__PolicyOrchestrator",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.osconfig_v2#CreateOrganizationsLocationsGlobalPolicyOrchestrators": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.osconfig_v2#CreateOrganizationsLocationsGlobalPolicyOrchestratorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.osconfig_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.osconfig_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.osconfig_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/policyOrchestrators"
+        },
+        "smithy.api#documentation": "Creates a new policy orchestrator under the given organizations resource. `name` field of the given orchestrator are ignored and instead replaced by a product of `parent` and `policy_orchestrator_id`. Orchestrator state field might be only set to `ACTIVE`, `STOPPED` or omitted (in which case, the created resource will be in `ACTIVE` state anyway)."
+      }
+    }
+  }
+}

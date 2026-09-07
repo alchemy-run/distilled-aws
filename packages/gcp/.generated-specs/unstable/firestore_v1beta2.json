@@ -1,0 +1,1762 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "firestore",
+    "version": "v1beta2",
+    "title": "Cloud Firestore API",
+    "baseUrl": "https://firestore.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2FieldOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "bytesProgress": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in bytes, of this operation."
+          }
+        },
+        "documentProgress": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in documents, of this operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation completed. Will be unset if operation still in progress."
+          }
+        },
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`"
+          }
+        },
+        "indexConfigDeltas": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfigDeltaList",
+          "traits": {
+            "smithy.api#documentation": "A list of IndexConfigDelta, which describe the intent of this operation."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation started."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2FieldOperationMetadataStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation results from FirestoreAdmin.UpdateField."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfigDeltaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfigDelta"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2FieldOperationMetadataStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata": {
+      "type": "structure",
+      "members": {
+        "progressBytes": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in bytes, of this operation."
+          }
+        },
+        "snapshotTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp that corresponds to the version of the database that is being read to get the list of documents to delete. This time can also be used as the timestamp of PITR in case of disaster recovery (subject to PITR window limit)."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation completed. Will be unset if operation still in progress."
+          }
+        },
+        "operationState": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1BulkDeleteDocumentsMetadataOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the operation."
+          }
+        },
+        "collectionIds": {
+          "target": "com.gcp.firestore_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The IDs of the collection groups that are being deleted."
+          }
+        },
+        "namespaceIds": {
+          "target": "com.gcp.firestore_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Which namespace IDs are being deleted."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation started."
+          }
+        },
+        "progressDocuments": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in documents, of this operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1BulkDeleteDocumentsMetadataOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ListIndexesResponse": {
+      "type": "structure",
+      "members": {
+        "indexes": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexList",
+          "traits": {
+            "smithy.api#documentation": "The requested indexes."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token that may be used to request another page of results. If blank, this is the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for FirestoreAdmin.ListIndexes."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Index"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Field": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\\`address.city\\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\\`*\\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration."
+          }
+        },
+        "indexConfig": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfig",
+          "traits": {
+            "smithy.api#documentation": "The index configuration for this field. If unset, field indexing will revert to the configuration defined by the `ancestor_field`. To explicitly remove all indexes for this field, specify an index config with an empty list of indexes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single field in the database. Fields are grouped by their \"Collection Group\", which represent all collections in the database with the same id."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Index": {
+      "type": "structure",
+      "members": {
+        "fields": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexFieldList",
+          "traits": {
+            "smithy.api#documentation": "The fields supported by this index. For composite indexes, this is always 2 or more fields. The last field entry is always for the field path `__name__`. If, on creation, `__name__` was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the `__name__` will be ordered ASCENDING (unless explicitly specified). For single field indexes, this will always be exactly one entry with a field path equal to the field path of the associated field."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}` For single field indexes, this field will be empty."
+          }
+        },
+        "queryScope": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexQueryScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection id. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection id as this index."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The serving state of the index."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud Firestore indexes enable simple and complex queries against documents in a database."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexFieldList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexField"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexQueryScopeEnum": {
+      "type": "enum",
+      "members": {
+        "QUERY_SCOPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUERY_SCOPE_UNSPECIFIED"
+          }
+        },
+        "COLLECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTION"
+          }
+        },
+        "COLLECTION_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTION_GROUP"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "NEEDS_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_REPAIR"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1Progress": {
+      "type": "structure",
+      "members": {
+        "estimatedWork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of work estimated."
+          }
+        },
+        "completedWork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of work completed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used."
+      }
+    },
+    "com.gcp.firestore_v1beta2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ExportDocumentsRequest": {
+      "type": "structure",
+      "members": {
+        "collectionIds": {
+          "target": "com.gcp.firestore_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Which collection ids to export. Unspecified means all collections."
+          }
+        },
+        "outputUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request for FirestoreAdmin.ExportDocuments."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1UpdateDatabaseMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Metadata related to the update database operation."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ListFieldsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token that may be used to request another page of results. If blank, this is the last page."
+          }
+        },
+        "fields": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2FieldList",
+          "traits": {
+            "smithy.api#documentation": "The requested fields."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for FirestoreAdmin.ListFields."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2FieldList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Field"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ExportDocumentsResponse": {
+      "type": "structure",
+      "members": {
+        "outputUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the output files. This can be used to begin an import into Cloud Firestore (this project or another project) after the operation completes successfully."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returned in the google.longrunning.Operation response field."
+      }
+    },
+    "com.gcp.firestore_v1beta2#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.firestore_v1beta2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.firestore_v1beta2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.firestore_v1beta2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firestore_v1beta2#DocumentMap"
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexField": {
+      "type": "structure",
+      "members": {
+        "arrayConfig": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexFieldArrayConfigEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this field supports operations on `array_value`s."
+          }
+        },
+        "fieldPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can be __name__. For single field indexes, this must match the name of the field or may be omitted."
+          }
+        },
+        "order": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexFieldOrderEnum",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A field in an index. The field_path describes which field is indexed, the value_mode describes how the field value is indexed."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexFieldArrayConfigEnum": {
+      "type": "enum",
+      "members": {
+        "ARRAY_CONFIG_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARRAY_CONFIG_UNSPECIFIED"
+          }
+        },
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTAINS"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexFieldOrderEnum": {
+      "type": "enum",
+      "members": {
+        "ORDER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORDER_UNSPECIFIED"
+          }
+        },
+        "ASCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASCENDING"
+          }
+        },
+        "DESCENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESCENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfigDelta": {
+      "type": "structure",
+      "members": {
+        "changeType": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfigDeltaChangeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how the index is changing."
+          }
+        },
+        "index": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Index",
+          "traits": {
+            "smithy.api#documentation": "The index being changed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about an index configuration change."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfigDeltaChangeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CHANGE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHANGE_TYPE_UNSPECIFIED"
+          }
+        },
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVE"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1DeleteDatabaseMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Metadata related to the delete database operation."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1CloneDatabaseMetadata": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the database being cloned to."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the clone was started."
+          }
+        },
+        "pitrSnapshot": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1PitrSnapshot",
+          "traits": {
+            "smithy.api#documentation": "The snapshot from which this database was cloned."
+          }
+        },
+        "progressPercentage": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1Progress",
+          "traits": {
+            "smithy.api#documentation": "How far along the clone is as an estimated percentage of remaining time."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the clone finished, unset for ongoing clones."
+          }
+        },
+        "operationState": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1CloneDatabaseMetadataOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The operation state of the clone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the long-running operation from the CloneDatabase request."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1CloneDatabaseMetadataOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1CreateDatabaseMetadata": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Metadata related to the create database operation."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ExportDocumentsMetadata": {
+      "type": "structure",
+      "members": {
+        "progressBytes": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in bytes, of this operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation completed. Will be unset if operation still in progress."
+          }
+        },
+        "operationState": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ExportDocumentsMetadataOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the export operation."
+          }
+        },
+        "collectionIds": {
+          "target": "com.gcp.firestore_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Which collection ids are being exported."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation started."
+          }
+        },
+        "progressDocuments": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in documents, of this operation."
+          }
+        },
+        "outputUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Where the entities are being exported to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation results from FirestoreAdmin.ExportDocuments."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ExportDocumentsMetadataOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ImportDocumentsMetadata": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation started."
+          }
+        },
+        "progressDocuments": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in documents, of this operation."
+          }
+        },
+        "inputUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the documents being imported."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation completed. Will be unset if operation still in progress."
+          }
+        },
+        "operationState": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ImportDocumentsMetadataOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the import operation."
+          }
+        },
+        "collectionIds": {
+          "target": "com.gcp.firestore_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Which collection ids are being imported."
+          }
+        },
+        "progressBytes": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in bytes, of this operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation results from FirestoreAdmin.ImportDocuments."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ImportDocumentsMetadataOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleLongrunningOperation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.firestore_v1beta2#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.firestore_v1beta2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.firestore_v1beta2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1RestoreDatabaseMetadata": {
+      "type": "structure",
+      "members": {
+        "backup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the backup restoring from."
+          }
+        },
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the database being restored to."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the restore finished, unset for ongoing restores."
+          }
+        },
+        "operationState": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1RestoreDatabaseMetadataOperationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The operation state of the restore."
+          }
+        },
+        "progressPercentage": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1Progress",
+          "traits": {
+            "smithy.api#documentation": "How far along the restore is as an estimated percentage of remaining time."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the restore was started."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for the long-running operation from the RestoreDatabase request."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1RestoreDatabaseMetadataOperationStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ImportDocumentsRequest": {
+      "type": "structure",
+      "members": {
+        "inputUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1beta2.ExportDocumentsResponse.output_uri_prefix."
+          }
+        },
+        "collectionIds": {
+          "target": "com.gcp.firestore_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Which collection ids to import. Unspecified means all collections included in the import."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request for FirestoreAdmin.ImportDocuments."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1PitrSnapshot": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the database that this was a snapshot of. Format: `projects/{project}/databases/{database}`."
+          }
+        },
+        "databaseUid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Public UUID of the database the snapshot was associated with."
+          }
+        },
+        "snapshotTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Snapshot time of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexConfig": {
+      "type": "structure",
+      "members": {
+        "usesAncestorConfig": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. When true, the `Field`'s index configuration is set from the configuration specified by the `ancestor_field`. When false, the `Field`'s index configuration is defined explicitly."
+          }
+        },
+        "indexes": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexList",
+          "traits": {
+            "smithy.api#documentation": "The indexes supported for this field."
+          }
+        },
+        "reverting": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only When true, the `Field`'s index configuration is in the process of being reverted. Once complete, the index config will transition to the same state as the field specified by `ancestor_field`, at which point `uses_ancestor_config` will be `true` and `reverting` will be `false`."
+          }
+        },
+        "ancestorField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies the resource name of the `Field` from which this field's index configuration is set (when `uses_ancestor_config` is true), or from which it *would* be set if this field had no index configuration (when `uses_ancestor_config` is false)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The index configuration for this field."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress": {
+      "type": "structure",
+      "members": {
+        "estimatedWork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of work estimated."
+          }
+        },
+        "completedWork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of work completed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "progressBytes": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in bytes, of this operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation completed. Will be unset if operation still in progress."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time this operation started."
+          }
+        },
+        "index": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The index resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`"
+          }
+        },
+        "state": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexOperationMetadataStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the operation."
+          }
+        },
+        "progressDocuments": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Progress",
+          "traits": {
+            "smithy.api#documentation": "The progress, in documents, of this operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation results from FirestoreAdmin.CreateIndex."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2IndexOperationMetadataStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPERATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLING"
+          }
+        },
+        "FINALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINALIZING"
+          }
+        },
+        "SUCCESSFUL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESSFUL"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#ExportDocumentsProjectsDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ExportDocumentsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.firestore_v1beta2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.firestore_v1beta2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.firestore_v1beta2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.firestore_v1beta2#ExportDocumentsProjectsDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#ExportDocumentsProjectsDatabasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta2/{+name}:exportDocuments"
+        },
+        "smithy.api#documentation": "Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage."
+      }
+    },
+    "com.gcp.firestore_v1beta2#ImportDocumentsProjectsDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ImportDocumentsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#ImportDocumentsProjectsDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#ImportDocumentsProjectsDatabasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta2/{+name}:importDocuments"
+        },
+        "smithy.api#documentation": "Imports documents into Google Cloud Firestore. Existing documents with the same name are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportDocuments operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Firestore."
+      }
+    },
+    "com.gcp.firestore_v1beta2#CreateProjectsDatabasesCollectionGroupsIndexesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Index",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#CreateProjectsDatabasesCollectionGroupsIndexes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#CreateProjectsDatabasesCollectionGroupsIndexesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta2/{+parent}/indexes"
+        },
+        "smithy.api#documentation": "Creates a composite index. This returns a google.longrunning.Operation which may be used to track the status of the creation. The metadata for the operation will be the type IndexOperationMetadata."
+      }
+    },
+    "com.gcp.firestore_v1beta2#GetProjectsDatabasesCollectionGroupsIndexesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GetProjectsDatabasesCollectionGroupsIndexes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#GetProjectsDatabasesCollectionGroupsIndexesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Index"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a composite index."
+      }
+    },
+    "com.gcp.firestore_v1beta2#DeleteProjectsDatabasesCollectionGroupsIndexesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#DeleteProjectsDatabasesCollectionGroupsIndexes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#DeleteProjectsDatabasesCollectionGroupsIndexesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a composite index."
+      }
+    },
+    "com.gcp.firestore_v1beta2#ListProjectsDatabasesCollectionGroupsIndexesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter to apply to list results.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of results to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#ListProjectsDatabasesCollectionGroupsIndexes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#ListProjectsDatabasesCollectionGroupsIndexesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ListIndexesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta2/{+parent}/indexes"
+        },
+        "smithy.api#documentation": "Lists composite indexes.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GetProjectsDatabasesCollectionGroupsFieldsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#GetProjectsDatabasesCollectionGroupsFields": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#GetProjectsDatabasesCollectionGroupsFieldsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Field"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the metadata and configuration for a Field."
+      }
+    },
+    "com.gcp.firestore_v1beta2#PatchProjectsDatabasesCollectionGroupsFieldsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\\`address.city\\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\\`*\\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2Field",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#PatchProjectsDatabasesCollectionGroupsFields": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#PatchProjectsDatabasesCollectionGroupsFieldsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a field configuration. Currently, field updates apply only to single field index configuration. However, calls to FirestoreAdmin.UpdateField should provide a field mask to avoid changing any configuration that the caller isn't aware of. The field mask should be specified as: `{ paths: \"index_config\" }`. This call returns a google.longrunning.Operation which may be used to track the status of the field update. The metadata for the operation will be the type FieldOperationMetadata. To configure the default field settings for the database, use the special `Field` with resource name: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`."
+      }
+    },
+    "com.gcp.firestore_v1beta2#ListProjectsDatabasesCollectionGroupsFieldsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of results to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.firestore_v1beta2#ListProjectsDatabasesCollectionGroupsFields": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firestore_v1beta2#ListProjectsDatabasesCollectionGroupsFieldsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firestore_v1beta2#GoogleFirestoreAdminV1beta2ListFieldsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firestore_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firestore_v1beta2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta2/{+parent}/fields"
+        },
+        "smithy.api#documentation": "Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

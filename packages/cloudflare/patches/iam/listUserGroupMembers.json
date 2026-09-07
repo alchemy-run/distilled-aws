@@ -1,0 +1,53 @@
+{
+  "description": "Align iam#UserGroupsMembersList with distilled cloudflare/iam listUserGroupMembers",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersList",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembers"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersListRequest",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembers/input/target",
+      "value": "com.cloudflare.iam#ListUserGroupMembersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersListResponse",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembers/output/target",
+      "value": "com.cloudflare.iam#ListUserGroupMembersResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembers/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListUserGroupMembers/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#UserGroupNotFound"
+        },
+        {
+          "target": "com.cloudflare.iam#PolicyValidationFailed"
+        }
+      ]
+    }
+  ]
+}

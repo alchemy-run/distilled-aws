@@ -1,0 +1,10 @@
+{
+  "description": "The License schema lists many fields as required, but live responses from api.axiom.co omit several of them (e.g. defaultRegion, withAuths, regions). Make all the observed-to-be-missing fields optional so getOrg / getOrgs / updateOrg / createOrg succeed at decode time. `id` and `tier` are kept required because every observed response includes them and they're genuinely useful to depend on.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/components/schemas/License/required",
+      "value": ["id", "tier"]
+    }
+  ]
+}

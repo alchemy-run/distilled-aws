@@ -1,0 +1,39 @@
+{
+  "description": "Align schema_validation#SettingsOperationsDelete with distilled cloudflare/schema-validation deleteSettingOperation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsDelete",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSettingOperation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSettingOperationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSettingOperation/input/target",
+      "value": "com.cloudflare.schema_validation#DeleteSettingOperationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSettingOperationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSettingOperation/output/target",
+      "value": "com.cloudflare.schema_validation#DeleteSettingOperationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#DeleteSettingOperation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.schema_validation#OperationNotFound"
+        }
+      ]
+    }
+  ]
+}

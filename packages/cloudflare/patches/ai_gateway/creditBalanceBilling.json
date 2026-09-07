@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingCreditBalance with distilled cloudflare/ai-gateway creditBalanceBilling",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingCreditBalance",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreditBalanceBilling"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingCreditBalanceRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreditBalanceBillingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreditBalanceBilling/input/target",
+      "value": "com.cloudflare.ai_gateway#CreditBalanceBillingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingCreditBalanceResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreditBalanceBillingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreditBalanceBilling/output/target",
+      "value": "com.cloudflare.ai_gateway#CreditBalanceBillingResponse"
+    }
+  ]
+}

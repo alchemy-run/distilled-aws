@@ -1,0 +1,45 @@
+{
+  "description": "Align argo#TieredCachingGet with distilled cloudflare/argo getTieredCaching",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#TieredCachingGet",
+      "path": "/shapes/com.cloudflare.argo#GetTieredCaching"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#TieredCachingGetRequest",
+      "path": "/shapes/com.cloudflare.argo#GetTieredCachingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.argo#GetTieredCaching/input/target",
+      "value": "com.cloudflare.argo#GetTieredCachingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#TieredCachingGetResponse",
+      "path": "/shapes/com.cloudflare.argo#GetTieredCachingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.argo#GetTieredCaching/output/target",
+      "value": "com.cloudflare.argo#GetTieredCachingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.argo#GetTieredCaching/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.argo#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.argo#ZoneNotFound"
+        },
+        {
+          "target": "com.cloudflare.argo#Forbidden"
+        }
+      ]
+    }
+  ]
+}

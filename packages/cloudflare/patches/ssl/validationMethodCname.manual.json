@@ -1,0 +1,15 @@
+{
+  "description": "certificate pack validation_method includes cname on the wire (consumer-proven)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ssl#CertificatePacksGetResponseValidationMethod/members/CNAME",
+      "value": {
+        "target": "smithy.api#Unit",
+        "traits": {
+          "smithy.api#enumValue": "cname"
+        }
+      }
+    }
+  ]
+}

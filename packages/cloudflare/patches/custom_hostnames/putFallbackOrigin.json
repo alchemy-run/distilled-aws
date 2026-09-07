@@ -1,0 +1,39 @@
+{
+  "description": "Align custom_hostnames#FallbackOriginUpdate with distilled cloudflare/custom-hostnames putFallbackOrigin",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#FallbackOriginUpdate",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutFallbackOrigin"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#FallbackOriginUpdateRequest",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutFallbackOriginRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutFallbackOrigin/input/target",
+      "value": "com.cloudflare.custom_hostnames#PutFallbackOriginRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#FallbackOriginUpdateResponse",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutFallbackOriginResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutFallbackOrigin/output/target",
+      "value": "com.cloudflare.custom_hostnames#PutFallbackOriginResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_hostnames#PutFallbackOrigin/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasAccessNotGranted"
+        }
+      ]
+    }
+  ]
+}

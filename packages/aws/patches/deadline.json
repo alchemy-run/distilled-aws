@@ -1,0 +1,24 @@
+{
+  "operations": {
+    "createQueue": { "errors": ["ConflictException"] },
+    "createStorageProfile": { "errors": ["ConflictException"] },
+    "createBudget": { "errors": ["ConflictException"] },
+    "createFleet": { "errors": ["ConflictException"] },
+    "createMonitor": { "errors": ["ConflictException"] },
+    "updateFarm": { "errors": ["ConflictException"] },
+    "updateStorageProfile": { "errors": ["ConflictException"] },
+    "updateBudget": {
+      "errors": ["ConflictException", "InternalServerException"]
+    },
+    "updateMonitor": { "errors": ["ConflictException"] },
+    "deleteFarm": { "errors": ["ConflictException"] },
+    "deleteBudget": { "errors": ["ConflictException"] },
+    "deleteStorageProfile": {
+      "errors": ["ConflictException", "ResourceNotFoundException"]
+    },
+    "deleteMonitor": { "errors": ["ConflictException"] }
+  },
+  "errorCategories": {
+    "InternalServerException": ["ServerError", "RetryableError"]
+  }
+}

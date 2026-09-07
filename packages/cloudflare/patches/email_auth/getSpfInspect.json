@@ -1,0 +1,30 @@
+{
+  "description": "Align email_auth#SpfInspectGet with distilled cloudflare/email-auth getSpfInspect",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_auth#SpfInspectGet",
+      "path": "/shapes/com.cloudflare.email_auth#GetSpfInspect"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_auth#SpfInspectGetRequest",
+      "path": "/shapes/com.cloudflare.email_auth#GetSpfInspectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_auth#GetSpfInspect/input/target",
+      "value": "com.cloudflare.email_auth#GetSpfInspectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_auth#SpfInspectGetResponse",
+      "path": "/shapes/com.cloudflare.email_auth#GetSpfInspectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_auth#GetSpfInspect/output/target",
+      "value": "com.cloudflare.email_auth#GetSpfInspectResponse"
+    }
+  ]
+}

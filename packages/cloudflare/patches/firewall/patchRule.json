@@ -1,0 +1,38 @@
+{
+  "description": "Align firewall#RulesEdit with distilled cloudflare/firewall patchRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesEdit",
+      "path": "/shapes/com.cloudflare.firewall#PatchRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesEditRequest",
+      "path": "/shapes/com.cloudflare.firewall#PatchRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#PatchRule/input/target",
+      "value": "com.cloudflare.firewall#PatchRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesEditResponse",
+      "path": "/shapes/com.cloudflare.firewall#PatchRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#PatchRule/output/target",
+      "value": "com.cloudflare.firewall#PatchRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#PatchRule/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

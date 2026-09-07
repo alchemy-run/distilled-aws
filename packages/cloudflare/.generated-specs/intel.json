@@ -1,0 +1,3679 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.intel#AsnGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AsnGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#AsnGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AsnGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AsnGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/asn/{asn}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets an overview of the Autonomous System Number (ASN) and a list of subnets for it.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#AsnSubnetsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AsnSubnetsGetResponseSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AsnSubnetsGetResponse": {
+      "type": "structure",
+      "members": {
+        "asn": {
+          "target": "smithy.api#Document"
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total results returned based on your search parameters."
+          }
+        },
+        "ip_count_total": {
+          "target": "smithy.api#Double"
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Current page within paginated list of results."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page of results."
+          }
+        },
+        "subnets": {
+          "target": "com.cloudflare.intel#AsnSubnetsGetResponseSubnetsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.intel#AsnSubnetsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AsnSubnetsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AsnSubnetsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/asn/{asn}/subnets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get ASN Subnets.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssueTypesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssueTypesGetResultList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssueTypesGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssueTypesGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssueTypesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssueTypesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssueTypesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/attack-surface-report/issue-types",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all available issue types in Security Center, describing categories of security issues.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassResultItem"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClassResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesClass": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClassResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/attack-surface-report/issues/class",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center issue counts aggregated by classification class.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesDismissRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "issue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismiss": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesDismiss": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesDismissRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deprecated endpoint for archiving Security Center insights. Use the newer archive-security-center-insight endpoint instead.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the current page within paginated list of results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results per page of results.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemIssueType": {
+      "type": "enum",
+      "members": {
+        "COMPLIANCE_VIOLATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "compliance_violation"
+          }
+        },
+        "EMAIL_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email_security"
+          }
+        },
+        "EXPOSED_INFRASTRUCTURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exposed_infrastructure"
+          }
+        },
+        "INSECURE_CONFIGURATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "insecure_configuration"
+          }
+        },
+        "WEAK_AUTHENTICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weak_authentication"
+          }
+        },
+        "CONFIGURATION_SUGGESTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configuration_suggestion"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemPayload": {
+      "type": "structure",
+      "members": {
+        "detection_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the method used to detect insight."
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemSeverity": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Low"
+          }
+        },
+        "MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Moderate"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Critical"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resolved"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemUserClassification": {
+      "type": "enum",
+      "members": {
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false_positive"
+          }
+        },
+        "ACCEPT_RISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accept_risk"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_extended_context": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the insight has a large payload that requires fetching via the context endpoint."
+          }
+        },
+        "issue_class": {
+          "target": "smithy.api#String"
+        },
+        "issue_type": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemIssueType"
+        },
+        "payload": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemPayload"
+        },
+        "resolve_link": {
+          "target": "smithy.api#String"
+        },
+        "resolve_text": {
+          "target": "smithy.api#String"
+        },
+        "severity": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemSeverity"
+        },
+        "since": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The current status of the insight."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String"
+        },
+        "timestamp": {
+          "target": "smithy.api#String"
+        },
+        "user_classification": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItemUserClassification",
+          "traits": {
+            "smithy.api#documentation": "User-defined classification for the insight. Can be 'false_positive', 'accept_risk', 'other', or null."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesItem"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesListResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicates the total number of results."
+          }
+        },
+        "issues": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponseIssuesList"
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the current page within paginated list of results."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results per page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/attack-surface-report/issues",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all Security Center issues for the account, showing active security problems requiring attention.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResultItem"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesSeverity": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/attack-surface-report/issues/severity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center issue counts aggregated by severity level.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueClassList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueClassNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueTypeNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestProductList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestProductNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSeverityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSeverityNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSubjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSubjectNeqList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dismissed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "dismissed"
+          }
+        },
+        "issue_class": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueClassList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class"
+          }
+        },
+        "issue_class_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueClassNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_class~neq"
+          }
+        },
+        "issue_type": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type"
+          }
+        },
+        "issue_type_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestIssueTypeNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "issue_type~neq"
+          }
+        },
+        "product": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestProductList",
+          "traits": {
+            "smithy.api#httpQuery": "product"
+          }
+        },
+        "product_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestProductNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "product~neq"
+          }
+        },
+        "severity": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSeverityList",
+          "traits": {
+            "smithy.api#httpQuery": "severity"
+          }
+        },
+        "severity_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSeverityNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "severity~neq"
+          }
+        },
+        "subject": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSubjectList",
+          "traits": {
+            "smithy.api#httpQuery": "subject"
+          }
+        },
+        "subject_neq": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequestSubjectNeqList",
+          "traits": {
+            "smithy.api#httpQuery": "subject~neq"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeResultItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double"
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeResultItem"
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesTypeResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#AttackSurfaceReportIssuesType": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#AttackSurfaceReportIssuesTypeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/attack-surface-report/issues/type",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves Security Center issue counts aggregated by issue type.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#DnsListRequestStartEndParams": {
+      "type": "structure",
+      "members": {
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defaults to the current date."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defaults to 30 days before the end parameter value."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#DnsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ipv4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ipv4"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Requested page within paginated list of results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results requested.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "start_end_params": {
+          "target": "com.cloudflare.intel#DnsListRequestStartEndParams",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "start_end_params"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#DnsListResponseReverseRecordsItem": {
+      "type": "structure",
+      "members": {
+        "first_seen": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First seen date of the DNS record during the time period."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname that the IP was observed resolving to."
+          }
+        },
+        "last_seen": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last seen date of the DNS record during the time period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#DnsListResponseReverseRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DnsListResponseReverseRecordsItem"
+      }
+    },
+    "com.cloudflare.intel#DnsListResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total results returned based on your search parameters."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Current page within paginated list of results."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of results per page of results."
+          }
+        },
+        "reverse_records": {
+          "target": "com.cloudflare.intel#DnsListResponseReverseRecordsList",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS look-ups observed during the time period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#DnsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#DnsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#DnsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of all the domains that have resolved to a specific IP address.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsItemCategoriesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsItemCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsItemCategoriesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsItem": {
+      "type": "structure",
+      "members": {
+        "categories": {
+          "target": "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsItemCategoriesList"
+        },
+        "end": {
+          "target": "smithy.api#String"
+        },
+        "start": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsItem"
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResultItem": {
+      "type": "structure",
+      "members": {
+        "categorizations": {
+          "target": "com.cloudflare.intel#DomainHistoryGetResultItemCategorizationsList"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainHistoryGetResultItem"
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#DomainHistoryGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#DomainHistoryGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#DomainHistoryGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#DomainHistoryGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/domain-history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets historical security threat and content categories currently and previously assigned to a domain.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#DomainsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "domain"
+          }
+        },
+        "skip_dns": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip DNS resolution lookups for faster response.",
+            "smithy.api#httpQuery": "skip_dns"
+          }
+        },
+        "skip_ranking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip the domain ranking lookup for faster responses. Defaults to",
+            "smithy.api#httpQuery": "skip_ranking"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseAdditionalInformation": {
+      "type": "structure",
+      "members": {
+        "suspected_malware_family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Suspected DGA malware family."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseApplication": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseContentCategoriesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseContentCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsGetResponseContentCategoriesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseInheritedContentCategoriesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseInheritedContentCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsGetResponseInheritedContentCategoriesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseInheritedRiskTypesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseInheritedRiskTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsGetResponseInheritedRiskTypesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseResolvesToRefsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "STIX 2.1 identifier: https://docs.oasis-open.org/cti/stix/v2.1/cs02/stix-v2.1-cs02.html#_64yvzeku5a5c."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address or domain name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseResolvesToRefsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsGetResponseResolvesToRefsItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseRiskTypesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponseRiskTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsGetResponseRiskTypesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsGetResponse": {
+      "type": "structure",
+      "members": {
+        "additional_information": {
+          "target": "com.cloudflare.intel#DomainsGetResponseAdditionalInformation",
+          "traits": {
+            "smithy.api#documentation": "Additional information related to the host name."
+          }
+        },
+        "application": {
+          "target": "com.cloudflare.intel#DomainsGetResponseApplication",
+          "traits": {
+            "smithy.api#documentation": "Application that the hostname belongs to."
+          }
+        },
+        "content_categories": {
+          "target": "com.cloudflare.intel#DomainsGetResponseContentCategoriesList"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "inherited_content_categories": {
+          "target": "com.cloudflare.intel#DomainsGetResponseInheritedContentCategoriesList"
+        },
+        "inherited_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain from which `inherited_content_categories` and `inherited_risk_types` are inherited, if applicable."
+          }
+        },
+        "inherited_risk_types": {
+          "target": "com.cloudflare.intel#DomainsGetResponseInheritedRiskTypesList"
+        },
+        "popularity_rank": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Global Cloudflare 100k ranking for the last 30 days, if available for the hostname. The top ranked domain is 1, the lowest ranked domain is 100,000."
+          }
+        },
+        "resolves_to_refs": {
+          "target": "com.cloudflare.intel#DomainsGetResponseResolvesToRefsList",
+          "traits": {
+            "smithy.api#documentation": "Specifies a list of references to one or more IP addresses or domain names that the domain name currently resolves to."
+          }
+        },
+        "risk_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Hostname risk score, which is a value between 0 (lowest risk) to 1 (highest risk)."
+          }
+        },
+        "risk_types": {
+          "target": "com.cloudflare.intel#DomainsGetResponseRiskTypesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#DomainsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#DomainsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#DomainsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/domain",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets security details and statistics about a domain.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetRequestDomainList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "com.cloudflare.intel#DomainsBulksGetRequestDomainList",
+          "traits": {
+            "smithy.api#documentation": "Accepts multiple values like `?domain=cloudflare.com&domain=example.com`.",
+            "smithy.api#httpQuery": "domain"
+          }
+        },
+        "include_ranking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include domain ranking data in the response. Defaults to",
+            "smithy.api#httpQuery": "include_ranking"
+          }
+        },
+        "skip_ranking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "**Deprecated.** Previously controlled whether the ranking lookup",
+            "smithy.api#httpQuery": "skip_ranking"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemAdditionalInformation": {
+      "type": "structure",
+      "members": {
+        "suspected_malware_family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Suspected DGA malware family."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemApplication": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemContentCategoriesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemContentCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsBulksGetResultItemContentCategoriesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemInheritedContentCategoriesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemInheritedContentCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsBulksGetResultItemInheritedContentCategoriesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemInheritedRiskTypesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemInheritedRiskTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsBulksGetResultItemInheritedRiskTypesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemRiskTypesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItemRiskTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsBulksGetResultItemRiskTypesItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultItem": {
+      "type": "structure",
+      "members": {
+        "additional_information": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultItemAdditionalInformation",
+          "traits": {
+            "smithy.api#documentation": "Additional information related to the host name."
+          }
+        },
+        "application": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultItemApplication",
+          "traits": {
+            "smithy.api#documentation": "Application that the hostname belongs to."
+          }
+        },
+        "content_categories": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultItemContentCategoriesList"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "inherited_content_categories": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultItemInheritedContentCategoriesList"
+        },
+        "inherited_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain from which `inherited_content_categories` and `inherited_risk_types` are inherited, if applicable."
+          }
+        },
+        "inherited_risk_types": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultItemInheritedRiskTypesList"
+        },
+        "popularity_rank": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Global Cloudflare 100k ranking for the last 30 days, if available for the hostname. The top ranked domain is 1, the lowest ranked domain is 100,000."
+          }
+        },
+        "risk_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Hostname risk score, which is a value between 0 (lowest risk) to 1 (highest risk)."
+          }
+        },
+        "risk_types": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultItemRiskTypesList"
+        }
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#DomainsBulksGetResultItem"
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#DomainsBulksGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#DomainsBulksGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#DomainsBulksGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#DomainsBulksGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/domain/bulk",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns security details and statistics about multiple domains in a single request. **Behavior change — domain ranking is becoming opt-in.** This endpoint previously included domain ranking data in every response and accepted a `skip_ranking=true` query parameter to opt out. That parameter is being deprecated and ranking will no longer be returned by default. Callers that want ranking data must pass `include_ranking=true`. The `skip_ranking` parameter will be silently ignored once the change ships.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the example test"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the indicator feed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the indicator feed"
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was created"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the example test"
+          }
+        },
+        "is_attributable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be attributed to a provider"
+          }
+        },
+        "is_downloadable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be downloaded"
+          }
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed is exposed to customers"
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was last modified"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the indicator feed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new custom threat indicator feed for sharing threat intelligence data."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsDataRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "feed_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicator feed ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsData": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsDataRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the raw data entries in a custom threat indicator feed.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "feed_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicator feed ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummaryPersisted": {
+      "type": "structure",
+      "members": {
+        "domains_added": {
+          "target": "smithy.api#Double"
+        },
+        "domains_removed": {
+          "target": "smithy.api#Double"
+        },
+        "ips_added": {
+          "target": "smithy.api#Double"
+        },
+        "ips_removed": {
+          "target": "smithy.api#Double"
+        },
+        "urls_added": {
+          "target": "smithy.api#Double"
+        },
+        "urls_removed": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummarySkipped": {
+      "type": "structure",
+      "members": {
+        "allowlisted_domains": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Domains filtered by the global popularity allowlist at QS"
+          }
+        },
+        "expired_indicators": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicators in the upload whose valid_until is already in"
+          }
+        },
+        "invalid_indicators": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Reserved for future use. Currently always 0 — the unifier"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummaryUploaded": {
+      "type": "structure",
+      "members": {
+        "domains": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of domain indicators in the upload"
+          }
+        },
+        "ips": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of IP indicators in the upload"
+          }
+        },
+        "urls": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of URL indicators in the upload"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummary": {
+      "type": "structure",
+      "members": {
+        "persisted": {
+          "target": "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummaryPersisted",
+          "traits": {
+            "smithy.api#documentation": "Net delta applied to feed indicators by this upload. Snapshot"
+          }
+        },
+        "skipped": {
+          "target": "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummarySkipped",
+          "traits": {
+            "smithy.api#documentation": "Counts of indicators that were uploaded but did not reach"
+          }
+        },
+        "uploaded": {
+          "target": "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummaryUploaded",
+          "traits": {
+            "smithy.api#documentation": "Indicator counts from the unified file the loader received"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetResponseLatestUploadStatus": {
+      "type": "enum",
+      "members": {
+        "MIRRORING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Mirroring"
+          }
+        },
+        "UNIFYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unifying"
+          }
+        },
+        "LOADING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Loading"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Complete"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the indicator feed"
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was created"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the example test"
+          }
+        },
+        "is_attributable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be attributed to a provider"
+          }
+        },
+        "is_downloadable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be downloaded"
+          }
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed is exposed to customers"
+          }
+        },
+        "last_upload_summary": {
+          "target": "com.cloudflare.intel#IndicatorFeedsGetResponseLastUploadSummary",
+          "traits": {
+            "smithy.api#documentation": "Summary of indicator counts from the last successful upload to this"
+          }
+        },
+        "latest_upload_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable error message describing why the latest upload"
+          }
+        },
+        "latest_upload_status": {
+          "target": "com.cloudflare.intel#IndicatorFeedsGetResponseLatestUploadStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the latest snapshot uploaded"
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was last modified"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the indicator feed"
+          }
+        },
+        "provider_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the provider"
+          }
+        },
+        "provider_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider of the indicator feed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves details for a specific custom threat indicator feed.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the indicator feed"
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was created"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the example test"
+          }
+        },
+        "is_attributable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be attributed to a provider"
+          }
+        },
+        "is_downloadable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be downloaded"
+          }
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed is exposed to customers"
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was last modified"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the indicator feed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#IndicatorFeedsListResultItem"
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#IndicatorFeedsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves details for all accessible custom threat indicator feeds.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "feed_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicator feed ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new description of the feed"
+          }
+        },
+        "is_attributable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The new is_attributable value of the feed"
+          }
+        },
+        "is_downloadable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The new is_downloadable value of the feed"
+          }
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The new is_public value of the feed"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new name of the feed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the indicator feed"
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was created"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the example test"
+          }
+        },
+        "is_attributable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be attributed to a provider"
+          }
+        },
+        "is_downloadable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be downloaded"
+          }
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed is exposed to customers"
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the data entry was last modified"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the indicator feed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revises details for a specific custom threat indicator feed.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "account_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudflare account tag of the account to change permissions on"
+          }
+        },
+        "feed_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ID of the feed to add/remove permissions on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the update succeeded or not"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/permissions/add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Grants access permissions for a custom threat indicator feed to other accounts.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "account_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudflare account tag of the account to change permissions on"
+          }
+        },
+        "feed_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ID of the feed to add/remove permissions on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the update succeeded or not"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/permissions/remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revokes access permissions for a custom threat indicator feed.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the indicator feed"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the example test"
+          }
+        },
+        "is_attributable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be attributed to a provider"
+          }
+        },
+        "is_downloadable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed can be downloaded"
+          }
+        },
+        "is_public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the indicator feed is exposed to customers"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the indicator feed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsListResultItem"
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsPermissionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsPermissionsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/permissions/view",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists current access permissions for custom threat indicator feeds.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "feed_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Indicator feed ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "file_id": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Feed id"
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the file unified in our system"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current status of upload, should be unified"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revises the raw data entries in a custom threat indicator feed. Accepts both plain and gzipped STIX2/CRDF bodies. Gzip is detected by RFC 1952 magic bytes (`0x1f 0x8b`) and/or a `.gz` filename suffix (case-insensitive) — either signal alone is sufficient to trigger the gzip path; if the body is not valid gzip, the upload fails fast. Customers are encouraged to gzip larger uploads — the api-gateway 500 MB body cap applies to the on-the-wire (compressed) size, so gzip lets a single upload carry several GiB of decompressed STIX.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.intel#IpsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ipv4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ipv4"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ipv6"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#IpsGetResultItemBelongsToRefType": {
+      "type": "enum",
+      "members": {
+        "HOSTING_PROVIDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hosting_provider"
+          }
+        },
+        "ISP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "isp"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#IpsGetResultItemBelongsToRef": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "country": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "com.cloudflare.intel#IpsGetResultItemBelongsToRefType",
+          "traits": {
+            "smithy.api#documentation": "Infrastructure type of this ASN."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.intel#IpsGetResultItemRiskTypesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Double"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "super_category_id": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.intel#IpsGetResultItemRiskTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#IpsGetResultItemRiskTypesItem"
+      }
+    },
+    "com.cloudflare.intel#IpsGetResultItem": {
+      "type": "structure",
+      "members": {
+        "belongs_to_ref": {
+          "target": "com.cloudflare.intel#IpsGetResultItemBelongsToRef",
+          "traits": {
+            "smithy.api#documentation": "Specifies a reference to the autonomous systems (AS) that the IP address belongs to."
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String"
+        },
+        "risk_types": {
+          "target": "com.cloudflare.intel#IpsGetResultItemRiskTypesList"
+        }
+      }
+    },
+    "com.cloudflare.intel#IpsGetResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#IpsGetResultItem"
+      }
+    },
+    "com.cloudflare.intel#IpsGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#IpsGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#IpsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#IpsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#IpsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/ip",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets the geolocation, ASN, infrastructure type of the ASN, and any security threat categories of an IP address. **Must provide ip query parameters.** For example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreateRequestContentAddsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreateRequestContentRemovesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreateRequestIndicatorType": {
+      "type": "enum",
+      "members": {
+        "DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain"
+          }
+        },
+        "IPV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ipv4"
+          }
+        },
+        "IPV6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ipv6"
+          }
+        },
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreateRequestSecurityAddsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreateRequestSecurityRemovesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "content_adds": {
+          "target": "com.cloudflare.intel#MiscategorizationsCreateRequestContentAddsList",
+          "traits": {
+            "smithy.api#documentation": "Content category IDs to add."
+          }
+        },
+        "content_removes": {
+          "target": "com.cloudflare.intel#MiscategorizationsCreateRequestContentRemovesList",
+          "traits": {
+            "smithy.api#documentation": "Content category IDs to remove."
+          }
+        },
+        "indicator_type": {
+          "target": "com.cloudflare.intel#MiscategorizationsCreateRequestIndicatorType"
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide only if indicator_type is `ipv4` or `ipv6`."
+          }
+        },
+        "security_adds": {
+          "target": "com.cloudflare.intel#MiscategorizationsCreateRequestSecurityAddsList",
+          "traits": {
+            "smithy.api#documentation": "Security category IDs to add."
+          }
+        },
+        "security_removes": {
+          "target": "com.cloudflare.intel#MiscategorizationsCreateRequestSecurityRemovesList",
+          "traits": {
+            "smithy.api#documentation": "Security category IDs to remove."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provide only if indicator_type is `domain` or `url`. Example if indicator_type is `domain`: `example.com`. Example if indicator_type is `url`: `https://example.com/news/`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#MiscategorizationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#MiscategorizationsCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/intel/miscategorization",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allows you to submit requests to change a domain’s category. Requests that include category `169` (New Domains) or category `177` (Newly Seen) in any of `content_adds`, `content_removes`, `security_adds`, or `security_removes` will be rejected with a `400 Bad Request`. These categories are automatically managed and fall off 30 days after they are applied."
+      }
+    },
+    "com.cloudflare.intel#SinkholesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#SinkholesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the sinkhole."
+          }
+        },
+        "account_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account tag that owns this sinkhole."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the sinkhole was created."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the sinkhole was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the sinkhole."
+          }
+        },
+        "r2_bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the R2 bucket to store results."
+          }
+        },
+        "r2_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the R2 instance."
+          }
+        }
+      }
+    },
+    "com.cloudflare.intel#SinkholesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.intel#SinkholesListResultItem"
+      }
+    },
+    "com.cloudflare.intel#SinkholesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.intel#SinkholesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.intel#SinkholesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#SinkholesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#SinkholesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/sinkholes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists sinkholes owned by the account for redirecting malicious traffic.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#WhoisGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use to uniquely identify or reference the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.intel#WhoisGetResponseNameserversList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#WhoisGetResponseStatusList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.intel#WhoisGetResponse": {
+      "type": "structure",
+      "members": {
+        "dnssec": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "extension": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "found": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "nameservers": {
+          "target": "com.cloudflare.intel#WhoisGetResponseNameserversList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "punycode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "registrant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "registrar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "administrative_city": {
+          "target": "smithy.api#String"
+        },
+        "administrative_country": {
+          "target": "smithy.api#String"
+        },
+        "administrative_email": {
+          "target": "smithy.api#String"
+        },
+        "administrative_fax": {
+          "target": "smithy.api#String"
+        },
+        "administrative_fax_ext": {
+          "target": "smithy.api#String"
+        },
+        "administrative_id": {
+          "target": "smithy.api#String"
+        },
+        "administrative_name": {
+          "target": "smithy.api#String"
+        },
+        "administrative_org": {
+          "target": "smithy.api#String"
+        },
+        "administrative_phone": {
+          "target": "smithy.api#String"
+        },
+        "administrative_phone_ext": {
+          "target": "smithy.api#String"
+        },
+        "administrative_postal_code": {
+          "target": "smithy.api#String"
+        },
+        "administrative_province": {
+          "target": "smithy.api#String"
+        },
+        "administrative_referral_url": {
+          "target": "smithy.api#String"
+        },
+        "administrative_street": {
+          "target": "smithy.api#String"
+        },
+        "billing_city": {
+          "target": "smithy.api#String"
+        },
+        "billing_country": {
+          "target": "smithy.api#String"
+        },
+        "billing_email": {
+          "target": "smithy.api#String"
+        },
+        "billing_fax": {
+          "target": "smithy.api#String"
+        },
+        "billing_fax_ext": {
+          "target": "smithy.api#String"
+        },
+        "billing_id": {
+          "target": "smithy.api#String"
+        },
+        "billing_name": {
+          "target": "smithy.api#String"
+        },
+        "billing_org": {
+          "target": "smithy.api#String"
+        },
+        "billing_phone": {
+          "target": "smithy.api#String"
+        },
+        "billing_phone_ext": {
+          "target": "smithy.api#String"
+        },
+        "billing_postal_code": {
+          "target": "smithy.api#String"
+        },
+        "billing_province": {
+          "target": "smithy.api#String"
+        },
+        "billing_referral_url": {
+          "target": "smithy.api#String"
+        },
+        "billing_street": {
+          "target": "smithy.api#String"
+        },
+        "created_date": {
+          "target": "smithy.api#String"
+        },
+        "created_date_raw": {
+          "target": "smithy.api#String"
+        },
+        "expiration_date": {
+          "target": "smithy.api#String"
+        },
+        "expiration_date_raw": {
+          "target": "smithy.api#String"
+        },
+        "registrant_city": {
+          "target": "smithy.api#String"
+        },
+        "registrant_country": {
+          "target": "smithy.api#String"
+        },
+        "registrant_email": {
+          "target": "smithy.api#String"
+        },
+        "registrant_fax": {
+          "target": "smithy.api#String"
+        },
+        "registrant_fax_ext": {
+          "target": "smithy.api#String"
+        },
+        "registrant_id": {
+          "target": "smithy.api#String"
+        },
+        "registrant_name": {
+          "target": "smithy.api#String"
+        },
+        "registrant_org": {
+          "target": "smithy.api#String"
+        },
+        "registrant_phone": {
+          "target": "smithy.api#String"
+        },
+        "registrant_phone_ext": {
+          "target": "smithy.api#String"
+        },
+        "registrant_postal_code": {
+          "target": "smithy.api#String"
+        },
+        "registrant_province": {
+          "target": "smithy.api#String"
+        },
+        "registrant_referral_url": {
+          "target": "smithy.api#String"
+        },
+        "registrant_street": {
+          "target": "smithy.api#String"
+        },
+        "registrar_city": {
+          "target": "smithy.api#String"
+        },
+        "registrar_country": {
+          "target": "smithy.api#String"
+        },
+        "registrar_email": {
+          "target": "smithy.api#String"
+        },
+        "registrar_fax": {
+          "target": "smithy.api#String"
+        },
+        "registrar_fax_ext": {
+          "target": "smithy.api#String"
+        },
+        "registrar_id": {
+          "target": "smithy.api#String"
+        },
+        "registrar_name": {
+          "target": "smithy.api#String"
+        },
+        "registrar_org": {
+          "target": "smithy.api#String"
+        },
+        "registrar_phone": {
+          "target": "smithy.api#String"
+        },
+        "registrar_phone_ext": {
+          "target": "smithy.api#String"
+        },
+        "registrar_postal_code": {
+          "target": "smithy.api#String"
+        },
+        "registrar_province": {
+          "target": "smithy.api#String"
+        },
+        "registrar_referral_url": {
+          "target": "smithy.api#String"
+        },
+        "registrar_street": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.cloudflare.intel#WhoisGetResponseStatusList"
+        },
+        "technical_city": {
+          "target": "smithy.api#String"
+        },
+        "technical_country": {
+          "target": "smithy.api#String"
+        },
+        "technical_email": {
+          "target": "smithy.api#String"
+        },
+        "technical_fax": {
+          "target": "smithy.api#String"
+        },
+        "technical_fax_ext": {
+          "target": "smithy.api#String"
+        },
+        "technical_id": {
+          "target": "smithy.api#String"
+        },
+        "technical_name": {
+          "target": "smithy.api#String"
+        },
+        "technical_org": {
+          "target": "smithy.api#String"
+        },
+        "technical_phone": {
+          "target": "smithy.api#String"
+        },
+        "technical_phone_ext": {
+          "target": "smithy.api#String"
+        },
+        "technical_postal_code": {
+          "target": "smithy.api#String"
+        },
+        "technical_province": {
+          "target": "smithy.api#String"
+        },
+        "technical_referral_url": {
+          "target": "smithy.api#String"
+        },
+        "technical_street": {
+          "target": "smithy.api#String"
+        },
+        "updated_date": {
+          "target": "smithy.api#String"
+        },
+        "updated_date_raw": {
+          "target": "smithy.api#String"
+        },
+        "whois_server": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.intel#WhoisGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.intel#WhoisGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.intel#WhoisGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/intel/whois",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves WHOIS registration data for a domain, including registrant and nameserver information.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.intel#Intel": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.intel#AsnGet"
+        },
+        {
+          "target": "com.cloudflare.intel#AsnSubnetsGet"
+        },
+        {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssueTypesGet"
+        },
+        {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClass"
+        },
+        {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesDismiss"
+        },
+        {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesList"
+        },
+        {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverity"
+        },
+        {
+          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesType"
+        },
+        {
+          "target": "com.cloudflare.intel#DnsList"
+        },
+        {
+          "target": "com.cloudflare.intel#DomainHistoryGet"
+        },
+        {
+          "target": "com.cloudflare.intel#DomainsGet"
+        },
+        {
+          "target": "com.cloudflare.intel#DomainsBulksGet"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsCreate"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsData"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsGet"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsList"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsUpdate"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsCreate"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsDelete"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsList"
+        },
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdate"
+        },
+        {
+          "target": "com.cloudflare.intel#IpsGet"
+        },
+        {
+          "target": "com.cloudflare.intel#MiscategorizationsCreate"
+        },
+        {
+          "target": "com.cloudflare.intel#SinkholesList"
+        },
+        {
+          "target": "com.cloudflare.intel#WhoisGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Intel",
+        "smithy.api#documentation": "Cloudflare API — intel resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

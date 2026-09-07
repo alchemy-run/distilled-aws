@@ -1,0 +1,42 @@
+{
+  "description": "Align accounts#SubscriptionsCreate with distilled cloudflare/accounts createSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsCreate",
+      "path": "/shapes/com.cloudflare.accounts#CreateSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsCreateRequest",
+      "path": "/shapes/com.cloudflare.accounts#CreateSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#CreateSubscription/input/target",
+      "value": "com.cloudflare.accounts#CreateSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsCreateResponse",
+      "path": "/shapes/com.cloudflare.accounts#CreateSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#CreateSubscription/output/target",
+      "value": "com.cloudflare.accounts#CreateSubscriptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#CreateSubscription/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#JsonDecodeFailure"
+        },
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

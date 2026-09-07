@@ -1,0 +1,30 @@
+{
+  "description": "Align rulesets#PhasesVersionsGetForAccount with distilled cloudflare/rulesets getPhasVersionForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesVersionsGetForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasVersionForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesVersionsGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasVersionForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasVersionForAccount/input/target",
+      "value": "com.cloudflare.rulesets#GetPhasVersionForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesVersionsGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasVersionForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#GetPhasVersionForAccount/output/target",
+      "value": "com.cloudflare.rulesets#GetPhasVersionForAccountResponse"
+    }
+  ]
+}

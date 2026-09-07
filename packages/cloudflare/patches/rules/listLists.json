@@ -1,0 +1,47 @@
+{
+  "description": "Align rules#ListsList with distilled cloudflare/rules listLists",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsList",
+      "path": "/shapes/com.cloudflare.rules#ListLists"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsListRequest",
+      "path": "/shapes/com.cloudflare.rules#ListListsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#ListLists/input/target",
+      "value": "com.cloudflare.rules#ListListsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsListResponse",
+      "path": "/shapes/com.cloudflare.rules#ListListsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#ListLists/output/target",
+      "value": "com.cloudflare.rules#ListListsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rules#ListLists/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rules#ListLists/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rules#Forbidden"
+        }
+      ]
+    }
+  ]
+}

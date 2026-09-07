@@ -1,0 +1,45 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEdit with distilled cloudflare/ddos-protection patchAdvancedTcpProtectionTcpFlowProtectionFilterItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEdit",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEditRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItem/input/target",
+      "value": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEditResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItem/output/target",
+      "value": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItemResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionFilterItem/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ddos_protection#TcpFlowProtectionFilterNotFound"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2472 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances/{azureLargeStorageInstanceName}",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Patches the Tags field of a Azure Large Storage Instance for the specified\nsubscription, resource group, and instance name.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.azurelargeinstance#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceProperties": {
+      "type": "structure",
+      "members": {
+        "azureLargeStorageInstanceUniqueIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the AzureLargeStorageInstance unique ID."
+          }
+        },
+        "storageProperties": {
+          "target": "com.azure.azurelargeinstance#StorageProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the storage properties for the AzureLargeStorage instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an AzureLargeStorageInstance."
+      }
+    },
+    "com.azure.azurelargeinstance#StorageProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.azurelargeinstance#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "State of provisioning of the AzureLargeStorageInstance"
+          }
+        },
+        "offeringType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the offering type for which the resource is getting provisioned"
+          }
+        },
+        "storageType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the storage protocol for which the resource is getting provisioned"
+          }
+        },
+        "generation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the kind of storage instance"
+          }
+        },
+        "hardwareType": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceHardwareTypeNamesEnum",
+          "traits": {
+            "smithy.api#documentation": "the hardware type of the storage instance"
+          }
+        },
+        "workloadType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the workload for which the resource is getting provisioned"
+          }
+        },
+        "storageBillingProperties": {
+          "target": "com.azure.azurelargeinstance#StorageBillingProperties",
+          "traits": {
+            "smithy.api#documentation": "the billing related information for the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "described the storage properties of the azure large storage instance"
+      }
+    },
+    "com.azure.azurelargeinstance#StorageBillingProperties": {
+      "type": "structure",
+      "members": {
+        "billingMode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the billing mode for the storage instance"
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the SKU type that is provisioned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the billing related details of the AzureLargeStorageInstance."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceHardwareTypeNamesEnum": {
+      "type": "enum",
+      "members": {
+        "CISCO_UCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cisco_UCS"
+          }
+        },
+        "HPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HPE"
+          }
+        },
+        "SDFLEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SDFLEX"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of the hardware options (vendor and/or their product name) for an Azure Large Instance"
+      }
+    },
+    "com.azure.azurelargeinstance#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "MIGRATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Migrating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An enum of possible operation states for an AzureLargeStorageInstances"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.azurelargeinstance#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.azurelargeinstance#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.azurelargeinstance#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.azurelargeinstance#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeStorageInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeStorageInstance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances/{azureLargeStorageInstanceName}",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Gets an Azure Large Storage instance for the specified subscription, resource\ngroup, and instance name.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.azurelargeinstance#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeStorageInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeStorageInstance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Gets a list of AzureLargeStorageInstances in the specified subscription and\nresource group. The operations returns various properties of each Azure\nLargeStorage instance.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The AzureLargeStorageInstance items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a AzureLargeStorageInstance list operation."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstance"
+      },
+      "traits": {
+        "smithy.api#documentation": "The AzureLargeStorageInstance items on this page"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.azurelargeinstance#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AzureLargeStorageInstance info on Azure (ARM properties and\nAzureLargeStorageInstance properties)"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceStart": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceStartRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceStartResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/start",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "The operation to start an Azure Large Instance (only for compute instances)",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceStartResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceStartResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.azurelargeinstance#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#ErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.azurelargeinstance#ErrorDetailDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.azurelargeinstance#ErrorDetailAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.azurelargeinstance#ErrorDetailAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.azurelargeinstance#ErrorAdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.azurelargeinstance#ErrorDetailDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceStartResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.azurelargeinstance#OperationStatusResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.azurelargeinstance#OperationStatusResultOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.azurelargeinstance#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current status of an async operation."
+      }
+    },
+    "com.azure.azurelargeinstance#OperationStatusResultOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceStartRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeInstance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceShutdown": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdownRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdownResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/shutdown",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "The operation to shutdown an Azure Large Instance (only for compute instances)",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceShutdownResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdownResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.azurelargeinstance#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceShutdownResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceShutdownRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeInstance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceRestart": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestartRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/restart",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "The operation to restart an Azure Large Instance (only for compute instances)",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the async operation."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID of the resource against which the original async operation was started."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the async operation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percent of the operation that is complete."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the operation."
+          }
+        },
+        "operations": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponseOperationsList",
+          "traits": {
+            "smithy.api#documentation": "The operations list."
+          }
+        },
+        "error": {
+          "target": "com.azure.azurelargeinstance#ErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "If present, details of the operation error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponseOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#OperationStatusResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The operations list."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceRestartRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeInstance."
+          }
+        },
+        "forceState": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceForcePowerState",
+          "traits": {
+            "smithy.api#documentation": "Whether to force restart by shutting all processes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceForcePowerState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of two possible values to determine if the ALI instance restart operation should forcefully terminate and halt any existing processes that may be running on the server or not."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Patches the Tags field of an Azure Large Instance for the specified\nsubscription, resource group, and instance name.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.azurelargeinstance#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceProperties": {
+      "type": "structure",
+      "members": {
+        "hardwareProfile": {
+          "target": "com.azure.azurelargeinstance#HardwareProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the hardware settings for the Azure Large Instance."
+          }
+        },
+        "storageProfile": {
+          "target": "com.azure.azurelargeinstance#StorageProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the storage settings for the Azure Large Instance disks."
+          }
+        },
+        "osProfile": {
+          "target": "com.azure.azurelargeinstance#OsProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the operating system settings for the Azure Large Instance."
+          }
+        },
+        "networkProfile": {
+          "target": "com.azure.azurelargeinstance#NetworkProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network settings for the Azure Large Instance."
+          }
+        },
+        "azureLargeInstanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Azure Large Instance unique ID."
+          }
+        },
+        "powerState": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstancePowerStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Resource power state"
+          }
+        },
+        "proximityPlacementGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource proximity placement group"
+          }
+        },
+        "hwRevision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware revision of an Azure Large Instance"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceProvisioningStatesEnum",
+          "traits": {
+            "smithy.api#documentation": "State of provisioning of the AzureLargeInstance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an Azure Large Instance."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceProvisioningStatesEnum": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "MIGRATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Migrating"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning states that an Azure Large Instance can be in"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstancePowerStateEnum": {
+      "type": "enum",
+      "members": {
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "starting"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopping"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        },
+        "RESTARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "restarting"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Power states that an Azure Large Instance can be in"
+      }
+    },
+    "com.azure.azurelargeinstance#NetworkProfile": {
+      "type": "structure",
+      "members": {
+        "networkInterfaces": {
+          "target": "com.azure.azurelargeinstance#NetworkProfileNetworkInterfacesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network interfaces for the Azure Large Instance."
+          }
+        },
+        "circuitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the circuit id for connecting to express route."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the network settings for the Azure Large Instance disks."
+      }
+    },
+    "com.azure.azurelargeinstance#NetworkProfileNetworkInterfacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#IpAddress"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the network interfaces for the Azure Large Instance."
+      }
+    },
+    "com.azure.azurelargeinstance#IpAddress": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the IP address of the network interface."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the IP address of the network interface."
+      }
+    },
+    "com.azure.azurelargeinstance#OsProfile": {
+      "type": "structure",
+      "members": {
+        "computerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the host OS name of the Azure Large Instance."
+          }
+        },
+        "osType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This property allows you to specify the type of the OS."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies version of operating system."
+          }
+        },
+        "sshPublicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the SSH public key used to access the operating system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the operating system settings for the Azure Large Instance."
+      }
+    },
+    "com.azure.azurelargeinstance#StorageProfile": {
+      "type": "structure",
+      "members": {
+        "nfsIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP Address to connect to storage."
+          }
+        },
+        "osDisks": {
+          "target": "com.azure.azurelargeinstance#StorageProfileOsDisksList",
+          "traits": {
+            "smithy.api#documentation": "Specifies information about the operating system disk used by Azure Large\nInstance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the storage settings for the Azure Large Instance disks."
+      }
+    },
+    "com.azure.azurelargeinstance#StorageProfileOsDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#Disk"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies information about the operating system disk used by Azure Large\nInstance."
+      }
+    },
+    "com.azure.azurelargeinstance#Disk": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The disk name."
+          }
+        },
+        "diskSizeGB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the size of an empty data disk in gigabytes."
+          }
+        },
+        "lun": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the logical unit number of the data disk. This value is used to\nidentify data disks within the VM and therefore must be unique for each data\ndisk attached to a VM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the disk information fo the Azure Large Instance"
+      }
+    },
+    "com.azure.azurelargeinstance#HardwareProfile": {
+      "type": "structure",
+      "members": {
+        "hardwareType": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceHardwareTypeNamesEnum",
+          "traits": {
+            "smithy.api#documentation": "Name of the hardware type (vendor and/or their product name)"
+          }
+        },
+        "azureLargeInstanceSize": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceSizeNamesEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Azure Large Instance SKU."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the hardware settings for the Azure Large Instance."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceSizeNamesEnum": {
+      "type": "enum",
+      "members": {
+        "S72M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S72m"
+          }
+        },
+        "S144M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S144m"
+          }
+        },
+        "S72": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S72"
+          }
+        },
+        "S144": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S144"
+          }
+        },
+        "S192": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S192"
+          }
+        },
+        "S192M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S192m"
+          }
+        },
+        "S192XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S192xm"
+          }
+        },
+        "S96": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S96"
+          }
+        },
+        "S112": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S112"
+          }
+        },
+        "S224": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224"
+          }
+        },
+        "S224M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224m"
+          }
+        },
+        "S224OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224om"
+          }
+        },
+        "S224OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224oo"
+          }
+        },
+        "S224OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224oom"
+          }
+        },
+        "S224OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224ooo"
+          }
+        },
+        "S224SE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224se"
+          }
+        },
+        "S384": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384"
+          }
+        },
+        "S384M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384m"
+          }
+        },
+        "S384XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384xm"
+          }
+        },
+        "S384XXM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384xxm"
+          }
+        },
+        "S448": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448"
+          }
+        },
+        "S448M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448m"
+          }
+        },
+        "S448OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448om"
+          }
+        },
+        "S448OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448oo"
+          }
+        },
+        "S448OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448oom"
+          }
+        },
+        "S448OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448ooo"
+          }
+        },
+        "S448SE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448se"
+          }
+        },
+        "S576M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S576m"
+          }
+        },
+        "S576XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S576xm"
+          }
+        },
+        "S672": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672"
+          }
+        },
+        "S672M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672m"
+          }
+        },
+        "S672OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672om"
+          }
+        },
+        "S672OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672oo"
+          }
+        },
+        "S672OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672oom"
+          }
+        },
+        "S672OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672ooo"
+          }
+        },
+        "S768": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S768"
+          }
+        },
+        "S768M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S768m"
+          }
+        },
+        "S768XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S768xm"
+          }
+        },
+        "S896": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896"
+          }
+        },
+        "S896M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896m"
+          }
+        },
+        "S896OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896om"
+          }
+        },
+        "S896OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896oo"
+          }
+        },
+        "S896OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896oom"
+          }
+        },
+        "S896OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896ooo"
+          }
+        },
+        "S960M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S960m"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of available model types (each of which have their own storage / memory sizes) for an Azure Large Instance type. See https://learn.microsoft.com/azure/sap/large-instances/hana-available-skus"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeInstance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceGetRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Gets an Azure Large Instance for the specified subscription, resource group,\nand instance name.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.azurelargeinstance#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureLargeInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureLargeInstance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Gets a list of Azure Large Instances in the specified subscription and resource\ngroup. The operations returns various properties of each Azure Large Instance.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The AzureLargeInstance items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a AzureLargeInstance list operation."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstance"
+      },
+      "traits": {
+        "smithy.api#documentation": "The AzureLargeInstance items on this page"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.azurelargeinstance#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Large Instance info on Azure (ARM properties and AzureLargeInstance\nproperties)"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Gets a list of AzureLargeStorageInstances in the specified subscription. The\noperations returns various properties of each Azure LargeStorage instance.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#AzureLargeInstanceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AzureLargeInstance/azureLargeInstances",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "Gets a list of Azure Large Instances in the specified subscription. The\noperations returns various properties of each Azure Large Instance.",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.azurelargeinstance#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.azurelargeinstance#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AzureLargeInstance/operations",
+          "code": 200,
+          "apiVersion": "2024-04-10"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-04-10"
+      }
+    },
+    "com.azure.azurelargeinstance#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.azurelargeinstance#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.azurelargeinstance#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.azurelargeinstance#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.azurelargeinstance#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.azurelargeinstance#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.azurelargeinstance#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.azurelargeinstance#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.azurelargeinstance#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.azurelargeinstance#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.azurelargeinstance#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.azurelargeinstance#Azurelargeinstance": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdate"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGet"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceStart"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdown"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestart"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdate"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceGet"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscription"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscription"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Azurelargeinstance",
+        "smithy.api#documentation": "Azure Azurelargeinstance API — merged from the azurelargeinstance resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

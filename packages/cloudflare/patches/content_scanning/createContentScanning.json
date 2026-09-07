@@ -1,0 +1,42 @@
+{
+  "description": "Align content_scanning#Create with distilled cloudflare/content-scanning createContentScanning",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#Create",
+      "path": "/shapes/com.cloudflare.content_scanning#CreateContentScanning"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#CreateRequest",
+      "path": "/shapes/com.cloudflare.content_scanning#CreateContentScanningRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.content_scanning#CreateContentScanning/input/target",
+      "value": "com.cloudflare.content_scanning#CreateContentScanningRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#CreateResponse",
+      "path": "/shapes/com.cloudflare.content_scanning#CreateContentScanningResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.content_scanning#CreateContentScanning/output/target",
+      "value": "com.cloudflare.content_scanning#CreateContentScanningResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.content_scanning#CreateContentScanning/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    }
+  ]
+}

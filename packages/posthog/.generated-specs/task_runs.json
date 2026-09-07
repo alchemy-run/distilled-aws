@@ -1,0 +1,2971 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.task_runs#TasksRunsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#PaginatedTaskRunDetailDTOList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.task_runs#PaginatedTaskRunDetailDTOListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunDetailDTO": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "task": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parent task id this run belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "stage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "environment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "runtime_adapter": {
+          "target": "com.posthog.task_runs#RuntimeAdapterEnum",
+          "traits": {
+            "smithy.api#documentation": "Configured runtime adapter for this run, such as 'claude' or 'codex'.\n\n* `claude` - claude\n* `codex` - codex",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "provider": {
+          "target": "com.posthog.task_runs#TaskRunDetailDTOProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "Configured LLM provider for this run, such as 'anthropic' or 'openai'.\n\n* `anthropic` - anthropic\n* `openai` - openai",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Configured LLM model identifier for this run.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reasoning_effort": {
+          "target": "com.posthog.task_runs#ReasoningEffortEnum",
+          "traits": {
+            "smithy.api#documentation": "Configured reasoning effort for this run when the selected model supports it.\n\n* `low` - low\n* `medium` - medium\n* `high` - high\n* `xhigh` - xhigh\n* `max` - max",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "log_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Presigned S3 URL for log access (valid for 1 hour).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "output": {
+          "target": "com.posthog.task_runs#TaskRunDetailDTOOutputMap",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.posthog.task_runs#TaskRunDetailDTOStateMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "artifacts": {
+          "target": "com.posthog.task_runs#TaskRunDetailDTOArtifactsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detail response for a task run.\n\nReads from a frozen ``TaskRunDetailDTO`` produced by the facade mapper (which computes the\npresigned ``log_url`` and parses ``runtime_adapter`` / ``provider`` / ``model`` /\n``reasoning_effort`` off the run state). ``task`` is the parent task id. Reused as the nested\n``latest_run`` shape by the task detail response."
+      }
+    },
+    "com.posthog.task_runs#RuntimeAdapterEnum": {
+      "type": "enum",
+      "members": {
+        "CLAUDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "claude"
+          }
+        },
+        "CODEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "codex"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `claude` - claude\n* `codex` - codex"
+      }
+    },
+    "com.posthog.task_runs#TaskRunDetailDTOProviderEnum": {
+      "type": "enum",
+      "members": {
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `anthropic` - anthropic\n* `openai` - openai"
+      }
+    },
+    "com.posthog.task_runs#ReasoningEffortEnum": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "XHIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xhigh"
+          }
+        },
+        "MAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "max"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `low` - low\n* `medium` - medium\n* `high` - high\n* `xhigh` - xhigh\n* `max` - max"
+      }
+    },
+    "com.posthog.task_runs#TaskRunDetailDTOOutputMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunDetailDTOStateMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunArtifactResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for the artifact within this run"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact file name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact classification (plan, context, etc.)"
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source of the artifact, such as agent_output or user_attachment"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Artifact size in bytes"
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional MIME type"
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.task_runs#TaskRunArtifactMetadata",
+          "traits": {
+            "smithy.api#documentation": "Optional structured metadata for special artifact types, such as skill bundles."
+          }
+        },
+        "storage_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3 object key for the artifact"
+          }
+        },
+        "uploaded_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the artifact was uploaded"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunArtifactMetadata": {
+      "type": "structure",
+      "members": {
+        "skill_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the local skill included in a skill_bundle artifact.",
+            "smithy.api#required": {}
+          }
+        },
+        "skill_source": {
+          "target": "com.posthog.task_runs#SkillSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Local source for the uploaded skill bundle, such as user or repo.\n\n* `user` - user\n* `repo` - repo\n* `marketplace` - marketplace\n* `codex` - codex",
+            "smithy.api#required": {}
+          }
+        },
+        "content_sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA-256 hex digest of the uploaded skill bundle bytes.",
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_format": {
+          "target": "com.posthog.task_runs#BundleFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "Archive format used for the local skill bundle.\n\n* `zip` - zip",
+            "smithy.api#required": {}
+          }
+        },
+        "schema_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version of the local skill bundle metadata schema.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#SkillSourceEnum": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo"
+          }
+        },
+        "MARKETPLACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace"
+          }
+        },
+        "CODEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "codex"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `user` - user\n* `repo` - repo\n* `marketplace` - marketplace\n* `codex` - codex"
+      }
+    },
+    "com.posthog.task_runs#BundleFormatEnum": {
+      "type": "enum",
+      "members": {
+        "ZIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `zip` - zip"
+      }
+    },
+    "com.posthog.task_runs#TaskRunDetailDTOArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#PaginatedTaskRunDetailDTOListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#PaginatedTaskRunDetailDTOList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List task runs\n\nGet a list of runs for a specific task."
+      }
+    },
+    "com.posthog.task_runs#TaskRunBootstrapCreateRequestEnvironmentEnum": {
+      "type": "enum",
+      "members": {
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "local"
+          }
+        },
+        "CLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloud"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `local` - local\n* `cloud` - cloud"
+      }
+    },
+    "com.posthog.task_runs#TaskExecutionModeEnum": {
+      "type": "enum",
+      "members": {
+        "INTERACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactive"
+          }
+        },
+        "BACKGROUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "background"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `interactive` - interactive\n* `background` - background"
+      }
+    },
+    "com.posthog.task_runs#PrAuthorshipModeEnum": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "BOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `user` - user\n* `bot` - bot"
+      }
+    },
+    "com.posthog.task_runs#RunSourceEnum": {
+      "type": "enum",
+      "members": {
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "SIGNAL_REPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "signal_report"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `manual` - manual\n* `signal_report` - signal_report"
+      }
+    },
+    "com.posthog.task_runs#TaskRunBootstrapCreateRequestInitialPermissionModeEnum": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "ACCEPTEDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "acceptEdits"
+          }
+        },
+        "PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan"
+          }
+        },
+        "BYPASSPERMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bypassPermissions"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-only"
+          }
+        },
+        "FULL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full-access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `default` - default\n* `acceptEdits` - acceptEdits\n* `plan` - plan\n* `bypassPermissions` - bypassPermissions\n* `auto` - auto\n* `read-only` - read-only\n* `full-access` - full-access"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "environment": {
+          "target": "com.posthog.task_runs#TaskRunBootstrapCreateRequestEnvironmentEnum",
+          "traits": {
+            "smithy.api#documentation": "Execution environment for the new run. Use 'cloud' for remote sandbox runs and 'local' for desktop sessions.\n\n* `local` - local\n* `cloud` - cloud"
+          }
+        },
+        "mode": {
+          "target": "com.posthog.task_runs#TaskExecutionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Execution mode: 'interactive' for user-connected runs, 'background' for autonomous runs\n\n* `interactive` - interactive\n* `background` - background"
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch to checkout in the sandbox",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sandbox_environment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional sandbox environment to apply for this cloud run."
+          }
+        },
+        "pr_authorship_mode": {
+          "target": "com.posthog.task_runs#PrAuthorshipModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether pull requests for this run should be authored by the user or the bot.\n\n* `user` - user\n* `bot` - bot"
+          }
+        },
+        "run_source": {
+          "target": "com.posthog.task_runs#RunSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "High-level source that triggered this run, used to distinguish manual and signal-based cloud runs.\n\n* `manual` - manual\n* `signal_report` - signal_report"
+          }
+        },
+        "signal_report_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional signal report identifier when this run was started from Inbox."
+          }
+        },
+        "runtime_adapter": {
+          "target": "com.posthog.task_runs#RuntimeAdapterEnum",
+          "traits": {
+            "smithy.api#documentation": "Agent runtime adapter to launch for this run. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime.\n\n* `claude` - claude\n* `codex` - codex"
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "LLM model identifier to run in the selected runtime."
+          }
+        },
+        "reasoning_effort": {
+          "target": "com.posthog.task_runs#ReasoningEffortEnum",
+          "traits": {
+            "smithy.api#documentation": "Reasoning effort to request for models that expose an effort control.\n\n* `low` - low\n* `medium` - medium\n* `high` - high\n* `xhigh` - xhigh\n* `max` - max"
+          }
+        },
+        "github_user_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ephemeral GitHub user token from PostHog Code for user-authored cloud pull requests."
+          }
+        },
+        "initial_permission_mode": {
+          "target": "com.posthog.task_runs#TaskRunBootstrapCreateRequestInitialPermissionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Initial permission mode for the agent session. Claude runtimes accept PostHog permission presets like 'plan'. Codex runtimes accept native Codex modes like 'auto' and 'read-only'.\n\n* `default` - default\n* `acceptEdits` - acceptEdits\n* `plan` - plan\n* `bypassPermissions` - bypassPermissions\n* `auto` - auto\n* `read-only` - read-only\n* `full-access` - full-access"
+          }
+        },
+        "home_quick_action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label of the Home-tab quick action that started this run (e.g. 'Fix CI'), surfaced on the workstream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create task run\n\nCreate a new run for a specific task without starting execution."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get task run\n\nRetrieve a single run for a specific task."
+      }
+    },
+    "com.posthog.task_runs#TaskRunUpdateStatusEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_started"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress\n* `completed` - completed\n* `failed` - failed\n* `cancelled` - cancelled"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsPartialUpdateRequestStateRemoveKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "State keys to remove atomically before applying any state updates."
+      }
+    },
+    "com.posthog.task_runs#TaskRunUpdateEnvironmentEnum": {
+      "type": "enum",
+      "members": {
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "local"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `local` - local"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.task_runs#TaskRunUpdateStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current execution status\n\n* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress\n* `completed` - completed\n* `failed` - failed\n* `cancelled` - cancelled"
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch name to associate with the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "stage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current stage of the run (e.g. research, plan, build)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "output": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Output from the run"
+          }
+        },
+        "state": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "State of the run"
+          }
+        },
+        "state_remove_keys": {
+          "target": "com.posthog.task_runs#TasksRunsPartialUpdateRequestStateRemoveKeysList",
+          "traits": {
+            "smithy.api#documentation": "State keys to remove atomically before applying any state updates."
+          }
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message if execution failed",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "environment": {
+          "target": "com.posthog.task_runs#TaskRunUpdateEnvironmentEnum",
+          "traits": {
+            "smithy.api#documentation": "Transition a cloud run to local. Use the resume_in_cloud action to move a run into cloud.\n\n* `local` - local"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update task run\n\nAPI for managing task runs. Each run represents an execution of a task."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsAppendLogCreateRequestEntriesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsAppendLogCreateRequestEntriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TasksRunsAppendLogCreateRequestEntriesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of log entry dictionaries to append"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsAppendLogCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "entries": {
+          "target": "com.posthog.task_runs#TasksRunsAppendLogCreateRequestEntriesList",
+          "traits": {
+            "smithy.api#documentation": "Array of log entry dictionaries to append"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsAppendLogCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsAppendLogCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/append_log/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Append log entries\n\nAppend one or more log entries to the task run log array"
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactUpload": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File name to associate with the artifact"
+          }
+        },
+        "type": {
+          "target": "com.posthog.task_runs#TaskRunArtifactTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Classification for the artifact\n\n* `plan` - plan\n* `context` - context\n* `reference` - reference\n* `output` - output\n* `artifact` - artifact\n* `tree_snapshot` - tree_snapshot\n* `user_attachment` - user_attachment\n* `skill_bundle` - skill_bundle"
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional source label for the artifact, such as agent_output or user_attachment"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact contents encoded according to content_encoding"
+          }
+        },
+        "content_encoding": {
+          "target": "com.posthog.task_runs#ContentEncodingEnum",
+          "traits": {
+            "smithy.api#documentation": "Encoding used for content. Use base64 for binary files and utf-8 for text payloads.\n\n* `utf-8` - utf-8\n* `base64` - base64"
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional MIME type for the artifact"
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.task_runs#TaskRunArtifactMetadata",
+          "traits": {
+            "smithy.api#documentation": "Optional structured metadata for special artifact types, such as skill bundles."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunArtifactTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan"
+          }
+        },
+        "CONTEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "context"
+          }
+        },
+        "REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reference"
+          }
+        },
+        "OUTPUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "output"
+          }
+        },
+        "ARTIFACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "artifact"
+          }
+        },
+        "TREE_SNAPSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tree_snapshot"
+          }
+        },
+        "USER_ATTACHMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_attachment"
+          }
+        },
+        "SKILL_BUNDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skill_bundle"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `plan` - plan\n* `context` - context\n* `reference` - reference\n* `output` - output\n* `artifact` - artifact\n* `tree_snapshot` - tree_snapshot\n* `user_attachment` - user_attachment\n* `skill_bundle` - skill_bundle"
+      }
+    },
+    "com.posthog.task_runs#ContentEncodingEnum": {
+      "type": "enum",
+      "members": {
+        "UTF_8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "utf-8"
+          }
+        },
+        "BASE64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "base64"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `utf-8` - utf-8\n* `base64` - base64"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsCreateRequestArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactUpload"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of artifacts to upload"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "artifacts": {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsCreateRequestArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Array of artifacts to upload"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactsUploadResponse": {
+      "type": "structure",
+      "members": {
+        "artifacts": {
+          "target": "com.posthog.task_runs#TaskRunArtifactsUploadResponseArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Updated list of artifacts on the run"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunArtifactsUploadResponseArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Updated list of artifacts on the run"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsArtifactsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunArtifactsUploadResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload artifacts for a task run\n\nPersist task artifacts to S3 and attach them to the run manifest."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsDownloadCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "storage_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3 storage path returned in the artifact manifest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsDownloadCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsArtifactsDownloadCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/download/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Download an artifact through the backend\n\nStreams artifact content for a task run artifact after validating that it belongs to the run."
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactFinalizeUpload": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier returned by the prepare upload endpoint"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File name associated with the artifact"
+          }
+        },
+        "type": {
+          "target": "com.posthog.task_runs#TaskRunArtifactTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Classification for the artifact\n\n* `plan` - plan\n* `context` - context\n* `reference` - reference\n* `output` - output\n* `artifact` - artifact\n* `tree_snapshot` - tree_snapshot\n* `user_attachment` - user_attachment\n* `skill_bundle` - skill_bundle"
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional source label for the artifact, such as agent_output or user_attachment"
+          }
+        },
+        "storage_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3 object key returned by the prepare step"
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional MIME type recorded for the artifact"
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.task_runs#TaskRunArtifactMetadata",
+          "traits": {
+            "smithy.api#documentation": "Optional structured metadata for special artifact types, such as skill bundles."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsFinalizeUploadCreateRequestArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactFinalizeUpload"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of uploaded artifacts to finalize"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsFinalizeUploadCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "artifacts": {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsFinalizeUploadCreateRequestArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Array of uploaded artifacts to finalize"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactsFinalizeUploadResponse": {
+      "type": "structure",
+      "members": {
+        "artifacts": {
+          "target": "com.posthog.task_runs#TaskRunArtifactsFinalizeUploadResponseArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Updated list of artifacts on the run"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunArtifactsFinalizeUploadResponseArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Updated list of artifacts on the run"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsFinalizeUploadCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsArtifactsFinalizeUploadCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunArtifactsFinalizeUploadResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/finalize_upload/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Finalize direct uploads for task run artifacts\n\nVerify directly uploaded S3 objects and attach them to the run artifact manifest."
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactPrepareUpload": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File name to associate with the artifact"
+          }
+        },
+        "type": {
+          "target": "com.posthog.task_runs#TaskRunArtifactTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Classification for the artifact\n\n* `plan` - plan\n* `context` - context\n* `reference` - reference\n* `output` - output\n* `artifact` - artifact\n* `tree_snapshot` - tree_snapshot\n* `user_attachment` - user_attachment\n* `skill_bundle` - skill_bundle"
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional source label for the artifact, such as agent_output or user_attachment"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Expected upload size in bytes (max 31457280 bytes)"
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional MIME type for the artifact upload"
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.task_runs#TaskRunArtifactMetadata",
+          "traits": {
+            "smithy.api#documentation": "Optional structured metadata for special artifact types, such as skill bundles."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsPrepareUploadCreateRequestArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactPrepareUpload"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of artifacts to prepare"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsPrepareUploadCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "artifacts": {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsPrepareUploadCreateRequestArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Array of artifacts to prepare"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactsPrepareUploadResponse": {
+      "type": "structure",
+      "members": {
+        "artifacts": {
+          "target": "com.posthog.task_runs#TaskRunArtifactsPrepareUploadResponseArtifactsList",
+          "traits": {
+            "smithy.api#documentation": "Prepared uploads for the requested artifacts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskRunArtifactPrepareUploadResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for the prepared artifact within this run"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact file name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact classification (plan, context, etc.)"
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source of the artifact, such as agent_output or user_attachment"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Expected upload size in bytes"
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional MIME type"
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.task_runs#TaskRunArtifactMetadata",
+          "traits": {
+            "smithy.api#documentation": "Optional structured metadata for special artifact types, such as skill bundles."
+          }
+        },
+        "storage_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3 object key reserved for the artifact"
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Presigned POST expiry in seconds"
+          }
+        },
+        "presigned_post": {
+          "target": "com.posthog.task_runs#S3PresignedPost",
+          "traits": {
+            "smithy.api#documentation": "Presigned S3 POST configuration for uploading the file"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#S3PresignedPost": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Presigned S3 POST URL"
+          }
+        },
+        "fields": {
+          "target": "com.posthog.task_runs#S3PresignedPostFieldsMap",
+          "traits": {
+            "smithy.api#documentation": "Form fields that must be submitted verbatim with the file upload"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#S3PresignedPostFieldsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Form fields that must be submitted verbatim with the file upload"
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactsPrepareUploadResponseArtifactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.task_runs#TaskRunArtifactPrepareUploadResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Prepared uploads for the requested artifacts"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsPrepareUploadCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsArtifactsPrepareUploadCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunArtifactsPrepareUploadResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/prepare_upload/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Prepare direct uploads for task run artifacts\n\nReserve S3 object keys for task artifacts and return presigned POST forms for direct uploads."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsPresignCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "storage_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "S3 storage path returned in the artifact manifest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskRunArtifactPresignResponse": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Presigned URL for downloading the artifact"
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "URL expiry in seconds"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsArtifactsPresignCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsArtifactsPresignCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunArtifactPresignResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/presign/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate presigned URL for an artifact\n\nReturns a temporary, signed URL that can be used to download a specific artifact."
+      }
+    },
+    "com.posthog.task_runs#JsonrpcEnum": {
+      "type": "enum",
+      "members": {
+        "_2_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2.0"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `2.0` - 2.0"
+      }
+    },
+    "com.posthog.task_runs#MethodEnum": {
+      "type": "enum",
+      "members": {
+        "USER_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_message"
+          }
+        },
+        "CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancel"
+          }
+        },
+        "CLOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "close"
+          }
+        },
+        "PERMISSION_RESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "permission_response"
+          }
+        },
+        "SET_CONFIG_OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "set_config_option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `user_message` - user_message\n* `cancel` - cancel\n* `close` - close\n* `permission_response` - permission_response\n* `set_config_option` - set_config_option"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsCommandCreateRequestParamsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters for the command"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsCommandCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "jsonrpc": {
+          "target": "com.posthog.task_runs#JsonrpcEnum",
+          "traits": {
+            "smithy.api#documentation": "JSON-RPC version, must be '2.0'\n\n* `2.0` - 2.0"
+          }
+        },
+        "method": {
+          "target": "com.posthog.task_runs#MethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Command method to execute on the agent server\n\n* `user_message` - user_message\n* `cancel` - cancel\n* `close` - close\n* `permission_response` - permission_response\n* `set_config_option` - set_config_option"
+          }
+        },
+        "params": {
+          "target": "com.posthog.task_runs#TasksRunsCommandCreateRequestParamsMap",
+          "traits": {
+            "smithy.api#documentation": "Parameters for the command"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskRunCommandResponse": {
+      "type": "structure",
+      "members": {
+        "jsonrpc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON-RPC version"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Request ID echoed back (string or number)"
+          }
+        },
+        "result": {
+          "target": "com.posthog.task_runs#TaskRunCommandResponseResultMap",
+          "traits": {
+            "smithy.api#documentation": "Command result on success"
+          }
+        },
+        "error": {
+          "target": "com.posthog.task_runs#TaskRunCommandResponseErrorMap",
+          "traits": {
+            "smithy.api#documentation": "Error details on failure"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from the agent server command endpoint."
+      }
+    },
+    "com.posthog.task_runs#TaskRunCommandResponseResultMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Command result on success"
+      }
+    },
+    "com.posthog.task_runs#TaskRunCommandResponseErrorMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Error details on failure"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsCommandCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsCommandCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunCommandResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/command/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send command to task run\n\nQueue user_message JSON-RPC commands through the task workflow and forward sandbox control commands to the agent server. Supports user_message, cancel, close, permission_response, and set_config_option commands."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsConnectionTokenRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#ConnectionTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JWT token for authenticating with the sandbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing a JWT token for direct sandbox connection"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsConnectionTokenRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsConnectionTokenRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#ConnectionTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/connection_token/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get sandbox connection token\n\nGenerate a JWT token for direct connection to the sandbox. Valid for 24 hours."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsLogsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsLogsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsLogsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/logs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get task run logs\n\nFetch the logs for a task run as JSONL. If the run resumes from another (state.resume_from_run_id), each ancestor's log is concatenated first (oldest ancestor → ... → this run) so resume consumers see a single continuous history and can find the most recent git_checkpoint event regardless of which run emitted it."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsRelayMessageCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskRunRelayMessageResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relay status: 'accepted' or 'skipped'"
+          }
+        },
+        "relay_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relay workflow ID when accepted"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsRelayMessageCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsRelayMessageCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunRelayMessageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/relay_message/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Relay run message to Slack\n\nQueue a Slack relay workflow to post a run message into the mapped Slack thread."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsResumeInCloudCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsResumeInCloudCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsResumeInCloudCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/resume_in_cloud/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resume task run in cloud\n\nResume an existing task run in a cloud sandbox. Terminates any existing workflow and starts a new one."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsSessionLogsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "Only return events after this ISO8601 timestamp"
+          }
+        },
+        "event_types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "event_types",
+            "smithy.api#documentation": "Comma-separated list of event types to include"
+          }
+        },
+        "exclude_types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "exclude_types",
+            "smithy.api#documentation": "Comma-separated list of event types to exclude"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of entries to return (default 1000, max 5000)"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Zero-based offset into the filtered log entries"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsSessionLogsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsSessionLogsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/session_logs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get filtered task run session logs\n\nFetch session log entries for a task run with optional filtering by timestamp, event type, and limit."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsSetOutputPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "output": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Output data from the run. Validated against the task's json_schema if one is set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsSetOutputPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsSetOutputPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskRunDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/set_output/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set run output\n\nUpdate the output field for a task run (e.g., PR URL, commit SHA, etc.)"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsStartCreateRequestPendingUserArtifactIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifiers for run artifacts that should be attached to the next user message delivered to the sandbox."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsStartCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pending_user_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Initial or follow-up user message to include in the run prompt."
+          }
+        },
+        "pending_user_artifact_ids": {
+          "target": "com.posthog.task_runs#TasksRunsStartCreateRequestPendingUserArtifactIdsList",
+          "traits": {
+            "smithy.api#documentation": "Identifiers for run artifacts that should be attached to the next user message delivered to the sandbox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TaskDetailDTO": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "task_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title_manually_set": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "origin_product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "github_integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "github_user_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "signal_report": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "json_schema": {
+          "target": "com.posthog.task_runs#TaskDetailDTOJsonSchemaMap",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "internal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_run": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the latest TaskRun; null when the task has no runs.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.task_runs#TaskUserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ci_prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Conversation envelope variant: ``latest_run`` is just the latest run's id, not the nested\nrun detail. The frontend only needs the id to reconnect to sandbox logs, and emitting the id\navoids presigning a log URL per conversation.\n\nRead access here follows the conversation (the share-by-link unit), not per-creator task\nvisibility — write/send stays creator-gated. See ``tasks_facade.get_conversation_task_dtos``."
+      }
+    },
+    "com.posthog.task_runs#TaskDetailDTOJsonSchemaMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TaskUserBasicInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.task_runs#TaskUserBasicInfoHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response shape for a task creator, mirroring core ``UserBasicSerializer`` output."
+      }
+    },
+    "com.posthog.task_runs#TaskUserBasicInfoHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.task_runs#TasksRunsStartCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsStartCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#TaskDetailDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#BadRequest"
+        },
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/start/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start task run\n\nStart an existing cloud run after any initial run-scoped attachments have been uploaded."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsStreamRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start",
+            "smithy.api#documentation": "Set to `latest` to skip the event backlog and only receive events published after connecting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#TasksRunsStreamRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsStreamRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#Forbidden"
+        },
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Server-Sent Events stream of task run events. Events carry an `id:` line (a Redis stream id) usable as a resume cursor.\n\nThe server caps each connection at 900 seconds: it emits `event: end` with `data: {\"type\": \"rotated\"}` and closes. This does NOT mean the run finished — reconnect with the `Last-Event-ID` header set to the last received event id to resume without gaps or duplicates. Only treat the stream as complete when the run itself reaches a terminal status.\n\n`?start=latest` consumers must also carry `Last-Event-ID` across reconnects: reconnecting without it re-resolves to the then-current latest event, silently skipping anything published while disconnected.\n\n**SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire stream. Use the URL builder (`getTasksRunsStreamRetrieveUrl`) with a streaming `fetch`/`EventSource`-style consumer and the `Last-Event-ID` header instead."
+      }
+    },
+    "com.posthog.task_runs#TasksRunsStreamTokenRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.task_runs#StreamReadTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Run-scoped JWT the browser presents to the agent-proxy to read this run's live event stream",
+            "smithy.api#required": {}
+          }
+        },
+        "stream_base_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base URL of the agent-proxy to read the stream from when routing via the proxy is enabled for this user. Null means read from the Django endpoint directly (same-origin). The client appends the run's stream path and sends the token as a Bearer header when this is set.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing a JWT token (and resolved base URL) for reading a task run's live event stream"
+      }
+    },
+    "com.posthog.task_runs#TasksRunsStreamTokenRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.task_runs#TasksRunsStreamTokenRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.task_runs#StreamReadTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.task_runs#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream_token/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get task run stream read token\n\nGenerate a run-scoped JWT that authorizes reading this task run's live event stream via the agent-proxy."
+      }
+    },
+    "com.posthog.task_runs#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.task_runs#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.task_runs#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.task_runs#TaskRuns": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.task_runs#TasksRunsList"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsRetrieve"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsAppendLogCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsDownloadCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsFinalizeUploadCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsPrepareUploadCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsArtifactsPresignCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsCommandCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsConnectionTokenRetrieve"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsLogsRetrieve"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsRelayMessageCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsResumeInCloudCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsSessionLogsRetrieve"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsSetOutputPartialUpdate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsStartCreate"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsStreamRetrieve"
+        },
+        {
+          "target": "com.posthog.task_runs#TasksRunsStreamTokenRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

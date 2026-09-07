@@ -1,0 +1,50 @@
+{
+  "description": "Align magic_transit#AppsList with distilled cloudflare/magic-transit listApps",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsList",
+      "path": "/shapes/com.cloudflare.magic_transit#ListApps"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsListRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ListAppsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListApps/input/target",
+      "value": "com.cloudflare.magic_transit#ListAppsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#AppsListResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ListAppsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListApps/output/target",
+      "value": "com.cloudflare.magic_transit#ListAppsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#ListApps/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#ListApps/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#MagicWanUnauthorized"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

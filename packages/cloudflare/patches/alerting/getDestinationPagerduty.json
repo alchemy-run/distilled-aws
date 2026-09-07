@@ -1,0 +1,38 @@
+{
+  "description": "Align alerting#DestinationsPagerdutyGet with distilled cloudflare/alerting getDestinationPagerduty",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyGet",
+      "path": "/shapes/com.cloudflare.alerting#GetDestinationPagerduty"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyGetRequest",
+      "path": "/shapes/com.cloudflare.alerting#GetDestinationPagerdutyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#GetDestinationPagerduty/input/target",
+      "value": "com.cloudflare.alerting#GetDestinationPagerdutyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyGetResponse",
+      "path": "/shapes/com.cloudflare.alerting#GetDestinationPagerdutyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#GetDestinationPagerduty/output/target",
+      "value": "com.cloudflare.alerting#GetDestinationPagerdutyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#GetDestinationPagerduty/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

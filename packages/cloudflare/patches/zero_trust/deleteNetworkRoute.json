@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksRoutesDelete with distilled cloudflare/zero-trust deleteNetworkRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkRoute/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkRoute/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkRouteResponse"
+    }
+  ]
+}

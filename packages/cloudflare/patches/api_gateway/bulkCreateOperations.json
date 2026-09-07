@@ -1,0 +1,38 @@
+{
+  "description": "Align api_gateway#OperationsBulkCreate with distilled cloudflare/api-gateway bulkCreateOperations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsBulkCreate",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsBulkCreateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperations/input/target",
+      "value": "com.cloudflare.api_gateway#BulkCreateOperationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsBulkCreateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperations/output/target",
+      "value": "com.cloudflare.api_gateway#BulkCreateOperationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

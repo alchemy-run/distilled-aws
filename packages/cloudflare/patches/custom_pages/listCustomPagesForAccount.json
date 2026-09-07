@@ -1,0 +1,38 @@
+{
+  "description": "Align custom_pages#ListForAccount with distilled cloudflare/custom-pages listCustomPagesForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#ListForAccount",
+      "path": "/shapes/com.cloudflare.custom_pages#ListCustomPagesForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#ListForAccountRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#ListCustomPagesForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#ListCustomPagesForAccount/input/target",
+      "value": "com.cloudflare.custom_pages#ListCustomPagesForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#ListForAccountResponse",
+      "path": "/shapes/com.cloudflare.custom_pages#ListCustomPagesForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#ListCustomPagesForAccount/output/target",
+      "value": "com.cloudflare.custom_pages#ListCustomPagesForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_pages#ListCustomPagesForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

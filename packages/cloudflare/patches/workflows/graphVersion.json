@@ -1,0 +1,30 @@
+{
+  "description": "Align workflows#VersionsGraph with distilled cloudflare/workflows graphVersion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsGraph",
+      "path": "/shapes/com.cloudflare.workflows#GraphVersion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsGraphRequest",
+      "path": "/shapes/com.cloudflare.workflows#GraphVersionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#GraphVersion/input/target",
+      "value": "com.cloudflare.workflows#GraphVersionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#VersionsGraphResponse",
+      "path": "/shapes/com.cloudflare.workflows#GraphVersionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#GraphVersion/output/target",
+      "value": "com.cloudflare.workflows#GraphVersionResponse"
+    }
+  ]
+}

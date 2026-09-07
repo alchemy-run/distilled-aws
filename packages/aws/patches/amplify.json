@@ -1,0 +1,94 @@
+{
+  "operations": {
+    "createApp": { "errors": ["TimeoutException"] },
+    "createBackendEnvironment": { "errors": ["TimeoutException"] },
+    "createBranch": { "errors": ["TimeoutException"] },
+    "createDeployment": { "errors": ["TimeoutException"] },
+    "createDomainAssociation": { "errors": ["TimeoutException"] },
+    "createWebhook": { "errors": ["TimeoutException"] },
+    "deleteApp": { "errors": ["TimeoutException"] },
+    "deleteBackendEnvironment": { "errors": ["TimeoutException"] },
+    "deleteBranch": { "errors": ["TimeoutException"] },
+    "deleteDomainAssociation": { "errors": ["TimeoutException"] },
+    "deleteJob": { "errors": ["TimeoutException"] },
+    "deleteWebhook": { "errors": ["TimeoutException"] },
+    "generateAccessLogs": { "errors": ["TimeoutException"] },
+    "getApp": { "errors": ["TimeoutException"] },
+    "getArtifactUrl": { "errors": ["TimeoutException"] },
+    "getBackendEnvironment": { "errors": ["TimeoutException"] },
+    "getBranch": { "errors": ["TimeoutException"] },
+    "getDomainAssociation": { "errors": ["TimeoutException"] },
+    "getJob": { "errors": ["TimeoutException"] },
+    "getWebhook": { "errors": ["TimeoutException"] },
+    "listApps": { "errors": ["TimeoutException"] },
+    "listArtifacts": { "errors": ["TimeoutException"] },
+    "listBackendEnvironments": { "errors": ["TimeoutException"] },
+    "listBranches": { "errors": ["TimeoutException"] },
+    "listDomainAssociations": { "errors": ["TimeoutException"] },
+    "listJobs": { "errors": ["TimeoutException"] },
+    "listTagsForResource": { "errors": ["TimeoutException"] },
+    "listWebhooks": { "errors": ["TimeoutException"] },
+    "startDeployment": { "errors": ["TimeoutException"] },
+    "startJob": { "errors": ["TimeoutException"] },
+    "stopJob": { "errors": ["TimeoutException"] },
+    "tagResource": { "errors": ["TimeoutException"] },
+    "untagResource": { "errors": ["TimeoutException"] },
+    "updateApp": { "errors": ["TimeoutException"] },
+    "updateBranch": { "errors": ["TimeoutException"] },
+    "updateDomainAssociation": { "errors": ["TimeoutException"] },
+    "updateWebhook": { "errors": ["TimeoutException"] }
+  },
+  "errors": {
+    "TimeoutException": {
+      "message": { "type": "string" }
+    }
+  },
+  "structures": {
+    "App": {
+      "members": {
+        "repository": { "optional": true },
+        "description": { "optional": true },
+        "environmentVariables": { "optional": true },
+        "enableBranchAutoBuild": { "optional": true },
+        "enableBasicAuth": { "optional": true },
+        "defaultDomain": { "optional": true },
+        "platform": { "optional": true }
+      }
+    },
+    "JobSummary": {
+      "members": {
+        "commitId": { "optional": true },
+        "commitMessage": { "optional": true },
+        "commitTime": { "optional": true },
+        "jobType": { "optional": true }
+      }
+    },
+    "Step": {
+      "members": {
+        "endTime": { "optional": true }
+      }
+    },
+    "CreateDeploymentResult": {
+      "members": {
+        "fileUploadUrls": { "optional": true }
+      }
+    },
+    "Branch": {
+      "members": {
+        "description": { "optional": true },
+        "displayName": { "optional": true },
+        "stage": { "optional": true },
+        "enableNotification": { "optional": true },
+        "environmentVariables": { "optional": true },
+        "enableAutoBuild": { "optional": true },
+        "customDomains": { "optional": true },
+        "framework": { "optional": true },
+        "activeJobId": { "optional": true },
+        "totalNumberOfJobs": { "optional": true },
+        "enableBasicAuth": { "optional": true },
+        "ttl": { "optional": true },
+        "enablePullRequestPreview": { "optional": true }
+      }
+    }
+  }
+}

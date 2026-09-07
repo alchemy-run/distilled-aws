@@ -1,0 +1,325 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.property_access_controls#PropertyAccessControlsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "property_definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "property_definition_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The property definition ID to fetch access control rules for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlState": {
+      "type": "structure",
+      "members": {
+        "access_controls": {
+          "target": "com.posthog.property_access_controls#PropertyAccessControlStateAccessControlsList",
+          "traits": {
+            "smithy.api#documentation": "List of all access control rules for this property definition.",
+            "smithy.api#required": {}
+          }
+        },
+        "available_access_levels": {
+          "target": "com.posthog.property_access_controls#PropertyAccessControlStateAvailableAccessLevelsList",
+          "traits": {
+            "smithy.api#documentation": "Available access levels that can be assigned.",
+            "smithy.api#required": {}
+          }
+        },
+        "default_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default access level when no rules match.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializes the aggregate state for a property definition.\n\nPreserves the existing API shape: ``access_controls`` is the list\nof rules, plus the available levels and the computed default."
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlRule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "access_level": {
+          "target": "com.posthog.property_access_controls#AccessLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "The access level for this rule.\n\n* `read_write` - read_write\n* `read` - read\n* `none` - none",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_member": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization member UUID this rule applies to, if any.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role UUID this rule applies to, if any.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializes a single access control rule DTO."
+      }
+    },
+    "com.posthog.property_access_controls#AccessLevelEnum": {
+      "type": "enum",
+      "members": {
+        "READ_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read_write"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `read_write` - read_write\n* `read` - read\n* `none` - none"
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlStateAccessControlsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.property_access_controls#PropertyAccessControlRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of all access control rules for this property definition."
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlStateAvailableAccessLevelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available access levels that can be assigned."
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.property_access_controls#PropertyAccessControlsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.property_access_controls#PropertyAccessControlState"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/property_access_controls/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all property access control rules for a property definition."
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "property_definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The property definition ID this rule applies to.",
+            "smithy.api#required": {}
+          }
+        },
+        "access_level": {
+          "target": "com.posthog.property_access_controls#AccessLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "The access level to set for this rule.\n\n* `read_write` - read_write\n* `read` - read\n* `none` - none",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_member": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization member UUID to set an override for.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The role UUID to set an override for.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.property_access_controls#PropertyAccessControlsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.property_access_controls#PropertyAccessControlRule"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/property_access_controls/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create or update a property access control rule."
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "organization_member": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "organization_member",
+            "smithy.api#documentation": "The organization member UUID whose override should be deleted."
+          }
+        },
+        "property_definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "property_definition_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The property definition ID the rule applies to."
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "role",
+            "smithy.api#documentation": "The role UUID whose override should be deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControlsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.property_access_controls#PropertyAccessControlsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/property_access_controls/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a property access control rule. The rule is identified by `property_definition_id` plus an optional `organization_member` or `role` query parameter. Omitting both targets deletes the default rule."
+      }
+    },
+    "com.posthog.property_access_controls#PropertyAccessControls": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.property_access_controls#PropertyAccessControlsRetrieve"
+        },
+        {
+          "target": "com.posthog.property_access_controls#PropertyAccessControlsCreate"
+        },
+        {
+          "target": "com.posthog.property_access_controls#PropertyAccessControlsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

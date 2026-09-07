@@ -1,0 +1,42 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreate with distilled cloudflare/ddos-protection createAdvancedTcpProtectionTcpFlowProtectionFilter",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreate",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilter"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreateRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilterRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilter/input/target",
+      "value": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilterRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreateResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilterResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilter/output/target",
+      "value": "com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilterResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#CreateAdvancedTcpProtectionTcpFlowProtectionFilter/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#Forbidden"
+        }
+      ]
+    }
+  ]
+}

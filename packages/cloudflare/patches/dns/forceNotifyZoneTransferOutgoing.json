@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#ZoneTransfersOutgoingForceNotify with distilled cloudflare/dns forceNotifyZoneTransferOutgoing",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingForceNotify",
+      "path": "/shapes/com.cloudflare.dns#ForceNotifyZoneTransferOutgoing"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingForceNotifyRequest",
+      "path": "/shapes/com.cloudflare.dns#ForceNotifyZoneTransferOutgoingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ForceNotifyZoneTransferOutgoing/input/target",
+      "value": "com.cloudflare.dns#ForceNotifyZoneTransferOutgoingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingForceNotifyResponse",
+      "path": "/shapes/com.cloudflare.dns#ForceNotifyZoneTransferOutgoingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ForceNotifyZoneTransferOutgoing/output/target",
+      "value": "com.cloudflare.dns#ForceNotifyZoneTransferOutgoingResponse"
+    }
+  ]
+}

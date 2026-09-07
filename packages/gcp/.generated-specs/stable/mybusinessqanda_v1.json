@@ -1,0 +1,684 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "mybusinessqanda",
+    "version": "v1",
+    "title": "My Business Q&A API",
+    "baseUrl": "https://mybusinessqanda.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.mybusinessqanda_v1#UpsertAnswerRequest": {
+      "type": "structure",
+      "members": {
+        "answer": {
+          "target": "com.gcp.mybusinessqanda_v1#Answer",
+          "traits": {
+            "smithy.api#documentation": "Required. The new answer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for QuestionsAndAnswers.UpsertAnswer"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#ListAnswersResponse": {
+      "type": "structure",
+      "members": {
+        "answers": {
+          "target": "com.gcp.mybusinessqanda_v1#AnswerList",
+          "traits": {
+            "smithy.api#documentation": "The requested answers."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the number of answers exceeds the requested max page size, this field is populated with a token to fetch the next page of answers on a subsequent call. If there are no more answers, this field is not present in the response."
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of answers posted for this question across all pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for QuestionsAndAnswers.ListAnswers"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#AnswerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessqanda_v1#Answer"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#ListQuestionsResponse": {
+      "type": "structure",
+      "members": {
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of questions posted for this location across all pages."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the number of questions exceeds the requested max page size, this field is populated with a token to fetch the next page of questions on a subsequent call. If there are no more questions, this field is not present in the response."
+          }
+        },
+        "questions": {
+          "target": "com.gcp.mybusinessqanda_v1#QuestionList",
+          "traits": {
+            "smithy.api#documentation": "The requested questions,"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for QuestionsAndAnswers.ListQuestions"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#QuestionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessqanda_v1#Question"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#Author": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the user"
+          }
+        },
+        "profilePhotoUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The profile photo URI of the user."
+          }
+        },
+        "type": {
+          "target": "com.gcp.mybusinessqanda_v1#AuthorTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of user the author is."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the author of a question or answer"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#AuthorTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTHOR_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHOR_TYPE_UNSPECIFIED"
+          }
+        },
+        "REGULAR_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR_USER"
+          }
+        },
+        "LOCAL_GUIDE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_GUIDE"
+          }
+        },
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#Question": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The unique name for the question. locations/*/questions/* This field will be ignored if set during question creation."
+          }
+        },
+        "author": {
+          "target": "com.gcp.mybusinessqanda_v1#Author",
+          "traits": {
+            "smithy.api#documentation": "Output only. The author of the question."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The text of the question. It should contain at least three words and the total length should be greater than or equal to 10 characters. The maximum length is 4096 characters."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp for when the question was last modified."
+          }
+        },
+        "topAnswers": {
+          "target": "com.gcp.mybusinessqanda_v1#AnswerList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of answers to the question, sorted by upvotes. This may not be a complete list of answers depending on the request parameters (answers_per_question)"
+          }
+        },
+        "upvoteCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of upvotes for the question."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp for when the question was written."
+          }
+        },
+        "totalAnswerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The total number of answers posted for this question."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single question and some of its answers."
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#Answer": {
+      "type": "structure",
+      "members": {
+        "upvoteCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of upvotes for the answer."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp for when the answer was written. Only retrieved during ListResponse fetching."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp for when the answer was last modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique name for the answer locations/*/questions/*/answers/*"
+          }
+        },
+        "author": {
+          "target": "com.gcp.mybusinessqanda_v1#Author",
+          "traits": {
+            "smithy.api#documentation": "Output only. The author of the answer. Will only be set during list operations."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The text of the answer. It should contain at least one non-whitespace character. The maximum length is 4096 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an answer to a question"
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#DeleteLocationsQuestionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the question to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#DeleteLocationsQuestions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#DeleteLocationsQuestionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a specific question written by the current user."
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#ListLocationsQuestionsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter constraining the questions to return. The only filter currently supported is \"ignore_answered=true\"",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the location to fetch questions for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If specified, the next page of questions is retrieved.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The order to return the questions. Valid options include 'update_time desc' and 'upvote_count desc', which will return the questions sorted descendingly by the requested field. The default sort order is 'update_time desc'.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many questions to fetch per page. The default and maximum `page_size` values are 10.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "answersPerQuestion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many answers to fetch per question. The default and maximum `answers_per_question` values are 10.",
+            "smithy.api#httpQuery": "answersPerQuestion"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#ListLocationsQuestions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#ListLocationsQuestionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#ListQuestionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}"
+        },
+        "smithy.api#documentation": "Returns the paginated list of questions and some of its answers for a specified location. This operation is only valid if the specified location is verified.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#PatchLocationsQuestionsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The specific fields to update. Only question text can be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The unique name for the question. locations/*/questions/* This field will be ignored if set during question creation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessqanda_v1#Question",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#PatchLocationsQuestions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#PatchLocationsQuestionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#Question"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a specific question written by the current user."
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#CreateLocationsQuestionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the location to write a question for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessqanda_v1#Question",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#CreateLocationsQuestions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#CreateLocationsQuestionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#Question"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}"
+        },
+        "smithy.api#documentation": "Adds a question for the specified location."
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#ListLocationsQuestionsAnswersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the question to fetch answers for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. How many answers to fetch per page. The default and maximum `page_size` values are 10.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If specified, the next page of answers is retrieved.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The order to return the answers. Valid options include 'update_time desc' and 'upvote_count desc', which will return the answers sorted descendingly by the requested field. The default sort order is 'update_time desc'.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#ListLocationsQuestionsAnswers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#ListLocationsQuestionsAnswersRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#ListAnswersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/answers"
+        },
+        "smithy.api#documentation": "Returns the paginated list of answers for a specified question.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#UpsertLocationsQuestionsAnswersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the question to write an answer for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.mybusinessqanda_v1#UpsertAnswerRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#UpsertLocationsQuestionsAnswers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#UpsertLocationsQuestionsAnswersRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#Answer"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/answers:upsert"
+        },
+        "smithy.api#documentation": "Creates an answer or updates the existing answer written by the user for the specified question. A user can only create one answer per question."
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#DeleteLocationsQuestionsAnswersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the question to delete an answer for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessqanda_v1#DeleteLocationsQuestionsAnswers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessqanda_v1#DeleteLocationsQuestionsAnswersRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessqanda_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessqanda_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessqanda_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}/answers:delete"
+        },
+        "smithy.api#documentation": "Deletes the answer written by the current user to a question."
+      }
+    }
+  }
+}

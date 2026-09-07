@@ -1,0 +1,171 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "playcustomapp",
+    "version": "v1",
+    "title": "Google Play Custom App Publishing API",
+    "baseUrl": "https://playcustomapp.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.playcustomapp_v1#CustomApp": {
+      "type": "structure",
+      "members": {
+        "packageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Package name of the created Android app. Only present in the API response."
+          }
+        },
+        "organizations": {
+          "target": "com.gcp.playcustomapp_v1#OrganizationList",
+          "traits": {
+            "smithy.api#documentation": "Organizations to which the custom app should be made available. If the request contains any organizations, then the app will be restricted to only these organizations. To support the organization linked to the developer account, the organization ID should be provided explicitly together with other organizations. If no organizations are provided, then the app is only available to the organization linked to the developer account."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title for the Android app."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default listing language in BCP 47 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a custom app."
+      }
+    },
+    "com.gcp.playcustomapp_v1#OrganizationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.playcustomapp_v1#Organization"
+      }
+    },
+    "com.gcp.playcustomapp_v1#Organization": {
+      "type": "structure",
+      "members": {
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the organization."
+          }
+        },
+        "organizationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A human-readable name of the organization, to help recognize the organization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an organization that can access a custom app."
+      }
+    },
+    "com.gcp.playcustomapp_v1#CreateAccountsCustomAppsRequest": {
+      "type": "structure",
+      "members": {
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Developer account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.playcustomapp_v1#CustomApp",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.playcustomapp_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.playcustomapp_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.playcustomapp_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.playcustomapp_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.playcustomapp_v1#CreateAccountsCustomApps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.playcustomapp_v1#CreateAccountsCustomAppsRequest"
+      },
+      "output": {
+        "target": "com.gcp.playcustomapp_v1#CustomApp"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.playcustomapp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.playcustomapp_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.playcustomapp_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.playcustomapp_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "playcustomapp/v1/accounts/{account}/customApps"
+        },
+        "smithy.api#documentation": "Creates a new custom app."
+      }
+    }
+  }
+}

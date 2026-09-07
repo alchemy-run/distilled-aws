@@ -1,0 +1,45 @@
+{
+  "description": "Align vectorize#IndexesCreate with distilled cloudflare/vectorize createIndex",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesCreate",
+      "path": "/shapes/com.cloudflare.vectorize#CreateIndex"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesCreateRequest",
+      "path": "/shapes/com.cloudflare.vectorize#CreateIndexRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#CreateIndex/input/target",
+      "value": "com.cloudflare.vectorize#CreateIndexRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesCreateResponse",
+      "path": "/shapes/com.cloudflare.vectorize#CreateIndexResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#CreateIndex/output/target",
+      "value": "com.cloudflare.vectorize#CreateIndexResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.vectorize#CreateIndex/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.vectorize#IndexAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexInvalidName"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexInvalidConfig"
+        }
+      ]
+    }
+  ]
+}

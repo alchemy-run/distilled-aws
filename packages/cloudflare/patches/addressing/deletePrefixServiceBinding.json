@@ -1,0 +1,35 @@
+{
+  "description": "Align addressing#PrefixesServiceBindingsDelete with distilled cloudflare/addressing deletePrefixServiceBinding",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsDelete",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixServiceBinding"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsDeleteRequest",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixServiceBindingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixServiceBinding/input/target",
+      "value": "com.cloudflare.addressing#DeletePrefixServiceBindingRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#DeletePrefixServiceBinding/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#BindingNotFound"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.addressing#PrefixNotFound"
+        }
+      ]
+    }
+  ]
+}

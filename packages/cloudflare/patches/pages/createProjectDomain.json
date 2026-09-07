@@ -1,0 +1,45 @@
+{
+  "description": "Align pages#ProjectsDomainsCreate with distilled cloudflare/pages createProjectDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsCreate",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsCreateRequest",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDomain/input/target",
+      "value": "com.cloudflare.pages#CreateProjectDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsCreateResponse",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDomain/output/target",
+      "value": "com.cloudflare.pages#CreateProjectDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pages#ProjectNotFound"
+        },
+        {
+          "target": "com.cloudflare.pages#PagesDomainAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.pages#Forbidden"
+        }
+      ]
+    }
+  ]
+}

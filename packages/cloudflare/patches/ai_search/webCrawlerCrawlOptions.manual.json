@@ -1,0 +1,202 @@
+{
+  "description": "Docs gap: the web-crawler source params omit crawl_options, which the API accepts (e.g. { source: \"links\" }, needed to avoid missing_sitemap rejections on sitemap-less seeds) and v0 typed. The file key dictionary already maps crawlOptions -> crawl_options.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#WebCrawlerCrawlOptionsSource",
+      "value": {
+        "type": "enum",
+        "members": {
+          "ALL": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "all"
+            }
+          },
+          "SITEMAPS": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "sitemaps"
+            }
+          },
+          "LINKS": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "links"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+      "value": {
+        "type": "structure",
+        "members": {
+          "depth": {
+            "target": "smithy.api#Double",
+            "traits": {
+              "smithy.api#documentation": "Maximum crawl depth from the seed URL."
+            }
+          },
+          "include_external_links": {
+            "target": "smithy.api#Boolean"
+          },
+          "include_subdomains": {
+            "target": "smithy.api#Boolean"
+          },
+          "max_age": {
+            "target": "smithy.api#Double"
+          },
+          "source": {
+            "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptionsSource",
+            "traits": {
+              "smithy.api#documentation": "Where the crawler discovers URLs: sitemaps, page links, or both. Use links for sitemap-less seeds (avoids missing_sitemap rejections)."
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesCreateRequestSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesCreateResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesDeleteResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesListResultItemSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesReadResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesUpdateRequestSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesUpdateResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesCreateRequestSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesCreateResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesDeleteResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesListResultItemSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesReadResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesUpdateRequestSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesUpdateResponseSourceParamsWebCrawler/members/crawl_options",
+      "value": {
+        "target": "com.cloudflare.ai_search#WebCrawlerCrawlOptions",
+        "traits": {
+          "smithy.api#documentation": "Options controlling crawl discovery (e.g. { source: \"links\" })."
+        }
+      }
+    }
+  ]
+}

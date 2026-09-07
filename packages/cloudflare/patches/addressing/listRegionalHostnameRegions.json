@@ -1,0 +1,38 @@
+{
+  "description": "Align addressing#RegionalHostnamesRegionsList with distilled cloudflare/addressing listRegionalHostnameRegions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesRegionsList",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnameRegions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesRegionsListRequest",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnameRegionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnameRegions/input/target",
+      "value": "com.cloudflare.addressing#ListRegionalHostnameRegionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesRegionsListResponse",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnameRegionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnameRegions/output/target",
+      "value": "com.cloudflare.addressing#ListRegionalHostnameRegionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnameRegions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

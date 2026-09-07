@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    // Ported from distilled PR #360: generated services carry explicit
+    // interfaces + `as any as S.Schema<T>` casts, so checking them buys
+    // nothing and costs minutes/GBs. Hand-written src files are still checked
+    // via the workspace's strict configs.
+    "noCheck": true,
+    "paths": {
+      "@distilled.cloud/core/*": ["../core/src/*"]
+    }
+  },
+  "references": [{ "path": "../core" }]
+}

@@ -1,0 +1,10 @@
+{
+  "description": "canvasViewMerge returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#CanvasViewMergeRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation canvasViewMerge($sourceEnvironmentId: String!, $targetEnvironmentId: String!) {\n  canvasViewMerge(sourceEnvironmentId: $sourceEnvironmentId, targetEnvironmentId: $targetEnvironmentId)\n}"
+    }
+  ]
+}

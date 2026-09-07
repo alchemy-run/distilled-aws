@@ -1,0 +1,42 @@
+{
+  "description": "Align zones#SettingsEdit with distilled cloudflare/zones patchSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SettingsEdit",
+      "path": "/shapes/com.cloudflare.zones#PatchSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SettingsEditRequest",
+      "path": "/shapes/com.cloudflare.zones#PatchSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchSetting/input/target",
+      "value": "com.cloudflare.zones#PatchSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SettingsEditResponse",
+      "path": "/shapes/com.cloudflare.zones#PatchSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchSetting/output/target",
+      "value": "com.cloudflare.zones#PatchSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#PatchSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.zones#Forbidden"
+        }
+      ]
+    }
+  ]
+}

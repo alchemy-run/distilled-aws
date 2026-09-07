@@ -1,0 +1,42 @@
+{
+  "description": "Align origin_post_quantum_encryption#Get with distilled cloudflare/origin-post-quantum-encryption getOriginPostQuantumEncryption",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_post_quantum_encryption#Get",
+      "path": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryption"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetRequest",
+      "path": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryption/input/target",
+      "value": "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetResponse",
+      "path": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryption/output/target",
+      "value": "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryption/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#Forbidden"
+        }
+      ]
+    }
+  ]
+}

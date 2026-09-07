@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpLocationsBotClassGet with distilled cloudflare/radar getHttpLocationBotClass",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsBotClassGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBotClass"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsBotClassGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBotClassRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBotClass/input/target",
+      "value": "com.cloudflare.radar#GetHttpLocationBotClassRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsBotClassGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBotClassResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationBotClass/output/target",
+      "value": "com.cloudflare.radar#GetHttpLocationBotClassResponse"
+    }
+  ]
+}

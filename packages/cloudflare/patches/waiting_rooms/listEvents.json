@@ -1,0 +1,41 @@
+{
+  "description": "Align waiting_rooms#EventsList with distilled cloudflare/waiting-rooms listEvents",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsList",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListEvents"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsListRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListEventsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListEvents/input/target",
+      "value": "com.cloudflare.waiting_rooms#ListEventsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsListResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListEventsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListEvents/output/target",
+      "value": "com.cloudflare.waiting_rooms#ListEventsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.waiting_rooms#ListEvents/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align r2#BucketsMetricsList with distilled cloudflare/r2 listBucketMetrics",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsMetricsList",
+      "path": "/shapes/com.cloudflare.r2#ListBucketMetrics"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsMetricsListRequest",
+      "path": "/shapes/com.cloudflare.r2#ListBucketMetricsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ListBucketMetrics/input/target",
+      "value": "com.cloudflare.r2#ListBucketMetricsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsMetricsListResponse",
+      "path": "/shapes/com.cloudflare.r2#ListBucketMetricsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ListBucketMetrics/output/target",
+      "value": "com.cloudflare.r2#ListBucketMetricsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#ListBucketMetrics/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

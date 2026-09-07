@@ -1,0 +1,188 @@
+{
+  "errorCategories": {
+    "TooManyRequestsException": ["ThrottlingError", "RetryableError"],
+    "DataBrewRoleNotAssumable": ["BadRequestError", "RetryableError"]
+  },
+  "operations": {
+    "batchDeleteRecipeVersion": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "createDataset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "createProfileJob": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "DataBrewRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "is not a trusted entity for the data access role"
+          }
+        }
+      ]
+    },
+    "createProject": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "DataBrewRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "is not a trusted entity for the data access role"
+          }
+        }
+      ]
+    },
+    "createRecipe": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "createRecipeJob": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "DataBrewRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "is not a trusted entity for the data access role"
+          }
+        }
+      ]
+    },
+    "createRuleset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "createSchedule": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "deleteDataset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "deleteJob": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "deleteProject": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "deleteRecipeVersion": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "deleteRuleset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "deleteSchedule": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeDataset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeJob": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeJobRun": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeProject": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeRecipe": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeRuleset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "describeSchedule": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listDatasets": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listJobRuns": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listJobs": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listProjects": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listRecipeVersions": {
+      "errors": ["TooManyRequestsException", "ResourceNotFoundException"]
+    },
+    "listRecipes": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listRulesets": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listSchedules": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "listTagsForResource": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "publishRecipe": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "startJobRun": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "stopJobRun": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "tagResource": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "untagResource": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "updateDataset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "updateProfileJob": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "DataBrewRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "is not a trusted entity for the data access role"
+          }
+        }
+      ]
+    },
+    "updateProject": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "DataBrewRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "is not a trusted entity for the data access role"
+          }
+        }
+      ]
+    },
+    "updateRecipe": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "updateRecipeJob": {
+      "errors": ["TooManyRequestsException"],
+      "syntheticErrors": [
+        {
+          "name": "DataBrewRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "is not a trusted entity for the data access role"
+          }
+        }
+      ]
+    },
+    "updateRuleset": {
+      "errors": ["TooManyRequestsException"]
+    },
+    "updateSchedule": {
+      "errors": ["TooManyRequestsException"]
+    }
+  }
+}

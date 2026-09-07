@@ -1,0 +1,27 @@
+{
+  "description": "Key dictionary / op aliases for spectrum (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "argoSmartRouting": "argo_smart_routing",
+        "createdOn": "created_on",
+        "dataLag": "data_lag",
+        "edgeIps": "edge_ips",
+        "ipFirewall": "ip_firewall",
+        "modifiedOn": "modified_on",
+        "originDirect": "origin_direct",
+        "originDns": "origin_dns",
+        "originPort": "origin_port",
+        "perPage": "per_page",
+        "proxyProtocol": "proxy_protocol",
+        "resultInfo": "result_info",
+        "timeIntervals": "time_intervals",
+        "totalCount": "total_count",
+        "trafficType": "traffic_type",
+        "virtualNetworkId": "virtual_network_id"
+      }
+    }
+  ]
+}

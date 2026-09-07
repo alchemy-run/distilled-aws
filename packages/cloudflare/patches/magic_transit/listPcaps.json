@@ -1,0 +1,38 @@
+{
+  "description": "Align magic_transit#PcapsList with distilled cloudflare/magic-transit listPcaps",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsList",
+      "path": "/shapes/com.cloudflare.magic_transit#ListPcaps"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsListRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ListPcapsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListPcaps/input/target",
+      "value": "com.cloudflare.magic_transit#ListPcapsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsListResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ListPcapsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListPcaps/output/target",
+      "value": "com.cloudflare.magic_transit#ListPcapsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#ListPcaps/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

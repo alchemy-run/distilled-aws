@@ -1,0 +1,42 @@
+{
+  "description": "Align stream#LiveInputsOutputsCreate with distilled cloudflare/stream createLiveInputOutput",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsCreate",
+      "path": "/shapes/com.cloudflare.stream#CreateLiveInputOutput"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsCreateRequest",
+      "path": "/shapes/com.cloudflare.stream#CreateLiveInputOutputRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateLiveInputOutput/input/target",
+      "value": "com.cloudflare.stream#CreateLiveInputOutputRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsCreateResponse",
+      "path": "/shapes/com.cloudflare.stream#CreateLiveInputOutputResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateLiveInputOutput/output/target",
+      "value": "com.cloudflare.stream#CreateLiveInputOutputResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#CreateLiveInputOutput/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#LiveInputNotFound"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align tenant_custom_nameservers#Create with distilled cloudflare/tenant-custom-nameservers createTenantCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#Create",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateRequest",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserver/input/target",
+      "value": "com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateResponse",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserver/output/target",
+      "value": "com.cloudflare.tenant_custom_nameservers#CreateTenantCustomNameserverResponse"
+    }
+  ]
+}

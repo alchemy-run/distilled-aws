@@ -1,0 +1,30 @@
+{
+  "description": "Align ssl#AutoOriginTlsKexEdit with distilled cloudflare/ssl patchAutoOriginTlsKex",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#AutoOriginTlsKexEdit",
+      "path": "/shapes/com.cloudflare.ssl#PatchAutoOriginTlsKex"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#AutoOriginTlsKexEditRequest",
+      "path": "/shapes/com.cloudflare.ssl#PatchAutoOriginTlsKexRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchAutoOriginTlsKex/input/target",
+      "value": "com.cloudflare.ssl#PatchAutoOriginTlsKexRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#AutoOriginTlsKexEditResponse",
+      "path": "/shapes/com.cloudflare.ssl#PatchAutoOriginTlsKexResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchAutoOriginTlsKex/output/target",
+      "value": "com.cloudflare.ssl#PatchAutoOriginTlsKexResponse"
+    }
+  ]
+}

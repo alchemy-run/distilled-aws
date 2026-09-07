@@ -1,0 +1,14 @@
+{
+  "structures": {
+    "AuthenticationMode": {
+      "members": {
+        "Passwords": { "sensitive": true }
+      }
+    }
+  },
+  "operations": {
+    "batchUpdateCluster": {
+      "errors": ["InvalidParameterCombinationException"]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Key dictionary / op aliases for security_center (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "changedAt": "changed_at",
+        "changedBy": "changed_by",
+        "currentValue": "current_value",
+        "detectionMethod": "detection_method",
+        "documentationUrl": "documentation_url",
+        "fieldChanged": "field_changed",
+        "hasExtendedContext": "has_extended_context",
+        "issueClass": "issue_class",
+        "issueId": "issue_id",
+        "issueType": "issue_type",
+        "perPage": "per_page",
+        "previousValue": "previous_value",
+        "resolveLink": "resolve_link",
+        "resolveText": "resolve_text",
+        "resultInfo": "result_info",
+        "totalCount": "total_count",
+        "userClassification": "user_classification",
+        "zoneId": "zone_id",
+        "zoneTag": "zone_tag"
+      }
+    }
+  ]
+}

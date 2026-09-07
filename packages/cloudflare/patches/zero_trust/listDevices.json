@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DevicesList with distilled cloudflare/zero-trust listDevices",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDevices"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDevicesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDevices/input/target",
+      "value": "com.cloudflare.zero_trust#ListDevicesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDevicesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDevices/output/target",
+      "value": "com.cloudflare.zero_trust#ListDevicesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDevices/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

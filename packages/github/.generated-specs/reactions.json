@@ -1,0 +1,1950 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.reactions#ListForCommitCommentRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForCommitCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#ListForCommitCommentRequestContent",
+          "traits": {
+            "smithy.api#httpQuery": "content",
+            "smithy.api#documentation": "Returns a single [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions). Omit this parameter to list all reactions to a commit comment."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#Reaction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "com.github.reactions#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#ReactionContent",
+          "traits": {
+            "smithy.api#documentation": "The reaction to use",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reactions to conversations provide a way to help people express their feelings more simply and effectively."
+      }
+    },
+    "com.github.reactions#NullableSimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.reactions#ReactionContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reaction to use"
+      }
+    },
+    "com.github.reactions#ListForCommitCommentResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForCommitCommentResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.reactions#ListForCommitCommentResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.reactions#ListForCommitComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#ListForCommitCommentRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#ListForCommitCommentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/comments/{comment_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List reactions for a commit comment\n\nList the reactions to a [commit comment](https://docs.github.com/rest/commits/comments#get-a-commit-comment)."
+      }
+    },
+    "com.github.reactions#CreateForCommitCommentRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the commit comment."
+      }
+    },
+    "com.github.reactions#CreateForCommitCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#CreateForCommitCommentRequestContent",
+          "traits": {
+            "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the commit comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#CreateForCommitComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#CreateForCommitCommentRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/comments/{comment_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create reaction for a commit comment\n\nCreate a reaction to a [commit comment](https://docs.github.com/rest/commits/comments#get-a-commit-comment). A response with an HTTP `200` status means that you already added the reaction type to this commit comment."
+      }
+    },
+    "com.github.reactions#DeleteForCommitCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "reaction_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the reaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#DeleteForCommitComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#DeleteForCommitCommentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/comments/{comment_id}/reactions/{reaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a commit comment reaction\n\n> [!NOTE]\n> You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/comments/:comment_id/reactions/:reaction_id`.\n\nDelete a reaction to a [commit comment](https://docs.github.com/rest/commits/comments#get-a-commit-comment)."
+      }
+    },
+    "com.github.reactions#ListForIssueCommentRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForIssueCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#ListForIssueCommentRequestContent",
+          "traits": {
+            "smithy.api#httpQuery": "content",
+            "smithy.api#documentation": "Returns a single [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions). Omit this parameter to list all reactions to an issue comment."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#ListForIssueCommentResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForIssueCommentResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.reactions#ListForIssueCommentResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.reactions#ListForIssueComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#ListForIssueCommentRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#ListForIssueCommentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List reactions for an issue comment\n\nList the reactions to an [issue comment](https://docs.github.com/rest/issues/comments#get-an-issue-comment)."
+      }
+    },
+    "com.github.reactions#CreateForIssueCommentRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the issue comment."
+      }
+    },
+    "com.github.reactions#CreateForIssueCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#CreateForIssueCommentRequestContent",
+          "traits": {
+            "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the issue comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#CreateForIssueComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#CreateForIssueCommentRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create reaction for an issue comment\n\nCreate a reaction to an [issue comment](https://docs.github.com/rest/issues/comments#get-an-issue-comment). A response with an HTTP `200` status means that you already added the reaction type to this issue comment."
+      }
+    },
+    "com.github.reactions#DeleteForIssueCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "reaction_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the reaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#DeleteForIssueComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#DeleteForIssueCommentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions/{reaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an issue comment reaction\n\n> [!NOTE]\n> You can also specify a repository by `repository_id` using the route `DELETE delete /repositories/:repository_id/issues/comments/:comment_id/reactions/:reaction_id`.\n\nDelete a reaction to an [issue comment](https://docs.github.com/rest/issues/comments#get-an-issue-comment)."
+      }
+    },
+    "com.github.reactions#ListForIssueRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "issue_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The number that identifies the issue."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#ListForIssueRequestContent",
+          "traits": {
+            "smithy.api#httpQuery": "content",
+            "smithy.api#documentation": "Returns a single [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions). Omit this parameter to list all reactions to an issue."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#ListForIssueResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForIssueResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.reactions#ListForIssueResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.reactions#ListForIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#ListForIssueRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#ListForIssueResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#NotFound"
+        },
+        {
+          "target": "com.github.reactions#Gone"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List reactions for an issue\n\nList the reactions to an [issue](https://docs.github.com/rest/issues/issues#get-an-issue)."
+      }
+    },
+    "com.github.reactions#CreateForIssueRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the issue."
+      }
+    },
+    "com.github.reactions#CreateForIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "issue_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The number that identifies the issue."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#CreateForIssueRequestContent",
+          "traits": {
+            "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the issue.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#CreateForIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#CreateForIssueRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create reaction for an issue\n\nCreate a reaction to an [issue](https://docs.github.com/rest/issues/issues#get-an-issue). A response with an HTTP `200` status means that you already added the reaction type to this issue."
+      }
+    },
+    "com.github.reactions#DeleteForIssueRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "issue_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The number that identifies the issue."
+          }
+        },
+        "reaction_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the reaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#DeleteForIssue": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#DeleteForIssueRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/issues/{issue_number}/reactions/{reaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an issue reaction\n\n> [!NOTE]\n> You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/issues/:issue_number/reactions/:reaction_id`.\n\nDelete a reaction to an [issue](https://docs.github.com/rest/issues/issues#get-an-issue)."
+      }
+    },
+    "com.github.reactions#ListForPullRequestReviewCommentRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForPullRequestReviewCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#ListForPullRequestReviewCommentRequestContent",
+          "traits": {
+            "smithy.api#httpQuery": "content",
+            "smithy.api#documentation": "Returns a single [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions). Omit this parameter to list all reactions to a pull request review comment."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#ListForPullRequestReviewCommentResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForPullRequestReviewCommentResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.reactions#ListForPullRequestReviewCommentResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.reactions#ListForPullRequestReviewComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#ListForPullRequestReviewCommentRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#ListForPullRequestReviewCommentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List reactions for a pull request review comment\n\nList the reactions to a [pull request review comment](https://docs.github.com/rest/pulls/comments#get-a-review-comment-for-a-pull-request)."
+      }
+    },
+    "com.github.reactions#CreateForPullRequestReviewCommentRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "CONFUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "confused"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the pull request review comment."
+      }
+    },
+    "com.github.reactions#CreateForPullRequestReviewCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#CreateForPullRequestReviewCommentRequestContent",
+          "traits": {
+            "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the pull request review comment.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#CreateForPullRequestReviewComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#CreateForPullRequestReviewCommentRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create reaction for a pull request review comment\n\nCreate a reaction to a [pull request review comment](https://docs.github.com/rest/pulls/comments#get-a-review-comment-for-a-pull-request). A response with an HTTP `200` status means that you already added the reaction type to this pull request review comment."
+      }
+    },
+    "com.github.reactions#DeleteForPullRequestCommentRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "reaction_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the reaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#DeleteForPullRequestComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#DeleteForPullRequestCommentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions/{reaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a pull request comment reaction\n\n> [!NOTE]\n> You can also specify a repository by `repository_id` using the route `DELETE /repositories/:repository_id/pulls/comments/:comment_id/reactions/:reaction_id.`\n\nDelete a reaction to a [pull request review comment](https://docs.github.com/rest/pulls/comments#get-a-review-comment-for-a-pull-request)."
+      }
+    },
+    "com.github.reactions#ListForReleaseRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "release_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the release."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#ListForReleaseRequestContent",
+          "traits": {
+            "smithy.api#httpQuery": "content",
+            "smithy.api#documentation": "Returns a single [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions). Omit this parameter to list all reactions to a release."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#ListForReleaseResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "traits": {}
+    },
+    "com.github.reactions#ListForReleaseResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.reactions#ListForReleaseResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.reactions#ListForRelease": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#ListForReleaseRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#ListForReleaseResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/releases/{release_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List reactions for a release\n\nList the reactions to a [release](https://docs.github.com/rest/releases/releases#get-a-release)."
+      }
+    },
+    "com.github.reactions#CreateForReleaseRequestContent": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "+1"
+          }
+        },
+        "LAUGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "laugh"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "heart"
+          }
+        },
+        "HOORAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hooray"
+          }
+        },
+        "ROCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocket"
+          }
+        },
+        "EYES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eyes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the release."
+      }
+    },
+    "com.github.reactions#CreateForReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "release_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the release."
+          }
+        },
+        "content": {
+          "target": "com.github.reactions#CreateForReleaseRequestContent",
+          "traits": {
+            "smithy.api#documentation": "The [reaction type](https://docs.github.com/rest/reactions/reactions#about-reactions) to add to the release.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#CreateForRelease": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#CreateForReleaseRequest"
+      },
+      "output": {
+        "target": "com.github.reactions#Reaction"
+      },
+      "errors": [
+        {
+          "target": "com.github.reactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/releases/{release_id}/reactions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create reaction for a release\n\nCreate a reaction to a [release](https://docs.github.com/rest/releases/releases#get-a-release). A response with a `Status: 200 OK` means that you already added the reaction type to this release."
+      }
+    },
+    "com.github.reactions#DeleteForReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "release_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the release."
+          }
+        },
+        "reaction_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the reaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.reactions#DeleteForRelease": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.reactions#DeleteForReleaseRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/releases/{release_id}/reactions/{reaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a release reaction\n\n> [!NOTE]\n> You can also specify a repository by `repository_id` using the route `DELETE delete /repositories/:repository_id/releases/:release_id/reactions/:reaction_id`.\n\nDelete a reaction to a [release](https://docs.github.com/rest/releases/releases#get-a-release)."
+      }
+    },
+    "com.github.reactions#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.reactions#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.reactions#Gone": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 410,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 410
+          }
+        ]
+      }
+    },
+    "com.github.reactions#Reactions": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.reactions#ListForCommitComment"
+        },
+        {
+          "target": "com.github.reactions#CreateForCommitComment"
+        },
+        {
+          "target": "com.github.reactions#DeleteForCommitComment"
+        },
+        {
+          "target": "com.github.reactions#ListForIssueComment"
+        },
+        {
+          "target": "com.github.reactions#CreateForIssueComment"
+        },
+        {
+          "target": "com.github.reactions#DeleteForIssueComment"
+        },
+        {
+          "target": "com.github.reactions#ListForIssue"
+        },
+        {
+          "target": "com.github.reactions#CreateForIssue"
+        },
+        {
+          "target": "com.github.reactions#DeleteForIssue"
+        },
+        {
+          "target": "com.github.reactions#ListForPullRequestReviewComment"
+        },
+        {
+          "target": "com.github.reactions#CreateForPullRequestReviewComment"
+        },
+        {
+          "target": "com.github.reactions#DeleteForPullRequestComment"
+        },
+        {
+          "target": "com.github.reactions#ListForRelease"
+        },
+        {
+          "target": "com.github.reactions#CreateForRelease"
+        },
+        {
+          "target": "com.github.reactions#DeleteForRelease"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

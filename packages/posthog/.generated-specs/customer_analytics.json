@@ -1,0 +1,735 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "UUID of the parent account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_analytics#CustomPropertyValue": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique id of this value record.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account the value belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom property definition the value is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.posthog.customer_analytics#CustomPropertyValueValue",
+          "traits": {
+            "smithy.api#documentation": "The stored value, typed per the property's data type.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this value was set.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_by_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Id of the user who set this value, if known.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An account's current value for a custom property (read shape)."
+      }
+    },
+    "com.posthog.customer_analytics#CustomPropertyValueValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The stored value, typed per the property's data type."
+      }
+    },
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.customer_analytics#CustomPropertyValue"
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/accounts/{account_id}/custom_property_values/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequestValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, or text for text properties."
+      }
+    },
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "UUID of the parent account."
+          }
+        },
+        "definition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the custom property definition whose value to set for this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, or text for text properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_analytics#CustomPropertyValue"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/accounts/{account_id}/custom_property_values/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksListRequestOrdering": {
+      "type": "enum",
+      "members": {
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "CREATED_BY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_by"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "CREATED_BY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_by"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "UUID of the parent account."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "ordering": {
+          "target": "com.posthog.customer_analytics#AccountsNotebooksListRequestOrdering",
+          "traits": {
+            "smithy.api#httpQuery": "ordering",
+            "smithy.api#documentation": "Sort by creation date or author. Defaults to '-created_at'."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Full-text search across notebook title and content."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_analytics#PaginatedAccountNotebookList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.customer_analytics#PaginatedAccountNotebookListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#AccountNotebook": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable title of the account notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.customer_analytics#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_modified_by": {
+          "target": "com.posthog.customer_analytics#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.customer_analytics#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.customer_analytics#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.customer_analytics#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.customer_analytics#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.customer_analytics#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#PaginatedAccountNotebookListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.customer_analytics#AccountNotebook"
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_analytics#AccountsNotebooksListRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_analytics#PaginatedAccountNotebookList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/accounts/{account_id}/notebooks/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "UUID of the parent account."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable title of the account notebook.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Notebook content as a ProseMirror JSON document structure."
+          }
+        },
+        "text_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text representation of the notebook content for search.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_analytics#AccountsNotebooksCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_analytics#AccountNotebook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/accounts/{account_id}/notebooks/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "UUID of the parent account."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_analytics#AccountsNotebooksRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_analytics#AccountNotebook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/accounts/{account_id}/notebooks/{short_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "UUID of the parent account."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_analytics#AccountsNotebooksDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_analytics#AccountsNotebooksDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/accounts/{account_id}/notebooks/{short_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_analytics#CustomerAnalytics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesList"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreate"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsNotebooksList"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsNotebooksCreate"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsNotebooksRetrieve"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsNotebooksDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Align alerting#SilencesCreate with distilled cloudflare/alerting createSilence",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesCreate",
+      "path": "/shapes/com.cloudflare.alerting#CreateSilence"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesCreateRequest",
+      "path": "/shapes/com.cloudflare.alerting#CreateSilenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#CreateSilence/input/target",
+      "value": "com.cloudflare.alerting#CreateSilenceRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#CreateSilence/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidSilence"
+        },
+        {
+          "target": "com.cloudflare.alerting#SilenceAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

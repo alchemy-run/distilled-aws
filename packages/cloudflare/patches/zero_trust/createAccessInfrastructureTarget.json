@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessInfrastructureTargetsCreate with distilled cloudflare/zero-trust createAccessInfrastructureTarget",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessInfrastructureTarget"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessInfrastructureTargetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessInfrastructureTarget/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessInfrastructureTargetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessInfrastructureTargetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessInfrastructureTarget/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessInfrastructureTargetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessInfrastructureTarget/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

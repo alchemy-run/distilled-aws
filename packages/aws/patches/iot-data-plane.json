@@ -1,0 +1,25 @@
+{
+  "operations": {
+    "publish": {
+      "errors": ["ForbiddenException"]
+    },
+    "getThingShadow": {
+      "errors": ["ForbiddenException"]
+    },
+    "updateThingShadow": {
+      "errors": ["ForbiddenException"]
+    },
+    "deleteThingShadow": {
+      "errors": ["ForbiddenException"]
+    },
+    "listNamedShadowsForThing": {
+      "errors": ["ForbiddenException"]
+    },
+    "getRetainedMessage": {
+      "errors": ["ForbiddenException"]
+    },
+    "listRetainedMessages": {
+      "errors": ["ForbiddenException"]
+    }
+  }
+}

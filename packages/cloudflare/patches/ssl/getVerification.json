@@ -1,0 +1,30 @@
+{
+  "description": "Align ssl#VerificationGet with distilled cloudflare/ssl getVerification",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#VerificationGet",
+      "path": "/shapes/com.cloudflare.ssl#GetVerification"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#VerificationGetRequest",
+      "path": "/shapes/com.cloudflare.ssl#GetVerificationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#GetVerification/input/target",
+      "value": "com.cloudflare.ssl#GetVerificationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#VerificationGetResponse",
+      "path": "/shapes/com.cloudflare.ssl#GetVerificationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#GetVerification/output/target",
+      "value": "com.cloudflare.ssl#GetVerificationResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayLoggingUpdate with distilled cloudflare/zero-trust putGatewayLogging",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLoggingUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayLogging"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLoggingUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayLoggingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayLogging/input/target",
+      "value": "com.cloudflare.zero_trust#PutGatewayLoggingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayLoggingUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayLoggingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayLogging/output/target",
+      "value": "com.cloudflare.zero_trust#PutGatewayLoggingResponse"
+    }
+  ]
+}

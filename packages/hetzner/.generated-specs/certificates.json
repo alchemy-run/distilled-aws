@@ -1,0 +1,1772 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.certificates#ListCertificatesRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "NAME_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:asc"
+          }
+        },
+        "NAME_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:desc"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "CREATED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:asc"
+          }
+        },
+        "CREATED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#ListCertificatesRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesRequestTypeItem": {
+      "type": "enum",
+      "members": {
+        "UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesRequestTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#ListCertificatesRequestTypeItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "sort": {
+          "target": "com.hetzner.certificates#ListCertificatesRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort resources by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter resources by their name.\n\nThe response will only contain the resources\nmatching exactly the specified name.\n"
+          }
+        },
+        "label_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "label_selector",
+            "smithy.api#documentation": "Filter resources by labels.\n\nThe response will only contain resources matching the label selector.\nFor more information, see \"[Label Selector](#description/label-selector)\".\n"
+          }
+        },
+        "type": {
+          "target": "com.hetzner.certificates#ListCertificatesRequestTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "Filter resources by type. May be used multiple times.\n\nThe response will only contain the resources with the specified type.\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemType": {
+      "type": "enum",
+      "members": {
+        "UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemDomainNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domains and subdomains covered by the Certificate."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatusIssuance": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the issuance process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatusRenewal": {
+      "type": "enum",
+      "members": {
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the renewal process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatusError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatus": {
+      "type": "structure",
+      "members": {
+        "issuance": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatusIssuance",
+          "traits": {
+            "smithy.api#documentation": "Status of the issuance process of the Certificate."
+          }
+        },
+        "renewal": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatusRenewal",
+          "traits": {
+            "smithy.api#documentation": "Status of the renewal process of the Certificate."
+          }
+        },
+        "error": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatusError",
+          "traits": {
+            "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemUsedByItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of resource referenced.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of resource referenced.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItemUsedByList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemUsedByItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources currently using the Certificate."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Certificate](#tag/certificates).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Certificate."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "not_valid_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate becomes valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "not_valid_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate stops being valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain_names": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemDomainNamesList",
+          "traits": {
+            "smithy.api#documentation": "Domains and subdomains covered by the Certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 fingerprint of the Certificate.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "used_by": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItemUsedByList",
+          "traits": {
+            "smithy.api#documentation": "Resources currently using the Certificate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesResponseCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.certificates#ListCertificatesResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#ListCertificatesResponse": {
+      "type": "structure",
+      "members": {
+        "certificates": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseCertificatesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.certificates#ListCertificatesResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.certificates#ListCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.certificates#ListCertificatesRequest"
+      },
+      "output": {
+        "target": "com.hetzner.certificates#ListCertificatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Certificates\n\nReturns all Certificate objects.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "certificates",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateRequestType": {
+      "type": "enum",
+      "members": {
+        "UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Choose between uploading a Certificate in PEM format or requesting a managed *Let's Encrypt* Certificate."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateRequestDomainNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domains and subdomains that should be contained in the Certificate issued by *Let's Encrypt*. Required for type `managed` Certificates."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.certificates#CreateCertificateRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "type": {
+          "target": "com.hetzner.certificates#CreateCertificateRequestType",
+          "traits": {
+            "smithy.api#documentation": "Choose between uploading a Certificate in PEM format or requesting a managed *Let's Encrypt* Certificate."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate and chain in PEM format, in order so that each record directly certifies the one preceding. Required for type `uploaded` Certificates."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate key in PEM format. Required for type `uploaded` Certificates.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "domain_names": {
+          "target": "com.hetzner.certificates#CreateCertificateRequestDomainNamesList",
+          "traits": {
+            "smithy.api#documentation": "Domains and subdomains that should be contained in the Certificate issued by *Let's Encrypt*. Required for type `managed` Certificates."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateType": {
+      "type": "enum",
+      "members": {
+        "UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateDomainNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domains and subdomains covered by the Certificate."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateStatusIssuance": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the issuance process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateStatusRenewal": {
+      "type": "enum",
+      "members": {
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the renewal process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateStatusError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateStatus": {
+      "type": "structure",
+      "members": {
+        "issuance": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateStatusIssuance",
+          "traits": {
+            "smithy.api#documentation": "Status of the issuance process of the Certificate."
+          }
+        },
+        "renewal": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateStatusRenewal",
+          "traits": {
+            "smithy.api#documentation": "Status of the renewal process of the Certificate."
+          }
+        },
+        "error": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateStatusError",
+          "traits": {
+            "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateUsedByItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of resource referenced.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of resource referenced.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificateUsedByList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#CreateCertificateResponseCertificateUsedByItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources currently using the Certificate."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseCertificate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Certificate](#tag/certificates).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Certificate."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "not_valid_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate becomes valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "not_valid_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate stops being valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain_names": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateDomainNamesList",
+          "traits": {
+            "smithy.api#documentation": "Domains and subdomains covered by the Certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 fingerprint of the Certificate.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "used_by": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificateUsedByList",
+          "traits": {
+            "smithy.api#documentation": "Resources currently using the Certificate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#CreateCertificateResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#CreateCertificateResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#CreateCertificateResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.certificates#CreateCertificateResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#CreateCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseCertificate",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.hetzner.certificates#CreateCertificateResponseAction",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.certificates#CreateCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.certificates#CreateCertificateRequest"
+      },
+      "output": {
+        "target": "com.hetzner.certificates#CreateCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Certificate\n\nCreates a new Certificate.\n\nThe default type **uploaded** allows for uploading your existing `certificate` and `private_key` in PEM format. You have to monitor its expiration date and handle renewal yourself.\n\nIn contrast, type **managed** requests a new Certificate from *Let's Encrypt* for the specified `domain_names`. Only domains managed by *Hetzner DNS* are supported. We handle renewal and timely alert the project owner via email if problems occur.\n\nFor type `managed` Certificates the `action` key of the response contains the Action that allows for tracking the issuance process. For type `uploaded` Certificates the `action` is always null."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateType": {
+      "type": "enum",
+      "members": {
+        "UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateDomainNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domains and subdomains covered by the Certificate."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateStatusIssuance": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the issuance process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateStatusRenewal": {
+      "type": "enum",
+      "members": {
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the renewal process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateStatusError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateStatus": {
+      "type": "structure",
+      "members": {
+        "issuance": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateStatusIssuance",
+          "traits": {
+            "smithy.api#documentation": "Status of the issuance process of the Certificate."
+          }
+        },
+        "renewal": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateStatusRenewal",
+          "traits": {
+            "smithy.api#documentation": "Status of the renewal process of the Certificate."
+          }
+        },
+        "error": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateStatusError",
+          "traits": {
+            "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateUsedByItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of resource referenced.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of resource referenced.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificateUsedByList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#GetCertificateResponseCertificateUsedByItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources currently using the Certificate."
+      }
+    },
+    "com.hetzner.certificates#GetCertificateResponseCertificate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Certificate](#tag/certificates).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Certificate."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "not_valid_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate becomes valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "not_valid_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate stops being valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain_names": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateDomainNamesList",
+          "traits": {
+            "smithy.api#documentation": "Domains and subdomains covered by the Certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 fingerprint of the Certificate.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "used_by": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificateUsedByList",
+          "traits": {
+            "smithy.api#documentation": "Resources currently using the Certificate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#GetCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "com.hetzner.certificates#GetCertificateResponseCertificate",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.certificates#GetCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.certificates#GetCertificateRequest"
+      },
+      "output": {
+        "target": "com.hetzner.certificates#GetCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/certificates/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Certificate\n\nGets a specific Certificate object."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Certificate."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New Certificate name."
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.certificates#UpdateCertificateRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateType": {
+      "type": "enum",
+      "members": {
+        "UPLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateDomainNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domains and subdomains covered by the Certificate."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateStatusIssuance": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the issuance process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateStatusRenewal": {
+      "type": "enum",
+      "members": {
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the renewal process of the Certificate."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateStatusError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateStatus": {
+      "type": "structure",
+      "members": {
+        "issuance": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateStatusIssuance",
+          "traits": {
+            "smithy.api#documentation": "Status of the issuance process of the Certificate."
+          }
+        },
+        "renewal": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateStatusRenewal",
+          "traits": {
+            "smithy.api#documentation": "Status of the renewal process of the Certificate."
+          }
+        },
+        "error": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateStatusError",
+          "traits": {
+            "smithy.api#documentation": "If issuance or renewal reports `failed`, this property contains information about what happened.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateUsedByItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of resource referenced.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of resource referenced.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificateUsedByList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateUsedByItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources currently using the Certificate."
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificateResponseCertificate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Certificate](#tag/certificates).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateType",
+          "traits": {
+            "smithy.api#documentation": "Type of the Certificate."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate and chain in PEM format, in order so that each record directly certifies the one preceding.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "not_valid_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate becomes valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "not_valid_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Certificate stops being valid (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain_names": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateDomainNamesList",
+          "traits": {
+            "smithy.api#documentation": "Domains and subdomains covered by the Certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA256 fingerprint of the Certificate.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of a type `managed` Certificate, always *null* for type `uploaded` Certificates.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "used_by": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificateUsedByList",
+          "traits": {
+            "smithy.api#documentation": "Resources currently using the Certificate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.certificates#UpdateCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "com.hetzner.certificates#UpdateCertificateResponseCertificate",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.certificates#UpdateCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.certificates#UpdateCertificateRequest"
+      },
+      "output": {
+        "target": "com.hetzner.certificates#UpdateCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/certificates/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Certificate\n\nUpdates the Certificate properties.\n\nNote: if the Certificate object changes during the request, the response will be a “conflict” error."
+      }
+    },
+    "com.hetzner.certificates#DeleteCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.certificates#DeleteCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.certificates#DeleteCertificateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/certificates/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Certificate\n\nDeletes a Certificate."
+      }
+    },
+    "com.hetzner.certificates#Certificates": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.certificates#ListCertificates"
+        },
+        {
+          "target": "com.hetzner.certificates#CreateCertificate"
+        },
+        {
+          "target": "com.hetzner.certificates#GetCertificate"
+        },
+        {
+          "target": "com.hetzner.certificates#UpdateCertificate"
+        },
+        {
+          "target": "com.hetzner.certificates#DeleteCertificate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

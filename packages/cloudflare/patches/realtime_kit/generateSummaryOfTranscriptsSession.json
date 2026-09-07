@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#SessionsGenerateSummaryOfTranscripts with distilled cloudflare/realtime-kit generateSummaryOfTranscriptsSession",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#SessionsGenerateSummaryOfTranscripts",
+      "path": "/shapes/com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSession"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#SessionsGenerateSummaryOfTranscriptsRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSessionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSession/input/target",
+      "value": "com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSessionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#SessionsGenerateSummaryOfTranscriptsResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSessionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSession/output/target",
+      "value": "com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSessionResponse"
+    }
+  ]
+}

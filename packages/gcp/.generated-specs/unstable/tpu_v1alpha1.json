@@ -1,0 +1,1764 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "tpu",
+    "version": "v1alpha1",
+    "title": "Cloud TPU API",
+    "baseUrl": "https://tpu.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.tpu_v1alpha1#Node": {
+      "type": "structure",
+      "members": {
+        "cidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block."
+          }
+        },
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data."
+          }
+        },
+        "acceleratorType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of hardware accelerators associated with this node."
+          }
+        },
+        "networkEndpoints": {
+          "target": "com.gcp.tpu_v1alpha1#NetworkEndpointList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the node reach out to the 0th entry in this map first."
+          }
+        },
+        "schedulingConfig": {
+          "target": "com.gcp.tpu_v1alpha1#SchedulingConfig",
+          "traits": {
+            "smithy.api#documentation": "The scheduling options for this node."
+          }
+        },
+        "health": {
+          "target": "com.gcp.tpu_v1alpha1#NodeHealthEnum",
+          "traits": {
+            "smithy.api#documentation": "The health status of the TPU node."
+          }
+        },
+        "tensorflowVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The version of Tensorflow running in the Node."
+          }
+        },
+        "useServiceNetworking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the VPC peering for the node is set up through Service Networking API. The VPC Peering should be set up before provisioning the node. If this field is set, cidr_block field should not be specified. If the network, that you want to peer the TPU Node to, is Shared VPC networks, the node must be created with this this field enabled."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The name of the TPU"
+          }
+        },
+        "symptoms": {
+          "target": "com.gcp.tpu_v1alpha1#SymptomList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The Symptoms that have occurred to the TPU Node."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user-supplied description of the TPU. Maximum of 512 characters."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, \"default\" will be used."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.tpu_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Resource labels to represent user-provided metadata."
+          }
+        },
+        "apiVersion": {
+          "target": "com.gcp.tpu_v1alpha1#NodeApiVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The API version that created this Node."
+          }
+        },
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to Compute Engine instances."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when the node was created."
+          }
+        },
+        "state": {
+          "target": "com.gcp.tpu_v1alpha1#NodeStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state for the TPU Node."
+          }
+        },
+        "healthDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy."
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. A TPU instance."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NetworkEndpointList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#NetworkEndpoint"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NodeHealthEnum": {
+      "type": "enum",
+      "members": {
+        "HEALTH_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_UNSPECIFIED"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHY"
+          }
+        },
+        "DEPRECATED_UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED_UNHEALTHY"
+          }
+        },
+        "TIMEOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIMEOUT"
+          }
+        },
+        "UNHEALTHY_TENSORFLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNHEALTHY_TENSORFLOW"
+          }
+        },
+        "UNHEALTHY_MAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNHEALTHY_MAINTENANCE"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#SymptomList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#Symptom"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NodeApiVersionEnum": {
+      "type": "enum",
+      "members": {
+        "API_VERSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_VERSION_UNSPECIFIED"
+          }
+        },
+        "V1_ALPHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V1_ALPHA1"
+          }
+        },
+        "V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V1"
+          }
+        },
+        "V2_ALPHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V2_ALPHA1"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NodeStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "RESTARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESTARTING"
+          }
+        },
+        "REIMAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REIMAGING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "REPAIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPAIRING"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPED"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPING"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTING"
+          }
+        },
+        "PREEMPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREEMPTED"
+          }
+        },
+        "TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TERMINATED"
+          }
+        },
+        "HIDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDING"
+          }
+        },
+        "HIDDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIDDEN"
+          }
+        },
+        "UNHIDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNHIDING"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Location": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.tpu_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.tpu_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#AcceleratorType": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the accelerator type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. A accelerator type that a Node can be configured with."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.tpu_v1alpha1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#DocumentMap"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#SchedulingConfig": {
+      "type": "structure",
+      "members": {
+        "reserved": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the node is created under a reservation."
+          }
+        },
+        "preemptible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Defines whether the node is preemptible."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Sets the scheduling options for this node."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Symptom": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed information of the current Symptom."
+          }
+        },
+        "workerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string used to uniquely distinguish a worker within a TPU node."
+          }
+        },
+        "symptomType": {
+          "target": "com.gcp.tpu_v1alpha1#SymptomSymptomTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the Symptom."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the Symptom is created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. A Symptom instance."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#SymptomSymptomTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SYMPTOM_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYMPTOM_TYPE_UNSPECIFIED"
+          }
+        },
+        "LOW_MEMORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW_MEMORY"
+          }
+        },
+        "OUT_OF_MEMORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUT_OF_MEMORY"
+          }
+        },
+        "EXECUTE_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXECUTE_TIMED_OUT"
+          }
+        },
+        "MESH_BUILD_FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MESH_BUILD_FAIL"
+          }
+        },
+        "HBM_OUT_OF_MEMORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HBM_OUT_OF_MEMORY"
+          }
+        },
+        "PROJECT_ABUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_ABUSE"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListNodesResponse": {
+      "type": "structure",
+      "members": {
+        "nodes": {
+          "target": "com.gcp.tpu_v1alpha1#NodeList",
+          "traits": {
+            "smithy.api#documentation": "The listed nodes."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.tpu_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token or empty if none."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Response for ListNodes."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NodeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#Node"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.tpu_v1alpha1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.tpu_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.tpu_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListAcceleratorTypesResponse": {
+      "type": "structure",
+      "members": {
+        "acceleratorTypes": {
+          "target": "com.gcp.tpu_v1alpha1#AcceleratorTypeList",
+          "traits": {
+            "smithy.api#documentation": "The listed nodes."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token or empty if none."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.tpu_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Response for ListAcceleratorTypes."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#AcceleratorTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#AcceleratorType"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StartNodeRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Request for StartNode."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#TensorFlowVersion": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the tensorflow version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. A tensorflow version that a Node can be configured with."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NetworkEndpoint": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IP address of this network endpoint."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port of this network endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. A network endpoint over which a TPU worker can be reached."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.tpu_v1alpha1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#Location"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StopNodeRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Request for StopNode."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListTensorFlowVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.tpu_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token or empty if none."
+          }
+        },
+        "tensorflowVersions": {
+          "target": "com.gcp.tpu_v1alpha1#TensorFlowVersionList",
+          "traits": {
+            "smithy.api#documentation": "The listed nodes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Response for ListTensorFlowVersions."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#TensorFlowVersionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#TensorFlowVersion"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "cancelRequested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies if cancellation was requested for the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API version."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target of the operation - for example projects/project-1/connectivityTests/test-1"
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation was created."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the verb executed by the operation."
+          }
+        },
+        "statusDetail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable status of the operation, if any."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation finished running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Metadata describing an Operation"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ReimageNodeRequest": {
+      "type": "structure",
+      "members": {
+        "tensorflowVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version for reimage to create."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED: Please use TPU API v2alpha1 instead. Request for ReimageNode."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.tpu_v1alpha1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.tpu_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.tpu_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsTensorflowVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sort results.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsTensorflowVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#ListProjectsLocationsTensorflowVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#ListTensorFlowVersionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/tensorflowVersions"
+        },
+        "smithy.api#documentation": "Lists TensorFlow versions supported by this API.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsTensorflowVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsTensorflowVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#GetProjectsLocationsTensorflowVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#TensorFlowVersion"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets TensorFlow Version."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsAcceleratorTypesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sort results.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsAcceleratorTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#ListProjectsLocationsAcceleratorTypesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#ListAcceleratorTypesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/acceleratorTypes"
+        },
+        "smithy.api#documentation": "Lists accelerator types supported by this API.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsAcceleratorTypesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsAcceleratorTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#GetProjectsLocationsAcceleratorTypesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#AcceleratorType"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets AcceleratorType."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.tpu_v1alpha1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.tpu_v1alpha1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ReimageProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.tpu_v1alpha1#ReimageNodeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ReimageProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#ReimageProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:reimage"
+        },
+        "smithy.api#documentation": "Reimages a node's OS."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#ListProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#ListProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#ListNodesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Lists nodes.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#DeleteProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Idempotent request UUID.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#DeleteProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#DeleteProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a node."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#GetProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#GetProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Node"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the details of a node."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#CreateProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "nodeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unqualified resource name.",
+            "smithy.api#httpQuery": "nodeId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Idempotent request UUID.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.tpu_v1alpha1#Node",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#CreateProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#CreateProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/nodes"
+        },
+        "smithy.api#documentation": "Creates a node."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StopProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.tpu_v1alpha1#StopNodeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StopProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#StopProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:stop"
+        },
+        "smithy.api#documentation": "Stops a node. This operation is only available with single TPU nodes."
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StartProjectsLocationsNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.tpu_v1alpha1#StartNodeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.tpu_v1alpha1#StartProjectsLocationsNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.tpu_v1alpha1#StartProjectsLocationsNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.tpu_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.tpu_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.tpu_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:start"
+        },
+        "smithy.api#documentation": "Starts a node."
+      }
+    }
+  }
+}

@@ -1,0 +1,1502 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.vectorize#IndexesCreateRequestConfigIndexDimensionConfigurationMetric": {
+      "type": "enum",
+      "members": {
+        "COSINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cosine"
+          }
+        },
+        "EUCLIDEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "euclidean"
+          }
+        },
+        "DOT_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dot-product"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateRequestConfigIndexDimensionConfiguration": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the number of dimensions for the index",
+            "smithy.api#required": {}
+          }
+        },
+        "metric": {
+          "target": "com.cloudflare.vectorize#IndexesCreateRequestConfigIndexDimensionConfigurationMetric",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of metric to use calculating distance.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateRequestConfigVectorizeIndexPresetConfigurationPreset": {
+      "type": "enum",
+      "members": {
+        "CF_BAAI_BGE_SMALL_EN_V1_5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "@cf/baai/bge-small-en-v1.5"
+          }
+        },
+        "CF_BAAI_BGE_BASE_EN_V1_5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "@cf/baai/bge-base-en-v1.5"
+          }
+        },
+        "CF_BAAI_BGE_LARGE_EN_V1_5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "@cf/baai/bge-large-en-v1.5"
+          }
+        },
+        "OPENAI_TEXT_EMBEDDING_ADA_002": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai/text-embedding-ada-002"
+          }
+        },
+        "COHERE_EMBED_MULTILINGUAL_V2_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cohere/embed-multilingual-v2.0"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateRequestConfigVectorizeIndexPresetConfiguration": {
+      "type": "structure",
+      "members": {
+        "preset": {
+          "target": "com.cloudflare.vectorize#IndexesCreateRequestConfigVectorizeIndexPresetConfigurationPreset",
+          "traits": {
+            "smithy.api#documentation": "Specifies the preset to use for the index.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateRequestConfig": {
+      "type": "union",
+      "members": {
+        "IndexDimensionConfiguration": {
+          "target": "com.cloudflare.vectorize#IndexesCreateRequestConfigIndexDimensionConfiguration"
+        },
+        "VectorizeIndexPresetConfiguration": {
+          "target": "com.cloudflare.vectorize#IndexesCreateRequestConfigVectorizeIndexPresetConfiguration"
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "com.cloudflare.vectorize#IndexesCreateRequestConfig",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of configuration to use for the index.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the description of the index."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateResponseConfigMetric": {
+      "type": "enum",
+      "members": {
+        "COSINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cosine"
+          }
+        },
+        "EUCLIDEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "euclidean"
+          }
+        },
+        "DOT_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dot-product"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateResponseConfig": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the number of dimensions for the index",
+            "smithy.api#required": {}
+          }
+        },
+        "metric": {
+          "target": "com.cloudflare.vectorize#IndexesCreateResponseConfigMetric",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of metric to use calculating distance.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.cloudflare.vectorize#IndexesCreateResponseConfig"
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the description of the index."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was modified as an ISO8601 string."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates and returns a new Vectorize Index."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes the specified Vectorize Index.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDeleteByIdsRequestIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDeleteByIdsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ids": {
+          "target": "com.cloudflare.vectorize#IndexesDeleteByIdsRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of vector identifiers to delete from the index indicated by the path."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDeleteByIdsResponse": {
+      "type": "structure",
+      "members": {
+        "mutationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the async mutation operation containing the changeset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesDeleteByIds": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesDeleteByIdsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesDeleteByIdsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a set of vectors from an index by their vector identifiers."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetResponseConfigMetric": {
+      "type": "enum",
+      "members": {
+        "COSINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cosine"
+          }
+        },
+        "EUCLIDEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "euclidean"
+          }
+        },
+        "DOT_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dot-product"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetResponseConfig": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the number of dimensions for the index",
+            "smithy.api#required": {}
+          }
+        },
+        "metric": {
+          "target": "com.cloudflare.vectorize#IndexesGetResponseConfigMetric",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of metric to use calculating distance.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetResponse": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.cloudflare.vectorize#IndexesGetResponseConfig"
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the description of the index."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was modified as an ISO8601 string."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the specified Vectorize Index.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetByIdsRequestIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetByIdsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ids": {
+          "target": "com.cloudflare.vectorize#IndexesGetByIdsRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of vector identifiers to retrieve from the index indicated by the path."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetByIdsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesGetByIds": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesGetByIdsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesGetByIdsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a set of vectors from an index by their vector identifiers."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInfoRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInfoResponse": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the number of dimensions for the index"
+          }
+        },
+        "processedUpToDatetime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the last mutation batch was processed as an ISO8601 string."
+          }
+        },
+        "processedUpToMutation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the async mutation operation containing the changeset."
+          }
+        },
+        "vectorCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the number of vectors present in the index"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesInfoRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about a vectorize index.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInsertRequestUnparsableBehavior": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "DISCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "discard"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInsertRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "unparsable_behavior": {
+          "target": "com.cloudflare.vectorize#IndexesInsertRequestUnparsableBehavior",
+          "traits": {
+            "smithy.api#documentation": "Behavior for ndjson parse failures.",
+            "smithy.api#httpQuery": "unparsable-behavior"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInsertResponse": {
+      "type": "structure",
+      "members": {
+        "mutationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the async mutation operation containing the changeset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesInsert": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesInsertRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesInsertResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
+          "code": 200
+        },
+        "smithy.api#documentation": "Inserts vectors into the specified index and returns a mutation id corresponding to the vectors enqueued for insertion."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListResultItemConfigMetric": {
+      "type": "enum",
+      "members": {
+        "COSINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cosine"
+          }
+        },
+        "EUCLIDEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "euclidean"
+          }
+        },
+        "DOT_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dot-product"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListResultItemConfig": {
+      "type": "structure",
+      "members": {
+        "dimensions": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the number of dimensions for the index",
+            "smithy.api#required": {}
+          }
+        },
+        "metric": {
+          "target": "com.cloudflare.vectorize#IndexesListResultItemConfigMetric",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of metric to use calculating distance.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListResultItem": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.cloudflare.vectorize#IndexesListResultItemConfig"
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the description of the index."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was modified as an ISO8601 string."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.vectorize#IndexesListResultItem"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.vectorize#IndexesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of Vectorize Indexes",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListVectorsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of vectors to return",
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for pagination to get the next page of results",
+            "smithy.api#httpQuery": "cursor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListVectorsResponseVectorsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for a Vector",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListVectorsResponseVectorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.vectorize#IndexesListVectorsResponseVectorsItem"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListVectorsResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of vectors returned in this response",
+            "smithy.api#required": {}
+          }
+        },
+        "isTruncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether there are more vectors available beyond this response",
+            "smithy.api#required": {}
+          }
+        },
+        "totalCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total number of vectors in the index",
+            "smithy.api#required": {}
+          }
+        },
+        "vectors": {
+          "target": "com.cloudflare.vectorize#IndexesListVectorsResponseVectorsList",
+          "traits": {
+            "smithy.api#documentation": "Array of vector items",
+            "smithy.api#required": {}
+          }
+        },
+        "cursorExpirationTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the cursor expires as an ISO8601 string"
+          }
+        },
+        "nextCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesListVectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesListVectorsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesListVectorsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a paginated list of vector identifiers from the specified index.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryRequestVectorList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryRequestReturnMetadata": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "INDEXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "indexed"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "vector": {
+          "target": "com.cloudflare.vectorize#IndexesQueryRequestVectorList",
+          "traits": {
+            "smithy.api#documentation": "The search vector that will be used to find the nearest neighbors.",
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "A metadata filter expression used to limit nearest neighbor results."
+          }
+        },
+        "returnMetadata": {
+          "target": "com.cloudflare.vectorize#IndexesQueryRequestReturnMetadata",
+          "traits": {
+            "smithy.api#documentation": "Whether to return no metadata, indexed metadata or all metadata associated with the closest vectors."
+          }
+        },
+        "returnValues": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to return the values associated with the closest vectors."
+          }
+        },
+        "topK": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of nearest neighbors to find."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryResponseMatchesItemValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryResponseMatchesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for a Vector"
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document"
+        },
+        "namespace": {
+          "target": "smithy.api#String"
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The score of the vector according to the index's distance metric"
+          }
+        },
+        "values": {
+          "target": "com.cloudflare.vectorize#IndexesQueryResponseMatchesItemValuesList"
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryResponseMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.vectorize#IndexesQueryResponseMatchesItem"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQueryResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specifies the count of vectors returned by the search"
+          }
+        },
+        "matches": {
+          "target": "com.cloudflare.vectorize#IndexesQueryResponseMatchesList",
+          "traits": {
+            "smithy.api#documentation": "Array of vectors matched by the search"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesQuery": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesQueryRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesQueryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
+          "code": 200
+        },
+        "smithy.api#documentation": "Finds vectors closest to a given vector in an index."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesUpsertRequestUnparsableBehavior": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "DISCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "discard"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesUpsertRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "unparsable_behavior": {
+          "target": "com.cloudflare.vectorize#IndexesUpsertRequestUnparsableBehavior",
+          "traits": {
+            "smithy.api#documentation": "Behavior for ndjson parse failures.",
+            "smithy.api#httpQuery": "unparsable-behavior"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesUpsertResponse": {
+      "type": "structure",
+      "members": {
+        "mutationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the async mutation operation containing the changeset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesUpsert": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesUpsertRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesUpsertResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upserts vectors into the specified index, creating them if they do not exist and returns a mutation id corresponding to the vectors enqueued for upsertion."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexCreateRequestIndexType": {
+      "type": "enum",
+      "members": {
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "string"
+          }
+        },
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "number"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "boolean"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "indexType": {
+          "target": "com.cloudflare.vectorize#IndexesMetadataIndexCreateRequestIndexType",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of metadata property to index.",
+            "smithy.api#required": {}
+          }
+        },
+        "propertyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the metadata property to index.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexCreateResponse": {
+      "type": "structure",
+      "members": {
+        "mutationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the async mutation operation containing the changeset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable metadata filtering based on metadata property. Limited to 10 properties."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "propertyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the metadata property for which the index must be deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "mutationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the async mutation operation containing the changeset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow Vectorize to delete the specified metadata index."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "index_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexListResponseMetadataIndexesItemIndexType": {
+      "type": "enum",
+      "members": {
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "string"
+          }
+        },
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "number"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "boolean"
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexListResponseMetadataIndexesItem": {
+      "type": "structure",
+      "members": {
+        "indexType": {
+          "target": "com.cloudflare.vectorize#IndexesMetadataIndexListResponseMetadataIndexesItemIndexType",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of indexed metadata property."
+          }
+        },
+        "propertyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the indexed metadata property."
+          }
+        }
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexListResponseMetadataIndexesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexListResponseMetadataIndexesItem"
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexListResponse": {
+      "type": "structure",
+      "members": {
+        "metadataIndexes": {
+          "target": "com.cloudflare.vectorize#IndexesMetadataIndexListResponseMetadataIndexesList",
+          "traits": {
+            "smithy.api#documentation": "Array of indexed metadata properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.vectorize#IndexesMetadataIndexList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.vectorize#IndexesMetadataIndexListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Metadata Indexes for the specified Vectorize Index.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.vectorize#Vectorize": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.vectorize#IndexesCreate"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesDelete"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesDeleteByIds"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesGet"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesGetByIds"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesInfo"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesInsert"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesList"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesListVectors"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesQuery"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesUpsert"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesMetadataIndexCreate"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesMetadataIndexDelete"
+        },
+        {
+          "target": "com.cloudflare.vectorize#IndexesMetadataIndexList"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Vectorize",
+        "smithy.api#documentation": "Cloudflare API — vectorize resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

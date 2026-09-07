@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpSummaryPostQuantum with distilled cloudflare/radar postQuantumHttpSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryPostQuantum",
+      "path": "/shapes/com.cloudflare.radar#PostQuantumHttpSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryPostQuantumRequest",
+      "path": "/shapes/com.cloudflare.radar#PostQuantumHttpSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#PostQuantumHttpSummary/input/target",
+      "value": "com.cloudflare.radar#PostQuantumHttpSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryPostQuantumResponse",
+      "path": "/shapes/com.cloudflare.radar#PostQuantumHttpSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#PostQuantumHttpSummary/output/target",
+      "value": "com.cloudflare.radar#PostQuantumHttpSummaryResponse"
+    }
+  ]
+}

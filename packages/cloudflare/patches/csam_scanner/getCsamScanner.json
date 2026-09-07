@@ -1,0 +1,30 @@
+{
+  "description": "Align csam_scanner#Get with distilled cloudflare/csam-scanner getCsamScanner",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.csam_scanner#Get",
+      "path": "/shapes/com.cloudflare.csam_scanner#GetCsamScanner"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.csam_scanner#GetRequest",
+      "path": "/shapes/com.cloudflare.csam_scanner#GetCsamScannerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.csam_scanner#GetCsamScanner/input/target",
+      "value": "com.cloudflare.csam_scanner#GetCsamScannerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.csam_scanner#GetResponse",
+      "path": "/shapes/com.cloudflare.csam_scanner#GetCsamScannerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.csam_scanner#GetCsamScanner/output/target",
+      "value": "com.cloudflare.csam_scanner#GetCsamScannerResponse"
+    }
+  ]
+}

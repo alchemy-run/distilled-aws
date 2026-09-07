@@ -1,0 +1,42 @@
+{
+  "description": "Align magic_network_monitoring#RulesDelete with distilled cloudflare/magic-network-monitoring deleteRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesDelete",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteRule/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#DeleteRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteRule/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#DeleteRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#DeleteRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_network_monitoring#MnmRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#Forbidden"
+        }
+      ]
+    }
+  ]
+}

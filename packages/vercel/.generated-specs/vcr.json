@@ -1,0 +1,4099 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.vcr#ListRepositoriesRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Opaque pagination cursor returned by a previous list response."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#VcrRepositoryList": {
+      "type": "structure",
+      "members": {
+        "repositories": {
+          "target": "com.vercel.vcr#VcrRepositoryListRepositoriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "nextCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor to fetch the next page of results, when more are available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A paginated list of Vercel Container Registry repositories."
+      }
+    },
+    "com.vercel.vcr#VcrRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the project the repository belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is public. Images in public repositories can be pulled by anyone. Defaults to `false` (private).",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the repository was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the repository was last updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Vercel Container Registry repository."
+      }
+    },
+    "com.vercel.vcr#VcrRepositoryListRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.vcr#VcrRepository"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositories": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ListRepositoriesRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#VcrRepositoryList"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repositories\n\nList container registry repositories for a project."
+      }
+    },
+    "com.vercel.vcr#CreateRepositoryRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Single Docker repository name component.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#CreateRepositoryResponse": {
+      "type": "structure",
+      "members": {
+        "repository": {
+          "target": "com.vercel.vcr#VcrRepository",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#CreateRepository": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#CreateRepositoryRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#CreateRepositoryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        },
+        {
+          "target": "com.vercel.vcr#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/vcr/repository",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a repository\n\nCreate a container registry repository for a project."
+      }
+    },
+    "com.vercel.vcr#GetRepositoryRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#GetRepositoryResponse": {
+      "type": "structure",
+      "members": {
+        "repository": {
+          "target": "com.vercel.vcr#VcrRepository",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#GetRepository": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetRepositoryRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#GetRepositoryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository/{idOrName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository\n\nFetch a container registry repository for a project by ID or name."
+      }
+    },
+    "com.vercel.vcr#DeleteRepositoryRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#DeleteRepositoryResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#DeleteRepository": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#DeleteRepositoryRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#DeleteRepositoryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/vcr/repository/{idOrName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a repository\n\nSchedule a repository for deletion. The repository is marked so it disappears from list/get immediately; subscriber-vcr reclaims every image (manifests, blobs, tags and rows) and finally deletes the repository row asynchronously via the VcrRepositoryRemoved event."
+      }
+    },
+    "com.vercel.vcr#ListRepositoryImagesRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Opaque pagination cursor returned by a previous list response."
+          }
+        },
+        "untagged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "untagged"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#VcrImageList": {
+      "type": "structure",
+      "members": {
+        "images": {
+          "target": "com.vercel.vcr#VcrImageListImagesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "nextCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor to fetch the next page of results, when more are available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A paginated list of images for a repository."
+      }
+    },
+    "com.vercel.vcr#VcrImageListItem": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.vercel.vcr#VcrImageListItemStatus",
+          "traits": {
+            "smithy.api#documentation": "VHS-readiness status, or `null` for a multi-platform index.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.vercel.vcr#VcrImageListItemTagsList",
+          "traits": {
+            "smithy.api#documentation": "Tags pointing at this image's manifest.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal identifier of the image.",
+            "smithy.api#required": {}
+          }
+        },
+        "repositoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the repository the image belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "manifestDigest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA-256 digest of the image manifest.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.vercel.vcr#VcrImageListItemKind",
+          "traits": {
+            "smithy.api#documentation": "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.",
+            "smithy.api#required": {}
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operating system the manifest targets. Only present for single-platform manifests."
+          }
+        },
+        "arch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CPU architecture the manifest targets. Only present for single-platform manifests."
+          }
+        },
+        "pushedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the actor that pushed the image."
+          }
+        },
+        "sizeInBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "vhs": {
+          "target": "com.vercel.vcr#VcrImageListItemVhs",
+          "traits": {
+            "smithy.api#documentation": "Converted VHS drive data, present once an image has been optimized for sandbox launch."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the image was created.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An image enriched with its tags and VHS-readiness status, as returned when listing a repository's images."
+      }
+    },
+    "com.vercel.vcr#VcrImageListItemStatus": {
+      "type": "enum",
+      "members": {
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preparing"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "UNOPTIMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unoptimized"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VHS-readiness status, or `null` for a multi-platform index."
+      }
+    },
+    "com.vercel.vcr#VcrImageListItemTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags pointing at this image's manifest."
+      }
+    },
+    "com.vercel.vcr#VcrImageListItemKind": {
+      "type": "enum",
+      "members": {
+        "ATTESTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attestation"
+          }
+        },
+        "INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "index"
+          }
+        },
+        "MANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manifest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation."
+      }
+    },
+    "com.vercel.vcr#VcrImageListItemVhsConfigCommandList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageListItemVhsConfigEntrypointList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageListItemVhsConfig": {
+      "type": "structure",
+      "members": {
+        "command": {
+          "target": "com.vercel.vcr#VcrImageListItemVhsConfigCommandList"
+        },
+        "entrypoint": {
+          "target": "com.vercel.vcr#VcrImageListItemVhsConfigEntrypointList"
+        },
+        "workingDir": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional VHS drive configuration captured for an optimized image."
+      }
+    },
+    "com.vercel.vcr#VcrImageListItemVhs": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "com.vercel.vcr#VcrImageListItemVhsConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional VHS drive configuration captured for an optimized image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Converted VHS drive data, present once an image has been optimized for sandbox launch."
+      }
+    },
+    "com.vercel.vcr#VcrImageListImagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.vcr#VcrImageListItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositoryImages": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ListRepositoryImagesRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#VcrImageList"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository/{idOrName}/images",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository images\n\nList images for a container registry repository, including their tags."
+      }
+    },
+    "com.vercel.vcr#ListRepositoryPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Opaque pagination cursor returned by a previous list response."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#VcrRepositoryPermissionList": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.vercel.vcr#VcrRepositoryPermissionListPermissionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "nextCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor to fetch the next page of results, when more are available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A paginated list of Vercel Container Registry repository permissions."
+      }
+    },
+    "com.vercel.vcr#VcrRepositoryPermission": {
+      "type": "structure",
+      "members": {
+        "repositoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the repository the permission grants access to.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the team that is granted access to the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slug of the team that is granted access to the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the permission was created.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A team's access grant to a Vercel Container Registry repository."
+      }
+    },
+    "com.vercel.vcr#VcrRepositoryPermissionListPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.vcr#VcrRepositoryPermission"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositoryPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ListRepositoryPermissionsRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#VcrRepositoryPermissionList"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository/{idOrName}/permissions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository permissions\n\nList the teams a VCR repository is shared with."
+      }
+    },
+    "com.vercel.vcr#AddRepositoryPermissionRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slug of a team that is granted access to a repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#AddRepositoryPermissionResponse": {
+      "type": "structure",
+      "members": {
+        "permission": {
+          "target": "com.vercel.vcr#VcrRepositoryPermission",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#AddRepositoryPermission": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#AddRepositoryPermissionRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#AddRepositoryPermissionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/vcr/repository/{idOrName}/permissions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a repository permission\n\nGrant a team access to a VCR repository. Sharing applies to the whole repository."
+      }
+    },
+    "com.vercel.vcr#RemoveRepositoryPermissionRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slug of a team that is granted access to a repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#RemoveRepositoryPermissionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#RemoveRepositoryPermission": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#RemoveRepositoryPermissionRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#RemoveRepositoryPermissionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/vcr/repository/{idOrName}/permissions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a repository permission\n\nRevoke a team's access to a VCR repository."
+      }
+    },
+    "com.vercel.vcr#ClearRepositoryPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#ClearRepositoryPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#ClearRepositoryPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ClearRepositoryPermissionsRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#ClearRepositoryPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/vcr/repository/{idOrName}/permissions/all",
+          "code": 200
+        },
+        "smithy.api#documentation": "Clear all repository permissions\n\nRevoke every team's access to a VCR repository. Clearing an unshared repository is a no-op."
+      }
+    },
+    "com.vercel.vcr#ListRepositoryTagsRequestSortBy": {
+      "type": "enum",
+      "members": {
+        "UPDATEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updatedAt"
+          }
+        },
+        "TAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tag"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Field to sort the non-pinned tags by."
+      }
+    },
+    "com.vercel.vcr#ListRepositoryTagsRequestSortOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sort direction. Defaults to desc."
+      }
+    },
+    "com.vercel.vcr#ListRepositoryTagsRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "sortBy": {
+          "target": "com.vercel.vcr#ListRepositoryTagsRequestSortBy",
+          "traits": {
+            "smithy.api#httpQuery": "sortBy",
+            "smithy.api#documentation": "Field to sort the non-pinned tags by."
+          }
+        },
+        "sortOrder": {
+          "target": "com.vercel.vcr#ListRepositoryTagsRequestSortOrder",
+          "traits": {
+            "smithy.api#httpQuery": "sortOrder",
+            "smithy.api#documentation": "Sort direction. Defaults to desc."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#ListRepositoryTagsResponseTagsItemKind": {
+      "type": "enum",
+      "members": {
+        "ATTESTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attestation"
+          }
+        },
+        "INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "index"
+          }
+        },
+        "MANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manifest"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositoryTagsResponseTagsItemStatus": {
+      "type": "enum",
+      "members": {
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preparing"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "UNOPTIMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unoptimized"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositoryTagsResponseTagsItem": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "manifestDigest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "imageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.vercel.vcr#ListRepositoryTagsResponseTagsItemKind",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String"
+        },
+        "arch": {
+          "target": "smithy.api#String"
+        },
+        "pushedBy": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.vercel.vcr#ListRepositoryTagsResponseTagsItemStatus",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sizeInBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositoryTagsResponseTagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.vcr#ListRepositoryTagsResponseTagsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#ListRepositoryTagsResponse": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.vercel.vcr#ListRepositoryTagsResponseTagsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "nextCursor": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#ListRepositoryTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ListRepositoryTagsRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#ListRepositoryTagsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository/{idOrName}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository tags\n\nList a repository's tags."
+      }
+    },
+    "com.vercel.vcr#GetRepositoryTagRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#VcrTag": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tag name.",
+            "smithy.api#required": {}
+          }
+        },
+        "manifestDigest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA-256 digest of the image manifest the tag points at.",
+            "smithy.api#required": {}
+          }
+        },
+        "imageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal identifier of the image the tag points at.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.vercel.vcr#VcrTagKind",
+          "traits": {
+            "smithy.api#documentation": "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.",
+            "smithy.api#required": {}
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operating system the manifest targets. Only present for single-platform manifests."
+          }
+        },
+        "arch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CPU architecture the manifest targets. Only present for single-platform manifests."
+          }
+        },
+        "pushedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the actor that pushed the image."
+          }
+        },
+        "status": {
+          "target": "com.vercel.vcr#VcrTagStatus",
+          "traits": {
+            "smithy.api#documentation": "VHS-readiness status, or `null` for a multi-platform index.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sizeInBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the tag was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the tag was last updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A tag pointing at an image in a Vercel Container Registry repository, enriched with the backing image's metadata and VHS-readiness status."
+      }
+    },
+    "com.vercel.vcr#VcrTagKind": {
+      "type": "enum",
+      "members": {
+        "ATTESTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attestation"
+          }
+        },
+        "INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "index"
+          }
+        },
+        "MANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manifest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation."
+      }
+    },
+    "com.vercel.vcr#VcrTagStatus": {
+      "type": "enum",
+      "members": {
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preparing"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "UNOPTIMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unoptimized"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VHS-readiness status, or `null` for a multi-platform index."
+      }
+    },
+    "com.vercel.vcr#GetRepositoryTagResponse": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "com.vercel.vcr#VcrTag",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#GetRepositoryTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetRepositoryTagRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#GetRepositoryTagResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository/{idOrName}/tags/{tag}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository tag\n\nFetch a single tag from a repository, including the backing image's metadata and VHS-readiness status."
+      }
+    },
+    "com.vercel.vcr#GetRepositoryImageRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "imageIdOrDigest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal image id (`image_...`) or the image manifest digest (`sha256:...`)."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#VcrImageDetail": {
+      "type": "structure",
+      "members": {
+        "layers": {
+          "target": "com.vercel.vcr#VcrImageDetailLayersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.vcr#VcrImageDetailStatus",
+          "traits": {
+            "smithy.api#documentation": "VHS-readiness status, or `null` for a multi-platform index.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.vercel.vcr#VcrImageDetailTagsList",
+          "traits": {
+            "smithy.api#documentation": "Tags pointing at this image's manifest.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal identifier of the image.",
+            "smithy.api#required": {}
+          }
+        },
+        "repositoryId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the repository the image belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "manifestDigest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA-256 digest of the image manifest.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.vercel.vcr#VcrImageDetailKind",
+          "traits": {
+            "smithy.api#documentation": "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation.",
+            "smithy.api#required": {}
+          }
+        },
+        "platform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operating system the manifest targets. Only present for single-platform manifests."
+          }
+        },
+        "arch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CPU architecture the manifest targets. Only present for single-platform manifests."
+          }
+        },
+        "pushedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the actor that pushed the image."
+          }
+        },
+        "sizeInBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total size in bytes of the image's resources (manifest, config and layer blobs) stored by the registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "vhs": {
+          "target": "com.vercel.vcr#VcrImageDetailVhs",
+          "traits": {
+            "smithy.api#documentation": "Converted VHS drive data, present once an image has been optimized for sandbox launch."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of when the image was created.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single image with its tags, status and resolved Dockerfile layer history."
+      }
+    },
+    "com.vercel.vcr#VcrImageLayer": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.vcr#VcrImageLayerCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.vcr#VcrImageLayerCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.vcr#VcrImageLayerCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.vcr#VcrImageLayerCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase0Operation": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "ARG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARG"
+          }
+        },
+        "CMD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMD"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY"
+          }
+        },
+        "ENTRYPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTRYPOINT"
+          }
+        },
+        "ENV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENV"
+          }
+        },
+        "EXPOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPOSE"
+          }
+        },
+        "FROM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FROM"
+          }
+        },
+        "HEALTHCHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCHECK"
+          }
+        },
+        "LABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL"
+          }
+        },
+        "ONBUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONBUILD"
+          }
+        },
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN"
+          }
+        },
+        "SHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHELL"
+          }
+        },
+        "STOPSIGNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPSIGNAL"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER"
+          }
+        },
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "WORKDIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKDIR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer."
+      }
+    },
+    "com.vercel.vcr#VcrImageLayerCase0Type": {
+      "type": "enum",
+      "members": {
+        "FROM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FROM"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase0CollapsedDigestsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase0": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operation": {
+          "target": "com.vercel.vcr#VcrImageLayerCase0Operation",
+          "traits": {
+            "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer.",
+            "smithy.api#required": {}
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.vcr#VcrImageLayerCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "baseImage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "collapsedDigests": {
+          "target": "com.vercel.vcr#VcrImageLayerCase0CollapsedDigestsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collapsedLayerCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase1Operation": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "ARG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARG"
+          }
+        },
+        "CMD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMD"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY"
+          }
+        },
+        "ENTRYPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTRYPOINT"
+          }
+        },
+        "ENV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENV"
+          }
+        },
+        "EXPOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPOSE"
+          }
+        },
+        "FROM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FROM"
+          }
+        },
+        "HEALTHCHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCHECK"
+          }
+        },
+        "LABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL"
+          }
+        },
+        "ONBUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONBUILD"
+          }
+        },
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN"
+          }
+        },
+        "SHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHELL"
+          }
+        },
+        "STOPSIGNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPSIGNAL"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER"
+          }
+        },
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "WORKDIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKDIR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer."
+      }
+    },
+    "com.vercel.vcr#VcrImageLayerCase1Type": {
+      "type": "enum",
+      "members": {
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase1": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operation": {
+          "target": "com.vercel.vcr#VcrImageLayerCase1Operation",
+          "traits": {
+            "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer.",
+            "smithy.api#required": {}
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.vcr#VcrImageLayerCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase2Operation": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "ARG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARG"
+          }
+        },
+        "CMD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMD"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY"
+          }
+        },
+        "ENTRYPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTRYPOINT"
+          }
+        },
+        "ENV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENV"
+          }
+        },
+        "EXPOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPOSE"
+          }
+        },
+        "FROM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FROM"
+          }
+        },
+        "HEALTHCHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCHECK"
+          }
+        },
+        "LABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL"
+          }
+        },
+        "ONBUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONBUILD"
+          }
+        },
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN"
+          }
+        },
+        "SHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHELL"
+          }
+        },
+        "STOPSIGNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPSIGNAL"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER"
+          }
+        },
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "WORKDIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKDIR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer."
+      }
+    },
+    "com.vercel.vcr#VcrImageLayerCase2Type": {
+      "type": "enum",
+      "members": {
+        "ENV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENV"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase2": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operation": {
+          "target": "com.vercel.vcr#VcrImageLayerCase2Operation",
+          "traits": {
+            "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer.",
+            "smithy.api#required": {}
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.vcr#VcrImageLayerCase2Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "env": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase3Operation": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "ARG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARG"
+          }
+        },
+        "CMD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMD"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY"
+          }
+        },
+        "ENTRYPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTRYPOINT"
+          }
+        },
+        "ENV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENV"
+          }
+        },
+        "EXPOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPOSE"
+          }
+        },
+        "FROM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FROM"
+          }
+        },
+        "HEALTHCHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCHECK"
+          }
+        },
+        "LABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL"
+          }
+        },
+        "ONBUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONBUILD"
+          }
+        },
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUN"
+          }
+        },
+        "SHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHELL"
+          }
+        },
+        "STOPSIGNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPSIGNAL"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER"
+          }
+        },
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "WORKDIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKDIR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer."
+      }
+    },
+    "com.vercel.vcr#VcrImageLayerCase3Type": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADD"
+          }
+        },
+        "ARG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARG"
+          }
+        },
+        "CMD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMD"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY"
+          }
+        },
+        "ENTRYPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTRYPOINT"
+          }
+        },
+        "EXPOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPOSE"
+          }
+        },
+        "HEALTHCHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHCHECK"
+          }
+        },
+        "LABEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL"
+          }
+        },
+        "ONBUILD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONBUILD"
+          }
+        },
+        "SHELL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHELL"
+          }
+        },
+        "STOPSIGNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPSIGNAL"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER"
+          }
+        },
+        "VOLUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOLUME"
+          }
+        },
+        "WORKDIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKDIR"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageLayerCase3": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operation": {
+          "target": "com.vercel.vcr#VcrImageLayerCase3Operation",
+          "traits": {
+            "smithy.api#documentation": "Docker/OCI build instruction associated with an image layer.",
+            "smithy.api#required": {}
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.vcr#VcrImageLayerCase3Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageDetailLayersList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.vcr#VcrImageLayer"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageDetailStatus": {
+      "type": "enum",
+      "members": {
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preparing"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "UNOPTIMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unoptimized"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VHS-readiness status, or `null` for a multi-platform index."
+      }
+    },
+    "com.vercel.vcr#VcrImageDetailTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags pointing at this image's manifest."
+      }
+    },
+    "com.vercel.vcr#VcrImageDetailKind": {
+      "type": "enum",
+      "members": {
+        "ATTESTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attestation"
+          }
+        },
+        "INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "index"
+          }
+        },
+        "MANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manifest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation."
+      }
+    },
+    "com.vercel.vcr#VcrImageDetailVhsConfigCommandList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageDetailVhsConfigEntrypointList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#VcrImageDetailVhsConfig": {
+      "type": "structure",
+      "members": {
+        "command": {
+          "target": "com.vercel.vcr#VcrImageDetailVhsConfigCommandList"
+        },
+        "entrypoint": {
+          "target": "com.vercel.vcr#VcrImageDetailVhsConfigEntrypointList"
+        },
+        "workingDir": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional VHS drive configuration captured for an optimized image."
+      }
+    },
+    "com.vercel.vcr#VcrImageDetailVhs": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "com.vercel.vcr#VcrImageDetailVhsConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional VHS drive configuration captured for an optimized image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Converted VHS drive data, present once an image has been optimized for sandbox launch."
+      }
+    },
+    "com.vercel.vcr#GetRepositoryImageResponse": {
+      "type": "structure",
+      "members": {
+        "image": {
+          "target": "com.vercel.vcr#VcrImageDetail",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#GetRepositoryImage": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetRepositoryImageRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#GetRepositoryImageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/vcr/repository/{idOrName}/images/{imageIdOrDigest}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository image\n\nFetch an individual image from a repository, including its tags and Dockerfile history entries with discriminated layer details for UI rendering. The image may be addressed by its internal id (`image_...`) or by its manifest digest (`sha256:...`)."
+      }
+    },
+    "com.vercel.vcr#DeleteRepositoryImageRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "imageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#DeleteRepositoryImageResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#DeleteRepositoryImage": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#DeleteRepositoryImageRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#DeleteRepositoryImageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/vcr/repository/{idOrName}/images/{imageId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a repository image\n\nSchedule an image for deletion. The image is marked so it disappears from list/get immediately; subscriber-vcr reclaims the manifest, blobs, tags and row asynchronously via the VcrManifestRemoved event."
+      }
+    },
+    "com.vercel.vcr#GetRootResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#GetRoot": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.vercel.vcr#GetRootResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check registry API version support\n\nGET /v2/ Docker Registry v2 version check. Returns a 401 challenge when no credentials are provided, prompting the Docker client to send auth. With valid credentials, returns 200 so the client can proceed."
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Content-addressable digest (algorithm:hex)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Download a blob\n\nGET /v2/:teamSlug/:projectSlug/:repositoryName/blobs/:digest Fetch a blob by digest."
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Content-addressable digest (algorithm:hex)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a blob\n\nDELETE /v2/:teamSlug/:projectSlug/:repositoryName/blobs/:digest Blob deletion is intentionally not supported. Matches the behaviour of most public registries."
+      }
+    },
+    "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Content-addressable digest (algorithm:hex)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigestRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "HEAD",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/{digest}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a blob exists\n\nHEAD /v2/:teamSlug/:projectSlug/:repositoryName/blobs/:digest Check whether a blob exists. Used by the Docker client before pushing a layer to avoid re-uploading content that already exists."
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Blob upload session identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get blob upload status\n\nGET /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/:uuid Query the status of an in-progress blob upload. Used by clients to resume a partial upload after an interruption."
+      }
+    },
+    "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Blob upload session identifier."
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "digest",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Content-addressable digest (algorithm:hex)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Complete a blob upload\n\nPUT /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/:uuid?digest=<digest> Complete the blob upload. This may include a final chunk of data in the request body (monolithic upload) or just finalize a previous chunked upload."
+      }
+    },
+    "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Blob upload session identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload a blob chunk\n\nPATCH /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/:uuid Upload a chunk of blob data. The request body is streamed directly to S3 as a multipart upload part while hashing incrementally. The client may call this multiple times for chunked uploads."
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Blob upload session identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuidResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/{uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel a blob upload\n\nDELETE /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/:uuid Cancel an in-flight blob upload. Aborts the underlying S3 multipart upload (if one was started) and discards the session."
+      }
+    },
+    "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "mount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "mount",
+            "smithy.api#documentation": "Digest of the blob to mount from another repository."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#documentation": "Source repository to mount the blob from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploads": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/blobs/uploads/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start a blob upload\n\nPOST /v2/:teamSlug/:projectSlug/:repositoryName/blobs/uploads/[?mount=<digest>&from=<repo>] Initiate a blob upload. Returns a UUID in the Location header that the client uses for subsequent PATCH (chunk) and PUT (complete) requests."
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Manifest reference: a tag or digest."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReference": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pull an image manifest\n\nGET /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Fetch a manifest by tag or digest."
+      }
+    },
+    "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Manifest reference: a tag or digest."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReference": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Push an image manifest\n\nPUT /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Upload an image manifest. The digest is computed from the body and returned in the Docker-Content-Digest header."
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Content-addressable digest (algorithm:hex)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an image manifest\n\nDELETE /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Reference must be a digest."
+      }
+    },
+    "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Manifest reference: a tag or digest."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReference": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReferenceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "HEAD",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/manifests/{reference}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a manifest exists\n\nHEAD /v2/:teamSlug/:projectSlug/:repositoryName/manifests/:reference Check whether a manifest exists. Used by Docker client during push to determine if a manifest (or config blob referenced by digest) is already present."
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest": {
+      "type": "structure",
+      "members": {
+        "teamSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository team slug component."
+          }
+        },
+        "projectSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository project slug component."
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Single Docker repository name component."
+          }
+        },
+        "n": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "n"
+          }
+        },
+        "last": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "last",
+            "smithy.api#documentation": "Opaque pagination cursor returned by a previous list response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponseTagsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsListRequest"
+      },
+      "output": {
+        "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.vcr#BadRequest"
+        },
+        {
+          "target": "com.vercel.vcr#PaymentRequired"
+        },
+        {
+          "target": "com.vercel.vcr#Forbidden"
+        },
+        {
+          "target": "com.vercel.vcr#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/{teamSlug}/{projectSlug}/{repositoryName}/tags/list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List image tags\n\nGET /v2/:teamSlug/:projectSlug/:repositoryName/tags/list List the tags in a repository."
+      }
+    },
+    "com.vercel.vcr#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.vcr#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.vcr#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.vcr#PaymentRequired": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 402,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 402
+          }
+        ]
+      }
+    },
+    "com.vercel.vcr#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.vcr#Vcr": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.vcr#ListRepositories"
+        },
+        {
+          "target": "com.vercel.vcr#CreateRepository"
+        },
+        {
+          "target": "com.vercel.vcr#GetRepository"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteRepository"
+        },
+        {
+          "target": "com.vercel.vcr#ListRepositoryImages"
+        },
+        {
+          "target": "com.vercel.vcr#ListRepositoryPermissions"
+        },
+        {
+          "target": "com.vercel.vcr#AddRepositoryPermission"
+        },
+        {
+          "target": "com.vercel.vcr#RemoveRepositoryPermission"
+        },
+        {
+          "target": "com.vercel.vcr#ClearRepositoryPermissions"
+        },
+        {
+          "target": "com.vercel.vcr#ListRepositoryTags"
+        },
+        {
+          "target": "com.vercel.vcr#GetRepositoryTag"
+        },
+        {
+          "target": "com.vercel.vcr#GetRepositoryImage"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteRepositoryImage"
+        },
+        {
+          "target": "com.vercel.vcr#GetRoot"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
+        },
+        {
+          "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploads"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
+        },
+        {
+          "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
+        },
+        {
+          "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

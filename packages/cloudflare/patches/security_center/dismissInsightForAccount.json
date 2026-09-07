@@ -1,0 +1,20 @@
+{
+  "description": "Align security_center#InsightsDismissForAccount with distilled cloudflare/security-center dismissInsightForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsDismissForAccount",
+      "path": "/shapes/com.cloudflare.security_center#DismissInsightForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsDismissForAccountRequest",
+      "path": "/shapes/com.cloudflare.security_center#DismissInsightForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#DismissInsightForAccount/input/target",
+      "value": "com.cloudflare.security_center#DismissInsightForAccountRequest"
+    }
+  ]
+}

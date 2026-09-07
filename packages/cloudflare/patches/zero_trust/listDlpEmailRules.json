@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DlpEmailRulesList with distilled cloudflare/zero-trust listDlpEmailRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEmailRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEmailRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEmailRules/input/target",
+      "value": "com.cloudflare.zero_trust#ListDlpEmailRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEmailRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEmailRules/output/target",
+      "value": "com.cloudflare.zero_trust#ListDlpEmailRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEmailRules/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "operations": {
+    "getComponent": { "errors": ["ResourceNotFoundException"] },
+    "getImage": { "errors": ["ResourceNotFoundException"] },
+    "deleteImage": { "errors": ["ResourceNotFoundException"] },
+    "cancelImageCreation": { "errors": ["ResourceNotFoundException"] },
+    "getImageRecipe": { "errors": ["ResourceNotFoundException"] },
+    "getImagePipeline": { "errors": ["ResourceNotFoundException"] },
+    "getInfrastructureConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "getDistributionConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "deleteComponent": { "errors": ["ResourceNotFoundException"] },
+    "deleteImageRecipe": { "errors": ["ResourceNotFoundException"] },
+    "deleteImagePipeline": { "errors": ["ResourceNotFoundException"] },
+    "deleteInfrastructureConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "deleteDistributionConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "updateImagePipeline": { "errors": ["ResourceNotFoundException"] },
+    "updateDistributionConfiguration": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "listComponentBuildVersions": { "errors": ["ResourceNotFoundException"] },
+    "listTagsForResource": { "errors": ["ResourceNotFoundException"] },
+    "createInfrastructureConfiguration": {
+      "errors": ["InvalidParameterValueException"]
+    },
+    "updateInfrastructureConfiguration": {
+      "errors": ["ResourceNotFoundException", "InvalidParameterValueException"]
+    }
+  },
+  "structures": {
+    "DistributionConfiguration": {
+      "members": { "timeoutMinutes": { "optional": true } }
+    }
+  },
+  "errors": {
+    "InvalidParameterValueException": { "message": { "type": "string" } }
+  }
+}

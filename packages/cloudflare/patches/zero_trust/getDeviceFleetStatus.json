@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesFleetStatusGet with distilled cloudflare/zero-trust getDeviceFleetStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesFleetStatusGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceFleetStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesFleetStatusGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceFleetStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceFleetStatus/input/target",
+      "value": "com.cloudflare.zero_trust#GetDeviceFleetStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesFleetStatusGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceFleetStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceFleetStatus/output/target",
+      "value": "com.cloudflare.zero_trust#GetDeviceFleetStatusResponse"
+    }
+  ]
+}

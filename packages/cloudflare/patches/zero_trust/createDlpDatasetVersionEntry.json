@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpDatasetsVersionsEntriesCreate with distilled cloudflare/zero-trust createDlpDatasetVersionEntry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDatasetsVersionsEntriesCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDatasetVersionEntry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDatasetsVersionsEntriesCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDatasetVersionEntryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDatasetVersionEntry/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpDatasetVersionEntryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDatasetsVersionsEntriesCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDatasetVersionEntryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpDatasetVersionEntry/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpDatasetVersionEntryResponse"
+    }
+  ]
+}

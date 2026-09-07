@@ -1,0 +1,82 @@
+{
+  "description": "privateNetworkEndpoint is nullable when the service has no endpoint on that network. Unwrap as a nullable payload so missing endpoints parse as null instead of RailwayParseError.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#PrivateNetworkEndpointValue",
+      "value": {
+        "type": "structure",
+        "members": {
+          "createdAt": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "deletedAt": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "dnsName": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "newDnsName": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "privateIps": {
+            "target": "com.railway.api#PrivateNetworkEndpointResponsePrivateIpsList",
+            "traits": { "smithy.api#required": {} }
+          },
+          "publicId": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "serviceInstanceId": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "syncStatus": {
+            "target": "com.railway.api#PrivateNetworkEndpointSyncStatus",
+            "traits": { "smithy.api#required": {} }
+          },
+          "tags": {
+            "target": "com.railway.api#PrivateNetworkEndpointResponseTagsList",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#PrivateNetworkEndpointResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "com.railway.api#PrivateNetworkEndpointValue",
+            "traits": {
+              "com.railway.graphql#payload": {},
+              "com.railway.graphql#nullable": {},
+              "smithy.api#required": {},
+              "smithy.api#documentation": "The value of `data.privateNetworkEndpoint`."
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {},
+          "com.railway.graphql#responsePath": "privateNetworkEndpoint",
+          "smithy.api#documentation": "Selection set for `privateNetworkEndpoint` (unwrapped from the GraphQL `data` envelope)."
+        }
+      }
+    }
+  ]
+}

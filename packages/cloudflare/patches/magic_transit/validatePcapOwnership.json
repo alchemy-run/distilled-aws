@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#PcapsOwnershipValidate with distilled cloudflare/magic-transit validatePcapOwnership",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipValidate",
+      "path": "/shapes/com.cloudflare.magic_transit#ValidatePcapOwnership"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipValidateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ValidatePcapOwnershipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ValidatePcapOwnership/input/target",
+      "value": "com.cloudflare.magic_transit#ValidatePcapOwnershipRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsOwnershipValidateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ValidatePcapOwnershipResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ValidatePcapOwnership/output/target",
+      "value": "com.cloudflare.magic_transit#ValidatePcapOwnershipResponse"
+    }
+  ]
+}

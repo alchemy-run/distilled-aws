@@ -1,0 +1,39 @@
+{
+  "description": "Align api_gateway#LabelsUserEdit with distilled cloudflare/api-gateway patchLabelUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserEdit",
+      "path": "/shapes/com.cloudflare.api_gateway#PatchLabelUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserEditRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#PatchLabelUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#PatchLabelUser/input/target",
+      "value": "com.cloudflare.api_gateway#PatchLabelUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserEditResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#PatchLabelUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#PatchLabelUser/output/target",
+      "value": "com.cloudflare.api_gateway#PatchLabelUserResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#PatchLabelUser/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#LabelNotFound"
+        }
+      ]
+    }
+  ]
+}

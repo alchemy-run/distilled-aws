@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessUsersDelete with distilled cloudflare/zero-trust deleteAccessUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessUser/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessUser/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessUserResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailRoutingSummaryIpVersion with distilled cloudflare/radar ipVersionEmailRoutingSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingSummaryIpVersion",
+      "path": "/shapes/com.cloudflare.radar#IpVersionEmailRoutingSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingSummaryIpVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#IpVersionEmailRoutingSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionEmailRoutingSummary/input/target",
+      "value": "com.cloudflare.radar#IpVersionEmailRoutingSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingSummaryIpVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#IpVersionEmailRoutingSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionEmailRoutingSummary/output/target",
+      "value": "com.cloudflare.radar#IpVersionEmailRoutingSummaryResponse"
+    }
+  ]
+}

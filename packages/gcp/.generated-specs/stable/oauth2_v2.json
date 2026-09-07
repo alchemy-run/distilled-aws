@@ -1,0 +1,275 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "oauth2",
+    "version": "v2",
+    "title": "Google OAuth2 API",
+    "baseUrl": "https://www.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.oauth2_v2#Tokeninfo": {
+      "type": "structure",
+      "members": {
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Who is the intended audience for this token. In general the same as issued_to."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user. Present only if the email scope is present in the request."
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The expiry time of the token, as number of seconds left until expiry."
+          }
+        },
+        "issued_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "To whom was the token issued to. In general the same as audience."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The space separated list of scopes granted to this token."
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The obfuscated user id."
+          }
+        },
+        "verified_email": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean flag which is true if the email address is verified. Present only if the email scope is present in the request."
+          }
+        }
+      }
+    },
+    "com.gcp.oauth2_v2#Userinfo": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's email address."
+          }
+        },
+        "family_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's last name."
+          }
+        },
+        "gender": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's gender."
+          }
+        },
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's first name."
+          }
+        },
+        "hd": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hosted domain e.g. example.com if the user is Google apps user."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The obfuscated ID of the user."
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the profile page."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's preferred locale."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's full name."
+          }
+        },
+        "picture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the user's picture image."
+          }
+        },
+        "verified_email": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean flag which is true if the email address is verified. Always verified because we only return the user's primary email address."
+          }
+        }
+      }
+    },
+    "com.gcp.oauth2_v2#TokeninfoRequest": {
+      "type": "structure",
+      "members": {
+        "id_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id_token"
+          }
+        }
+      }
+    },
+    "com.gcp.oauth2_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.oauth2_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.oauth2_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.oauth2_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.oauth2_v2#Tokeninfo_": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.oauth2_v2#TokeninfoRequest"
+      },
+      "output": {
+        "target": "com.gcp.oauth2_v2#Tokeninfo"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.oauth2_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.oauth2_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.oauth2_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.oauth2_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "oauth2/v2/tokeninfo"
+        }
+      }
+    },
+    "com.gcp.oauth2_v2#GetUserinfoRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.oauth2_v2#GetUserinfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.oauth2_v2#GetUserinfoRequest"
+      },
+      "output": {
+        "target": "com.gcp.oauth2_v2#Userinfo"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.oauth2_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.oauth2_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "oauth2/v2/userinfo"
+        }
+      }
+    },
+    "com.gcp.oauth2_v2#GetUserinfoV2MeRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.oauth2_v2#GetUserinfoV2Me": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.oauth2_v2#GetUserinfoV2MeRequest"
+      },
+      "output": {
+        "target": "com.gcp.oauth2_v2#Userinfo"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.oauth2_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.oauth2_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "userinfo/v2/me"
+        }
+      }
+    }
+  }
+}

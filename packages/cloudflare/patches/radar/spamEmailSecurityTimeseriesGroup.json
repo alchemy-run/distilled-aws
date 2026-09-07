@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecurityTimeseriesGroupsSpam with distilled cloudflare/radar spamEmailSecurityTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsSpam",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecurityTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsSpamRequest",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecurityTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#SpamEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsSpamResponse",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecurityTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpamEmailSecurityTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#SpamEmailSecurityTimeseriesGroupResponse"
+    }
+  ]
+}

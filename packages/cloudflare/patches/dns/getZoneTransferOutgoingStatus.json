@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#ZoneTransfersOutgoingStatusGet with distilled cloudflare/dns getZoneTransferOutgoingStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingStatusGet",
+      "path": "/shapes/com.cloudflare.dns#GetZoneTransferOutgoingStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingStatusGetRequest",
+      "path": "/shapes/com.cloudflare.dns#GetZoneTransferOutgoingStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetZoneTransferOutgoingStatus/input/target",
+      "value": "com.cloudflare.dns#GetZoneTransferOutgoingStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersOutgoingStatusGetResponse",
+      "path": "/shapes/com.cloudflare.dns#GetZoneTransferOutgoingStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#GetZoneTransferOutgoingStatus/output/target",
+      "value": "com.cloudflare.dns#GetZoneTransferOutgoingStatusResponse"
+    }
+  ]
+}

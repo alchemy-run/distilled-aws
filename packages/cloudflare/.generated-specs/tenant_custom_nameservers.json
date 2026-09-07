@@ -1,0 +1,413 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.tenant_custom_nameservers#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ns_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FQDN of the name server.",
+            "smithy.api#required": {}
+          }
+        },
+        "ns_set": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of the set that this name server belongs to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#CreateResponseDnsRecordsItemType": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#CreateResponseDnsRecordsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.cloudflare.tenant_custom_nameservers#CreateResponseDnsRecordsItemType",
+          "traits": {
+            "smithy.api#documentation": "DNS record type."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record contents (an IPv4 or IPv6 address)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#CreateResponseDnsRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.tenant_custom_nameservers#CreateResponseDnsRecordsItem"
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#CreateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "moved"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "verified"
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "dns_records": {
+          "target": "com.cloudflare.tenant_custom_nameservers#CreateResponseDnsRecordsList",
+          "traits": {
+            "smithy.api#documentation": "A and AAAA records associated with the nameserver.",
+            "smithy.api#required": {}
+          }
+        },
+        "ns_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FQDN of the name server.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.tenant_custom_nameservers#CreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Verification status of the nameserver.",
+            "smithy.api#required": {}
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "ns_set": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of the set that this name server belongs to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenant_custom_nameservers#CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenant_custom_nameservers#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/tenants/{tenant_tag}/custom_ns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Tenant Custom Nameserver"
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_ns_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FQDN of the name server.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#DeleteResultList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.tenant_custom_nameservers#DeleteResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenant_custom_nameservers#DeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenant_custom_nameservers#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/tenants/{tenant_tag}/custom_ns/{custom_ns_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Tenant Custom Nameserver",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResultItemDnsRecordsItemType": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResultItemDnsRecordsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.cloudflare.tenant_custom_nameservers#GetResultItemDnsRecordsItemType",
+          "traits": {
+            "smithy.api#documentation": "DNS record type."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record contents (an IPv4 or IPv6 address)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResultItemDnsRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.tenant_custom_nameservers#GetResultItemDnsRecordsItem"
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResultItemStatus": {
+      "type": "enum",
+      "members": {
+        "MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "moved"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "verified"
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResultItem": {
+      "type": "structure",
+      "members": {
+        "dns_records": {
+          "target": "com.cloudflare.tenant_custom_nameservers#GetResultItemDnsRecordsList",
+          "traits": {
+            "smithy.api#documentation": "A and AAAA records associated with the nameserver.",
+            "smithy.api#required": {}
+          }
+        },
+        "ns_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FQDN of the name server.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.tenant_custom_nameservers#GetResultItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Verification status of the nameserver.",
+            "smithy.api#required": {}
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "ns_set": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of the set that this name server belongs to."
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.tenant_custom_nameservers#GetResultItem"
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#GetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.tenant_custom_nameservers#GetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenant_custom_nameservers#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenant_custom_nameservers#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/tenants/{tenant_tag}/custom_ns",
+          "code": 200
+        },
+        "smithy.api#documentation": "List a tenant's custom nameservers.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.tenant_custom_nameservers#TenantCustomNameservers": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.tenant_custom_nameservers#Create"
+        },
+        {
+          "target": "com.cloudflare.tenant_custom_nameservers#Delete"
+        },
+        {
+          "target": "com.cloudflare.tenant_custom_nameservers#Get"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare TenantCustomNameservers",
+        "smithy.api#documentation": "Cloudflare API — tenant_custom_nameservers resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

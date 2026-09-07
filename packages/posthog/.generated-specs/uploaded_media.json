@@ -1,0 +1,125 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.uploaded_media#UploadedMediaCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaCreateResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.uploaded_media#UploadedMediaCreateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.uploaded_media#UploadedMediaCreateResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.uploaded_media#UploadedMediaCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.uploaded_media#UploadedMediaCreateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.uploaded_media#Forbidden"
+        },
+        {
+          "target": "com.posthog.uploaded_media#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/uploaded_media/",
+          "code": 200
+        },
+        "smithy.api#documentation": "When object storage is available this API allows upload of media which can be used, for example, in text cards on dashboards.\n\n    Uploaded media must have a content type beginning with 'image/' and be less than 4MB."
+      }
+    },
+    "com.posthog.uploaded_media#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.uploaded_media#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMedia": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.uploaded_media#UploadedMediaCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

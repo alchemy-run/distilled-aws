@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#BgpRoutesPfx2as with distilled cloudflare/radar pfx2asBgpRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRoutesPfx2as",
+      "path": "/shapes/com.cloudflare.radar#Pfx2asBgpRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRoutesPfx2asRequest",
+      "path": "/shapes/com.cloudflare.radar#Pfx2asBgpRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#Pfx2asBgpRoute/input/target",
+      "value": "com.cloudflare.radar#Pfx2asBgpRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpRoutesPfx2asResponse",
+      "path": "/shapes/com.cloudflare.radar#Pfx2asBgpRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#Pfx2asBgpRoute/output/target",
+      "value": "com.cloudflare.radar#Pfx2asBgpRouteResponse"
+    }
+  ]
+}

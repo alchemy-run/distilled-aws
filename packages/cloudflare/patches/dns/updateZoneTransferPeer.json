@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#ZoneTransfersPeersUpdate with distilled cloudflare/dns updateZoneTransferPeer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersPeersUpdate",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferPeer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersPeersUpdateRequest",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferPeerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferPeer/input/target",
+      "value": "com.cloudflare.dns#UpdateZoneTransferPeerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersPeersUpdateResponse",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferPeerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferPeer/output/target",
+      "value": "com.cloudflare.dns#UpdateZoneTransferPeerResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#UpdateZoneTransferPeer/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#PeerNotFound"
+        }
+      ]
+    }
+  ]
+}

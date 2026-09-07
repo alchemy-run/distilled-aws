@@ -1,0 +1,42 @@
+{
+  "description": "Align load_balancers#MonitorsCreate with distilled cloudflare/load-balancers createMonitor",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsCreate",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitor"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsCreateRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitor/input/target",
+      "value": "com.cloudflare.load_balancers#CreateMonitorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsCreateResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitor/output/target",
+      "value": "com.cloudflare.load_balancers#CreateMonitorResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitor/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#MonitorIntervalOutOfRange"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

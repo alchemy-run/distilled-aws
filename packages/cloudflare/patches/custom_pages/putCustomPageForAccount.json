@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_pages#UpdateForAccount with distilled cloudflare/custom-pages putCustomPageForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#UpdateForAccount",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#UpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForAccount/input/target",
+      "value": "com.cloudflare.custom_pages#PutCustomPageForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#UpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForAccount/output/target",
+      "value": "com.cloudflare.custom_pages#PutCustomPageForAccountResponse"
+    }
+  ]
+}

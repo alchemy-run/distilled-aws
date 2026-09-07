@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#NetworksVirtualNetworksList with distilled cloudflare/zero-trust listNetworkVirtualNetworks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkVirtualNetworks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkVirtualNetworksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkVirtualNetworks/input/target",
+      "value": "com.cloudflare.zero_trust#ListNetworkVirtualNetworksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkVirtualNetworksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkVirtualNetworks/output/target",
+      "value": "com.cloudflare.zero_trust#ListNetworkVirtualNetworksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListNetworkVirtualNetworks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

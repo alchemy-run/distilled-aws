@@ -1,0 +1,1505 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.rum#RulesBulkCreateRequestDeleteRulesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateRequestRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateRequestRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String"
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean"
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesBulkCreateRequestRulesItemPathsList"
+        }
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateRequestRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#RulesBulkCreateRequestRulesItem"
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ruleset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "delete_rules": {
+          "target": "com.cloudflare.rum#RulesBulkCreateRequestDeleteRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rule identifiers to delete."
+          }
+        },
+        "rules": {
+          "target": "com.cloudflare.rum#RulesBulkCreateRequestRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules to create or update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateResponseRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateResponseRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesBulkCreateResponseRulesItemPathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateResponseRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#RulesBulkCreateResponseRulesItem"
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateResponseRuleset": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the ruleset is enabled."
+          }
+        },
+        "zone_name": {
+          "target": "smithy.api#String"
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreateResponse": {
+      "type": "structure",
+      "members": {
+        "rules": {
+          "target": "com.cloudflare.rum#RulesBulkCreateResponseRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules."
+          }
+        },
+        "ruleset": {
+          "target": "com.cloudflare.rum#RulesBulkCreateResponseRuleset"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#RulesBulkCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#RulesBulkCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#RulesBulkCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Modifies one or more rules in a Web Analytics ruleset with a single request."
+      }
+    },
+    "com.cloudflare.rum#RulesCreateRequestPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ruleset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String"
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesCreateRequestPathsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#RulesCreateResponsePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesCreateResponsePathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#RulesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#RulesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#RulesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/rum/v2/{ruleset_id}/rule",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new rule in a Web Analytics ruleset."
+      }
+    },
+    "com.cloudflare.rum#RulesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ruleset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#RulesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#RulesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#RulesDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#RulesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing rule from a Web Analytics ruleset.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rum#RulesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ruleset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#RulesListResponseRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesListResponseRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesListResponseRulesItemPathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.rum#RulesListResponseRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#RulesListResponseRulesItem"
+      }
+    },
+    "com.cloudflare.rum#RulesListResponseRuleset": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the ruleset is enabled."
+          }
+        },
+        "zone_name": {
+          "target": "smithy.api#String"
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#RulesListResponse": {
+      "type": "structure",
+      "members": {
+        "rules": {
+          "target": "com.cloudflare.rum#RulesListResponseRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules."
+          }
+        },
+        "ruleset": {
+          "target": "com.cloudflare.rum#RulesListResponseRuleset"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#RulesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#RulesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#RulesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all the rules in a Web Analytics ruleset.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.rum#RulesUpdateRequestPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ruleset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String"
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesUpdateRequestPathsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#RulesUpdateResponsePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#RulesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#RulesUpdateResponsePathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#RulesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#RulesUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#RulesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/rum/v2/{ruleset_id}/rule/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates a rule in a Web Analytics ruleset.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "auto_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet is automatically injected for orange-clouded sites."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname to use for gray-clouded sites."
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreateResponseRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreateResponseRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#SiteInfoCreateResponseRulesItemPathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreateResponseRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#SiteInfoCreateResponseRulesItem"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreateResponseRuleset": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the ruleset is enabled."
+          }
+        },
+        "zone_name": {
+          "target": "smithy.api#String"
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreateResponse": {
+      "type": "structure",
+      "members": {
+        "auto_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet is automatically injected for orange-clouded sites."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "rules": {
+          "target": "com.cloudflare.rum#SiteInfoCreateResponseRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules."
+          }
+        },
+        "ruleset": {
+          "target": "com.cloudflare.rum#SiteInfoCreateResponseRuleset"
+        },
+        "site_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site identifier."
+          }
+        },
+        "site_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site token."
+          }
+        },
+        "snippet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded JavaScript snippet."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#SiteInfoCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#SiteInfoCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#SiteInfoCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/rum/site_info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new Web Analytics site."
+      }
+    },
+    "com.cloudflare.rum#SiteInfoDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "site_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "site_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#SiteInfoDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#SiteInfoDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#SiteInfoDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/rum/site_info/{site_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing Web Analytics site.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "site_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGetResponseRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGetResponseRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#SiteInfoGetResponseRulesItemPathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGetResponseRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#SiteInfoGetResponseRulesItem"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGetResponseRuleset": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the ruleset is enabled."
+          }
+        },
+        "zone_name": {
+          "target": "smithy.api#String"
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGetResponse": {
+      "type": "structure",
+      "members": {
+        "auto_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet is automatically injected for orange-clouded sites."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "rules": {
+          "target": "com.cloudflare.rum#SiteInfoGetResponseRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules."
+          }
+        },
+        "ruleset": {
+          "target": "com.cloudflare.rum#SiteInfoGetResponseRuleset"
+        },
+        "site_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site identifier."
+          }
+        },
+        "site_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site token."
+          }
+        },
+        "snippet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded JavaScript snippet."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#SiteInfoGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#SiteInfoGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#SiteInfoGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/rum/site_info/{site_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves a Web Analytics site.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListRequestOrderBy": {
+      "type": "enum",
+      "members": {
+        "HOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "host"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "order_by": {
+          "target": "com.cloudflare.rum#SiteInfoListRequestOrderBy",
+          "traits": {
+            "smithy.api#documentation": "The property used to sort the list of results.",
+            "smithy.api#httpQuery": "order_by"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Current page within the paginated list of results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items to return per page of results.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResultItemRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResultItemRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#SiteInfoListResultItemRulesItemPathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResultItemRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#SiteInfoListResultItemRulesItem"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResultItemRuleset": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the ruleset is enabled."
+          }
+        },
+        "zone_name": {
+          "target": "smithy.api#String"
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResultItem": {
+      "type": "structure",
+      "members": {
+        "auto_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet is automatically injected for orange-clouded sites."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "rules": {
+          "target": "com.cloudflare.rum#SiteInfoListResultItemRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules."
+          }
+        },
+        "ruleset": {
+          "target": "com.cloudflare.rum#SiteInfoListResultItemRuleset"
+        },
+        "site_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site identifier."
+          }
+        },
+        "site_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site token."
+          }
+        },
+        "snippet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded JavaScript snippet."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#SiteInfoListResultItem"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.rum#SiteInfoListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#SiteInfoListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#SiteInfoListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/rum/site_info/list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all Web Analytics sites of an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "site_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "auto_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet is automatically injected for orange-clouded sites."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or disables RUM. This option can be used only when auto_install is set to true."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname to use for gray-clouded sites."
+          }
+        },
+        "lite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet will not be injected for visitors from the EU."
+          }
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdateResponseRulesItemPathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdateResponseRulesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics rule identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the rule will be applied to."
+          }
+        },
+        "inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule includes or excludes traffic from being measured."
+          }
+        },
+        "is_paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rule is paused or not."
+          }
+        },
+        "paths": {
+          "target": "com.cloudflare.rum#SiteInfoUpdateResponseRulesItemPathsList",
+          "traits": {
+            "smithy.api#documentation": "The paths the rule will be applied to."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double"
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdateResponseRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rum#SiteInfoUpdateResponseRulesItem"
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdateResponseRuleset": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics ruleset identifier."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the ruleset is enabled."
+          }
+        },
+        "zone_name": {
+          "target": "smithy.api#String"
+        },
+        "zone_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "auto_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, the JavaScript snippet is automatically injected for orange-clouded sites."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "rules": {
+          "target": "com.cloudflare.rum#SiteInfoUpdateResponseRulesList",
+          "traits": {
+            "smithy.api#documentation": "A list of rules."
+          }
+        },
+        "ruleset": {
+          "target": "com.cloudflare.rum#SiteInfoUpdateResponseRuleset"
+        },
+        "site_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site identifier."
+          }
+        },
+        "site_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Web Analytics site token."
+          }
+        },
+        "snippet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded JavaScript snippet."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rum#SiteInfoUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rum#SiteInfoUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rum#SiteInfoUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/rum/site_info/{site_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates an existing Web Analytics site.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rum#Rum": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.rum#RulesBulkCreate"
+        },
+        {
+          "target": "com.cloudflare.rum#RulesCreate"
+        },
+        {
+          "target": "com.cloudflare.rum#RulesDelete"
+        },
+        {
+          "target": "com.cloudflare.rum#RulesList"
+        },
+        {
+          "target": "com.cloudflare.rum#RulesUpdate"
+        },
+        {
+          "target": "com.cloudflare.rum#SiteInfoCreate"
+        },
+        {
+          "target": "com.cloudflare.rum#SiteInfoDelete"
+        },
+        {
+          "target": "com.cloudflare.rum#SiteInfoGet"
+        },
+        {
+          "target": "com.cloudflare.rum#SiteInfoList"
+        },
+        {
+          "target": "com.cloudflare.rum#SiteInfoUpdate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Rum",
+        "smithy.api#documentation": "Cloudflare API — rum resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

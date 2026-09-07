@@ -1,0 +1,10 @@
+{
+  "description": "loginSessionConsume returns String so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#LoginSessionConsumeRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation loginSessionConsume($code: String!) {\n  loginSessionConsume(code: $code)\n}"
+    }
+  ]
+}

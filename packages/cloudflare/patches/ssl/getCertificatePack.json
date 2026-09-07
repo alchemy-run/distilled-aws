@@ -1,0 +1,42 @@
+{
+  "description": "Align ssl#CertificatePacksGet with distilled cloudflare/ssl getCertificatePack",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksGet",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePack"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksGetRequest",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePack/input/target",
+      "value": "com.cloudflare.ssl#GetCertificatePackRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksGetResponse",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePack/output/target",
+      "value": "com.cloudflare.ssl#GetCertificatePackResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePack/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ssl#CertificatePackNotFound"
+        },
+        {
+          "target": "com.cloudflare.ssl#Forbidden"
+        }
+      ]
+    }
+  ]
+}

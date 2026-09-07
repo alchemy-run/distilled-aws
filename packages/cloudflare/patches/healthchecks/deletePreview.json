@@ -1,0 +1,30 @@
+{
+  "description": "Align healthchecks#PreviewsDelete with distilled cloudflare/healthchecks deletePreview",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#PreviewsDelete",
+      "path": "/shapes/com.cloudflare.healthchecks#DeletePreview"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#PreviewsDeleteRequest",
+      "path": "/shapes/com.cloudflare.healthchecks#DeletePreviewRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#DeletePreview/input/target",
+      "value": "com.cloudflare.healthchecks#DeletePreviewRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.healthchecks#PreviewsDeleteResponse",
+      "path": "/shapes/com.cloudflare.healthchecks#DeletePreviewResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.healthchecks#DeletePreview/output/target",
+      "value": "com.cloudflare.healthchecks#DeletePreviewResponse"
+    }
+  ]
+}

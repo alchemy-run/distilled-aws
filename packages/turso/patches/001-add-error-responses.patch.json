@@ -1,0 +1,136 @@
+{
+  "description": "Add observed error responses to operations that only have '200'. Discovered via live API testing.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1databases~1{databaseName}~1configuration/get/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/DatabaseNotFoundResponse"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1databases~1{databaseName}~1configuration/patch/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/DatabaseNotFoundResponse"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1databases~1{databaseName}~1instances/get/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/DatabaseNotFoundResponse"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1databases~1{databaseName}~1instances~1{instanceName}/get/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/DatabaseNotFoundResponse"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1groups~1{groupName}~1configuration/get/responses/404",
+      "value": {
+        "description": "Group not found",
+        "$ref": "#/components/responses/GroupNotFoundResponse"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1groups~1{groupName}~1configuration/patch/responses/404",
+      "value": {
+        "description": "Group not found",
+        "$ref": "#/components/responses/GroupNotFoundResponse"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1groups/post/responses/400",
+      "value": {
+        "description": "Bad Request - invalid location or parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "invalid location zzz-invalid: invalid location: zzz-invalid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1auth~1api-tokens~1{tokenName}/delete/responses/404",
+      "value": {
+        "description": "API token not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "token not-a-real-token not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1members/post/responses/400",
+      "value": {
+        "description": "Bad Request - plan restriction or invalid input",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "organization can't invite users because plan doesn't support it"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1invites/post/responses/400",
+      "value": {
+        "description": "Bad Request - plan restriction or invalid input",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

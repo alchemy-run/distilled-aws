@@ -1,0 +1,40 @@
+{
+  "description": "Align flagship#AppsFlagsChangelogList with distilled cloudflare/flagship listAppFlagChangelogs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsChangelogList",
+      "path": "/shapes/com.cloudflare.flagship#ListAppFlagChangelogs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsChangelogListRequest",
+      "path": "/shapes/com.cloudflare.flagship#ListAppFlagChangelogsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#ListAppFlagChangelogs/input/target",
+      "value": "com.cloudflare.flagship#ListAppFlagChangelogsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsChangelogListResponse",
+      "path": "/shapes/com.cloudflare.flagship#ListAppFlagChangelogsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#ListAppFlagChangelogs/output/target",
+      "value": "com.cloudflare.flagship#ListAppFlagChangelogsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#ListAppFlagChangelogs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursors.after",
+        "items": "result"
+      }
+    }
+  ]
+}

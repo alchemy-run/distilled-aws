@@ -1,0 +1,155 @@
+{
+  "errorCategories": {
+    "NoSuchAccessPoint": ["NotFoundError"],
+    "NoSuchAccessPointPolicy": ["NotFoundError"],
+    "AccessPointAlreadyOwnedByYou": ["AlreadyExistsError"],
+    "MalformedPolicy": ["BadRequestError"],
+    "InvalidRequest": ["BadRequestError"],
+    "MissingBucketLevelActivityMetrics": ["BadRequestError"],
+    "ObjectLambdaNotAvailable": ["AuthError"],
+    "NoSuchConfiguration": ["NotFoundError"],
+    "NoSuchMultiRegionAccessPoint": ["NotFoundError"],
+    "JobStatusTransitionForbidden": ["BadRequestError"]
+  },
+  "structures": {
+    "AccountLevel": {
+      "members": {
+        "BucketLevel": {
+          "optional": true
+        }
+      }
+    }
+  },
+  "operations": {
+    "createAccessPoint": {
+      "errors": ["AccessPointAlreadyOwnedByYou", "InvalidRequest"]
+    },
+    "getAccessPoint": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "deleteAccessPoint": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "getAccessPointPolicy": {
+      "errors": ["NoSuchAccessPoint", "NoSuchAccessPointPolicy"]
+    },
+    "putAccessPointPolicy": {
+      "errors": ["NoSuchAccessPoint", "MalformedPolicy"]
+    },
+    "deleteAccessPointPolicy": {
+      "errors": ["NoSuchAccessPoint", "NoSuchAccessPointPolicy"]
+    },
+    "getAccessPointPolicyStatus": {
+      "errors": ["NoSuchAccessPoint", "NoSuchAccessPointPolicy"]
+    },
+    "tagResource": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "untagResource": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "listTagsForResource": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "createAccessPointForObjectLambda": {
+      "errors": [
+        "AccessPointAlreadyOwnedByYou",
+        "InvalidRequest",
+        "NoSuchAccessPoint"
+      ],
+      "syntheticErrors": [
+        {
+          "name": "ObjectLambdaNotAvailable",
+          "from": "AccessDenied",
+          "message": {
+            "includes": "Object Lambda is available only to existing customers"
+          }
+        }
+      ]
+    },
+    "getAccessPointForObjectLambda": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "deleteAccessPointForObjectLambda": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "getAccessPointConfigurationForObjectLambda": {
+      "errors": ["NoSuchAccessPoint"]
+    },
+    "putAccessPointConfigurationForObjectLambda": {
+      "errors": ["NoSuchAccessPoint", "InvalidRequest"]
+    },
+    "getAccessPointPolicyForObjectLambda": {
+      "errors": ["NoSuchAccessPoint", "NoSuchAccessPointPolicy"]
+    },
+    "putAccessPointPolicyForObjectLambda": {
+      "errors": ["NoSuchAccessPoint", "MalformedPolicy"]
+    },
+    "deleteAccessPointPolicyForObjectLambda": {
+      "errors": ["NoSuchAccessPoint", "NoSuchAccessPointPolicy"]
+    },
+    "putStorageLensConfiguration": {
+      "errors": ["InvalidRequest", "MissingBucketLevelActivityMetrics"]
+    },
+    "getStorageLensConfiguration": {
+      "errors": ["NoSuchConfiguration"]
+    },
+    "deleteStorageLensConfiguration": {
+      "errors": ["NoSuchConfiguration"]
+    },
+    "getStorageLensConfigurationTagging": {
+      "errors": ["NoSuchConfiguration"]
+    },
+    "putStorageLensConfigurationTagging": {
+      "errors": ["NoSuchConfiguration"]
+    },
+    "deleteStorageLensConfigurationTagging": {
+      "errors": ["NoSuchConfiguration"]
+    },
+    "createMultiRegionAccessPoint": {
+      "errors": ["InvalidRequest"]
+    },
+    "getMultiRegionAccessPoint": {
+      "errors": ["NoSuchMultiRegionAccessPoint"]
+    },
+    "deleteMultiRegionAccessPoint": {
+      "errors": ["NoSuchMultiRegionAccessPoint", "InvalidRequest"]
+    },
+    "describeMultiRegionAccessPointOperation": {
+      "errors": ["InvalidRequest"]
+    },
+    "getMultiRegionAccessPointPolicy": {
+      "errors": ["NoSuchMultiRegionAccessPoint"]
+    },
+    "putMultiRegionAccessPointPolicy": {
+      "errors": ["NoSuchMultiRegionAccessPoint", "InvalidRequest"]
+    },
+    "updateJobStatus": {
+      "errors": ["InvalidRequest"],
+      "syntheticErrors": [
+        {
+          "name": "JobStatusTransitionForbidden",
+          "from": "InvalidRequest",
+          "message": {
+            "includes": "job status forbidden"
+          }
+        }
+      ]
+    },
+    "updateJobPriority": {
+      "errors": ["InvalidRequest"],
+      "syntheticErrors": [
+        {
+          "name": "JobStatusTransitionForbidden",
+          "from": "InvalidRequest",
+          "message": {
+            "includes": "job status forbidden"
+          }
+        }
+      ]
+    },
+    "createJob": {
+      "errors": ["InvalidRequest"]
+    }
+  }
+}

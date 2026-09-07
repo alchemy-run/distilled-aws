@@ -1,0 +1,30 @@
+{
+  "description": "Align registrar#Search with distilled cloudflare/registrar searchRegistrar",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#Search",
+      "path": "/shapes/com.cloudflare.registrar#SearchRegistrar"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#SearchRequest",
+      "path": "/shapes/com.cloudflare.registrar#SearchRegistrarRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#SearchRegistrar/input/target",
+      "value": "com.cloudflare.registrar#SearchRegistrarRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#SearchResponse",
+      "path": "/shapes/com.cloudflare.registrar#SearchRegistrarResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#SearchRegistrar/output/target",
+      "value": "com.cloudflare.registrar#SearchRegistrarResponse"
+    }
+  ]
+}

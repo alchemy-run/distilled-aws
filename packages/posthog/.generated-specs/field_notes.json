@@ -1,0 +1,1023 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.field_notes#FieldNotesListRequestFieldNoteStatus": {
+      "type": "enum",
+      "members": {
+        "ACKNOWLEDGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "acknowledged"
+          }
+        },
+        "DISMISSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dismissed"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resolved"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#FieldNotesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "field_note_status": {
+          "target": "com.posthog.field_notes#FieldNotesListRequestFieldNoteStatus",
+          "traits": {
+            "smithy.api#httpQuery": "field_note_status",
+            "smithy.api#documentation": "Filter to field notes in this lifecycle state (e.g. `pending` for unaddressed feedback)."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "host",
+            "smithy.api#documentation": "Filter to field notes made on this hostname (e.g. `app.example.com`)."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.field_notes#PaginatedFieldNoteList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.field_notes#PaginatedFieldNoteListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#FieldNote": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The note the user wrote about the element.",
+            "smithy.api#required": {}
+          }
+        },
+        "field_note_status": {
+          "target": "com.posthog.field_notes#FieldNoteStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle of the field note: pending, acknowledged, resolved, or dismissed. Ignored on create.\n\n* `pending` - Pending\n* `acknowledged` - Acknowledged\n* `resolved` - Resolved\n* `dismissed` - Dismissed"
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional note left by the agent when acknowledging, resolving, or dismissing the field note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full URL of the page the field note was made on.",
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of the page, used to scope field notes to a site.",
+            "smithy.api#required": {}
+          }
+        },
+        "pathname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path portion of the URL.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CSS selector that locates the element on the page.",
+            "smithy.api#required": {}
+          }
+        },
+        "element_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Visible text of the element, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_chain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serialized autocapture-style element chain from the element up to the document root.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_context": {
+          "target": "com.posthog.field_notes#FieldNoteElementContextMap",
+          "traits": {
+            "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+          }
+        },
+        "viewport": {
+          "target": "com.posthog.field_notes#FieldNoteViewport",
+          "traits": {
+            "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "screenshot_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of an uploaded screenshot captured with the field_note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.field_notes#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#FieldNoteStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ACKNOWLEDGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "acknowledged"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resolved"
+          }
+        },
+        "DISMISSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dismissed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - Pending\n* `acknowledged` - Acknowledged\n* `resolved` - Resolved\n* `dismissed` - Dismissed"
+      }
+    },
+    "com.posthog.field_notes#FieldNoteElementContextMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+      }
+    },
+    "com.posthog.field_notes#FieldNoteViewport": {
+      "type": "structure",
+      "members": {
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport width in pixels."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport height in pixels."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
+      }
+    },
+    "com.posthog.field_notes#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.field_notes#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.field_notes#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.field_notes#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.field_notes#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.field_notes#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#PaginatedFieldNoteListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.field_notes#FieldNote"
+      },
+      "traits": {}
+    },
+    "com.posthog.field_notes#FieldNotesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.field_notes#FieldNotesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.field_notes#PaginatedFieldNoteList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/field_notes/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesCreateRequestElementContextMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesCreateRequestViewport": {
+      "type": "structure",
+      "members": {
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport width in pixels."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport height in pixels."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The note the user wrote about the element.",
+            "smithy.api#required": {}
+          }
+        },
+        "field_note_status": {
+          "target": "com.posthog.field_notes#FieldNoteStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle of the field note: pending, acknowledged, resolved, or dismissed. Ignored on create.\n\n* `pending` - Pending\n* `acknowledged` - Acknowledged\n* `resolved` - Resolved\n* `dismissed` - Dismissed"
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional note left by the agent when acknowledging, resolving, or dismissing the field note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full URL of the page the field note was made on.",
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of the page, used to scope field notes to a site.",
+            "smithy.api#required": {}
+          }
+        },
+        "pathname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path portion of the URL.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CSS selector that locates the element on the page.",
+            "smithy.api#required": {}
+          }
+        },
+        "element_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Visible text of the element, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_chain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serialized autocapture-style element chain from the element up to the document root.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_context": {
+          "target": "com.posthog.field_notes#FieldNotesCreateRequestElementContextMap",
+          "traits": {
+            "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+          }
+        },
+        "viewport": {
+          "target": "com.posthog.field_notes#FieldNotesCreateRequestViewport",
+          "traits": {
+            "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "screenshot_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of an uploaded screenshot captured with the field_note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.field_notes#FieldNotesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.field_notes#FieldNotesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.field_notes#FieldNote"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/field_notes/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this field note."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.field_notes#FieldNotesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.field_notes#FieldNotesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.field_notes#FieldNote"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/field_notes/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesUpdateRequestElementContextMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesUpdateRequestViewport": {
+      "type": "structure",
+      "members": {
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport width in pixels."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport height in pixels."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this field note."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The note the user wrote about the element.",
+            "smithy.api#required": {}
+          }
+        },
+        "field_note_status": {
+          "target": "com.posthog.field_notes#FieldNoteStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle of the field note: pending, acknowledged, resolved, or dismissed. Ignored on create.\n\n* `pending` - Pending\n* `acknowledged` - Acknowledged\n* `resolved` - Resolved\n* `dismissed` - Dismissed"
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional note left by the agent when acknowledging, resolving, or dismissing the field note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full URL of the page the field note was made on.",
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of the page, used to scope field notes to a site.",
+            "smithy.api#required": {}
+          }
+        },
+        "pathname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path portion of the URL.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CSS selector that locates the element on the page.",
+            "smithy.api#required": {}
+          }
+        },
+        "element_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Visible text of the element, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_chain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serialized autocapture-style element chain from the element up to the document root.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_context": {
+          "target": "com.posthog.field_notes#FieldNotesUpdateRequestElementContextMap",
+          "traits": {
+            "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+          }
+        },
+        "viewport": {
+          "target": "com.posthog.field_notes#FieldNotesUpdateRequestViewport",
+          "traits": {
+            "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "screenshot_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of an uploaded screenshot captured with the field_note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.field_notes#FieldNotesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.field_notes#FieldNotesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.field_notes#FieldNote"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/field_notes/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesPartialUpdateRequestElementContextMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesPartialUpdateRequestViewport": {
+      "type": "structure",
+      "members": {
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport width in pixels."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport height in pixels."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this field note."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The note the user wrote about the element."
+          }
+        },
+        "field_note_status": {
+          "target": "com.posthog.field_notes#FieldNoteStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle of the field note: pending, acknowledged, resolved, or dismissed. Ignored on create.\n\n* `pending` - Pending\n* `acknowledged` - Acknowledged\n* `resolved` - Resolved\n* `dismissed` - Dismissed"
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional note left by the agent when acknowledging, resolving, or dismissing the field note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full URL of the page the field note was made on."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of the page, used to scope field notes to a site."
+          }
+        },
+        "pathname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path portion of the URL.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CSS selector that locates the element on the page."
+          }
+        },
+        "element_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Visible text of the element, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_chain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serialized autocapture-style element chain from the element up to the document root.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "element_context": {
+          "target": "com.posthog.field_notes#FieldNotesPartialUpdateRequestElementContextMap",
+          "traits": {
+            "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
+          }
+        },
+        "viewport": {
+          "target": "com.posthog.field_notes#FieldNotesPartialUpdateRequestViewport",
+          "traits": {
+            "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "screenshot_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of an uploaded screenshot captured with the field_note.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.field_notes#FieldNotesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.field_notes#FieldNotesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.field_notes#FieldNote"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/field_notes/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
+      }
+    },
+    "com.posthog.field_notes#FieldNotesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this field note."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.field_notes#FieldNotesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.field_notes#FieldNotesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/field_notes/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
+      }
+    },
+    "com.posthog.field_notes#FieldNotes": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.field_notes#FieldNotesList"
+        },
+        {
+          "target": "com.posthog.field_notes#FieldNotesCreate"
+        },
+        {
+          "target": "com.posthog.field_notes#FieldNotesRetrieve"
+        },
+        {
+          "target": "com.posthog.field_notes#FieldNotesUpdate"
+        },
+        {
+          "target": "com.posthog.field_notes#FieldNotesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.field_notes#FieldNotesDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

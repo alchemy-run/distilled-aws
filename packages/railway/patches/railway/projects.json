@@ -1,0 +1,66 @@
+{
+  "description": "Select only Project identity scalars on the `projects` connection. Nested workspace/team/members/baseEnvironment at maxDepth 2 pulls subscriptionType and canvasGroupRefs, which fail decode on live rows (same class of bug as auditLogs) and make listOwnedProjects hang under nuke.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ProjectsRequest/traits/com.railway.graphql#operation/query",
+      "value": "query projects($after: String, $before: String, $first: Int, $includeDeleted: Boolean, $last: Int, $orderBy: ProjectsOrderBy, $userId: String, $workspaceId: String) {\n  projects(after: $after, before: $before, first: $first, includeDeleted: $includeDeleted, last: $last, orderBy: $orderBy, userId: $userId, workspaceId: $workspaceId) {\n    edges {\n      cursor\n      node {\n        baseEnvironmentId\n        createdAt\n        deletedAt\n        description\n        id\n        name\n        primaryEnvironmentId\n        updatedAt\n        workspaceId\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/baseEnvironment"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/botPrEnvironments"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/expiredAt"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/featureFlags"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/focusedPrEnvironments"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/isPublic"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/isTempProject"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/members"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/prDeploys"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/subscriptionPlanLimit"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/subscriptionType"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/team"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/teamId"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#ProjectsResponseEdgesItemNode/members/workspace"
+    }
+  ]
+}

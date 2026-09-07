@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesResilienceGlobalWarpOverrideCreate with distilled cloudflare/zero-trust createDeviceResilienceGlobalWarpOverride",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesResilienceGlobalWarpOverrideCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverride"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesResilienceGlobalWarpOverrideCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverrideRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverride/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverrideRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesResilienceGlobalWarpOverrideCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverrideResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverride/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceResilienceGlobalWarpOverrideResponse"
+    }
+  ]
+}

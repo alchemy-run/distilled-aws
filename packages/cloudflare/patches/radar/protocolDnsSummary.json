@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsSummaryProtocol with distilled cloudflare/radar protocolDnsSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryProtocol",
+      "path": "/shapes/com.cloudflare.radar#ProtocolDnsSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryProtocolRequest",
+      "path": "/shapes/com.cloudflare.radar#ProtocolDnsSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolDnsSummary/input/target",
+      "value": "com.cloudflare.radar#ProtocolDnsSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryProtocolResponse",
+      "path": "/shapes/com.cloudflare.radar#ProtocolDnsSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolDnsSummary/output/target",
+      "value": "com.cloudflare.radar#ProtocolDnsSummaryResponse"
+    }
+  ]
+}

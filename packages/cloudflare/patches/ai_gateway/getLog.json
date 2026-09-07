@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#LogsGet with distilled cloudflare/ai-gateway getLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsGet",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsGetRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetLog/input/target",
+      "value": "com.cloudflare.ai_gateway#GetLogRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsGetResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetLogResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetLog/output/target",
+      "value": "com.cloudflare.ai_gateway#GetLogResponse"
+    }
+  ]
+}

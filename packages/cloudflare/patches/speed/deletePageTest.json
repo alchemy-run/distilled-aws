@@ -1,0 +1,30 @@
+{
+  "description": "Align speed#PagesTestsDelete with distilled cloudflare/speed deletePageTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsDelete",
+      "path": "/shapes/com.cloudflare.speed#DeletePageTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsDeleteRequest",
+      "path": "/shapes/com.cloudflare.speed#DeletePageTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#DeletePageTest/input/target",
+      "value": "com.cloudflare.speed#DeletePageTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTestsDeleteResponse",
+      "path": "/shapes/com.cloudflare.speed#DeletePageTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#DeletePageTest/output/target",
+      "value": "com.cloudflare.speed#DeletePageTestResponse"
+    }
+  ]
+}

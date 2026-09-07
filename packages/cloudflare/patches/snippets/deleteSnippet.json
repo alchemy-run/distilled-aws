@@ -1,0 +1,42 @@
+{
+  "description": "Align snippets#Delete with distilled cloudflare/snippets deleteSnippet",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#Delete",
+      "path": "/shapes/com.cloudflare.snippets#DeleteSnippet"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#DeleteRequest",
+      "path": "/shapes/com.cloudflare.snippets#DeleteSnippetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#DeleteSnippet/input/target",
+      "value": "com.cloudflare.snippets#DeleteSnippetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#DeleteResponse",
+      "path": "/shapes/com.cloudflare.snippets#DeleteSnippetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#DeleteSnippet/output/target",
+      "value": "com.cloudflare.snippets#DeleteSnippetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.snippets#DeleteSnippet/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.snippets#SnippetNotFound"
+        },
+        {
+          "target": "com.cloudflare.snippets#SnippetInUse"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1850 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}/privateEndpointConnections/{privateEndpointName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Asynchronous API to delete a private endpoint connection for Power BI by private endpoint name.\n\nDeletes a private endpoint connection for Power BI by private endpoint name.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        },
+        "privateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}/privateEndpointConnections/{privateEndpointName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Update a specific private endpoint connection.\n\nUpdates the status of Private Endpoint Connection object. Used to approve or reject a connection.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the id of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of the resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of the private endpoint connection."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Specifies the private endpoint."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.powerbiprivatelinks#ConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the connection state."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the Private Endpoint Connection."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of the Private Endpoint Connection."
+      }
+    },
+    "com.azure.powerbiprivatelinks#ConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.powerbiprivatelinks#ConnectionStateStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the connection."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the connection state."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Actions required (if any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ConnectionState information."
+      }
+    },
+    "com.azure.powerbiprivatelinks#ConnectionStateStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the connection."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the id of private endpoint."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        },
+        "privateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of the private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}/privateEndpointConnections/{privateEndpointName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Get a specific private endpoint connection.\n\nGet a specific private endpoint connection for Power BI by private endpoint name.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        },
+        "privateEndpointName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Lists all private endpoint connections under a resource.\n\nGets private endpoint connection for Power BI.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the private endpoint connection."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connections."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the name of the private endpoint connection."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResourceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the powerbi resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}/privateLinkResources/{privateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Get a private link resource.\n\nGet properties of a private link resource.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified identifier of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private link resource"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group id."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource required member names."
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcePropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource Private link DNS zone name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a private link resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcePropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource Private link DNS zone name."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource required member names."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        },
+        "privateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of private link resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "List private link Power BI resource.\n\nList private link resources under a specific Power BI resource.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcesListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "A collection of private endpoint connection resources."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies list of the private link resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcesListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of private endpoint connection resources."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResourceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Deletes a Private Link Service Resource for Power BI.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#TenantResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Creates or updates a Private Link Service Resource for Power BI.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#TenantResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the resource identifier of the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of the resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbiprivatelinks#TenantResourceSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the location of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#TenantProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbiprivatelinks#TenantResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tags of the resource."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#TenantResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the tags of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#TenantProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tenant id of the resource."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.powerbiprivatelinks#TenantPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the private endpoint connections of the resource."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#TenantPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the private endpoint connections of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#TenantResourceSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.powerbiprivatelinks#TenantResourceSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.powerbiprivatelinks#TenantResourceSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#TenantResourceSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#TenantResourceSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the location of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#TenantPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tags of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the tags of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#TenantPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tenant id of the resource."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.powerbiprivatelinks#TenantPropertiesInputPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the private endpoint connections of the resource."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#TenantPropertiesInputPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the private endpoint connections of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionInput": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of the private endpoint connection."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#TenantResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Creates or updates a Private Link Service Resource for Power BI.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the location of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbiprivatelinks#TenantPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tags of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the tags of the resource."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceName": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/{azureResourceName}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Gets all the private link resources for the given Azure resource.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#TenantResource"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "azureResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Gets all the private link resources for the given resource group.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#TenantResource"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#AsyncOperationDetail"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBI/operationResults/{operationId}",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Gets operation result of Private Link Service Resources for Power BI.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#AsyncOperationDetail": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation id."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation name."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation status."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation start time."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation end time."
+          }
+        },
+        "error": {
+          "target": "com.azure.powerbiprivatelinks#AsyncOperationDetailError",
+          "traits": {
+            "smithy.api#documentation": "The error detail."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#AsyncOperationDetailError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.powerbiprivatelinks#AsyncOperationDetailErrorDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.powerbiprivatelinks#AsyncOperationDetailErrorAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.powerbiprivatelinks#AsyncOperationDetailErrorAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.powerbiprivatelinks#ErrorAdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.powerbiprivatelinks#AsyncOperationDetailErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.powerbiprivatelinks#ErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.powerbiprivatelinks#ErrorDetailDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.powerbiprivatelinks#ErrorDetailAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.powerbiprivatelinks#ErrorDetailAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.powerbiprivatelinks#ErrorDetailDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of Azure async operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Gets all the private link resources for the given subscription id.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#TenantResource"
+      },
+      "traits": {}
+    },
+    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.powerbiprivatelinks#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.PowerBI/operations",
+          "code": 200,
+          "apiVersion": "2020-06-01"
+        },
+        "smithy.api#documentation": "Lists all of the available Power BI RP operations.",
+        "com.distilled.openapi#apiVersion": "2020-06-01"
+      }
+    },
+    "com.azure.powerbiprivatelinks#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbiprivatelinks#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbiprivatelinks#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbiprivatelinks#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.powerbiprivatelinks#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.powerbiprivatelinks#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.powerbiprivatelinks#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.powerbiprivatelinks#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.powerbiprivatelinks#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.powerbiprivatelinks#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.powerbiprivatelinks#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.powerbiprivatelinks#Powerbiprivatelinks": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreate"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResource"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResource"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesDelete"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesUpdate"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesCreate"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceName"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGet"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionId"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Powerbiprivatelinks",
+        "smithy.api#documentation": "Azure Powerbiprivatelinks API — merged from the powerbiprivatelinks resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

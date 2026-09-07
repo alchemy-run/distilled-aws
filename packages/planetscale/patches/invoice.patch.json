@@ -1,0 +1,15 @@
+{
+  "description": "Fix Invoice schema: total is returned as string, not number",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/definitions/Invoice/properties/total/type",
+      "value": "string"
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedInvoice/properties/data/items/properties/total/type",
+      "value": "string"
+    }
+  ]
+}

@@ -1,0 +1,2040 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#ConversionGoalsListResponse": {
+      "type": "structure",
+      "members": {
+        "goals": {
+          "target": "com.posthog.marketing_analytics#ConversionGoalsListResponseGoalsList",
+          "traits": {
+            "smithy.api#documentation": "One summary entry per configured conversion goal",
+            "smithy.api#required": {}
+          }
+        },
+        "attribution_window_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The team's configured attribution window in days",
+            "smithy.api#required": {}
+          }
+        },
+        "attribution_mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The team's attribution model (e.g. last_touch, first_touch, linear)",
+            "smithy.api#required": {}
+          }
+        },
+        "has_misconfigured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if any goal is misconfigured",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#ConversionGoalSummary": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique id of the goal (event name, action id, or DW goal id)",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the conversion goal",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Goal type — one of: EventsNode (PostHog event), ActionsNode (PostHog action), DataWarehouseNode (external table)",
+            "smithy.api#required": {}
+          }
+        },
+        "target_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable target the goal matches (event/action name or table)",
+            "smithy.api#required": {}
+          }
+        },
+        "last_30d_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of matching conversion events in the last 30 days",
+            "smithy.api#required": {}
+          }
+        },
+        "integrated_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Conversions whose utm_source matches a known integration. Null for DataWarehouseNode goals.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "events_without_utm_source": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Conversions with no utm_source at all (fix by tagging UTMs). Null for DataWarehouseNode goals.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "events_with_unmatched_utm_source": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Conversions with a utm_source that matches no integration (fix with custom_source_mappings). Null for DataWarehouseNode goals.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "non_integrated_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total non-integrated conversions (without + unmatched utm_source). Null for DataWarehouseNode goals.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "integrated_pct": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage of conversions that are integrated. Null for DataWarehouseNode goals.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_misconfigured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the goal could not be evaluated (e.g. deleted action)",
+            "smithy.api#required": {}
+          }
+        },
+        "misconfig_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Explanation when is_misconfigured is true",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_approximate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when this 30d count may differ from the dashboard's attribution-windowed number",
+            "smithy.api#required": {}
+          }
+        },
+        "approximation_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Explanation when is_approximate is true",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#ConversionGoalsListResponseGoalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#ConversionGoalSummary"
+      },
+      "traits": {
+        "smithy.api#documentation": "One summary entry per configured conversion goal"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#ConversionGoalsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/conversion_goals/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List conversion goals\n\nRead the configured conversion goals for the current project — each with its kind, target, last-30d count, integrated vs non-integrated split, and a misconfiguration flag. Read-only."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "source_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_type",
+            "smithy.api#documentation": "Optional. Restrict to one integration (e.g. 'GoogleAds')."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthResponse": {
+      "type": "structure",
+      "members": {
+        "integrations": {
+          "target": "com.posthog.marketing_analytics#DataSourceHealthResponseIntegrationsList",
+          "traits": {
+            "smithy.api#documentation": "One health entry per native integration",
+            "smithy.api#required": {}
+          }
+        },
+        "has_any_data": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if any integration synced rows in the last 7 days",
+            "smithy.api#required": {}
+          }
+        },
+        "overall_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Overall: healthy/degraded/broken/no_sources",
+            "smithy.api#required": {}
+          }
+        },
+        "issues_summary": {
+          "target": "com.posthog.marketing_analytics#DataSourceHealthResponseIssuesSummaryList",
+          "traits": {
+            "smithy.api#documentation": "Short human-readable summary of detected issues",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthEntry": {
+      "type": "structure",
+      "members": {
+        "source_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External data source type key (e.g. 'GoogleAds', 'MetaAds')",
+            "smithy.api#required": {}
+          }
+        },
+        "is_native": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this is a native marketing integration",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable integration name (e.g. 'Google Ads')",
+            "smithy.api#required": {}
+          }
+        },
+        "connected": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a live source of this type is connected",
+            "smithy.api#required": {}
+          }
+        },
+        "last_sync_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the source last completed a sync",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_sync_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sync status: ok/error/stale/tables_failed/not_connected/never",
+            "smithy.api#required": {}
+          }
+        },
+        "last_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Latest unresolved sync error message, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "rows_last_24h": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rows synced in the last 24 hours",
+            "smithy.api#required": {}
+          }
+        },
+        "rows_last_7d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rows synced in the last 7 days",
+            "smithy.api#required": {}
+          }
+        },
+        "sources_map_present": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a column mapping exists for this source",
+            "smithy.api#required": {}
+          }
+        },
+        "schema_columns_mapped": {
+          "target": "com.posthog.marketing_analytics#DataSourceHealthEntrySchemaColumnsMappedList",
+          "traits": {
+            "smithy.api#documentation": "Schema columns currently mapped for this source",
+            "smithy.api#required": {}
+          }
+        },
+        "schema_columns_required_missing": {
+          "target": "com.posthog.marketing_analytics#DataSourceHealthEntrySchemaColumnsRequiredMissingList",
+          "traits": {
+            "smithy.api#documentation": "Required schema columns that are not yet mapped",
+            "smithy.api#required": {}
+          }
+        },
+        "required_tables": {
+          "target": "com.posthog.marketing_analytics#DataSourceHealthEntryRequiredTablesList",
+          "traits": {
+            "smithy.api#documentation": "Per-required-table sync status for this integration",
+            "smithy.api#required": {}
+          }
+        },
+        "settings_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the Marketing analytics global settings page",
+            "smithy.api#required": {}
+          }
+        },
+        "schemas_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the per-source Schemas tab, or null if not connected",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diagnosis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable diagnosis of this source's health",
+            "smithy.api#required": {}
+          }
+        },
+        "fix_suggestion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Suggested fix when the source is unhealthy",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthEntrySchemaColumnsMappedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Schema columns currently mapped for this source"
+      }
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthEntrySchemaColumnsRequiredMissingList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Required schema columns that are not yet mapped"
+      }
+    },
+    "com.posthog.marketing_analytics#RequiredTableStatus": {
+      "type": "structure",
+      "members": {
+        "table_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the required source table (e.g. 'campaign', 'campaign_stats')",
+            "smithy.api#required": {}
+          }
+        },
+        "present": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the table exists as a schema on the connected source",
+            "smithy.api#required": {}
+          }
+        },
+        "should_sync": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the table is enabled for sync",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ExternalDataSchema status: Completed/Running/Failed/Paused/Cancelled, or null",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_synced_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this table last completed a sync",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthEntryRequiredTablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#RequiredTableStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-required-table sync status for this integration"
+      }
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthResponseIntegrationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#DataSourceHealthEntry"
+      },
+      "traits": {
+        "smithy.api#documentation": "One health entry per native integration"
+      }
+    },
+    "com.posthog.marketing_analytics#DataSourceHealthResponseIssuesSummaryList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Short human-readable summary of detected issues"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#DataSourceHealthResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/data_sources/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List marketing data sources\n\nCheck the platform → data-warehouse side of every native marketing integration: connection state, sync recency, row counts, required-table status, and schema-mapping coverage. Read-only."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "attribution_lookback_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "attribution_lookback_days",
+            "smithy.api#documentation": "Lookback window for attribution health (1-365 days); defaults to 7"
+          }
+        },
+        "include_conversion_goals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_conversion_goals",
+            "smithy.api#documentation": "Whether to include the conversion-goal summary in the diagnostic"
+          }
+        },
+        "source_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_type",
+            "smithy.api#documentation": "Optional integration filter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingDiagnosticResponse": {
+      "type": "structure",
+      "members": {
+        "integrations": {
+          "target": "com.posthog.marketing_analytics#MarketingDiagnosticResponseIntegrationsList",
+          "traits": {
+            "smithy.api#documentation": "Per-integration cross-domain diagnostics",
+            "smithy.api#required": {}
+          }
+        },
+        "overall_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "healthy/degraded/broken/no_sources",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One-line plain-English summary of the diagnostic",
+            "smithy.api#required": {}
+          }
+        },
+        "conversion_goals": {
+          "target": "com.posthog.marketing_analytics#ConversionGoalsListResponse",
+          "traits": {
+            "smithy.api#documentation": "Conversion goal summary, when requested",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recommended_actions": {
+          "target": "com.posthog.marketing_analytics#MarketingDiagnosticResponseRecommendedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Top global recommended actions across all integrations",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#IntegrationDiagnostic": {
+      "type": "structure",
+      "members": {
+        "integration_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration key (e.g. 'google', 'meta')",
+            "smithy.api#required": {}
+          }
+        },
+        "source_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External data source type key (e.g. 'GoogleAds')",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable integration name",
+            "smithy.api#required": {}
+          }
+        },
+        "overall_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Per-integration status",
+            "smithy.api#required": {}
+          }
+        },
+        "diagnosis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable cross-domain diagnosis",
+            "smithy.api#required": {}
+          }
+        },
+        "data_source": {
+          "target": "com.posthog.marketing_analytics#DataSourceHealthEntry",
+          "traits": {
+            "smithy.api#documentation": "Data-source (sync) side health, or null if not connected",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "attribution": {
+          "target": "com.posthog.marketing_analytics#AttributionHealthEntry",
+          "traits": {
+            "smithy.api#documentation": "Attribution (UTM events) side health, or null if no data",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recommended_actions": {
+          "target": "com.posthog.marketing_analytics#IntegrationDiagnosticRecommendedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Recommended next steps for this integration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#AttributionHealthEntry": {
+      "type": "structure",
+      "members": {
+        "integration_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration key (e.g. 'google', 'meta')",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable integration name",
+            "smithy.api#required": {}
+          }
+        },
+        "events_with_utm_last_7d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total events with any utm_source in the window",
+            "smithy.api#required": {}
+          }
+        },
+        "events_matched_last_7d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Events whose utm_source matched this integration",
+            "smithy.api#required": {}
+          }
+        },
+        "events_unmatched_likely_yours_last_7d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Events that look like this integration's but don't match exactly",
+            "smithy.api#required": {}
+          }
+        },
+        "last_event_with_matching_utm_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent matched event",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "matched_pct": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage of UTM events matched to this integration",
+            "smithy.api#required": {}
+          }
+        },
+        "sample_unmatched_utm_sources": {
+          "target": "com.posthog.marketing_analytics#AttributionHealthEntrySampleUnmatchedUtmSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Sample of likely-yours unmatched utm_source values",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UnmatchedUtmSample": {
+      "type": "structure",
+      "members": {
+        "raw_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A raw utm_source value that doesn't match the integration exactly",
+            "smithy.api#required": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of events with this raw value in the window",
+            "smithy.api#required": {}
+          }
+        },
+        "suggested_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration suggested by token match, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#AttributionHealthEntrySampleUnmatchedUtmSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#UnmatchedUtmSample"
+      },
+      "traits": {
+        "smithy.api#documentation": "Sample of likely-yours unmatched utm_source values"
+      }
+    },
+    "com.posthog.marketing_analytics#RecommendedAction": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short title of the recommended action",
+            "smithy.api#required": {}
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed explanation of the action",
+            "smithy.api#required": {}
+          }
+        },
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Action severity",
+            "smithy.api#required": {}
+          }
+        },
+        "target_tool": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Follow-up tool to call next, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#IntegrationDiagnosticRecommendedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#RecommendedAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Recommended next steps for this integration"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingDiagnosticResponseIntegrationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#IntegrationDiagnostic"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-integration cross-domain diagnostics"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingDiagnosticResponseRecommendedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#RecommendedAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top global recommended actions across all integrations"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#MarketingDiagnosticResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/diagnose/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Diagnose marketing analytics\n\nAggregate data-source sync health, UTM attribution health, and conversion-goal config into a single per-integration diagnostic with recommended actions. Read-only."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "ISO start; defaults to 30 days ago"
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "ISO end; defaults to now"
+          }
+        },
+        "goal_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "goal_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id of the conversion goal to explain (from list_conversion_goals)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#GoalExplanation": {
+      "type": "structure",
+      "members": {
+        "goal_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the explained conversion goal",
+            "smithy.api#required": {}
+          }
+        },
+        "goal_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the conversion goal",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "EventsNode/ActionsNode/DataWarehouseNode",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "com.posthog.marketing_analytics#GoalExplanationPeriod",
+          "traits": {
+            "smithy.api#documentation": "The period the breakdown was computed over",
+            "smithy.api#required": {}
+          }
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total matching conversion events in the period",
+            "smithy.api#required": {}
+          }
+        },
+        "integrated_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Events whose utm_source matched a known integration. Null for DataWarehouseNode.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "events_without_utm_source": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Events with no utm_source at all. Null for DataWarehouseNode.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "events_with_unmatched_utm_source": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Events with a utm_source matching no integration. Null for DataWarehouseNode.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "non_integrated_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total non-integrated events (without + unmatched). Null for DataWarehouseNode.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "by_event": {
+          "target": "com.posthog.marketing_analytics#GoalExplanationByEventList",
+          "traits": {
+            "smithy.api#documentation": "List of [event_name, count] pairs",
+            "smithy.api#required": {}
+          }
+        },
+        "by_utm_source": {
+          "target": "com.posthog.marketing_analytics#GoalExplanationByUtmSourceList",
+          "traits": {
+            "smithy.api#documentation": "List of [utm_source, count] pairs",
+            "smithy.api#required": {}
+          }
+        },
+        "by_matched_integration": {
+          "target": "com.posthog.marketing_analytics#GoalExplanationByMatchedIntegrationList",
+          "traits": {
+            "smithy.api#documentation": "List of [integration, count] pairs",
+            "smithy.api#required": {}
+          }
+        },
+        "samples": {
+          "target": "com.posthog.marketing_analytics#GoalExplanationSamplesList",
+          "traits": {
+            "smithy.api#documentation": "A small sample of matching events",
+            "smithy.api#required": {}
+          }
+        },
+        "notes": {
+          "target": "com.posthog.marketing_analytics#GoalExplanationNotesList",
+          "traits": {
+            "smithy.api#documentation": "Caveats about the breakdown (sampling, attribution, etc.)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#GoalExplanationPeriod": {
+      "type": "structure",
+      "members": {
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of the analyzed period (ISO)",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of the analyzed period (ISO)",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#GoalExplanationByEventItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#GoalExplanationByEventList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#GoalExplanationByEventItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of [event_name, count] pairs"
+      }
+    },
+    "com.posthog.marketing_analytics#GoalExplanationByUtmSourceItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#GoalExplanationByUtmSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#GoalExplanationByUtmSourceItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of [utm_source, count] pairs"
+      }
+    },
+    "com.posthog.marketing_analytics#GoalExplanationByMatchedIntegrationItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#GoalExplanationByMatchedIntegrationList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#GoalExplanationByMatchedIntegrationItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of [integration, count] pairs"
+      }
+    },
+    "com.posthog.marketing_analytics#GoalEventSample": {
+      "type": "structure",
+      "members": {
+        "event_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the sampled conversion event",
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the event occurred",
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinct id associated with the event",
+            "smithy.api#required": {}
+          }
+        },
+        "utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "utm_source value on the event, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "utm_campaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "utm_campaign value on the event, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "matched_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration the utm_source matched, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#GoalExplanationSamplesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#GoalEventSample"
+      },
+      "traits": {
+        "smithy.api#documentation": "A small sample of matching events"
+      }
+    },
+    "com.posthog.marketing_analytics#GoalExplanationNotesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Caveats about the breakdown (sampling, attribution, etc.)"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#GoalExplanation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/explain_conversion_goal/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Explain a conversion goal\n\nBreak down a single conversion goal's events over a period by event name, utm_source, and matched integration, with a small sample of events. Read-only."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "min_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "min_count",
+            "smithy.api#documentation": "Minimum 30d event count to be a candidate"
+          }
+        },
+        "top_n": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "top_n",
+            "smithy.api#documentation": "Max candidates to return"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#EventSuggestionsResponse": {
+      "type": "structure",
+      "members": {
+        "candidates": {
+          "target": "com.posthog.marketing_analytics#EventSuggestionsResponseCandidatesList",
+          "traits": {
+            "smithy.api#documentation": "Ranked candidate events for conversion goals",
+            "smithy.api#required": {}
+          }
+        },
+        "lookback_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lookback window in days used for the analysis",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded_events_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of system/autocaptured events excluded",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#CandidateEvent": {
+      "type": "structure",
+      "members": {
+        "event_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the candidate event",
+            "smithy.api#required": {}
+          }
+        },
+        "last_30d_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of this event in the last 30 days",
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_users_30d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Distinct users who triggered the event in 30 days",
+            "smithy.api#required": {}
+          }
+        },
+        "pct_with_utm_source": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage of events that carry a utm_source",
+            "smithy.api#required": {}
+          }
+        },
+        "pct_with_utm_campaign": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage of events that carry a utm_campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "top_utm_sources": {
+          "target": "com.posthog.marketing_analytics#CandidateEventTopUtmSourcesList",
+          "traits": {
+            "smithy.api#documentation": "List of [utm_source, count] pairs",
+            "smithy.api#required": {}
+          }
+        },
+        "is_already_a_goal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this event is already configured as a goal",
+            "smithy.api#required": {}
+          }
+        },
+        "suggestion_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Ranking score (higher is a stronger candidate)",
+            "smithy.api#required": {}
+          }
+        },
+        "suggestion_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable rationale for the suggestion",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#CandidateEventTopUtmSourcesItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#CandidateEventTopUtmSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#CandidateEventTopUtmSourcesItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of [utm_source, count] pairs"
+      }
+    },
+    "com.posthog.marketing_analytics#EventSuggestionsResponseCandidatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#CandidateEvent"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ranked candidate events for conversion goals"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#EventSuggestionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/suggest_conversion_goals/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Suggest conversion goals\n\nRank existing custom events as conversion-goal candidates by volume, UTM-tag coverage, and unique users, excluding system/autocaptured events. Read-only."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "lookback_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "lookback_days",
+            "smithy.api#documentation": "Days of history to inspect (1-365); defaults to 90"
+          }
+        },
+        "min_event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "min_event_count",
+            "smithy.api#documentation": "Only suggest for raw values with >= this many events"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponse": {
+      "type": "structure",
+      "members": {
+        "source_suggestions": {
+          "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseSourceSuggestionsList",
+          "traits": {
+            "smithy.api#documentation": "Suggested custom_source_mappings entries",
+            "smithy.api#required": {}
+          }
+        },
+        "campaign_suggestions": {
+          "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseCampaignSuggestionsList",
+          "traits": {
+            "smithy.api#documentation": "Suggested campaign-name clusters (empty in v1)",
+            "smithy.api#required": {}
+          }
+        },
+        "raw_unmatched_samples": {
+          "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseRawUnmatchedSamplesList",
+          "traits": {
+            "smithy.api#documentation": "All unmatched raw utm_source values worth reviewing",
+            "smithy.api#required": {}
+          }
+        },
+        "full_utm_source_catalogue": {
+          "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseFullUtmSourceCatalogueList",
+          "traits": {
+            "smithy.api#documentation": "Every utm_source value seen in the window, matched or not",
+            "smithy.api#required": {}
+          }
+        },
+        "current_mappings": {
+          "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseCurrentMappingsList",
+          "traits": {
+            "smithy.api#documentation": "Mappings already in effect (canonical + team_custom)",
+            "smithy.api#required": {}
+          }
+        },
+        "total_unmatched_events_in_window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total events with an unmatched utm_source",
+            "smithy.api#required": {}
+          }
+        },
+        "total_events_with_utm_in_window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total events with any utm_source",
+            "smithy.api#required": {}
+          }
+        },
+        "lookback_days_used": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lookback window in days used for the analysis",
+            "smithy.api#required": {}
+          }
+        },
+        "notes": {
+          "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseNotesList",
+          "traits": {
+            "smithy.api#documentation": "Caveats and guidance about the suggestions",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#SourceMappingSuggestion": {
+      "type": "structure",
+      "members": {
+        "raw_utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The raw utm_source value seen on events",
+            "smithy.api#required": {}
+          }
+        },
+        "suggested_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration key it maps to",
+            "smithy.api#required": {}
+          }
+        },
+        "suggested_target_display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the suggested integration",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why this mapping is suggested",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseSourceSuggestionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#SourceMappingSuggestion"
+      },
+      "traits": {
+        "smithy.api#documentation": "Suggested custom_source_mappings entries"
+      }
+    },
+    "com.posthog.marketing_analytics#CampaignMappingSuggestion": {
+      "type": "structure",
+      "members": {
+        "integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration key the campaign values belong to",
+            "smithy.api#required": {}
+          }
+        },
+        "integration_display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable integration name",
+            "smithy.api#required": {}
+          }
+        },
+        "suggested_clean_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Proposed canonical campaign name",
+            "smithy.api#required": {}
+          }
+        },
+        "raw_campaign_values": {
+          "target": "com.posthog.marketing_analytics#CampaignMappingSuggestionRawCampaignValuesList",
+          "traits": {
+            "smithy.api#documentation": "Raw campaign values clustered under this clean name",
+            "smithy.api#required": {}
+          }
+        },
+        "confidence": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Confidence score for the clustering (0-1)",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mapping method",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why these campaign values were clustered together",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#CampaignMappingSuggestionRawCampaignValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Raw campaign values clustered under this clean name"
+      }
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseCampaignSuggestionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#CampaignMappingSuggestion"
+      },
+      "traits": {
+        "smithy.api#documentation": "Suggested campaign-name clusters (empty in v1)"
+      }
+    },
+    "com.posthog.marketing_analytics#RawUnmatchedSample": {
+      "type": "structure",
+      "members": {
+        "raw_utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A raw utm_source value matching no integration",
+            "smithy.api#required": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of events with this raw value in the window",
+            "smithy.api#required": {}
+          }
+        },
+        "suggested_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration suggested by token match, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseRawUnmatchedSamplesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#RawUnmatchedSample"
+      },
+      "traits": {
+        "smithy.api#documentation": "All unmatched raw utm_source values worth reviewing"
+      }
+    },
+    "com.posthog.marketing_analytics#CatalogueEntry": {
+      "type": "structure",
+      "members": {
+        "raw_utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A raw utm_source value seen in the window",
+            "smithy.api#required": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of events with this value",
+            "smithy.api#required": {}
+          }
+        },
+        "matched_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration this value exactly matches, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "matched_integration_display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the matched integration, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "suggested_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration suggested by token match, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseFullUtmSourceCatalogueList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#CatalogueEntry"
+      },
+      "traits": {
+        "smithy.api#documentation": "Every utm_source value seen in the window, matched or not"
+      }
+    },
+    "com.posthog.marketing_analytics#CurrentMapping": {
+      "type": "structure",
+      "members": {
+        "raw_utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A utm_source value already mapped to an integration",
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration key it maps to",
+            "smithy.api#required": {}
+          }
+        },
+        "target_display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the target integration",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "canonical or team_custom",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseCurrentMappingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#CurrentMapping"
+      },
+      "traits": {
+        "smithy.api#documentation": "Mappings already in effect (canonical + team_custom)"
+      }
+    },
+    "com.posthog.marketing_analytics#UtmMappingSuggestionsResponseNotesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Caveats and guidance about the suggestions"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/suggest_utm_mappings/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Suggest UTM source mappings\n\nDetect unmatched utm_source values from recent events and propose custom_source_mappings entries, alongside the full utm_source catalogue and current mappings. Read-only."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsTestMappingCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsTestMappingCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsTestMappingCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/marketing_analytics/test_mapping/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Start date for the audit period"
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "End date for the audit period"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.marketing_analytics#UtmAuditResponse": {
+      "type": "structure",
+      "members": {
+        "total_campaigns": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of campaigns with spend",
+            "smithy.api#required": {}
+          }
+        },
+        "campaigns_with_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of campaigns with UTM issues",
+            "smithy.api#required": {}
+          }
+        },
+        "campaigns_without_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of campaigns without issues",
+            "smithy.api#required": {}
+          }
+        },
+        "total_spend_at_risk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total spend on campaigns with UTM issues",
+            "smithy.api#required": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.marketing_analytics#UtmAuditResponseResultsList",
+          "traits": {
+            "smithy.api#documentation": "Audit results per campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "all_utm_events": {
+          "target": "com.posthog.marketing_analytics#UtmAuditResponseAllUtmEventsList",
+          "traits": {
+            "smithy.api#documentation": "All UTM events with match status",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#CampaignAuditResult": {
+      "type": "structure",
+      "members": {
+        "campaign_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign name from the ad platform",
+            "smithy.api#required": {}
+          }
+        },
+        "campaign_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign ID from the ad platform",
+            "smithy.api#required": {}
+          }
+        },
+        "source_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integration source name (e.g. google, meta)",
+            "smithy.api#required": {}
+          }
+        },
+        "spend": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total spend for this campaign in the period",
+            "smithy.api#required": {}
+          }
+        },
+        "clicks": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total clicks for this campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "impressions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total impressions for this campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "has_utm_events": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether matching UTM pageview events were found",
+            "smithy.api#required": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of matching UTM pageview events",
+            "smithy.api#required": {}
+          }
+        },
+        "issues": {
+          "target": "com.posthog.marketing_analytics#CampaignAuditResultIssuesList",
+          "traits": {
+            "smithy.api#documentation": "List of detected UTM configuration issues",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UtmIssue": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UTM field with the issue (e.g. utm_campaign, utm_source)",
+            "smithy.api#required": {}
+          }
+        },
+        "severity": {
+          "target": "com.posthog.marketing_analytics#UtmIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Issue severity level\n\n* `error` - error\n* `warning` - warning",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable description of the issue",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#UtmIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `error` - error\n* `warning` - warning"
+      }
+    },
+    "com.posthog.marketing_analytics#CampaignAuditResultIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#UtmIssue"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of detected UTM configuration issues"
+      }
+    },
+    "com.posthog.marketing_analytics#UtmAuditResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#CampaignAuditResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "Audit results per campaign"
+      }
+    },
+    "com.posthog.marketing_analytics#UtmEvent": {
+      "type": "structure",
+      "members": {
+        "utm_campaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTM campaign value from pageview events",
+            "smithy.api#required": {}
+          }
+        },
+        "utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTM source value from pageview events",
+            "smithy.api#required": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pageview events with this UTM combination",
+            "smithy.api#required": {}
+          }
+        },
+        "campaign_match": {
+          "target": "com.posthog.marketing_analytics#SourceMatchEnum",
+          "traits": {
+            "smithy.api#documentation": "How utm_campaign matched: none, auto (direct name/id), or mapped (manual mapping)\n\n* `none` - none\n* `auto` - auto\n* `mapped` - mapped",
+            "smithy.api#required": {}
+          }
+        },
+        "source_match": {
+          "target": "com.posthog.marketing_analytics#SourceMatchEnum",
+          "traits": {
+            "smithy.api#documentation": "How utm_source matched: none, auto (default source), or mapped (custom mapping)\n\n* `none` - none\n* `auto` - auto\n* `mapped` - mapped",
+            "smithy.api#required": {}
+          }
+        },
+        "matched_campaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the matched campaign, if any",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.marketing_analytics#SourceMatchEnum": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MAPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mapped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `none` - none\n* `auto` - auto\n* `mapped` - mapped"
+      }
+    },
+    "com.posthog.marketing_analytics#UtmAuditResponseAllUtmEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.marketing_analytics#UtmEvent"
+      },
+      "traits": {
+        "smithy.api#documentation": "All UTM events with match status"
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.marketing_analytics#UtmAuditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/marketing_analytics/utm_audit/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run UTM audit\n\nCross-reference campaigns with spend from ad platforms against pageview events with UTM parameters to identify tracking issues."
+      }
+    },
+    "com.posthog.marketing_analytics#MarketingAnalytics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieve"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieve"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieve"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieve"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieve"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieve"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsTestMappingCreate"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

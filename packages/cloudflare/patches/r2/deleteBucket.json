@@ -1,0 +1,53 @@
+{
+  "description": "Align r2#BucketsDelete with distilled cloudflare/r2 deleteBucket, and type the non-empty-bucket rejection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDelete",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucket"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDeleteRequest",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucket/input/target",
+      "value": "com.cloudflare.r2#DeleteBucketRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDeleteResponse",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucket/output/target",
+      "value": "com.cloudflare.r2#DeleteBucketResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucket/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#BucketNotEmpty"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.r2#NoRoute"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#DeleteBucketRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#DeleteBucketRequest/members/jurisdiction"
+    }
+  ]
+}

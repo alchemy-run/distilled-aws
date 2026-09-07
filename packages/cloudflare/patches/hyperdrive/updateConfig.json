@@ -1,0 +1,48 @@
+{
+  "description": "Align hyperdrive#ConfigsUpdate with distilled cloudflare/hyperdrive updateConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hyperdrive#ConfigsUpdate",
+      "path": "/shapes/com.cloudflare.hyperdrive#UpdateConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hyperdrive#ConfigsUpdateRequest",
+      "path": "/shapes/com.cloudflare.hyperdrive#UpdateConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hyperdrive#UpdateConfig/input/target",
+      "value": "com.cloudflare.hyperdrive#UpdateConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hyperdrive#ConfigsUpdateResponse",
+      "path": "/shapes/com.cloudflare.hyperdrive#UpdateConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hyperdrive#UpdateConfig/output/target",
+      "value": "com.cloudflare.hyperdrive#UpdateConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hyperdrive#UpdateConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#MethodNotAllowed"
+        }
+      ]
+    }
+  ]
+}

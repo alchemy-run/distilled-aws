@@ -1,0 +1,45 @@
+{
+  "description": "Align queues#SubscriptionsUpdate with distilled cloudflare/queues patchSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsUpdate",
+      "path": "/shapes/com.cloudflare.queues#PatchSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsUpdateRequest",
+      "path": "/shapes/com.cloudflare.queues#PatchSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#PatchSubscription/input/target",
+      "value": "com.cloudflare.queues#PatchSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsUpdateResponse",
+      "path": "/shapes/com.cloudflare.queues#PatchSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#PatchSubscription/output/target",
+      "value": "com.cloudflare.queues#PatchSubscriptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#PatchSubscription/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#UnrecognizedEventType"
+        },
+        {
+          "target": "com.cloudflare.queues#SubscriptionNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#QueueNotFound"
+        }
+      ]
+    }
+  ]
+}

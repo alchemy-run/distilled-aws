@@ -1,0 +1,47 @@
+{
+  "description": "Align r2#BucketsDomainsManagedUpdate with distilled cloudflare/r2 putBucketDomainManaged",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsManagedUpdate",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManaged"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsManagedUpdateRequest",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManagedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManaged/input/target",
+      "value": "com.cloudflare.r2#PutBucketDomainManagedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsDomainsManagedUpdateResponse",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManagedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManaged/output/target",
+      "value": "com.cloudflare.r2#PutBucketDomainManagedResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManaged/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#PutBucketDomainManagedRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#PutBucketDomainManagedRequest/members/jurisdiction"
+    }
+  ]
+}

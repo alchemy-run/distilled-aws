@@ -1,0 +1,22 @@
+{
+  "description": "Align origin_tls_client_auth#ZoneCertificatesList with distilled cloudflare/origin-tls-client-auth listOriginTlsClientAuths (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ZoneCertificatesList/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ZoneCertificatesList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

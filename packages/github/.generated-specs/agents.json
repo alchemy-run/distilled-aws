@@ -1,0 +1,3385 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.agents#ListOrgSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#OrganizationActionsSecret": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the secret.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.github.agents#OrganizationActionsSecretVisibility",
+          "traits": {
+            "smithy.api#documentation": "Visibility of a secret",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repositories_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Secrets for GitHub Actions for an organization."
+      }
+    },
+    "com.github.agents#OrganizationActionsSecretVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Visibility of a secret"
+      }
+    },
+    "com.github.agents#ListOrgSecretsResponseSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#OrganizationActionsSecret"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListOrgSecretsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "secrets": {
+          "target": "com.github.agents#ListOrgSecretsResponseSecretsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListOrgSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListOrgSecretsRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListOrgSecretsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization secrets\n\nLists all secrets available in an organization without revealing their\nencrypted values.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#GetOrgPublicKeyRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#ActionsPublicKey": {
+      "type": "structure",
+      "members": {
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for the key.",
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Base64 encoded public key.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The public key used for setting Actions Secrets."
+      }
+    },
+    "com.github.agents#GetOrgPublicKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#GetOrgPublicKeyRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ActionsPublicKey"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/secrets/public-key",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an organization public key\n\nGets your public key, which you need to encrypt secrets. You need to\nencrypt a secret before you can create or update secrets.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#GetOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#GetOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#GetOrgSecretRequest"
+      },
+      "output": {
+        "target": "com.github.agents#OrganizationActionsSecret"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an organization secret\n\nGets a single organization secret without revealing its encrypted value.\n\nThe authenticated user must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#CreateOrUpdateOrgSecretRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Which type of organization repositories have access to the organization secret. `selected` means only the repositories specified by `selected_repository_ids` can access the secret."
+      }
+    },
+    "com.github.agents#CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/agents/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/agents/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/agents/secrets#remove-selected-repository-from-an-organization-secret) endpoints."
+      }
+    },
+    "com.github.agents#CreateOrUpdateOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "encrypted_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value for your secret, encrypted with [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages) using the public key retrieved from the [Get an organization public key](https://docs.github.com/rest/agents/secrets#get-an-organization-public-key) endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the key you used to encrypt the secret.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.github.agents#CreateOrUpdateOrgSecretRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "Which type of organization repositories have access to the organization secret. `selected` means only the repositories specified by `selected_repository_ids` can access the secret.",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.agents#CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/agents/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/agents/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/agents/secrets#remove-selected-repository-from-an-organization-secret) endpoints."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#CreateOrUpdateOrgSecretResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#CreateOrUpdateOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#CreateOrUpdateOrgSecretRequest"
+      },
+      "output": {
+        "target": "com.github.agents#CreateOrUpdateOrgSecretResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create or update an organization secret\n\nCreates or updates an organization secret with an encrypted value. Encrypt your secret using\n[LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see \"[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api).\"\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#DeleteOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#DeleteOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#DeleteOrgSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an organization secret\n\nDeletes a secret in an organization using the secret name.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#ListSelectedReposForOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#MinimalRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.agents#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String"
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String"
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String"
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String"
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0."
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String"
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.github.agents#MinimalRepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.agents#MinimalRepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.agents#MinimalRepositoryPermissions"
+        },
+        "role_name": {
+          "target": "smithy.api#String"
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "subscribers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "network_count": {
+          "target": "smithy.api#Integer"
+        },
+        "code_of_conduct": {
+          "target": "com.github.agents#CodeOfConduct"
+        },
+        "license": {
+          "target": "com.github.agents#MinimalRepositoryLicense",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer"
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers": {
+          "target": "smithy.api#Integer"
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "security_and_analysis": {
+          "target": "com.github.agents#SecurityAndAnalysis",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.agents#MinimalRepositoryCustomPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimal Repository"
+      }
+    },
+    "com.github.agents#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.agents#MinimalRepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.agents#MinimalRepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.agents#MinimalRepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#CodeOfConduct": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Of Conduct"
+      }
+    },
+    "com.github.agents#MinimalRepositoryLicense": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "spdx_id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysis": {
+      "type": "structure",
+      "members": {
+        "advanced_security": {
+          "target": "com.github.agents#SecurityAndAnalysisAdvancedSecurity",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+          }
+        },
+        "code_security": {
+          "target": "com.github.agents#SecurityAndAnalysisCodeSecurity"
+        },
+        "dependabot_security_updates": {
+          "target": "com.github.agents#SecurityAndAnalysisDependabotSecurityUpdates",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+          }
+        },
+        "secret_scanning": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanning"
+        },
+        "secret_scanning_push_protection": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningPushProtection"
+        },
+        "secret_scanning_non_provider_patterns": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningNonProviderPatterns"
+        },
+        "secret_scanning_ai_detection": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningAiDetection"
+        },
+        "secret_scanning_delegated_alert_dismissal": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal"
+        },
+        "secret_scanning_delegated_bypass": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypass"
+        },
+        "secret_scanning_delegated_bypass_options": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptions"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisAdvancedSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisAdvancedSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisAdvancedSecurityStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+      }
+    },
+    "com.github.agents#SecurityAndAnalysisCodeSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisCodeSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisCodeSecurityStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisDependabotSecurityUpdatesStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+      }
+    },
+    "com.github.agents#SecurityAndAnalysisDependabotSecurityUpdates": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisDependabotSecurityUpdatesStatus",
+          "traits": {
+            "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+      }
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanning": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningPushProtectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningPushProtection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningPushProtectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningNonProviderPatterns": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningAiDetectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningAiDetection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningAiDetectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypass": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM"
+          }
+        },
+        "ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the bypass reviewer"
+      }
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS"
+          }
+        },
+        "EXEMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXEMPT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass mode for the reviewer"
+      }
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem": {
+      "type": "structure",
+      "members": {
+        "reviewer_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team or role selected as a bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "reviewer_type": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType",
+          "traits": {
+            "smithy.api#documentation": "The type of the bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode",
+          "traits": {
+            "smithy.api#documentation": "The bypass mode for the reviewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+      }
+    },
+    "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptions": {
+      "type": "structure",
+      "members": {
+        "reviewers": {
+          "target": "com.github.agents#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList",
+          "traits": {
+            "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#MinimalRepositoryCustomPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+      }
+    },
+    "com.github.agents#ListSelectedReposForOrgSecretResponseRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#MinimalRepository"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListSelectedReposForOrgSecretResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories": {
+          "target": "com.github.agents#ListSelectedReposForOrgSecretResponseRepositoriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListSelectedReposForOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListSelectedReposForOrgSecretRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListSelectedReposForOrgSecretResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List selected repositories for an organization secret\n\nLists all repositories that have been selected when the `visibility`\nfor repository access to a secret is set to `selected`.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#SetSelectedReposForOrgSecretRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Add selected repository to an organization secret](https://docs.github.com/rest/agents/secrets#add-selected-repository-to-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/agents/secrets#remove-selected-repository-from-an-organization-secret) endpoints."
+      }
+    },
+    "com.github.agents#SetSelectedReposForOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.agents#SetSelectedReposForOrgSecretRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Add selected repository to an organization secret](https://docs.github.com/rest/agents/secrets#add-selected-repository-to-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/agents/secrets#remove-selected-repository-from-an-organization-secret) endpoints.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#SetSelectedReposForOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#SetSelectedReposForOrgSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set selected repositories for an organization secret\n\nReplaces all repositories for an organization secret when the `visibility`\nfor repository access is set to `selected`. The visibility is set when you [Create\nor update an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret).\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#AddSelectedRepoToOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#AddSelectedRepoToOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#AddSelectedRepoToOrgSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.agents#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}/repositories/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add selected repository to an organization secret\n\nAdds a repository to an organization secret when the `visibility` for\nrepository access is set to `selected`. For more information about setting the visibility, see [Create or\nupdate an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret).\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#RemoveSelectedRepoFromOrgSecretRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#RemoveSelectedRepoFromOrgSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#RemoveSelectedRepoFromOrgSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.agents#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/agents/secrets/{secret_name}/repositories/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove selected repository from an organization secret\n\nRemoves a repository from an organization secret when the `visibility`\nfor repository access is set to `selected`. The visibility is set when you [Create\nor update an organization secret](https://docs.github.com/rest/agents/secrets#create-or-update-an-organization-secret).\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#ListOrgVariablesRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 30). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#OrganizationActionsVariable": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time at which the variable was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time at which the variable was last updated, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.github.agents#OrganizationActionsVariableVisibility",
+          "traits": {
+            "smithy.api#documentation": "Visibility of a variable",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repositories_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization variable for GitHub Actions."
+      }
+    },
+    "com.github.agents#OrganizationActionsVariableVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Visibility of a variable"
+      }
+    },
+    "com.github.agents#ListOrgVariablesResponseVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#OrganizationActionsVariable"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListOrgVariablesResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.github.agents#ListOrgVariablesResponseVariablesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListOrgVariables": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListOrgVariablesRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListOrgVariablesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization variables\n\nLists all agent variables available in an organization.\nReturned variables include their values.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#CreateOrgVariableRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of repositories in the organization that can access the variable. `selected` means only the repositories specified by `selected_repository_ids` can access the variable."
+      }
+    },
+    "com.github.agents#CreateOrgVariableRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`."
+      }
+    },
+    "com.github.agents#CreateOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.github.agents#CreateOrgVariableRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "The type of repositories in the organization that can access the variable. `selected` means only the repositories specified by `selected_repository_ids` can access the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.agents#CreateOrgVariableRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#CreateOrgVariableResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#CreateOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#CreateOrgVariableRequest"
+      },
+      "output": {
+        "target": "com.github.agents#CreateOrgVariableResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/agents/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an organization variable\n\nCreates an organization agent variable that you can reference in a GitHub Actions workflow.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#GetOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#GetOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#GetOrgVariableRequest"
+      },
+      "output": {
+        "target": "com.github.agents#OrganizationActionsVariable"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/variables/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an organization variable\n\nGets a specific agent variable in an organization.\n\nThe authenticated user must have collaborator access to a repository to create, update, or read variables.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#UpdateOrgVariableRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of repositories in the organization that can access the variable. `selected` means only the repositories specified by `selected_repository_ids` can access the variable."
+      }
+    },
+    "com.github.agents#UpdateOrgVariableRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`."
+      }
+    },
+    "com.github.agents#UpdateOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the variable."
+          }
+        },
+        "visibility": {
+          "target": "com.github.agents#UpdateOrgVariableRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "The type of repositories in the organization that can access the variable. `selected` means only the repositories specified by `selected_repository_ids` can access the variable."
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.agents#UpdateOrgVariableRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#UpdateOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#UpdateOrgVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/orgs/{org}/agents/variables/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an organization variable\n\nUpdates an organization agent variable that you can reference in a GitHub Actions workflow.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#DeleteOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#DeleteOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#DeleteOrgVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/agents/variables/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an organization variable\n\nDeletes an organization agent variable using the variable name.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#ListSelectedReposForOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#ListSelectedReposForOrgVariableResponseRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#MinimalRepository"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListSelectedReposForOrgVariableResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories": {
+          "target": "com.github.agents#ListSelectedReposForOrgVariableResponseRepositoriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListSelectedReposForOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListSelectedReposForOrgVariableRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListSelectedReposForOrgVariableResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.agents#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/agents/variables/{name}/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List selected repositories for an organization variable\n\nLists all repositories that can access an organization agent variable\nthat is available to selected repositories.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#SetSelectedReposForOrgVariableRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The IDs of the repositories that can access the organization variable."
+      }
+    },
+    "com.github.agents#SetSelectedReposForOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.agents#SetSelectedReposForOrgVariableRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "The IDs of the repositories that can access the organization variable.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#SetSelectedReposForOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#SetSelectedReposForOrgVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.agents#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/agents/variables/{name}/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set selected repositories for an organization variable\n\nReplaces all repositories for an organization agent variable that is available\nto selected repositories. Organization variables that are available to selected\nrepositories have their `visibility` field set to `selected`.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#AddSelectedRepoToOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#AddSelectedRepoToOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#AddSelectedRepoToOrgVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.agents#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/agents/variables/{name}/repositories/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add selected repository to an organization variable\n\nAdds a repository to an organization agent variable that is available to selected repositories.\nOrganization variables that are available to selected repositories have their `visibility` field set to `selected`.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#RemoveSelectedRepoFromOrgVariableRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        },
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#RemoveSelectedRepoFromOrgVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#RemoveSelectedRepoFromOrgVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.agents#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/agents/variables/{name}/repositories/{repository_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove selected repository from an organization variable\n\nRemoves a repository from an organization agent variable that is\navailable to selected repositories. Organization variables that are available to\nselected repositories have their `visibility` field set to `selected`.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
+      }
+    },
+    "com.github.agents#ListRepoOrganizationSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#ActionsSecret": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the secret.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Set secrets for GitHub Actions."
+      }
+    },
+    "com.github.agents#ListRepoOrganizationSecretsResponseSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#ActionsSecret"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListRepoOrganizationSecretsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "secrets": {
+          "target": "com.github.agents#ListRepoOrganizationSecretsResponseSecretsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListRepoOrganizationSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListRepoOrganizationSecretsRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListRepoOrganizationSecretsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/organization-secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository organization secrets\n\nLists all organization secrets shared with a repository without revealing their encrypted\nvalues.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#ListRepoOrganizationVariablesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 30). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#ActionsVariable": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time at which the variable was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time at which the variable was last updated, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListRepoOrganizationVariablesResponseVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#ActionsVariable"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListRepoOrganizationVariablesResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.github.agents#ListRepoOrganizationVariablesResponseVariablesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListRepoOrganizationVariables": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListRepoOrganizationVariablesRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListRepoOrganizationVariablesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/organization-variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository organization variables\n\nLists all organization variables shared with a repository.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#ListRepoSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#ListRepoSecretsResponseSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#ActionsSecret"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListRepoSecretsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "secrets": {
+          "target": "com.github.agents#ListRepoSecretsResponseSecretsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListRepoSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListRepoSecretsRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListRepoSecretsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository secrets\n\nLists all secrets available in a repository without revealing their encrypted\nvalues.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#GetRepoPublicKeyRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#GetRepoPublicKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#GetRepoPublicKeyRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ActionsPublicKey"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/secrets/public-key",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository public key\n\nGets your public key, which you need to encrypt secrets. You need to\nencrypt a secret before you can create or update secrets.\n\nAnyone with read access to the repository can use this endpoint.\n\nIf the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#GetRepoSecretRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#GetRepoSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#GetRepoSecretRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ActionsSecret"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/secrets/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository secret\n\nGets a single repository secret without revealing its encrypted value.\n\nThe authenticated user must have collaborator access to the repository to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#CreateOrUpdateRepoSecretRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "encrypted_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value for your secret, encrypted with [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages) using the public key retrieved from the [Get a repository public key](https://docs.github.com/rest/agents/secrets#get-a-repository-public-key) endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the key you used to encrypt the secret.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#CreateOrUpdateRepoSecretResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#CreateOrUpdateRepoSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#CreateOrUpdateRepoSecretRequest"
+      },
+      "output": {
+        "target": "com.github.agents#CreateOrUpdateRepoSecretResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/repos/{owner}/{repo}/agents/secrets/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create or update a repository secret\n\nCreates or updates a repository secret with an encrypted value. Encrypt your secret using\n[LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see \"[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api).\"\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#DeleteRepoSecretRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#DeleteRepoSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#DeleteRepoSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/agents/secrets/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a repository secret\n\nDeletes a secret in a repository using the secret name.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read secrets.\n\nOAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#ListRepoVariablesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 30). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#ListRepoVariablesResponseVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.agents#ActionsVariable"
+      },
+      "traits": {}
+    },
+    "com.github.agents#ListRepoVariablesResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.github.agents#ListRepoVariablesResponseVariablesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#ListRepoVariables": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#ListRepoVariablesRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ListRepoVariablesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repository variables\n\nLists all repository variables.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#CreateRepoVariableRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the variable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the variable.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#CreateRepoVariableResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.agents#CreateRepoVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#CreateRepoVariableRequest"
+      },
+      "output": {
+        "target": "com.github.agents#CreateRepoVariableResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/repos/{owner}/{repo}/agents/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a repository variable\n\nCreates a repository variable that you can reference in a GitHub Actions workflow.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#GetRepoVariableRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#GetRepoVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#GetRepoVariableRequest"
+      },
+      "output": {
+        "target": "com.github.agents#ActionsVariable"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/agents/variables/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repository variable\n\nGets a specific variable in a repository.\n\nThe authenticated user must have collaborator access to the repository to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#UpdateRepoVariableRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#UpdateRepoVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#UpdateRepoVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/agents/variables/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a repository variable\n\nUpdates a repository variable that you can reference in a GitHub Actions workflow.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#DeleteRepoVariableRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.agents#DeleteRepoVariable": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.agents#DeleteRepoVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/agents/variables/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a repository variable\n\nDeletes a repository variable using the variable name.\n\nAuthenticated users must have collaborator access to a repository to create, update, or read variables.\n\nOAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.agents#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.github.agents#Agents": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.agents#ListOrgSecrets"
+        },
+        {
+          "target": "com.github.agents#GetOrgPublicKey"
+        },
+        {
+          "target": "com.github.agents#GetOrgSecret"
+        },
+        {
+          "target": "com.github.agents#CreateOrUpdateOrgSecret"
+        },
+        {
+          "target": "com.github.agents#DeleteOrgSecret"
+        },
+        {
+          "target": "com.github.agents#ListSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.agents#SetSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.agents#AddSelectedRepoToOrgSecret"
+        },
+        {
+          "target": "com.github.agents#RemoveSelectedRepoFromOrgSecret"
+        },
+        {
+          "target": "com.github.agents#ListOrgVariables"
+        },
+        {
+          "target": "com.github.agents#CreateOrgVariable"
+        },
+        {
+          "target": "com.github.agents#GetOrgVariable"
+        },
+        {
+          "target": "com.github.agents#UpdateOrgVariable"
+        },
+        {
+          "target": "com.github.agents#DeleteOrgVariable"
+        },
+        {
+          "target": "com.github.agents#ListSelectedReposForOrgVariable"
+        },
+        {
+          "target": "com.github.agents#SetSelectedReposForOrgVariable"
+        },
+        {
+          "target": "com.github.agents#AddSelectedRepoToOrgVariable"
+        },
+        {
+          "target": "com.github.agents#RemoveSelectedRepoFromOrgVariable"
+        },
+        {
+          "target": "com.github.agents#ListRepoOrganizationSecrets"
+        },
+        {
+          "target": "com.github.agents#ListRepoOrganizationVariables"
+        },
+        {
+          "target": "com.github.agents#ListRepoSecrets"
+        },
+        {
+          "target": "com.github.agents#GetRepoPublicKey"
+        },
+        {
+          "target": "com.github.agents#GetRepoSecret"
+        },
+        {
+          "target": "com.github.agents#CreateOrUpdateRepoSecret"
+        },
+        {
+          "target": "com.github.agents#DeleteRepoSecret"
+        },
+        {
+          "target": "com.github.agents#ListRepoVariables"
+        },
+        {
+          "target": "com.github.agents#CreateRepoVariable"
+        },
+        {
+          "target": "com.github.agents#GetRepoVariable"
+        },
+        {
+          "target": "com.github.agents#UpdateRepoVariable"
+        },
+        {
+          "target": "com.github.agents#DeleteRepoVariable"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

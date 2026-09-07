@@ -1,0 +1,42 @@
+{
+  "description": "Align cache#VariantsGet with distilled cloudflare/cache getVariant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsGet",
+      "path": "/shapes/com.cloudflare.cache#GetVariant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsGetRequest",
+      "path": "/shapes/com.cloudflare.cache#GetVariantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetVariant/input/target",
+      "value": "com.cloudflare.cache#GetVariantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsGetResponse",
+      "path": "/shapes/com.cloudflare.cache#GetVariantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#GetVariant/output/target",
+      "value": "com.cloudflare.cache#GetVariantResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#GetVariant/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#VariantsNotConfigured"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

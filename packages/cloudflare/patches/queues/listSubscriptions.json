@@ -1,0 +1,50 @@
+{
+  "description": "Align queues#SubscriptionsList with distilled cloudflare/queues listSubscriptions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsList",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsListRequest",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptions/input/target",
+      "value": "com.cloudflare.queues#ListSubscriptionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#SubscriptionsListResponse",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptions/output/target",
+      "value": "com.cloudflare.queues#ListSubscriptionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#ListSubscriptions/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "errorCategories": {
+    "ConflictException": ["ConflictError", "RetryableError"]
+  },
+  "operations": {
+    "createSchedule": {
+      "syntheticErrors": [
+        {
+          "name": "ExecutionRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "must allow AWS EventBridge Scheduler to assume the role"
+          }
+        }
+      ]
+    },
+    "updateSchedule": {
+      "syntheticErrors": [
+        {
+          "name": "ExecutionRoleNotAssumable",
+          "from": "ValidationException",
+          "message": {
+            "includes": "must allow AWS EventBridge Scheduler to assume the role"
+          }
+        }
+      ]
+    }
+  }
+}

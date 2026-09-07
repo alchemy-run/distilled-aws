@@ -1,0 +1,25 @@
+{
+  "description": "Docs prose (not the type tree) says `ratelimit` is cleared with an explicit null ('Set to null to disable rate limiting'), and v0 modeled both `ratelimit` and `negative_cache_ttl` as number|null. Mark the write-side members nullable so clearing them stays expressible.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#CreateDnsFirewallRequest/members/negative_cache_ttl/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#CreateDnsFirewallRequest/members/ratelimit/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#PatchDnsFirewallRequest/members/negative_cache_ttl/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#PatchDnsFirewallRequest/members/ratelimit/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    }
+  ]
+}

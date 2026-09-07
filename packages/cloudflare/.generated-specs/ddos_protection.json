@@ -1,0 +1,3577 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistBulkDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all allowlist prefixes for an account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An comment describing the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable the allowlist prefix into effect.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The allowlist prefix to add in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional comment describing the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable the allowlist prefix into effect. Defaults to false.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The allowlist prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an allowlist prefix for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The direction of ordering (ASC or DESC). Defaults to 'ASC'.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field to order by. Defaults to 'prefix'.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The page number for pagination. Defaults to 1.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page. Must be between 10 and 1000. Defaults to 25.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional comment describing the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable the allowlist prefix into effect. Defaults to false.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The allowlist prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all allowlist prefixes for an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist/{prefix_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the allowlist prefix for an account given a UUID.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the allowlist prefix. Optional."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable the allowlist prefix into effect. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional comment describing the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable the allowlist prefix into effect. Defaults to false.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The allowlist prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist/{prefix_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an allowlist prefix specified by the given UUID."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional comment describing the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable the allowlist prefix into effect. Defaults to false.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the allowlist prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The allowlist prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist/{prefix_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an allowlist prefix specified by the given UUID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem": {
+      "type": "structure",
+      "members": {
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix to add in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes/bulk",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create multiple prefixes for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all prefixes for an account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix to add in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a prefix for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The direction of ordering (ASC or DESC). Defaults to 'ASC'.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field to order by. Defaults to 'prefix'.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The page number for pagination. Defaults to 1.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page. Must be between 10 and 1000. Defaults to 25.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all prefixes for an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes/{prefix_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the prefix for an account given a UUID.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A new comment for the prefix. Optional."
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection. Optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes/{prefix_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a prefix specified by the given UUID."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comment describing the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to exclude the prefix from protection.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix in CIDR format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes/{prefix_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a prefix specified by the given UUID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or disables protection.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEditResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_protection_status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the protection status of the account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGetResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_protection_status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the protection status of the account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersBulkDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all SYN Protection filters for an account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a SYN Protection filter for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The direction of ordering (ASC or DESC). Defaults to 'ASC'.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode of the filters to get. Optional. Valid values: 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#httpQuery": "mode"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field to order by. Defaults to 'prefix'.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The page number for pagination. Defaults to 1.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page. Must be between 10 and 1000. Defaults to 25.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all SYN Protection filters for an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters/{filter_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a SYN Protection filter specified by the given UUID.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new filter expression. Optional."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new mode for the filter. Optional. Must be one of 'enabled', 'disabled', 'monitoring'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters/{filter_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a SYN Protection filter specified by the given UUID."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters/{filter_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a SYN Protection filter specified by the given UUID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesBulkDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all SYN Protection rules for an account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for SYN Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SYN Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the SYN Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation. Must be one of 'challenge' or 'retransmit'. Optional. Defaults to 'challenge'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation for SYN Protection. Must be one of 'challenge' or 'retransmit'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for SYN Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SYN Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the SYN Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a SYN Protection rule for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The direction of ordering (ASC or DESC). Defaults to 'ASC'.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field to order by. Defaults to 'prefix'.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The page number for pagination. Defaults to 1.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page. Must be between 10 and 1000. Defaults to 25.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation for SYN Protection. Must be one of 'challenge' or 'retransmit'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for SYN Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SYN Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the SYN Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all SYN Protection rules for an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a SYN Protection rule specified by the given UUID.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new burst sensitivity. Optional. Must be one of 'low', 'medium', 'high'."
+          }
+        },
+        "mitigation_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new mitigation type. Optional. Must be one of 'challenge' or 'retransmit'."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new mode for SYN Protection. Optional. Must be one of 'enabled', 'disabled', 'monitoring'."
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new rate sensitivity. Optional. Must be one of 'low', 'medium', 'high'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation for SYN Protection. Must be one of 'challenge' or 'retransmit'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for SYN Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SYN Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the SYN Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a SYN Protection rule specified by the given UUID."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation for SYN Protection. Must be one of 'challenge' or 'retransmit'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for SYN Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the SYN Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SYN Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the SYN Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a SYN Protection rule specified by the given UUID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all TCP Flow Protection filters for an account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a TCP Flow Protection filter for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The direction of ordering (ASC or DESC). Defaults to 'ASC'.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode of the filters to get. Optional. Valid values: 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#httpQuery": "mode"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field to order by. Defaults to 'prefix'.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The page number for pagination. Defaults to 1.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page. Must be between 10 and 1000. Defaults to 25.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all TCP Flow Protection filters for an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters/{filter_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a TCP Flow Protection filter specified by the given UUID.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new filter expression. Optional."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new mode for the filter. Optional. Must be one of 'enabled', 'disabled', 'monitoring'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters/{filter_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a TCP Flow Protection filter specified by the given UUID."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter's mode. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the expression filter.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters/{filter_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a TCP Flow Protection filter specified by the given UUID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesBulkDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesBulkDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesBulkDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete all TCP Flow Protection rules for an account.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for the TCP Flow Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the TCP Flow Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for TCP Flow Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the TCP Flow Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the TCP Flow Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a TCP Flow Protection rule for an account."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The direction of ordering (ASC or DESC). Defaults to 'ASC'.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field to order by. Defaults to 'prefix'.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The page number for pagination. Defaults to 1.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of items per page. Must be between 10 and 1000. Defaults to 25.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for TCP Flow Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the TCP Flow Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the TCP Flow Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListResultItem"
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all TCP Flow Protection rules for an account.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a TCP Flow Protection rule specified by the given UUID.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new burst sensitivity. Optional. Must be one of 'low', 'medium', 'high'."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new mode for TCP Flow Protection. Optional. Must be one of 'enabled', 'disabled', 'monitoring'."
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new rate sensitivity. Optional. Must be one of 'low', 'medium', 'high'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for TCP Flow Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the TCP Flow Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the TCP Flow Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a TCP Flow Protection rule specified by the given UUID."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "burst_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The burst sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The mode for TCP Flow Protection. Must be one of 'enabled', 'disabled', 'monitoring'.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last modification timestamp of the TCP Flow Protection rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the TCP Flow Protection rule. Value is relative to the 'scope' setting. For 'global' scope, name should be 'global'. For either the 'region' or 'datacenter' scope, name should be the actual name of the region or datacenter, e.g., 'wnam' or 'lax'.",
+            "smithy.api#required": {}
+          }
+        },
+        "rate_sensitivity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate sensitivity. Must be one of 'low', 'medium', 'high'.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the TCP Flow Protection rule. Must be one of 'global', 'region', or 'datacenter'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules/{rule_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a TCP Flow Protection rule specified by the given UUID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ddos_protection#DdosProtection": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistList"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistItemsGet"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesList"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsGet"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGet"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersList"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionFiltersItemsGet"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesList"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionSynProtectionRulesItemsGet"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersList"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionFiltersItemsGet"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesCreate"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesList"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsDelete"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEdit"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare DdosProtection",
+        "smithy.api#documentation": "Cloudflare API — ddos_protection resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

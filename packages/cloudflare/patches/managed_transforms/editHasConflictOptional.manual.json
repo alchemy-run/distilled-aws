@@ -1,0 +1,13 @@
+{
+  "description": "Docs bug: the managed-transforms EDIT request items mark the read-only `has_conflict` (and `conflicts_with`) as part of the write shape with `has_conflict` required; the wire payload is just { id, enabled }. Make the read-only members optional so valid PATCH items typecheck.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersItem/members/has_conflict/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersItem/members/has_conflict/traits/smithy.api#required"
+    }
+  ]
+}

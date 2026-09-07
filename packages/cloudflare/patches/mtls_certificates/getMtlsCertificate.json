@@ -1,0 +1,39 @@
+{
+  "description": "Align mtls_certificates#Get with distilled cloudflare/mtls-certificates getMtlsCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#Get",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetMtlsCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#GetRequest",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetMtlsCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetMtlsCertificate/input/target",
+      "value": "com.cloudflare.mtls_certificates#GetMtlsCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.mtls_certificates#GetResponse",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetMtlsCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetMtlsCertificate/output/target",
+      "value": "com.cloudflare.mtls_certificates#GetMtlsCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.mtls_certificates#GetMtlsCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.mtls_certificates#CertificateNotFound"
+        }
+      ]
+    }
+  ]
+}

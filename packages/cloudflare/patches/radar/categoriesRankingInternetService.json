@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#RankingInternetServicesCategories with distilled cloudflare/radar categoriesRankingInternetService",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingInternetServicesCategories",
+      "path": "/shapes/com.cloudflare.radar#CategoriesRankingInternetService"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingInternetServicesCategoriesRequest",
+      "path": "/shapes/com.cloudflare.radar#CategoriesRankingInternetServiceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#CategoriesRankingInternetService/input/target",
+      "value": "com.cloudflare.radar#CategoriesRankingInternetServiceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingInternetServicesCategoriesResponse",
+      "path": "/shapes/com.cloudflare.radar#CategoriesRankingInternetServiceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#CategoriesRankingInternetService/output/target",
+      "value": "com.cloudflare.radar#CategoriesRankingInternetServiceResponse"
+    }
+  ]
+}

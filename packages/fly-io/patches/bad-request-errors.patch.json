@@ -1,0 +1,131 @@
+{
+  "description": "Add 400 Bad Request responses to write operations missing them. Discovered via real API testing: the Fly.io API returns {\"error\": \"...\"} with HTTP 400 for validation errors.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1acme/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1custom/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1{hostname}~1check/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1deploy_token/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1ip_assignments/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1cordon/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1lease/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1memory/put/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1memory~1reclaim/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1start/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1suspend/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1uncordon/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}~1extend/put/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}~1snapshots/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1platform~1placements/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1tokens~1kms/post/responses/400",
+      "value": {
+        "description": "Bad Request"
+      }
+    }
+  ]
+}

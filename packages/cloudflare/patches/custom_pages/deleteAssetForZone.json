@@ -1,0 +1,20 @@
+{
+  "description": "Align custom_pages#AssetsDeleteForZone with distilled cloudflare/custom-pages deleteAssetForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsDeleteForZone",
+      "path": "/shapes/com.cloudflare.custom_pages#DeleteAssetForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#AssetsDeleteForZoneRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#DeleteAssetForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#DeleteAssetForZone/input/target",
+      "value": "com.cloudflare.custom_pages#DeleteAssetForZoneRequest"
+    }
+  ]
+}

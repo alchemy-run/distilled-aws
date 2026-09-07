@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsCategoriesDelete with distilled cloudflare/cloudforce-one deleteThreatEventCategory",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCategoriesDelete",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventCategory"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCategoriesDeleteRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventCategoryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventCategory/input/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteThreatEventCategoryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCategoriesDeleteResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventCategoryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventCategory/output/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteThreatEventCategoryResponse"
+    }
+  ]
+}

@@ -1,0 +1,1264 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.email_sending#SendRequestFromEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestFrom": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestFromEmailSendingEmailAddressObject"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestAttachmentsItemInlineDisposition": {
+      "type": "enum",
+      "members": {
+        "INLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inline"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestAttachmentsItemInline": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64-encoded content of the attachment.",
+            "smithy.api#required": {}
+          }
+        },
+        "content_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content ID used to reference this attachment in HTML via cid: URI (e.g., <img src=\"cid:logo\">).",
+            "smithy.api#required": {}
+          }
+        },
+        "disposition": {
+          "target": "com.cloudflare.email_sending#SendRequestAttachmentsItemInlineDisposition",
+          "traits": {
+            "smithy.api#documentation": "Must be 'inline'. Indicates the attachment is embedded in the email body.",
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filename for the attachment.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MIME type of the attachment (e.g., 'image/png', 'text/plain').",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestAttachmentsItemAttachmentDisposition": {
+      "type": "enum",
+      "members": {
+        "ATTACHMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attachment"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestAttachmentsItemAttachment": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64-encoded content of the attachment.",
+            "smithy.api#required": {}
+          }
+        },
+        "disposition": {
+          "target": "com.cloudflare.email_sending#SendRequestAttachmentsItemAttachmentDisposition",
+          "traits": {
+            "smithy.api#documentation": "Must be 'attachment'. Indicates a standard file attachment.",
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filename for the attachment.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MIME type of the attachment (e.g., 'application/pdf', 'text/plain').",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestAttachmentsItem": {
+      "type": "union",
+      "members": {
+        "Inline": {
+          "target": "com.cloudflare.email_sending#SendRequestAttachmentsItemInline"
+        },
+        "Attachment": {
+          "target": "com.cloudflare.email_sending#SendRequestAttachmentsItemAttachment"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestAttachmentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_sending#SendRequestAttachmentsItem"
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestBccEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestBccCase2ItemEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestBccCase2Item": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestBccCase2ItemEmailSendingEmailAddressObject"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestBccCase2List": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_sending#SendRequestBccCase2Item"
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestBcc": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestBccEmailSendingEmailAddressObject"
+        },
+        "SendRequestBccCase2List": {
+          "target": "com.cloudflare.email_sending#SendRequestBccCase2List"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestCcEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestCcCase2ItemEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestCcCase2Item": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestCcCase2ItemEmailSendingEmailAddressObject"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestCcCase2List": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_sending#SendRequestCcCase2Item"
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestCc": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestCcEmailSendingEmailAddressObject"
+        },
+        "SendRequestCcCase2List": {
+          "target": "com.cloudflare.email_sending#SendRequestCcCase2List"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestHeadersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestReplyToEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestReplyTo": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestReplyToEmailSendingEmailAddressObject"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestToEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestToCase2ItemEmailSendingEmailAddressObject": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address (e.g., 'user@example.com').",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the email address (e.g., 'John Doe'). Optional — omit or set to null for no display name."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestToCase2Item": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestToCase2ItemEmailSendingEmailAddressObject"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestToCase2List": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_sending#SendRequestToCase2Item"
+      }
+    },
+    "com.cloudflare.email_sending#SendRequestTo": {
+      "type": "union",
+      "members": {
+        "String": {
+          "target": "smithy.api#String"
+        },
+        "EmailSendingEmailAddressObject": {
+          "target": "com.cloudflare.email_sending#SendRequestToEmailSendingEmailAddressObject"
+        },
+        "SendRequestToCase2List": {
+          "target": "com.cloudflare.email_sending#SendRequestToCase2List"
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SendRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "from": {
+          "target": "com.cloudflare.email_sending#SendRequestFrom",
+          "traits": {
+            "smithy.api#documentation": "Sender email address. Either a plain string or an object with address and name.",
+            "smithy.api#required": {}
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email subject line.",
+            "smithy.api#required": {}
+          }
+        },
+        "attachments": {
+          "target": "com.cloudflare.email_sending#SendRequestAttachmentsList",
+          "traits": {
+            "smithy.api#documentation": "File attachments and inline images."
+          }
+        },
+        "bcc": {
+          "target": "com.cloudflare.email_sending#SendRequestBcc",
+          "traits": {
+            "smithy.api#documentation": "BCC recipient(s). A single email string, a named address object, or an array of either."
+          }
+        },
+        "cc": {
+          "target": "com.cloudflare.email_sending#SendRequestCc",
+          "traits": {
+            "smithy.api#documentation": "CC recipient(s). A single email string, a named address object, or an array of either."
+          }
+        },
+        "headers": {
+          "target": "com.cloudflare.email_sending#SendRequestHeadersMap",
+          "traits": {
+            "smithy.api#documentation": "Custom email headers as key-value pairs."
+          }
+        },
+        "html": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTML body of the email. At least one of text or html must be provided (non-empty)."
+          }
+        },
+        "reply_to": {
+          "target": "com.cloudflare.email_sending#SendRequestReplyTo",
+          "traits": {
+            "smithy.api#documentation": "Reply-to address. Either a plain string or an object with address and name."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plain text body of the email. At least one of text or html must be provided (non-empty)."
+          }
+        },
+        "to": {
+          "target": "com.cloudflare.email_sending#SendRequestTo",
+          "traits": {
+            "smithy.api#documentation": "Recipient(s). Optional if cc or bcc is provided. A single email string, a named address object, or an array of either."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SendResponseDeliveredList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendResponsePermanentBouncesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendResponseQueuedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendResponse": {
+      "type": "structure",
+      "members": {
+        "delivered": {
+          "target": "com.cloudflare.email_sending#SendResponseDeliveredList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses to which the message was delivered immediately.",
+            "smithy.api#required": {}
+          }
+        },
+        "message_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message ID of the sent email.",
+            "smithy.api#required": {}
+          }
+        },
+        "permanent_bounces": {
+          "target": "com.cloudflare.email_sending#SendResponsePermanentBouncesList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses that permanently bounced.",
+            "smithy.api#required": {}
+          }
+        },
+        "queued": {
+          "target": "com.cloudflare.email_sending#SendResponseQueuedList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses for which delivery was queued for later.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_sending#Send": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SendRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_sending#SendResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/email/sending/send",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send an email"
+      }
+    },
+    "com.cloudflare.email_sending#SendRawRequestRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendRawRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sender email address.",
+            "smithy.api#required": {}
+          }
+        },
+        "mime_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full MIME-encoded email message. Should include standard RFC 5322 headers such as From, To, Subject, and Content-Type. The from and recipients fields in the request body control SMTP envelope routing; the From and To headers in the MIME message control what the recipient's email client displays.",
+            "smithy.api#required": {}
+          }
+        },
+        "recipients": {
+          "target": "com.cloudflare.email_sending#SendRawRequestRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "List of recipient email addresses.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SendRawResponseDeliveredList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendRawResponsePermanentBouncesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendRawResponseQueuedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.email_sending#SendRawResponse": {
+      "type": "structure",
+      "members": {
+        "delivered": {
+          "target": "com.cloudflare.email_sending#SendRawResponseDeliveredList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses to which the message was delivered immediately.",
+            "smithy.api#required": {}
+          }
+        },
+        "message_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message ID of the sent email.",
+            "smithy.api#required": {}
+          }
+        },
+        "permanent_bounces": {
+          "target": "com.cloudflare.email_sending#SendRawResponsePermanentBouncesList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses that permanently bounced.",
+            "smithy.api#required": {}
+          }
+        },
+        "queued": {
+          "target": "com.cloudflare.email_sending#SendRawResponseQueuedList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses for which delivery was queued for later.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_sending#SendRaw": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SendRawRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_sending#SendRawResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/email/sending/send_raw",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send a raw MIME email"
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subdomain name. Must be within the zone.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Email Sending is enabled on this subdomain.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subdomain domain name.",
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sending subdomain identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been created."
+          }
+        },
+        "dkim_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DKIM selector used for email signing."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address was last modified."
+          }
+        },
+        "preview_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether sent messages from this subdomain can be previewed in the activity log."
+          }
+        },
+        "return_path_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The return-path domain used for bounce handling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SubdomainsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_sending#SubdomainsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/email/sending/subdomains",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new sending subdomain or re-enables sending on an existing subdomain that had it disabled. If zone-level Email Sending has not been enabled yet, the zone flag is automatically set when the entitlement is present."
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subdomain_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sending subdomain identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SubdomainsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disables sending on a subdomain and removes its DNS records. If routing is still active on the subdomain, only sending is disabled.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subdomain_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sending subdomain identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsGetResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Email Sending is enabled on this subdomain.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subdomain domain name.",
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sending subdomain identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been created."
+          }
+        },
+        "dkim_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DKIM selector used for email signing."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address was last modified."
+          }
+        },
+        "preview_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether sent messages from this subdomain can be previewed in the activity log."
+          }
+        },
+        "return_path_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The return-path domain used for bounce handling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SubdomainsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_sending#SubdomainsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information for a specific sending subdomain.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsListResultItem": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Email Sending is enabled on this subdomain.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subdomain domain name.",
+            "smithy.api#required": {}
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sending subdomain identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been created."
+          }
+        },
+        "dkim_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DKIM selector used for email signing."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address was last modified."
+          }
+        },
+        "preview_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether sent messages from this subdomain can be previewed in the activity log."
+          }
+        },
+        "return_path_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The return-path domain used for bounce handling."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_sending#SubdomainsListResultItem"
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.email_sending#SubdomainsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SubdomainsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_sending#SubdomainsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/sending/subdomains",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all sending-enabled subdomains for the zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDnsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subdomain_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sending subdomain identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDnsGetResultItemType": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "AAAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAAA"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HTTPS"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TXT"
+          }
+        },
+        "SRV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SRV"
+          }
+        },
+        "LOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOC"
+          }
+        },
+        "MX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX"
+          }
+        },
+        "NS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NS"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
+          }
+        },
+        "DNSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DNSKEY"
+          }
+        },
+        "DS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DS"
+          }
+        },
+        "NAPTR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAPTR"
+          }
+        },
+        "SMIMEA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMIMEA"
+          }
+        },
+        "SSHFP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSHFP"
+          }
+        },
+        "SVCB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SVCB"
+          }
+        },
+        "TLSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TLSA"
+          }
+        },
+        "URI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URI"
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDnsGetResultItem": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record content."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DNS record name (or @ for the zone apex)."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required for MX, SRV and URI records. Unused by other record types. Records with lower priorities are preferred."
+          }
+        },
+        "ttl": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time to live, in seconds, of the DNS record. Must be between 60 and 86400, or 1 for 'automatic'."
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.email_sending#SubdomainsDnsGetResultItemType",
+          "traits": {
+            "smithy.api#documentation": "DNS record type."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDnsGetResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_sending#SubdomainsDnsGetResultItem"
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDnsGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.email_sending#SubdomainsDnsGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.email_sending#SubdomainsDnsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_sending#SubdomainsDnsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_sending#SubdomainsDnsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/sending/subdomains/{subdomain_id}/dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the expected DNS records for a sending subdomain.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_sending#EmailSending": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.email_sending#Send"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SendRaw"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SubdomainsCreate"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SubdomainsDelete"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SubdomainsGet"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SubdomainsList"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SubdomainsDnsGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare EmailSending",
+        "smithy.api#documentation": "Cloudflare API — email_sending resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

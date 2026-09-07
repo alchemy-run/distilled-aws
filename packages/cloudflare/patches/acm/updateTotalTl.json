@@ -1,0 +1,51 @@
+{
+  "description": "Align acm#TotalTlsEdit with distilled cloudflare/acm updateTotalTl",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#TotalTlsEdit",
+      "path": "/shapes/com.cloudflare.acm#UpdateTotalTl"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#TotalTlsEditRequest",
+      "path": "/shapes/com.cloudflare.acm#UpdateTotalTlRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.acm#UpdateTotalTl/input/target",
+      "value": "com.cloudflare.acm#UpdateTotalTlRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#TotalTlsEditResponse",
+      "path": "/shapes/com.cloudflare.acm#UpdateTotalTlResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.acm#UpdateTotalTl/output/target",
+      "value": "com.cloudflare.acm#UpdateTotalTlResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.acm#UpdateTotalTl/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#NoStateChange"
+        },
+        {
+          "target": "com.cloudflare.acm#PreviousJobInProgress"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    }
+  ]
+}

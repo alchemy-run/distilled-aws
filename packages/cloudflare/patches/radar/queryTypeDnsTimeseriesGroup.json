@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTimeseriesGroupsQueryType with distilled cloudflare/radar queryTypeDnsTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsQueryType",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsQueryTypeRequest",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#QueryTypeDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsQueryTypeResponse",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#QueryTypeDnsTimeseriesGroupResponse"
+    }
+  ]
+}

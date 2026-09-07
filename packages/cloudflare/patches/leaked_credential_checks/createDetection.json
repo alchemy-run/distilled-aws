@@ -1,0 +1,45 @@
+{
+  "description": "Align leaked_credential_checks#DetectionsCreate with distilled cloudflare/leaked-credential-checks createDetection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.leaked_credential_checks#DetectionsCreate",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#CreateDetection"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.leaked_credential_checks#DetectionsCreateRequest",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#CreateDetectionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#CreateDetection/input/target",
+      "value": "com.cloudflare.leaked_credential_checks#CreateDetectionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.leaked_credential_checks#DetectionsCreateResponse",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#CreateDetectionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#CreateDetection/output/target",
+      "value": "com.cloudflare.leaked_credential_checks#CreateDetectionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.leaked_credential_checks#CreateDetection/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.leaked_credential_checks#DetectionQuotaExceeded"
+        },
+        {
+          "target": "com.cloudflare.leaked_credential_checks#LeakedCredentialChecksDisabled"
+        },
+        {
+          "target": "com.cloudflare.leaked_credential_checks#Forbidden"
+        }
+      ]
+    }
+  ]
+}

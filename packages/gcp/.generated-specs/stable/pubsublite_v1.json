@@ -1,0 +1,2357 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "pubsublite",
+    "version": "v1",
+    "title": "Pub/Sub Lite API",
+    "baseUrl": "https://pubsublite.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.pubsublite_v1#ComputeMessageStatsRequest": {
+      "type": "structure",
+      "members": {
+        "partition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The partition for which we should compute message stats."
+          }
+        },
+        "startCursor": {
+          "target": "com.gcp.pubsublite_v1#Cursor",
+          "traits": {
+            "smithy.api#documentation": "The inclusive start of the range."
+          }
+        },
+        "endCursor": {
+          "target": "com.gcp.pubsublite_v1#Cursor",
+          "traits": {
+            "smithy.api#documentation": "The exclusive end of the range. The range is empty if end_cursor <= start_cursor. Specifying a start_cursor before the first message and an end_cursor after the last message will retrieve all messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compute statistics about a range of messages in a given topic and partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListPartitionCursorsResponse": {
+      "type": "structure",
+      "members": {
+        "partitionCursors": {
+          "target": "com.gcp.pubsublite_v1#PartitionCursorList",
+          "traits": {
+            "smithy.api#documentation": "The partition cursors from this request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListPartitionCursors"
+      }
+    },
+    "com.gcp.pubsublite_v1#PartitionCursorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pubsublite_v1#PartitionCursor"
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeTimeCursorResponse": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "com.gcp.pubsublite_v1#Cursor",
+          "traits": {
+            "smithy.api#documentation": "If present, the cursor references the first message with time greater than or equal to the specified target time. If such a message cannot be found, the cursor will be unset (i.e. `cursor` is not present)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the cursor corresponding to a publish or event time in a topic partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListTopicsResponse": {
+      "type": "structure",
+      "members": {
+        "topics": {
+          "target": "com.gcp.pubsublite_v1#TopicList",
+          "traits": {
+            "smithy.api#documentation": "The list of topic in the requested parent. The order of the topics is unspecified."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListTopics."
+      }
+    },
+    "com.gcp.pubsublite_v1#TopicList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pubsublite_v1#Topic"
+      }
+    },
+    "com.gcp.pubsublite_v1#Reservation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the reservation. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}"
+          }
+        },
+        "throughputCapacity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reserved throughput capacity. Every unit of throughput capacity is equivalent to 1 MiB/s of published messages or 2 MiB/s of subscribed messages. Any topics which are declared as using capacity from a Reservation will consume resources from this reservation instead of being charged individually."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a reservation resource."
+      }
+    },
+    "com.gcp.pubsublite_v1#TimeTarget": {
+      "type": "structure",
+      "members": {
+        "publishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request the cursor of the first message with publish time greater than or equal to `publish_time`. All messages thereafter are guaranteed to have publish times >= `publish_time`."
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request the cursor of the first message with event time greater than or equal to `event_time`. If messages are missing an event time, the publish time is used as a fallback. As event times are user supplied, subsequent messages may have event times less than `event_time` and should be filtered by the client, if necessary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A target publish or event time. Can be used for seeking to or retrieving the corresponding cursor."
+      }
+    },
+    "com.gcp.pubsublite_v1#SeekSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "namedTarget": {
+          "target": "com.gcp.pubsublite_v1#SeekSubscriptionRequestNamedTargetEnum",
+          "traits": {
+            "smithy.api#documentation": "Seek to a named position with respect to the message backlog."
+          }
+        },
+        "timeTarget": {
+          "target": "com.gcp.pubsublite_v1#TimeTarget",
+          "traits": {
+            "smithy.api#documentation": "Seek to the first message whose publish or event time is greater than or equal to the specified query time. If no such message can be located, will seek to the end of the message backlog."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for SeekSubscription."
+      }
+    },
+    "com.gcp.pubsublite_v1#SeekSubscriptionRequestNamedTargetEnum": {
+      "type": "enum",
+      "members": {
+        "NAMED_TARGET_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAMED_TARGET_UNSPECIFIED"
+          }
+        },
+        "TAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAIL"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListReservationTopicsResponse": {
+      "type": "structure",
+      "members": {
+        "topics": {
+          "target": "com.gcp.pubsublite_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The names of topics attached to the reservation. The order of the topics is unspecified."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListReservationTopics."
+      }
+    },
+    "com.gcp.pubsublite_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.pubsublite_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.pubsublite_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.pubsublite_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.pubsublite_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.pubsublite_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.pubsublite_v1#RetentionConfig": {
+      "type": "structure",
+      "members": {
+        "perPartitionBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioned storage, in bytes, per partition. If the number of bytes stored in any of the topic's partitions grows beyond this value, older messages will be dropped to make room for newer ones, regardless of the value of `period`."
+          }
+        },
+        "period": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How long a published message is retained. If unset, messages will be retained as long as the bytes retained for each partition is below `per_partition_bytes`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The settings for a topic's message retention."
+      }
+    },
+    "com.gcp.pubsublite_v1#CommitCursorResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for CommitCursor."
+      }
+    },
+    "com.gcp.pubsublite_v1#DeliveryConfig": {
+      "type": "structure",
+      "members": {
+        "deliveryRequirement": {
+          "target": "com.gcp.pubsublite_v1#DeliveryConfigDeliveryRequirementEnum",
+          "traits": {
+            "smithy.api#documentation": "The DeliveryRequirement for this subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The settings for a subscription's message delivery."
+      }
+    },
+    "com.gcp.pubsublite_v1#DeliveryConfigDeliveryRequirementEnum": {
+      "type": "enum",
+      "members": {
+        "DELIVERY_REQUIREMENT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERY_REQUIREMENT_UNSPECIFIED"
+          }
+        },
+        "DELIVER_IMMEDIATELY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVER_IMMEDIATELY"
+          }
+        },
+        "DELIVER_AFTER_STORED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVER_AFTER_STORED"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#Cursor": {
+      "type": "structure",
+      "members": {
+        "offset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The offset of a message within a topic partition. Must be greater than or equal 0."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A cursor that describes the position of a message within a topic partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeMessageStatsResponse": {
+      "type": "structure",
+      "members": {
+        "messageBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of quota bytes accounted to these messages."
+          }
+        },
+        "minimumPublishTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum publish timestamp across these messages. Note that publish timestamps within a partition are not guaranteed to be non-decreasing. The timestamp will be unset if there are no messages."
+          }
+        },
+        "minimumEventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum event timestamp across these messages. For the purposes of this computation, if a message does not have an event time, we use the publish time. The timestamp will be unset if there are no messages."
+          }
+        },
+        "messageCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The count of messages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing stats for messages in the requested topic and partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeHeadCursorRequest": {
+      "type": "structure",
+      "members": {
+        "partition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The partition for which we should compute the head cursor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compute the current head cursor for a partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListSubscriptionsResponse": {
+      "type": "structure",
+      "members": {
+        "subscriptions": {
+          "target": "com.gcp.pubsublite_v1#SubscriptionList",
+          "traits": {
+            "smithy.api#documentation": "The list of subscriptions in the requested parent. The order of the subscriptions is unspecified."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListSubscriptions."
+      }
+    },
+    "com.gcp.pubsublite_v1#SubscriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pubsublite_v1#Subscription"
+      }
+    },
+    "com.gcp.pubsublite_v1#ListReservationsResponse": {
+      "type": "structure",
+      "members": {
+        "reservations": {
+          "target": "com.gcp.pubsublite_v1#ReservationList",
+          "traits": {
+            "smithy.api#documentation": "The list of reservation in the requested parent. The order of the reservations is unspecified."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListReservations."
+      }
+    },
+    "com.gcp.pubsublite_v1#ReservationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pubsublite_v1#Reservation"
+      }
+    },
+    "com.gcp.pubsublite_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.pubsublite_v1#ReservationConfig": {
+      "type": "structure",
+      "members": {
+        "throughputReservation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Reservation to use for this topic's throughput capacity. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The settings for this topic's Reservation usage."
+      }
+    },
+    "com.gcp.pubsublite_v1#TopicPartitions": {
+      "type": "structure",
+      "members": {
+        "partitionCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of partitions in the topic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for GetTopicPartitions."
+      }
+    },
+    "com.gcp.pubsublite_v1#CommitCursorRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "com.gcp.pubsublite_v1#Cursor",
+          "traits": {
+            "smithy.api#documentation": "The new value for the committed cursor."
+          }
+        },
+        "partition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The partition for which to update the cursor. Partitions are zero indexed, so `partition` must be in the range [0, topic.num_partitions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for CommitCursor."
+      }
+    },
+    "com.gcp.pubsublite_v1#Capacity": {
+      "type": "structure",
+      "members": {
+        "publishMibPerSec": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Publish throughput capacity per partition in MiB/s. Must be >= 4 and <= 16."
+          }
+        },
+        "subscribeMibPerSec": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Subscribe throughput capacity per partition in MiB/s. Must be >= 4 and <= 32."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The throughput capacity configuration for each partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#PartitionConfig": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of partitions in the topic. Must be at least 1. Once a topic has been created the number of partitions can be increased but not decreased. Message ordering is not guaranteed across a topic resize. For more information see https://cloud.google.com/pubsub/lite/docs/topics#scaling_capacity"
+          }
+        },
+        "scale": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED: Use capacity instead which can express a superset of configurations. Every partition in the topic is allocated throughput equivalent to `scale` times the standard partition throughput (4 MiB/s). This is also reflected in the cost of this topic; a topic with `scale` of 2 and count of 10 is charged for 20 partitions. This value must be in the range [1,4]."
+          }
+        },
+        "capacity": {
+          "target": "com.gcp.pubsublite_v1#Capacity",
+          "traits": {
+            "smithy.api#documentation": "The capacity configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The settings for a topic's partitions."
+      }
+    },
+    "com.gcp.pubsublite_v1#PartitionCursor": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "com.gcp.pubsublite_v1#Cursor",
+          "traits": {
+            "smithy.api#documentation": "The value of the cursor."
+          }
+        },
+        "partition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The partition this is for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A pair of a Cursor and the partition it is for."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.pubsublite_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.pubsublite_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.pubsublite_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pubsublite_v1#Operation"
+      }
+    },
+    "com.gcp.pubsublite_v1#SeekSubscriptionResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for SeekSubscription long running operation."
+      }
+    },
+    "com.gcp.pubsublite_v1#Subscription": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the topic this subscription is attached to. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}"
+          }
+        },
+        "exportConfig": {
+          "target": "com.gcp.pubsublite_v1#ExportConfig",
+          "traits": {
+            "smithy.api#documentation": "If present, messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a destination."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}"
+          }
+        },
+        "deliveryConfig": {
+          "target": "com.gcp.pubsublite_v1#DeliveryConfig",
+          "traits": {
+            "smithy.api#documentation": "The settings for this subscription's message delivery."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a subscription resource."
+      }
+    },
+    "com.gcp.pubsublite_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.pubsublite_v1#PubSubConfig": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Pub/Sub topic. Structured like: projects/{project_number}/topics/{topic_id}. The topic may be changed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for exporting to a Pub/Sub topic."
+      }
+    },
+    "com.gcp.pubsublite_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the verb executed by the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation was created."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource path for the target of the operation. For example, targets of seeks are subscription resources, structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation finished running. Not set if the operation has not completed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for long running operations."
+      }
+    },
+    "com.gcp.pubsublite_v1#Topic": {
+      "type": "structure",
+      "members": {
+        "partitionConfig": {
+          "target": "com.gcp.pubsublite_v1#PartitionConfig",
+          "traits": {
+            "smithy.api#documentation": "The settings for this topic's partitions."
+          }
+        },
+        "retentionConfig": {
+          "target": "com.gcp.pubsublite_v1#RetentionConfig",
+          "traits": {
+            "smithy.api#documentation": "The settings for this topic's message retention."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}"
+          }
+        },
+        "reservationConfig": {
+          "target": "com.gcp.pubsublite_v1#ReservationConfig",
+          "traits": {
+            "smithy.api#documentation": "The settings for this topic's Reservation usage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a topic resource."
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeHeadCursorResponse": {
+      "type": "structure",
+      "members": {
+        "headCursor": {
+          "target": "com.gcp.pubsublite_v1#Cursor",
+          "traits": {
+            "smithy.api#documentation": "The head cursor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the head cursor for the requested topic and partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeTimeCursorRequest": {
+      "type": "structure",
+      "members": {
+        "partition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The partition for which we should compute the cursor."
+          }
+        },
+        "target": {
+          "target": "com.gcp.pubsublite_v1#TimeTarget",
+          "traits": {
+            "smithy.api#documentation": "Required. The target publish or event time. Specifying a future time will return an unset cursor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Compute the corresponding cursor for a publish or event time in a topic partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.pubsublite_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.pubsublite_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pubsublite_v1#DocumentMap"
+      }
+    },
+    "com.gcp.pubsublite_v1#ListTopicSubscriptionsResponse": {
+      "type": "structure",
+      "members": {
+        "subscriptions": {
+          "target": "com.gcp.pubsublite_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The names of subscriptions attached to the topic. The order of the subscriptions is unspecified."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListTopicSubscriptions."
+      }
+    },
+    "com.gcp.pubsublite_v1#ExportConfig": {
+      "type": "structure",
+      "members": {
+        "desiredState": {
+          "target": "com.gcp.pubsublite_v1#ExportConfigDesiredStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The desired state of this export. Setting this to values other than `ACTIVE` and `PAUSED` will result in an error."
+          }
+        },
+        "deadLetterTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of an optional Pub/Sub Lite topic to publish messages that can not be exported to the destination. For example, the message can not be published to the Pub/Sub service because it does not satisfy the constraints documented at https://cloud.google.com/pubsub/docs/publisher. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}. Must be within the same project and location as the subscription. The topic may be changed or removed."
+          }
+        },
+        "pubsubConfig": {
+          "target": "com.gcp.pubsublite_v1#PubSubConfig",
+          "traits": {
+            "smithy.api#documentation": "Messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a Pub/Sub topic."
+          }
+        },
+        "currentState": {
+          "target": "com.gcp.pubsublite_v1#ExportConfigCurrentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of the export, which may be different to the desired state due to errors. This field is output only."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for a Pub/Sub Lite subscription that writes messages to a destination. User subscriber clients must not connect to this subscription."
+      }
+    },
+    "com.gcp.pubsublite_v1#ExportConfigDesiredStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_DENIED"
+          }
+        },
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ExportConfigCurrentStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_DENIED"
+          }
+        },
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#CommitCursorCursorProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "subscription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subscription for which to update the cursor.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#CommitCursorRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.pubsublite_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.pubsublite_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.pubsublite_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.pubsublite_v1#CommitCursorCursorProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#CommitCursorCursorProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#CommitCursorResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/cursor/{+subscription}:commitCursor"
+        },
+        "smithy.api#documentation": "Updates the committed cursor."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListCursorProjectsLocationsSubscriptionsCursorsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListCursorProjectsLocationsSubscriptionsCursors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListCursorProjectsLocationsSubscriptionsCursorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListPartitionCursorsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/cursor/{+parent}/cursors"
+        },
+        "smithy.api#documentation": "Returns all committed cursor information for a subscription.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeMessageStatsTopicStatsProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The topic for which we should compute message stats.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#ComputeMessageStatsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeMessageStatsTopicStatsProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ComputeMessageStatsTopicStatsProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ComputeMessageStatsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/topicStats/{+topic}:computeMessageStats"
+        },
+        "smithy.api#documentation": "Compute statistics about a range of messages in a given topic and partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeHeadCursorTopicStatsProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The topic for which we should compute the head cursor.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#ComputeHeadCursorRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeHeadCursorTopicStatsProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ComputeHeadCursorTopicStatsProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ComputeHeadCursorResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/topicStats/{+topic}:computeHeadCursor"
+        },
+        "smithy.api#documentation": "Compute the head cursor for the partition. The head cursor's offset is guaranteed to be less than or equal to all messages which have not yet been acknowledged as published, and greater than the offset of any message whose publish has already been acknowledged. It is zero if there have never been messages in the partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeTimeCursorTopicStatsProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The topic for which we should compute the cursor.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#ComputeTimeCursorRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ComputeTimeCursorTopicStatsProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ComputeTimeCursorTopicStatsProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ComputeTimeCursorResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/topicStats/{+topic}:computeTimeCursor"
+        },
+        "smithy.api#documentation": "Compute the corresponding cursor for a publish or event time in a topic partition."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListAdminProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#GetAdminProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.pubsublite_v1#CancelAdminProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#CancelAdminProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#CancelAdminProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/admin/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the subscription whose configuration to return.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#GetAdminProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Returns the subscription configuration."
+      }
+    },
+    "com.gcp.pubsublite_v1#SeekAdminProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the subscription to seek.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#SeekSubscriptionRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#SeekAdminProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#SeekAdminProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/admin/{+name}:seek"
+        },
+        "smithy.api#documentation": "Performs an out-of-band seek for a subscription to a specified target, which may be timestamps or named positions within the message backlog. Seek translates these targets to cursors for each partition and orchestrates subscribers to start consuming messages from these seek cursors. If an operation is returned, the seek has been registered and subscribers will eventually receive messages from the seek cursors (i.e. eventual consistency), as long as they are using a minimum supported client library version and not a system that tracks cursors independently of Pub/Sub Lite (e.g. Apache Beam, Dataflow, Spark). The seek operation will fail for unsupported clients. If clients would like to know when subscribers react to the seek (or not), they can poll the operation. The seek operation will succeed and complete once subscribers are ready to receive messages from the seek cursors for all partitions of the topic. This means that the seek operation will not complete until all subscribers come online. If the previous seek operation has not yet completed, it will be aborted and the new invocation of seek will supersede it."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the parent will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent whose subscriptions are to be listed. Structured like `projects/{project_number}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListAdminProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListSubscriptionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+parent}/subscriptions"
+        },
+        "smithy.api#documentation": "Returns the list of subscriptions for the given project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the subscription to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified subscription."
+      }
+    },
+    "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "skipBacklog": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the newly created subscription will only receive messages published after the subscription was created. Otherwise, the entire message backlog will be received on the subscription. Defaults to false.",
+            "smithy.api#httpQuery": "skipBacklog"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent location in which to create the subscription. Structured like `projects/{project_number}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.",
+            "smithy.api#httpQuery": "subscriptionId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#Subscription",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/admin/{+parent}/subscriptions"
+        },
+        "smithy.api#documentation": "Creates a new subscription."
+      }
+    },
+    "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A mask specifying the subscription fields to change.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#Subscription",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Updates properties of the specified subscription."
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsReservationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the reservation whose configuration to return. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsReservations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#GetAdminProjectsLocationsReservationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Reservation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Returns the reservation configuration."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsReservationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent whose reservations are to be listed. Structured like `projects/{project_number}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListReservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservations` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsReservations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListAdminProjectsLocationsReservationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListReservationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+parent}/reservations"
+        },
+        "smithy.api#documentation": "Returns the list of reservations for the given project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsReservationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the reservation to delete. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsReservations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsReservationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified reservation."
+      }
+    },
+    "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsReservationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent location in which to create the reservation. Structured like `projects/{project_number}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "reservationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to use for the reservation, which will become the final component of the reservation's name. This value is structured like: `my-reservation-name`.",
+            "smithy.api#httpQuery": "reservationId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#Reservation",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsReservations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsReservationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Reservation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/admin/{+parent}/reservations"
+        },
+        "smithy.api#documentation": "Creates a new reservation."
+      }
+    },
+    "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsReservationsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A mask specifying the reservation fields to change.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the reservation. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#Reservation",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsReservations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsReservationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Reservation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Updates properties of the specified reservation."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsReservationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the given reservation will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the reservation whose topics to list. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListReservationTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservationTopics` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsReservationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListAdminProjectsLocationsReservationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListReservationTopicsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}/topics"
+        },
+        "smithy.api#documentation": "Lists the topics attached to the specified reservation.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the topic whose configuration to return.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetAdminProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#GetAdminProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Topic"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Returns the topic configuration."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListAdminProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListTopicsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+parent}/topics"
+        },
+        "smithy.api#documentation": "Returns the list of topics for the given project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the topic to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#DeleteAdminProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified topic."
+      }
+    },
+    "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "topicId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`.",
+            "smithy.api#httpQuery": "topicId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#Topic",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#CreateAdminProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Topic"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/admin/{+parent}/topics"
+        },
+        "smithy.api#documentation": "Creates a new topic."
+      }
+    },
+    "com.gcp.pubsublite_v1#GetPartitionsAdminProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The topic whose partition information to return.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#GetPartitionsAdminProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#GetPartitionsAdminProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#TopicPartitions"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}/partitions"
+        },
+        "smithy.api#documentation": "Returns the partition information for the requested topic."
+      }
+    },
+    "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A mask specifying the topic fields to change.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.pubsublite_v1#Topic",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsTopics": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#PatchAdminProjectsLocationsTopicsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#Topic"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/admin/{+name}"
+        },
+        "smithy.api#documentation": "Updates properties of the specified topic."
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsTopicsSubscriptionsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the topic whose subscriptions to list.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.pubsublite_v1#ListAdminProjectsLocationsTopicsSubscriptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pubsublite_v1#ListAdminProjectsLocationsTopicsSubscriptionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.pubsublite_v1#ListTopicSubscriptionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pubsublite_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pubsublite_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/admin/{+name}/subscriptions"
+        },
+        "smithy.api#documentation": "Lists the subscriptions attached to the specified topic.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

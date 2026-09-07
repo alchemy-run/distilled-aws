@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#CtAlertingEdit with distilled cloudflare/zones patchCtAlerting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CtAlertingEdit",
+      "path": "/shapes/com.cloudflare.zones#PatchCtAlerting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CtAlertingEditRequest",
+      "path": "/shapes/com.cloudflare.zones#PatchCtAlertingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchCtAlerting/input/target",
+      "value": "com.cloudflare.zones#PatchCtAlertingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CtAlertingEditResponse",
+      "path": "/shapes/com.cloudflare.zones#PatchCtAlertingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PatchCtAlerting/output/target",
+      "value": "com.cloudflare.zones#PatchCtAlertingResponse"
+    }
+  ]
+}

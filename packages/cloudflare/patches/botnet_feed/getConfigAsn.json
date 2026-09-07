@@ -1,0 +1,30 @@
+{
+  "description": "Align botnet_feed#ConfigsAsnGet with distilled cloudflare/botnet-feed getConfigAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#ConfigsAsnGet",
+      "path": "/shapes/com.cloudflare.botnet_feed#GetConfigAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#ConfigsAsnGetRequest",
+      "path": "/shapes/com.cloudflare.botnet_feed#GetConfigAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.botnet_feed#GetConfigAsn/input/target",
+      "value": "com.cloudflare.botnet_feed#GetConfigAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#ConfigsAsnGetResponse",
+      "path": "/shapes/com.cloudflare.botnet_feed#GetConfigAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.botnet_feed#GetConfigAsn/output/target",
+      "value": "com.cloudflare.botnet_feed#GetConfigAsnResponse"
+    }
+  ]
+}

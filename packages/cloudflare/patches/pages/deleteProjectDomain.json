@@ -1,0 +1,45 @@
+{
+  "description": "Align pages#ProjectsDomainsDelete with distilled cloudflare/pages deleteProjectDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsDelete",
+      "path": "/shapes/com.cloudflare.pages#DeleteProjectDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsDeleteRequest",
+      "path": "/shapes/com.cloudflare.pages#DeleteProjectDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#DeleteProjectDomain/input/target",
+      "value": "com.cloudflare.pages#DeleteProjectDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsDeleteResponse",
+      "path": "/shapes/com.cloudflare.pages#DeleteProjectDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#DeleteProjectDomain/output/target",
+      "value": "com.cloudflare.pages#DeleteProjectDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#DeleteProjectDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pages#ProjectNotFound"
+        },
+        {
+          "target": "com.cloudflare.pages#PagesDomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.pages#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "description": "Add 404 NotFound responses for conversation model operations. The Typesense API returns 404 with body {\"message\":\"Model not found\"} when retrieving/updating/deleting a non-existent conversation model, but the OpenAPI spec only documents 200 responses. Add 400 BadRequest to updateConversationModel since it accepts a request body that can be malformed.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1conversations~1models~1{modelId}/get/responses/404",
+      "value": {
+        "description": "Conversation model not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1conversations~1models~1{modelId}/put/responses/404",
+      "value": {
+        "description": "Conversation model not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1conversations~1models~1{modelId}/put/responses/400",
+      "value": {
+        "description": "Bad request, see error message for details",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1conversations~1models~1{modelId}/delete/responses/404",
+      "value": {
+        "description": "Conversation model not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiResponse"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

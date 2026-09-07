@@ -1,0 +1,42 @@
+{
+  "description": "Align addressing#LoaDocumentsCreate with distilled cloudflare/addressing createLoaDocument",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#LoaDocumentsCreate",
+      "path": "/shapes/com.cloudflare.addressing#CreateLoaDocument"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#LoaDocumentsCreateRequest",
+      "path": "/shapes/com.cloudflare.addressing#CreateLoaDocumentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreateLoaDocument/input/target",
+      "value": "com.cloudflare.addressing#CreateLoaDocumentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#LoaDocumentsCreateResponse",
+      "path": "/shapes/com.cloudflare.addressing#CreateLoaDocumentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreateLoaDocument/output/target",
+      "value": "com.cloudflare.addressing#CreateLoaDocumentResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#CreateLoaDocument/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidLoaForm"
+        }
+      ]
+    }
+  ]
+}

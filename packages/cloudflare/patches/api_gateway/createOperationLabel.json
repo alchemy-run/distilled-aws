@@ -1,0 +1,30 @@
+{
+  "description": "Align api_gateway#OperationsLabelsCreate with distilled cloudflare/api-gateway createOperationLabel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsCreate",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateOperationLabel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsCreateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateOperationLabelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateOperationLabel/input/target",
+      "value": "com.cloudflare.api_gateway#CreateOperationLabelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsCreateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateOperationLabelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateOperationLabel/output/target",
+      "value": "com.cloudflare.api_gateway#CreateOperationLabelResponse"
+    }
+  ]
+}

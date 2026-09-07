@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexFleetStatusLive with distilled cloudflare/zero-trust liveDexFleetStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusLive",
+      "path": "/shapes/com.cloudflare.zero_trust#LiveDexFleetStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusLiveRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#LiveDexFleetStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#LiveDexFleetStatus/input/target",
+      "value": "com.cloudflare.zero_trust#LiveDexFleetStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusLiveResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#LiveDexFleetStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#LiveDexFleetStatus/output/target",
+      "value": "com.cloudflare.zero_trust#LiveDexFleetStatusResponse"
+    }
+  ]
+}

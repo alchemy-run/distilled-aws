@@ -1,0 +1,42 @@
+{
+  "description": "Align load_balancers#MonitorsGet with distilled cloudflare/load-balancers getMonitor",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsGet",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitor"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsGetRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitor/input/target",
+      "value": "com.cloudflare.load_balancers#GetMonitorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsGetResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitor/output/target",
+      "value": "com.cloudflare.load_balancers#GetMonitorResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitor/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#MonitorNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

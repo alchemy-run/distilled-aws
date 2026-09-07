@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#RulesGet with distilled cloudflare/firewall getRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesGet",
+      "path": "/shapes/com.cloudflare.firewall#GetRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesGetRequest",
+      "path": "/shapes/com.cloudflare.firewall#GetRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetRule/input/target",
+      "value": "com.cloudflare.firewall#GetRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesGetResponse",
+      "path": "/shapes/com.cloudflare.firewall#GetRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetRule/output/target",
+      "value": "com.cloudflare.firewall#GetRuleResponse"
+    }
+  ]
+}

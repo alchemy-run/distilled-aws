@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_network_monitoring#ConfigsFullGet with distilled cloudflare/magic-network-monitoring getConfigFull",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsFullGet",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigFull"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsFullGetRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigFullRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigFull/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#GetConfigFullRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsFullGetResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigFullResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigFull/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#GetConfigFullResponse"
+    }
+  ]
+}

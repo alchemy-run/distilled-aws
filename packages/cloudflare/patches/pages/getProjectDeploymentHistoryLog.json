@@ -1,0 +1,30 @@
+{
+  "description": "Align pages#ProjectsDeploymentsHistoryLogsGet with distilled cloudflare/pages getProjectDeploymentHistoryLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsHistoryLogsGet",
+      "path": "/shapes/com.cloudflare.pages#GetProjectDeploymentHistoryLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsHistoryLogsGetRequest",
+      "path": "/shapes/com.cloudflare.pages#GetProjectDeploymentHistoryLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#GetProjectDeploymentHistoryLog/input/target",
+      "value": "com.cloudflare.pages#GetProjectDeploymentHistoryLogRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsHistoryLogsGetResponse",
+      "path": "/shapes/com.cloudflare.pages#GetProjectDeploymentHistoryLogResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#GetProjectDeploymentHistoryLog/output/target",
+      "value": "com.cloudflare.pages#GetProjectDeploymentHistoryLogResponse"
+    }
+  ]
+}

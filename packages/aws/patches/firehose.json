@@ -1,0 +1,19 @@
+{
+  "structures": {
+    "SplunkDestinationConfiguration": {
+      "members": {
+        "HECToken": { "sensitive": true }
+      }
+    },
+    "SplunkDestinationDescription": {
+      "members": {
+        "HECToken": { "sensitive": true }
+      }
+    },
+    "SplunkDestinationUpdate": {
+      "members": {
+        "HECToken": { "sensitive": true }
+      }
+    }
+  }
+}

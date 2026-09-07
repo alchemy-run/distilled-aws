@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#SsoCreate with distilled cloudflare/iam createSso",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoCreate",
+      "path": "/shapes/com.cloudflare.iam#CreateSso"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoCreateRequest",
+      "path": "/shapes/com.cloudflare.iam#CreateSsoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateSso/input/target",
+      "value": "com.cloudflare.iam#CreateSsoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoCreateResponse",
+      "path": "/shapes/com.cloudflare.iam#CreateSsoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#CreateSso/output/target",
+      "value": "com.cloudflare.iam#CreateSsoResponse"
+    }
+  ]
+}

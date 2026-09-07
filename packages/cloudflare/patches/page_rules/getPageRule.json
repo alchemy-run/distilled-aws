@@ -1,0 +1,42 @@
+{
+  "description": "Align page_rules#Get with distilled cloudflare/page-rules getPageRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#Get",
+      "path": "/shapes/com.cloudflare.page_rules#GetPageRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#GetRequest",
+      "path": "/shapes/com.cloudflare.page_rules#GetPageRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#GetPageRule/input/target",
+      "value": "com.cloudflare.page_rules#GetPageRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#GetResponse",
+      "path": "/shapes/com.cloudflare.page_rules#GetPageRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#GetPageRule/output/target",
+      "value": "com.cloudflare.page_rules#GetPageRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_rules#GetPageRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_rules#PageRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_rules#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align zones#CustomNameserversGet with distilled cloudflare/zones getCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CustomNameserversGet",
+      "path": "/shapes/com.cloudflare.zones#GetCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CustomNameserversGetRequest",
+      "path": "/shapes/com.cloudflare.zones#GetCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetCustomNameserver/input/target",
+      "value": "com.cloudflare.zones#GetCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CustomNameserversGetResponse",
+      "path": "/shapes/com.cloudflare.zones#GetCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#GetCustomNameserver/output/target",
+      "value": "com.cloudflare.zones#GetCustomNameserverResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#GetCustomNameserver/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.zones#Forbidden"
+        }
+      ]
+    }
+  ]
+}

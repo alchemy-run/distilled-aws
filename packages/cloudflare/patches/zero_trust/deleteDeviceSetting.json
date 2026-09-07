@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#DevicesSettingsDelete with distilled cloudflare/zero-trust deleteDeviceSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesSettingsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesSettingsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceSetting/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesSettingsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceSetting/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

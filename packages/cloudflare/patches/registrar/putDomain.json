@@ -1,0 +1,45 @@
+{
+  "description": "Align registrar#DomainsUpdate with distilled cloudflare/registrar putDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#DomainsUpdate",
+      "path": "/shapes/com.cloudflare.registrar#PutDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#DomainsUpdateRequest",
+      "path": "/shapes/com.cloudflare.registrar#PutDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#PutDomain/input/target",
+      "value": "com.cloudflare.registrar#PutDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.registrar#DomainsUpdateResponse",
+      "path": "/shapes/com.cloudflare.registrar#PutDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.registrar#PutDomain/output/target",
+      "value": "com.cloudflare.registrar#PutDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.registrar#PutDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.registrar#RegistrarDomainNotOwned"
+        },
+        {
+          "target": "com.cloudflare.registrar#RegistrarUpdateNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.registrar#Forbidden"
+        }
+      ]
+    }
+  ]
+}

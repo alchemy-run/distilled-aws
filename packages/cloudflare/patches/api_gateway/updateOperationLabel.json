@@ -1,0 +1,30 @@
+{
+  "description": "Align api_gateway#OperationsLabelsUpdate with distilled cloudflare/api-gateway updateOperationLabel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsUpdate",
+      "path": "/shapes/com.cloudflare.api_gateway#UpdateOperationLabel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsUpdateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#UpdateOperationLabelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#UpdateOperationLabel/input/target",
+      "value": "com.cloudflare.api_gateway#UpdateOperationLabelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsUpdateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#UpdateOperationLabelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#UpdateOperationLabel/output/target",
+      "value": "com.cloudflare.api_gateway#UpdateOperationLabelResponse"
+    }
+  ]
+}

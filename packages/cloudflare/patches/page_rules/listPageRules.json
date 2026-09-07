@@ -1,0 +1,42 @@
+{
+  "description": "Align page_rules#List with distilled cloudflare/page-rules listPageRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#List",
+      "path": "/shapes/com.cloudflare.page_rules#ListPageRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#ListRequest",
+      "path": "/shapes/com.cloudflare.page_rules#ListPageRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#ListPageRules/input/target",
+      "value": "com.cloudflare.page_rules#ListPageRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#ListResponse",
+      "path": "/shapes/com.cloudflare.page_rules#ListPageRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#ListPageRules/output/target",
+      "value": "com.cloudflare.page_rules#ListPageRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_rules#ListPageRules/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_rules#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.page_rules#InvalidZoneIdentifier"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align email_security#SettingsUrlIgnorePatternsGet with distilled cloudflare/email-security getSettingUrlIgnorePattern",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsUrlIgnorePatternsGet",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingUrlIgnorePattern"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsUrlIgnorePatternsGetRequest",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingUrlIgnorePatternRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingUrlIgnorePattern/input/target",
+      "value": "com.cloudflare.email_security#GetSettingUrlIgnorePatternRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsUrlIgnorePatternsGetResponse",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingUrlIgnorePatternResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetSettingUrlIgnorePattern/output/target",
+      "value": "com.cloudflare.email_security#GetSettingUrlIgnorePatternResponse"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align accounts#Delete with distilled cloudflare/accounts deleteAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#Delete",
+      "path": "/shapes/com.cloudflare.accounts#DeleteAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#DeleteRequest",
+      "path": "/shapes/com.cloudflare.accounts#DeleteAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#DeleteAccount/input/target",
+      "value": "com.cloudflare.accounts#DeleteAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#DeleteResponse",
+      "path": "/shapes/com.cloudflare.accounts#DeleteAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#DeleteAccount/output/target",
+      "value": "com.cloudflare.accounts#DeleteAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#DeleteAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#MethodNotAllowed"
+        }
+      ]
+    }
+  ]
+}

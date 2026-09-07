@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsEventTagsDelete with distilled cloudflare/cloudforce-one deleteThreatEventEventTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsEventTagsDelete",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventEventTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsEventTagsDeleteRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventEventTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventEventTag/input/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteThreatEventEventTagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsEventTagsDeleteResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventEventTagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteThreatEventEventTag/output/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteThreatEventEventTagResponse"
+    }
+  ]
+}

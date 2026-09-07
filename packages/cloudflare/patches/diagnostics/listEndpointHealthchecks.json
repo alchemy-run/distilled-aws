@@ -1,0 +1,39 @@
+{
+  "description": "Align diagnostics#EndpointHealthchecksList with distilled cloudflare/diagnostics listEndpointHealthchecks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksList",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksListRequest",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecks/input/target",
+      "value": "com.cloudflare.diagnostics#ListEndpointHealthchecksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksListResponse",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecks/output/target",
+      "value": "com.cloudflare.diagnostics#ListEndpointHealthchecksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecks/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.diagnostics#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "description": "Align alerting#PoliciesDelete with distilled cloudflare/alerting deletePolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesDelete",
+      "path": "/shapes/com.cloudflare.alerting#DeletePolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesDeleteRequest",
+      "path": "/shapes/com.cloudflare.alerting#DeletePolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#DeletePolicy/input/target",
+      "value": "com.cloudflare.alerting#DeletePolicyRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#DeletePolicy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#PolicyNotFound"
+        }
+      ]
+    }
+  ]
+}

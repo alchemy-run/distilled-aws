@@ -1,0 +1,305 @@
+{
+  "description": "TCP/HTTP service configs are ONE wire shape (the API returns all keys; the docs oneOf split is not discriminable by key-set) — merged struct with all ports optional and type: tcp|http (v0 parity)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesCreateResultType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "TCP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "tcp"
+            }
+          },
+          "HTTP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "http"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesCreateResult",
+      "value": {
+        "type": "structure",
+        "members": {
+          "host": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesCreateResultInfraHTTPServiceConfigHost",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "type": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesCreateResultType",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "created_at": {
+            "target": "smithy.api#String"
+          },
+          "http_port": {
+            "target": "smithy.api#Double"
+          },
+          "https_port": {
+            "target": "smithy.api#Double"
+          },
+          "service_id": {
+            "target": "smithy.api#String"
+          },
+          "tls_settings": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesCreateResultInfraHTTPServiceConfigTlsSettings",
+            "traits": {
+              "smithy.api#documentation": "TLS settings for a connectivity service."
+            }
+          },
+          "updated_at": {
+            "target": "smithy.api#String"
+          },
+          "app_protocol": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesCreateResultInfraTCPServiceConfigAppProtocol"
+          },
+          "tcp_port": {
+            "target": "smithy.api#Double"
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesGetResultType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "TCP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "tcp"
+            }
+          },
+          "HTTP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "http"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesGetResult",
+      "value": {
+        "type": "structure",
+        "members": {
+          "host": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesGetResultInfraHTTPServiceConfigHost",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "type": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesGetResultType",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "created_at": {
+            "target": "smithy.api#String"
+          },
+          "http_port": {
+            "target": "smithy.api#Double"
+          },
+          "https_port": {
+            "target": "smithy.api#Double"
+          },
+          "service_id": {
+            "target": "smithy.api#String"
+          },
+          "tls_settings": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesGetResultInfraHTTPServiceConfigTlsSettings",
+            "traits": {
+              "smithy.api#documentation": "TLS settings for a connectivity service."
+            }
+          },
+          "updated_at": {
+            "target": "smithy.api#String"
+          },
+          "app_protocol": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesGetResultInfraTCPServiceConfigAppProtocol"
+          },
+          "tcp_port": {
+            "target": "smithy.api#Double"
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesListResultItemType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "TCP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "tcp"
+            }
+          },
+          "HTTP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "http"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesListResultItem",
+      "value": {
+        "type": "structure",
+        "members": {
+          "host": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesListResultItemInfraHTTPServiceConfigHost",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "type": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesListResultItemType",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "created_at": {
+            "target": "smithy.api#String"
+          },
+          "http_port": {
+            "target": "smithy.api#Double"
+          },
+          "https_port": {
+            "target": "smithy.api#Double"
+          },
+          "service_id": {
+            "target": "smithy.api#String"
+          },
+          "tls_settings": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesListResultItemInfraHTTPServiceConfigTlsSettings",
+            "traits": {
+              "smithy.api#documentation": "TLS settings for a connectivity service."
+            }
+          },
+          "updated_at": {
+            "target": "smithy.api#String"
+          },
+          "app_protocol": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesListResultItemInfraTCPServiceConfigAppProtocol"
+          },
+          "tcp_port": {
+            "target": "smithy.api#Double"
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesUpdateResultType",
+      "value": {
+        "type": "enum",
+        "members": {
+          "TCP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "tcp"
+            }
+          },
+          "HTTP": {
+            "target": "smithy.api#Unit",
+            "traits": {
+              "smithy.api#enumValue": "http"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#DirectoryServicesUpdateResult",
+      "value": {
+        "type": "structure",
+        "members": {
+          "host": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesUpdateResultInfraHTTPServiceConfigHost",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "type": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesUpdateResultType",
+            "traits": {
+              "smithy.api#required": {}
+            }
+          },
+          "created_at": {
+            "target": "smithy.api#String"
+          },
+          "http_port": {
+            "target": "smithy.api#Double"
+          },
+          "https_port": {
+            "target": "smithy.api#Double"
+          },
+          "service_id": {
+            "target": "smithy.api#String"
+          },
+          "tls_settings": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesUpdateResultInfraHTTPServiceConfigTlsSettings",
+            "traits": {
+              "smithy.api#documentation": "TLS settings for a connectivity service."
+            }
+          },
+          "updated_at": {
+            "target": "smithy.api#String"
+          },
+          "app_protocol": {
+            "target": "com.cloudflare.connectivity#DirectoryServicesUpdateResultInfraTCPServiceConfigAppProtocol"
+          },
+          "tcp_port": {
+            "target": "smithy.api#Double"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.user_home_settings#UserHomeSettingsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_home_settings#PinnedSceneTabs": {
+      "type": "structure",
+      "members": {
+        "tabs": {
+          "target": "com.posthog.user_home_settings#PinnedSceneTabsTabsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
+          }
+        },
+        "homepage": {
+          "target": "com.posthog.user_home_settings#PinnedSceneTab",
+          "traits": {
+            "smithy.api#documentation": "Tab descriptor for the user's chosen home page — the destination opened when they click the PostHog logo or hit `/`. Set to a tab descriptor to pick a homepage, send `null` or `{}` to clear it and fall back to the project default.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_home_settings#PinnedSceneTab": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for the tab. Generated client-side; safe to omit on create."
+          }
+        },
+        "pathname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL pathname the tab points at — for example `/project/123/dashboard/45` or `/project/123/insights`. Combined with `search` and `hash` to reconstruct the destination."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Query string portion of the URL, including the leading `?`. Empty string when there is no query."
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fragment portion of the URL, including the leading `#`. Empty string when there is no fragment."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default tab title derived from the destination scene. Used when `customTitle` is not set."
+          }
+        },
+        "customTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional user-provided title that overrides `title` in the navigation UI.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iconType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Icon key shown next to the tab in the sidebar — for example `dashboard`, `insight`, `blank`."
+          }
+        },
+        "sceneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scene identifier resolved from the pathname when known — used by the frontend for icon/title hints.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sceneKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scene key (logic key) for the destination, paired with `sceneParams` for deeper routing context.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sceneParams": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Free-form scene parameters captured at pin time, used by the frontend to rehydrate the destination."
+          }
+        },
+        "pinned": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this entry is pinned. Always coerced to true on save — pass true or omit."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_home_settings#PinnedSceneTabsTabsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_home_settings#PinnedSceneTab"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
+      }
+    },
+    "com.posthog.user_home_settings#UserHomeSettingsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_home_settings#UserHomeSettingsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_home_settings#PinnedSceneTabs"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.user_home_settings#Forbidden"
+        },
+        {
+          "target": "com.posthog.user_home_settings#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/user_home_settings/{uuid}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the authenticated user's pinned sidebar tabs and configured homepage for the current team. Pass `@me` as the UUID."
+      }
+    },
+    "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequestTabsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_home_settings#PinnedSceneTab"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
+      }
+    },
+    "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tabs": {
+          "target": "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequestTabsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
+          }
+        },
+        "homepage": {
+          "target": "com.posthog.user_home_settings#PinnedSceneTab",
+          "traits": {
+            "smithy.api#documentation": "Tab descriptor for the user's chosen home page — the destination opened when they click the PostHog logo or hit `/`. Set to a tab descriptor to pick a homepage, send `null` or `{}` to clear it and fall back to the project default.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_home_settings#UserHomeSettingsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_home_settings#PinnedSceneTabs"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.user_home_settings#BadRequest"
+        },
+        {
+          "target": "com.posthog.user_home_settings#Forbidden"
+        },
+        {
+          "target": "com.posthog.user_home_settings#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/user_home_settings/{uuid}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the authenticated user's pinned sidebar tabs and/or homepage for the current team. Pass `@me` as the UUID. Send `tabs` to replace the pinned tab list, `homepage` to set the home destination (any PostHog URL — dashboard, insight, search results, scene). Either field may be omitted to leave it unchanged; sending `homepage: null` or `{}` clears the homepage."
+      }
+    },
+    "com.posthog.user_home_settings#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.user_home_settings#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.user_home_settings#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.user_home_settings#UserHomeSettings": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.user_home_settings#UserHomeSettingsRetrieve"
+        },
+        {
+          "target": "com.posthog.user_home_settings#UserHomeSettingsPartialUpdate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

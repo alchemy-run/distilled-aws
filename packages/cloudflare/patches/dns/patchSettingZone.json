@@ -1,0 +1,39 @@
+{
+  "description": "Align dns#SettingsZoneEdit with distilled cloudflare/dns patchSettingZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsZoneEdit",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsZoneEditRequest",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingZone/input/target",
+      "value": "com.cloudflare.dns#PatchSettingZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsZoneEditResponse",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingZone/output/target",
+      "value": "com.cloudflare.dns#PatchSettingZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#PatchSettingZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#Forbidden"
+        }
+      ]
+    }
+  ]
+}

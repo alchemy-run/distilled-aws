@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#ConnectorsCreate with distilled cloudflare/magic-transit createConnector",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsCreate",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateConnector"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsCreateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateConnectorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateConnector/input/target",
+      "value": "com.cloudflare.magic_transit#CreateConnectorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsCreateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateConnectorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateConnector/output/target",
+      "value": "com.cloudflare.magic_transit#CreateConnectorResponse"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align waiting_rooms#RulesDelete with distilled cloudflare/waiting-rooms deleteRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#RulesDelete",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#RulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteRule/input/target",
+      "value": "com.cloudflare.waiting_rooms#DeleteRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#RulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteRule/output/target",
+      "value": "com.cloudflare.waiting_rooms#DeleteRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.waiting_rooms#DeleteRule/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

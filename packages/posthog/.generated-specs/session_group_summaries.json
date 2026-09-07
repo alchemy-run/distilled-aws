@@ -1,0 +1,644 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.session_group_summaries#SessionGroupSummariesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_group_summaries#PaginatedSessionGroupSummaryMinimalList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.session_group_summaries#PaginatedSessionGroupSummaryMinimalListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummaryMinimal": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the group session summary"
+          }
+        },
+        "session_count": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.session_group_summaries#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.session_group_summaries#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.session_group_summaries#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.session_group_summaries#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.session_group_summaries#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.session_group_summaries#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#PaginatedSessionGroupSummaryMinimalListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummaryMinimal"
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummariesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_group_summaries#PaginatedSessionGroupSummaryMinimalList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_group_summaries#BadRequest"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/session_group_summaries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for retrieving and managing stored group session summaries."
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummary": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the group session summary"
+          }
+        },
+        "session_ids": {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummarySessionIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of session replay IDs included in this group summary"
+          }
+        },
+        "summary": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Group summary in JSON format (EnrichedSessionGroupSummaryPatternsList schema)"
+          }
+        },
+        "extra_summary_context": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Additional context passed to the summary (ExtraSummaryContext schema)"
+          }
+        },
+        "run_metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Summary run metadata (SessionSummaryRunMeta schema)"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.session_group_summaries#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummarySessionIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of session replay IDs included in this group summary"
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummariesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummary"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_group_summaries#BadRequest"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/session_group_summaries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for retrieving and managing stored group session summaries."
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this session group summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummariesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummary"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_group_summaries#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/session_group_summaries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for retrieving and managing stored group session summaries."
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this session group summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummariesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummary"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_group_summaries#BadRequest"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/session_group_summaries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for retrieving and managing stored group session summaries."
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this session group summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummariesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummary"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_group_summaries#BadRequest"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/session_group_summaries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for retrieving and managing stored group session summaries."
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this session group summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummariesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.session_group_summaries#SessionGroupSummariesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.session_group_summaries#Forbidden"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/session_group_summaries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API for retrieving and managing stored group session summaries."
+      }
+    },
+    "com.posthog.session_group_summaries#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.session_group_summaries#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.session_group_summaries#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.session_group_summaries#SessionGroupSummaries": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummariesList"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummariesCreate"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummariesRetrieve"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummariesUpdate"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummariesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.session_group_summaries#SessionGroupSummariesDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

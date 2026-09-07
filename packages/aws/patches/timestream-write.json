@@ -1,0 +1,29 @@
+{
+  "operations": {
+    "describeEndpoints": {
+      "syntheticErrors": [
+        {
+          "name": "TimestreamNotOnboarded",
+          "from": "AccessDeniedException",
+          "message": {
+            "includes": "Only existing Timestream for LiveAnalytics customers"
+          }
+        }
+      ]
+    },
+    "createDatabase": {
+      "syntheticErrors": [
+        {
+          "name": "TimestreamNotOnboarded",
+          "from": "AccessDeniedException",
+          "message": {
+            "includes": "Only existing Timestream for LiveAnalytics customers"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "TimestreamNotOnboarded": ["AuthError"]
+  }
+}

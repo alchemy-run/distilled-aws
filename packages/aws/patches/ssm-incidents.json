@@ -1,0 +1,10 @@
+{
+  "operations": {
+    "createReplicationSet": {
+      "errors": ["UnsupportedOperationException"]
+    }
+  },
+  "errorCategories": {
+    "UnsupportedOperationException": ["BadRequestError"]
+  }
+}

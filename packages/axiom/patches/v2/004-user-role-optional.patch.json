@@ -1,0 +1,10 @@
+{
+  "description": "The User schema lists `role` as required, but updateCurrentUser's response on the test account (no RBAC roles assigned) omits it. Make `role` optional so updateCurrentUser decodes successfully.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/components/schemas/User/required",
+      "value": ["id", "name", "email"]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align email_sending#SubdomainsGet with distilled cloudflare/email-sending getSubdomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsGet",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsGetRequest",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomain/input/target",
+      "value": "com.cloudflare.email_sending#GetSubdomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsGetResponse",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomain/output/target",
+      "value": "com.cloudflare.email_sending#GetSubdomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_sending#GetSubdomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_sending#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SendingSubdomainNotFound"
+        }
+      ]
+    }
+  ]
+}

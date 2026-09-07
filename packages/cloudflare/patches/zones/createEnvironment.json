@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#EnvironmentsCreate with distilled cloudflare/zones createEnvironment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsCreate",
+      "path": "/shapes/com.cloudflare.zones#CreateEnvironment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsCreateRequest",
+      "path": "/shapes/com.cloudflare.zones#CreateEnvironmentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateEnvironment/input/target",
+      "value": "com.cloudflare.zones#CreateEnvironmentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsCreateResponse",
+      "path": "/shapes/com.cloudflare.zones#CreateEnvironmentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateEnvironment/output/target",
+      "value": "com.cloudflare.zones#CreateEnvironmentResponse"
+    }
+  ]
+}

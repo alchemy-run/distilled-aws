@@ -1,0 +1,2429 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.fluidrelay#FluidRelayContainersListByFluidRelayServers": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayContainersListByFluidRelayServersRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayContainerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "List all Fluid Relay containers which are children of a given Fluid Relay server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerListValueList",
+          "traits": {
+            "smithy.api#documentation": "A sequence of FluidRelay containers."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A link to the next page of results, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged response"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fluidrelay#FluidRelayContainer"
+      },
+      "traits": {
+        "smithy.api#documentation": "A sequence of FluidRelay containers."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A FluidRelay Container."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerProperties": {
+      "type": "structure",
+      "members": {
+        "frsTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Fluid tenantId for this container"
+          }
+        },
+        "frsContainerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The frsContainerId for this container"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provision states for FluidRelay RP"
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation time of this resource"
+          }
+        },
+        "lastAccessTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time when user access this resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Fluid Relay Container resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainerPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provision states for FluidRelay RP"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersListByFluidRelayServersRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayContainersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Delete a Fluid Relay container.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        },
+        "fluidRelayContainerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay container resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayContainersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayContainersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Get a Fluid Relay container.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fluidrelay#FluidRelayContainersGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fluidrelay#FluidRelayContainersGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fluidrelay#FluidRelayContainersGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayContainersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        },
+        "fluidRelayContainerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay container resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "List all Fluid Relay servers in a resource group.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fluidrelay#FluidRelayServerListValueList",
+          "traits": {
+            "smithy.api#documentation": "A sequence of FluidRelay servers.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A link to the next page of results, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged response"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fluidrelay#FluidRelayServer"
+      },
+      "traits": {
+        "smithy.api#documentation": "A sequence of FluidRelay servers."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.fluidrelay#FluidRelayServerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayServerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fluidrelay#FluidRelayServerSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.fluidrelay#Identity",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A FluidRelay Server."
+      }
+    },
+    "com.azure.fluidrelay#Identity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of resource identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of resource."
+          }
+        },
+        "type": {
+          "target": "com.azure.fluidrelay#IdentityType",
+          "traits": {
+            "smithy.api#documentation": "The identity type."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.fluidrelay#IdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The list of user identities associated with the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.fluidrelay#IdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.fluidrelay#IdentityUserAssignedIdentitiesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of user identities associated with the resource."
+      }
+    },
+    "com.azure.fluidrelay#IdentityUserAssignedIdentitiesValue": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal id of user assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client id of user assigned identity."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.fluidrelay#IdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned, UserAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The identity type."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServerSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServerSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerProperties": {
+      "type": "structure",
+      "members": {
+        "frsTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Fluid tenantId for this server"
+          }
+        },
+        "fluidRelayEndpoints": {
+          "target": "com.azure.fluidrelay#FluidRelayEndpoints",
+          "traits": {
+            "smithy.api#documentation": "The Fluid Relay Service endpoints for this server."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fluidrelay#FluidRelayServerPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provision states for FluidRelay RP"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.fluidrelay#EncryptionProperties",
+          "traits": {
+            "smithy.api#documentation": "All encryption configuration for a resource."
+          }
+        },
+        "storagesku": {
+          "target": "com.azure.fluidrelay#FluidRelayServerPropertiesStoragesku",
+          "traits": {
+            "smithy.api#documentation": "Sku of the storage associated with the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Fluid Relay Service resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerPropertiesStoragesku": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "standard"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "basic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku of the storage associated with the resource"
+      }
+    },
+    "com.azure.fluidrelay#EncryptionProperties": {
+      "type": "structure",
+      "members": {
+        "customerManagedKeyEncryption": {
+          "target": "com.azure.fluidrelay#CustomerManagedKeyEncryptionProperties",
+          "traits": {
+            "smithy.api#documentation": "All Customer-managed key encryption properties for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All encryption configuration for a resource."
+      }
+    },
+    "com.azure.fluidrelay#CustomerManagedKeyEncryptionProperties": {
+      "type": "structure",
+      "members": {
+        "keyEncryptionKeyIdentity": {
+          "target": "com.azure.fluidrelay#CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity",
+          "traits": {
+            "smithy.api#documentation": "All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."
+          }
+        },
+        "keyEncryptionKeyUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "key encryption key Url, with or without a version. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or https://contosovault.vault.azure.net/keys/contosokek. Key auto rotation is enabled by providing a key uri without version. Otherwise, customer is responsible for rotating the key. The keyEncryptionKeyIdentity(either SystemAssigned or UserAssigned) should have permission to access this key url."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All Customer-managed key encryption properties for the resource."
+      }
+    },
+    "com.azure.fluidrelay#CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity": {
+      "type": "structure",
+      "members": {
+        "identityType": {
+          "target": "com.azure.fluidrelay#CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentityIdentityType",
+          "traits": {
+            "smithy.api#documentation": "Values can be SystemAssigned or UserAssigned"
+          }
+        },
+        "userAssignedIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "user assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId. Mutually exclusive with identityType systemAssignedIdentity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."
+      }
+    },
+    "com.azure.fluidrelay#CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentityIdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Values can be SystemAssigned or UserAssigned"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provision states for FluidRelay RP"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayEndpoints": {
+      "type": "structure",
+      "members": {
+        "ordererEndpoints": {
+          "target": "com.azure.fluidrelay#FluidRelayEndpointsOrdererEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "The Fluid Relay Orderer endpoints."
+          }
+        },
+        "storageEndpoints": {
+          "target": "com.azure.fluidrelay#FluidRelayEndpointsStorageEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "The Fluid Relay storage endpoints."
+          }
+        },
+        "serviceEndpoints": {
+          "target": "com.azure.fluidrelay#FluidRelayEndpointsServiceEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "The Fluid Relay service endpoints."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Fluid Relay endpoints for this server"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayEndpointsServiceEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Fluid Relay service endpoints."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayEndpointsStorageEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Fluid Relay storage endpoints."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayEndpointsOrdererEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Fluid Relay Orderer endpoints."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.FluidRelay/fluidRelayServers",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "List all Fluid Relay servers in a subscription.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersListKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersListKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServerKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/listKeys",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Get primary and secondary key for this server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerKeys": {
+      "type": "structure",
+      "members": {
+        "key1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary key for this server"
+          }
+        },
+        "key2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The secondary key for this server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of available keys for this server."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersListKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersRegenerateKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersRegenerateKeyRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServerKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/regenerateKey",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Regenerate the primary or secondary key for this server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersRegenerateKeyRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        },
+        "keyName": {
+          "target": "com.azure.fluidrelay#FluidRelayServersRegenerateKeyRequestKeyName",
+          "traits": {
+            "smithy.api#documentation": "The key to regenerate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersRegenerateKeyRequestKeyName": {
+      "type": "enum",
+      "members": {
+        "KEY1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "key1"
+          }
+        },
+        "KEY2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "key2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The key to regenerate."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Delete a Fluid Relay server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Update a Fluid Relay server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.fluidrelay#FluidRelayServersUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayServerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fluidrelay#FluidRelayServersUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.fluidrelay#Identity",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServersUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServersUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayServerUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties that can be updated for this resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fluidrelay#FluidRelayServersUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "identity": {
+          "target": "com.azure.fluidrelay#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#IdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.fluidrelay#IdentityInputType",
+          "traits": {
+            "smithy.api#documentation": "The identity type."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.fluidrelay#IdentityInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The list of user identities associated with the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.fluidrelay#IdentityInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.fluidrelay#IdentityInputUserAssignedIdentitiesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of user identities associated with the resource."
+      }
+    },
+    "com.azure.fluidrelay#IdentityInputUserAssignedIdentitiesValue": {
+      "type": "structure",
+      "members": {},
+      "traits": {}
+    },
+    "com.azure.fluidrelay#IdentityInputType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned, UserAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The identity type."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "encryption": {
+          "target": "com.azure.fluidrelay#EncryptionProperties",
+          "traits": {
+            "smithy.api#documentation": "All encryption configuration for a resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties that can be provided when updating FluidRelayServer resource"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Create or Update a Fluid Relay server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayServerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.fluidrelay#Identity",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayServerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.fluidrelay#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.fluidrelay#FluidRelayServerPropertiesInputProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provision states for FluidRelay RP"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.fluidrelay#EncryptionProperties",
+          "traits": {
+            "smithy.api#documentation": "All encryption configuration for a resource."
+          }
+        },
+        "storagesku": {
+          "target": "com.azure.fluidrelay#FluidRelayServerPropertiesInputStoragesku",
+          "traits": {
+            "smithy.api#documentation": "Sku of the storage associated with the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Fluid Relay Service resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerPropertiesInputStoragesku": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "standard"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "basic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku of the storage associated with the resource"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServerPropertiesInputProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provision states for FluidRelay RP"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fluidrelay#FluidRelayServersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#FluidRelayServersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "Get a Fluid Relay server.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.fluidrelay#FluidRelayServersGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fluidrelay#FluidRelayServerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fluidrelay#FluidRelayServersGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.fluidrelay#Identity",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServersGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fluidrelay#FluidRelayServersGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayServersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id (GUID) for this resource."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group containing the resource."
+          }
+        },
+        "fluidRelayServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Fluid Relay server resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fluidrelay#FluidRelayOperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.fluidrelay#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.FluidRelay/operations",
+          "code": 200,
+          "apiVersion": "2022-06-01"
+        },
+        "smithy.api#documentation": "List all operations provided by Microsoft.FluidRelay.",
+        "com.distilled.openapi#apiVersion": "2022-06-01"
+      }
+    },
+    "com.azure.fluidrelay#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fluidrelay#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of FluidRelay operations supported by the Microsoft.FluidRelay provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of GET request to list FluidRelay operations."
+      }
+    },
+    "com.azure.fluidrelay#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fluidrelay#OperationResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of FluidRelay operations supported by the Microsoft.FluidRelay provider."
+      }
+    },
+    "com.azure.fluidrelay#OperationResult": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "display": {
+          "target": "com.azure.fluidrelay#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that represents the operation."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A FluidRelay REST API operation."
+      }
+    },
+    "com.azure.fluidrelay#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.FluidRelay"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type on which the operation is performed, e.g., 'servers'."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type, e.g., read, write, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation, e.g., 'Write confluent'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that represents the operation."
+      }
+    },
+    "com.azure.fluidrelay#Fluidrelay": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.fluidrelay#FluidRelayContainersListByFluidRelayServers"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayContainersDelete"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayContainersGet"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersListByResourceGroup"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersListBySubscription"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersListKeys"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersRegenerateKey"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersDelete"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersUpdate"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersGet"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayOperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Fluidrelay",
+        "smithy.api#documentation": "Azure Fluidrelay API — merged from the fluidrelay resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

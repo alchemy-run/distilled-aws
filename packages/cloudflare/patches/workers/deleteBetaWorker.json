@@ -1,0 +1,29 @@
+{
+  "description": "Align workers#BetaWorkersDelete with distilled cloudflare/workers deleteBetaWorker",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteBetaWorker"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteBetaWorkerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteBetaWorker/input/target",
+      "value": "com.cloudflare.workers#DeleteBetaWorkerRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteBetaWorker/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

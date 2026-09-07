@@ -1,0 +1,114 @@
+{
+  "description": "Docs gap: bulk-delete objects (DELETE /r2/buckets/{bucket_name}/objects with a JSON array of keys as the body) is absent from the API docs. Route/shape transcribed from the distilled SDK.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteObjectsKeyList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteObjectsRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "account_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {},
+              "smithy.api#documentation": "Account ID."
+            }
+          },
+          "bucket_name": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {},
+              "smithy.api#documentation": "Name of the R2 bucket."
+            }
+          },
+          "prefix": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpQuery": "prefix"
+            }
+          },
+          "body": {
+            "target": "com.cloudflare.r2#DeleteObjectsKeyList",
+            "traits": {
+              "smithy.api#httpPayload": {}
+            }
+          },
+          "cf_r2_jurisdiction": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpHeader": "cf-r2-jurisdiction"
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#input": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteObjectsResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "smithy.api#Document",
+            "traits": {
+              "com.cloudflare.protocols#envelopePayload": {}
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteObjects",
+      "value": {
+        "type": "operation",
+        "input": {
+          "target": "com.cloudflare.r2#DeleteObjectsRequest"
+        },
+        "output": {
+          "target": "com.cloudflare.r2#DeleteObjectsResponse"
+        },
+        "traits": {
+          "smithy.api#http": {
+            "method": "DELETE",
+            "uri": "/accounts/{account_id}/r2/buckets/{bucket_name}/objects",
+            "code": 200
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#DeleteObjects/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.r2#NoRoute"
+        }
+      ]
+    }
+  ]
+}

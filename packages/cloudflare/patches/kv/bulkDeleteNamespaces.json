@@ -1,0 +1,45 @@
+{
+  "description": "Align kv#NamespacesBulkDelete with distilled cloudflare/kv bulkDeleteNamespaces",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesBulkDelete",
+      "path": "/shapes/com.cloudflare.kv#BulkDeleteNamespaces"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesBulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.kv#BulkDeleteNamespacesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#BulkDeleteNamespaces/input/target",
+      "value": "com.cloudflare.kv#BulkDeleteNamespacesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesBulkDeleteResponse",
+      "path": "/shapes/com.cloudflare.kv#BulkDeleteNamespacesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#BulkDeleteNamespaces/output/target",
+      "value": "com.cloudflare.kv#BulkDeleteNamespacesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#BulkDeleteNamespaces/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

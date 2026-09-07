@@ -1,0 +1,850 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filename"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#PaginatedLiveDebuggerBreakpointList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.live_debugger_breakpoints#PaginatedLiveDebuggerBreakpointListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "line_number": {
+          "target": "smithy.api#Integer"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.live_debugger_breakpoints#PaginatedLiveDebuggerBreakpointListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoint"
+      },
+      "traits": {}
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#PaginatedLiveDebuggerBreakpointList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#BadRequest"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete breakpoints for live debugging."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "line_number": {
+          "target": "smithy.api#Integer"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoint"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#BadRequest"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete breakpoints for live debugging."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this live debugger breakpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoint"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete breakpoints for live debugging."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this live debugger breakpoint."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "line_number": {
+          "target": "smithy.api#Integer"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoint"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#BadRequest"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete breakpoints for live debugging."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this live debugger breakpoint."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "line_number": {
+          "target": "smithy.api#Integer"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoint"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#BadRequest"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete breakpoints for live debugging."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this live debugger breakpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create, Read, Update and Delete breakpoints for live debugging."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsActiveRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "enabled",
+            "smithy.api#documentation": "Only return enabled breakpoints"
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filename",
+            "smithy.api#documentation": "Filter breakpoints for a specific file"
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repository",
+            "smithy.api#documentation": "Filter breakpoints for a specific repository (e.g., 'PostHog/posthog')"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#ActiveBreakpointsResponse": {
+      "type": "structure",
+      "members": {
+        "breakpoints": {
+          "target": "com.posthog.live_debugger_breakpoints#ActiveBreakpointsResponseBreakpointsList",
+          "traits": {
+            "smithy.api#documentation": "List of active breakpoints"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response schema for active breakpoints endpoint"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#ActiveBreakpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the breakpoint"
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository identifier (e.g., 'PostHog/posthog')",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path where the breakpoint is set"
+          }
+        },
+        "line_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Line number of the breakpoint"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the breakpoint is enabled"
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional condition for the breakpoint",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Schema for a single active breakpoint"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#ActiveBreakpointsResponseBreakpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.live_debugger_breakpoints#ActiveBreakpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of active breakpoints"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsActiveRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsActiveRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#ActiveBreakpointsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#BadRequest"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/active/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get active breakpoints (External API)\n\nExternal API endpoint for client applications to fetch active breakpoints using Project API key. This endpoint allows external client applications (like Python scripts, Node.js apps, etc.) to fetch the list of active breakpoints so they can instrument their code accordingly. \n\nAuthentication: Requires a Project API Key in the Authorization header: `Authorization: Bearer phs_<your-project-api-key>`. You can find your Project API Key in PostHog at: Settings → Project → Project API Key"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "breakpoint_ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "breakpoint_ids",
+            "smithy.api#documentation": "Filter hits for specific breakpoints (repeat parameter for multiple IDs, e.g., ?breakpoint_ids=uuid1&breakpoint_ids=uuid2)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of hits to return (default: 100, max: 1000)"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Pagination offset for retrieving additional results (default: 0)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#BreakpointHitsResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.live_debugger_breakpoints#BreakpointHitsResponseResultsList",
+          "traits": {
+            "smithy.api#documentation": "List of breakpoint hit events"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results returned"
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether there are more results available"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response schema for breakpoint hits endpoint"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#BreakpointHit": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the hit event"
+          }
+        },
+        "lineNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Line number where the breakpoint was hit"
+          }
+        },
+        "functionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the function where breakpoint was hit"
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the breakpoint was hit"
+          }
+        },
+        "variables": {
+          "target": "com.posthog.live_debugger_breakpoints#BreakpointHitVariablesMap",
+          "traits": {
+            "smithy.api#documentation": "Local variables at the time of the hit"
+          }
+        },
+        "stackTrace": {
+          "target": "com.posthog.live_debugger_breakpoints#BreakpointHitStackTraceList",
+          "traits": {
+            "smithy.api#documentation": "Stack trace at the time of the hit"
+          }
+        },
+        "breakpoint_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the breakpoint that was hit"
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filename where the breakpoint was hit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Schema for a single breakpoint hit event"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#BreakpointHitVariablesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Local variables at the time of the hit"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#BreakpointHitStackTraceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Stack trace at the time of the hit"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#BreakpointHitsResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.live_debugger_breakpoints#BreakpointHit"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of breakpoint hit events"
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsBreakpointHitsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.live_debugger_breakpoints#BreakpointHitsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#BadRequest"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#Forbidden"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/live_debugger_breakpoints/breakpoint_hits/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get breakpoint hits\n\nRetrieve breakpoint hit events from ClickHouse with optional filtering and pagination. Returns hit events containing stack traces, local variables, and execution context from your application's runtime. \n\nSecurity: Breakpoint IDs are filtered to only include those belonging to the current team."
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpoints": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsList"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsCreate"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsRetrieve"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsUpdate"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsDestroy"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsActiveRetrieve"
+        },
+        {
+          "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsBreakpointHitsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

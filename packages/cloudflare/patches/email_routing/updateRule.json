@@ -1,0 +1,39 @@
+{
+  "description": "Align email_routing#RulesUpdate with distilled cloudflare/email-routing updateRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesUpdate",
+      "path": "/shapes/com.cloudflare.email_routing#UpdateRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesUpdateRequest",
+      "path": "/shapes/com.cloudflare.email_routing#UpdateRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#UpdateRule/input/target",
+      "value": "com.cloudflare.email_routing#UpdateRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesUpdateResponse",
+      "path": "/shapes/com.cloudflare.email_routing#UpdateRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#UpdateRule/output/target",
+      "value": "com.cloudflare.email_routing#UpdateRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#UpdateRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_routing#WorkerScriptNotFound"
+        }
+      ]
+    }
+  ]
+}

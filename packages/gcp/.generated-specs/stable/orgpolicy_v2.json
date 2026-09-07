@@ -1,0 +1,2091 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "orgpolicy",
+    "version": "v2",
+    "title": "Organization Policy API",
+    "baseUrl": "https://orgpolicy.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintBooleanConstraint": {
+      "type": "structure",
+      "members": {
+        "customConstraintDefinition": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition",
+          "traits": {
+            "smithy.api#documentation": "Custom constraint definition. Defines this as a managed constraint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A constraint type is enforced or not enforced, which is configured in the `PolicyRule`. If `customConstraintDefinition` is defined, this constraint is a managed constraint."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An opaque tag indicating the current state of the policy, used for concurrency control. This entity tag (ETag) is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding."
+          }
+        },
+        "spec": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpec",
+          "traits": {
+            "smithy.api#documentation": "Basic information about the organization policy."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number."
+          }
+        },
+        "dryRunSpec": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpec",
+          "traits": {
+            "smithy.api#documentation": "Dry-run policy. Audit-only policy, can be used to monitor how the policy would have impacted the existing and future resources if it's enforced."
+          }
+        },
+        "alternate": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2AlternatePolicySpec",
+          "traits": {
+            "smithy.api#documentation": "Deprecated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines an organization policy that is used to specify constraints for configurations of Google Cloud resources."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListCustomConstraintsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start supplying a valid token."
+          }
+        },
+        "customConstraints": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintList",
+          "traits": {
+            "smithy.api#documentation": "All custom and managed constraints that exist on the organization resource. It will be empty if no custom constraints are set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response returned from the ListCustomConstraints method. It will be empty if no custom or managed constraints are set on the organization resource."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues": {
+      "type": "structure",
+      "members": {
+        "allowedValues": {
+          "target": "com.gcp.orgpolicy_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of values allowed at this resource."
+          }
+        },
+        "deniedValues": {
+          "target": "com.gcp.orgpolicy_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of values denied at this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that holds specific allowed and denied values. This message can define specific values and subtrees of the Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a \":\". Values prefixed with \"is:\" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - `projects/` (for example, `projects/tokyo-rain-123`) - `folders/` (for example, `folders/1234`) - `organizations/` (for example, `organizations/1234`) The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used."
+      }
+    },
+    "com.gcp.orgpolicy_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintListConstraint": {
+      "type": "structure",
+      "members": {
+        "supportsUnder": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether subtrees of the Resource Manager resource hierarchy can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `\"under:folders/123\"` would match any resource under the 'folders/123' folder."
+          }
+        },
+        "supportsIn": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether values grouped into categories can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `\"in:Python\"` would match any value in the 'Python' group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A constraint type that allows or disallows a list of string values, which are configured in the `PolicyRule`."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListPoliciesResponse": {
+      "type": "structure",
+      "members": {
+        "policies": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicyList",
+          "traits": {
+            "smithy.api#documentation": "All policies that exist on the resource. It will be empty if no policies are set."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start supplying a valid token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response returned from the ListPolicies method. It will be empty if no policies are set on the resource."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint": {
+      "type": "structure",
+      "members": {
+        "resourceTypes": {
+          "target": "com.gcp.orgpolicy_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`."
+          }
+        },
+        "methodTypes": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "All the operations being applied for this constraint."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches(\"(production|test)_(.+_)?[\\d]+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters."
+          }
+        },
+        "actionType": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Allow or deny type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/custom.` is not counted."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One line display name for the UI. The max length of the display_name is 200 characters."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed information about this custom policy constraint. The max length of the description is 2000 characters."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` methods were called."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A custom constraint defined by customers which can *only* be applied to the given resource types and organization. By creating a custom constraint, customers can apply policies of this custom constraint. *Creating a custom constraint itself does NOT apply any policy enforcement*."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "METHOD_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METHOD_TYPE_UNSPECIFIED"
+          }
+        },
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE"
+          }
+        },
+        "UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "REMOVE_GRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVE_GRANT"
+          }
+        },
+        "GOVERN_TAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERN_TAGS"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnum"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraintActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW"
+          }
+        },
+        "DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENY"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Constraint": {
+      "type": "structure",
+      "members": {
+        "constraintDefault": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintConstraintDefaultEnum",
+          "traits": {
+            "smithy.api#documentation": "The evaluation behavior of this constraint in the absence of a policy."
+          }
+        },
+        "supportsSimulation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Shows if simulation is supported for this constraint or not."
+          }
+        },
+        "equivalentConstraint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the equivalent constraint name, if it exists. Managed constraints can have an equivalent legacy managed constraint, and legacy managed constraints can have an equivalent managed constraint. For example, \"constraints/iam.disableServiceAccountKeyUpload\" is equivalent to \"constraints/iam.managed.disableServiceAccountKeyUpload\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number}/constraints/{constraint_name}` * `folders/{folder_id}/constraints/{constraint_name}` * `organizations/{organization_id}/constraints/{constraint_name}` For example, \"/projects/123/constraints/compute.disableSerialPortAccess\"."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human readable name. Mutable."
+          }
+        },
+        "booleanConstraint": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintBooleanConstraint",
+          "traits": {
+            "smithy.api#documentation": "Defines this constraint as being a boolean constraint."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed description of what this constraint controls as well as how and where it is enforced. Mutable."
+          }
+        },
+        "supportsDryRun": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Shows if dry run is supported for this constraint or not."
+          }
+        },
+        "listConstraint": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintListConstraint",
+          "traits": {
+            "smithy.api#documentation": "Defines this constraint as being a list constraint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A constraint describes a way to restrict a resource's configuration. For example, you could enforce a constraint that controls which Google Cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. Constraints can be configured by the organization policy administrator to fit the needs of the organization by setting a policy that includes constraints at different locations in the organization's resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules, see `Policy`. Constraints have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a policy being defined or inherited for the resource in question."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintConstraintDefaultEnum": {
+      "type": "enum",
+      "members": {
+        "CONSTRAINT_DEFAULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSTRAINT_DEFAULT_UNSPECIFIED"
+          }
+        },
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW"
+          }
+        },
+        "DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENY"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata",
+          "traits": {
+            "smithy.api#documentation": "Defines subproperties primarily used by the UI to display user-friendly information."
+          }
+        },
+        "validValuesExpr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provides a CEL expression to specify the acceptable parameter values during assignment. For example, parameterName in (\"parameterValue1\", \"parameterValue2\")."
+          }
+        },
+        "item": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterItemEnum",
+          "traits": {
+            "smithy.api#documentation": "Determines the parameter's value structure. For example, `LIST` can be specified by defining `type: LIST`, and `item: STRING`."
+          }
+        },
+        "type": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of the parameter."
+          }
+        },
+        "defaultValue": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Sets the value of the parameter in an assignment if no value is given."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a parameter structure."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterItemEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "LIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIST"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRING"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOLEAN"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "LIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIST"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRING"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOLEAN"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleTypeExpr": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed description of what this `parameter` is and its use. Mutable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines Metadata structure."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListConstraintsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used."
+          }
+        },
+        "constraints": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintList",
+          "traits": {
+            "smithy.api#documentation": "The collection of constraints that are available on the targeted resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response returned from the ListConstraints method."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Constraint"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpecPolicyRule": {
+      "type": "structure",
+      "members": {
+        "allowAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Setting this to true means that all values are allowed. This field can be set only in policies for list constraints."
+          }
+        },
+        "parameters": {
+          "target": "com.gcp.orgpolicy_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: ``` { \"allowedLocations\" : [\"us-east1\", \"us-west1\"], \"allowAll\" : true } ```"
+          }
+        },
+        "enforce": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set in policies for boolean constraints, custom constraints and managed constraints."
+          }
+        },
+        "condition": {
+          "target": "com.gcp.orgpolicy_v2#GoogleTypeExpr",
+          "traits": {
+            "smithy.api#documentation": "A condition that determines whether this rule is used to evaluate the policy. When set, the google.type.Expr.expression field must contain 1 to 10 subexpressions, joined by the `||` or `&&` operators. Each subexpression must use the `resource.matchTag()`, `resource.matchTagId()`, `resource.hasTagKey()`, or `resource.hasTagKeyId()` Common Expression Language (CEL) function. The `resource.matchTag()` function takes the following arguments: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` * `value_name`: the short name of the tag value For example: `resource.matchTag('123456789012/environment, 'prod')` The `resource.matchTagId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` * `value_id`: the permanent ID of the tag value; for example, `tagValues/567890123456` For example: `resource.matchTagId('tagKeys/123456789012', 'tagValues/567890123456')` The `resource.hasTagKey()` function takes the following argument: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` For example: `resource.hasTagKey('123456789012/environment')` The `resource.hasTagKeyId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` For example: `resource.hasTagKeyId('tagKeys/123456789012')`"
+          }
+        },
+        "denyAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Setting this to true means that all values are denied. This field can be set only in policies for list constraints."
+          }
+        },
+        "values": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues",
+          "traits": {
+            "smithy.api#documentation": "List of values to be used for this policy rule. This field can be set only in policies for list constraints."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A rule used to express this policy."
+      }
+    },
+    "com.gcp.orgpolicy_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpec": {
+      "type": "structure",
+      "members": {
+        "inheritFromParent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines the inheritance behavior for this policy. If `inherit_from_parent` is true, policy rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the new root for evaluation. This field can be set only for policies that configure list constraints."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An opaque tag indicating the current version of the policySpec, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy is returned from either a `GetPolicy` or a `ListPolicies` request, this entity tag (ETag) indicates the version of the current policySpec to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the ETag will be unset."
+          }
+        },
+        "rules": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpecPolicyRuleList",
+          "traits": {
+            "smithy.api#documentation": "In policies for boolean constraints, the following requirements apply: - There must be exactly one policy rule where a condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time stamp this was previously updated. This represents the last time a call to `CreatePolicy` or `UpdatePolicy` was made for that policy."
+          }
+        },
+        "reset": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific constraint at this resource. This field can be set in policies for either list or boolean constraints. If set, `rules` must be empty and `inherit_from_parent` must be set to false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a Google Cloud policy specification that is used to specify constraints for configurations of Google Cloud resources."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpecPolicyRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpecPolicyRule"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2AlternatePolicySpec": {
+      "type": "structure",
+      "members": {
+        "spec": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2PolicySpec",
+          "traits": {
+            "smithy.api#documentation": "Specify constraint for configurations of Google Cloud resources."
+          }
+        },
+        "launch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reference to the launch that will be used while audit logging and to control the launch. Set only in the alternate policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition": {
+      "type": "structure",
+      "members": {
+        "resourceTypes": {
+          "target": "com.gcp.orgpolicy_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The resource instance type that this policy applies to, in the format `/`. Example: * `compute.googleapis.com/Instance`."
+          }
+        },
+        "methodTypes": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "All the operations being applied for this constraint."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Org policy condition/expression. For example: `resource.instanceName.matches(\"(production|test)_(.+_)?[\\d]+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters."
+          }
+        },
+        "actionType": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionActionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Allow or deny type."
+          }
+        },
+        "parameters": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMap",
+          "traits": {
+            "smithy.api#documentation": "Stores the structure of `Parameters` used by the constraint condition. The key of `map` represents the name of the parameter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom constraint definition. Defines this as a managed constraint."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "METHOD_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METHOD_TYPE_UNSPECIFIED"
+          }
+        },
+        "CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATE"
+          }
+        },
+        "UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATE"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "REMOVE_GRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMOVE_GRANT"
+          }
+        },
+        "GOVERN_TAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERN_TAGS"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnum"
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionActionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_TYPE_UNSPECIFIED"
+          }
+        },
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW"
+          }
+        },
+        "DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENY"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter"
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListProjectsConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.orgpolicy_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListProjectsConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListProjectsConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListConstraintsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/constraints"
+        },
+        "smithy.api#documentation": "Lists constraints that could be applied on the specified resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteProjectsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current entity tag (ETag) of the organization policy. If an ETag is provided and doesn't match the current ETag of the policy, deletion of the policy will be blocked and an `ABORTED` error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the policy to delete. See the policy entry for naming rules.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.orgpolicy_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteProjectsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#DeleteProjectsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or organization policy does not exist."
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchProjectsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask used to specify the fields to be overwritten in the policy. The fields specified in the update_mask are relative to the policy, not the full request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchProjectsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#PatchProjectsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or the policy doesn't exist. Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the ETag supplied in the request doesn't match the persisted ETag of the policy. Note: the supplied policy will perform a full overwrite of all fields."
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListProjectsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListProjectsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListProjectsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListPoliciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policies"
+        },
+        "smithy.api#documentation": "Retrieves all of the policies that exist on a particular resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetProjectsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the policy. See Policy for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetProjectsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetProjectsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a policy on a resource. If no policy is set on the resource, `NOT_FOUND` is returned. The entity tag (ETag) can be used with `UpdatePolicy()` to update a policy during read-modify-write."
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateProjectsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateProjectsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#CreateProjectsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/policies"
+        },
+        "smithy.api#documentation": "Creates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the policy already exists on the given Google Cloud resource."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetEffectivePolicyProjectsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The effective policy to compute. See Policy for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetEffectivePolicyProjectsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetEffectivePolicyProjectsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}:getEffectivePolicy"
+        },
+        "smithy.api#documentation": "Gets the effective policy on a resource. This is the result of merging policies in the resource hierarchy and evaluating conditions. The returned policy will not have an ETag or `condition` set because it is an evaluated policy across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded."
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteFoldersPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current entity tag (ETag) of the organization policy. If an ETag is provided and doesn't match the current ETag of the policy, deletion of the policy will be blocked and an `ABORTED` error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the policy to delete. See the policy entry for naming rules.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteFoldersPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#DeleteFoldersPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or organization policy does not exist."
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListFoldersPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListFoldersPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListFoldersPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListPoliciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policies"
+        },
+        "smithy.api#documentation": "Retrieves all of the policies that exist on a particular resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetFoldersPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the policy. See Policy for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetFoldersPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetFoldersPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a policy on a resource. If no policy is set on the resource, `NOT_FOUND` is returned. The entity tag (ETag) can be used with `UpdatePolicy()` to update a policy during read-modify-write."
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchFoldersPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask used to specify the fields to be overwritten in the policy. The fields specified in the update_mask are relative to the policy, not the full request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchFoldersPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#PatchFoldersPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or the policy doesn't exist. Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the ETag supplied in the request doesn't match the persisted ETag of the policy. Note: the supplied policy will perform a full overwrite of all fields."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetEffectivePolicyFoldersPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The effective policy to compute. See Policy for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetEffectivePolicyFoldersPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetEffectivePolicyFoldersPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}:getEffectivePolicy"
+        },
+        "smithy.api#documentation": "Gets the effective policy on a resource. This is the result of merging policies in the resource hierarchy and evaluating conditions. The returned policy will not have an ETag or `condition` set because it is an evaluated policy across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded."
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateFoldersPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateFoldersPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#CreateFoldersPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/policies"
+        },
+        "smithy.api#documentation": "Creates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the policy already exists on the given Google Cloud resource."
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListFoldersConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListFoldersConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListFoldersConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListConstraintsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/constraints"
+        },
+        "smithy.api#documentation": "Lists constraints that could be applied on the specified resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateOrganizationsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateOrganizationsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#CreateOrganizationsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/policies"
+        },
+        "smithy.api#documentation": "Creates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the policy already exists on the given Google Cloud resource."
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetEffectivePolicyOrganizationsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The effective policy to compute. See Policy for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetEffectivePolicyOrganizationsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetEffectivePolicyOrganizationsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}:getEffectivePolicy"
+        },
+        "smithy.api#documentation": "Gets the effective policy on a resource. This is the result of merging policies in the resource hierarchy and evaluating conditions. The returned policy will not have an ETag or `condition` set because it is an evaluated policy across multiple resources. Subtrees of Resource Manager resource hierarchy with 'under:' prefix will not be expanded."
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchOrganizationsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask used to specify the fields to be overwritten in the policy. The fields specified in the update_mask are relative to the policy, not the full request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchOrganizationsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#PatchOrganizationsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or the policy doesn't exist. Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the ETag supplied in the request doesn't match the persisted ETag of the policy. Note: the supplied policy will perform a full overwrite of all fields."
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListOrganizationsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListOrganizationsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListOrganizationsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListPoliciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/policies"
+        },
+        "smithy.api#documentation": "Retrieves all of the policies that exist on a particular resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetOrganizationsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the policy. See Policy for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetOrganizationsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetOrganizationsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a policy on a resource. If no policy is set on the resource, `NOT_FOUND` is returned. The entity tag (ETag) can be used with `UpdatePolicy()` to update a policy during read-modify-write."
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteOrganizationsPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current entity tag (ETag) of the organization policy. If an ETag is provided and doesn't match the current ETag of the policy, deletion of the policy will be blocked and an `ABORTED` error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the policy to delete. See the policy entry for naming rules.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteOrganizationsPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#DeleteOrganizationsPoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a policy. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint or organization policy does not exist."
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListOrganizationsConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListOrganizationsConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListOrganizationsConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListConstraintsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/constraints"
+        },
+        "smithy.api#documentation": "Lists constraints that could be applied on the specified resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetOrganizationsCustomConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the custom or managed constraint. See the custom constraint entry for naming requirements.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#GetOrganizationsCustomConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#GetOrganizationsCustomConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets a custom or managed constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the custom or managed constraint does not exist."
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListOrganizationsCustomConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target Google Cloud resource that parents the set of custom constraints that will be returned from this call. Must be in one of the following forms: * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#ListOrganizationsCustomConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#ListOrganizationsCustomConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2ListCustomConstraintsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/customConstraints"
+        },
+        "smithy.api#documentation": "Retrieves all of the custom constraints that exist on a particular organization resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchOrganizationsCustomConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/custom.` is not counted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#PatchOrganizationsCustomConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#PatchOrganizationsCustomConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Note: the supplied policy will perform a full overwrite of all fields."
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteOrganizationsCustomConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the custom constraint to delete. See the custom constraint entry for naming rules.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#DeleteOrganizationsCustomConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#DeleteOrganizationsCustomConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist."
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateOrganizationsCustomConstraintsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Must be in the following form: * `organizations/{organization_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.orgpolicy_v2#CreateOrganizationsCustomConstraints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.orgpolicy_v2#CreateOrganizationsCustomConstraintsRequest"
+      },
+      "output": {
+        "target": "com.gcp.orgpolicy_v2#GoogleCloudOrgpolicyV2CustomConstraint"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.orgpolicy_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.orgpolicy_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/customConstraints"
+        },
+        "smithy.api#documentation": "Creates a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the organization does not exist. Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the constraint already exists on the given organization."
+      }
+    }
+  }
+}

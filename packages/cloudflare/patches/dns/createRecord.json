@@ -1,0 +1,42 @@
+{
+  "description": "Align dns#RecordsCreate with distilled cloudflare/dns createRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsCreate",
+      "path": "/shapes/com.cloudflare.dns#CreateRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsCreateRequest",
+      "path": "/shapes/com.cloudflare.dns#CreateRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateRecord/input/target",
+      "value": "com.cloudflare.dns#CreateRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsCreateResponse",
+      "path": "/shapes/com.cloudflare.dns#CreateRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateRecord/output/target",
+      "value": "com.cloudflare.dns#CreateRecordResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#CreateRecord/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#DnsRecordAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.dns#Forbidden"
+        }
+      ]
+    }
+  ]
+}

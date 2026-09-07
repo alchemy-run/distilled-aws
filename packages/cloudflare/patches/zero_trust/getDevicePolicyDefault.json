@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesPoliciesDefaultGet with distilled cloudflare/zero-trust getDevicePolicyDefault",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesDefaultGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefault"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesDefaultGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefault/input/target",
+      "value": "com.cloudflare.zero_trust#GetDevicePolicyDefaultRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPoliciesDefaultGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefaultResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDevicePolicyDefault/output/target",
+      "value": "com.cloudflare.zero_trust#GetDevicePolicyDefaultResponse"
+    }
+  ]
+}

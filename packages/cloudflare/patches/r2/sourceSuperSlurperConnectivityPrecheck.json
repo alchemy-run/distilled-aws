@@ -1,0 +1,30 @@
+{
+  "description": "Align r2#SuperSlurperConnectivityPrecheckSource with distilled cloudflare/r2 sourceSuperSlurperConnectivityPrecheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperConnectivityPrecheckSource",
+      "path": "/shapes/com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperConnectivityPrecheckSourceRequest",
+      "path": "/shapes/com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheck/input/target",
+      "value": "com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheckRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperConnectivityPrecheckSourceResponse",
+      "path": "/shapes/com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheckResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheck/output/target",
+      "value": "com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheckResponse"
+    }
+  ]
+}

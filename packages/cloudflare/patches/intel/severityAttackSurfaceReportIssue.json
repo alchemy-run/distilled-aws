@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#AttackSurfaceReportIssuesSeverity with distilled cloudflare/intel severityAttackSurfaceReportIssue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesSeverity",
+      "path": "/shapes/com.cloudflare.intel#SeverityAttackSurfaceReportIssue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesSeverityRequest",
+      "path": "/shapes/com.cloudflare.intel#SeverityAttackSurfaceReportIssueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#SeverityAttackSurfaceReportIssue/input/target",
+      "value": "com.cloudflare.intel#SeverityAttackSurfaceReportIssueRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#AttackSurfaceReportIssuesSeverityResponse",
+      "path": "/shapes/com.cloudflare.intel#SeverityAttackSurfaceReportIssueResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#SeverityAttackSurfaceReportIssue/output/target",
+      "value": "com.cloudflare.intel#SeverityAttackSurfaceReportIssueResponse"
+    }
+  ]
+}

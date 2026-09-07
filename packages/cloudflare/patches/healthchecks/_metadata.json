@@ -1,0 +1,26 @@
+{
+  "description": "Key dictionary / op aliases for healthchecks (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "allowInsecure": "allow_insecure",
+        "checkRegions": "check_regions",
+        "consecutiveFails": "consecutive_fails",
+        "consecutiveSuccesses": "consecutive_successes",
+        "createdOn": "created_on",
+        "expectedBody": "expected_body",
+        "expectedCodes": "expected_codes",
+        "failureReason": "failure_reason",
+        "followRedirects": "follow_redirects",
+        "httpConfig": "http_config",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "tcpConfig": "tcp_config",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

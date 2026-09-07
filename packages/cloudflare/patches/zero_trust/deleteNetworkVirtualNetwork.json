@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#NetworksVirtualNetworksDelete with distilled cloudflare/zero-trust deleteNetworkVirtualNetwork",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkVirtualNetwork"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkVirtualNetworkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkVirtualNetwork/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkVirtualNetworkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkVirtualNetworkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkVirtualNetwork/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkVirtualNetworkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkVirtualNetwork/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#VirtualNetworkNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

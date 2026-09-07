@@ -1,0 +1,17 @@
+{
+  "description": "Align content_scanning#Update with distilled cloudflare/content-scanning createContentScanning (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.content_scanning#Update/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    }
+  ]
+}

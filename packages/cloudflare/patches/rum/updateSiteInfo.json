@@ -1,0 +1,42 @@
+{
+  "description": "Align rum#SiteInfoUpdate with distilled cloudflare/rum updateSiteInfo",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#SiteInfoUpdate",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfo"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#SiteInfoUpdateRequest",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfo/input/target",
+      "value": "com.cloudflare.rum#UpdateSiteInfoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#SiteInfoUpdateResponse",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfo/output/target",
+      "value": "com.cloudflare.rum#UpdateSiteInfoResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfo/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rum#SiteNotFound"
+        },
+        {
+          "target": "com.cloudflare.rum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

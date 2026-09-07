@@ -1,0 +1,3573 @@
+# Summary
+
+## Get AS112 DNS queries by DNSSEC summary
+
+**get** `/radar/as112/summary/dnssec`
+
+Retrieves the distribution of DNS queries to AS112 by DNSSEC (DNS Security Extensions) support.
+
+### Query Parameters
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+- `protocol: optional array of "UDP" or "TCP" or "HTTPS" or "TLS"`
+
+  Filters results by DNS transport protocol.
+
+  - `"UDP"`
+
+  - `"TCP"`
+
+  - `"HTTPS"`
+
+  - `"TLS"`
+
+- `queryType: optional array of "A" or "AAAA" or "A6" or 85 more`
+
+  Filters results by DNS query type.
+
+  - `"A"`
+
+  - `"AAAA"`
+
+  - `"A6"`
+
+  - `"AFSDB"`
+
+  - `"ANY"`
+
+  - `"APL"`
+
+  - `"ATMA"`
+
+  - `"AXFR"`
+
+  - `"CAA"`
+
+  - `"CDNSKEY"`
+
+  - `"CDS"`
+
+  - `"CERT"`
+
+  - `"CNAME"`
+
+  - `"CSYNC"`
+
+  - `"DHCID"`
+
+  - `"DLV"`
+
+  - `"DNAME"`
+
+  - `"DNSKEY"`
+
+  - `"DOA"`
+
+  - `"DS"`
+
+  - `"EID"`
+
+  - `"EUI48"`
+
+  - `"EUI64"`
+
+  - `"GPOS"`
+
+  - `"GID"`
+
+  - `"HINFO"`
+
+  - `"HIP"`
+
+  - `"HTTPS"`
+
+  - `"IPSECKEY"`
+
+  - `"ISDN"`
+
+  - `"IXFR"`
+
+  - `"KEY"`
+
+  - `"KX"`
+
+  - `"L32"`
+
+  - `"L64"`
+
+  - `"LOC"`
+
+  - `"LP"`
+
+  - `"MAILA"`
+
+  - `"MAILB"`
+
+  - `"MB"`
+
+  - `"MD"`
+
+  - `"MF"`
+
+  - `"MG"`
+
+  - `"MINFO"`
+
+  - `"MR"`
+
+  - `"MX"`
+
+  - `"NAPTR"`
+
+  - `"NB"`
+
+  - `"NBSTAT"`
+
+  - `"NID"`
+
+  - `"NIMLOC"`
+
+  - `"NINFO"`
+
+  - `"NS"`
+
+  - `"NSAP"`
+
+  - `"NSEC"`
+
+  - `"NSEC3"`
+
+  - `"NSEC3PARAM"`
+
+  - `"NULL"`
+
+  - `"NXT"`
+
+  - `"OPENPGPKEY"`
+
+  - `"OPT"`
+
+  - `"PTR"`
+
+  - `"PX"`
+
+  - `"RKEY"`
+
+  - `"RP"`
+
+  - `"RRSIG"`
+
+  - `"RT"`
+
+  - `"SIG"`
+
+  - `"SINK"`
+
+  - `"SMIMEA"`
+
+  - `"SOA"`
+
+  - `"SPF"`
+
+  - `"SRV"`
+
+  - `"SSHFP"`
+
+  - `"SVCB"`
+
+  - `"TA"`
+
+  - `"TALINK"`
+
+  - `"TKEY"`
+
+  - `"TLSA"`
+
+  - `"TSIG"`
+
+  - `"TXT"`
+
+  - `"UINFO"`
+
+  - `"UID"`
+
+  - `"UNSPEC"`
+
+  - `"URI"`
+
+  - `"WKS"`
+
+  - `"X25"`
+
+  - `"ZONEMD"`
+
+- `responseCode: optional array of "NOERROR" or "FORMERR" or "SERVFAIL" or 16 more`
+
+  Filters results by DNS response code.
+
+  - `"NOERROR"`
+
+  - `"FORMERR"`
+
+  - `"SERVFAIL"`
+
+  - `"NXDOMAIN"`
+
+  - `"NOTIMP"`
+
+  - `"REFUSED"`
+
+  - `"YXDOMAIN"`
+
+  - `"YXRRSET"`
+
+  - `"NXRRSET"`
+
+  - `"NOTAUTH"`
+
+  - `"NOTZONE"`
+
+  - `"BADSIG"`
+
+  - `"BADKEY"`
+
+  - `"BADTIME"`
+
+  - `"BADMODE"`
+
+  - `"BADNAME"`
+
+  - `"BADALG"`
+
+  - `"BADTRUNC"`
+
+  - `"BADCOOKIE"`
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { NOT_SUPPORTED, SUPPORTED }`
+
+    - `NOT_SUPPORTED: string`
+
+      A numeric string.
+
+    - `SUPPORTED: string`
+
+      A numeric string.
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/as112/summary/dnssec \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "NOT_SUPPORTED": "10",
+      "SUPPORTED": "10"
+    }
+  },
+  "success": true
+}
+```
+
+## Get AS112 DNS queries by EDNS summary
+
+**get** `/radar/as112/summary/edns`
+
+Retrieves the distribution of DNS queries to AS112 by EDNS (Extension Mechanisms for DNS) support.
+
+### Query Parameters
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+- `protocol: optional array of "UDP" or "TCP" or "HTTPS" or "TLS"`
+
+  Filters results by DNS transport protocol.
+
+  - `"UDP"`
+
+  - `"TCP"`
+
+  - `"HTTPS"`
+
+  - `"TLS"`
+
+- `queryType: optional array of "A" or "AAAA" or "A6" or 85 more`
+
+  Filters results by DNS query type.
+
+  - `"A"`
+
+  - `"AAAA"`
+
+  - `"A6"`
+
+  - `"AFSDB"`
+
+  - `"ANY"`
+
+  - `"APL"`
+
+  - `"ATMA"`
+
+  - `"AXFR"`
+
+  - `"CAA"`
+
+  - `"CDNSKEY"`
+
+  - `"CDS"`
+
+  - `"CERT"`
+
+  - `"CNAME"`
+
+  - `"CSYNC"`
+
+  - `"DHCID"`
+
+  - `"DLV"`
+
+  - `"DNAME"`
+
+  - `"DNSKEY"`
+
+  - `"DOA"`
+
+  - `"DS"`
+
+  - `"EID"`
+
+  - `"EUI48"`
+
+  - `"EUI64"`
+
+  - `"GPOS"`
+
+  - `"GID"`
+
+  - `"HINFO"`
+
+  - `"HIP"`
+
+  - `"HTTPS"`
+
+  - `"IPSECKEY"`
+
+  - `"ISDN"`
+
+  - `"IXFR"`
+
+  - `"KEY"`
+
+  - `"KX"`
+
+  - `"L32"`
+
+  - `"L64"`
+
+  - `"LOC"`
+
+  - `"LP"`
+
+  - `"MAILA"`
+
+  - `"MAILB"`
+
+  - `"MB"`
+
+  - `"MD"`
+
+  - `"MF"`
+
+  - `"MG"`
+
+  - `"MINFO"`
+
+  - `"MR"`
+
+  - `"MX"`
+
+  - `"NAPTR"`
+
+  - `"NB"`
+
+  - `"NBSTAT"`
+
+  - `"NID"`
+
+  - `"NIMLOC"`
+
+  - `"NINFO"`
+
+  - `"NS"`
+
+  - `"NSAP"`
+
+  - `"NSEC"`
+
+  - `"NSEC3"`
+
+  - `"NSEC3PARAM"`
+
+  - `"NULL"`
+
+  - `"NXT"`
+
+  - `"OPENPGPKEY"`
+
+  - `"OPT"`
+
+  - `"PTR"`
+
+  - `"PX"`
+
+  - `"RKEY"`
+
+  - `"RP"`
+
+  - `"RRSIG"`
+
+  - `"RT"`
+
+  - `"SIG"`
+
+  - `"SINK"`
+
+  - `"SMIMEA"`
+
+  - `"SOA"`
+
+  - `"SPF"`
+
+  - `"SRV"`
+
+  - `"SSHFP"`
+
+  - `"SVCB"`
+
+  - `"TA"`
+
+  - `"TALINK"`
+
+  - `"TKEY"`
+
+  - `"TLSA"`
+
+  - `"TSIG"`
+
+  - `"TXT"`
+
+  - `"UINFO"`
+
+  - `"UID"`
+
+  - `"UNSPEC"`
+
+  - `"URI"`
+
+  - `"WKS"`
+
+  - `"X25"`
+
+  - `"ZONEMD"`
+
+- `responseCode: optional array of "NOERROR" or "FORMERR" or "SERVFAIL" or 16 more`
+
+  Filters results by DNS response code.
+
+  - `"NOERROR"`
+
+  - `"FORMERR"`
+
+  - `"SERVFAIL"`
+
+  - `"NXDOMAIN"`
+
+  - `"NOTIMP"`
+
+  - `"REFUSED"`
+
+  - `"YXDOMAIN"`
+
+  - `"YXRRSET"`
+
+  - `"NXRRSET"`
+
+  - `"NOTAUTH"`
+
+  - `"NOTZONE"`
+
+  - `"BADSIG"`
+
+  - `"BADKEY"`
+
+  - `"BADTIME"`
+
+  - `"BADMODE"`
+
+  - `"BADNAME"`
+
+  - `"BADALG"`
+
+  - `"BADTRUNC"`
+
+  - `"BADCOOKIE"`
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { NOT_SUPPORTED, SUPPORTED }`
+
+    - `NOT_SUPPORTED: string`
+
+      A numeric string.
+
+    - `SUPPORTED: string`
+
+      A numeric string.
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/as112/summary/edns \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "NOT_SUPPORTED": "10",
+      "SUPPORTED": "10"
+    }
+  },
+  "success": true
+}
+```
+
+## Get AS112 DNS queries by IP version summary
+
+**get** `/radar/as112/summary/ip_version`
+
+Retrieves the distribution of DNS queries to AS112 by IP version.
+
+### Query Parameters
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+- `protocol: optional array of "UDP" or "TCP" or "HTTPS" or "TLS"`
+
+  Filters results by DNS transport protocol.
+
+  - `"UDP"`
+
+  - `"TCP"`
+
+  - `"HTTPS"`
+
+  - `"TLS"`
+
+- `queryType: optional array of "A" or "AAAA" or "A6" or 85 more`
+
+  Filters results by DNS query type.
+
+  - `"A"`
+
+  - `"AAAA"`
+
+  - `"A6"`
+
+  - `"AFSDB"`
+
+  - `"ANY"`
+
+  - `"APL"`
+
+  - `"ATMA"`
+
+  - `"AXFR"`
+
+  - `"CAA"`
+
+  - `"CDNSKEY"`
+
+  - `"CDS"`
+
+  - `"CERT"`
+
+  - `"CNAME"`
+
+  - `"CSYNC"`
+
+  - `"DHCID"`
+
+  - `"DLV"`
+
+  - `"DNAME"`
+
+  - `"DNSKEY"`
+
+  - `"DOA"`
+
+  - `"DS"`
+
+  - `"EID"`
+
+  - `"EUI48"`
+
+  - `"EUI64"`
+
+  - `"GPOS"`
+
+  - `"GID"`
+
+  - `"HINFO"`
+
+  - `"HIP"`
+
+  - `"HTTPS"`
+
+  - `"IPSECKEY"`
+
+  - `"ISDN"`
+
+  - `"IXFR"`
+
+  - `"KEY"`
+
+  - `"KX"`
+
+  - `"L32"`
+
+  - `"L64"`
+
+  - `"LOC"`
+
+  - `"LP"`
+
+  - `"MAILA"`
+
+  - `"MAILB"`
+
+  - `"MB"`
+
+  - `"MD"`
+
+  - `"MF"`
+
+  - `"MG"`
+
+  - `"MINFO"`
+
+  - `"MR"`
+
+  - `"MX"`
+
+  - `"NAPTR"`
+
+  - `"NB"`
+
+  - `"NBSTAT"`
+
+  - `"NID"`
+
+  - `"NIMLOC"`
+
+  - `"NINFO"`
+
+  - `"NS"`
+
+  - `"NSAP"`
+
+  - `"NSEC"`
+
+  - `"NSEC3"`
+
+  - `"NSEC3PARAM"`
+
+  - `"NULL"`
+
+  - `"NXT"`
+
+  - `"OPENPGPKEY"`
+
+  - `"OPT"`
+
+  - `"PTR"`
+
+  - `"PX"`
+
+  - `"RKEY"`
+
+  - `"RP"`
+
+  - `"RRSIG"`
+
+  - `"RT"`
+
+  - `"SIG"`
+
+  - `"SINK"`
+
+  - `"SMIMEA"`
+
+  - `"SOA"`
+
+  - `"SPF"`
+
+  - `"SRV"`
+
+  - `"SSHFP"`
+
+  - `"SVCB"`
+
+  - `"TA"`
+
+  - `"TALINK"`
+
+  - `"TKEY"`
+
+  - `"TLSA"`
+
+  - `"TSIG"`
+
+  - `"TXT"`
+
+  - `"UINFO"`
+
+  - `"UID"`
+
+  - `"UNSPEC"`
+
+  - `"URI"`
+
+  - `"WKS"`
+
+  - `"X25"`
+
+  - `"ZONEMD"`
+
+- `responseCode: optional array of "NOERROR" or "FORMERR" or "SERVFAIL" or 16 more`
+
+  Filters results by DNS response code.
+
+  - `"NOERROR"`
+
+  - `"FORMERR"`
+
+  - `"SERVFAIL"`
+
+  - `"NXDOMAIN"`
+
+  - `"NOTIMP"`
+
+  - `"REFUSED"`
+
+  - `"YXDOMAIN"`
+
+  - `"YXRRSET"`
+
+  - `"NXRRSET"`
+
+  - `"NOTAUTH"`
+
+  - `"NOTZONE"`
+
+  - `"BADSIG"`
+
+  - `"BADKEY"`
+
+  - `"BADTIME"`
+
+  - `"BADMODE"`
+
+  - `"BADNAME"`
+
+  - `"BADALG"`
+
+  - `"BADTRUNC"`
+
+  - `"BADCOOKIE"`
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { IPv4, IPv6 }`
+
+    - `IPv4: string`
+
+      A numeric string.
+
+    - `IPv6: string`
+
+      A numeric string.
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/as112/summary/ip_version \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "IPv4": "10",
+      "IPv6": "10"
+    }
+  },
+  "success": true
+}
+```
+
+## Get AS112 DNS queries by DNS protocol summary
+
+**get** `/radar/as112/summary/protocol`
+
+Retrieves the distribution of DNS queries to AS112 by protocol.
+
+### Query Parameters
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+- `queryType: optional array of "A" or "AAAA" or "A6" or 85 more`
+
+  Filters results by DNS query type.
+
+  - `"A"`
+
+  - `"AAAA"`
+
+  - `"A6"`
+
+  - `"AFSDB"`
+
+  - `"ANY"`
+
+  - `"APL"`
+
+  - `"ATMA"`
+
+  - `"AXFR"`
+
+  - `"CAA"`
+
+  - `"CDNSKEY"`
+
+  - `"CDS"`
+
+  - `"CERT"`
+
+  - `"CNAME"`
+
+  - `"CSYNC"`
+
+  - `"DHCID"`
+
+  - `"DLV"`
+
+  - `"DNAME"`
+
+  - `"DNSKEY"`
+
+  - `"DOA"`
+
+  - `"DS"`
+
+  - `"EID"`
+
+  - `"EUI48"`
+
+  - `"EUI64"`
+
+  - `"GPOS"`
+
+  - `"GID"`
+
+  - `"HINFO"`
+
+  - `"HIP"`
+
+  - `"HTTPS"`
+
+  - `"IPSECKEY"`
+
+  - `"ISDN"`
+
+  - `"IXFR"`
+
+  - `"KEY"`
+
+  - `"KX"`
+
+  - `"L32"`
+
+  - `"L64"`
+
+  - `"LOC"`
+
+  - `"LP"`
+
+  - `"MAILA"`
+
+  - `"MAILB"`
+
+  - `"MB"`
+
+  - `"MD"`
+
+  - `"MF"`
+
+  - `"MG"`
+
+  - `"MINFO"`
+
+  - `"MR"`
+
+  - `"MX"`
+
+  - `"NAPTR"`
+
+  - `"NB"`
+
+  - `"NBSTAT"`
+
+  - `"NID"`
+
+  - `"NIMLOC"`
+
+  - `"NINFO"`
+
+  - `"NS"`
+
+  - `"NSAP"`
+
+  - `"NSEC"`
+
+  - `"NSEC3"`
+
+  - `"NSEC3PARAM"`
+
+  - `"NULL"`
+
+  - `"NXT"`
+
+  - `"OPENPGPKEY"`
+
+  - `"OPT"`
+
+  - `"PTR"`
+
+  - `"PX"`
+
+  - `"RKEY"`
+
+  - `"RP"`
+
+  - `"RRSIG"`
+
+  - `"RT"`
+
+  - `"SIG"`
+
+  - `"SINK"`
+
+  - `"SMIMEA"`
+
+  - `"SOA"`
+
+  - `"SPF"`
+
+  - `"SRV"`
+
+  - `"SSHFP"`
+
+  - `"SVCB"`
+
+  - `"TA"`
+
+  - `"TALINK"`
+
+  - `"TKEY"`
+
+  - `"TLSA"`
+
+  - `"TSIG"`
+
+  - `"TXT"`
+
+  - `"UINFO"`
+
+  - `"UID"`
+
+  - `"UNSPEC"`
+
+  - `"URI"`
+
+  - `"WKS"`
+
+  - `"X25"`
+
+  - `"ZONEMD"`
+
+- `responseCode: optional array of "NOERROR" or "FORMERR" or "SERVFAIL" or 16 more`
+
+  Filters results by DNS response code.
+
+  - `"NOERROR"`
+
+  - `"FORMERR"`
+
+  - `"SERVFAIL"`
+
+  - `"NXDOMAIN"`
+
+  - `"NOTIMP"`
+
+  - `"REFUSED"`
+
+  - `"YXDOMAIN"`
+
+  - `"YXRRSET"`
+
+  - `"NXRRSET"`
+
+  - `"NOTAUTH"`
+
+  - `"NOTZONE"`
+
+  - `"BADSIG"`
+
+  - `"BADKEY"`
+
+  - `"BADTIME"`
+
+  - `"BADMODE"`
+
+  - `"BADNAME"`
+
+  - `"BADALG"`
+
+  - `"BADTRUNC"`
+
+  - `"BADCOOKIE"`
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { HTTPS, TCP, TLS, UDP }`
+
+    - `HTTPS: string`
+
+      A numeric string.
+
+    - `TCP: string`
+
+      A numeric string.
+
+    - `TLS: string`
+
+      A numeric string.
+
+    - `UDP: string`
+
+      A numeric string.
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/as112/summary/protocol \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "HTTPS": "10",
+      "TCP": "10",
+      "TLS": "10",
+      "UDP": "10"
+    }
+  },
+  "success": true
+}
+```
+
+## Get AS112 DNS queries by type summary
+
+**get** `/radar/as112/summary/query_type`
+
+Retrieves the distribution of DNS queries to AS112 by type.
+
+### Query Parameters
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `limitPerGroup: optional number`
+
+  Limits the number of objects per group to the top items within the specified time range. When item count exceeds the limit, extra items appear grouped under an "other" category.
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+- `protocol: optional array of "UDP" or "TCP" or "HTTPS" or "TLS"`
+
+  Filters results by DNS transport protocol.
+
+  - `"UDP"`
+
+  - `"TCP"`
+
+  - `"HTTPS"`
+
+  - `"TLS"`
+
+- `responseCode: optional array of "NOERROR" or "FORMERR" or "SERVFAIL" or 16 more`
+
+  Filters results by DNS response code.
+
+  - `"NOERROR"`
+
+  - `"FORMERR"`
+
+  - `"SERVFAIL"`
+
+  - `"NXDOMAIN"`
+
+  - `"NOTIMP"`
+
+  - `"REFUSED"`
+
+  - `"YXDOMAIN"`
+
+  - `"YXRRSET"`
+
+  - `"NXRRSET"`
+
+  - `"NOTAUTH"`
+
+  - `"NOTZONE"`
+
+  - `"BADSIG"`
+
+  - `"BADKEY"`
+
+  - `"BADTIME"`
+
+  - `"BADMODE"`
+
+  - `"BADNAME"`
+
+  - `"BADALG"`
+
+  - `"BADTRUNC"`
+
+  - `"BADCOOKIE"`
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: map[string]`
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/as112/summary/query_type \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "A": "19",
+      "AAAA": "1",
+      "PTR": "74",
+      "SOA": "5",
+      "SRV": "1"
+    }
+  },
+  "success": true
+}
+```
+
+## Get AS112 DNS queries by response code summary
+
+**get** `/radar/as112/summary/response_codes`
+
+Retrieves the distribution of AS112 DNS requests classified by response code.
+
+### Query Parameters
+
+- `continent: optional array of string`
+
+  Filters results by continent. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude continents from results. For example, `-EU,NA` excludes results from EU, but includes results from NA.
+
+- `dateEnd: optional array of string`
+
+  End of the date range (inclusive).
+
+- `dateRange: optional array of string`
+
+  Filters results by date range. For example, use `7d` and `7dcontrol` to compare this week with the previous week. Use this parameter or set specific start and end dates (`dateStart` and `dateEnd` parameters).
+
+- `dateStart: optional array of string`
+
+  Start of the date range.
+
+- `format: optional "JSON" or "CSV"`
+
+  Format in which results will be returned.
+
+  - `"JSON"`
+
+  - `"CSV"`
+
+- `limitPerGroup: optional number`
+
+  Limits the number of objects per group to the top items within the specified time range. When item count exceeds the limit, extra items appear grouped under an "other" category.
+
+- `location: optional array of string`
+
+  Filters results by location. Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude locations from results. For example, `-US,PT` excludes results from the US, but includes results from PT.
+
+- `name: optional array of string`
+
+  Array of names used to label the series in the response.
+
+- `protocol: optional array of "UDP" or "TCP" or "HTTPS" or "TLS"`
+
+  Filters results by DNS transport protocol.
+
+  - `"UDP"`
+
+  - `"TCP"`
+
+  - `"HTTPS"`
+
+  - `"TLS"`
+
+- `queryType: optional array of "A" or "AAAA" or "A6" or 85 more`
+
+  Filters results by DNS query type.
+
+  - `"A"`
+
+  - `"AAAA"`
+
+  - `"A6"`
+
+  - `"AFSDB"`
+
+  - `"ANY"`
+
+  - `"APL"`
+
+  - `"ATMA"`
+
+  - `"AXFR"`
+
+  - `"CAA"`
+
+  - `"CDNSKEY"`
+
+  - `"CDS"`
+
+  - `"CERT"`
+
+  - `"CNAME"`
+
+  - `"CSYNC"`
+
+  - `"DHCID"`
+
+  - `"DLV"`
+
+  - `"DNAME"`
+
+  - `"DNSKEY"`
+
+  - `"DOA"`
+
+  - `"DS"`
+
+  - `"EID"`
+
+  - `"EUI48"`
+
+  - `"EUI64"`
+
+  - `"GPOS"`
+
+  - `"GID"`
+
+  - `"HINFO"`
+
+  - `"HIP"`
+
+  - `"HTTPS"`
+
+  - `"IPSECKEY"`
+
+  - `"ISDN"`
+
+  - `"IXFR"`
+
+  - `"KEY"`
+
+  - `"KX"`
+
+  - `"L32"`
+
+  - `"L64"`
+
+  - `"LOC"`
+
+  - `"LP"`
+
+  - `"MAILA"`
+
+  - `"MAILB"`
+
+  - `"MB"`
+
+  - `"MD"`
+
+  - `"MF"`
+
+  - `"MG"`
+
+  - `"MINFO"`
+
+  - `"MR"`
+
+  - `"MX"`
+
+  - `"NAPTR"`
+
+  - `"NB"`
+
+  - `"NBSTAT"`
+
+  - `"NID"`
+
+  - `"NIMLOC"`
+
+  - `"NINFO"`
+
+  - `"NS"`
+
+  - `"NSAP"`
+
+  - `"NSEC"`
+
+  - `"NSEC3"`
+
+  - `"NSEC3PARAM"`
+
+  - `"NULL"`
+
+  - `"NXT"`
+
+  - `"OPENPGPKEY"`
+
+  - `"OPT"`
+
+  - `"PTR"`
+
+  - `"PX"`
+
+  - `"RKEY"`
+
+  - `"RP"`
+
+  - `"RRSIG"`
+
+  - `"RT"`
+
+  - `"SIG"`
+
+  - `"SINK"`
+
+  - `"SMIMEA"`
+
+  - `"SOA"`
+
+  - `"SPF"`
+
+  - `"SRV"`
+
+  - `"SSHFP"`
+
+  - `"SVCB"`
+
+  - `"TA"`
+
+  - `"TALINK"`
+
+  - `"TKEY"`
+
+  - `"TLSA"`
+
+  - `"TSIG"`
+
+  - `"TXT"`
+
+  - `"UINFO"`
+
+  - `"UID"`
+
+  - `"UNSPEC"`
+
+  - `"URI"`
+
+  - `"WKS"`
+
+  - `"X25"`
+
+  - `"ZONEMD"`
+
+### Returns
+
+- `result: object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: map[string]`
+
+- `success: boolean`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/radar/as112/summary/response_codes \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "meta": {
+      "confidenceInfo": {
+        "annotations": [
+          {
+            "dataSource": "ALL",
+            "description": "Cable cut in Tonga",
+            "endDate": "2019-12-27T18:11:19.117Z",
+            "eventType": "EVENT",
+            "isInstantaneous": true,
+            "linkedUrl": "https://example.com",
+            "startDate": "2019-12-27T18:11:19.117Z",
+            "tags": [
+              "BOT_CLASS"
+            ]
+          }
+        ],
+        "level": 0
+      },
+      "dateRange": [
+        {
+          "endTime": "2022-09-17T10:22:57.555Z",
+          "startTime": "2022-09-16T10:22:57.555Z"
+        }
+      ],
+      "lastUpdated": "2019-12-27T18:11:19.117Z",
+      "normalization": "PERCENTAGE",
+      "units": [
+        {
+          "name": "*",
+          "value": "requests"
+        }
+      ]
+    },
+    "summary_0": {
+      "NOERROR": "70",
+      "NOTIMP": "5",
+      "NXDOMAIN": "10",
+      "REFUSED": "5",
+      "SERVFAIL": "5"
+    }
+  },
+  "success": true
+}
+```
+
+## Domain Types
+
+### Summary DNSSEC Response
+
+- `SummaryDNSSECResponse object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { NOT_SUPPORTED, SUPPORTED }`
+
+    - `NOT_SUPPORTED: string`
+
+      A numeric string.
+
+    - `SUPPORTED: string`
+
+      A numeric string.
+
+### Summary Edns Response
+
+- `SummaryEdnsResponse object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { NOT_SUPPORTED, SUPPORTED }`
+
+    - `NOT_SUPPORTED: string`
+
+      A numeric string.
+
+    - `SUPPORTED: string`
+
+      A numeric string.
+
+### Summary IP Version Response
+
+- `SummaryIPVersionResponse object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { IPv4, IPv6 }`
+
+    - `IPv4: string`
+
+      A numeric string.
+
+    - `IPv6: string`
+
+      A numeric string.
+
+### Summary Protocol Response
+
+- `SummaryProtocolResponse object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: object { HTTPS, TCP, TLS, UDP }`
+
+    - `HTTPS: string`
+
+      A numeric string.
+
+    - `TCP: string`
+
+      A numeric string.
+
+    - `TLS: string`
+
+      A numeric string.
+
+    - `UDP: string`
+
+      A numeric string.
+
+### Summary Query Type Response
+
+- `SummaryQueryTypeResponse object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: map[string]`
+
+### Summary Response Codes Response
+
+- `SummaryResponseCodesResponse object { meta, summary_0 }`
+
+  - `meta: object { confidenceInfo, dateRange, lastUpdated, 2 more }`
+
+    Metadata for the results.
+
+    - `confidenceInfo: object { annotations, level }`
+
+      - `annotations: array of object { dataSource, description, endDate, 5 more }`
+
+        - `dataSource: "ALL" or "AI_BOTS" or "AI_GATEWAY" or 22 more`
+
+          Data source for annotations.
+
+          - `"ALL"`
+
+          - `"AI_BOTS"`
+
+          - `"AI_GATEWAY"`
+
+          - `"BGP"`
+
+          - `"BOTS"`
+
+          - `"CONNECTION_ANOMALY"`
+
+          - `"CT"`
+
+          - `"DNS"`
+
+          - `"DNS_MAGNITUDE"`
+
+          - `"DNS_AS112"`
+
+          - `"DOS"`
+
+          - `"EMAIL_ROUTING"`
+
+          - `"EMAIL_SECURITY"`
+
+          - `"FW"`
+
+          - `"FW_PG"`
+
+          - `"HTTP"`
+
+          - `"HTTP_CONTROL"`
+
+          - `"HTTP_CRAWLER_REFERER"`
+
+          - `"HTTP_ORIGINS"`
+
+          - `"IQI"`
+
+          - `"LEAKED_CREDENTIALS"`
+
+          - `"NET"`
+
+          - `"ROBOTS_TXT"`
+
+          - `"SPEED"`
+
+          - `"WORKERS_AI"`
+
+        - `description: string`
+
+        - `endDate: string`
+
+        - `eventType: "EVENT" or "GENERAL" or "OUTAGE" or 3 more`
+
+          Event type for annotations.
+
+          - `"EVENT"`
+
+          - `"GENERAL"`
+
+          - `"OUTAGE"`
+
+          - `"PARTIAL_PROJECTION"`
+
+          - `"PIPELINE"`
+
+          - `"TRAFFIC_ANOMALY"`
+
+        - `isInstantaneous: boolean`
+
+          Whether event is a single point in time or a time range.
+
+        - `linkedUrl: string`
+
+        - `startDate: string`
+
+        - `tags: optional array of string`
+
+      - `level: number`
+
+        Provides an indication of how much confidence Cloudflare has in the data.
+
+    - `dateRange: array of object { endTime, startTime }`
+
+      - `endTime: string`
+
+        Adjusted end of date range.
+
+      - `startTime: string`
+
+        Adjusted start of date range.
+
+    - `lastUpdated: string`
+
+      Timestamp of the last dataset update.
+
+    - `normalization: "PERCENTAGE" or "MIN0_MAX" or "MIN_MAX" or 5 more`
+
+      Normalization method applied to the results. Refer to [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+      - `"PERCENTAGE"`
+
+      - `"MIN0_MAX"`
+
+      - `"MIN_MAX"`
+
+      - `"RAW_VALUES"`
+
+      - `"PERCENTAGE_CHANGE"`
+
+      - `"ROLLING_AVERAGE"`
+
+      - `"OVERLAPPED_PERCENTAGE"`
+
+      - `"RATIO"`
+
+    - `units: array of object { name, value }`
+
+      Measurement units for the results.
+
+      - `name: string`
+
+      - `value: string`
+
+  - `summary_0: map[string]`

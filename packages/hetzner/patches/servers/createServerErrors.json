@@ -1,0 +1,55 @@
+{
+  "description": "Type createServer's retryable quota and placement failures. The OpenAPI document only declares 4xx/5xx wildcards, so these currently land as Forbidden (403 resource_limit_exceeded, message contains 'server limit') and PreconditionFailed (412 resource_unavailable, message contains 'placement'). Dedicated tags let callers retry without matching on message text.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.hetzner.servers#ServerLimitExceeded",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": { "target": "smithy.api#Integer" },
+          "message": { "target": "smithy.api#String" }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "smithy.api#documentation": "The project has no remaining Server quota (Hetzner `resource_limit_exceeded`, HTTP 403). Often a race after a delete — retry.",
+          "com.distilled.openapi#errorMatchers": [
+            {
+              "status": 403,
+              "message": { "includes": "server limit" }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.hetzner.servers#ServerPlacementError",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": { "target": "smithy.api#Integer" },
+          "message": { "target": "smithy.api#String" }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "smithy.api#documentation": "The Server could not be placed (Hetzner `resource_unavailable` / `placement_error`, HTTP 412). Spread groups and location capacity recover — retry.",
+          "com.distilled.openapi#errorMatchers": [
+            {
+              "status": 412,
+              "message": { "includes": "placement" }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.hetzner.servers#CreateServer/errors",
+      "value": [
+        { "target": "com.hetzner.servers#ServerLimitExceeded" },
+        { "target": "com.hetzner.servers#ServerPlacementError" }
+      ]
+    }
+  ]
+}

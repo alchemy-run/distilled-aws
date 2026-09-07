@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesRegistrationsDelete with distilled cloudflare/zero-trust deleteDeviceRegistration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceRegistration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceRegistrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceRegistration/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceRegistrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceRegistrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceRegistration/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceRegistrationResponse"
+    }
+  ]
+}

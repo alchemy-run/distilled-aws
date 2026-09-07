@@ -1,0 +1,16 @@
+{
+  "description": "Key dictionary / op aliases for keyless_certificates (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "bundleMethod": "bundle_method",
+        "createdOn": "created_on",
+        "modifiedOn": "modified_on",
+        "privateIp": "private_ip",
+        "vnetId": "vnet_id"
+      }
+    }
+  ]
+}

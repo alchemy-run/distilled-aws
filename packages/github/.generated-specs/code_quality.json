@@ -1,0 +1,982 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.code_quality#ListFindingsForRepoRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.code_quality#ListFindingsForRepoRequestState": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "DISMISSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dismissed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.code_quality#ListFindingsForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "direction": {
+          "target": "com.github.code_quality#ListFindingsForRepoRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort the results by."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "state": {
+          "target": "com.github.code_quality#ListFindingsForRepoRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "If specified, only code quality findings with this state will be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.code_quality#CodeQualityFinding": {
+      "type": "structure",
+      "members": {
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The finding number.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.github.code_quality#CodeQualityFindingState",
+          "traits": {
+            "smithy.api#documentation": "State of the code quality finding.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The REST API URL of the code quality finding resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "rule": {
+          "target": "com.github.code_quality#CodeQualityFindingRule",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.github.code_quality#CodeQualityFindingLocation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "com.github.code_quality#CodeQualityFindingMessage",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the code quality finding was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code quality finding"
+      }
+    },
+    "com.github.code_quality#CodeQualityFindingState": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "DISMISSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dismissed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of the code quality finding."
+      }
+    },
+    "com.github.code_quality#CodeQualityFindingRule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier for the rule used to detect the finding.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the rule used to detect the finding.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the rule used to detect the finding.",
+            "smithy.api#required": {}
+          }
+        },
+        "help": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of the rule used to detect the finding."
+          }
+        },
+        "severity": {
+          "target": "com.github.code_quality#CodeQualityFindingRuleSeverity",
+          "traits": {
+            "smithy.api#documentation": "The severity of the rule used to detect the finding.",
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "com.github.code_quality#CodeQualityFindingRuleCategory",
+          "traits": {
+            "smithy.api#documentation": "The category of the rule used to detect the finding.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code quality rule"
+      }
+    },
+    "com.github.code_quality#CodeQualityFindingRuleSeverity": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warning"
+          }
+        },
+        "NOTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "note"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity of the rule used to detect the finding."
+      }
+    },
+    "com.github.code_quality#CodeQualityFindingRuleCategory": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "MAINTAINABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maintainability"
+          }
+        },
+        "RELIABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reliability"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The category of the rule used to detect the finding."
+      }
+    },
+    "com.github.code_quality#CodeQualityFindingLocation": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file path where the finding was detected.",
+            "smithy.api#required": {}
+          }
+        },
+        "start_line": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The line number where the finding starts."
+          }
+        },
+        "start_column": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The column number where the finding starts."
+          }
+        },
+        "end_line": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The line number where the finding ends."
+          }
+        },
+        "end_column": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The column number where the finding ends."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code quality file location"
+      }
+    },
+    "com.github.code_quality#CodeQualityFindingMessage": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message text of the code quality finding.",
+            "smithy.api#required": {}
+          }
+        },
+        "markdown": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message text of the code quality finding in markdown format.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code quality finding message"
+      }
+    },
+    "com.github.code_quality#ListFindingsForRepoResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.code_quality#CodeQualityFinding"
+      },
+      "traits": {}
+    },
+    "com.github.code_quality#ListFindingsForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.code_quality#ListFindingsForRepoResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.code_quality#ListFindingsForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.code_quality#ListFindingsForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.code_quality#ListFindingsForRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.code_quality#Forbidden"
+        },
+        {
+          "target": "com.github.code_quality#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/code-quality/findings",
+          "code": 200
+        },
+        "smithy.api#documentation": "List code quality findings for a repository\n\nLists code quality findings for a repository.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories."
+      }
+    },
+    "com.github.code_quality#GetFindingRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "finding_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The number that identifies a finding."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.code_quality#GetFinding": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.code_quality#GetFindingRequest"
+      },
+      "output": {
+        "target": "com.github.code_quality#CodeQualityFinding"
+      },
+      "errors": [
+        {
+          "target": "com.github.code_quality#Forbidden"
+        },
+        {
+          "target": "com.github.code_quality#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/code-quality/findings/{finding_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a code quality finding\n\nGets a single code quality finding.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories."
+      }
+    },
+    "com.github.code_quality#GetSetupRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.code_quality#CodeQualitySetup": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.github.code_quality#CodeQualitySetupState",
+          "traits": {
+            "smithy.api#documentation": "Code quality setup has been configured or not."
+          }
+        },
+        "languages": {
+          "target": "com.github.code_quality#CodeQualitySetupLanguagesList",
+          "traits": {
+            "smithy.api#documentation": "Languages to be analyzed."
+          }
+        },
+        "runner_type": {
+          "target": "com.github.code_quality#CodeQualitySetupRunnerType",
+          "traits": {
+            "smithy.api#documentation": "Runner type to be used.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "runner_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Runner label to be used if the runner type is labeled.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of latest configuration update.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "schedule": {
+          "target": "com.github.code_quality#CodeQualitySetupSchedule",
+          "traits": {
+            "smithy.api#documentation": "The frequency of the periodic analysis.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ai_findings_option": {
+          "target": "com.github.code_quality#CodeQualitySetupAiFindingsOption",
+          "traits": {
+            "smithy.api#documentation": "The AI findings configuration for the repository.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for code quality setup."
+      }
+    },
+    "com.github.code_quality#CodeQualitySetupState": {
+      "type": "enum",
+      "members": {
+        "CONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configured"
+          }
+        },
+        "NOT_CONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not-configured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code quality setup has been configured or not."
+      }
+    },
+    "com.github.code_quality#CodeQualitySetupLanguagesItem": {
+      "type": "enum",
+      "members": {
+        "CSHARP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csharp"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "JAVA_KOTLIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "java-kotlin"
+          }
+        },
+        "JAVASCRIPT_TYPESCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "javascript-typescript"
+          }
+        },
+        "PYTHON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python"
+          }
+        },
+        "RUBY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ruby"
+          }
+        },
+        "RUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rust"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.code_quality#CodeQualitySetupLanguagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.code_quality#CodeQualitySetupLanguagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Languages to be analyzed."
+      }
+    },
+    "com.github.code_quality#CodeQualitySetupRunnerType": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "standard"
+          }
+        },
+        "LABELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "labeled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Runner type to be used."
+      }
+    },
+    "com.github.code_quality#CodeQualitySetupSchedule": {
+      "type": "enum",
+      "members": {
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The frequency of the periodic analysis."
+      }
+    },
+    "com.github.code_quality#CodeQualitySetupAiFindingsOption": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ON_PUSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on_push"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AI findings configuration for the repository."
+      }
+    },
+    "com.github.code_quality#GetSetup": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.code_quality#GetSetupRequest"
+      },
+      "output": {
+        "target": "com.github.code_quality#CodeQualitySetup"
+      },
+      "errors": [
+        {
+          "target": "com.github.code_quality#Forbidden"
+        },
+        {
+          "target": "com.github.code_quality#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/code-quality/setup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a code quality setup configuration\n\nGets a code quality setup configuration.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories."
+      }
+    },
+    "com.github.code_quality#UpdateSetupRequestState": {
+      "type": "enum",
+      "members": {
+        "CONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configured"
+          }
+        },
+        "NOT_CONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not-configured"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The desired state of code quality setup."
+      }
+    },
+    "com.github.code_quality#UpdateSetupRequestRunnerType": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "standard"
+          }
+        },
+        "LABELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "labeled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Runner type to be used."
+      }
+    },
+    "com.github.code_quality#UpdateSetupRequestLanguagesItem": {
+      "type": "enum",
+      "members": {
+        "CSHARP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csharp"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "JAVA_KOTLIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "java-kotlin"
+          }
+        },
+        "JAVASCRIPT_TYPESCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "javascript-typescript"
+          }
+        },
+        "PYTHON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python"
+          }
+        },
+        "RUBY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ruby"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.code_quality#UpdateSetupRequestLanguagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.code_quality#UpdateSetupRequestLanguagesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Languages to be analyzed."
+      }
+    },
+    "com.github.code_quality#UpdateSetupRequestAiFindingsOption": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ON_PUSH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on_push"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether AI findings run for Code Quality on this repository."
+      }
+    },
+    "com.github.code_quality#UpdateSetupRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "state": {
+          "target": "com.github.code_quality#UpdateSetupRequestState",
+          "traits": {
+            "smithy.api#documentation": "The desired state of code quality setup."
+          }
+        },
+        "runner_type": {
+          "target": "com.github.code_quality#UpdateSetupRequestRunnerType",
+          "traits": {
+            "smithy.api#documentation": "Runner type to be used."
+          }
+        },
+        "runner_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Runner label to be used if the runner type is labeled.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "languages": {
+          "target": "com.github.code_quality#UpdateSetupRequestLanguagesList",
+          "traits": {
+            "smithy.api#documentation": "Languages to be analyzed."
+          }
+        },
+        "ai_findings_option": {
+          "target": "com.github.code_quality#UpdateSetupRequestAiFindingsOption",
+          "traits": {
+            "smithy.api#documentation": "Whether AI findings run for Code Quality on this repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.code_quality#UpdateSetupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.code_quality#UpdateSetup": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.code_quality#UpdateSetupRequest"
+      },
+      "output": {
+        "target": "com.github.code_quality#UpdateSetupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.code_quality#Forbidden"
+        },
+        {
+          "target": "com.github.code_quality#NotFound"
+        },
+        {
+          "target": "com.github.code_quality#Conflict"
+        },
+        {
+          "target": "com.github.code_quality#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/code-quality/setup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a code quality setup configuration\n\nUpdates a code quality setup configuration.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories."
+      }
+    },
+    "com.github.code_quality#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.code_quality#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.code_quality#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.github.code_quality#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.code_quality#CodeQuality": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.code_quality#ListFindingsForRepo"
+        },
+        {
+          "target": "com.github.code_quality#GetFinding"
+        },
+        {
+          "target": "com.github.code_quality#GetSetup"
+        },
+        {
+          "target": "com.github.code_quality#UpdateSetup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

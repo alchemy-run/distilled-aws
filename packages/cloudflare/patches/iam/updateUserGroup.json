@@ -1,0 +1,42 @@
+{
+  "description": "Align iam#UserGroupsUpdate with distilled cloudflare/iam updateUserGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsUpdate",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsUpdateRequest",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroup/input/target",
+      "value": "com.cloudflare.iam#UpdateUserGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsUpdateResponse",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroup/output/target",
+      "value": "com.cloudflare.iam#UpdateUserGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#UpdateUserGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#UserGroupNotFound"
+        },
+        {
+          "target": "com.cloudflare.iam#UserGroupNameInUse"
+        }
+      ]
+    }
+  ]
+}

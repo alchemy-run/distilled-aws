@@ -1,0 +1,32 @@
+{
+  "description": "Align zero_trust#AccessInfrastructureTargetsDelete with distilled cloudflare/zero-trust deleteAccessInfrastructureTarget",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessInfrastructureTarget"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessInfrastructureTargetsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessInfrastructureTargetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessInfrastructureTarget/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessInfrastructureTargetRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessInfrastructureTarget/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#TargetNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

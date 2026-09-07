@@ -1,0 +1,30 @@
+{
+  "description": "Align user#Edit with distilled cloudflare/user patchUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#Edit",
+      "path": "/shapes/com.cloudflare.user#PatchUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#EditRequest",
+      "path": "/shapes/com.cloudflare.user#PatchUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#PatchUser/input/target",
+      "value": "com.cloudflare.user#PatchUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#EditResponse",
+      "path": "/shapes/com.cloudflare.user#PatchUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#PatchUser/output/target",
+      "value": "com.cloudflare.user#PatchUserResponse"
+    }
+  ]
+}

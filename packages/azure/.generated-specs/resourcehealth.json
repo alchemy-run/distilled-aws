@@ -1,0 +1,3745 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceHealth/availabilityStatuses",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists the current availability status for all the resources in the resource group.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of availabilityStatuses.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI to fetch the next page of availabilityStatuses. Call ListNext() with this URI to fetch the next page of availabilityStatuses."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The List availabilityStatus operation response."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#AvailabilityStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of availabilityStatuses."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatus": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager Identity for the availabilityStatuses resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Microsoft.ResourceHealth/AvailabilityStatuses."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager geo location of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of availability state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "availabilityStatus of a resource."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusProperties": {
+      "type": "structure",
+      "members": {
+        "availabilityState": {
+          "target": "com.azure.resourcehealth#AvailabilityStateValues",
+          "traits": {
+            "smithy.api#documentation": "Availability status of the resource. When it is null, this availabilityStatus object represents an availability impacting event"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title description of the availability status."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Summary description of the availability status."
+          }
+        },
+        "detailedStatus": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Details of the availability status."
+          }
+        },
+        "reasonType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the resource's availabilityState is Unavailable, it describes where the health impacting event was originated. Examples are planned, unplanned, user initiated or an outage etc."
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When an event is created, it can either be triggered by a customer or the platform of the resource and this field will illustrate that. This field is connected to the category field in this object."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When a context field is set to Platform, this field will reflect if the event was planned or unplanned. If the context field does not have a value of Platform, then this field will be ignored."
+          }
+        },
+        "articleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Article Id"
+          }
+        },
+        "rootCauseAttributionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the resource's availabilityState is Unavailable, it provides the Timestamp for when the health impacting event was received."
+          }
+        },
+        "healthEventType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "In case of an availability impacting event, it describes when the health impacting event was originated. Examples are Lifecycle, Downtime, Fault Analysis etc."
+          }
+        },
+        "healthEventCause": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "In case of an availability impacting event, it describes where the health impacting event was originated. Examples are PlatformInitiated, UserInitiated etc."
+          }
+        },
+        "healthEventCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "In case of an availability impacting event, it describes the category of a PlatformInitiated health impacting event. Examples are Planned, Unplanned etc."
+          }
+        },
+        "healthEventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It is a unique Id that identifies the event"
+          }
+        },
+        "resolutionETA": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the resource's availabilityState is Unavailable and the reasonType is not User Initiated, it provides the date and time for when the issue is expected to be resolved."
+          }
+        },
+        "occuredTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for when last change in health status occurred."
+          }
+        },
+        "reasonChronicity": {
+          "target": "com.azure.resourcehealth#ReasonChronicityTypes",
+          "traits": {
+            "smithy.api#documentation": "Chronicity of the availability transition."
+          }
+        },
+        "reportedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for when the health was last checked."
+          }
+        },
+        "recentlyResolved": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusPropertiesRecentlyResolved",
+          "traits": {
+            "smithy.api#documentation": "An annotation describing a change in the availabilityState to Available from Unavailable with a reasonType of type Unplanned"
+          }
+        },
+        "recommendedActions": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusPropertiesRecommendedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Lists actions the user can take based on the current availabilityState of the resource."
+          }
+        },
+        "serviceImpactingEvents": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusPropertiesServiceImpactingEventsList",
+          "traits": {
+            "smithy.api#documentation": "Lists the service impacting events that may be affecting the health of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of availability state."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusPropertiesServiceImpactingEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#ServiceImpactingEvent"
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists the service impacting events that may be affecting the health of the resource."
+      }
+    },
+    "com.azure.resourcehealth#ServiceImpactingEvent": {
+      "type": "structure",
+      "members": {
+        "eventStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for when the event started."
+          }
+        },
+        "eventStatusLastModifiedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for when event was submitted/detected."
+          }
+        },
+        "correlationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Correlation id for the event"
+          }
+        },
+        "status": {
+          "target": "com.azure.resourcehealth#ServiceImpactingEventStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the service impacting event."
+          }
+        },
+        "incidentProperties": {
+          "target": "com.azure.resourcehealth#ServiceImpactingEventIncidentProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the service impacting event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists the service impacting events that may be affecting the health of the resource."
+      }
+    },
+    "com.azure.resourcehealth#ServiceImpactingEventIncidentProperties": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the incident."
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service impacted by the event."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region impacted by the event."
+          }
+        },
+        "incidentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of Event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the service impacting event."
+      }
+    },
+    "com.azure.resourcehealth#ServiceImpactingEventStatus": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current status of the event"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the service impacting event."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusPropertiesRecommendedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#RecommendedAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists actions the user can take based on the current availabilityState of the resource."
+      }
+    },
+    "com.azure.resourcehealth#RecommendedAction": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recommended action."
+          }
+        },
+        "actionUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the action"
+          }
+        },
+        "_ActionUrl_Comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the comment for the Action",
+            "smithy.api#jsonName": "_ActionUrl.Comment"
+          }
+        },
+        "actionUrlText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Substring of action, it describes which text should host the action URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists actions the user can take based on the current availabilityState of the resource."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusPropertiesRecentlyResolved": {
+      "type": "structure",
+      "members": {
+        "unavailableOccuredTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for when the availabilityState changed to Unavailable"
+          }
+        },
+        "resolvedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the availabilityState changes to Available."
+          }
+        },
+        "unavailableSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Brief description of cause of the resource becoming unavailable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An annotation describing a change in the availabilityState to Available from Unavailable with a reasonType of type Unplanned"
+      }
+    },
+    "com.azure.resourcehealth#ReasonChronicityTypes": {
+      "type": "enum",
+      "members": {
+        "TRANSIENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Transient"
+          }
+        },
+        "PERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Persistent"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Chronicity of the availability transition."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStateValues": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Available"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unavailable"
+          }
+        },
+        "DEGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Degraded"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Impacted resource status of the resource."
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventImpactedResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/listSecurityAdvisoryImpactedResources",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists impacted resources in the subscription by an event (Security Advisory).",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventImpactedResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcehealth#EventImpactedResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of eventImpactedResources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI to fetch the next page of events. Call ListNext() with this URI to fetch the next page of impacted resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The List of eventImpactedResources operation response."
+      }
+    },
+    "com.azure.resourcehealth#EventImpactedResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#EventImpactedResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of eventImpactedResources."
+      }
+    },
+    "com.azure.resourcehealth#EventImpactedResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventImpactedResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of impacted resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Impacted resource for an event."
+      }
+    },
+    "com.azure.resourcehealth#EventImpactedResourceProperties": {
+      "type": "structure",
+      "members": {
+        "targetResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type within Microsoft cloud."
+          }
+        },
+        "targetResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity for resource within Microsoft cloud."
+          }
+        },
+        "targetRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Impacted resource region name."
+          }
+        },
+        "info": {
+          "target": "com.azure.resourcehealth#EventImpactedResourcePropertiesInfoList",
+          "traits": {
+            "smithy.api#documentation": "Additional information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of impacted resource."
+      }
+    },
+    "com.azure.resourcehealth#EventImpactedResourcePropertiesInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#KeyValueItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information."
+      }
+    },
+    "com.azure.resourcehealth#KeyValueItem": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key of tuple."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of tuple."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key value tuple."
+      }
+    },
+    "com.azure.resourcehealth#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.resourcehealth#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.resourcehealth#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.resourcehealth#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.resourcehealth#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ImpactedResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#ImpactedResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources/{impactedResourceName}",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets the specific impacted resource in the subscription by an event.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventImpactedResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of impacted resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "impactedResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Impacted Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesListBySubscriptionIdAndEventId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ImpactedResourcesListBySubscriptionIdAndEventIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventImpactedResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists impacted resources in the subscription by an event.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesListBySubscriptionIdAndEventIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchEventDetails",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Service health event details in the subscription by event tracking id. This can be used to fetch sensitive properties for Security Advisory events. Please see https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#EventProperties": {
+      "type": "structure",
+      "members": {
+        "eventType": {
+          "target": "com.azure.resourcehealth#EventTypeValues",
+          "traits": {
+            "smithy.api#documentation": "Type of event."
+          }
+        },
+        "eventSubType": {
+          "target": "com.azure.resourcehealth#EventSubTypeValues",
+          "traits": {
+            "smithy.api#documentation": "Sub-type of event."
+          }
+        },
+        "eventSource": {
+          "target": "com.azure.resourcehealth#EventSourceValues",
+          "traits": {
+            "smithy.api#documentation": "Source of event."
+          }
+        },
+        "status": {
+          "target": "com.azure.resourcehealth#EventStatusValues",
+          "traits": {
+            "smithy.api#documentation": "Current status of event."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title text of event."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive events."
+          }
+        },
+        "header": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Header text of event."
+          }
+        },
+        "level": {
+          "target": "com.azure.resourcehealth#LevelValues",
+          "traits": {
+            "smithy.api#documentation": "Level of insight."
+          }
+        },
+        "eventLevel": {
+          "target": "com.azure.resourcehealth#EventLevelValues",
+          "traits": {
+            "smithy.api#documentation": "Level of event."
+          }
+        },
+        "isEventSensitive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true the event may contains sensitive data. Use the post events/{trackingId}/fetchEventDetails endpoint to fetch sensitive data see https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access"
+          }
+        },
+        "externalIncidentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the Incident"
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for the Incident"
+          }
+        },
+        "article": {
+          "target": "com.azure.resourcehealth#EventPropertiesArticle",
+          "traits": {
+            "smithy.api#documentation": "Article of event."
+          }
+        },
+        "links": {
+          "target": "com.azure.resourcehealth#EventPropertiesLinksList",
+          "traits": {
+            "smithy.api#documentation": "Useful links of event."
+          }
+        },
+        "impactStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the Timestamp for when the health impacting event started."
+          }
+        },
+        "impactMitigationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the Timestamp for when the health impacting event resolved."
+          }
+        },
+        "impact": {
+          "target": "com.azure.resourcehealth#EventPropertiesImpactList",
+          "traits": {
+            "smithy.api#documentation": "List services impacted by the service health event."
+          }
+        },
+        "recommendedActions": {
+          "target": "com.azure.resourcehealth#EventPropertiesRecommendedActions",
+          "traits": {
+            "smithy.api#documentation": "Recommended actions of event."
+          }
+        },
+        "faqs": {
+          "target": "com.azure.resourcehealth#EventPropertiesFaqsList",
+          "traits": {
+            "smithy.api#documentation": "Frequently asked questions for the service health event."
+          }
+        },
+        "isHIR": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "It provides information if the event is High incident rate event or not."
+          }
+        },
+        "enableMicrosoftSupport": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Tells if we want to enable or disable Microsoft Support for this event."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the communication message for the event, that could include summary, root cause and other details. Use fetchEventDetails endpoint to get description of sensitive events."
+          }
+        },
+        "platformInitiated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is true if the event is platform initiated."
+          }
+        },
+        "enableChatWithUs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Tells if we want to enable or disable Microsoft Support for this event."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Priority level of the event. Has value from 0 to 23. 0 is the highest priority. Service issue events have higher priority followed by planned maintenance and health advisory. Critical events have higher priority followed by error, warning and informational. Furthermore, active events have higher priority than resolved."
+          }
+        },
+        "lastUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the Timestamp for when the health impacting event was last updated."
+          }
+        },
+        "hirStage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stage for HIR Document"
+          }
+        },
+        "additionalInformation": {
+          "target": "com.azure.resourcehealth#EventPropertiesAdditionalInformation",
+          "traits": {
+            "smithy.api#documentation": "Additional information"
+          }
+        },
+        "duration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "duration in seconds"
+          }
+        },
+        "impactType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the impact"
+          }
+        },
+        "eventTags": {
+          "target": "com.azure.resourcehealth#EventPropertiesEventTagsList",
+          "traits": {
+            "smithy.api#documentation": "A list of metadata tags associated with the event. Possible values include:\n-Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your services. It is recommended to evaluate these actions and the potential impact on your services.\n- False Positive: After investigation, we've determined your service is healthy and service issues did not impact your services as originally communicated.\n- Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is published generally within 72 hours of mitigation, to summarize what we have learned so far from the still-in-progress investigation.\n- Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days of mitigation."
+          }
+        },
+        "newRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billing rate change information - new rate"
+          }
+        },
+        "oldRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billing rate change information - old rate"
+          }
+        },
+        "currencyType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing currency type information. Example: USD, CAD"
+          }
+        },
+        "billingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing identifier information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of event."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesEventTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of metadata tags associated with the event. Possible values include:\n-Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your services. It is recommended to evaluate these actions and the potential impact on your services.\n- False Positive: After investigation, we've determined your service is healthy and service issues did not impact your services as originally communicated.\n- Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is published generally within 72 hours of mitigation, to summarize what we have learned so far from the still-in-progress investigation.\n- Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days of mitigation."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesAdditionalInformation": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information Message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information"
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesFaqsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Faq"
+      },
+      "traits": {
+        "smithy.api#documentation": "Frequently asked questions for the service health event."
+      }
+    },
+    "com.azure.resourcehealth#Faq": {
+      "type": "structure",
+      "members": {
+        "question": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FAQ question for the service health event."
+          }
+        },
+        "answer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FAQ answer for the service health event."
+          }
+        },
+        "localeCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FAQ locale for the service health event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Frequently asked question for the service health event"
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesRecommendedActions": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recommended action title for the service health event."
+          }
+        },
+        "actions": {
+          "target": "com.azure.resourcehealth#EventPropertiesRecommendedActionsActionsList",
+          "traits": {
+            "smithy.api#documentation": "Recommended actions for the service health event."
+          }
+        },
+        "localeCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recommended action locale for the service health event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recommended actions of event."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesRecommendedActionsActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#EventPropertiesRecommendedActionsActionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Recommended actions for the service health event."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesRecommendedActionsActionsItem": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Recommended action group Id for the service health event."
+          }
+        },
+        "actionText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recommended action text"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recommended action for the service health event."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesImpactList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Impact"
+      },
+      "traits": {
+        "smithy.api#documentation": "List services impacted by the service health event."
+      }
+    },
+    "com.azure.resourcehealth#Impact": {
+      "type": "structure",
+      "members": {
+        "impactedService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Impacted service name."
+          }
+        },
+        "impactedServiceGuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Impacted service guid. This is the permanent identifier for the impacted service."
+          }
+        },
+        "impactedRegions": {
+          "target": "com.azure.resourcehealth#ImpactImpactedRegionsList",
+          "traits": {
+            "smithy.api#documentation": "List regions impacted by the service health event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure service impacted by the service health event."
+      }
+    },
+    "com.azure.resourcehealth#ImpactImpactedRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#ImpactedServiceRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "List regions impacted by the service health event."
+      }
+    },
+    "com.azure.resourcehealth#ImpactedServiceRegion": {
+      "type": "structure",
+      "members": {
+        "impactedRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Impacted region name."
+          }
+        },
+        "status": {
+          "target": "com.azure.resourcehealth#EventStatusValues",
+          "traits": {
+            "smithy.api#documentation": "Current status of event in the region."
+          }
+        },
+        "impactedSubscriptions": {
+          "target": "com.azure.resourcehealth#ImpactedServiceRegionImpactedSubscriptionsList",
+          "traits": {
+            "smithy.api#documentation": "List subscription impacted by the service health event."
+          }
+        },
+        "impactedTenants": {
+          "target": "com.azure.resourcehealth#ImpactedServiceRegionImpactedTenantsList",
+          "traits": {
+            "smithy.api#documentation": "List tenant impacted by the service health event."
+          }
+        },
+        "lastUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the Timestamp for when the last update for the service health event."
+          }
+        },
+        "updates": {
+          "target": "com.azure.resourcehealth#ImpactedServiceRegionUpdatesList",
+          "traits": {
+            "smithy.api#documentation": "List of updates for given service health event.  Use fetchEventDetails endpoint to get updates of sensitive events."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure region impacted by the service health event."
+      }
+    },
+    "com.azure.resourcehealth#ImpactedServiceRegionUpdatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Update"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of updates for given service health event.  Use fetchEventDetails endpoint to get updates of sensitive events."
+      }
+    },
+    "com.azure.resourcehealth#Update": {
+      "type": "structure",
+      "members": {
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Summary text for the given update for the service health event."
+          }
+        },
+        "updateDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the Timestamp for the given update for the service health event."
+          }
+        },
+        "eventTags": {
+          "target": "com.azure.resourcehealth#UpdateEventTagsList",
+          "traits": {
+            "smithy.api#documentation": "A list of metadata tags associated with the event. Possible values include:\n-Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your services. It is recommended to evaluate these actions and the potential impact on your services.\n- False Positive: After investigation, we've determined your service is healthy and service issues did not impact your services as originally communicated.\n- Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is published generally within 72 hours of mitigation, to summarize what we have learned so far from the still-in-progress investigation.\n- Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days of mitigation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Update for service health event."
+      }
+    },
+    "com.azure.resourcehealth#UpdateEventTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of metadata tags associated with the event. Possible values include:\n-Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your services. It is recommended to evaluate these actions and the potential impact on your services.\n- False Positive: After investigation, we've determined your service is healthy and service issues did not impact your services as originally communicated.\n- Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is published generally within 72 hours of mitigation, to summarize what we have learned so far from the still-in-progress investigation.\n- Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days of mitigation."
+      }
+    },
+    "com.azure.resourcehealth#ImpactedServiceRegionImpactedTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List tenant impacted by the service health event."
+      }
+    },
+    "com.azure.resourcehealth#ImpactedServiceRegionImpactedSubscriptionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List subscription impacted by the service health event."
+      }
+    },
+    "com.azure.resourcehealth#EventStatusValues": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of event."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesLinksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Link"
+      },
+      "traits": {
+        "smithy.api#documentation": "Useful links of event."
+      }
+    },
+    "com.azure.resourcehealth#Link": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.resourcehealth#LinkTypeValues",
+          "traits": {
+            "smithy.api#documentation": "Type of link."
+          }
+        },
+        "displayText": {
+          "target": "com.azure.resourcehealth#LinkDisplayText",
+          "traits": {
+            "smithy.api#documentation": "Display text of link."
+          }
+        },
+        "extensionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the name of portal extension to produce link for given service health event."
+          }
+        },
+        "bladeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It provides the name of portal extension blade to produce link for given service health event."
+          }
+        },
+        "parameters": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "It provides a map of parameter name and value for portal extension blade to produce lik for given service health event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Useful links for service health event."
+      }
+    },
+    "com.azure.resourcehealth#LinkDisplayText": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display text of link."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized display text of link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display text of link."
+      }
+    },
+    "com.azure.resourcehealth#LinkTypeValues": {
+      "type": "enum",
+      "members": {
+        "BUTTON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Button"
+          }
+        },
+        "HYPERLINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hyperlink"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of link."
+      }
+    },
+    "com.azure.resourcehealth#EventPropertiesArticle": {
+      "type": "structure",
+      "members": {
+        "articleContent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Article content of event."
+          }
+        },
+        "articleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Article Id"
+          }
+        },
+        "parameters": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "It provides a map of parameter name and value"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Article of event."
+      }
+    },
+    "com.azure.resourcehealth#EventLevelValues": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Critical"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Warning"
+          }
+        },
+        "INFORMATIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Informational"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Level of event."
+      }
+    },
+    "com.azure.resourcehealth#LevelValues": {
+      "type": "enum",
+      "members": {
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Critical"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Warning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Level of insight."
+      }
+    },
+    "com.azure.resourcehealth#EventSourceValues": {
+      "type": "enum",
+      "members": {
+        "RESOURCEHEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ResourceHealth"
+          }
+        },
+        "SERVICEHEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceHealth"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Source of event."
+      }
+    },
+    "com.azure.resourcehealth#EventSubTypeValues": {
+      "type": "enum",
+      "members": {
+        "RETIREMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Retirement"
+          }
+        },
+        "FOREIGNEXCHANGERATECHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ForeignExchangeRateChange"
+          }
+        },
+        "UNDERBILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Underbilling"
+          }
+        },
+        "OVERBILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Overbilling"
+          }
+        },
+        "PRICECHANGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PriceChanges"
+          }
+        },
+        "TAXCHANGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TaxChanges"
+          }
+        },
+        "METERIDCHANGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MeterIDChanges"
+          }
+        },
+        "UNAUTHORIZEDPARTYABUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UnauthorizedPartyAbuse"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sub-type of event."
+      }
+    },
+    "com.azure.resourcehealth#EventTypeValues": {
+      "type": "enum",
+      "members": {
+        "SERVICEISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceIssue"
+          }
+        },
+        "PLANNEDMAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PlannedMaintenance"
+          }
+        },
+        "HEALTHADVISORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HealthAdvisory"
+          }
+        },
+        "RCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RCA"
+          }
+        },
+        "EMERGINGISSUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EmergingIssues"
+          }
+        },
+        "SECURITYADVISORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SecurityAdvisory"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Billing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of event."
+      }
+    },
+    "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchBillingCommunicationDetails",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Service health event details specific in the subscription by event tracking id. This can be used to fetch sensitive properties for Billing event type.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Service health event in the subscription by event tracking id",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "queryStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "queryStartTime",
+            "smithy.api#documentation": "Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventsListBySubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventsListBySubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#Events"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists service health events in the subscription.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#Events": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcehealth#EventsValueList",
+          "traits": {
+            "smithy.api#documentation": "The Event items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The List events operation response."
+      }
+    },
+    "com.azure.resourcehealth#EventsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Event"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Event items on this page"
+      }
+    },
+    "com.azure.resourcehealth#Event": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service health event"
+      }
+    },
+    "com.azure.resourcehealth#EventsListBySubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "queryStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "queryStartTime",
+            "smithy.api#documentation": "Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/availabilityStatuses",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists the current availability status for all the resources in the subscription.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/operations",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists available operations for the resourcehealth resource provider",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcehealth#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations available in the Microsoft.ResourceHealth resource provider.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists the operations response."
+      }
+    },
+    "com.azure.resourcehealth#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations available in the Microsoft.ResourceHealth resource provider."
+      }
+    },
+    "com.azure.resourcehealth#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation."
+          }
+        },
+        "display": {
+          "target": "com.azure.resourcehealth#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Properties of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation available in the Microsoft.ResourceHealth resource provider."
+      }
+    },
+    "com.azure.resourcehealth#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the operation."
+      }
+    },
+    "com.azure.resourcehealth#MetadataGetEntity": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#MetadataGetEntityRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#MetadataGetEntityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/metadata/{name}",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets the list of metadata entities.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#MetadataGetEntityResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#MetadataEntityProperties",
+          "traits": {
+            "smithy.api#documentation": "The metadata entity properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#MetadataEntityProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name."
+          }
+        },
+        "dependsOn": {
+          "target": "com.azure.resourcehealth#MetadataEntityPropertiesDependsOnList",
+          "traits": {
+            "smithy.api#documentation": "The list of keys on which this entity depends on."
+          }
+        },
+        "applicableScenarios": {
+          "target": "com.azure.resourcehealth#MetadataEntityPropertiesApplicableScenariosList",
+          "traits": {
+            "smithy.api#documentation": "The list of scenarios applicable to this metadata entity."
+          }
+        },
+        "supportedValues": {
+          "target": "com.azure.resourcehealth#MetadataEntityPropertiesSupportedValuesList",
+          "traits": {
+            "smithy.api#documentation": "The list of supported values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata entity properties"
+      }
+    },
+    "com.azure.resourcehealth#MetadataEntityPropertiesSupportedValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#MetadataSupportedValueDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of supported values."
+      }
+    },
+    "com.azure.resourcehealth#MetadataSupportedValueDetail": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the metadata value"
+          }
+        },
+        "previousId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The previous value of the id field in case the data has changed."
+          }
+        },
+        "serviceGuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The permanent guid for the service. Used when the id is a service name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name."
+          }
+        },
+        "resourceTypes": {
+          "target": "com.azure.resourcehealth#MetadataSupportedValueDetailResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "The list of associated resource types."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Priority of this metadata supported value. Lower number is given higher preference."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata supported value detail."
+      }
+    },
+    "com.azure.resourcehealth#MetadataSupportedValueDetailResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of associated resource types."
+      }
+    },
+    "com.azure.resourcehealth#MetadataEntityPropertiesApplicableScenariosList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#Scenario"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of scenarios applicable to this metadata entity."
+      }
+    },
+    "com.azure.resourcehealth#Scenario": {
+      "type": "enum",
+      "members": {
+        "ALERTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Alerts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.resourcehealth#MetadataEntityPropertiesDependsOnList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of keys on which this entity depends on."
+      }
+    },
+    "com.azure.resourcehealth#MetadataGetEntityRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of metadata entity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#MetadataList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#MetadataEntityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/metadata",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets the list of metadata entities.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#MetadataEntityListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcehealth#MetadataEntityListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of metadata entities."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of metadata entities"
+      }
+    },
+    "com.azure.resourcehealth#MetadataEntityListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#MetadataEntity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of metadata entities."
+      }
+    },
+    "com.azure.resourcehealth#MetadataEntity": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#MetadataEntityProperties",
+          "traits": {
+            "smithy.api#documentation": "The metadata entity properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata entity contract."
+      }
+    },
+    "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventImpactedResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/listSecurityAdvisoryImpactedResources",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists impacted resources in the tenant by an event (Security Advisory).",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest": {
+      "type": "structure",
+      "members": {
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesGetByTenantId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources/{impactedResourceName}",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets the specific impacted resource in the tenant by an event.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventImpactedResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of impacted resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdRequest": {
+      "type": "structure",
+      "members": {
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "impactedResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Impacted Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventImpactedResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists impacted resources in the tenant by an event.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventIdRequest": {
+      "type": "structure",
+      "members": {
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchEventDetails",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Service health event details in the tenant by event tracking id. This can be used to fetch sensitive properties for Security Advisory events. Please see https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingIdRequest": {
+      "type": "structure",
+      "members": {
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventGetByTenantIdAndTrackingId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventGetByTenantIdAndTrackingIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EventGetByTenantIdAndTrackingIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Service health event in the tenant by event tracking id",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventGetByTenantIdAndTrackingIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EventProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#EventGetByTenantIdAndTrackingIdRequest": {
+      "type": "structure",
+      "members": {
+        "eventTrackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Event Id which uniquely identifies ServiceHealth event."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "queryStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "queryStartTime",
+            "smithy.api#documentation": "Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EventsListByTenantId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventsListByTenantIdRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#Events"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/events",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists current service health events in the tenant.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventsListByTenantIdRequest": {
+      "type": "structure",
+      "members": {
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "queryStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "queryStartTime",
+            "smithy.api#documentation": "Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssuesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EmergingIssuesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EmergingIssuesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/emergingIssues/{issueName}",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets Azure services' emerging issues.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssuesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EmergingIssue",
+          "traits": {
+            "smithy.api#documentation": "The emerging issue entity properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssue": {
+      "type": "structure",
+      "members": {
+        "refreshTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp for when last time refreshed for ongoing emerging issue."
+          }
+        },
+        "statusBanners": {
+          "target": "com.azure.resourcehealth#EmergingIssueStatusBannersList",
+          "traits": {
+            "smithy.api#documentation": "The list of emerging issues of banner type."
+          }
+        },
+        "statusActiveEvents": {
+          "target": "com.azure.resourcehealth#EmergingIssueStatusActiveEventsList",
+          "traits": {
+            "smithy.api#documentation": "The list of emerging issues of active event type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "On-going emerging issue from azure status."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssueStatusActiveEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#StatusActiveEvent"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of emerging issues of active event type."
+      }
+    },
+    "com.azure.resourcehealth#StatusActiveEvent": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The active event title."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The details of active event."
+          }
+        },
+        "trackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking id of this active event."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The impact start time on this active event."
+          }
+        },
+        "cloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cloud type of this active event."
+          }
+        },
+        "severity": {
+          "target": "com.azure.resourcehealth#SeverityValues",
+          "traits": {
+            "smithy.api#documentation": "The severity level of this active event."
+          }
+        },
+        "stage": {
+          "target": "com.azure.resourcehealth#StageValues",
+          "traits": {
+            "smithy.api#documentation": "The stage of this active event."
+          }
+        },
+        "published": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The boolean value of this active event if published or not."
+          }
+        },
+        "lastModifiedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time modified on this banner."
+          }
+        },
+        "impacts": {
+          "target": "com.azure.resourcehealth#StatusActiveEventImpactsList",
+          "traits": {
+            "smithy.api#documentation": "The list of emerging issues impacts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Active event type of emerging issue."
+      }
+    },
+    "com.azure.resourcehealth#StatusActiveEventImpactsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#EmergingIssueImpact"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of emerging issues impacts."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssueImpact": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The impacted service id."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The impacted service name."
+          }
+        },
+        "regions": {
+          "target": "com.azure.resourcehealth#EmergingIssueImpactRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The list of impacted regions for corresponding emerging issues."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object of the emerging issue impact on services and regions."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssueImpactRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#ImpactedRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of impacted regions for corresponding emerging issues."
+      }
+    },
+    "com.azure.resourcehealth#ImpactedRegion": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The impacted region id."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The impacted region name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object of impacted region."
+      }
+    },
+    "com.azure.resourcehealth#StageValues": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "RESOLVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolve"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Archived"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The stage of this active event."
+      }
+    },
+    "com.azure.resourcehealth#SeverityValues": {
+      "type": "enum",
+      "members": {
+        "INFORMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Information"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Warning"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The severity level of this active event."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssueStatusBannersList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#StatusBanner"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of emerging issues of banner type."
+      }
+    },
+    "com.azure.resourcehealth#StatusBanner": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The banner title."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The details of banner."
+          }
+        },
+        "cloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cloud type of this banner."
+          }
+        },
+        "lastModifiedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time modified on this banner."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Banner type of emerging issue."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssuesGetRequest": {
+      "type": "structure",
+      "members": {
+        "issueName": {
+          "target": "com.azure.resourcehealth#EmergingIssuesGetRequestIssueName",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the emerging issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssuesGetRequestIssueName": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.resourcehealth#EmergingIssuesList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#EmergingIssueListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceHealth/emergingIssues",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists Azure services' emerging issues.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssueListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcehealth#EmergingIssueListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of emerging issues."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of emerging issues."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of emerging issues."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssueListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcehealth#EmergingIssuesGetResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of emerging issues."
+      }
+    },
+    "com.azure.resourcehealth#EmergingIssuesGetResult": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcehealth#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#EmergingIssue",
+          "traits": {
+            "smithy.api#documentation": "The emerging issue entity properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Get EmergingIssues operation response."
+      }
+    },
+    "com.azure.resourcehealth#EventsListBySingleResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#EventsListBySingleResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#Events"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ResourceHealth/events",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists current service health events for given resource.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#EventsListBySingleResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ChildResourcesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ChildResourcesListRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ResourceHealth/childResources",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists the all the children and its current health status for a parent resource. Use the nextLink property in the response to get the next page of children current health",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ChildResourcesListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ResourceHealth/childAvailabilityStatuses/current",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets current availability status for a single resource",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager Identity for the availabilityStatuses resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Microsoft.ResourceHealth/AvailabilityStatuses."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager geo location of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of availability state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "undefined"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#ChildAvailabilityStatusesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#ChildAvailabilityStatusesListRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ResourceHealth/childAvailabilityStatuses",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists the historical availability statuses for a single child resource. Use the nextLink property in the response to get the next page of availability status",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#ChildAvailabilityStatusesListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "undefined"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesGetByResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusesGetByResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusesGetByResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ResourceHealth/availabilityStatuses/current",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Gets current availability status for a single resource",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesGetByResourceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager Identity for the availabilityStatuses resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Microsoft.ResourceHealth/AvailabilityStatuses."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager geo location of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcehealth#AvailabilityStatusProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of availability state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesGetByResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusesListRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ResourceHealth/availabilityStatuses",
+          "code": 200,
+          "apiVersion": "2025-05-01"
+        },
+        "smithy.api#documentation": "Lists all historical availability transitions and impacting events for a single resource.",
+        "com.distilled.openapi#apiVersion": "2025-05-01"
+      }
+    },
+    "com.azure.resourcehealth#AvailabilityStatusesListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "Setting $expand=recommendedactions in url query expands the recommendedactions in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcehealth#Resourcehealth": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventId"
+        },
+        {
+          "target": "com.azure.resourcehealth#ImpactedResourcesGet"
+        },
+        {
+          "target": "com.azure.resourcehealth#ImpactedResourcesListBySubscriptionIdAndEventId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventsListBySubscriptionId"
+        },
+        {
+          "target": "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionId"
+        },
+        {
+          "target": "com.azure.resourcehealth#OperationsList"
+        },
+        {
+          "target": "com.azure.resourcehealth#MetadataGetEntity"
+        },
+        {
+          "target": "com.azure.resourcehealth#MetadataList"
+        },
+        {
+          "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventId"
+        },
+        {
+          "target": "com.azure.resourcehealth#ImpactedResourcesGetByTenantId"
+        },
+        {
+          "target": "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventGetByTenantIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventsListByTenantId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EmergingIssuesGet"
+        },
+        {
+          "target": "com.azure.resourcehealth#EmergingIssuesList"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventsListBySingleResource"
+        },
+        {
+          "target": "com.azure.resourcehealth#ChildResourcesList"
+        },
+        {
+          "target": "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResource"
+        },
+        {
+          "target": "com.azure.resourcehealth#ChildAvailabilityStatusesList"
+        },
+        {
+          "target": "com.azure.resourcehealth#AvailabilityStatusesGetByResource"
+        },
+        {
+          "target": "com.azure.resourcehealth#AvailabilityStatusesList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Resourcehealth",
+        "smithy.api#documentation": "Azure Resourcehealth API — merged from the resourcehealth resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

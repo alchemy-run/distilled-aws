@@ -1,0 +1,40 @@
+{
+  "description": "Align resource_tagging#KeysList with distilled cloudflare/resource-tagging listKeys",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#KeysList",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListKeys"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#KeysListRequest",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListKeysRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListKeys/input/target",
+      "value": "com.cloudflare.resource_tagging#ListKeysRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#KeysListResponse",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListKeysResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListKeys/output/target",
+      "value": "com.cloudflare.resource_tagging#ListKeysResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListKeys/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursors.after",
+        "items": "result"
+      }
+    }
+  ]
+}

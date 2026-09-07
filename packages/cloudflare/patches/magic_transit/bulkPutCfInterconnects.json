@@ -1,0 +1,35 @@
+{
+  "description": "Align magic_transit#CfInterconnectsBulkUpdate with distilled cloudflare/magic-transit bulkPutCfInterconnects",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#CfInterconnectsBulkUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnects"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#CfInterconnectsBulkUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnectsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnects/input/target",
+      "value": "com.cloudflare.magic_transit#BulkPutCfInterconnectsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#CfInterconnectsBulkUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnectsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnects/output/target",
+      "value": "com.cloudflare.magic_transit#BulkPutCfInterconnectsResponse"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnectsRequest/members/x_magic_new_hc_target",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutCfInterconnectsRequest/members/xMagicNewHcTarget"
+    }
+  ]
+}

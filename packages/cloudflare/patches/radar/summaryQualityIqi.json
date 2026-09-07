@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#QualityIqiSummary with distilled cloudflare/radar summaryQualityIqi",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualityIqiSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualityIqi"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualityIqiSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualityIqiRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualityIqi/input/target",
+      "value": "com.cloudflare.radar#SummaryQualityIqiRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualityIqiSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualityIqiResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualityIqi/output/target",
+      "value": "com.cloudflare.radar#SummaryQualityIqiResponse"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align schema_validation#SettingsOperationsGet with distilled cloudflare/schema-validation getSettingOperation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsGet",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingOperation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsGetRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingOperationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingOperation/input/target",
+      "value": "com.cloudflare.schema_validation#GetSettingOperationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsGetResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingOperationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingOperation/output/target",
+      "value": "com.cloudflare.schema_validation#GetSettingOperationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingOperation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.schema_validation#OperationNotFound"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    }
+  ]
+}

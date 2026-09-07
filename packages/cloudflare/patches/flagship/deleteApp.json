@@ -1,0 +1,39 @@
+{
+  "description": "Align flagship#AppsDelete with distilled cloudflare/flagship deleteApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsDelete",
+      "path": "/shapes/com.cloudflare.flagship#DeleteApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsDeleteRequest",
+      "path": "/shapes/com.cloudflare.flagship#DeleteAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#DeleteApp/input/target",
+      "value": "com.cloudflare.flagship#DeleteAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsDeleteResponse",
+      "path": "/shapes/com.cloudflare.flagship#DeleteAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#DeleteApp/output/target",
+      "value": "com.cloudflare.flagship#DeleteAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#DeleteApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.flagship#FlagshipAppNotFound"
+        }
+      ]
+    }
+  ]
+}

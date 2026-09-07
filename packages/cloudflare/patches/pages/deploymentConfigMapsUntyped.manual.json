@@ -1,0 +1,303 @@
+{
+  "description": "deployment-config env_vars / kv_namespaces / d1_databases / r2_buckets are freeform binding maps (v0 parity: Record<string, unknown>)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#UntypedBindingMap",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsPreviewD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsPreviewKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsPreviewR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsProductionD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsProductionKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsProductionR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsPreviewD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsPreviewKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsPreviewR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsProductionD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsProductionKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsProductionR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsPreviewD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsPreviewKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsPreviewR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsProductionD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsProductionKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsProductionR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsPreviewD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsPreviewKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsPreviewR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsProductionD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsProductionKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsProductionR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsPreviewD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsPreviewKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsPreviewR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsProductionD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsProductionKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsProductionR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsPreviewD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsPreviewKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsPreviewR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsProductionD1DatabasesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsProductionKvNamespacesMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsProductionR2BucketsMap/value/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsPreview/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateRequestDeploymentConfigsProduction/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseCanonicalDeployment/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsPreview/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsCreateResponseDeploymentConfigsProduction/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsPreview/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditRequestDeploymentConfigsProduction/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseCanonicalDeployment/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsPreview/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsEditResponseDeploymentConfigsProduction/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseCanonicalDeployment/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsPreview/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsGetResponseDeploymentConfigsProduction/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemCanonicalDeployment/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsPreview/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsListResultItemDeploymentConfigsProduction/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentResponse/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#GetProjectDeploymentResponse/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ProjectsDeploymentsListResultItem/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#RetryProjectDeploymentResponse/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#RollbackProjectDeploymentResponse/members/env_vars/target",
+      "value": "com.cloudflare.pages#UntypedBindingMap"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "description": "Docs gap: POST /zones/{zone_id}/api_gateway/user_schemas is a multipart upload — schema file bytes under a part named `file`, plus `kind`, `name`, `validation_enabled` parts — but the docs model it as a bare JSON POST with no body members, so the live API rejects it with BadRequest. Transcribed from the distilled SDK's createUserSchema. `file` is a plain body member (not formDataFile) so the multipart encoder appends it under the member name, which is what the API expects.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchemaRequest/members/file",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#required": {},
+          "smithy.api#documentation": "Schema file bytes (File/Blob), sent as the multipart `file` part."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchemaRequest/members/kind",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#required": {},
+          "smithy.api#documentation": "Kind of schema (openapi_v3)."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchemaRequest/members/name",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "Name of the schema."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchemaRequest/members/validationEnabled",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#jsonName": "validation_enabled",
+          "smithy.api#documentation": "Flag whether schema is enabled for validation."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchema/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    }
+  ]
+}

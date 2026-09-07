@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#BotsList with distilled cloudflare/radar listBots",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BotsList",
+      "path": "/shapes/com.cloudflare.radar#ListBots"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BotsListRequest",
+      "path": "/shapes/com.cloudflare.radar#ListBotsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListBots/input/target",
+      "value": "com.cloudflare.radar#ListBotsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BotsListResponse",
+      "path": "/shapes/com.cloudflare.radar#ListBotsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListBots/output/target",
+      "value": "com.cloudflare.radar#ListBotsResponse"
+    }
+  ]
+}

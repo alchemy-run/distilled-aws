@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpAsesHttpProtocolGet with distilled cloudflare/radar getHttpAsHttpProtocol",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesHttpProtocolGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsHttpProtocol"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesHttpProtocolGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsHttpProtocolRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsHttpProtocol/input/target",
+      "value": "com.cloudflare.radar#GetHttpAsHttpProtocolRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesHttpProtocolGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsHttpProtocolResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsHttpProtocol/output/target",
+      "value": "com.cloudflare.radar#GetHttpAsHttpProtocolResponse"
+    }
+  ]
+}

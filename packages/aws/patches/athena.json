@@ -1,0 +1,99 @@
+{
+  "operations": {
+    "getWorkGroup": {
+      "syntheticErrors": [
+        {
+          "name": "WorkGroupNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "WorkGroup.*not found" }
+        }
+      ]
+    },
+    "updateWorkGroup": {
+      "syntheticErrors": [
+        {
+          "name": "WorkGroupNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "WorkGroup.*not found" }
+        }
+      ]
+    },
+    "getNamedQuery": {
+      "syntheticErrors": [
+        {
+          "name": "NamedQueryNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "NamedQuery.*does not exist" }
+        }
+      ]
+    },
+    "updateNamedQuery": {
+      "syntheticErrors": [
+        {
+          "name": "NamedQueryNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "NamedQuery.*does not exist" }
+        }
+      ]
+    },
+    "deleteNamedQuery": {
+      "syntheticErrors": [
+        {
+          "name": "NamedQueryNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "NamedQuery.*does not exist" }
+        }
+      ]
+    },
+    "getPreparedStatement": {
+      "syntheticErrors": [
+        {
+          "name": "WorkGroupNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "WorkGroup.*not found" }
+        }
+      ]
+    },
+    "deletePreparedStatement": {
+      "syntheticErrors": [
+        {
+          "name": "WorkGroupNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "WorkGroup.*not found" }
+        }
+      ]
+    },
+    "getDataCatalog": {
+      "syntheticErrors": [
+        {
+          "name": "DataCatalogNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "DataCatalog.*not found" }
+        }
+      ]
+    },
+    "updateDataCatalog": {
+      "syntheticErrors": [
+        {
+          "name": "DataCatalogNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "DataCatalog.*not found" }
+        }
+      ]
+    },
+    "deleteDataCatalog": {
+      "syntheticErrors": [
+        {
+          "name": "DataCatalogNotFound",
+          "from": "InvalidRequestException",
+          "message": { "matches": "DataCatalog.*not found" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "WorkGroupNotFound": ["NotFoundError"],
+    "NamedQueryNotFound": ["NotFoundError"],
+    "DataCatalogNotFound": ["NotFoundError"]
+  }
+}

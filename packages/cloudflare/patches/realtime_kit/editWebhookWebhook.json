@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#WebhooksEditWebhook with distilled cloudflare/realtime-kit editWebhookWebhook",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#WebhooksEditWebhook",
+      "path": "/shapes/com.cloudflare.realtime_kit#EditWebhookWebhook"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#WebhooksEditWebhookRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#EditWebhookWebhookRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#EditWebhookWebhook/input/target",
+      "value": "com.cloudflare.realtime_kit#EditWebhookWebhookRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#WebhooksEditWebhookResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#EditWebhookWebhookResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#EditWebhookWebhook/output/target",
+      "value": "com.cloudflare.realtime_kit#EditWebhookWebhookResponse"
+    }
+  ]
+}

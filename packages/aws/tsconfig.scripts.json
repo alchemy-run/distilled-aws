@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["scripts/**/*.ts"],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "outDir": "./.scripts-types",
+    "rootDir": "./scripts",
+    "tsBuildInfoFile": "./.scripts-types/tsconfig.scripts.tsbuildinfo",
+    "resolveJsonModule": true,
+    // Resolve @distilled.cloud/core/* to src (the bun condition), matching
+    // how the scripts actually run under bun.
+    "rewriteRelativeImportExtensions": false,
+    "customConditions": ["bun"]
+  },
+  "references": [{ "path": "../core" }, { "path": "./tsconfig.json" }]
+}

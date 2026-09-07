@@ -1,0 +1,42 @@
+{
+  "description": "Align spectrum#AppsGet with distilled cloudflare/spectrum getApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsGet",
+      "path": "/shapes/com.cloudflare.spectrum#GetApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsGetRequest",
+      "path": "/shapes/com.cloudflare.spectrum#GetAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#GetApp/input/target",
+      "value": "com.cloudflare.spectrum#GetAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsGetResponse",
+      "path": "/shapes/com.cloudflare.spectrum#GetAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#GetApp/output/target",
+      "value": "com.cloudflare.spectrum#GetAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.spectrum#GetApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.spectrum#SpectrumAppNotFound"
+        },
+        {
+          "target": "com.cloudflare.spectrum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

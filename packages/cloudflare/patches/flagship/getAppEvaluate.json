@@ -1,0 +1,30 @@
+{
+  "description": "Align flagship#AppsEvaluateGet with distilled cloudflare/flagship getAppEvaluate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsEvaluateGet",
+      "path": "/shapes/com.cloudflare.flagship#GetAppEvaluate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsEvaluateGetRequest",
+      "path": "/shapes/com.cloudflare.flagship#GetAppEvaluateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#GetAppEvaluate/input/target",
+      "value": "com.cloudflare.flagship#GetAppEvaluateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsEvaluateGetResponse",
+      "path": "/shapes/com.cloudflare.flagship#GetAppEvaluateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#GetAppEvaluate/output/target",
+      "value": "com.cloudflare.flagship#GetAppEvaluateResponse"
+    }
+  ]
+}

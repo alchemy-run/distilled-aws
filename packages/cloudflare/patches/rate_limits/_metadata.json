@@ -1,0 +1,16 @@
+{
+  "description": "Key dictionary / op aliases for rate_limits (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "contentType": "content_type",
+        "originTraffic": "origin_traffic",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

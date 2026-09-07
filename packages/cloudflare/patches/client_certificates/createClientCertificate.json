@@ -1,0 +1,39 @@
+{
+  "description": "Align client_certificates#Create with distilled cloudflare/client-certificates createClientCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.client_certificates#Create",
+      "path": "/shapes/com.cloudflare.client_certificates#CreateClientCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.client_certificates#CreateRequest",
+      "path": "/shapes/com.cloudflare.client_certificates#CreateClientCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.client_certificates#CreateClientCertificate/input/target",
+      "value": "com.cloudflare.client_certificates#CreateClientCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.client_certificates#CreateResponse",
+      "path": "/shapes/com.cloudflare.client_certificates#CreateClientCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.client_certificates#CreateClientCertificate/output/target",
+      "value": "com.cloudflare.client_certificates#CreateClientCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.client_certificates#CreateClientCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "description": "The docs publish GET /zones/{zone_id}/snippets/snippet_rules twice (RulesGet + RulesList), and distilled exports it as getRule (errors: []) with listRules as the richer duplicate declaring [SnippetRulesNotFound, Forbidden]. The route-dedup keeps getRule and aliases listRules to it, losing the typed errors — so a zone with no snippet rules surfaces generic NotFound ('could not find entrypoint ruleset in the http_request_snippets phase') instead of SnippetRulesNotFound, which alchemy's provider catches by tag. Attach the union of both duplicates' error lists.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.snippets#GetRule/errors",
+      "value": [
+        { "target": "com.cloudflare.snippets#SnippetRulesNotFound" },
+        { "target": "com.cloudflare.snippets#Forbidden" }
+      ]
+    }
+  ]
+}

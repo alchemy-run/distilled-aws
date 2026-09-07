@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesOverrideCodesGet with distilled cloudflare/zero-trust getDeviceOverrideCode",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesOverrideCodesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceOverrideCode"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesOverrideCodesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceOverrideCodeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceOverrideCode/input/target",
+      "value": "com.cloudflare.zero_trust#GetDeviceOverrideCodeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesOverrideCodesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceOverrideCodeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDeviceOverrideCode/output/target",
+      "value": "com.cloudflare.zero_trust#GetDeviceOverrideCodeResponse"
+    }
+  ]
+}

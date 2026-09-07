@@ -1,0 +1,30 @@
+{
+  "description": "Align ssl#CertificatePacksQuotaGet with distilled cloudflare/ssl getCertificatePackQuota",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksQuotaGet",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackQuota"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksQuotaGetRequest",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackQuotaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackQuota/input/target",
+      "value": "com.cloudflare.ssl#GetCertificatePackQuotaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksQuotaGetResponse",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackQuotaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#GetCertificatePackQuota/output/target",
+      "value": "com.cloudflare.ssl#GetCertificatePackQuotaResponse"
+    }
+  ]
+}

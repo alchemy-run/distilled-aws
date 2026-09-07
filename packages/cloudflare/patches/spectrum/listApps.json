@@ -1,0 +1,50 @@
+{
+  "description": "Align spectrum#AppsList with distilled cloudflare/spectrum listApps",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsList",
+      "path": "/shapes/com.cloudflare.spectrum#ListApps"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsListRequest",
+      "path": "/shapes/com.cloudflare.spectrum#ListAppsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#ListApps/input/target",
+      "value": "com.cloudflare.spectrum#ListAppsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsListResponse",
+      "path": "/shapes/com.cloudflare.spectrum#ListAppsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#ListApps/output/target",
+      "value": "com.cloudflare.spectrum#ListAppsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.spectrum#ListApps/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.spectrum#ListApps/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.spectrum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "description": "Align accounts#TokensDelete with distilled cloudflare/accounts deleteToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensDelete",
+      "path": "/shapes/com.cloudflare.accounts#DeleteToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensDeleteRequest",
+      "path": "/shapes/com.cloudflare.accounts#DeleteTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#DeleteToken/input/target",
+      "value": "com.cloudflare.accounts#DeleteTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensDeleteResponse",
+      "path": "/shapes/com.cloudflare.accounts#DeleteTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#DeleteToken/output/target",
+      "value": "com.cloudflare.accounts#DeleteTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#DeleteToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.accounts#TokenNotFound"
+        },
+        {
+          "target": "com.cloudflare.accounts#TokenManagedByCloudflare"
+        }
+      ]
+    }
+  ]
+}

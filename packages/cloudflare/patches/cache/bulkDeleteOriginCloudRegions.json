@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#OriginCloudRegionsBulkDelete with distilled cloudflare/cache bulkDeleteOriginCloudRegions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsBulkDelete",
+      "path": "/shapes/com.cloudflare.cache#BulkDeleteOriginCloudRegions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsBulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.cache#BulkDeleteOriginCloudRegionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#BulkDeleteOriginCloudRegions/input/target",
+      "value": "com.cloudflare.cache#BulkDeleteOriginCloudRegionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponse",
+      "path": "/shapes/com.cloudflare.cache#BulkDeleteOriginCloudRegionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#BulkDeleteOriginCloudRegions/output/target",
+      "value": "com.cloudflare.cache#BulkDeleteOriginCloudRegionsResponse"
+    }
+  ]
+}

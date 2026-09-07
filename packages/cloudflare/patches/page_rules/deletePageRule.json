@@ -1,0 +1,42 @@
+{
+  "description": "Align page_rules#Delete with distilled cloudflare/page-rules deletePageRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#Delete",
+      "path": "/shapes/com.cloudflare.page_rules#DeletePageRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#DeleteRequest",
+      "path": "/shapes/com.cloudflare.page_rules#DeletePageRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#DeletePageRule/input/target",
+      "value": "com.cloudflare.page_rules#DeletePageRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#DeleteResponse",
+      "path": "/shapes/com.cloudflare.page_rules#DeletePageRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#DeletePageRule/output/target",
+      "value": "com.cloudflare.page_rules#DeletePageRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_rules#DeletePageRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_rules#PageRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_rules#Forbidden"
+        }
+      ]
+    }
+  ]
+}

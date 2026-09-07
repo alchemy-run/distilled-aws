@@ -1,0 +1,42 @@
+{
+  "description": "Align email_security#SettingsAllowPoliciesCreate with distilled cloudflare/email-security createSettingAllowPolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsAllowPoliciesCreate",
+      "path": "/shapes/com.cloudflare.email_security#CreateSettingAllowPolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsAllowPoliciesCreateRequest",
+      "path": "/shapes/com.cloudflare.email_security#CreateSettingAllowPolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#CreateSettingAllowPolicy/input/target",
+      "value": "com.cloudflare.email_security#CreateSettingAllowPolicyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsAllowPoliciesCreateResponse",
+      "path": "/shapes/com.cloudflare.email_security#CreateSettingAllowPolicyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#CreateSettingAllowPolicy/output/target",
+      "value": "com.cloudflare.email_security#CreateSettingAllowPolicyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#CreateSettingAllowPolicy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_security#EmailSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.email_security#Forbidden"
+        }
+      ]
+    }
+  ]
+}

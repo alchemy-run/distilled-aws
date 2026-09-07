@@ -1,0 +1,50 @@
+{
+  "description": "Align magic_transit#GreTunnelsUpdate with distilled cloudflare/magic-transit updateGreTunnel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#GreTunnelsUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#GreTunnelsUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnel/input/target",
+      "value": "com.cloudflare.magic_transit#UpdateGreTunnelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#GreTunnelsUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnel/output/target",
+      "value": "com.cloudflare.magic_transit#UpdateGreTunnelResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnel/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#GreTunnelNotFound"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#MagicTransitNotOnboarded"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnelRequest/members/x_magic_new_hc_target",
+      "path": "/shapes/com.cloudflare.magic_transit#UpdateGreTunnelRequest/members/xMagicNewHcTarget"
+    }
+  ]
+}

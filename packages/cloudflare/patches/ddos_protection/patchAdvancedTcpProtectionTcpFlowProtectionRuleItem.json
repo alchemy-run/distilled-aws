@@ -1,0 +1,45 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEdit with distilled cloudflare/ddos-protection patchAdvancedTcpProtectionTcpFlowProtectionRuleItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEdit",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEditRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItem/input/target",
+      "value": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionTcpFlowProtectionRulesItemsEditResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItem/output/target",
+      "value": "com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#PatchAdvancedTcpProtectionTcpFlowProtectionRuleItem/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ddos_protection#TcpFlowProtectionRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#Forbidden"
+        }
+      ]
+    }
+  ]
+}

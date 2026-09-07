@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#ScriptsSchedulesUpdate with distilled cloudflare/workers putScriptSchedule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSchedulesUpdate",
+      "path": "/shapes/com.cloudflare.workers#PutScriptSchedule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSchedulesUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers#PutScriptScheduleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutScriptSchedule/input/target",
+      "value": "com.cloudflare.workers#PutScriptScheduleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSchedulesUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers#PutScriptScheduleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutScriptSchedule/output/target",
+      "value": "com.cloudflare.workers#PutScriptScheduleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PutScriptSchedule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

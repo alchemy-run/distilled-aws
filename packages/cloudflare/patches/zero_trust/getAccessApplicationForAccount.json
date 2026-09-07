@@ -1,0 +1,42 @@
+{
+  "description": "Align getAccessApplicationForAccount rename and type Forbidden (403) — Cloudflare returns 403 as transient token back-pressure",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsGetForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#AccessApplicationNotFound"
+        }
+      ]
+    }
+  ]
+}

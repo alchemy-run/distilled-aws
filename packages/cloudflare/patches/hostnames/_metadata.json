@@ -1,0 +1,13 @@
+{
+  "description": "Key dictionary / op aliases for hostnames (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdAt": "created_at",
+        "updatedAt": "updated_at"
+      }
+    }
+  ]
+}

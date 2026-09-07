@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#AudioTracksEdit with distilled cloudflare/stream patchAudioTrack",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksEdit",
+      "path": "/shapes/com.cloudflare.stream#PatchAudioTrack"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksEditRequest",
+      "path": "/shapes/com.cloudflare.stream#PatchAudioTrackRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#PatchAudioTrack/input/target",
+      "value": "com.cloudflare.stream#PatchAudioTrackRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksEditResponse",
+      "path": "/shapes/com.cloudflare.stream#PatchAudioTrackResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#PatchAudioTrack/output/target",
+      "value": "com.cloudflare.stream#PatchAudioTrackResponse"
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.axiom.api#QueryAplRequestFormat": {
+      "type": "enum",
+      "members": {
+        "LEGACY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legacy"
+          }
+        },
+        "TABULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tabular"
+          }
+        },
+        "TABULAR_ROWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tabular-rows"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.axiom.api#QueryAplRequestDefaultOrderItem": {
+      "type": "structure",
+      "members": {
+        "desc": {
+          "target": "smithy.api#Boolean"
+        },
+        "field": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.axiom.api#QueryAplRequestDefaultOrderList": {
+      "type": "list",
+      "member": {
+        "target": "com.axiom.api#QueryAplRequestDefaultOrderItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The default order to use when no order is specified in the query.\n"
+      }
+    },
+    "com.axiom.api#QueryAplRequestLibrariesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.axiom.api#QueryOptions": {
+      "type": "structure",
+      "members": {
+        "against": {
+          "target": "smithy.api#String"
+        },
+        "againstStart": {
+          "target": "smithy.api#String"
+        },
+        "againstTimestamp": {
+          "target": "smithy.api#String"
+        },
+        "aggChartOpts": {
+          "target": "smithy.api#String"
+        },
+        "caseSensitive": {
+          "target": "smithy.api#String"
+        },
+        "containsTimeFilter": {
+          "target": "smithy.api#String"
+        },
+        "datasets": {
+          "target": "smithy.api#String"
+        },
+        "displayNull": {
+          "target": "smithy.api#String"
+        },
+        "editorContent": {
+          "target": "smithy.api#String"
+        },
+        "endColumn": {
+          "target": "smithy.api#String"
+        },
+        "endLineNumber": {
+          "target": "smithy.api#String"
+        },
+        "endTime": {
+          "target": "smithy.api#String"
+        },
+        "integrationsFilter": {
+          "target": "smithy.api#String"
+        },
+        "nanosecondPrecision": {
+          "target": "smithy.api#String"
+        },
+        "openIntervals": {
+          "target": "smithy.api#String"
+        },
+        "overlayCharts": {
+          "target": "smithy.api#String"
+        },
+        "queryObject": {
+          "target": "smithy.api#String"
+        },
+        "quickRange": {
+          "target": "smithy.api#String"
+        },
+        "resolution": {
+          "target": "smithy.api#String"
+        },
+        "resultsHistogram": {
+          "target": "smithy.api#String"
+        },
+        "selection": {
+          "target": "smithy.api#String"
+        },
+        "shownColumns": {
+          "target": "smithy.api#String"
+        },
+        "startColumn": {
+          "target": "smithy.api#String"
+        },
+        "startLineNumber": {
+          "target": "smithy.api#String"
+        },
+        "startTime": {
+          "target": "smithy.api#String"
+        },
+        "timeSeriesVariant": {
+          "target": "smithy.api#String"
+        },
+        "timeSeriesView": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.axiom.api#QueryAplRequestVariablesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Variables is an optional set of additional variables that are inserted into the APL"
+      }
+    },
+    "com.axiom.api#QueryAplRequest": {
+      "type": "structure",
+      "members": {
+        "format": {
+          "target": "com.axiom.api#QueryAplRequestFormat",
+          "traits": {
+            "smithy.api#httpQuery": "format",
+            "smithy.api#required": {}
+          }
+        },
+        "nocache": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "nocache"
+          }
+        },
+        "saveAsKind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "saveAsKind"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "when saveAsKind is true, this parameter indicates the id of the associated dataset"
+          }
+        },
+        "streaming_duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "streaming-duration"
+          }
+        },
+        "apl_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "apl-source",
+            "smithy.api#documentation": "contains the source of the APL query (for example console, dashboard, etc.)"
+          }
+        },
+        "apl_source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "apl-source-id",
+            "smithy.api#documentation": "contains the id of the source, for example dashboard_id"
+          }
+        },
+        "totals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "totals",
+            "smithy.api#documentation": "Include a totals table (only supported in MetricsDB)"
+          }
+        },
+        "apl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "APL query string",
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "defaultLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The default limit to use when no limit is specified in the query.\n"
+          }
+        },
+        "defaultOrder": {
+          "target": "com.axiom.api#QueryAplRequestDefaultOrderList",
+          "traits": {
+            "smithy.api#documentation": "The default order to use when no order is specified in the query.\n"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time for the query range"
+          }
+        },
+        "includeCursor": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include cursor in response"
+          }
+        },
+        "includeCursorField": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Defines if the _cursor field should be projected in the result"
+          }
+        },
+        "libraries": {
+          "target": "com.axiom.api#QueryAplRequestLibrariesList"
+        },
+        "maxBinAutoGroups": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of groups to automatically bin into"
+          }
+        },
+        "queryOptions": {
+          "target": "com.axiom.api#QueryOptions"
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "start and end time for the query, these must be specified as RFC3339 strings\nor using relative time expressions (e.g. now-1h, now-1d, now-1w, etc)"
+          }
+        },
+        "variables": {
+          "target": "com.axiom.api#QueryAplRequestVariablesMap",
+          "traits": {
+            "smithy.api#documentation": "Variables is an optional set of additional variables that are inserted into the APL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.axiom.api#QueryAplResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.axiom.api#QueryApl": {
+      "type": "operation",
+      "input": {
+        "target": "com.axiom.api#QueryAplRequest"
+      },
+      "output": {
+        "target": "com.axiom.api#QueryAplResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/datasets/_apl",
+          "code": 200
+        }
+      }
+    },
+    "com.axiom.api#AxiomEdgeQuery": {
+      "type": "service",
+      "version": "2.0.0",
+      "operations": [
+        {
+          "target": "com.axiom.api#QueryApl"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Axiom Query",
+        "smithy.api#documentation": "Query execution API for regional Edge deployments"
+      }
+    }
+  }
+}

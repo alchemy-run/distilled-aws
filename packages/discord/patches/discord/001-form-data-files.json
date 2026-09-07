@@ -1,0 +1,35 @@
+{
+  "description": "Mark the binary members of the three multipart-only operations as file parts. Discord spells binary bodies as `{ type: string, contentEncoding: binary }` (OAS 3.1); the OpenAPI→Smithy converter has no binary vocabulary, so those members land as plain `smithy.api#String` and the generated input would reject the File/Blob the multipart protocol actually wants. Each member is retargeted to `smithy.api#Document` (→ `S.Unknown`, since the payload is opaque bytes rather than a string) and stamped with `com.distilled.discord#formDataFile`, which binds it to `T.FormDataFile()` with a `File | Blob` TS type (see the extraBindings entry in scripts/generate.ts); the core REST protocol appends those members as form parts. Only these three operations are affected: every other multipart endpoint also offers application/json, and the converter's content-type precedence (json > form-urlencoded > multipart) picks JSON for those — file attachments on message endpoints are therefore not reachable through the generated surface.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.discord.api#UploadApplicationAttachmentRequest/members/file/traits/com.distilled.discord#formDataFile",
+      "value": {}
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.discord.api#UploadApplicationAttachmentRequest/members/file/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.discord.api#CreateGuildStickerRequest/members/file/traits/com.distilled.discord#formDataFile",
+      "value": {}
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.discord.api#CreateGuildStickerRequest/members/file/target",
+      "value": "smithy.api#Document"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.discord.api#UpdateInviteTargetUsersRequest/members/target_users_file/traits/com.distilled.discord#formDataFile",
+      "value": {}
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.discord.api#UpdateInviteTargetUsersRequest/members/target_users_file/target",
+      "value": "smithy.api#Document"
+    }
+  ]
+}

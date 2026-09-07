@@ -1,0 +1,37 @@
+{
+  "description": "Docs drift: the docs model the list-endpoint-healthchecks result as a single object, but the live API returns a bare array of healthchecks in `result` (distilled types it Array(...).pipe(ResponsePath('result'))). Reshape: the docs-derived struct becomes the item, and the response becomes the bare-array payload.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecksResponse",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecksItem"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecksItemsList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.cloudflare.diagnostics#ListEndpointHealthchecksItem"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.diagnostics#ListEndpointHealthchecksResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "com.cloudflare.diagnostics#ListEndpointHealthchecksItemsList",
+            "traits": {
+              "com.cloudflare.protocols#envelopePayload": {},
+              "smithy.api#documentation": "The endpoint healthchecks for the account."
+            }
+          }
+        },
+        "traits": { "smithy.api#output": {} }
+      }
+    }
+  ]
+}

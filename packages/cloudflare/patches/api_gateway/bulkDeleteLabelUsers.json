@@ -1,0 +1,38 @@
+{
+  "description": "Align api_gateway#LabelsUserBulkDelete with distilled cloudflare/api-gateway bulkDeleteLabelUsers",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserBulkDelete",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteLabelUsers"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserBulkDeleteRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteLabelUsersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteLabelUsers/input/target",
+      "value": "com.cloudflare.api_gateway#BulkDeleteLabelUsersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserBulkDeleteResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteLabelUsersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteLabelUsers/output/target",
+      "value": "com.cloudflare.api_gateway#BulkDeleteLabelUsersResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkDeleteLabelUsers/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

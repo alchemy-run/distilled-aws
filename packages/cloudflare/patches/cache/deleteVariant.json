@@ -1,0 +1,42 @@
+{
+  "description": "Align cache#VariantsDelete with distilled cloudflare/cache deleteVariant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsDelete",
+      "path": "/shapes/com.cloudflare.cache#DeleteVariant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsDeleteRequest",
+      "path": "/shapes/com.cloudflare.cache#DeleteVariantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteVariant/input/target",
+      "value": "com.cloudflare.cache#DeleteVariantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsDeleteResponse",
+      "path": "/shapes/com.cloudflare.cache#DeleteVariantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteVariant/output/target",
+      "value": "com.cloudflare.cache#DeleteVariantResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#DeleteVariant/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#VariantsNotConfigured"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

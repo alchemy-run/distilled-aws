@@ -1,0 +1,598 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.hosted_compute#ListNetworkConfigurationsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.hosted_compute#NetworkConfiguration": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the network configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the network configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "compute_service": {
+          "target": "com.github.hosted_compute#NetworkConfigurationComputeService",
+          "traits": {
+            "smithy.api#documentation": "The hosted compute service the network configuration supports."
+          }
+        },
+        "network_settings_ids": {
+          "target": "com.github.hosted_compute#NetworkConfigurationNetworkSettingsIdsList",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of each network settings in the configuration."
+          }
+        },
+        "failover_network_settings_ids": {
+          "target": "com.github.hosted_compute#NetworkConfigurationFailoverNetworkSettingsIdsList",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of each failover network settings in the configuration."
+          }
+        },
+        "failover_network_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the failover network resource is enabled."
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the network configuration was created, in ISO 8601 format.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A hosted compute network configuration."
+      }
+    },
+    "com.github.hosted_compute#NetworkConfigurationComputeService": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "actions"
+          }
+        },
+        "CODESPACES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "codespaces"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The hosted compute service the network configuration supports."
+      }
+    },
+    "com.github.hosted_compute#NetworkConfigurationNetworkSettingsIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The unique identifier of each network settings in the configuration."
+      }
+    },
+    "com.github.hosted_compute#NetworkConfigurationFailoverNetworkSettingsIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The unique identifier of each failover network settings in the configuration."
+      }
+    },
+    "com.github.hosted_compute#ListNetworkConfigurationsForOrgResponseNetworkConfigurationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.hosted_compute#NetworkConfiguration"
+      },
+      "traits": {}
+    },
+    "com.github.hosted_compute#ListNetworkConfigurationsForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "network_configurations": {
+          "target": "com.github.hosted_compute#ListNetworkConfigurationsForOrgResponseNetworkConfigurationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.hosted_compute#ListNetworkConfigurationsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.hosted_compute#ListNetworkConfigurationsForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.hosted_compute#ListNetworkConfigurationsForOrgResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/settings/network-configurations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List hosted compute network configurations for an organization\n\nLists all hosted compute network configurations configured in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint."
+      }
+    },
+    "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequestComputeService": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "actions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The hosted compute service to use for the network configuration."
+      }
+    },
+    "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequestNetworkSettingsIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of identifiers of the network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+      }
+    },
+    "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequestFailoverNetworkSettingsIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of identifiers of the failover network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+      }
+    },
+    "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the network configuration. Must be between 1 and 100 characters and may only contain upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'.",
+            "smithy.api#required": {}
+          }
+        },
+        "compute_service": {
+          "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequestComputeService",
+          "traits": {
+            "smithy.api#documentation": "The hosted compute service to use for the network configuration."
+          }
+        },
+        "network_settings_ids": {
+          "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequestNetworkSettingsIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of identifiers of the network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list.",
+            "smithy.api#required": {}
+          }
+        },
+        "failover_network_settings_ids": {
+          "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequestFailoverNetworkSettingsIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of identifiers of the failover network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+          }
+        },
+        "failover_network_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the failover network resource is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.hosted_compute#CreateNetworkConfigurationForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.hosted_compute#NetworkConfiguration"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/settings/network-configurations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a hosted compute network configuration for an organization\n\nCreates a hosted compute network configuration for an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint."
+      }
+    },
+    "com.github.hosted_compute#GetNetworkConfigurationForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "network_configuration_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the hosted compute network configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.hosted_compute#GetNetworkConfigurationForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.hosted_compute#GetNetworkConfigurationForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.hosted_compute#NetworkConfiguration"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/settings/network-configurations/{network_configuration_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a hosted compute network configuration for an organization\n\nGets a hosted compute network configuration configured in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint."
+      }
+    },
+    "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequestComputeService": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "ACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "actions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The hosted compute service to use for the network configuration."
+      }
+    },
+    "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequestNetworkSettingsIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of identifiers of the network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+      }
+    },
+    "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequestFailoverNetworkSettingsIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of identifiers of the failover network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+      }
+    },
+    "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "network_configuration_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the hosted compute network configuration."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the network configuration. Must be between 1 and 100 characters and may only contain upper and lowercase letters a-z, numbers 0-9, '.', '-', and '_'."
+          }
+        },
+        "compute_service": {
+          "target": "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequestComputeService",
+          "traits": {
+            "smithy.api#documentation": "The hosted compute service to use for the network configuration."
+          }
+        },
+        "network_settings_ids": {
+          "target": "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequestNetworkSettingsIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of identifiers of the network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+          }
+        },
+        "failover_network_settings_ids": {
+          "target": "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequestFailoverNetworkSettingsIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of identifiers of the failover network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list."
+          }
+        },
+        "failover_network_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the failover network resource is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.hosted_compute#UpdateNetworkConfigurationForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.hosted_compute#UpdateNetworkConfigurationForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.hosted_compute#NetworkConfiguration"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/orgs/{org}/settings/network-configurations/{network_configuration_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a hosted compute network configuration for an organization\n\nUpdates a hosted compute network configuration for an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint."
+      }
+    },
+    "com.github.hosted_compute#DeleteNetworkConfigurationFromOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "network_configuration_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the hosted compute network configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.hosted_compute#DeleteNetworkConfigurationFromOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.hosted_compute#DeleteNetworkConfigurationFromOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/settings/network-configurations/{network_configuration_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a hosted compute network configuration from an organization\n\nDeletes a hosted compute network configuration from an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `write:network_configurations` scope to use this endpoint."
+      }
+    },
+    "com.github.hosted_compute#GetNetworkSettingsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "network_settings_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the hosted compute network settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.hosted_compute#NetworkSettings": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the network settings resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "network_configuration_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the network configuration that is using this settings resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the network settings resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "subnet_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subnet this network settings resource is configured for.",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the subnet this network settings resource is configured for.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A hosted compute network settings resource."
+      }
+    },
+    "com.github.hosted_compute#GetNetworkSettingsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.hosted_compute#GetNetworkSettingsForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.hosted_compute#NetworkSettings"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/settings/network-settings/{network_settings_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a hosted compute network settings resource for an organization\n\nGets a hosted compute network settings resource configured for an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:network_configurations` scope to use this endpoint."
+      }
+    },
+    "com.github.hosted_compute#HostedCompute": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.hosted_compute#ListNetworkConfigurationsForOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#GetNetworkConfigurationForOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#UpdateNetworkConfigurationForOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#DeleteNetworkConfigurationFromOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#GetNetworkSettingsForOrg"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

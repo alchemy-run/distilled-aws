@@ -1,0 +1,758 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "merchantapi",
+    "version": "ordertracking_v1beta",
+    "title": "Merchant API",
+    "baseUrl": "https://merchantapi.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.merchantapi_ordertracking_v1beta#DateTime": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day."
+          }
+        },
+        "seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds."
+          }
+        },
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0."
+          }
+        },
+        "utcOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0."
+          }
+        },
+        "timeZone": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#TimeZone",
+          "traits": {
+            "smithy.api#documentation": "Time zone."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#OrderTrackingSignal": {
+      "type": "structure",
+      "members": {
+        "orderCreatedTime": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Required. The time when the order was created on the businesses side. Include the year and timezone string, if available."
+          }
+        },
+        "customerShippingFee": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "Optional. The shipping fee of the order; this value should be set to zero in the case of free shipping."
+          }
+        },
+        "shippingInfo": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ShippingInfoList",
+          "traits": {
+            "smithy.api#documentation": "Required. The shipping information for the order."
+          }
+        },
+        "deliveryPostalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The delivery postal code, as a continuous string without spaces or dashes, for example \"95016\". This field will be anonymized in returned OrderTrackingSignal creation response."
+          }
+        },
+        "deliveryRegionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) for the shipping destination."
+          }
+        },
+        "lineItems": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#LineItemDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Required. Information about line items in the order."
+          }
+        },
+        "orderTrackingSignalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID that uniquely identifies this order tracking signal."
+          }
+        },
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the order on the businesses side. This field will be hashed in returned OrderTrackingSignal creation response."
+          }
+        },
+        "shipmentLineItemMapping": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ShipmentLineItemMappingList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The mapping of the line items to the shipment information."
+          }
+        },
+        "merchantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Google Merchant Center ID of this order tracking signal. This value is optional. If left unset, the caller's Merchant Center ID is used. You must request access in order to provide data on behalf of another business. For more information, see [Submitting Order Tracking Signals](/shopping-content/guides/order-tracking-signals)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a business trade from which signals are extracted, such as shipping."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ShippingInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_ordertracking_v1beta#ShippingInfo"
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#LineItemDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_ordertracking_v1beta#LineItemDetails"
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ShipmentLineItemMappingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_ordertracking_v1beta#ShipmentLineItemMapping"
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#Price": {
+      "type": "structure",
+      "members": {
+        "amountMicros": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The price represented as a number in micros (1 million micros is an equivalent to one's currency standard unit, for example, 1 USD = 1000000 micros)."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The price represented as a number and currency."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ShippingInfo": {
+      "type": "structure",
+      "members": {
+        "carrier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the shipping carrier for the delivery. This field is required if one of the following fields is absent: earliest_delivery_promise_time, latest_delivery_promise_time, and actual_delivery_time."
+          }
+        },
+        "earliestDeliveryPromiseTime": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Optional. The earliest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+          }
+        },
+        "shipmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The shipment ID. This field will be hashed in returned OrderTrackingSignal creation response."
+          }
+        },
+        "latestDeliveryPromiseTime": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Optional. The latest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+          }
+        },
+        "actualDeliveryTime": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time when the shipment was actually delivered. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+          }
+        },
+        "shippingStatus": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ShippingInfoShippingStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The status of the shipment."
+          }
+        },
+        "originPostalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The origin postal code, as a continuous string without spaces or dashes, for example \"95016\". This field will be anonymized in returned OrderTrackingSignal creation response."
+          }
+        },
+        "carrierService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The service type for fulfillment, such as GROUND, FIRST_CLASS, etc."
+          }
+        },
+        "originRegionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) for the shipping origin."
+          }
+        },
+        "shippedTime": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time when the shipment was shipped. Include the year and timezone string, if available."
+          }
+        },
+        "trackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The tracking ID of the shipment. This field is required if one of the following fields is absent: earliest_delivery_promise_time, latest_delivery_promise_time, and actual_delivery_time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping information for the order."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ShippingInfoShippingStatusEnum": {
+      "type": "enum",
+      "members": {
+        "SHIPPING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING_STATE_UNSPECIFIED"
+          }
+        },
+        "SHIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPED"
+          }
+        },
+        "DELIVERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELIVERED"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#LineItemDetails": {
+      "type": "structure",
+      "members": {
+        "gtins": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Global Trade Item Numbers."
+          }
+        },
+        "productTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Plain text title of this product."
+          }
+        },
+        "mpn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The manufacturer part number."
+          }
+        },
+        "gtin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Global Trade Item Number."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Brand of the product."
+          }
+        },
+        "lineItemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID for this line item."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The quantity of the line item in the order."
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Content API REST ID of the product, in the form channel:contentLanguage:targetCountry:offerId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The line items of the order."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#TimeZone": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. IANA Time Zone Database version number. For example \"2019a\"."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA Time Zone Database time zone. For example \"America/New_York\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones)."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ShipmentLineItemMapping": {
+      "type": "structure",
+      "members": {
+        "lineItemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The line item ID."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The line item quantity in the shipment."
+          }
+        },
+        "shipmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The shipment ID. This field will be hashed in returned OrderTrackingSignal creation response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents how many items are in the shipment for the given shipment_id and line_item_id."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ProductStatusChangeMessage": {
+      "type": "structure",
+      "members": {
+        "managingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
+          }
+        },
+        "changes": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ProductChangeList",
+          "traits": {
+            "smithy.api#documentation": "A message to describe the change that happened to the product"
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
+          }
+        },
+        "attribute": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ProductStatusChangeMessageAttributeEnum",
+          "traits": {
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_ordertracking_v1beta#ProductChange"
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ProductStatusChangeMessageResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT"
+          }
+        },
+        "ACCOUNT_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_SERVICE"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ProductStatusChangeMessageAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ProductChange": {
+      "type": "structure",
+      "members": {
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#ProductChangeReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#CreateAccountsOrderTrackingSignalsRequest": {
+      "type": "structure",
+      "members": {
+        "orderTrackingSignalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID that uniquely identifies this order tracking signal.",
+            "smithy.api#httpQuery": "orderTrackingSignalId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account of the business for which the order signal is created. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#OrderTrackingSignal",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.merchantapi_ordertracking_v1beta#CreateAccountsOrderTrackingSignals": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_ordertracking_v1beta#CreateAccountsOrderTrackingSignalsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_ordertracking_v1beta#OrderTrackingSignal"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_ordertracking_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "ordertracking/v1beta/{+parent}/orderTrackingSignals"
+        },
+        "smithy.api#documentation": "Creates new order tracking signal."
+      }
+    }
+  }
+}

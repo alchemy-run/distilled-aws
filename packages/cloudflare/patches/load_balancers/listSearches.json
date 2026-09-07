@@ -1,0 +1,41 @@
+{
+  "description": "Align load_balancers#SearchesList with distilled cloudflare/load-balancers listSearches",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#SearchesList",
+      "path": "/shapes/com.cloudflare.load_balancers#ListSearches"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#SearchesListRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#ListSearchesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#ListSearches/input/target",
+      "value": "com.cloudflare.load_balancers#ListSearchesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#SearchesListResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#ListSearchesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#ListSearches/output/target",
+      "value": "com.cloudflare.load_balancers#ListSearchesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#ListSearches/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

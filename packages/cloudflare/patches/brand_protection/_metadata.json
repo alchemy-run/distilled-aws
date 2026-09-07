@@ -1,0 +1,38 @@
+{
+  "description": "Key dictionary / op aliases for brand_protection (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "bodyScan": "body_scan",
+        "bodyTag": "body_tag",
+        "contentType": "content_type",
+        "firstSeen": "first_seen",
+        "imageData": "image_data",
+        "matchDetails": "match_details",
+        "matchId": "match_id",
+        "matchedAt": "matched_at",
+        "maxEditDistance": "max_edit_distance",
+        "maxTime": "max_time",
+        "minTime": "min_time",
+        "publicScans": "public_scans",
+        "queryId": "query_id",
+        "queryTag": "query_tag",
+        "r2Path": "r2_path",
+        "scanStatus": "scan_status",
+        "scanSubmissionId": "scan_submission_id",
+        "searchLookback": "search_lookback",
+        "similarityScore": "similarity_score",
+        "similarityThreshold": "similarity_threshold",
+        "skippedUrls": "skipped_urls",
+        "stringMatches": "string_matches",
+        "submissionId": "submission_id",
+        "submittedUrls": "submitted_urls",
+        "uploadPath": "upload_path",
+        "uploadedAt": "uploaded_at",
+        "urlScanId": "url_scan_id"
+      }
+    }
+  ]
+}

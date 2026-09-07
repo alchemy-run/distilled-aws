@@ -1,0 +1,10 @@
+{
+  "description": "tcpProxyDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#TcpProxyDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation tcpProxyDelete($id: String!) {\n  tcpProxyDelete(id: $id)\n}"
+    }
+  ]
+}

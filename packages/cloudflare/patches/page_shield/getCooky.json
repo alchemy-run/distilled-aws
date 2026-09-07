@@ -1,0 +1,30 @@
+{
+  "description": "Align page_shield#CookiesGet with distilled cloudflare/page-shield getCooky",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#CookiesGet",
+      "path": "/shapes/com.cloudflare.page_shield#GetCooky"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#CookiesGetRequest",
+      "path": "/shapes/com.cloudflare.page_shield#GetCookyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetCooky/input/target",
+      "value": "com.cloudflare.page_shield#GetCookyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#CookiesGetResponse",
+      "path": "/shapes/com.cloudflare.page_shield#GetCookyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetCooky/output/target",
+      "value": "com.cloudflare.page_shield#GetCookyResponse"
+    }
+  ]
+}

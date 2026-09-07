@@ -1,0 +1,142 @@
+{
+  "operations": {
+    "describeSubscription": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "updateSubscription": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "deleteSubscription": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "createProtection": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "describeProtection": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "deleteProtection": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "listProtections": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "createProtectionGroup": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "describeProtectionGroup": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "updateProtectionGroup": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "deleteProtectionGroup": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "listProtectionGroups": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "listTagsForResource": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "tagResource": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    },
+    "untagResource": {
+      "syntheticErrors": [
+        {
+          "name": "SubscriptionNotFound",
+          "from": "ResourceNotFoundException",
+          "message": "The subscription does not exist."
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "SubscriptionNotFound": ["NotFoundError"]
+  }
+}

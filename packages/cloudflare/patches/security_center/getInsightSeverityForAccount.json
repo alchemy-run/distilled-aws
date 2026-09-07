@@ -1,0 +1,30 @@
+{
+  "description": "Align security_center#InsightsSeverityGetForAccount with distilled cloudflare/security-center getInsightSeverityForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsSeverityGetForAccount",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightSeverityForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsSeverityGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightSeverityForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightSeverityForAccount/input/target",
+      "value": "com.cloudflare.security_center#GetInsightSeverityForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsSeverityGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightSeverityForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#GetInsightSeverityForAccount/output/target",
+      "value": "com.cloudflare.security_center#GetInsightSeverityForAccountResponse"
+    }
+  ]
+}

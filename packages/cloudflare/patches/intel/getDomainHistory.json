@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#DomainHistoryGet with distilled cloudflare/intel getDomainHistory",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainHistoryGet",
+      "path": "/shapes/com.cloudflare.intel#GetDomainHistory"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainHistoryGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetDomainHistoryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetDomainHistory/input/target",
+      "value": "com.cloudflare.intel#GetDomainHistoryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainHistoryGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetDomainHistoryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetDomainHistory/output/target",
+      "value": "com.cloudflare.intel#GetDomainHistoryResponse"
+    }
+  ]
+}

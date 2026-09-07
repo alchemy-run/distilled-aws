@@ -1,0 +1,45 @@
+{
+  "description": "Align workers#DomainsUpdate with distilled cloudflare/workers putDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsUpdate",
+      "path": "/shapes/com.cloudflare.workers#PutDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers#PutDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutDomain/input/target",
+      "value": "com.cloudflare.workers#PutDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers#PutDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutDomain/output/target",
+      "value": "com.cloudflare.workers#PutDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PutDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#HostnameAlreadyInUse"
+        }
+      ]
+    }
+  ]
+}

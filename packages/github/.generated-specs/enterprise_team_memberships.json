@@ -1,0 +1,584 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.enterprise_team_memberships#ListRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.enterprise_team_memberships#ListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.enterprise_team_memberships#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.enterprise_team_memberships#ListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.enterprise_team_memberships#ListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_memberships#ListRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_memberships#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/memberships",
+          "code": 200
+        },
+        "smithy.api#documentation": "List members in an enterprise team\n\nLists all team members in an enterprise team."
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkAddRequestUsernamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GitHub user handles to add to the team."
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkAddRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "usernames": {
+          "target": "com.github.enterprise_team_memberships#BulkAddRequestUsernamesList",
+          "traits": {
+            "smithy.api#documentation": "The GitHub user handles to add to the team.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkAddResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.enterprise_team_memberships#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.enterprise_team_memberships#BulkAddResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.enterprise_team_memberships#BulkAddResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkAdd": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_memberships#BulkAddRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_memberships#BulkAddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/memberships/add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Bulk add team members\n\nAdd multiple team members to an enterprise team."
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkRemoveRequestUsernamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GitHub user handles to be removed from the team."
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkRemoveRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "usernames": {
+          "target": "com.github.enterprise_team_memberships#BulkRemoveRequestUsernamesList",
+          "traits": {
+            "smithy.api#documentation": "The GitHub user handles to be removed from the team.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkRemoveResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.enterprise_team_memberships#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.enterprise_team_memberships#BulkRemoveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.enterprise_team_memberships#BulkRemoveResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#BulkRemove": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_memberships#BulkRemoveRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_memberships#BulkRemoveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/memberships/remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Bulk remove team members\n\nRemove multiple team members from an enterprise team."
+      }
+    },
+    "com.github.enterprise_team_memberships#GetRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_memberships#GetRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_memberships#SimpleUser"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/memberships/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get enterprise team membership\n\nReturns whether the user is a member of the enterprise team."
+      }
+    },
+    "com.github.enterprise_team_memberships#AddRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#Add": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_memberships#AddRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_memberships#SimpleUser"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/memberships/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add team member\n\nAdd a team member to an enterprise team."
+      }
+    },
+    "com.github.enterprise_team_memberships#RemoveRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_memberships#Remove": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_memberships#RemoveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.enterprise_team_memberships#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/memberships/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove team membership\n\nRemove membership of a specific user from a particular team in an enterprise."
+      }
+    },
+    "com.github.enterprise_team_memberships#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.enterprise_team_memberships#EnterpriseTeamMemberships": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.enterprise_team_memberships#List"
+        },
+        {
+          "target": "com.github.enterprise_team_memberships#BulkAdd"
+        },
+        {
+          "target": "com.github.enterprise_team_memberships#BulkRemove"
+        },
+        {
+          "target": "com.github.enterprise_team_memberships#Get"
+        },
+        {
+          "target": "com.github.enterprise_team_memberships#Add"
+        },
+        {
+          "target": "com.github.enterprise_team_memberships#Remove"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

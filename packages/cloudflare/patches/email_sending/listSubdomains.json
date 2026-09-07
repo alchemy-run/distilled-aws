@@ -1,0 +1,47 @@
+{
+  "description": "Align email_sending#SubdomainsList with distilled cloudflare/email-sending listSubdomains",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsList",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomains"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsListRequest",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomainsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomains/input/target",
+      "value": "com.cloudflare.email_sending#ListSubdomainsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsListResponse",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomainsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomains/output/target",
+      "value": "com.cloudflare.email_sending#ListSubdomainsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomains/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_sending#ListSubdomains/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_sending#Forbidden"
+        }
+      ]
+    }
+  ]
+}

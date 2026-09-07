@@ -1,0 +1,30 @@
+{
+  "description": "Align load_balancers#Edit with distilled cloudflare/load-balancers patchLoadBalancer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#Edit",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchLoadBalancer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#EditRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchLoadBalancerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchLoadBalancer/input/target",
+      "value": "com.cloudflare.load_balancers#PatchLoadBalancerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#EditResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchLoadBalancerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchLoadBalancer/output/target",
+      "value": "com.cloudflare.load_balancers#PatchLoadBalancerResponse"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "errorCategories": {
+    "RequestThrottled": ["ThrottlingError", "RetryableError"],
+    "KmsThrottled": ["ThrottlingError", "RetryableError"],
+    "OverLimit": ["QuotaError"],
+    "PurgeQueueInProgress": ["ConflictError", "RetryableError"],
+    "InvalidParameterValueException": ["BadRequestError"],
+    "InvalidAttributeName": ["BadRequestError"],
+    "InvalidAttributeValue": ["BadRequestError"],
+    "InvalidIdFormat": ["BadRequestError"],
+    "MissingRequiredParameterException": ["BadRequestError"],
+    "InvalidMessageContents": ["BadRequestError"],
+    "CommonServiceException": ["ServerError"]
+  },
+  "operations": {
+    "cancelMessageMoveTask": {
+      "errors": ["RequestLimitExceeded", "InvalidParameterValueException"]
+    },
+    "startMessageMoveTask": {
+      "errors": [
+        "RequestLimitExceeded",
+        "CommonServiceException",
+        "InvalidParameterValueException"
+      ]
+    },
+    "createQueue": {
+      "errors": ["RequestLimitExceeded", "InvalidParameterValueException"]
+    },
+    "listMessageMoveTasks": {
+      "errors": ["RequestLimitExceeded", "InvalidParameterValueException"]
+    },
+    "sendMessage": {
+      "errors": [
+        "RequestLimitExceeded",
+        "InvalidParameterValueException",
+        "MissingRequiredParameterException"
+      ]
+    },
+    "sendMessageBatch": {
+      "errors": [
+        "RequestLimitExceeded",
+        "InvalidParameterValueException",
+        "ParseError"
+      ]
+    },
+    "receiveMessage": {
+      "errors": ["RequestLimitExceeded", "InvalidParameterValueException"]
+    },
+    "setQueueAttributes": {
+      "errors": [
+        "RequestLimitExceeded",
+        "CommonServiceException",
+        "MissingRequiredParameterException"
+      ]
+    }
+  },
+  "errors": {
+    "InvalidParameterValueException": {
+      "message": { "type": "string" }
+    }
+  },
+  "structures": {
+    "SendMessageBatchResult": {
+      "members": {
+        "Successful": {
+          "optional": true
+        },
+        "Failed": {
+          "optional": true
+        }
+      }
+    },
+    "DeleteMessageBatchResult": {
+      "members": {
+        "Successful": {
+          "optional": true
+        },
+        "Failed": {
+          "optional": true
+        }
+      }
+    },
+    "ChangeMessageVisibilityBatchResult": {
+      "members": {
+        "Successful": {
+          "optional": true
+        },
+        "Failed": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

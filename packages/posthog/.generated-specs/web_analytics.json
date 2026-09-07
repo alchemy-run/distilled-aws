@@ -1,0 +1,642 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.web_analytics#WebAnalyticsRecapRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "compare": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "compare",
+            "smithy.api#documentation": "When true (default), include period-over-period change for each metric comparing against the prior equal-length period. Set to false to skip the comparison query."
+          }
+        },
+        "days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "days",
+            "smithy.api#documentation": "Lookback window in days (1–90). Defaults to 7."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_analytics#WebAnalyticsRecapResponse": {
+      "type": "structure",
+      "members": {
+        "visitors": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Unique visitors.",
+            "smithy.api#required": {}
+          }
+        },
+        "pageviews": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Total pageviews.",
+            "smithy.api#required": {}
+          }
+        },
+        "sessions": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Total sessions.",
+            "smithy.api#required": {}
+          }
+        },
+        "bounce_rate": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Bounce rate (0–100).",
+            "smithy.api#required": {}
+          }
+        },
+        "avg_session_duration": {
+          "target": "com.posthog.web_analytics#DurationMetric",
+          "traits": {
+            "smithy.api#documentation": "Average session duration.",
+            "smithy.api#required": {}
+          }
+        },
+        "top_pages": {
+          "target": "com.posthog.web_analytics#WebAnalyticsRecapResponseTopPagesList",
+          "traits": {
+            "smithy.api#documentation": "Top 5 pages by unique visitors.",
+            "smithy.api#required": {}
+          }
+        },
+        "top_sources": {
+          "target": "com.posthog.web_analytics#WebAnalyticsRecapResponseTopSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Top 5 traffic sources by unique visitors.",
+            "smithy.api#required": {}
+          }
+        },
+        "goals": {
+          "target": "com.posthog.web_analytics#WebAnalyticsRecapResponseGoalsList",
+          "traits": {
+            "smithy.api#documentation": "Goal conversions.",
+            "smithy.api#required": {}
+          }
+        },
+        "dashboard_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the Web analytics dashboard for this project.",
+            "smithy.api#required": {}
+          }
+        },
+        "persona": {
+          "target": "com.posthog.web_analytics#RecapPersona",
+          "traits": {
+            "smithy.api#documentation": "The single weekly persona assigned from this week's data.",
+            "smithy.api#required": {}
+          }
+        },
+        "highlights": {
+          "target": "com.posthog.web_analytics#WebAnalyticsRecapResponseHighlightsList",
+          "traits": {
+            "smithy.api#documentation": "Up to three screenshot-worthy superlatives for the week.",
+            "smithy.api#required": {}
+          }
+        },
+        "period_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable period label, e.g. 'Last 7 days'.",
+            "smithy.api#required": {}
+          }
+        },
+        "period_start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First date included in the recap period, in the project timezone.",
+            "smithy.api#required": {}
+          }
+        },
+        "period_end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Final date included in the recap period, in the project timezone.",
+            "smithy.api#required": {}
+          }
+        },
+        "project_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the project this recap is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "recap_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Canonical link to this project's weekly recap.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#NumericMetric": {
+      "type": "structure",
+      "members": {
+        "current": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Value for the most recent period."
+          }
+        },
+        "previous": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Value for the prior period, if available.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "change": {
+          "target": "com.posthog.web_analytics#WoWChange",
+          "traits": {
+            "smithy.api#documentation": "Period-over-period change, null when not meaningful.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WoWChange": {
+      "type": "structure",
+      "members": {
+        "percent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Absolute percentage change, rounded to nearest integer."
+          }
+        },
+        "direction": {
+          "target": "com.posthog.web_analytics#WoWChangeDirectionEnum",
+          "traits": {
+            "smithy.api#documentation": "Direction of the change relative to the prior period.\n\n* `Up` - Up\n* `Down` - Down"
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hex color indicating whether the change is a positive or negative signal."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short label, e.g. 'Up 12%'."
+          }
+        },
+        "long_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Verbose label, e.g. 'Up 12% from prior period'."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WoWChangeDirectionEnum": {
+      "type": "enum",
+      "members": {
+        "UP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Up"
+          }
+        },
+        "DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Down"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `Up` - Up\n* `Down` - Down"
+      }
+    },
+    "com.posthog.web_analytics#DurationMetric": {
+      "type": "structure",
+      "members": {
+        "current": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable duration, e.g. '2m 34s'."
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prior-period duration, e.g. '2m 10s'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "change": {
+          "target": "com.posthog.web_analytics#WoWChange",
+          "traits": {
+            "smithy.api#documentation": "Period-over-period change, null when not meaningful.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#TopPage": {
+      "type": "structure",
+      "members": {
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host for the page, if recorded."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL path."
+          }
+        },
+        "visitors": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique visitors in the period."
+          }
+        },
+        "change": {
+          "target": "com.posthog.web_analytics#WoWChange",
+          "traits": {
+            "smithy.api#documentation": "Period-over-period change in visitors, null when not meaningful.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WebAnalyticsRecapResponseTopPagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#TopPage"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top 5 pages by unique visitors."
+      }
+    },
+    "com.posthog.web_analytics#TopSource": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Initial referring domain."
+          }
+        },
+        "visitors": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique visitors from this source."
+          }
+        },
+        "change": {
+          "target": "com.posthog.web_analytics#WoWChange",
+          "traits": {
+            "smithy.api#documentation": "Period-over-period change in visitors, null when not meaningful.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WebAnalyticsRecapResponseTopSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#TopSource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top 5 traffic sources by unique visitors."
+      }
+    },
+    "com.posthog.web_analytics#Goal": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Goal name (action name)."
+          }
+        },
+        "conversions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total conversions in the period."
+          }
+        },
+        "change": {
+          "target": "com.posthog.web_analytics#WoWChange",
+          "traits": {
+            "smithy.api#documentation": "Period-over-period change in conversions, null when not meaningful.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WebAnalyticsRecapResponseGoalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#Goal"
+      },
+      "traits": {
+        "smithy.api#documentation": "Goal conversions."
+      }
+    },
+    "com.posthog.web_analytics#RecapPersona": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable persona identifier. One of: just_getting_started, conversion_machine, traffic_magnet, crowd_favorite, search_hog, word_of_mouth, loyal_following, rising_star, steady_hog.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the persona, e.g. 'Traffic Magnet'.",
+            "smithy.api#required": {}
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji representing the persona.",
+            "smithy.api#required": {}
+          }
+        },
+        "blurb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One-line explanation of why this persona was assigned this week.",
+            "smithy.api#required": {}
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hex accent color for rendering the persona card.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#RecapHighlight": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable highlight identifier, e.g. 'milestone', 'rising_page', 'top_source'.",
+            "smithy.api#required": {}
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji for the highlight.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short headline for the highlight, e.g. 'Rising star page'.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standout value, e.g. a page path or visitor count.",
+            "smithy.api#required": {}
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Supporting sentence for the highlight.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WebAnalyticsRecapResponseHighlightsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#RecapHighlight"
+      },
+      "traits": {
+        "smithy.api#documentation": "Up to three screenshot-worthy superlatives for the week."
+      }
+    },
+    "com.posthog.web_analytics#WebAnalyticsRecap": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_analytics#WebAnalyticsRecapRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_analytics#WebAnalyticsRecapResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/web_analytics/recap/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Weekly web analytics recap\n\nThe 'Wrapped'-style weekly recap: everything in the weekly digest (visitors, pageviews, sessions, bounce rate, average session duration with period-over-period comparisons, top pages, top sources, and goals) plus a single derived weekly persona and a short list of screenshot-worthy highlights for the period."
+      }
+    },
+    "com.posthog.web_analytics#WebAnalyticsWeeklyDigestRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "compare": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "compare",
+            "smithy.api#documentation": "When true (default), include period-over-period change for each metric comparing against the prior equal-length period. Set to false to skip the comparison query (faster)."
+          }
+        },
+        "days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "days",
+            "smithy.api#documentation": "Lookback window in days (1–90). Defaults to 7."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_analytics#WeeklyDigestResponse": {
+      "type": "structure",
+      "members": {
+        "visitors": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Unique visitors."
+          }
+        },
+        "pageviews": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Total pageviews."
+          }
+        },
+        "sessions": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Total sessions."
+          }
+        },
+        "bounce_rate": {
+          "target": "com.posthog.web_analytics#NumericMetric",
+          "traits": {
+            "smithy.api#documentation": "Bounce rate (0–100)."
+          }
+        },
+        "avg_session_duration": {
+          "target": "com.posthog.web_analytics#DurationMetric",
+          "traits": {
+            "smithy.api#documentation": "Average session duration."
+          }
+        },
+        "top_pages": {
+          "target": "com.posthog.web_analytics#WeeklyDigestResponseTopPagesList",
+          "traits": {
+            "smithy.api#documentation": "Top 5 pages by unique visitors."
+          }
+        },
+        "top_sources": {
+          "target": "com.posthog.web_analytics#WeeklyDigestResponseTopSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Top 5 traffic sources by unique visitors."
+          }
+        },
+        "goals": {
+          "target": "com.posthog.web_analytics#WeeklyDigestResponseGoalsList",
+          "traits": {
+            "smithy.api#documentation": "Goal conversions."
+          }
+        },
+        "dashboard_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the Web analytics dashboard for this project."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics#WeeklyDigestResponseTopPagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#TopPage"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top 5 pages by unique visitors."
+      }
+    },
+    "com.posthog.web_analytics#WeeklyDigestResponseTopSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#TopSource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top 5 traffic sources by unique visitors."
+      }
+    },
+    "com.posthog.web_analytics#WeeklyDigestResponseGoalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics#Goal"
+      },
+      "traits": {
+        "smithy.api#documentation": "Goal conversions."
+      }
+    },
+    "com.posthog.web_analytics#WebAnalyticsWeeklyDigest": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_analytics#WebAnalyticsWeeklyDigestRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_analytics#WeeklyDigestResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/web_analytics/weekly_digest/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Summarize web analytics\n\nSummarizes a project's web analytics over a lookback window (default 7 days): unique visitors, pageviews, sessions, bounce rate, and average session duration with period-over-period comparisons, plus the top 5 pages, top 5 traffic sources, and goal conversions."
+      }
+    },
+    "com.posthog.web_analytics#WebAnalytics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.web_analytics#WebAnalyticsRecap"
+        },
+        {
+          "target": "com.posthog.web_analytics#WebAnalyticsWeeklyDigest"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

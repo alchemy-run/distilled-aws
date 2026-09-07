@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_csrs#DeleteForAccount with distilled cloudflare/custom-csrs deleteCustomCsrForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#DeleteForAccount",
+      "path": "/shapes/com.cloudflare.custom_csrs#DeleteCustomCsrForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#DeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.custom_csrs#DeleteCustomCsrForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#DeleteCustomCsrForAccount/input/target",
+      "value": "com.cloudflare.custom_csrs#DeleteCustomCsrForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#DeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.custom_csrs#DeleteCustomCsrForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#DeleteCustomCsrForAccount/output/target",
+      "value": "com.cloudflare.custom_csrs#DeleteCustomCsrForAccountResponse"
+    }
+  ]
+}

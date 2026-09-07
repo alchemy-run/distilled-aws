@@ -1,0 +1,30 @@
+{
+  "description": "Align url_scanner#ScansHar with distilled cloudflare/url-scanner harScan",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansHar",
+      "path": "/shapes/com.cloudflare.url_scanner#HarScan"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansHarRequest",
+      "path": "/shapes/com.cloudflare.url_scanner#HarScanRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#HarScan/input/target",
+      "value": "com.cloudflare.url_scanner#HarScanRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansHarResponse",
+      "path": "/shapes/com.cloudflare.url_scanner#HarScanResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#HarScan/output/target",
+      "value": "com.cloudflare.url_scanner#HarScanResponse"
+    }
+  ]
+}

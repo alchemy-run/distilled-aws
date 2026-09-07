@@ -1,0 +1,30 @@
+{
+  "description": "Align user#InvitesGet with distilled cloudflare/user getInvite",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#InvitesGet",
+      "path": "/shapes/com.cloudflare.user#GetInvite"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#InvitesGetRequest",
+      "path": "/shapes/com.cloudflare.user#GetInviteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#GetInvite/input/target",
+      "value": "com.cloudflare.user#GetInviteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#InvitesGetResponse",
+      "path": "/shapes/com.cloudflare.user#GetInviteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#GetInvite/output/target",
+      "value": "com.cloudflare.user#GetInviteResponse"
+    }
+  ]
+}

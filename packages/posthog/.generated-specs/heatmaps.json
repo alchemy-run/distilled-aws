@@ -1,0 +1,569 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.heatmaps#HeatmapsListRequestAggregation": {
+      "type": "enum",
+      "members": {
+        "UNIQUE_VISITORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unique_visitors"
+          }
+        },
+        "TOTAL_COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total_count"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "aggregation": {
+          "target": "com.posthog.heatmaps#HeatmapsListRequestAggregation",
+          "traits": {
+            "smithy.api#httpQuery": "aggregation",
+            "smithy.api#documentation": "How to aggregate counts: 'total_count' (every interaction, default) or 'unique_visitors' (distinct people).\n\n* `unique_visitors` - unique_visitors\n* `total_count` - total_count"
+          }
+        },
+        "cohort_ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cohort_ids",
+            "smithy.api#documentation": "JSON array of cohort IDs (e.g. '[123, 456]') to restrict results to people in those cohorts. Feature-flagged; ignored when the cohort filter is not enabled for the caller."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Start of the window. Relative (e.g. '-7d', '-30d', '-1mStart') or an absolute 'YYYY-MM-DD' date. Defaults to '-7d'. Heatmap data is retained for 90 days."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "End of the window, inclusive. Relative or absolute 'YYYY-MM-DD'. Defaults to today."
+          }
+        },
+        "filter_test_accounts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "filter_test_accounts",
+            "smithy.api#documentation": "When true, exclude sessions from internal/test accounts using the project's test-account filters."
+          }
+        },
+        "hide_zero_coordinates": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "hide_zero_coordinates",
+            "smithy.api#documentation": "When true (default), drop interactions recorded at the (0, 0) origin, which are usually noise."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of coordinate points to return, ordered hottest-first by count. Defaults to 500. Pass 0 to fetch the full set (every coordinate) needed to render a complete heatmap overlay. Ignored for the 'scrolldepth' type, which always returns every bucket."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of hottest-first points to skip, for paging through cooler coordinates. Ignored for the 'scrolldepth' type."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "The interaction type to return. One of: 'click' (default), 'rageclick', 'mousemove', or 'scrolldepth'. Scrolldepth returns scroll buckets instead of x/y coordinates."
+          }
+        },
+        "url_exact": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "url_exact",
+            "smithy.api#documentation": "Match a single page by exact URL (trailing slash is ignored). Mutually exclusive with url_pattern."
+          }
+        },
+        "url_pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "url_pattern",
+            "smithy.api#documentation": "Match pages by regex against the full current_url (anchored automatically). Use this to aggregate across query strings or path segments. Mutually exclusive with url_exact."
+          }
+        },
+        "viewport_width_max": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "viewport_width_max",
+            "smithy.api#documentation": "Only include interactions captured at a viewport at most this wide, in CSS pixels."
+          }
+        },
+        "viewport_width_min": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "viewport_width_min",
+            "smithy.api#documentation": "Only include interactions captured at a viewport at least this wide, in CSS pixels. Use with viewport_width_max to isolate a device class (e.g. 360-768 for mobile)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.heatmaps#HeatmapsResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.heatmaps#HeatmapsResponseResultsList"
+        },
+        "fold": {
+          "target": "com.posthog.heatmaps#HeatmapFoldSummary",
+          "traits": {
+            "smithy.api#documentation": "Above/below-the-fold summary for the returned interactions. Present for click/rageclick/mousemove; omitted for scrolldepth.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more coordinate points exist beyond the returned page. Raise 'limit' or page with 'offset' to fetch them. Always false for scrolldepth, which returns every bucket."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapResponseItem": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "pointer_y": {
+          "target": "smithy.api#Integer"
+        },
+        "pointer_relative_x": {
+          "target": "smithy.api#Double"
+        },
+        "pointer_target_fixed": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapsResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.heatmaps#HeatmapResponseItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapFoldSummary": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of non-fixed interactions of this type on the page in the window (the population the above/below-the-fold split applies to; fixed-position elements are excluded since they're always on screen).",
+            "smithy.api#required": {}
+          }
+        },
+        "below_fold_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "How many of those interactions happened below the user's initial viewport — i.e. they had to scroll to reach them.",
+            "smithy.api#required": {}
+          }
+        },
+        "pct_below_fold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage of non-fixed interactions that were below the initial viewport (0-100). A high value means engaged content sits off the first screen and is a candidate to move up.",
+            "smithy.api#required": {}
+          }
+        },
+        "median_viewport_height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Median viewport height in CSS pixels across the matched interactions — the typical fold line to recommend against. Null when there are no interactions.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapsListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.heatmaps#HeatmapsResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapsListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.heatmaps#HeatmapsListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.heatmaps#HeatmapsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.heatmaps#HeatmapsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.heatmaps#HeatmapsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.heatmaps#BadRequest"
+        },
+        {
+          "target": "com.posthog.heatmaps#Forbidden"
+        },
+        {
+          "target": "com.posthog.heatmaps#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/heatmaps/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Aggregated heatmap interactions for a page. For type 'click'/'rageclick'/'mousemove' each result is a point with relative x, absolute client-y, and a count. For type 'scrolldepth' the response is scroll-depth buckets instead (cumulative reach down the page)."
+      }
+    },
+    "com.posthog.heatmaps#HeatmapsEventsRetrieveRequestAggregation": {
+      "type": "enum",
+      "members": {
+        "UNIQUE_VISITORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unique_visitors"
+          }
+        },
+        "TOTAL_COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total_count"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapsEventsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "aggregation": {
+          "target": "com.posthog.heatmaps#HeatmapsEventsRetrieveRequestAggregation",
+          "traits": {
+            "smithy.api#httpQuery": "aggregation",
+            "smithy.api#documentation": "How to aggregate counts: 'total_count' (every interaction, default) or 'unique_visitors' (distinct people).\n\n* `unique_visitors` - unique_visitors\n* `total_count` - total_count"
+          }
+        },
+        "cohort_ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cohort_ids",
+            "smithy.api#documentation": "JSON array of cohort IDs (e.g. '[123, 456]') to restrict results to people in those cohorts. Feature-flagged; ignored when the cohort filter is not enabled for the caller."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Start of the window. Relative (e.g. '-7d', '-30d', '-1mStart') or an absolute 'YYYY-MM-DD' date. Defaults to '-7d'. Heatmap data is retained for 90 days."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "End of the window, inclusive. Relative or absolute 'YYYY-MM-DD'. Defaults to today."
+          }
+        },
+        "filter_test_accounts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "filter_test_accounts",
+            "smithy.api#documentation": "When true, exclude sessions from internal/test accounts using the project's test-account filters."
+          }
+        },
+        "hide_zero_coordinates": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "hide_zero_coordinates",
+            "smithy.api#documentation": "When true (default), drop interactions recorded at the (0, 0) origin, which are usually noise."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum interactions to return (1-100)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of interactions to skip, for pagination."
+          }
+        },
+        "points": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "points",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "JSON array of the heatmap coordinates to drill into, e.g. '[{\"x\": 0.5, \"y\": 100}]'. Each point needs 'x' (relative x, 0..1) and 'y' (absolute client-y pixels) matching values returned by the heatmaps list endpoint; an optional 'target_fixed' boolean matches fixed-position elements. Returns the individual session interactions behind those spots."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "The interaction type to return. One of: 'click' (default), 'rageclick', 'mousemove', or 'scrolldepth'. Scrolldepth returns scroll buckets instead of x/y coordinates."
+          }
+        },
+        "url_exact": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "url_exact",
+            "smithy.api#documentation": "Match a single page by exact URL (trailing slash is ignored). Mutually exclusive with url_pattern."
+          }
+        },
+        "url_pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "url_pattern",
+            "smithy.api#documentation": "Match pages by regex against the full current_url (anchored automatically). Use this to aggregate across query strings or path segments. Mutually exclusive with url_exact."
+          }
+        },
+        "viewport_width_max": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "viewport_width_max",
+            "smithy.api#documentation": "Only include interactions captured at a viewport at most this wide, in CSS pixels."
+          }
+        },
+        "viewport_width_min": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "viewport_width_min",
+            "smithy.api#documentation": "Only include interactions captured at a viewport at least this wide, in CSS pixels. Use with viewport_width_max to isolate a device class (e.g. 360-768 for mobile)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.heatmaps#HeatmapEventsResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.heatmaps#HeatmapEventsResponseResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapEventItem": {
+      "type": "structure",
+      "members": {
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pointer_relative_x": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pointer_y": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "current_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapEventsResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.heatmaps#HeatmapEventItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.heatmaps#HeatmapsEventsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.heatmaps#HeatmapsEventsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.heatmaps#HeatmapEventsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.heatmaps#Forbidden"
+        },
+        {
+          "target": "com.posthog.heatmaps#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/heatmaps/events/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Drill into the individual session interactions behind one or more heatmap coordinates. Pass the 'points' you want to inspect (from the heatmaps list response) to get the underlying per-session events, so you can jump to the session recordings that produced a hotspot."
+      }
+    },
+    "com.posthog.heatmaps#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.heatmaps#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.heatmaps#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.heatmaps#Heatmaps": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.heatmaps#HeatmapsList"
+        },
+        {
+          "target": "com.posthog.heatmaps#HeatmapsEventsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

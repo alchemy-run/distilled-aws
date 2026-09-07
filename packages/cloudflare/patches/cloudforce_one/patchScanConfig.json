@@ -1,0 +1,39 @@
+{
+  "description": "Align cloudforce_one#ScansConfigEdit with distilled cloudflare/cloudforce-one patchScanConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigEdit",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchScanConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigEditRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchScanConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchScanConfig/input/target",
+      "value": "com.cloudflare.cloudforce_one#PatchScanConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigEditResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchScanConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchScanConfig/output/target",
+      "value": "com.cloudflare.cloudforce_one#PatchScanConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchScanConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cloudforce_one#ScanConfigNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebrationRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "track_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Track of the celebration being acknowledged.",
+            "smithy.api#required": {}
+          }
+        },
+        "stage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Stage number being acknowledged, 1-5.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_analytics_achievements#AcknowledgeCelebrationResponse": {
+      "type": "structure",
+      "members": {
+        "acknowledged": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if a matching pending celebration was cleared (idempotent).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebration": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebrationRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_analytics_achievements#AcknowledgeCelebrationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/web_analytics_achievements/acknowledge_celebration/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Acknowledge an achievement celebration\n\nClears a pending celebration for the given track and stage once the client has shown it, so it isn't celebrated again. Idempotent."
+      }
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsOverviewRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_analytics_achievements#AchievementsListResponse": {
+      "type": "structure",
+      "members": {
+        "definitions": {
+          "target": "com.posthog.web_analytics_achievements#AchievementsListResponseDefinitionsList",
+          "traits": {
+            "smithy.api#documentation": "All Wave-1 track definitions, thresholds resolved for the user's streak arm.",
+            "smithy.api#required": {}
+          }
+        },
+        "user_progress": {
+          "target": "com.posthog.web_analytics_achievements#AchievementsListResponseUserProgressList",
+          "traits": {
+            "smithy.api#documentation": "The requesting user's progress on per-user tracks.",
+            "smithy.api#required": {}
+          }
+        },
+        "team_progress": {
+          "target": "com.posthog.web_analytics_achievements#AchievementsListResponseTeamProgressList",
+          "traits": {
+            "smithy.api#documentation": "The team's progress on per-team tracks.",
+            "smithy.api#required": {}
+          }
+        },
+        "pending_celebrations": {
+          "target": "com.posthog.web_analytics_achievements#AchievementsListResponsePendingCelebrationsList",
+          "traits": {
+            "smithy.api#documentation": "Newly unlocked stages awaiting an in-session celebration; acknowledge each to clear it.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#AchievementDefinition": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable track identifier, e.g. 'streak'.",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable track name.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One-line description of what the track rewards.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.web_analytics_achievements#AchievementDefinitionScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the track is tracked per user or per team.\n\n* `user` - user\n* `team` - team",
+            "smithy.api#required": {}
+          }
+        },
+        "is_experiment_track": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True for the streak track, whose thresholds vary by the streak-cadence experiment arm.",
+            "smithy.api#required": {}
+          }
+        },
+        "stages": {
+          "target": "com.posthog.web_analytics_achievements#AchievementDefinitionStagesList",
+          "traits": {
+            "smithy.api#documentation": "The five stages of this track, in ascending threshold order.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#AchievementDefinitionScopeEnum": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `user` - user\n* `team` - team"
+      }
+    },
+    "com.posthog.web_analytics_achievements#AchievementStage": {
+      "type": "structure",
+      "members": {
+        "stage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Stage number within the track, 1-5.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stage name within the track, e.g. 'On a roll'.",
+            "smithy.api#required": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress value needed to unlock this stage, resolved for the user's streak arm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#AchievementDefinitionStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics_achievements#AchievementStage"
+      },
+      "traits": {
+        "smithy.api#documentation": "The five stages of this track, in ascending threshold order."
+      }
+    },
+    "com.posthog.web_analytics_achievements#AchievementsListResponseDefinitionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics_achievements#AchievementDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "All Wave-1 track definitions, thresholds resolved for the user's streak arm."
+      }
+    },
+    "com.posthog.web_analytics_achievements#AchievementProgress": {
+      "type": "structure",
+      "members": {
+        "track_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Track this progress row belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "current_stage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Highest stage unlocked so far, 0-5.",
+            "smithy.api#required": {}
+          }
+        },
+        "progress_value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Most recently computed progress value for the track.",
+            "smithy.api#required": {}
+          }
+        },
+        "last_computed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the track was last recomputed, or null if it never has been.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "unlocked_at": {
+          "target": "com.posthog.web_analytics_achievements#AchievementProgressUnlockedAtMap",
+          "traits": {
+            "smithy.api#documentation": "Map of unlocked stage number (as a string, '1'-'5') to the ISO timestamp it was unlocked.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#AchievementProgressUnlockedAtMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of unlocked stage number (as a string, '1'-'5') to the ISO timestamp it was unlocked."
+      }
+    },
+    "com.posthog.web_analytics_achievements#AchievementsListResponseUserProgressList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics_achievements#AchievementProgress"
+      },
+      "traits": {
+        "smithy.api#documentation": "The requesting user's progress on per-user tracks."
+      }
+    },
+    "com.posthog.web_analytics_achievements#AchievementsListResponseTeamProgressList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics_achievements#AchievementProgress"
+      },
+      "traits": {
+        "smithy.api#documentation": "The team's progress on per-team tracks."
+      }
+    },
+    "com.posthog.web_analytics_achievements#PendingCelebration": {
+      "type": "structure",
+      "members": {
+        "track_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Track whose stage was newly unlocked.",
+            "smithy.api#required": {}
+          }
+        },
+        "stage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Newly unlocked stage number, 1-5.",
+            "smithy.api#required": {}
+          }
+        },
+        "stage_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the unlocked stage, shown in the celebration UI.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#AchievementsListResponsePendingCelebrationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.web_analytics_achievements#PendingCelebration"
+      },
+      "traits": {
+        "smithy.api#documentation": "Newly unlocked stages awaiting an in-session celebration; acknowledge each to clear it."
+      }
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsOverview": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsOverviewRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_analytics_achievements#AchievementsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/web_analytics_achievements/overview/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Web analytics achievements overview\n\nReturns the achievement track definitions (thresholds resolved for the requesting user's streak-cadence arm), the user's and team's progress, and any newly unlocked stages awaiting an in-session celebration."
+      }
+    },
+    "com.posthog.web_analytics_achievements#InteractionKindEnum": {
+      "type": "enum",
+      "members": {
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "RECORDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `data` - data\n* `recording` - recording"
+      }
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordInteractionRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "interaction_kind": {
+          "target": "com.posthog.web_analytics_achievements#InteractionKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Which interaction counter to increment: 'data' (slicing/filtering the dashboard) or 'recording' (opening a session recording).\n\n* `data` - data\n* `recording` - recording",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_analytics_achievements#RecordInteractionResponse": {
+      "type": "structure",
+      "members": {
+        "recorded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True once the interaction has been counted for the user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordInteraction": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordInteractionRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_analytics_achievements#RecordInteractionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/web_analytics_achievements/record_interaction/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Record a Web analytics interaction\n\nIdempotently increments the requesting user's first-party counter for an in-product Web analytics interaction (slicing data, or opening a session recording), which drives the Explorer and Detective achievement tracks."
+      }
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordVisitRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.web_analytics_achievements#RecordVisitResponse": {
+      "type": "structure",
+      "members": {
+        "recorded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True once today's visit row exists for the user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordVisit": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordVisitRequest"
+      },
+      "output": {
+        "target": "com.posthog.web_analytics_achievements#RecordVisitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/web_analytics_achievements/record_visit/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Record a Web analytics visit\n\nIdempotently records that the requesting user opened Web analytics today (team-local date) and schedules a debounced achievement recompute. Intended to be called once per session."
+      }
+    },
+    "com.posthog.web_analytics_achievements#WebAnalyticsAchievements": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebration"
+        },
+        {
+          "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsOverview"
+        },
+        {
+          "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordInteraction"
+        },
+        {
+          "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordVisit"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

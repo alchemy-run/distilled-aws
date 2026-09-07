@@ -1,0 +1,10 @@
+{
+  "description": "deploymentRestart returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#DeploymentRestartRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation deploymentRestart($id: String!) {\n  deploymentRestart(id: $id)\n}"
+    }
+  ]
+}

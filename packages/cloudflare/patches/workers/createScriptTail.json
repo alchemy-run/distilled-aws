@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#ScriptsTailCreate with distilled cloudflare/workers createScriptTail",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsTailCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTail"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsTailCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTailRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTail/input/target",
+      "value": "com.cloudflare.workers#CreateScriptTailRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsTailCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTailResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTail/output/target",
+      "value": "com.cloudflare.workers#CreateScriptTailResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptTail/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

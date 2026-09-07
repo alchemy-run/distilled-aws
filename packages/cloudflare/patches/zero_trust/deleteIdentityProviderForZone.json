@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#IdentityProvidersDeleteForZone with distilled cloudflare/zero-trust deleteIdentityProviderForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersDeleteForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteIdentityProviderForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersDeleteForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteIdentityProviderForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteIdentityProviderForZone/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteIdentityProviderForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersDeleteForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteIdentityProviderForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteIdentityProviderForZone/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteIdentityProviderForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteIdentityProviderForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessIdentityProviderNotFound"
+        }
+      ]
+    }
+  ]
+}

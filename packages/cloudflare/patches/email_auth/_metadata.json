@@ -1,0 +1,25 @@
+{
+  "description": "Key dictionary / op aliases for email_auth (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "approvedSources": "approved_sources",
+        "bimiRecords": "bimi_records",
+        "cnameDkimRecords": "cname_dkim_records",
+        "cnameDmarcRecords": "cname_dmarc_records",
+        "cnameSpfRecords": "cname_spf_records",
+        "createdAt": "created_at",
+        "dkimRecords": "dkim_records",
+        "dmarcRecords": "dmarc_records",
+        "modifiedAt": "modified_at",
+        "ruaPrefix": "rua_prefix",
+        "skipWizard": "skip_wizard",
+        "spfRecords": "spf_records",
+        "totalLookups": "total_lookups",
+        "zoneId": "zone_id"
+      }
+    }
+  ]
+}

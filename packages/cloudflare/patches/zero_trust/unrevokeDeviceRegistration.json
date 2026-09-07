@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesRegistrationsUnrevoke with distilled cloudflare/zero-trust unrevokeDeviceRegistration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsUnrevoke",
+      "path": "/shapes/com.cloudflare.zero_trust#UnrevokeDeviceRegistration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsUnrevokeRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UnrevokeDeviceRegistrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UnrevokeDeviceRegistration/input/target",
+      "value": "com.cloudflare.zero_trust#UnrevokeDeviceRegistrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesRegistrationsUnrevokeResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UnrevokeDeviceRegistrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UnrevokeDeviceRegistration/output/target",
+      "value": "com.cloudflare.zero_trust#UnrevokeDeviceRegistrationResponse"
+    }
+  ]
+}

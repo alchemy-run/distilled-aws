@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#LogsEdit with distilled cloudflare/ai-gateway patchLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsEdit",
+      "path": "/shapes/com.cloudflare.ai_gateway#PatchLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsEditRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#PatchLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#PatchLog/input/target",
+      "value": "com.cloudflare.ai_gateway#PatchLogRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsEditResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#PatchLogResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#PatchLog/output/target",
+      "value": "com.cloudflare.ai_gateway#PatchLogResponse"
+    }
+  ]
+}

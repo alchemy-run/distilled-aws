@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#CrawlGet with distilled cloudflare/browser-rendering getCrawl",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#CrawlGet",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetCrawl"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#CrawlGetRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetCrawlRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetCrawl/input/target",
+      "value": "com.cloudflare.browser_rendering#GetCrawlRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#CrawlGetResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetCrawlResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#GetCrawl/output/target",
+      "value": "com.cloudflare.browser_rendering#GetCrawlResponse"
+    }
+  ]
+}

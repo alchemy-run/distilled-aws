@@ -1,0 +1,39 @@
+{
+  "description": "Align cache#VariantsEdit with distilled cloudflare/cache patchVariant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsEdit",
+      "path": "/shapes/com.cloudflare.cache#PatchVariant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsEditRequest",
+      "path": "/shapes/com.cloudflare.cache#PatchVariantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PatchVariant/input/target",
+      "value": "com.cloudflare.cache#PatchVariantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#VariantsEditResponse",
+      "path": "/shapes/com.cloudflare.cache#PatchVariantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PatchVariant/output/target",
+      "value": "com.cloudflare.cache#PatchVariantResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#PatchVariant/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

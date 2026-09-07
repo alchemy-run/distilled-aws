@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#RecordingsPauseResumeStopRecording with distilled cloudflare/realtime-kit pauseResumeStopRecordingRecording",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#RecordingsPauseResumeStopRecording",
+      "path": "/shapes/com.cloudflare.realtime_kit#PauseResumeStopRecordingRecording"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#RecordingsPauseResumeStopRecordingRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PauseResumeStopRecordingRecording/input/target",
+      "value": "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#RecordingsPauseResumeStopRecordingResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PauseResumeStopRecordingRecording/output/target",
+      "value": "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingResponse"
+    }
+  ]
+}

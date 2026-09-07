@@ -1,0 +1,41 @@
+{
+  "description": "Align email_routing#AddressesList with distilled cloudflare/email-routing listAddresses",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesList",
+      "path": "/shapes/com.cloudflare.email_routing#ListAddresses"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesListRequest",
+      "path": "/shapes/com.cloudflare.email_routing#ListAddressesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#ListAddresses/input/target",
+      "value": "com.cloudflare.email_routing#ListAddressesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesListResponse",
+      "path": "/shapes/com.cloudflare.email_routing#ListAddressesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#ListAddresses/output/target",
+      "value": "com.cloudflare.email_routing#ListAddressesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#ListAddresses/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

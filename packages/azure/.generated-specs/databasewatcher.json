@@ -1,0 +1,3792 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.databasewatcher#TargetsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#TargetsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/targets/{targetName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Delete a Target",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#TargetsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The target resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#TargetsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#TargetsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#TargetsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/targets/{targetName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Create a Target",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#TargetsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#TargetProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#TargetProperties": {
+      "type": "structure",
+      "members": {
+        "targetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discriminator property for TargetProperties.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetAuthenticationType": {
+          "target": "com.azure.databasewatcher#TargetAuthenticationType",
+          "traits": {
+            "smithy.api#documentation": "The type of authentication to use when connecting to a target.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetVault": {
+          "target": "com.azure.databasewatcher#VaultSecret",
+          "traits": {
+            "smithy.api#documentation": "To use SQL authentication when connecting to targets, specify the vault where the login name and password secrets are stored."
+          }
+        },
+        "connectionServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FQDN host name of the server to use in the connection string when connecting to a target. For example, for an Azure SQL logical server in the Azure commercial cloud, the value might be 'sql-logical-server-22092780.database.windows.net'; for an Azure SQL managed instance in the Azure commercial cloud, the value might be 'sql-mi-39441134.767d5869f605.database.windows.net'. Port number and instance name must be specified separately.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databasewatcher#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a target."
+      }
+    },
+    "com.azure.databasewatcher#AzureResourceManagerResourceProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of a resource type."
+      }
+    },
+    "com.azure.databasewatcher#VaultSecret": {
+      "type": "structure",
+      "members": {
+        "akvResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure resource ID of the Key Vault instance storing database authentication secrets."
+          }
+        },
+        "akvTargetUser": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path to the Key Vault secret storing the login name (aka user name, aka account name) for authentication to a target."
+          }
+        },
+        "akvTargetPassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path to the Key Vault secret storing the password for authentication to a target.",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The vault specific details required if using SQL authentication to connect to a target."
+      }
+    },
+    "com.azure.databasewatcher#TargetAuthenticationType": {
+      "type": "enum",
+      "members": {
+        "AAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Aad"
+          }
+        },
+        "SQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sql"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of authentication to use when connecting to a target."
+      }
+    },
+    "com.azure.databasewatcher#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.databasewatcher#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.databasewatcher#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.databasewatcher#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.databasewatcher#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.databasewatcher#TargetsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The target resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#TargetPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#TargetPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "targetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Discriminator property for TargetProperties.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetAuthenticationType": {
+          "target": "com.azure.databasewatcher#TargetAuthenticationType",
+          "traits": {
+            "smithy.api#documentation": "The type of authentication to use when connecting to a target.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetVault": {
+          "target": "com.azure.databasewatcher#VaultSecret",
+          "traits": {
+            "smithy.api#documentation": "To use SQL authentication when connecting to targets, specify the vault where the login name and password secrets are stored."
+          }
+        },
+        "connectionServerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The FQDN host name of the server to use in the connection string when connecting to a target. For example, for an Azure SQL logical server in the Azure commercial cloud, the value might be 'sql-logical-server-22092780.database.windows.net'; for an Azure SQL managed instance in the Azure commercial cloud, the value might be 'sql-mi-39441134.767d5869f605.database.windows.net'. Port number and instance name must be specified separately.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a target."
+      }
+    },
+    "com.azure.databasewatcher#TargetsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#TargetsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#TargetsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/targets/{targetName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Get a Target",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#TargetsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#TargetProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#TargetsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "targetName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The target resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#TargetsListByWatcher": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#TargetsListByWatcherRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#TargetListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/targets",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List Target resources by Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#TargetListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databasewatcher#TargetListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Target items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Target list operation."
+      }
+    },
+    "com.azure.databasewatcher#TargetListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#Target"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Target items on this page"
+      }
+    },
+    "com.azure.databasewatcher#Target": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#TargetProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.databasewatcher#TargetsListByWatcherRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersStop": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersStopRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatchersStopResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/stop",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "The action to stop monitoring all targets configured for a database watcher.",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersStopResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersStopResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersStopResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersStopResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databasewatcher#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.databasewatcher#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.databasewatcher#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned, UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.databasewatcher#WatcherProperties": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "com.azure.databasewatcher#Datastore",
+          "traits": {
+            "smithy.api#documentation": "The data store for collected monitoring data."
+          }
+        },
+        "status": {
+          "target": "com.azure.databasewatcher#WatcherStatus",
+          "traits": {
+            "smithy.api#documentation": "The monitoring collection status of the watcher."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databasewatcher#DatabaseWatcherProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the resource watcher."
+          }
+        },
+        "defaultAlertRuleIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of a user-assigned managed identity that will be assigned to a new alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The RP specific properties of the resource."
+      }
+    },
+    "com.azure.databasewatcher#DatabaseWatcherProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the last provisioning operation performed on the resource."
+      }
+    },
+    "com.azure.databasewatcher#WatcherStatus": {
+      "type": "enum",
+      "members": {
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Starting"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Stopping"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Stopped"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The monitoring collection status of a watcher."
+      }
+    },
+    "com.azure.databasewatcher#Datastore": {
+      "type": "structure",
+      "members": {
+        "adxClusterResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure resource ID of an Azure Data Explorer cluster."
+          }
+        },
+        "kustoClusterDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto cluster display name."
+          }
+        },
+        "kustoClusterUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto cluster URI.",
+            "smithy.api#required": {}
+          }
+        },
+        "kustoDataIngestionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto data ingestion URI.",
+            "smithy.api#required": {}
+          }
+        },
+        "kustoDatabaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of a Kusto database.",
+            "smithy.api#required": {}
+          }
+        },
+        "kustoManagementUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto management URL.",
+            "smithy.api#required": {}
+          }
+        },
+        "kustoOfferingType": {
+          "target": "com.azure.databasewatcher#KustoOfferingType",
+          "traits": {
+            "smithy.api#documentation": "The type of a Kusto offering.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a data store."
+      }
+    },
+    "com.azure.databasewatcher#KustoOfferingType": {
+      "type": "enum",
+      "members": {
+        "ADX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "adx"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free"
+          }
+        },
+        "FABRIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fabric"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of Kusto offering."
+      }
+    },
+    "com.azure.databasewatcher#WatchersStopResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersStopRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersStart": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersStartRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatchersStartResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/start",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "The action to start monitoring all targets configured for a database watcher.",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersStartResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersStartResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersStartResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersStartResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#WatchersStartResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersStartRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Delete a SharedPrivateLinkResource",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "sharedPrivateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Shared Private Link resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Create a SharedPrivateLinkResource",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "privateLinkResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the resource the shared private link resource is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group id from the provider of resource the shared private link resource is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "requestMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request message for requesting approval of the shared private link resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "dnsZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS zone segment to be included in the DNS name of the shared private link. Value is required for Azure Data Explorer clusters and SQL managed instances, and must be omitted for SQL logical servers and key vaults. The value is the second segment of the host FQDN name of the resource that the shared private link resource is for. For example: if the host name is 'adx-cluster-21187695.eastus.kusto.windows.net', then the value is 'eastus'; if the host name is 'sql-mi-23961134.767d5869f605.database.windows.net', then the value is '767d5869f605'."
+          }
+        },
+        "status": {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourceStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the shared private link resource. Can be Pending, Approved, Rejected or Disconnected."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databasewatcher#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a Shared Private Link resource."
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourceStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the shared private link resource. Can be Pending, Approved, Rejected or Disconnected."
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "sharedPrivateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Shared Private Link resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateLinkResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the resource the shared private link resource is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group id from the provider of resource the shared private link resource is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "requestMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request message for requesting approval of the shared private link resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "dnsZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS zone segment to be included in the DNS name of the shared private link. Value is required for Azure Data Explorer clusters and SQL managed instances, and must be omitted for SQL logical servers and key vaults. The value is the second segment of the host FQDN name of the resource that the shared private link resource is for. For example: if the host name is 'adx-cluster-21187695.eastus.kusto.windows.net', then the value is 'eastus'; if the host name is 'sql-mi-23961134.767d5869f605.database.windows.net', then the value is '767d5869f605'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a Shared Private Link resource."
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Get a SharedPrivateLinkResource",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "sharedPrivateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Shared Private Link resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcher": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcherRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/sharedPrivateLinkResources",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List SharedPrivateLinkResource resources by Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SharedPrivateLinkResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SharedPrivateLinkResource list operation."
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#SharedPrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SharedPrivateLinkResource items on this page"
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcherRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsStartValidation": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#HealthValidationsStartValidationRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#HealthValidationsStartValidationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/healthValidations/{healthValidationName}/startValidation",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Starts health validation for a watcher.",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsStartValidationResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#HealthValidationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationProperties": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of health validation, in UTC.",
+            "smithy.api#required": {}
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of health validation, in UTC.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.azure.databasewatcher#ValidationStatus",
+          "traits": {
+            "smithy.api#documentation": "The current health validation status.",
+            "smithy.api#required": {}
+          }
+        },
+        "issues": {
+          "target": "com.azure.databasewatcher#HealthValidationPropertiesIssuesList",
+          "traits": {
+            "smithy.api#documentation": "The list of issues found by health validation.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databasewatcher#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the health validation resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of the health validation resource."
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationPropertiesIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#ValidationIssue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of issues found by health validation."
+      }
+    },
+    "com.azure.databasewatcher#ValidationIssue": {
+      "type": "structure",
+      "members": {
+        "errorCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code of the issue.",
+            "smithy.api#required": {}
+          }
+        },
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message of the issue.",
+            "smithy.api#required": {}
+          }
+        },
+        "additionalDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional details for the issue."
+          }
+        },
+        "recommendationMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recommendation for resolving the issue.",
+            "smithy.api#required": {}
+          }
+        },
+        "recommendationUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL related to resolving the issue."
+          }
+        },
+        "relatedResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the Azure resource related to the issue."
+          }
+        },
+        "relatedResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the Azure resource related to the issue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The model of a health validation issue."
+      }
+    },
+    "com.azure.databasewatcher#ValidationStatus": {
+      "type": "enum",
+      "members": {
+        "NOTSTARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotStarted"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "TIMEDOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TimedOut"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Health validation status."
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsStartValidationRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "healthValidationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The health validation resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#HealthValidationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#HealthValidationsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/healthValidations/{healthValidationName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Get a HealthValidation",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#HealthValidationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "healthValidationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The health validation resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsListByParent": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#HealthValidationsListByParentRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#HealthValidationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/healthValidations",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List HealthValidation resources by Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databasewatcher#HealthValidationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The HealthValidation items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a HealthValidation list operation."
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#HealthValidation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The HealthValidation items on this page"
+      }
+    },
+    "com.azure.databasewatcher#HealthValidation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#HealthValidationProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.databasewatcher#HealthValidationsListByParentRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#AlertRuleResourcesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/alertRuleResources/{alertRuleResourceName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Delete a AlertRuleResource",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "alertRuleResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The alert rule proxy resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/alertRuleResources/{alertRuleResourceName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Create a AlertRuleResource",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#AlertRuleResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourceProperties": {
+      "type": "structure",
+      "members": {
+        "alertRuleResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the alert rule resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdWithProperties": {
+          "target": "com.azure.databasewatcher#AlertRuleCreationProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties with which the alert rule resource was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation time of the alert rule resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.databasewatcher#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the alert rule resource."
+          }
+        },
+        "alertRuleTemplateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The template ID associated with alert rule resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "alertRuleTemplateVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule template version.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of the alert rule proxy resource."
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleCreationProperties": {
+      "type": "enum",
+      "members": {
+        "CREATEDWITHACTIONGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CreatedWithActionGroup"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties with which the alert rule resource was created."
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "alertRuleResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The alert rule proxy resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#AlertRuleResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "alertRuleResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the alert rule resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "createdWithProperties": {
+          "target": "com.azure.databasewatcher#AlertRuleCreationProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties with which the alert rule resource was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The creation time of the alert rule resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "alertRuleTemplateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The template ID associated with alert rule resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "alertRuleTemplateVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule template version.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of the alert rule proxy resource."
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#AlertRuleResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#AlertRuleResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/alertRuleResources/{alertRuleResourceName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Get a AlertRuleResource",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#AlertRuleResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "alertRuleResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The alert rule proxy resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesListByParent": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#AlertRuleResourcesListByParentRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#AlertRuleResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}/alertRuleResources",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List AlertRuleResource resources by Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databasewatcher#AlertRuleResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The AlertRuleResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a AlertRuleResource list operation."
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#AlertRuleResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The AlertRuleResource items on this page"
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#AlertRuleResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.databasewatcher#AlertRuleResourcesListByParentRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Delete a Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatchersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Update a Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatcherUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "com.azure.databasewatcher#DatastoreUpdate",
+          "traits": {
+            "smithy.api#documentation": "The data store for collected monitoring data."
+          }
+        },
+        "defaultAlertRuleIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of a user-assigned managed identity that will be assigned to a new alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the Watcher."
+      }
+    },
+    "com.azure.databasewatcher#DatastoreUpdate": {
+      "type": "structure",
+      "members": {
+        "adxClusterResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure resource ID of an Azure Data Explorer cluster."
+          }
+        },
+        "kustoClusterDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto cluster display name."
+          }
+        },
+        "kustoClusterUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto cluster URI."
+          }
+        },
+        "kustoDataIngestionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto data ingestion URI."
+          }
+        },
+        "kustoDatabaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of a Kusto database."
+          }
+        },
+        "kustoManagementUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Kusto management URL."
+          }
+        },
+        "kustoOfferingType": {
+          "target": "com.azure.databasewatcher#KustoOfferingType",
+          "traits": {
+            "smithy.api#documentation": "The type of a Kusto offering."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a data store."
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databasewatcher#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.databasewatcher#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatchersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Create a Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#WatcherPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "datastore": {
+          "target": "com.azure.databasewatcher#Datastore",
+          "traits": {
+            "smithy.api#documentation": "The data store for collected monitoring data."
+          }
+        },
+        "defaultAlertRuleIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of a user-assigned managed identity that will be assigned to a new alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The RP specific properties of the resource."
+      }
+    },
+    "com.azure.databasewatcher#WatchersCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatchersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers/{watcherName}",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "Get a Watcher",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatchersGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatchersGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#WatchersGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "watcherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The database watcher name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatcherListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DatabaseWatcher/watchers",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List Watcher resources by resource group",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatcherListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databasewatcher#WatcherListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Watcher items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Watcher list operation."
+      }
+    },
+    "com.azure.databasewatcher#WatcherListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#Watcher"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Watcher items on this page"
+      }
+    },
+    "com.azure.databasewatcher#Watcher": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databasewatcher#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databasewatcher#WatcherTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databasewatcher#WatcherProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databasewatcher#WatcherIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The DatabaseWatcherProviderHub resource."
+      }
+    },
+    "com.azure.databasewatcher#WatcherIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.databasewatcher#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databasewatcher#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.databasewatcher#WatcherTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databasewatcher#WatchersListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#WatchersListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databasewatcher#WatchersListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#WatcherListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DatabaseWatcher/watchers",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List Watcher resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#WatchersListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databasewatcher#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.databasewatcher#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DatabaseWatcher/operations",
+          "code": 200,
+          "apiVersion": "2025-01-02"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-01-02"
+      }
+    },
+    "com.azure.databasewatcher#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databasewatcher#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databasewatcher#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databasewatcher#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.databasewatcher#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.databasewatcher#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.databasewatcher#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.databasewatcher#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.databasewatcher#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.databasewatcher#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.databasewatcher#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.databasewatcher#Databasewatcher": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.databasewatcher#TargetsDelete"
+        },
+        {
+          "target": "com.azure.databasewatcher#TargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#TargetsGet"
+        },
+        {
+          "target": "com.azure.databasewatcher#TargetsListByWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersStop"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersStart"
+        },
+        {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesDelete"
+        },
+        {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesCreate"
+        },
+        {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#HealthValidationsStartValidation"
+        },
+        {
+          "target": "com.azure.databasewatcher#HealthValidationsGet"
+        },
+        {
+          "target": "com.azure.databasewatcher#HealthValidationsListByParent"
+        },
+        {
+          "target": "com.azure.databasewatcher#AlertRuleResourcesDelete"
+        },
+        {
+          "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#AlertRuleResourcesGet"
+        },
+        {
+          "target": "com.azure.databasewatcher#AlertRuleResourcesListByParent"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersDelete"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersGet"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersListByResourceGroup"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersListBySubscription"
+        },
+        {
+          "target": "com.azure.databasewatcher#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Databasewatcher",
+        "smithy.api#documentation": "Azure Databasewatcher API — merged from the databasewatcher resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

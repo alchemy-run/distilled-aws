@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#CaptionsLanguageDelete with distilled cloudflare/stream deleteCaptionLanguage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageDelete",
+      "path": "/shapes/com.cloudflare.stream#DeleteCaptionLanguage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageDeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteCaptionLanguageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteCaptionLanguage/input/target",
+      "value": "com.cloudflare.stream#DeleteCaptionLanguageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageDeleteResponse",
+      "path": "/shapes/com.cloudflare.stream#DeleteCaptionLanguageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteCaptionLanguage/output/target",
+      "value": "com.cloudflare.stream#DeleteCaptionLanguageResponse"
+    }
+  ]
+}

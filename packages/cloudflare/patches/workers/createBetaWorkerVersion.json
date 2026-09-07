@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#BetaWorkersVersionsCreate with distilled cloudflare/workers createBetaWorkerVersion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerVersion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerVersionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerVersion/input/target",
+      "value": "com.cloudflare.workers#CreateBetaWorkerVersionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerVersionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerVersion/output/target",
+      "value": "com.cloudflare.workers#CreateBetaWorkerVersionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateBetaWorkerVersion/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

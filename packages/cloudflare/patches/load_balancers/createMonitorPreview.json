@@ -1,0 +1,30 @@
+{
+  "description": "Align load_balancers#MonitorsPreviewsCreate with distilled cloudflare/load-balancers createMonitorPreview",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsPreviewsCreate",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorPreview"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsPreviewsCreateRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorPreviewRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorPreview/input/target",
+      "value": "com.cloudflare.load_balancers#CreateMonitorPreviewRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsPreviewsCreateResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorPreviewResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#CreateMonitorPreview/output/target",
+      "value": "com.cloudflare.load_balancers#CreateMonitorPreviewResponse"
+    }
+  ]
+}

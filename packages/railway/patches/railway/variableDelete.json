@@ -1,0 +1,10 @@
+{
+  "description": "variableDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VariableDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation variableDelete($input: VariableDeleteInput!) {\n  variableDelete(input: $input)\n}"
+    }
+  ]
+}

@@ -1,0 +1,777 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.softwareplan#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#OperationsListRequest"
+      },
+      "output": {
+        "target": "com.azure.softwareplan#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/operations",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Get operations.\n\nList all the operations.",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.softwareplan#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of all operations"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page of items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List all the operations."
+      }
+    },
+    "com.azure.softwareplan#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.softwareplan#OperationResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of all operations"
+      }
+    },
+    "com.azure.softwareplan#OperationResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation"
+          }
+        },
+        "display": {
+          "target": "com.azure.softwareplan#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display properties for the operation"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation response."
+      }
+    },
+    "com.azure.softwareplan#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Provider name"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource that is acted upon"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation to be performed"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display fields for an operation."
+      }
+    },
+    "com.azure.softwareplan#OperationsListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitRevisionList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#HybridUseBenefitRevisionListRequest"
+      },
+      "output": {
+        "target": "com.azure.softwareplan#HybridUseBenefitListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/hybridUseBenefits/{planId}/revisions",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Gets the version history of a hybrid use benefit",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.softwareplan#HybridUseBenefitListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of hybrid use benefits"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to get the next page of items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of hybrid use benefits"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.softwareplan#HybridUseBenefitModel"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of hybrid use benefits"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitModel": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "sku": {
+          "target": "com.azure.softwareplan#Sku",
+          "traits": {
+            "smithy.api#documentation": "Hybrid use benefit SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Indicates the revision of the hybrid use benefit"
+          }
+        },
+        "properties": {
+          "target": "com.azure.softwareplan#HybridUseBenefitProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag for a hybrid use benefit response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response on GET of a hybrid use benefit"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.softwareplan#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state"
+          }
+        },
+        "createdDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Created date"
+          }
+        },
+        "lastUpdatedDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last updated date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hybrid use benefit properties"
+      }
+    },
+    "com.azure.softwareplan#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent the current state of the Reservation."
+      }
+    },
+    "com.azure.softwareplan#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU to be applied"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU to be applied for this resource"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitRevisionListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is a unique identifier for a plan. Should be a guid."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#HybridUseBenefitDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/hybridUseBenefits/{planId}",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Deletes a given plan ID",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is a unique identifier for a plan. Should be a guid."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#HybridUseBenefitUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.softwareplan#HybridUseBenefitUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/hybridUseBenefits/{planId}",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Updates an existing hybrid use benefit",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "sku": {
+          "target": "com.azure.softwareplan#Sku",
+          "traits": {
+            "smithy.api#documentation": "Hybrid use benefit SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Indicates the revision of the hybrid use benefit"
+          }
+        },
+        "properties": {
+          "target": "com.azure.softwareplan#HybridUseBenefitProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag for a hybrid use benefit response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is a unique identifier for a plan. Should be a guid."
+          }
+        },
+        "sku": {
+          "target": "com.azure.softwareplan#Sku",
+          "traits": {
+            "smithy.api#documentation": "Hybrid use benefit SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.softwareplan#HybridUseBenefitPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Property bag for a hybrid use benefit response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Hybrid use benefit properties"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#HybridUseBenefitCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.softwareplan#HybridUseBenefitCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/hybridUseBenefits/{planId}",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Create a new hybrid use benefit under a given scope",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "sku": {
+          "target": "com.azure.softwareplan#Sku",
+          "traits": {
+            "smithy.api#documentation": "Hybrid use benefit SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Indicates the revision of the hybrid use benefit"
+          }
+        },
+        "properties": {
+          "target": "com.azure.softwareplan#HybridUseBenefitProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag for a hybrid use benefit response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitCreateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is a unique identifier for a plan. Should be a guid."
+          }
+        },
+        "sku": {
+          "target": "com.azure.softwareplan#Sku",
+          "traits": {
+            "smithy.api#documentation": "Hybrid use benefit SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.softwareplan#HybridUseBenefitPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Property bag for a hybrid use benefit response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#HybridUseBenefitGetRequest"
+      },
+      "output": {
+        "target": "com.azure.softwareplan#HybridUseBenefitGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/hybridUseBenefits/{planId}",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Gets a given plan ID",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "sku": {
+          "target": "com.azure.softwareplan#Sku",
+          "traits": {
+            "smithy.api#documentation": "Hybrid use benefit SKU",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Indicates the revision of the hybrid use benefit"
+          }
+        },
+        "properties": {
+          "target": "com.azure.softwareplan#HybridUseBenefitProperties",
+          "traits": {
+            "smithy.api#documentation": "Property bag for a hybrid use benefit response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This is a unique identifier for a plan. Should be a guid."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#HybridUseBenefitListRequest"
+      },
+      "output": {
+        "target": "com.azure.softwareplan#HybridUseBenefitListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.SoftwarePlan/hybridUseBenefits",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Get all hybrid use benefits associated with an ARM resource.",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#HybridUseBenefitListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Supports applying filter on the type of SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#SoftwarePlanRegister": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.softwareplan#SoftwarePlanRegisterRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.SoftwarePlan/register",
+          "code": 200,
+          "apiVersion": "2019-12-01"
+        },
+        "smithy.api#documentation": "Register to Microsoft.SoftwarePlan resource provider.",
+        "com.distilled.openapi#apiVersion": "2019-12-01"
+      }
+    },
+    "com.azure.softwareplan#SoftwarePlanRegisterRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.softwareplan#Softwareplan": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.softwareplan#OperationsList"
+        },
+        {
+          "target": "com.azure.softwareplan#HybridUseBenefitRevisionList"
+        },
+        {
+          "target": "com.azure.softwareplan#HybridUseBenefitDelete"
+        },
+        {
+          "target": "com.azure.softwareplan#HybridUseBenefitUpdate"
+        },
+        {
+          "target": "com.azure.softwareplan#HybridUseBenefitCreate"
+        },
+        {
+          "target": "com.azure.softwareplan#HybridUseBenefitGet"
+        },
+        {
+          "target": "com.azure.softwareplan#HybridUseBenefitList"
+        },
+        {
+          "target": "com.azure.softwareplan#SoftwarePlanRegister"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Softwareplan",
+        "smithy.api#documentation": "Azure Softwareplan API — merged from the softwareplan resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

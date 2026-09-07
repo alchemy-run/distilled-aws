@@ -1,0 +1,30 @@
+{
+  "description": "Align memberships#Update with distilled cloudflare/memberships putMembership",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#Update",
+      "path": "/shapes/com.cloudflare.memberships#PutMembership"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#UpdateRequest",
+      "path": "/shapes/com.cloudflare.memberships#PutMembershipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#PutMembership/input/target",
+      "value": "com.cloudflare.memberships#PutMembershipRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#UpdateResponse",
+      "path": "/shapes/com.cloudflare.memberships#PutMembershipResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#PutMembership/output/target",
+      "value": "com.cloudflare.memberships#PutMembershipResponse"
+    }
+  ]
+}

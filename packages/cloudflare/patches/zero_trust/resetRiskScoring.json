@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#RiskScoringReset with distilled cloudflare/zero-trust resetRiskScoring",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringReset",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetRiskScoring"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringResetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetRiskScoringRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetRiskScoring/input/target",
+      "value": "com.cloudflare.zero_trust#ResetRiskScoringRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringResetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetRiskScoringResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ResetRiskScoring/output/target",
+      "value": "com.cloudflare.zero_trust#ResetRiskScoringResponse"
+    }
+  ]
+}

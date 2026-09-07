@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpSettingsGet with distilled cloudflare/zero-trust getDlpSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSettingsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSettingsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpSetting/input/target",
+      "value": "com.cloudflare.zero_trust#GetDlpSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSettingsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDlpSetting/output/target",
+      "value": "com.cloudflare.zero_trust#GetDlpSettingResponse"
+    }
+  ]
+}

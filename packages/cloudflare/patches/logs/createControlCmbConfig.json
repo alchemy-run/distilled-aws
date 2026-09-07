@@ -1,0 +1,42 @@
+{
+  "description": "Align logs#ControlCmbConfigCreate with distilled cloudflare/logs createControlCmbConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigCreate",
+      "path": "/shapes/com.cloudflare.logs#CreateControlCmbConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigCreateRequest",
+      "path": "/shapes/com.cloudflare.logs#CreateControlCmbConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#CreateControlCmbConfig/input/target",
+      "value": "com.cloudflare.logs#CreateControlCmbConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#ControlCmbConfigCreateResponse",
+      "path": "/shapes/com.cloudflare.logs#CreateControlCmbConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#CreateControlCmbConfig/output/target",
+      "value": "com.cloudflare.logs#CreateControlCmbConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logs#CreateControlCmbConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logs#LogsControlNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.logs#Forbidden"
+        }
+      ]
+    }
+  ]
+}

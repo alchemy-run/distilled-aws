@@ -1,0 +1,30 @@
+{
+  "description": "Align logs#LogExplorerDatasetsUpdateForZone with distilled cloudflare/logs updateLogExplorerDatasetForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsUpdateForZone",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsUpdateForZoneRequest",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForZone/input/target",
+      "value": "com.cloudflare.logs#UpdateLogExplorerDatasetForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsUpdateForZoneResponse",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForZone/output/target",
+      "value": "com.cloudflare.logs#UpdateLogExplorerDatasetForZoneResponse"
+    }
+  ]
+}

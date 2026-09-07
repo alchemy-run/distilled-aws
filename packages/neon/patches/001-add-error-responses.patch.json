@@ -1,0 +1,373 @@
+{
+  "description": "Add observed error responses to operations that only have 'default'. Discovered via live API testing.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}/get/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}/get/responses/400",
+      "value": {
+        "description": "Invalid project ID format",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}/patch/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}/patch/responses/400",
+      "value": {
+        "description": "Invalid project settings",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}/delete/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1operations/get/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1permissions/get/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1connection_uri/get/responses/404",
+      "value": {
+        "description": "Project, role, or database not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches/get/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1count/get/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}/get/responses/404",
+      "value": {
+        "description": "Branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}/patch/responses/404",
+      "value": {
+        "description": "Branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}/patch/responses/400",
+      "value": {
+        "description": "Invalid branch update (e.g. empty name)",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}/delete/responses/422",
+      "value": {
+        "description": "Cannot delete root branch",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}/delete/responses/404",
+      "value": {
+        "description": "Branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1restore/post/responses/404",
+      "value": {
+        "description": "Branch or source not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1set_as_default/post/responses/404",
+      "value": {
+        "description": "Branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1schema/get/responses/404",
+      "value": {
+        "description": "Database or branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1compare_schema/get/responses/404",
+      "value": {
+        "description": "Branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1endpoints/get/responses/404",
+      "value": {
+        "description": "Branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases/get/responses/404",
+      "value": {
+        "description": "Project or branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases/post/responses/404",
+      "value": {
+        "description": "Project or branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases/post/responses/400",
+      "value": {
+        "description": "Invalid database name",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases/post/responses/409",
+      "value": {
+        "description": "Database already exists",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases/post/responses/422",
+      "value": {
+        "description": "Database owner role not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases~1{database_name}/get/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases~1{database_name}/patch/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1databases~1{database_name}/delete/responses/404",
+      "value": {
+        "description": "Database not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles/get/responses/404",
+      "value": {
+        "description": "Project or branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles/post/responses/409",
+      "value": {
+        "description": "Role already exists",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles/post/responses/404",
+      "value": {
+        "description": "Project or branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles~1{role_name}/get/responses/404",
+      "value": {
+        "description": "Role not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles~1{role_name}/delete/responses/404",
+      "value": {
+        "description": "Role not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles~1{role_name}/delete/responses/422",
+      "value": {
+        "description": "Cannot delete role that is owner of a database",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1branches~1{branch_id}~1roles~1{role_name}~1reset_password/post/responses/404",
+      "value": {
+        "description": "Role not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints/post/responses/409",
+      "value": {
+        "description": "Endpoint of this type already exists on the branch",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints/post/responses/404",
+      "value": {
+        "description": "Project or branch not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints/get/responses/404",
+      "value": {
+        "description": "Project not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints~1{endpoint_id}/get/responses/404",
+      "value": {
+        "description": "Endpoint not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints~1{endpoint_id}/delete/responses/404",
+      "value": {
+        "description": "Endpoint not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints~1{endpoint_id}/patch/responses/404",
+      "value": {
+        "description": "Endpoint not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints~1{endpoint_id}~1start/post/responses/404",
+      "value": {
+        "description": "Endpoint not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints~1{endpoint_id}~1suspend/post/responses/404",
+      "value": {
+        "description": "Endpoint not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1endpoints~1{endpoint_id}~1restart/post/responses/404",
+      "value": {
+        "description": "Endpoint not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1projects~1{project_id}~1operations~1{operation_id}/get/responses/404",
+      "value": {
+        "description": "Operation not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api_keys~1{key_id}/delete/responses/404",
+      "value": {
+        "description": "API key not found",
+        "$ref": "#/components/responses/GeneralError"
+      }
+    }
+  ]
+}

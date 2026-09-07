@@ -1,0 +1,1207 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.oauth#RegisterNewOAuthAppRequestRedirectUrisList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppRequestContactsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppRequestTokenEndpointAuthMethod": {
+      "type": "enum",
+      "members": {
+        "CLIENT_SECRET_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client_secret_basic"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "CLIENT_SECRET_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client_secret_post"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppRequest": {
+      "type": "structure",
+      "members": {
+        "redirect_uris": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppRequestRedirectUrisList"
+        },
+        "client_name": {
+          "target": "smithy.api#String"
+        },
+        "client_uri": {
+          "target": "smithy.api#String"
+        },
+        "logo_uri": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "contacts": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppRequestContactsList"
+        },
+        "token_endpoint_auth_method": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppRequestTokenEndpointAuthMethod"
+        },
+        "software_id": {
+          "target": "smithy.api#String"
+        },
+        "software_version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppResponseRedirectUrisList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppResponseGrantTypesItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_OAUTH_GRANT_TYPE_TOKEN_EXCHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:oauth:grant-type:token-exchange"
+          }
+        },
+        "URN_IETF_PARAMS_OAUTH_GRANT_TYPE_DEVICE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:oauth:grant-type:device_code"
+          }
+        },
+        "AUTHORIZATION_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "authorization_code"
+          }
+        },
+        "REFRESH_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refresh_token"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppResponseGrantTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#RegisterNewOAuthAppResponseGrantTypesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppResponseContactsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppResponseTokenEndpointAuthMethod": {
+      "type": "enum",
+      "members": {
+        "CLIENT_SECRET_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client_secret_basic"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "CLIENT_SECRET_POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client_secret_post"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#RegisterNewOAuthAppResponse": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "client_id_issued_at": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "client_secret_expires_at": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "redirect_uris": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppResponseRedirectUrisList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "client_name": {
+          "target": "smithy.api#String"
+        },
+        "client_uri": {
+          "target": "smithy.api#String"
+        },
+        "logo_uri": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "grant_types": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppResponseGrantTypesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contacts": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppResponseContactsList"
+        },
+        "token_endpoint_auth_method": {
+          "target": "com.huggingface.oauth#RegisterNewOAuthAppResponseTokenEndpointAuthMethod"
+        },
+        "software_id": {
+          "target": "smithy.api#String"
+        },
+        "software_version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.oauth#RegisterNewOAuthApp": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.oauth#RegisterNewOAuthAppRequest"
+      },
+      "output": {
+        "target": "com.huggingface.oauth#RegisterNewOAuthAppResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth/register",
+          "code": 200
+        },
+        "smithy.api#documentation": "Register a new OAuth app"
+      }
+    },
+    "com.huggingface.oauth#InitiateDeviceAuthorizationRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.oauth#InitiateDeviceAuthorizationResponse": {
+      "type": "structure",
+      "members": {
+        "device_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verification_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.oauth#InitiateDeviceAuthorization": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.oauth#InitiateDeviceAuthorizationRequest"
+      },
+      "output": {
+        "target": "com.huggingface.oauth#InitiateDeviceAuthorizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth/device",
+          "code": 200
+        },
+        "smithy.api#documentation": "Initiate device authorization"
+      }
+    },
+    "com.huggingface.oauth#GetUserInfoResponseHardwareItemsItemSkuList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Hardware SKU as [type, vendor, model]"
+      }
+    },
+    "com.huggingface.oauth#GetUserInfoResponseHardwareItemsItem": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseHardwareItemsItemSkuList",
+          "traits": {
+            "smithy.api#documentation": "Hardware SKU as [type, vendor, model]",
+            "smithy.api#required": {}
+          }
+        },
+        "mem": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Memory in GB",
+            "smithy.api#required": {}
+          }
+        },
+        "num": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of units",
+            "smithy.api#required": {}
+          }
+        },
+        "isPrimary": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseHardwareItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#GetUserInfoResponseHardwareItemsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user's hardware items, if the `profile` scope is granted and the user did not set them as private"
+      }
+    },
+    "com.huggingface.oauth#GetUserInfoResponseBillingMode": {
+      "type": "enum",
+      "members": {
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepaid"
+          }
+        },
+        "POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "postpaid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the user is on prepaid or postpaid billing"
+      }
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemBillingMode": {
+      "type": "enum",
+      "members": {
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepaid"
+          }
+        },
+        "POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "postpaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemRoleInOrg": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemSecurityRestrictionsItem": {
+      "type": "enum",
+      "members": {
+        "MFA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mfa"
+          }
+        },
+        "TOKEN_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-policy"
+          }
+        },
+        "TOKEN_REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-revoked"
+          }
+        },
+        "SSO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sso"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemSecurityRestrictionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemSecurityRestrictionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Current security restrictions for accessing data in this organization with current authentication method"
+      }
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemResourceGroupsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemResourceGroupsItem": {
+      "type": "structure",
+      "members": {
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemResourceGroupsItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItemResourceGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemResourceGroupsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsItem": {
+      "type": "structure",
+      "members": {
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "picture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Avatar URL of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "preferred_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemPlan"
+        },
+        "canPay": {
+          "target": "smithy.api#Boolean"
+        },
+        "billingMode": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemBillingMode"
+        },
+        "roleInOrg": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemRoleInOrg"
+        },
+        "securityRestrictions": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemSecurityRestrictionsList",
+          "traits": {
+            "smithy.api#documentation": "Current security restrictions for accessing data in this organization with current authentication method"
+          }
+        },
+        "resourceGroups": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItemResourceGroupsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponseOrgsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#GetUserInfoResponseOrgsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#GetUserInfoResponse": {
+      "type": "structure",
+      "members": {
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full name of the user"
+          }
+        },
+        "preferred_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the user"
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Profile URL of the user"
+          }
+        },
+        "picture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Avatar URL of the user"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Website of the user"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the user"
+          }
+        },
+        "email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the email is verified"
+          }
+        },
+        "hardwareItems": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseHardwareItemsList",
+          "traits": {
+            "smithy.api#documentation": "The user's hardware items, if the `profile` scope is granted and the user did not set them as private"
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is a Pro user",
+            "smithy.api#required": {}
+          }
+        },
+        "canPay": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user has access to billing. You should check `canPay` first."
+          }
+        },
+        "billingMode": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseBillingMode",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is on prepaid or postpaid billing"
+          }
+        },
+        "orgs": {
+          "target": "com.huggingface.oauth#GetUserInfoResponseOrgsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.oauth#GetUserInfo": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.oauth#GetUserInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/oauth/userinfo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get user info\n\nGet information about the user. Only available through oauth access tokens. Information varies depending on the scope of the oauth app and what permissions the user granted to the oauth app."
+      }
+    },
+    "com.huggingface.oauth#PostUserInfoResponseHardwareItemsItemSkuList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Hardware SKU as [type, vendor, model]"
+      }
+    },
+    "com.huggingface.oauth#PostUserInfoResponseHardwareItemsItem": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseHardwareItemsItemSkuList",
+          "traits": {
+            "smithy.api#documentation": "Hardware SKU as [type, vendor, model]",
+            "smithy.api#required": {}
+          }
+        },
+        "mem": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Memory in GB",
+            "smithy.api#required": {}
+          }
+        },
+        "num": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of units",
+            "smithy.api#required": {}
+          }
+        },
+        "isPrimary": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseHardwareItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#PostUserInfoResponseHardwareItemsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user's hardware items, if the `profile` scope is granted and the user did not set them as private"
+      }
+    },
+    "com.huggingface.oauth#PostUserInfoResponseBillingMode": {
+      "type": "enum",
+      "members": {
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepaid"
+          }
+        },
+        "POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "postpaid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the user is on prepaid or postpaid billing"
+      }
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemBillingMode": {
+      "type": "enum",
+      "members": {
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "prepaid"
+          }
+        },
+        "POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "postpaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemRoleInOrg": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemSecurityRestrictionsItem": {
+      "type": "enum",
+      "members": {
+        "MFA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mfa"
+          }
+        },
+        "TOKEN_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-policy"
+          }
+        },
+        "TOKEN_REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token-revoked"
+          }
+        },
+        "SSO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sso"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemSecurityRestrictionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemSecurityRestrictionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Current security restrictions for accessing data in this organization with current authentication method"
+      }
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemResourceGroupsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemResourceGroupsItem": {
+      "type": "structure",
+      "members": {
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemResourceGroupsItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItemResourceGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemResourceGroupsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsItem": {
+      "type": "structure",
+      "members": {
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "picture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Avatar URL of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "preferred_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the organization",
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemPlan"
+        },
+        "canPay": {
+          "target": "smithy.api#Boolean"
+        },
+        "billingMode": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemBillingMode"
+        },
+        "roleInOrg": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemRoleInOrg"
+        },
+        "securityRestrictions": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemSecurityRestrictionsList",
+          "traits": {
+            "smithy.api#documentation": "Current security restrictions for accessing data in this organization with current authentication method"
+          }
+        },
+        "resourceGroups": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItemResourceGroupsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponseOrgsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.oauth#PostUserInfoResponseOrgsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.oauth#PostUserInfoResponse": {
+      "type": "structure",
+      "members": {
+        "sub": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full name of the user"
+          }
+        },
+        "preferred_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the user"
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Profile URL of the user"
+          }
+        },
+        "picture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Avatar URL of the user"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Website of the user"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the user"
+          }
+        },
+        "email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the email is verified"
+          }
+        },
+        "hardwareItems": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseHardwareItemsList",
+          "traits": {
+            "smithy.api#documentation": "The user's hardware items, if the `profile` scope is granted and the user did not set them as private"
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is a Pro user",
+            "smithy.api#required": {}
+          }
+        },
+        "canPay": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user has access to billing. You should check `canPay` first."
+          }
+        },
+        "billingMode": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseBillingMode",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is on prepaid or postpaid billing"
+          }
+        },
+        "orgs": {
+          "target": "com.huggingface.oauth#PostUserInfoResponseOrgsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.oauth#PostUserInfo": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.oauth#PostUserInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth/userinfo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get user info\n\nGet information about the user. Only available through oauth access tokens. Information varies depending on the scope of the oauth app and what permissions the user granted to the oauth app."
+      }
+    },
+    "com.huggingface.oauth#Oauth": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.oauth#RegisterNewOAuthApp"
+        },
+        {
+          "target": "com.huggingface.oauth#InitiateDeviceAuthorization"
+        },
+        {
+          "target": "com.huggingface.oauth#GetUserInfo"
+        },
+        {
+          "target": "com.huggingface.oauth#PostUserInfo"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

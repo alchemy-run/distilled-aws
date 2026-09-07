@@ -1,0 +1,3923 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysItemUse": {
+      "type": "enum",
+      "members": {
+        "SIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sig"
+          }
+        },
+        "ENC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysItemKeyOpsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysItem": {
+      "type": "structure",
+      "members": {
+        "kty": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kid": {
+          "target": "smithy.api#String"
+        },
+        "use": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysItemUse"
+        },
+        "key_ops": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysItemKeyOpsList"
+        },
+        "alg": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwks": {
+      "type": "structure",
+      "members": {
+        "keys": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwksKeysList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigResponseTypesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigTokenEndpointAuthMethodsSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigTokenEndpointAuthSigningAlgValuesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigScopesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigGrantTypesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigResponseModesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigSubjectTypesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigIdTokenSigningAlgValuesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigIdTokenEncryptionAlgValuesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigIdTokenEncryptionEncValuesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigClaimTypesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigClaimsSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigCodeChallengeMethodsSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigPromptValuesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigAuthorizationDetailsTypesSupportedList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfig": {
+      "type": "structure",
+      "members": {
+        "issuer": {
+          "target": "smithy.api#String"
+        },
+        "authorization_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "token_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "userinfo_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "jwks_uri": {
+          "target": "smithy.api#String"
+        },
+        "jwks": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigJwks"
+        },
+        "revocation_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "introspection_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "end_session_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "device_authorization_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "registration_endpoint": {
+          "target": "smithy.api#String"
+        },
+        "response_types_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigResponseTypesSupportedList"
+        },
+        "token_endpoint_auth_methods_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigTokenEndpointAuthMethodsSupportedList"
+        },
+        "token_endpoint_auth_signing_alg_values_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigTokenEndpointAuthSigningAlgValuesSupportedList"
+        },
+        "scopes_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigScopesSupportedList"
+        },
+        "grant_types_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigGrantTypesSupportedList"
+        },
+        "response_modes_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigResponseModesSupportedList"
+        },
+        "subject_types_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigSubjectTypesSupportedList"
+        },
+        "id_token_signing_alg_values_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigIdTokenSigningAlgValuesSupportedList"
+        },
+        "id_token_encryption_alg_values_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigIdTokenEncryptionAlgValuesSupportedList"
+        },
+        "id_token_encryption_enc_values_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigIdTokenEncryptionEncValuesSupportedList"
+        },
+        "claim_types_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigClaimTypesSupportedList"
+        },
+        "claims_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigClaimsSupportedList"
+        },
+        "code_challenge_methods_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigCodeChallengeMethodsSupportedList"
+        },
+        "prompt_values_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigPromptValuesSupportedList"
+        },
+        "claims_parameter_supported": {
+          "target": "smithy.api#Boolean"
+        },
+        "request_parameter_supported": {
+          "target": "smithy.api#Boolean"
+        },
+        "request_uri_parameter_supported": {
+          "target": "smithy.api#Boolean"
+        },
+        "require_request_uri_registration": {
+          "target": "smithy.api#Boolean"
+        },
+        "service_documentation": {
+          "target": "smithy.api#String"
+        },
+        "op_policy_uri": {
+          "target": "smithy.api#String"
+        },
+        "op_tos_uri": {
+          "target": "smithy.api#String"
+        },
+        "logo_uri": {
+          "target": "smithy.api#String"
+        },
+        "client_id_metadata_document_supported": {
+          "target": "smithy.api#Boolean"
+        },
+        "authorization_details_types_supported": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfigAuthorizationDetailsTypesSupportedList"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0UserAuthorizationScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Default scopes to request when token params specify scopes: [\\\"*\\\"]."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0UserAuthorization": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0UserAuthorizationScopesList",
+          "traits": {
+            "smithy.api#documentation": "Default scopes to request when token params specify scopes: [\\\"*\\\"]."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0RefreshTokens": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ClientCredentialsScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Default scopes to request when token params specify scopes: [\\\"*\\\"]."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ClientCredentials": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ClientCredentialsScopesList",
+          "traits": {
+            "smithy.api#documentation": "Default scopes to request when token params specify scopes: [\\\"*\\\"]."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ForwardedClaimsIdTokenList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ForwardedClaims": {
+      "type": "structure",
+      "members": {
+        "idToken": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ForwardedClaimsIdTokenList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allow-list of extra claims to propagate, keyed by source (idToken). Only claims named here and present in that source are exposed."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0AuthorizationUrlParamsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0JwtBearerScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Default scopes to request when token params specify scopes: [\\\"*\\\"]."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0JwtBearerAdditionalClaimsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0JwtBearer": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0JwtBearerScopesList",
+          "traits": {
+            "smithy.api#documentation": "Default scopes to request when token params specify scopes: [\\\"*\\\"]."
+          }
+        },
+        "sub": {
+          "target": "smithy.api#String"
+        },
+        "iss": {
+          "target": "smithy.api#String"
+        },
+        "aud": {
+          "target": "smithy.api#String"
+        },
+        "additionalClaims": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0JwtBearerAdditionalClaimsMap"
+        },
+        "ttl": {
+          "target": "smithy.api#Double"
+        },
+        "useClientCredentials": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ClientAssertionClaimsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0ClientAssertion": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "ttl": {
+          "target": "smithy.api#Double"
+        },
+        "claims": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ClientAssertionClaimsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase0": {
+      "type": "structure",
+      "members": {
+        "serverUrl": {
+          "target": "smithy.api#String"
+        },
+        "serverConfig": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ServerConfig"
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientName": {
+          "target": "smithy.api#String"
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "tokenEndpointAuthMethod": {
+          "target": "smithy.api#String"
+        },
+        "responseType": {
+          "target": "smithy.api#String"
+        },
+        "pkceRequired": {
+          "target": "smithy.api#Boolean"
+        },
+        "codeChallengeMethod": {
+          "target": "smithy.api#String"
+        },
+        "userAuthorization": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0UserAuthorization"
+        },
+        "refreshTokens": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0RefreshTokens"
+        },
+        "clientCredentials": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ClientCredentials"
+        },
+        "forwardedClaims": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ForwardedClaims",
+          "traits": {
+            "smithy.api#documentation": "Allow-list of extra claims to propagate, keyed by source (idToken). Only claims named here and present in that source are exposed."
+          }
+        },
+        "defaultAudience": {
+          "target": "smithy.api#String"
+        },
+        "defaultTokenExpiresIn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Default token lifetime in seconds to use when the token response omits expires_in."
+          }
+        },
+        "authorizationUrlParams": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0AuthorizationUrlParamsMap"
+        },
+        "jwtBearer": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0JwtBearer"
+        },
+        "clientAssertion": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0ClientAssertion"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase1SubjectType": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase1ValuesItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "expiresAt": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the API key value expires in milliseconds."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase1ValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorRequestDataCase1ValuesItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase1": {
+      "type": "structure",
+      "members": {
+        "subjectType": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase1SubjectType"
+        },
+        "values": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase1ValuesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase2OwnerType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "USER_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "ORGANIZATION_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Organization"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase2Owner": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase2OwnerType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase2ExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase2": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "appSlug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "appName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase2Owner"
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "privateKeyPem": {
+          "target": "smithy.api#String"
+        },
+        "webhookSecret": {
+          "target": "smithy.api#String"
+        },
+        "extras": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase2ExtrasMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3AppScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3UserScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3OwnerOrganization": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "logoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3ApplicationRedirectUrisList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3ApplicationWebhookResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3Application": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "developer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "developerUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "imageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "redirectUris": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3ApplicationRedirectUrisList"
+        },
+        "distribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "webhookResourceTypes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3ApplicationWebhookResourceTypesList"
+        },
+        "webhookUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "webhookEnabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "createdAt": {
+          "target": "smithy.api#String"
+        },
+        "updatedAt": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3ExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase3": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String"
+        },
+        "appName": {
+          "target": "smithy.api#String"
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "webhookSecret": {
+          "target": "smithy.api#String"
+        },
+        "appScopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3AppScopesList"
+        },
+        "userScopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3UserScopesList"
+        },
+        "ownerOrganization": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3OwnerOrganization"
+        },
+        "application": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3Application"
+        },
+        "extras": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3ExtrasMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase4": {
+      "type": "structure",
+      "members": {
+        "consumerKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "consumerSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "loginHost": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase5SlackTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase5BotScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase5UserScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase5ExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase5": {
+      "type": "structure",
+      "members": {
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "appName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "slackTeam": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase5SlackTeam"
+        },
+        "signingSecret": {
+          "target": "smithy.api#String"
+        },
+        "verificationToken": {
+          "target": "smithy.api#String"
+        },
+        "botScopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase5BotScopesList"
+        },
+        "userScopes": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase5UserScopesList"
+        },
+        "extras": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase5ExtrasMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase6ExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase6": {
+      "type": "structure",
+      "members": {
+        "clientName": {
+          "target": "smithy.api#String"
+        },
+        "accountIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "defaultSessionRole": {
+          "target": "smithy.api#String"
+        },
+        "extras": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase6ExtrasMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase7ExtrasMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase7": {
+      "type": "structure",
+      "members": {
+        "clientName": {
+          "target": "smithy.api#String"
+        },
+        "accountIdentifier": {
+          "target": "smithy.api#String"
+        },
+        "extras": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase7ExtrasMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase8": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "webhookSecret": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestDataCase9Map": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase3"
+        },
+        "Case4": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase4"
+        },
+        "Case5": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase5"
+        },
+        "Case6": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase6"
+        },
+        "Case7": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase7"
+        },
+        "Case8": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase8"
+        },
+        "Case9": {
+          "target": "com.vercel.connect#CreateConnectorRequestDataCase9Map"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorRequestParamsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Values for the connection method's templateFields."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestEnvironmentsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Use these built-in environment names or stable custom environment IDs when linking to projectId."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestTriggerDestination": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String"
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Route path on the linked project that receives forwarded trigger requests."
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String"
+        },
+        "customEnvironmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stable env_* ID of a custom environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Initial trigger destination routing for the linked project."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequestEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of the defaults trigger events for this connector."
+      }
+    },
+    "com.vercel.connect#CreateConnectorRequest": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.vercel.connect#CreateConnectorRequestData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "icon": {
+          "target": "smithy.api#String"
+        },
+        "backgroundColor": {
+          "target": "smithy.api#String"
+        },
+        "accentColor": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Known types: api-key, github, linear, oauth, photon, salesforce, slack, snowflake. Optional when \\\"connectionMethod\\\" is set."
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service slug or URL for which the connector is used."
+          }
+        },
+        "connectionMethod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connection method slug of the service."
+          }
+        },
+        "params": {
+          "target": "com.vercel.connect#CreateConnectorRequestParamsMap",
+          "traits": {
+            "smithy.api#documentation": "Values for the connection method's templateFields."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Which of the service's targets this connector is for. Requires \\\"connectionMethod\\\" and must be one that method serves. Optional."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the specified project when specified. See environments."
+          }
+        },
+        "environments": {
+          "target": "com.vercel.connect#CreateConnectorRequestEnvironmentsList",
+          "traits": {
+            "smithy.api#documentation": "Use these built-in environment names or stable custom environment IDs when linking to projectId."
+          }
+        },
+        "triggers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the triggers are enabled for this connector."
+          }
+        },
+        "triggerDestination": {
+          "target": "com.vercel.connect#CreateConnectorRequestTriggerDestination",
+          "traits": {
+            "smithy.api#documentation": "Initial trigger destination routing for the linked project."
+          }
+        },
+        "events": {
+          "target": "com.vercel.connect#CreateConnectorRequestEventsList",
+          "traits": {
+            "smithy.api#documentation": "The list of the defaults trigger events for this connector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedByCase0Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedByCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedByCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedByCase1Type": {
+      "type": "enum",
+      "members": {
+        "PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedByCase1EnvironmentCase1": {
+      "type": "enum",
+      "members": {
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        },
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedByCase1Environment": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedByCase1EnvironmentCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedByCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedByCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "environment": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedByCase1Environment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseCreatedBy": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedByCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedByCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedByCase0Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedByCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedByCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedByCase1Type": {
+      "type": "enum",
+      "members": {
+        "PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedByCase1EnvironmentCase1": {
+      "type": "enum",
+      "members": {
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        },
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedByCase1Environment": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedByCase1EnvironmentCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedByCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedByCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "environment": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedByCase1Environment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseUpdatedBy": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedByCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedByCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseCreationMode": {
+      "type": "enum",
+      "members": {
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseManaged": {
+      "type": "structure",
+      "members": {
+        "sync": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed-client metadata exposed without leaking the manager client or installation identifiers."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseType": {
+      "type": "enum",
+      "members": {
+        "API_KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "api-key"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        },
+        "DISCORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "discord"
+          }
+        },
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "LINEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linear"
+          }
+        },
+        "MICROSOFT_ENTRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "microsoft-entra"
+          }
+        },
+        "OAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oauth"
+          }
+        },
+        "PHOTON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "photon"
+          }
+        },
+        "SALESFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "salesforce"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        },
+        "SNOWFLAKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "snowflake"
+          }
+        },
+        "SNOWFLAKE_WIF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "snowflake-wif"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseDataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseSupportedSubjectTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseAppTokensScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is `scopes_supported` from the server's discovery document."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseAppTokensSupportedAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseAppTokens": {
+      "type": "structure",
+      "members": {
+        "crossInstallation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "supportsRefinement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "requiresReinstallation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when changing app token grants requires reinstalling the app, so tokens cannot be partitioned independently by requester environment."
+          }
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorResponseAppTokensScopesList",
+          "traits": {
+            "smithy.api#documentation": "Known allowed app-level scopes. For Slack this is the bot scope set configured on the app; for OAuth it is `scopes_supported` from the server's discovery document."
+          }
+        },
+        "supportedAuthorizationDetails": {
+          "target": "com.vercel.connect#CreateConnectorResponseAppTokensSupportedAuthorizationDetailsList"
+        },
+        "permissionsUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the page on the service where this client's app-level permissions are declared and granted, when the service has one and it differs from `clientUrl`."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUserTokensScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is `scopes_supported` from the server's discovery document."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseUserTokensSupportedAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseUserTokens": {
+      "type": "structure",
+      "members": {
+        "crossInstallation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "supportsRefinement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorResponseUserTokensScopesList",
+          "traits": {
+            "smithy.api#documentation": "Known allowed user-level scopes. For Slack this is the user scope set configured on the app; for OAuth it is `scopes_supported` from the server's discovery document."
+          }
+        },
+        "supportedAuthorizationDetails": {
+          "target": "com.vercel.connect#CreateConnectorResponseUserTokensSupportedAuthorizationDetailsList"
+        },
+        "manualCredentialInput": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "User authorization is completed by the Connect consent screen submitting a credential instead of an OAuth redirect."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseTriggers": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Incoming trigger configuration. Only present when enabled."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Known events this client subscribes to (e.g. Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseTriggerDestinationsItem": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "customEnvironmentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable custom-environment ID to route this destination to. Mutually exclusive with `branch`; omitted destinations keep the legacy production behavior."
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String"
+        },
+        "path": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Destinations that incoming triggers should be forwarded to. Limited to `MAX_CONNEX_TRIGGER_DESTINATIONS` entries."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseTriggerDestinationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorResponseTriggerDestinationsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Destinations that incoming triggers should be forwarded to. Limited to `MAX_CONNEX_TRIGGER_DESTINATIONS` entries."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemProjectCustomEnvironmentsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemProjectCustomEnvironmentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemProjectCustomEnvironmentsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemProject": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "customEnvironments": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemProjectCustomEnvironmentsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemEnvironmentsItemCase1": {
+      "type": "enum",
+      "members": {
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        },
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemEnvironmentsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemEnvironmentsItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemEnvironmentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemEnvironmentsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItem": {
+      "type": "structure",
+      "members": {
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "project": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemProject"
+        },
+        "environments": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItemEnvironmentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludesProjects": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludesProjectsItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hasMore": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Set by `?include=projects`. Capped at 100 per client."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponseIncludes": {
+      "type": "structure",
+      "members": {
+        "projects": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludesProjects",
+          "traits": {
+            "smithy.api#documentation": "Set by `?include=projects`. Capped at 100 per client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional expansions populated by `?include=...` on the list endpoint."
+      }
+    },
+    "com.vercel.connect#CreateConnectorResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ownerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deletedAt": {
+          "target": "smithy.api#Double"
+        },
+        "reinstallAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Time when this connector started requiring reinstallation because an installation-affecting app-token grant changed."
+          }
+        },
+        "createdBy": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreatedBy"
+        },
+        "updatedBy": {
+          "target": "com.vercel.connect#CreateConnectorResponseUpdatedBy"
+        },
+        "creationMode": {
+          "target": "com.vercel.connect#CreateConnectorResponseCreationMode",
+          "traits": {
+            "smithy.api#documentation": "How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it."
+          }
+        },
+        "managed": {
+          "target": "com.vercel.connect#CreateConnectorResponseManaged",
+          "traits": {
+            "smithy.api#documentation": "Managed-client metadata exposed without leaking the manager client or installation identifiers."
+          }
+        },
+        "public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorResponseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Best-effort identifier of the third-party service this client represents, independent of `type`. Examples: `'slack'`, `'mcp.linear.app'`, `'auth.example.com'`. Always non-empty on the API response — falls back through `storedClient.service ?? typeDef.service ?? typeDef.type`.",
+            "smithy.api#required": {}
+          }
+        },
+        "connectionMethod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The connection method this connector was created from, when the create request named one."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Which of the service's products/surfaces this connector points at."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clientUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "redirectUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Redirect URI registered with the third-party service for this client, if any. Used by `startAuthorization`/`startInstallation` to replay the exact URI back to the provider's token endpoint. Absent on clients created before this field was introduced; those callers fall back to the `https://connect.vercel.com/callback` default."
+          }
+        },
+        "defaultInstallationId": {
+          "target": "smithy.api#String"
+        },
+        "data": {
+          "target": "com.vercel.connect#CreateConnectorResponseDataMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "typeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "typeIcon": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        },
+        "devsite": {
+          "target": "smithy.api#String"
+        },
+        "docsite": {
+          "target": "smithy.api#String"
+        },
+        "icon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client branding icon. SHA-1 hash that resolves to the uploaded icon via the Vercel avatar service. Clients render this with `https://vercel.com/api/www/avatar/{icon}`."
+          }
+        },
+        "backgroundColor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hex background color (e.g., `#000000`) for branding."
+          }
+        },
+        "accentColor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hex accent color (e.g., `#000000`) for branding."
+          }
+        },
+        "supportedSubjectTypes": {
+          "target": "com.vercel.connect#CreateConnectorResponseSupportedSubjectTypesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "appTokens": {
+          "target": "com.vercel.connect#CreateConnectorResponseAppTokens"
+        },
+        "userTokens": {
+          "target": "com.vercel.connect#CreateConnectorResponseUserTokens"
+        },
+        "supportsInstallation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "supportsRevocation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ownerTenantId": {
+          "target": "smithy.api#String"
+        },
+        "supportsTriggers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this client type supports trigger webhooks. Derived from the type definition; indicates that `triggers` and `triggerDestinations` may be meaningful for this client.",
+            "smithy.api#required": {}
+          }
+        },
+        "supportsIcon": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.vercel.connect#CreateConnectorResponseTriggers",
+          "traits": {
+            "smithy.api#documentation": "Incoming trigger configuration. Only present when enabled."
+          }
+        },
+        "events": {
+          "target": "com.vercel.connect#CreateConnectorResponseEventsList",
+          "traits": {
+            "smithy.api#documentation": "Known events this client subscribes to (e.g. Slack bot events, GitHub webhook events). Names are type-specific and validated by the managed-create flow when forwarded to the third-party service."
+          }
+        },
+        "triggerDestinations": {
+          "target": "com.vercel.connect#CreateConnectorResponseTriggerDestinationsList",
+          "traits": {
+            "smithy.api#documentation": "Destinations that incoming triggers should be forwarded to. Limited to `MAX_CONNEX_TRIGGER_DESTINATIONS` entries."
+          }
+        },
+        "isConnectedToPrioritizedProject": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this connector is linked to the project supplied through `prioritizedProjectId`. Only present on prioritized list responses."
+          }
+        },
+        "includes": {
+          "target": "com.vercel.connect#CreateConnectorResponseIncludes",
+          "traits": {
+            "smithy.api#documentation": "Optional expansions populated by `?include=...` on the list endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.connect#CreateConnector": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.connect#CreateConnectorRequest"
+      },
+      "output": {
+        "target": "com.vercel.connect#CreateConnectorResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.connect#BadRequest"
+        },
+        {
+          "target": "com.vercel.connect#Forbidden"
+        },
+        {
+          "target": "com.vercel.connect#NotFound"
+        },
+        {
+          "target": "com.vercel.connect#Conflict"
+        },
+        {
+          "target": "com.vercel.connect#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/connect/connectors",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a connector\n\nCreate a connector from type-specific configuration and optionally link it to a project during creation."
+      }
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase0Type": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase1Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "issuer": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase2Type": {
+      "type": "enum",
+      "members": {
+        "JWT_BEARER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jwt-bearer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase2AdditionalClaimsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase2Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sub": {
+          "target": "smithy.api#String"
+        },
+        "iss": {
+          "target": "smithy.api#String"
+        },
+        "aud": {
+          "target": "smithy.api#String"
+        },
+        "additionalClaims": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase2AdditionalClaimsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase3Type": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase3Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubjectCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestSubject": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase3"
+        },
+        "Case4": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubjectCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestAudienceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestAuthorizationDetailsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequestAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#GetConnectorTokenRequestAuthorizationDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenRequest": {
+      "type": "structure",
+      "members": {
+        "connector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subject": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestSubject"
+        },
+        "installationId": {
+          "target": "smithy.api#String"
+        },
+        "audience": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestAudienceList"
+        },
+        "scopes": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestScopesList"
+        },
+        "resources": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestResourcesList"
+        },
+        "authorizationDetails": {
+          "target": "com.vercel.connect#GetConnectorTokenRequestAuthorizationDetailsList"
+        },
+        "validityBufferMs": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.connect#GetConnectorTokenResponseConnector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#GetConnectorTokenResponseClaimsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list. Currently sourced from the OIDC id_token only."
+      }
+    },
+    "com.vercel.connect#GetConnectorTokenResponseMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Driver-specific metadata (e.g., botUserId for Slack)."
+      }
+    },
+    "com.vercel.connect#GetConnectorTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tokenId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "connector": {
+          "target": "com.vercel.connect#GetConnectorTokenResponseConnector",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "installationId": {
+          "target": "smithy.api#String"
+        },
+        "tenantId": {
+          "target": "smithy.api#String"
+        },
+        "externalSubject": {
+          "target": "smithy.api#String"
+        },
+        "authorizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable id correlating all tokens (including refreshes) back to the original authorization."
+          }
+        },
+        "tokenGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable id that groups all tokens with the same parameters across refreshes."
+          }
+        },
+        "claims": {
+          "target": "com.vercel.connect#GetConnectorTokenResponseClaimsMap",
+          "traits": {
+            "smithy.api#documentation": "Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list. Currently sourced from the OIDC id_token only."
+          }
+        },
+        "metadata": {
+          "target": "com.vercel.connect#GetConnectorTokenResponseMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Driver-specific metadata (e.g., botUserId for Slack)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.connect#GetConnectorToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.connect#GetConnectorTokenRequest"
+      },
+      "output": {
+        "target": "com.vercel.connect#GetConnectorTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.connect#BadRequest"
+        },
+        {
+          "target": "com.vercel.connect#Forbidden"
+        },
+        {
+          "target": "com.vercel.connect#NotFound"
+        },
+        {
+          "target": "com.vercel.connect#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/connect/token/{connector}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Connect token\n\nGet an access token for a connector identified by the path parameter and scoped to the requester."
+      }
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase0Type": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase1Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubject": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubjectCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemEnvironmentCase0": {
+      "type": "enum",
+      "members": {
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        },
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemEnvironment": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemEnvironmentCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A built-in environment name or the stable env_* ID of a custom environment."
+      }
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemAudienceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemAuthorizationDetailsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemAuthorizationDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemInstallation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemTenant": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItemDataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensItem": {
+      "type": "structure",
+      "members": {
+        "accessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "refreshToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "refreshTokenExpiresAt": {
+          "target": "smithy.api#Double"
+        },
+        "subject": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemSubject",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "environment": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemEnvironment",
+          "traits": {
+            "smithy.api#documentation": "A built-in environment name or the stable env_* ID of a custom environment.",
+            "smithy.api#required": {}
+          }
+        },
+        "installationId": {
+          "target": "smithy.api#String"
+        },
+        "audience": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemAudienceList"
+        },
+        "scopes": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemScopesList"
+        },
+        "resources": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemResourcesList"
+        },
+        "authorizationDetails": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemAuthorizationDetailsList"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "externalSubject": {
+          "target": "smithy.api#String"
+        },
+        "installation": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemInstallation"
+        },
+        "tenant": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemTenant"
+        },
+        "data": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItemDataMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequestTokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#ImportConnectorTokensRequestTokensItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensRequest": {
+      "type": "structure",
+      "members": {
+        "connector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tokens": {
+          "target": "com.vercel.connect#ImportConnectorTokensRequestTokensList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemDataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemAudienceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemAuthorizationDetailsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemAuthorizationDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemClaimsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list. Currently sourced from the OIDC id_token only."
+      }
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemInstallation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemTenant": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase0Type": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase1Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubject": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubjectCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemEnvironmentCase1": {
+      "type": "enum",
+      "members": {
+        "DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "development"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        },
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItemEnvironment": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemEnvironmentCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "data": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemDataMap"
+        },
+        "installationId": {
+          "target": "smithy.api#String"
+        },
+        "audience": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemAudienceList"
+        },
+        "scopes": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemScopesList"
+        },
+        "resources": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemResourcesList"
+        },
+        "authorizationDetails": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemAuthorizationDetailsList"
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#Double"
+        },
+        "refreshTokenExpiresAt": {
+          "target": "smithy.api#Double"
+        },
+        "externalSubject": {
+          "target": "smithy.api#String"
+        },
+        "claims": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemClaimsMap",
+          "traits": {
+            "smithy.api#documentation": "Claims extracted from the provider's tokens per the connector's `ForwardedClaims` allow-list. Currently sourced from the OIDC id_token only."
+          }
+        },
+        "installation": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemInstallation"
+        },
+        "tenant": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemTenant"
+        },
+        "subject": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemSubject",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "environment": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItemEnvironment",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponseTokensList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#ImportConnectorTokensResponseTokensItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#ImportConnectorTokensResponse": {
+      "type": "structure",
+      "members": {
+        "accepted": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "imported": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tokens": {
+          "target": "com.vercel.connect#ImportConnectorTokensResponseTokensList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.connect#ImportConnectorTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.connect#ImportConnectorTokensRequest"
+      },
+      "output": {
+        "target": "com.vercel.connect#ImportConnectorTokensResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.connect#BadRequest"
+        },
+        {
+          "target": "com.vercel.connect#Forbidden"
+        },
+        {
+          "target": "com.vercel.connect#NotFound"
+        },
+        {
+          "target": "com.vercel.connect#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/connect/token/{connector}/import",
+          "code": 200
+        },
+        "smithy.api#documentation": "Import Connect tokens\n\nImport access and refresh tokens for a connector identified by the path parameter."
+      }
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase0Type": {
+      "type": "enum",
+      "members": {
+        "APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase1Type": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "issuer": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase2Type": {
+      "type": "enum",
+      "members": {
+        "JWT_BEARER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jwt-bearer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase2AdditionalClaimsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase2Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sub": {
+          "target": "smithy.api#String"
+        },
+        "iss": {
+          "target": "smithy.api#String"
+        },
+        "aud": {
+          "target": "smithy.api#String"
+        },
+        "additionalClaims": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase2AdditionalClaimsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase3Type": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase3Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubject": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase2"
+        },
+        "Case3": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase3"
+        },
+        "Case4": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubjectCase4"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAudienceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAuthorizationDetailsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAuthorizationDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAdditionalParamsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestRequest": {
+      "type": "structure",
+      "members": {
+        "connector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subject": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestSubject"
+        },
+        "installationId": {
+          "target": "smithy.api#String"
+        },
+        "audience": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAudienceList"
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestScopesList"
+        },
+        "resources": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestResourcesList"
+        },
+        "authorizationDetails": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAuthorizationDetailsList"
+        },
+        "validityBufferMs": {
+          "target": "smithy.api#Double"
+        },
+        "returnUrl": {
+          "target": "smithy.api#String"
+        },
+        "webhook": {
+          "target": "smithy.api#String"
+        },
+        "prompt": {
+          "target": "smithy.api#String"
+        },
+        "deviceCode": {
+          "target": "smithy.api#Boolean"
+        },
+        "expiresInMs": {
+          "target": "smithy.api#Double"
+        },
+        "additionalParams": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequestAdditionalParamsMap"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestResponseConnector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client id (e.g. `scl_…`).",
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client uid (e.g. `salesforce/my-org`).",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client type (e.g. `oauth`, `salesforce`).",
+            "smithy.api#required": {}
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resolved service id when known (e.g. `salesforce`), following the `stored.service ?? typeDef.service ?? stored.type` convention."
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Curated display name of the resolved service (e.g. \"Salesforce\"), present when the service is a known service. Suited for end-user surfaces like \"Sign in with {serviceName}\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The connector's own name: the operator-given client name, falling back to the client type's name for legacy rows without one.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequestResponse": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "request": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deviceCode": {
+          "target": "smithy.api#String"
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "connector": {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequestResponseConnector",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.connect#CreateConnectorAuthorizationRequest": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.connect#CreateConnectorAuthorizationRequestRequest"
+      },
+      "output": {
+        "target": "com.vercel.connect#CreateConnectorAuthorizationRequestResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.connect#BadRequest"
+        },
+        {
+          "target": "com.vercel.connect#Forbidden"
+        },
+        {
+          "target": "com.vercel.connect#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/connect/authorize/{connector}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Connect authorization request\n\nCreate an authorization request for a connector and return the URL and verifier details needed to complete the flow."
+      }
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestRequestAudienceList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestRequestAuthorizationDetailsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestRequestAuthorizationDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.connect#CreateConnectorInstallationRequestRequestAuthorizationDetailsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestRequest": {
+      "type": "structure",
+      "members": {
+        "connector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "installationId": {
+          "target": "smithy.api#String"
+        },
+        "audience": {
+          "target": "com.vercel.connect#CreateConnectorInstallationRequestRequestAudienceList"
+        },
+        "scopes": {
+          "target": "com.vercel.connect#CreateConnectorInstallationRequestRequestScopesList"
+        },
+        "resources": {
+          "target": "com.vercel.connect#CreateConnectorInstallationRequestRequestResourcesList"
+        },
+        "authorizationDetails": {
+          "target": "com.vercel.connect#CreateConnectorInstallationRequestRequestAuthorizationDetailsList"
+        },
+        "validityBufferMs": {
+          "target": "smithy.api#Double"
+        },
+        "returnUrl": {
+          "target": "smithy.api#String"
+        },
+        "webhook": {
+          "target": "smithy.api#String"
+        },
+        "tenantId": {
+          "target": "smithy.api#String"
+        },
+        "deviceCode": {
+          "target": "smithy.api#Boolean"
+        },
+        "expiresInMs": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestResponseConnector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client id (e.g. `scl_…`).",
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client uid (e.g. `salesforce/my-org`).",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client type (e.g. `oauth`, `salesforce`).",
+            "smithy.api#required": {}
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resolved service id when known (e.g. `salesforce`), following the `stored.service ?? typeDef.service ?? stored.type` convention."
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Curated display name of the resolved service (e.g. \"Salesforce\"), present when the service is a known service. Suited for end-user surfaces like \"Sign in with {serviceName}\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The connector's own name: the operator-given client name, falling back to the client type's name for legacy rows without one.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequestResponse": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "request": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deviceCode": {
+          "target": "smithy.api#String"
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "connector": {
+          "target": "com.vercel.connect#CreateConnectorInstallationRequestResponseConnector",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.connect#CreateConnectorInstallationRequest": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.connect#CreateConnectorInstallationRequestRequest"
+      },
+      "output": {
+        "target": "com.vercel.connect#CreateConnectorInstallationRequestResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.connect#BadRequest"
+        },
+        {
+          "target": "com.vercel.connect#Forbidden"
+        },
+        {
+          "target": "com.vercel.connect#NotFound"
+        },
+        {
+          "target": "com.vercel.connect#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/connect/install/{connector}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Connect installation request\n\nCreate an installation request for a connector and return the URL and verifier details needed to complete the flow."
+      }
+    },
+    "com.vercel.connect#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.connect#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.connect#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.connect#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.connect#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.vercel.connect#Connect": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.connect#CreateConnector"
+        },
+        {
+          "target": "com.vercel.connect#GetConnectorToken"
+        },
+        {
+          "target": "com.vercel.connect#ImportConnectorTokens"
+        },
+        {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequest"
+        },
+        {
+          "target": "com.vercel.connect#CreateConnectorInstallationRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

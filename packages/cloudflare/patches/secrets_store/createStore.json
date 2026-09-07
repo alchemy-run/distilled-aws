@@ -1,0 +1,42 @@
+{
+  "description": "Align secrets_store#StoresCreate with distilled cloudflare/secrets-store createStore",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresCreate",
+      "path": "/shapes/com.cloudflare.secrets_store#CreateStore"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresCreateRequest",
+      "path": "/shapes/com.cloudflare.secrets_store#CreateStoreRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#CreateStore/input/target",
+      "value": "com.cloudflare.secrets_store#CreateStoreRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresCreateResponse",
+      "path": "/shapes/com.cloudflare.secrets_store#CreateStoreResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#CreateStore/output/target",
+      "value": "com.cloudflare.secrets_store#CreateStoreResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.secrets_store#CreateStore/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.secrets_store#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.secrets_store#MaximumStoresExceeded"
+        }
+      ]
+    }
+  ]
+}

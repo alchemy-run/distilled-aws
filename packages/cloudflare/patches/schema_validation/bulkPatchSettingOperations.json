@@ -1,0 +1,30 @@
+{
+  "description": "Align schema_validation#SettingsOperationsBulkEdit with distilled cloudflare/schema-validation bulkPatchSettingOperations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsBulkEdit",
+      "path": "/shapes/com.cloudflare.schema_validation#BulkPatchSettingOperations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsBulkEditRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#BulkPatchSettingOperationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#BulkPatchSettingOperations/input/target",
+      "value": "com.cloudflare.schema_validation#BulkPatchSettingOperationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsOperationsBulkEditResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#BulkPatchSettingOperationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#BulkPatchSettingOperations/output/target",
+      "value": "com.cloudflare.schema_validation#BulkPatchSettingOperationsResponse"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Docs gap: site ACL `lan_1`/`lan_2` `subnets: array of Subnet` leaves the item type opaque, but each item is an IPv4 address or CIDR string on the wire (v0 typed string[]).",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsCreateRequestLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsCreateResponseLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsDeleteResponseLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsGetResponseLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsListResultItemLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsEditRequestLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsEditResponseLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsUpdateRequestLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#SitesAclsUpdateResponseLan1SubnetsList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

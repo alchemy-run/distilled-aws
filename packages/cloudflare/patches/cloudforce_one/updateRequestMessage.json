@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#RequestsMessageUpdate with distilled cloudflare/cloudforce-one updateRequestMessage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageUpdate",
+      "path": "/shapes/com.cloudflare.cloudforce_one#UpdateRequestMessage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageUpdateRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#UpdateRequestMessageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#UpdateRequestMessage/input/target",
+      "value": "com.cloudflare.cloudforce_one#UpdateRequestMessageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageUpdateResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#UpdateRequestMessageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#UpdateRequestMessage/output/target",
+      "value": "com.cloudflare.cloudforce_one#UpdateRequestMessageResponse"
+    }
+  ]
+}

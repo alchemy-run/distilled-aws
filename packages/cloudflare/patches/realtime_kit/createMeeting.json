@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#MeetingsCreate with distilled cloudflare/realtime-kit createMeeting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#MeetingsCreate",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreateMeeting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#MeetingsCreateRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreateMeetingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreateMeeting/input/target",
+      "value": "com.cloudflare.realtime_kit#CreateMeetingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#MeetingsCreateResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreateMeetingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreateMeeting/output/target",
+      "value": "com.cloudflare.realtime_kit#CreateMeetingResponse"
+    }
+  ]
+}

@@ -1,0 +1,3649 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.domainservices#DomainServicesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#DomainServicesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Delete Domain Service (DELETE Resource)\n\nThe Delete Domain Service operation deletes an existing Domain Service.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#DomainServicesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#DomainServicesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#DomainServicesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Update Domain Service (PATCH Resource)\n\nThe Update Domain Service operation can be used to update the existing deployment. The update call only supports the properties listed in the PATCH body.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#DomainServicesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#DomainServicesUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#DomainServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain service properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainservices#DomainServiceProperties": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Data Model Version"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Active Directory Tenant Id"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure domain that the user would like to deploy Domain Services to."
+          }
+        },
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deployment Id"
+          }
+        },
+        "syncOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SyncOwner ReplicaSet Id"
+          }
+        },
+        "syncApplicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique sync application id of the Azure AD Domain Services deployment."
+          }
+        },
+        "replicaSets": {
+          "target": "com.azure.domainservices#DomainServicePropertiesReplicaSetsList",
+          "traits": {
+            "smithy.api#documentation": "List of ReplicaSets"
+          }
+        },
+        "ldapsSettings": {
+          "target": "com.azure.domainservices#LdapsSettings",
+          "traits": {
+            "smithy.api#documentation": "Secure LDAP Settings"
+          }
+        },
+        "resourceForestSettings": {
+          "target": "com.azure.domainservices#ResourceForestSettings",
+          "traits": {
+            "smithy.api#documentation": "Resource Forest Settings"
+          }
+        },
+        "domainSecuritySettings": {
+          "target": "com.azure.domainservices#DomainSecuritySettings",
+          "traits": {
+            "smithy.api#documentation": "DomainSecurity Settings"
+          }
+        },
+        "domainConfigurationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain Configuration Type"
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sku Type"
+          }
+        },
+        "filteredSync": {
+          "target": "com.azure.domainservices#DomainServicePropertiesFilteredSync",
+          "traits": {
+            "smithy.api#documentation": "Enabled or Disabled flag to turn on Group-based filtered sync"
+          }
+        },
+        "syncScope": {
+          "target": "com.azure.domainservices#DomainServicePropertiesSyncScope",
+          "traits": {
+            "smithy.api#documentation": "All or CloudOnly, All users in AAD are synced to AAD DS domain or only users actively syncing in the cloud"
+          }
+        },
+        "notificationSettings": {
+          "target": "com.azure.domainservices#NotificationSettings",
+          "traits": {
+            "smithy.api#documentation": "Notification Settings"
+          }
+        },
+        "migrationProperties": {
+          "target": "com.azure.domainservices#MigrationProperties",
+          "traits": {
+            "smithy.api#documentation": "Migration Properties"
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the current deployment or provisioning state, which only appears in the response."
+          }
+        },
+        "configDiagnostics": {
+          "target": "com.azure.domainservices#ConfigDiagnostics",
+          "traits": {
+            "smithy.api#documentation": "Configuration diagnostics data containing latest execution from client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the Domain Service."
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnostics": {
+      "type": "structure",
+      "members": {
+        "lastExecuted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last domain configuration diagnostics DateTime"
+          }
+        },
+        "validatorResults": {
+          "target": "com.azure.domainservices#ConfigDiagnosticsValidatorResultsList",
+          "traits": {
+            "smithy.api#documentation": "List of Configuration Diagnostics validator results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration Diagnostics"
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnosticsValidatorResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#ConfigDiagnosticsValidatorResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Configuration Diagnostics validator results."
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnosticsValidatorResult": {
+      "type": "structure",
+      "members": {
+        "validatorId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Validator identifier"
+          }
+        },
+        "replicaSetSubnetDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Replica set location and subnet name"
+          }
+        },
+        "status": {
+          "target": "com.azure.domainservices#ConfigDiagnosticsValidatorResultStatus",
+          "traits": {
+            "smithy.api#documentation": "Status for individual validator after running diagnostics."
+          }
+        },
+        "issues": {
+          "target": "com.azure.domainservices#ConfigDiagnosticsValidatorResultIssuesList",
+          "traits": {
+            "smithy.api#documentation": "List of resource config validation issues."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Config Diagnostics validator result data"
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnosticsValidatorResultIssuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#ConfigDiagnosticsValidatorResultIssue"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of resource config validation issues."
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnosticsValidatorResultIssue": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Validation issue identifier."
+          }
+        },
+        "descriptionParams": {
+          "target": "com.azure.domainservices#ConfigDiagnosticsValidatorResultIssueDescriptionParamsList",
+          "traits": {
+            "smithy.api#documentation": "List of domain resource property name or values used to compose a rich description."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specific issue for a particular config diagnostics validator"
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnosticsValidatorResultIssueDescriptionParamsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of domain resource property name or values used to compose a rich description."
+      }
+    },
+    "com.azure.domainservices#ConfigDiagnosticsValidatorResultStatus": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OK"
+          }
+        },
+        "FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failure"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Warning"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Skipped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status for individual validator after running diagnostics."
+      }
+    },
+    "com.azure.domainservices#MigrationProperties": {
+      "type": "structure",
+      "members": {
+        "oldSubnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Old Subnet Id"
+          }
+        },
+        "oldVnetSiteId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Old Vnet Site Id"
+          }
+        },
+        "migrationProgress": {
+          "target": "com.azure.domainservices#MigrationProgress",
+          "traits": {
+            "smithy.api#documentation": "Migration Progress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Migration Properties"
+      }
+    },
+    "com.azure.domainservices#MigrationProgress": {
+      "type": "structure",
+      "members": {
+        "completionPercentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Completion Percentage"
+          }
+        },
+        "progressMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Progress Message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Migration Progress"
+      }
+    },
+    "com.azure.domainservices#NotificationSettings": {
+      "type": "structure",
+      "members": {
+        "notifyGlobalAdmins": {
+          "target": "com.azure.domainservices#NotificationSettingsNotifyGlobalAdmins",
+          "traits": {
+            "smithy.api#documentation": "Should global admins be notified"
+          }
+        },
+        "notifyDcAdmins": {
+          "target": "com.azure.domainservices#NotificationSettingsNotifyDcAdmins",
+          "traits": {
+            "smithy.api#documentation": "Should domain controller admins be notified"
+          }
+        },
+        "additionalRecipients": {
+          "target": "com.azure.domainservices#NotificationSettingsAdditionalRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "The list of additional recipients"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for notification"
+      }
+    },
+    "com.azure.domainservices#NotificationSettingsAdditionalRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of additional recipients"
+      }
+    },
+    "com.azure.domainservices#NotificationSettingsNotifyDcAdmins": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Should domain controller admins be notified"
+      }
+    },
+    "com.azure.domainservices#NotificationSettingsNotifyGlobalAdmins": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Should global admins be notified"
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesSyncScope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All"
+          }
+        },
+        "CLOUDONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CloudOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All or CloudOnly, All users in AAD are synced to AAD DS domain or only users actively syncing in the cloud"
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesFilteredSync": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enabled or Disabled flag to turn on Group-based filtered sync"
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettings": {
+      "type": "structure",
+      "members": {
+        "ntlmV1": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsNtlmV1",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not NtlmV1 is enabled or disabled."
+          }
+        },
+        "tlsV1": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsTlsV1",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not TlsV1 is enabled or disabled."
+          }
+        },
+        "syncNtlmPasswords": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsSyncNtlmPasswords",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not SyncNtlmPasswords is enabled or disabled."
+          }
+        },
+        "syncKerberosPasswords": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsSyncKerberosPasswords",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not SyncKerberosPasswords is enabled or disabled."
+          }
+        },
+        "syncOnPremPasswords": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsSyncOnPremPasswords",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not SyncOnPremPasswords is enabled or disabled."
+          }
+        },
+        "kerberosRc4Encryption": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsKerberosRc4Encryption",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not KerberosRc4Encryption is enabled or disabled."
+          }
+        },
+        "kerberosArmoring": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsKerberosArmoring",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not KerberosArmoring is enabled or disabled."
+          }
+        },
+        "ldapSigning": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsLdapSigning",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not LdapSigning is enabled or disabled."
+          }
+        },
+        "channelBinding": {
+          "target": "com.azure.domainservices#DomainSecuritySettingsChannelBinding",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not ChannelBinding is enabled or disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain Security Settings"
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsChannelBinding": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not ChannelBinding is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsLdapSigning": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not LdapSigning is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsKerberosArmoring": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not KerberosArmoring is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsKerberosRc4Encryption": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not KerberosRc4Encryption is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsSyncOnPremPasswords": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not SyncOnPremPasswords is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsSyncKerberosPasswords": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not SyncKerberosPasswords is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsSyncNtlmPasswords": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not SyncNtlmPasswords is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsTlsV1": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not TlsV1 is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainSecuritySettingsNtlmV1": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not NtlmV1 is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#ResourceForestSettings": {
+      "type": "structure",
+      "members": {
+        "settings": {
+          "target": "com.azure.domainservices#ResourceForestSettingsSettingsList",
+          "traits": {
+            "smithy.api#documentation": "List of settings for Resource Forest"
+          }
+        },
+        "resourceForest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Forest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for Resource Forest"
+      }
+    },
+    "com.azure.domainservices#ResourceForestSettingsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#ForestTrust"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of settings for Resource Forest"
+      }
+    },
+    "com.azure.domainservices#ForestTrust": {
+      "type": "structure",
+      "members": {
+        "trustedDomainFqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trusted Domain FQDN"
+          }
+        },
+        "trustDirection": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trust Direction"
+          }
+        },
+        "friendlyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Friendly Name"
+          }
+        },
+        "remoteDnsIps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remote Dns ips"
+          }
+        },
+        "trustPassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trust Password",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Forest Trust Setting"
+      }
+    },
+    "com.azure.domainservices#LdapsSettings": {
+      "type": "structure",
+      "members": {
+        "ldaps": {
+          "target": "com.azure.domainservices#LdapsSettingsLdaps",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not Secure LDAP is enabled or disabled."
+          }
+        },
+        "pfxCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate required to configure Secure LDAP. The parameter passed here should be a base64encoded representation of the certificate pfx file."
+          }
+        },
+        "pfxCertificatePassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The password to decrypt the provided Secure LDAP certificate pfx file.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "publicCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public certificate used to configure secure ldap."
+          }
+        },
+        "certificateThumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Thumbprint of configure ldaps certificate."
+          }
+        },
+        "certificateNotAfter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NotAfter DateTime of configure ldaps certificate."
+          }
+        },
+        "externalAccess": {
+          "target": "com.azure.domainservices#LdapsSettingsExternalAccess",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Secure LDAP Settings"
+      }
+    },
+    "com.azure.domainservices#LdapsSettingsExternalAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#LdapsSettingsLdaps": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not Secure LDAP is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesReplicaSetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#ReplicaSet"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of ReplicaSets"
+      }
+    },
+    "com.azure.domainservices#ReplicaSet": {
+      "type": "structure",
+      "members": {
+        "replicaSetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ReplicaSet Id"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual network location"
+          }
+        },
+        "vnetSiteId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual network site id"
+          }
+        },
+        "subnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the virtual network that Domain Services will be deployed on. The id of the subnet that Domain Services will be deployed on. /virtualNetwork/vnetName/subnets/subnetName."
+          }
+        },
+        "domainControllerIpAddress": {
+          "target": "com.azure.domainservices#ReplicaSetDomainControllerIpAddressList",
+          "traits": {
+            "smithy.api#documentation": "List of Domain Controller IP Address"
+          }
+        },
+        "externalAccessIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External access ip address."
+          }
+        },
+        "serviceStatus": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of Domain Service instance"
+          }
+        },
+        "healthLastEvaluated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last domain evaluation run DateTime"
+          }
+        },
+        "healthMonitors": {
+          "target": "com.azure.domainservices#ReplicaSetHealthMonitorsList",
+          "traits": {
+            "smithy.api#documentation": "List of Domain Health Monitors"
+          }
+        },
+        "healthAlerts": {
+          "target": "com.azure.domainservices#ReplicaSetHealthAlertsList",
+          "traits": {
+            "smithy.api#documentation": "List of Domain Health Alerts"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Replica Set Definition"
+      }
+    },
+    "com.azure.domainservices#ReplicaSetHealthAlertsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#HealthAlert"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Domain Health Alerts"
+      }
+    },
+    "com.azure.domainservices#HealthAlert": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert Name"
+          }
+        },
+        "issue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert Issue"
+          }
+        },
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert Severity"
+          }
+        },
+        "raised": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert Raised DateTime"
+          }
+        },
+        "lastDetected": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert Last Detected DateTime"
+          }
+        },
+        "resolutionUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Alert TSG Link"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Health Alert Description"
+      }
+    },
+    "com.azure.domainservices#ReplicaSetHealthMonitorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#HealthMonitor"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Domain Health Monitors"
+      }
+    },
+    "com.azure.domainservices#HealthMonitor": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Monitor Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Monitor Name"
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Health Monitor Details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Health Monitor Description"
+      }
+    },
+    "com.azure.domainservices#ReplicaSetDomainControllerIpAddressList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Domain Controller IP Address"
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#DomainServicesUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#DomainServicesUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#DomainServicesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#DomainServicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Domain service properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure domain that the user would like to deploy Domain Services to."
+          }
+        },
+        "replicaSets": {
+          "target": "com.azure.domainservices#DomainServicePropertiesInputReplicaSetsList",
+          "traits": {
+            "smithy.api#documentation": "List of ReplicaSets"
+          }
+        },
+        "ldapsSettings": {
+          "target": "com.azure.domainservices#LdapsSettingsInput",
+          "traits": {
+            "smithy.api#documentation": "Secure LDAP Settings"
+          }
+        },
+        "resourceForestSettings": {
+          "target": "com.azure.domainservices#ResourceForestSettings",
+          "traits": {
+            "smithy.api#documentation": "Resource Forest Settings"
+          }
+        },
+        "domainSecuritySettings": {
+          "target": "com.azure.domainservices#DomainSecuritySettings",
+          "traits": {
+            "smithy.api#documentation": "DomainSecurity Settings"
+          }
+        },
+        "domainConfigurationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain Configuration Type"
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sku Type"
+          }
+        },
+        "filteredSync": {
+          "target": "com.azure.domainservices#DomainServicePropertiesInputFilteredSync",
+          "traits": {
+            "smithy.api#documentation": "Enabled or Disabled flag to turn on Group-based filtered sync"
+          }
+        },
+        "syncScope": {
+          "target": "com.azure.domainservices#DomainServicePropertiesInputSyncScope",
+          "traits": {
+            "smithy.api#documentation": "All or CloudOnly, All users in AAD are synced to AAD DS domain or only users actively syncing in the cloud"
+          }
+        },
+        "notificationSettings": {
+          "target": "com.azure.domainservices#NotificationSettings",
+          "traits": {
+            "smithy.api#documentation": "Notification Settings"
+          }
+        },
+        "configDiagnostics": {
+          "target": "com.azure.domainservices#ConfigDiagnostics",
+          "traits": {
+            "smithy.api#documentation": "Configuration diagnostics data containing latest execution from client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the Domain Service."
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesInputSyncScope": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All"
+          }
+        },
+        "CLOUDONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CloudOnly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All or CloudOnly, All users in AAD are synced to AAD DS domain or only users actively syncing in the cloud"
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesInputFilteredSync": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enabled or Disabled flag to turn on Group-based filtered sync"
+      }
+    },
+    "com.azure.domainservices#LdapsSettingsInput": {
+      "type": "structure",
+      "members": {
+        "ldaps": {
+          "target": "com.azure.domainservices#LdapsSettingsInputLdaps",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not Secure LDAP is enabled or disabled."
+          }
+        },
+        "pfxCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate required to configure Secure LDAP. The parameter passed here should be a base64encoded representation of the certificate pfx file."
+          }
+        },
+        "pfxCertificatePassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The password to decrypt the provided Secure LDAP certificate pfx file.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "externalAccess": {
+          "target": "com.azure.domainservices#LdapsSettingsInputExternalAccess",
+          "traits": {
+            "smithy.api#documentation": "A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Secure LDAP Settings"
+      }
+    },
+    "com.azure.domainservices#LdapsSettingsInputExternalAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#LdapsSettingsInputLdaps": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A flag to determine whether or not Secure LDAP is enabled or disabled."
+      }
+    },
+    "com.azure.domainservices#DomainServicePropertiesInputReplicaSetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#ReplicaSetInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of ReplicaSets"
+      }
+    },
+    "com.azure.domainservices#ReplicaSetInput": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual network location"
+          }
+        },
+        "subnetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the virtual network that Domain Services will be deployed on. The id of the subnet that Domain Services will be deployed on. /virtualNetwork/vnetName/subnets/subnetName."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Replica Set Definition"
+      }
+    },
+    "com.azure.domainservices#DomainServicesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#DomainServicesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#DomainServicesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Create or Update Domain Service (PUT Resource)\n\nThe Create Domain Service operation creates a new domain service with the specified parameters. If the specific service already exists, then any patchable properties will be updated and any immutable properties will remain unchanged.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#DomainServicesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#DomainServicesCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#DomainServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain service properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#DomainServicesCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#DomainServicesCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#DomainServicesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#DomainServicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Domain service properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#DomainServicesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#DomainServicesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#DomainServicesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Get Domain Service\n\nThe Get Domain Service operation retrieves a json representation of the Domain Service.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#DomainServicesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#DomainServicesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#DomainServicesGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#DomainServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain service properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicesGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#DomainServicesGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#DomainServicesGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServicesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#DomainServicesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#DomainServicesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#DomainServiceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "List Domain Services in Resource Group\n\nThe List Domain Services in Resource Group operation lists all the domain services available under the given resource group.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#DomainServiceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainservices#DomainServiceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "the list of domain services."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token for the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from the List Domain Services operation."
+      }
+    },
+    "com.azure.domainservices#DomainServiceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#DomainService"
+      },
+      "traits": {
+        "smithy.api#documentation": "the list of domain services."
+      }
+    },
+    "com.azure.domainservices#DomainService": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#DomainServiceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#DomainServiceSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#DomainServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "Domain service properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain service."
+      }
+    },
+    "com.azure.domainservices#DomainServiceSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#DomainServiceSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#DomainServiceSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServiceSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServiceSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#DomainServiceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#DomainServicesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#DomainServicesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#DomainServicesListRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#DomainServiceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AAD/domainServices",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "List Domain Services in Subscription\n\nThe List Domain Services in Subscription operation lists all the domain services available under the given subscription (and across all resource groups within that subscription).",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#DomainServicesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#DomainServiceOperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.domainservices#OperationEntityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AAD/operations",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Lists all the available Domain Services operations.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#OperationEntityListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainservices#OperationEntityListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of operations."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token for the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of domain service operation response."
+      }
+    },
+    "com.azure.domainservices#OperationEntityListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#OperationEntity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of operations."
+      }
+    },
+    "com.azure.domainservices#OperationEntity": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}."
+          }
+        },
+        "display": {
+          "target": "com.azure.domainservices#OperationDisplayInfo",
+          "traits": {
+            "smithy.api#documentation": "The operation supported by Domain Services."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation supported by Domain Services."
+      }
+    },
+    "com.azure.domainservices#OperationDisplayInfo": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The action that users can perform, based on their permission level."
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Domain Services."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation supported by Domain Services."
+      }
+    },
+    "com.azure.domainservices#OuContainerDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#OuContainerDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Delete OuContainer\n\nThe Delete OuContainer operation deletes specified OuContainer.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#OuContainerDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        },
+        "ouContainerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the OuContainer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#OuContainerUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#OuContainerUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Update OuContainer (PATCH Resource)\n\nThe Update OuContainer operation can be used to update the existing OuContainers.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#OuContainerUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#OuContainerUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#OuContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "OuContainer properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Active Directory tenant id"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of Domain Services."
+          }
+        },
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Deployment id"
+          }
+        },
+        "containerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OuContainer name"
+          }
+        },
+        "accounts": {
+          "target": "com.azure.domainservices#OuContainerPropertiesAccountsList",
+          "traits": {
+            "smithy.api#documentation": "The list of container accounts"
+          }
+        },
+        "serviceStatus": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of OuContainer instance"
+          }
+        },
+        "distinguishedName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinguished Name of OuContainer instance"
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current deployment or provisioning state, which only appears in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the OuContainer."
+      }
+    },
+    "com.azure.domainservices#OuContainerPropertiesAccountsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#ContainerAccount"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of container accounts"
+      }
+    },
+    "com.azure.domainservices#ContainerAccount": {
+      "type": "structure",
+      "members": {
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name"
+          }
+        },
+        "spn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account spn"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account password",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container Account Description"
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#OuContainerUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#OuContainerUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#OuContainerUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        },
+        "ouContainerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the OuContainer."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name"
+          }
+        },
+        "spn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account spn"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account password",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#OuContainerCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#OuContainerCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Create OuContainer\n\nThe Create OuContainer operation creates a new OuContainer under the specified Domain Service instance.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#OuContainerCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#OuContainerCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#OuContainerCreateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#OuContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "OuContainer properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerCreateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#OuContainerCreateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#OuContainerCreateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerCreateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerCreateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#OuContainerCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        },
+        "ouContainerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the OuContainer."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account name"
+          }
+        },
+        "spn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account spn"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account password",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#OuContainerGetRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#OuContainerGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Get particular OuContainer in DomainService instance\n\nGet OuContainer in DomainService instance.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#OuContainerGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#OuContainerGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#OuContainerGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#OuContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "OuContainer properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#OuContainerGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#OuContainerGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#OuContainerGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        },
+        "ouContainerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the OuContainer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.domainservices#OuContainerListRequest"
+      },
+      "output": {
+        "target": "com.azure.domainservices#OuContainerListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "List of OuContainers in DomainService instance\n\nThe List of OuContainers in DomainService instance.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#OuContainerListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.domainservices#OuContainerListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of OuContainer."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The continuation token for the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from the List OuContainer operation."
+      }
+    },
+    "com.azure.domainservices#OuContainerListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.domainservices#OuContainer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of OuContainer."
+      }
+    },
+    "com.azure.domainservices#OuContainer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.domainservices#OuContainerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.domainservices#OuContainerSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.domainservices#OuContainerProperties",
+          "traits": {
+            "smithy.api#documentation": "OuContainer properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource for OuContainer."
+      }
+    },
+    "com.azure.domainservices#OuContainerSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.domainservices#OuContainerSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.domainservices#OuContainerSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.domainservices#OuContainerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.domainservices#OuContainerListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "domainServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the domain service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.domainservices#OuContainerOperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.domainservices#OperationEntityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Aad/operations",
+          "code": 200,
+          "apiVersion": "2022-12-01"
+        },
+        "smithy.api#documentation": "Lists all the available OuContainer operations.",
+        "com.distilled.openapi#apiVersion": "2022-12-01"
+      }
+    },
+    "com.azure.domainservices#Domainservices": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.domainservices#DomainServicesDelete"
+        },
+        {
+          "target": "com.azure.domainservices#DomainServicesUpdate"
+        },
+        {
+          "target": "com.azure.domainservices#DomainServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.domainservices#DomainServicesGet"
+        },
+        {
+          "target": "com.azure.domainservices#DomainServicesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.domainservices#DomainServicesList"
+        },
+        {
+          "target": "com.azure.domainservices#DomainServiceOperationsList"
+        },
+        {
+          "target": "com.azure.domainservices#OuContainerDelete"
+        },
+        {
+          "target": "com.azure.domainservices#OuContainerUpdate"
+        },
+        {
+          "target": "com.azure.domainservices#OuContainerCreate"
+        },
+        {
+          "target": "com.azure.domainservices#OuContainerGet"
+        },
+        {
+          "target": "com.azure.domainservices#OuContainerList"
+        },
+        {
+          "target": "com.azure.domainservices#OuContainerOperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Domainservices",
+        "smithy.api#documentation": "Azure Domainservices API — merged from the domainservices resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

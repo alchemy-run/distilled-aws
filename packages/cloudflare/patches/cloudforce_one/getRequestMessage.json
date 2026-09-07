@@ -1,0 +1,38 @@
+{
+  "description": "Align cloudforce_one#RequestsMessageGet with distilled cloudflare/cloudforce-one getRequestMessage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageGet",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestMessage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageGetRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestMessageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestMessage/input/target",
+      "value": "com.cloudflare.cloudforce_one#GetRequestMessageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsMessageGetResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestMessageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestMessage/output/target",
+      "value": "com.cloudflare.cloudforce_one#GetRequestMessageResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestMessage/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

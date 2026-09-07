@@ -1,0 +1,74 @@
+{
+  "description": "Add agreedToProviderTos. The real field lives on Organization with an argument, so GraphQL convert cannot emit it from the introspection schema. Baked document matches flyctl's org-scoped query.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.flyio.addons#AgreedToProviderTosRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "slug": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "providerName": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          }
+        },
+        "traits": {
+          "smithy.api#input": {},
+          "com.flyio.graphql#operation": {
+            "query": "query agreedToProviderTos($slug: String!, $providerName: String!) {\n  organization(slug: $slug) {\n    agreedToProviderTos(providerName: $providerName)\n  }\n}",
+            "operationName": "agreedToProviderTos",
+            "type": "query"
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.flyio.addons#AgreedToProviderTosResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "smithy.api#Boolean",
+            "traits": {
+              "com.flyio.graphql#payload": {},
+              "smithy.api#required": {},
+              "com.flyio.graphql#nullable": {}
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {},
+          "com.flyio.graphql#responsePath": "organization.agreedToProviderTos"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.flyio.addons#AgreedToProviderTos",
+      "value": {
+        "type": "operation",
+        "input": { "target": "com.flyio.addons#AgreedToProviderTosRequest" },
+        "output": { "target": "com.flyio.addons#AgreedToProviderTosResponse" },
+        "traits": {
+          "smithy.api#http": {
+            "method": "POST",
+            "uri": "/graphql",
+            "code": 200
+          },
+          "smithy.api#readonly": {},
+          "smithy.api#documentation": "Whether the organization has agreed to an add-on provider's ToS."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.flyio.addons#FlyAddons/operations/-",
+      "value": { "target": "com.flyio.addons#AgreedToProviderTos" }
+    }
+  ]
+}

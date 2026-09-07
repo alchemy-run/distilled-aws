@@ -1,0 +1,10 @@
+{
+  "errorCategories": {
+    "TooManyRequestsException": ["ThrottlingError", "RetryableError"]
+  },
+  "operations": {
+    "getVariantStore": {
+      "errors": ["TooManyRequestsException"]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayAuditSshSettingsUpdate with distilled cloudflare/zero-trust putGatewayAuditSshSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAuditSshSettingsUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayAuditSshSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAuditSshSettingsUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayAuditSshSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayAuditSshSetting/input/target",
+      "value": "com.cloudflare.zero_trust#PutGatewayAuditSshSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayAuditSshSettingsUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayAuditSshSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutGatewayAuditSshSetting/output/target",
+      "value": "com.cloudflare.zero_trust#PutGatewayAuditSshSettingResponse"
+    }
+  ]
+}

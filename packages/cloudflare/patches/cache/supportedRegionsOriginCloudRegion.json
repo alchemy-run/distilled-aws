@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#OriginCloudRegionsSupportedRegions with distilled cloudflare/cache supportedRegionsOriginCloudRegion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsSupportedRegions",
+      "path": "/shapes/com.cloudflare.cache#SupportedRegionsOriginCloudRegion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsSupportedRegionsRequest",
+      "path": "/shapes/com.cloudflare.cache#SupportedRegionsOriginCloudRegionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#SupportedRegionsOriginCloudRegion/input/target",
+      "value": "com.cloudflare.cache#SupportedRegionsOriginCloudRegionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponse",
+      "path": "/shapes/com.cloudflare.cache#SupportedRegionsOriginCloudRegionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#SupportedRegionsOriginCloudRegion/output/target",
+      "value": "com.cloudflare.cache#SupportedRegionsOriginCloudRegionResponse"
+    }
+  ]
+}

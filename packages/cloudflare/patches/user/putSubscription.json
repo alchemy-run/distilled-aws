@@ -1,0 +1,30 @@
+{
+  "description": "Align user#SubscriptionsUpdate with distilled cloudflare/user putSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#SubscriptionsUpdate",
+      "path": "/shapes/com.cloudflare.user#PutSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#SubscriptionsUpdateRequest",
+      "path": "/shapes/com.cloudflare.user#PutSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#PutSubscription/input/target",
+      "value": "com.cloudflare.user#PutSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#SubscriptionsUpdateResponse",
+      "path": "/shapes/com.cloudflare.user#PutSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#PutSubscription/output/target",
+      "value": "com.cloudflare.user#PutSubscriptionResponse"
+    }
+  ]
+}

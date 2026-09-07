@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#DynamicRoutingList with distilled cloudflare/ai-gateway listDynamicRoutings",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingList",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDynamicRoutings"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDynamicRoutingsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDynamicRoutings/input/target",
+      "value": "com.cloudflare.ai_gateway#ListDynamicRoutingsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDynamicRoutingsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDynamicRoutings/output/target",
+      "value": "com.cloudflare.ai_gateway#ListDynamicRoutingsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDynamicRoutings/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#GatewayNotFound"
+        }
+      ]
+    }
+  ]
+}

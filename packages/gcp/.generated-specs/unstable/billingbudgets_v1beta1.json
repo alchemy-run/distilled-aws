@@ -1,0 +1,775 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "billingbudgets",
+    "version": "v1beta1",
+    "title": "Cloud Billing Budget API",
+    "baseUrl": "https://billingbudgets.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1LastPeriodAmount": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Describes a budget amount targeted to the last Filter.calendar_period spend. At this time, the amount is automatically 100% of the last calendar period's spend; that is, there are no other options yet. Future configuration options will be described here (for example, configuring a percentage of last period's spend). LastPeriodAmount cannot be set for a budget configured with a Filter.custom_period."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse": {
+      "type": "structure",
+      "members": {
+        "budgets": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1BudgetList",
+          "traits": {
+            "smithy.api#documentation": "List of the budgets owned by the requested billing account."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If not empty, indicates that there may be more budgets that match the request; this value should be passed in a new `ListBudgetsRequest`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListBudgets"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1BudgetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "budget": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget",
+          "traits": {
+            "smithy.api#documentation": "Required. Budget to create."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for CreateBudget"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1CustomPeriod": {
+      "type": "structure",
+      "members": {
+        "startDate": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "Required. The start date must be after January 1, 2017."
+          }
+        },
+        "endDate": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "Optional. The end date of the time period. Budgets with elapsed end date won't be processed. If unset, specifies to track all usage incurred since the start_date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All date times begin at 12 AM US and Canadian Pacific Time (UTC-8)."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
+      "type": "structure",
+      "members": {
+        "enableProjectLevelRecipients": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. When set to true, and when the budget has a single project configured, notifications will be sent to project level recipients of that project. This field will be ignored if the budget has multiple or no project configured. Currently, project level recipients are the users with `Owner` role on a cloud project."
+          }
+        },
+        "pubsubTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#permissions_required_for_this_task for more details on Pub/Sub roles and permissions."
+          }
+        },
+        "monitoringNotificationChannels": {
+          "target": "com.gcp.billingbudgets_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details."
+          }
+        },
+        "disableDefaultIamRecipients": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. When set to true, disables default notifications sent when a threshold is exceeded. Default notifications are sent to those with Billing Account Administrator and Billing Account User IAM roles for the target account."
+          }
+        },
+        "schemaVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Required when AllUpdatesRule.pubsub_topic is set. The schema version of the notification sent to AllUpdatesRule.pubsub_topic. Only \"1.0\" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AllUpdatesRule defines notifications that are sent based on budget spend and thresholds."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget": {
+      "type": "structure",
+      "members": {
+        "allUpdatesRule": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1AllUpdatesRule",
+          "traits": {
+            "smithy.api#documentation": "Optional. Rules to apply to notifications sent based on budget spend and thresholds."
+          }
+        },
+        "amount": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1BudgetAmount",
+          "traits": {
+            "smithy.api#documentation": "Required. Budgeted amount."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`."
+          }
+        },
+        "thresholdRules": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ThresholdRuleList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget. Optional for `pubsubTopic` notifications. Required if using email notifications."
+          }
+        },
+        "ownershipScope": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1BudgetOwnershipScopeEnum"
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User data for display name in UI. Validation: <= 60 chars."
+          }
+        },
+        "budgetFilter": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Filter",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters that define which resources are used to compute the actual spend against the budget amount, such as projects, services, and the budget's time period, as well as other filters."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Etag to validate that the object is unchanged for a read-modify-write operation. An empty etag will cause an update to overwrite other changes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). The budget time period is configurable, with options such as month (default), quarter, year, or custom time period."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ThresholdRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ThresholdRule"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1BudgetOwnershipScopeEnum": {
+      "type": "enum",
+      "members": {
+        "OWNERSHIP_SCOPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNERSHIP_SCOPE_UNSPECIFIED"
+          }
+        },
+        "ALL_USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_USERS"
+          }
+        },
+        "BILLING_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING_ACCOUNT"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1BudgetAmount": {
+      "type": "structure",
+      "members": {
+        "specifiedAmount": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleTypeMoney",
+          "traits": {
+            "smithy.api#documentation": "A specified amount to use as the budget. `currency_code` is optional. If specified when creating a budget, it must match the currency of the billing account. If specified when updating a budget, it must match the currency_code of the existing budget. The `currency_code` is provided on output."
+          }
+        },
+        "lastPeriodAmount": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1LastPeriodAmount",
+          "traits": {
+            "smithy.api#documentation": "Use the last period's actual spend as the budget for the present period. LastPeriodAmount can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The budgeted amount for each usage period."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Filter": {
+      "type": "structure",
+      "members": {
+        "projects": {
+          "target": "com.gcp.billingbudgets_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on."
+          }
+        },
+        "creditTypes": {
+          "target": "com.gcp.billingbudgets_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type). If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty."
+          }
+        },
+        "customPeriod": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1CustomPeriod",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies to track usage from any start date (required) to any end date (optional). This time period is static, it does not recur."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.billingbudgets_v1beta1#DocumentListMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. If omitted, the report will include all labeled and unlabeled usage. An object containing a single `\"key\": value` pair. Example: `{ \"name\": \"wrench\" }`. _Currently, multiple entries or multiple values per entry are not allowed._"
+          }
+        },
+        "calendarPeriod": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1FilterCalendarPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies to track usage for recurring calendar period. For example, assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when the current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when the current calendar month is July, August, September, so on."
+          }
+        },
+        "resourceAncestors": {
+          "target": "com.gcp.billingbudgets_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of folder and organization names of the form `folders/{folderId}` or `organizations/{organizationId}`, specifying that usage from only this set of folders and organizations should be included in the budget. If omitted, the budget includes all usage that the billing account pays for. If the folder or organization contains projects that are paid for by a different Cloud Billing account, the budget *doesn't* apply to those projects."
+          }
+        },
+        "subaccounts": {
+          "target": "com.gcp.billingbudgets_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If omitted, the report will include usage from the parent account and all subaccounts, if they exist."
+          }
+        },
+        "services": {
+          "target": "com.gcp.billingbudgets_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api."
+          }
+        },
+        "creditTypesTreatment": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1FilterCreditTypesTreatmentEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A filter for a budget, limiting the scope of the cost to calculate."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#DocumentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#DocumentListMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.billingbudgets_v1beta1#DocumentList"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1FilterCalendarPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "CALENDAR_PERIOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CALENDAR_PERIOD_UNSPECIFIED"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH"
+          }
+        },
+        "QUARTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUARTER"
+          }
+        },
+        "YEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1FilterCreditTypesTreatmentEnum": {
+      "type": "enum",
+      "members": {
+        "CREDIT_TYPES_TREATMENT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREDIT_TYPES_TREATMENT_UNSPECIFIED"
+          }
+        },
+        "INCLUDE_ALL_CREDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCLUDE_ALL_CREDITS"
+          }
+        },
+        "EXCLUDE_ALL_CREDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXCLUDE_ALL_CREDITS"
+          }
+        },
+        "INCLUDE_SPECIFIED_CREDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCLUDE_SPECIFIED_CREDITS"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleTypeMoney": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an amount of money with its currency type."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleTypeDate": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ThresholdRule": {
+      "type": "structure",
+      "members": {
+        "thresholdPercent": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. Send an alert when this threshold is exceeded. This is a 1.0-based percentage, so 0.5 = 50%. Validation: non-negative number."
+          }
+        },
+        "spendBasis": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ThresholdRuleSpendBasisEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of basis used to determine if spend has passed the threshold. Behavior defaults to CURRENT_SPEND if not set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ThresholdRule contains the definition of a threshold. Threshold rules define the triggering events used to generate a budget notification email. When a threshold is crossed (spend exceeds the specified percentages of the budget), budget alert emails are sent to the email recipients you specify in the [NotificationsRule](#notificationsrule). Threshold rules also affect the fields included in the [JSON data object](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format) sent to a Pub/Sub topic. Threshold rules are _required_ if using email notifications. Threshold rules are _optional_ if only setting a [`pubsubTopic` NotificationsRule](#NotificationsRule), unless you want your JSON data object to include data about the thresholds you set. For more information, see [set budget threshold rules and actions](https://cloud.google.com/billing/docs/how-to/budgets#budget-actions)."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ThresholdRuleSpendBasisEnum": {
+      "type": "enum",
+      "members": {
+        "BASIS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIS_UNSPECIFIED"
+          }
+        },
+        "CURRENT_SPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CURRENT_SPEND"
+          }
+        },
+        "FORECASTED_SPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FORECASTED_SPEND"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "budget": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget",
+          "traits": {
+            "smithy.api#documentation": "Required. The updated budget object. The budget to update is specified by the budget name in the budget."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates which fields in the provided budget to update. Read-only fields (such as `name`) cannot be changed. If this is not provided, then only fields with non-default values from the request are updated. See https://developers.google.com/protocol-buffers/docs/proto3#default for more details about default values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for UpdateBudget"
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#DeleteBillingAccountsBudgetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#DeleteBillingAccountsBudgets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.billingbudgets_v1beta1#DeleteBillingAccountsBudgetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a budget. Returns successfully if already deleted."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#CreateBillingAccountsBudgetsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#CreateBillingAccountsBudgets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.billingbudgets_v1beta1#CreateBillingAccountsBudgetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/budgets"
+        },
+        "smithy.api#documentation": "Creates a new budget. See [Quotas and limits](https://cloud.google.com/billing/quotas) for more information on the limits of the number of budgets you can create."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#PatchBillingAccountsBudgetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#PatchBillingAccountsBudgets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.billingbudgets_v1beta1#PatchBillingAccountsBudgetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a budget and returns the updated budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GetBillingAccountsBudgetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#GetBillingAccountsBudgets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.billingbudgets_v1beta1#GetBillingAccountsBudgetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1Budget"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Returns a budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console."
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#ListBillingAccountsBudgetsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of budgets to return per page. The default and maximum value are 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value returned by the last `ListBudgetsResponse` which indicates that this is a continuation of a prior `ListBudgets` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set the scope of the budgets to be returned, in the format of the resource name. The scope of a budget is the cost that it tracks, such as costs for a single project, or the costs for all projects in a folder. Only project scope (in the format of \"projects/project-id\" or \"projects/123\") is supported in this field. When this field is set to a project's resource name, the budgets returned are tracking the costs for that project.",
+            "smithy.api#httpQuery": "scope"
+          }
+        }
+      }
+    },
+    "com.gcp.billingbudgets_v1beta1#ListBillingAccountsBudgets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.billingbudgets_v1beta1#ListBillingAccountsBudgetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.billingbudgets_v1beta1#GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.billingbudgets_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/budgets"
+        },
+        "smithy.api#documentation": "Returns a list of budgets for a billing account. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    }
+  }
+}

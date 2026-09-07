@@ -1,0 +1,9 @@
+{
+  "description": "The create body's `accountId` (number) is the threat event record's owning-account field — the same account the path's {account_id} already names, in its legacy numeric form. It camel-collides with the path param and surfaced as the meaningless member `accountId2`; drop it (v0 distilled omitted it too). The unknown-key body passthrough still lets callers send it explicitly.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateThreatEventRequest/members/accountId"
+    }
+  ]
+}

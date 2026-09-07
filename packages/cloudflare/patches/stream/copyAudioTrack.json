@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#AudioTracksCopy with distilled cloudflare/stream copyAudioTrack",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksCopy",
+      "path": "/shapes/com.cloudflare.stream#CopyAudioTrack"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksCopyRequest",
+      "path": "/shapes/com.cloudflare.stream#CopyAudioTrackRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CopyAudioTrack/input/target",
+      "value": "com.cloudflare.stream#CopyAudioTrackRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#AudioTracksCopyResponse",
+      "path": "/shapes/com.cloudflare.stream#CopyAudioTrackResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CopyAudioTrack/output/target",
+      "value": "com.cloudflare.stream#CopyAudioTrackResponse"
+    }
+  ]
+}

@@ -1,0 +1,1771 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.origin_tls_client_auth#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload your own certificate you want Cloudflare to use for edge-to-origin communication to override the shared certificate. Please note that it is important to keep only one certificate active. Also, make sure to enable zone-level authenticated origin pulls by making a PUT call to settings endpoint to see the uploaded certificate in use."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#DeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a client certificate used for zone-level authenticated origin pulls.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#GetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves details for a specific client certificate used in zone-level authenticated origin pulls.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.origin_tls_client_auth#ListResultItem"
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.origin_tls_client_auth#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all client certificates configured for zone-level authenticated origin pulls.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate's private key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the certificate expires."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the uploaded certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate or the association."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload a certificate to be used for client authentication on a hostname. 10 hostname certificates per zone are allowed."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the certificate expires."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the uploaded certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate or the association."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a client certificate used for authenticated origin pulls on a specific hostname. Note: Before deleting the certificate, you must first invalidate the hostname for client authentication by sending a PUT request with `enabled` set to null. After invalidating the association, the certificate can be safely deleted.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the certificate expires."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the uploaded certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate or the association."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the certificate by ID to be used for client authentication on a hostname.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResultItemStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the certificate expires."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the uploaded certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResultItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate or the association."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was uploaded."
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResultItem"
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnameCertificatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all client certificates configured for per-hostname authenticated origin pulls on the zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname on the origin for which the client certificate uploaded will be used.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesGetResponseCertStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesGetResponse": {
+      "type": "structure",
+      "members": {
+        "cert_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "cert_status": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnamesGetResponseCertStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate or the association."
+          }
+        },
+        "cert_updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was updated."
+          }
+        },
+        "cert_uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was uploaded."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was created."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether hostname-level authenticated origin pulls is enabled. A null value voids the association."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the certificate expires."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname on the origin for which the client certificate uploaded will be used."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the uploaded certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnamesGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate or the association."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the certificate was updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnamesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnamesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the client certificate authentication status for a specific hostname, showing whether authenticated origin pulls are enabled.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequestConfigItem": {
+      "type": "structure",
+      "members": {
+        "cert_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate identifier tag."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether hostname-level authenticated origin pulls is enabled. A null value voids the association."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname on the origin for which the client certificate uploaded will be used."
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequestConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequestConfigItem"
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequestConfigList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdateResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "cert_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether hostname-level authenticated origin pulls is enabled. A null value voids the association."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname on the origin for which the client certificate uploaded will be used."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname certificate's private key."
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdateResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdateResultItem"
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdateResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#HostnamesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/hostnames",
+          "code": 200
+        },
+        "smithy.api#documentation": "Associate a hostname to a certificate and enable, disable or invalidate the association. If disabled, client certificate will not be sent to the hostname even if activated at the zone level. 100 maximum associations on a single certificate are allowed. Note: Use a null value for parameter *enabled* to invalidate the association.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#SettingsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#SettingsGetResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#SettingsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#SettingsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#SettingsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get whether zone-level authenticated origin pulls is enabled or not. It is false by default.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#SettingsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#SettingsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#SettingsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#SettingsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#SettingsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable or disable zone-level authenticated origin pulls. 'enabled' should be set true either before/after the certificate is uploaded to see the certificate in use.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload your own certificate you want Cloudflare to use for edge-to-origin communication to override the shared certificate. Please note that it is important to keep only one certificate active. Also, make sure to enable zone-level authenticated origin pulls by making a PUT call to settings endpoint to see the uploaded certificate in use."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a client certificate used for zone-level authenticated origin pulls.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves details for a specific client certificate used in zone-level authenticated origin pulls.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's leaf certificate."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether zone-level authenticated origin pulls is enabled."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's private key."
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultItem"
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#ZoneCertificatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin_tls_client_auth",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all client certificates configured for zone-level authenticated origin pulls.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.origin_tls_client_auth#OriginTlsClientAuth": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Create"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Delete"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Get"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#List"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesCreate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesDelete"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesGet"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificatesList"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnamesGet"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnamesUpdate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#SettingsGet"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#SettingsUpdate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesCreate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesDelete"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesGet"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ZoneCertificatesList"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare OriginTlsClientAuth",
+        "smithy.api#documentation": "Cloudflare API — origin_tls_client_auth resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

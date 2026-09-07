@@ -1,0 +1,35 @@
+{
+  "description": "Align kv#NamespacesDelete with distilled cloudflare/kv deleteNamespace",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesDelete",
+      "path": "/shapes/com.cloudflare.kv#DeleteNamespace"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesDeleteRequest",
+      "path": "/shapes/com.cloudflare.kv#DeleteNamespaceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#DeleteNamespace/input/target",
+      "value": "com.cloudflare.kv#DeleteNamespaceRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#DeleteNamespace/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

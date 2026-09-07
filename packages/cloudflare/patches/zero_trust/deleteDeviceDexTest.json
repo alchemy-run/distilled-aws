@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DevicesDexTestsDelete with distilled cloudflare/zero-trust deleteDeviceDexTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDexTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDexTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDexTest/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceDexTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDexTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDexTest/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceDexTestResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceDexTest/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DexTestNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "description": "Strip required arrays from all WorkOS response schemas. The OpenAPI spec marks many fields as required that the API legitimately omits (deleted resources, optional metadata fields, polymorphic responses). Removing required treats all fields as optional at decode time, which lets responses through without sacrificing static type info on the consumer side.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserObject/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserConsentOption/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserManagementLoginRequest/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ValidateApiKeyDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RedirectUriDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateOAuthApplicationDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateM2MApplicationDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogEventActorDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogEventTargetDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogEventContextDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogEventDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogEventIngestionDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogExportCreationDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UpdateAuditLogsRetentionDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogSchemaActorDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogSchemaTargetDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogSchemaDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SetRolePermissionsDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AddRolePermissionDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateOrganizationRoleDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateAuthorizationPermissionDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateRoleDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateCorsOriginDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateGroupMembershipDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateGroupDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UpdateJwtTemplateDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateOrganizationDomainDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateOrganizationApiKeyDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationDomainDataDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GenerateLinkDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateRedirectUriDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EnrollUserlandUserAuthenticationFactorDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateUserlandMagicCodeAndReturnDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateUserlandUserInviteOptionsDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/VerifyEmailAddressDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreatePasswordResetTokenDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreatePasswordResetDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SendEmailChangeDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConfirmEmailChangeDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandRevokeSessionDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CreateWebhookEndpointDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WidgetSessionTokenDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/TokenQueryDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ExternalAuthCompleteResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ApiKey/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ApiKeyValidationResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConnectApplicationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthorizedConnectApplicationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/NewConnectApplicationSecret/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogEventCreateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogExportJson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogsRetentionJson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogSchemaJson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogActionJson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthenticationChallenge/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthenticationChallengeVerifyResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthenticationFactorEnrolled/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthenticationFactor/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthorizationCheck/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthorizationResource/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthorizationResourceList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthorizationPermission/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuthorizationPermissionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SlimRole/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RoleAssignment/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RoleAssignmentList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Role/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RoleList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUserOrganizationMembershipBaseList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Connection/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConnectionList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/CorsOriginResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Directory/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DirectoryList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DirectoryGroup/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DirectoryGroupList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DirectoryUserWithGroups/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DirectoryUserList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Group/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/GroupList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventContextActorDto/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DirectoryUser/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUser/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WaitlistUser/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EventList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/JwtTemplateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationDomainStandAlone/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Flag/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/FlagList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ApiKeyList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ApiKeyWithValue/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Organization/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/OrganizationList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/AuditLogConfiguration/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataIntegrationAuthorizeUrlResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ConnectedAccount/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DataIntegrationsListResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PortalLinkResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RadarStandaloneResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RadarListEntryAlreadyPresentResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/RedirectUri/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUserAuthenticationFactorList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUserAuthenticationFactorEnrollResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/MagicAuth/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUserInvite/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUserOrganizationMembership/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandUserList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EmailVerification/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SendVerificationEmailResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/VerifyEmailResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/PasswordReset/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/ResetPasswordResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/EmailChange/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/UserlandAuthenticateResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/DeviceAuthorizationResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebhookEndpointJson/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WebhookEndpointList/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/WidgetSessionTokenResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SsoAuthorizeUrlResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/Profile/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SsoTokenResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/SsoLogoutAuthorizeResponse/required"
+    },
+    {
+      "op": "remove",
+      "path": "/components/schemas/JwksResponse/required"
+    }
+  ]
+}

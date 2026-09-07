@@ -1,0 +1,32 @@
+{
+  "description": "Align security_txt#Update with distilled cloudflare/security-txt putSecurityTxt",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#Update",
+      "path": "/shapes/com.cloudflare.security_txt#PutSecurityTxt"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#UpdateRequest",
+      "path": "/shapes/com.cloudflare.security_txt#PutSecurityTxtRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_txt#PutSecurityTxt/input/target",
+      "value": "com.cloudflare.security_txt#PutSecurityTxtRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.security_txt#PutSecurityTxt/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.security_txt#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.security_txt#SecurityTxtInvalid"
+        }
+      ]
+    }
+  ]
+}

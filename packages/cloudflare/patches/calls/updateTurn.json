@@ -1,0 +1,42 @@
+{
+  "description": "Align calls#TurnUpdate with distilled cloudflare/calls updateTurn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnUpdate",
+      "path": "/shapes/com.cloudflare.calls#UpdateTurn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnUpdateRequest",
+      "path": "/shapes/com.cloudflare.calls#UpdateTurnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#UpdateTurn/input/target",
+      "value": "com.cloudflare.calls#UpdateTurnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnUpdateResponse",
+      "path": "/shapes/com.cloudflare.calls#UpdateTurnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#UpdateTurn/output/target",
+      "value": "com.cloudflare.calls#UpdateTurnResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.calls#UpdateTurn/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.calls#TurnKeyNotFound"
+        },
+        {
+          "target": "com.cloudflare.calls#Forbidden"
+        }
+      ]
+    }
+  ]
+}

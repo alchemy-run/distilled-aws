@@ -1,0 +1,30 @@
+{
+  "description": "Align workers#ObservabilityTelemetryLiveTailHeartbeat with distilled cloudflare/workers liveTailHeartbeatObservabilityTelemetry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryLiveTailHeartbeat",
+      "path": "/shapes/com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryLiveTailHeartbeatRequest",
+      "path": "/shapes/com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetry/input/target",
+      "value": "com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryLiveTailHeartbeatResponse",
+      "path": "/shapes/com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetry/output/target",
+      "value": "com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetryResponse"
+    }
+  ]
+}

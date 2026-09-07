@@ -1,0 +1,5126 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.alertsmanagement#AlertProcessingRulesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+          "code": 200,
+          "apiVersion": "2021-08-08"
+        },
+        "smithy.api#documentation": "Delete an alert processing rule.",
+        "com.distilled.openapi#apiVersion": "2021-08-08"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "alertProcessingRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert processing rule that needs to be fetched."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+          "code": 200,
+          "apiVersion": "2021-08-08"
+        },
+        "smithy.api#documentation": "Enable, disable, or update tags for an alert processing rule.",
+        "com.distilled.openapi#apiVersion": "2021-08-08"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "Alert processing rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRuleProperties": {
+      "type": "structure",
+      "members": {
+        "scopes": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulePropertiesScopesList",
+          "traits": {
+            "smithy.api#documentation": "Scopes on which alert processing rule will apply.",
+            "smithy.api#required": {}
+          }
+        },
+        "conditions": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulePropertiesConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Conditions on which alerts will be filtered."
+          }
+        },
+        "schedule": {
+          "target": "com.azure.alertsmanagement#Schedule",
+          "traits": {
+            "smithy.api#documentation": "Scheduling for alert processing rule."
+          }
+        },
+        "actions": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulePropertiesActionsList",
+          "traits": {
+            "smithy.api#documentation": "Actions to be applied.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Actions to be applied.Description of alert processing rule."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the given alert processing rule is enabled or disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert processing rule properties defining scopes, conditions and scheduling logic for alert processing rule."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulePropertiesActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#Action"
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions to be applied."
+      }
+    },
+    "com.azure.alertsmanagement#Action": {
+      "type": "structure",
+      "members": {
+        "actionType": {
+          "target": "com.azure.alertsmanagement#ActionType",
+          "traits": {
+            "smithy.api#documentation": "Action that should be applied.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action to be applied."
+      }
+    },
+    "com.azure.alertsmanagement#ActionType": {
+      "type": "enum",
+      "members": {
+        "ADDACTIONGROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AddActionGroups"
+          }
+        },
+        "REMOVEALLACTIONGROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RemoveAllActionGroups"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action that should be applied."
+      }
+    },
+    "com.azure.alertsmanagement#Schedule": {
+      "type": "structure",
+      "members": {
+        "effectiveFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scheduling effective from time. Date-Time in ISO-8601 format without timezone suffix."
+          }
+        },
+        "effectiveUntil": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scheduling effective until time. Date-Time in ISO-8601 format without timezone suffix."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scheduling time zone."
+          }
+        },
+        "recurrences": {
+          "target": "com.azure.alertsmanagement#ScheduleRecurrencesList",
+          "traits": {
+            "smithy.api#documentation": "List of recurrences."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Scheduling configuration for a given alert processing rule."
+      }
+    },
+    "com.azure.alertsmanagement#ScheduleRecurrencesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#Recurrence"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of recurrences."
+      }
+    },
+    "com.azure.alertsmanagement#Recurrence": {
+      "type": "structure",
+      "members": {
+        "recurrenceType": {
+          "target": "com.azure.alertsmanagement#RecurrenceType",
+          "traits": {
+            "smithy.api#documentation": "Specifies when the recurrence should be applied.",
+            "smithy.api#required": {}
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time for recurrence."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time for recurrence."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recurrence object."
+      }
+    },
+    "com.azure.alertsmanagement#RecurrenceType": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Daily"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Weekly"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Monthly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies when the recurrence should be applied."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulePropertiesConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#Condition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions on which alerts will be filtered."
+      }
+    },
+    "com.azure.alertsmanagement#Condition": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "com.azure.alertsmanagement#Field",
+          "traits": {
+            "smithy.api#documentation": "Field for a given condition."
+          }
+        },
+        "operator": {
+          "target": "com.azure.alertsmanagement#Operator",
+          "traits": {
+            "smithy.api#documentation": "Operator for a given condition."
+          }
+        },
+        "values": {
+          "target": "com.azure.alertsmanagement#ConditionValuesList",
+          "traits": {
+            "smithy.api#documentation": "List of values to match for a given condition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Condition to trigger an alert processing rule."
+      }
+    },
+    "com.azure.alertsmanagement#ConditionValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of values to match for a given condition."
+      }
+    },
+    "com.azure.alertsmanagement#Operator": {
+      "type": "enum",
+      "members": {
+        "EQUALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Equals"
+          }
+        },
+        "NOTEQUALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotEquals"
+          }
+        },
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Contains"
+          }
+        },
+        "DOESNOTCONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DoesNotContain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operator for a given condition."
+      }
+    },
+    "com.azure.alertsmanagement#Field": {
+      "type": "enum",
+      "members": {
+        "SEVERITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Severity"
+          }
+        },
+        "MONITORSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MonitorService"
+          }
+        },
+        "MONITORCONDITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MonitorCondition"
+          }
+        },
+        "SIGNALTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SignalType"
+          }
+        },
+        "TARGETRESOURCETYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TargetResourceType"
+          }
+        },
+        "TARGETRESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TargetResource"
+          }
+        },
+        "TARGETRESOURCEGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TargetResourceGroup"
+          }
+        },
+        "ALERTRULEID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlertRuleId"
+          }
+        },
+        "ALERTRULENAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlertRuleName"
+          }
+        },
+        "DESCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Description"
+          }
+        },
+        "ALERTCONTEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlertContext"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Field for a given condition."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulePropertiesScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Scopes on which alert processing rule will apply."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "alertProcessingRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert processing rule that needs to be fetched."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PatchProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties supported by patch operation."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags to be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags to be updated."
+      }
+    },
+    "com.azure.alertsmanagement#PatchProperties": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the given alert processing rule is enabled or disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert processing rule properties supported by patch."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+          "code": 200,
+          "apiVersion": "2021-08-08"
+        },
+        "smithy.api#documentation": "Create or update an alert processing rule.",
+        "com.distilled.openapi#apiVersion": "2021-08-08"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "Alert processing rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "alertProcessingRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert processing rule that needs to be fetched."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "Alert processing rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesGetByName": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByNameRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+          "code": 200,
+          "apiVersion": "2021-08-08"
+        },
+        "smithy.api#documentation": "Get an alert processing rule by name.",
+        "com.distilled.openapi#apiVersion": "2021-08-08"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "Alert processing rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesGetByNameRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "alertProcessingRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert processing rule that needs to be fetched."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules",
+          "code": 200,
+          "apiVersion": "2021-08-08"
+        },
+        "smithy.api#documentation": "List all alert processing rules in a resource group.",
+        "com.distilled.openapi#apiVersion": "2021-08-08"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesListValueList",
+          "traits": {
+            "smithy.api#documentation": "The AlertProcessingRule items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of alert processing rules."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "The AlertProcessingRule items on this page"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRuleTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProcessingRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "Alert processing rule properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert processing rule object containing target scopes, conditions and scheduling logic."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRuleTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertProcessingRulesList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/actionRules",
+          "code": 200,
+          "apiVersion": "2021-08-08"
+        },
+        "smithy.api#documentation": "List all alert processing rules in a subscription.",
+        "com.distilled.openapi#apiVersion": "2021-08-08"
+      }
+    },
+    "com.azure.alertsmanagement#AlertProcessingRulesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetSummary": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertsGetSummaryRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertsGetSummaryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.AlertsManagement/alertsSummary",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "Get a summarized count of your alerts grouped by various parameters (e.g. grouping by 'Severity' returns the count of alerts for each severity).",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertsSummaryGroup"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsSummaryGroup": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of the result set."
+          }
+        },
+        "smartGroupsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of the smart groups."
+          }
+        },
+        "groupedby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the field aggregated"
+          }
+        },
+        "values": {
+          "target": "com.azure.alertsmanagement#AlertsSummaryGroupValuesList",
+          "traits": {
+            "smithy.api#documentation": "List of the items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group the result set."
+      }
+    },
+    "com.azure.alertsmanagement#AlertsSummaryGroupValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#AlertsSummaryGroupItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the items"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsSummaryGroupItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the aggregated field"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of the aggregated field"
+          }
+        },
+        "groupedby": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the field aggregated"
+          }
+        },
+        "values": {
+          "target": "com.azure.alertsmanagement#AlertsSummaryGroupItemValuesList",
+          "traits": {
+            "smithy.api#documentation": "List of the items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alerts summary group item"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsSummaryGroupItemValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#AlertsSummaryGroupItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the items"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "scope here is resourceId for which alert is created."
+          }
+        },
+        "groupby": {
+          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestGroupby",
+          "traits": {
+            "smithy.api#httpQuery": "groupby",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "This parameter allows the result set to be grouped by input fields. For example, groupby=severity,alertstate."
+          }
+        },
+        "includeSmartGroupsCount": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeSmartGroupsCount",
+            "smithy.api#documentation": "Include count of the SmartGroups as part of the summary. Default value is 'false'."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "targetResource",
+            "smithy.api#documentation": "Filter by target resource( which is full ARM ID) Default value is select all."
+          }
+        },
+        "targetResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "targetResourceType",
+            "smithy.api#documentation": "Filter by target resource type. Default value is select all."
+          }
+        },
+        "targetResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "targetResourceGroup",
+            "smithy.api#documentation": "Filter by target resource group name. Default value is select all."
+          }
+        },
+        "monitorService": {
+          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorService",
+          "traits": {
+            "smithy.api#httpQuery": "monitorService",
+            "smithy.api#documentation": "Filter by monitor service which generates the alert instance. Default value is select all."
+          }
+        },
+        "monitorCondition": {
+          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorCondition",
+          "traits": {
+            "smithy.api#httpQuery": "monitorCondition",
+            "smithy.api#documentation": "Filter by monitor condition which is either 'Fired' or 'Resolved'. Default value is to select all."
+          }
+        },
+        "severity": {
+          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestSeverity",
+          "traits": {
+            "smithy.api#httpQuery": "severity",
+            "smithy.api#documentation": "Filter by severity.  Default value is select all."
+          }
+        },
+        "alertState": {
+          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestAlertState",
+          "traits": {
+            "smithy.api#httpQuery": "alertState",
+            "smithy.api#documentation": "Filter by state of the alert instance. Default value is to select all."
+          }
+        },
+        "alertRule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "alertRule",
+            "smithy.api#documentation": "Filter by specific alert rule.  Default value is to select all."
+          }
+        },
+        "timeRange": {
+          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestTimeRange",
+          "traits": {
+            "smithy.api#httpQuery": "timeRange",
+            "smithy.api#documentation": "Filter by time range by below listed values. Default value is 1 day."
+          }
+        },
+        "customTimeRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "customTimeRange",
+            "smithy.api#documentation": "Filter by custom time range in the format <start-time>/<end-time>  where time is in (ISO-8601 format)'. Permissible values is within 30 days from  query time. Either timeRange or customTimeRange could be used but not both. Default is none."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequestTimeRange": {
+      "type": "enum",
+      "members": {
+        "_1H": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1h"
+          }
+        },
+        "_1D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1d"
+          }
+        },
+        "_7D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7d"
+          }
+        },
+        "_30D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30d"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequestAlertState": {
+      "type": "enum",
+      "members": {
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "New"
+          }
+        },
+        "ACKNOWLEDGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Acknowledged"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Closed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequestSeverity": {
+      "type": "enum",
+      "members": {
+        "SEV0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev0"
+          }
+        },
+        "SEV1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev1"
+          }
+        },
+        "SEV2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev2"
+          }
+        },
+        "SEV3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev3"
+          }
+        },
+        "SEV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev4"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorCondition": {
+      "type": "enum",
+      "members": {
+        "FIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fired"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolved"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorService": {
+      "type": "enum",
+      "members": {
+        "APPLICATION_INSIGHTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application Insights"
+          }
+        },
+        "ACTIVITYLOG_ADMINISTRATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Administrative"
+          }
+        },
+        "ACTIVITYLOG_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Security"
+          }
+        },
+        "ACTIVITYLOG_RECOMMENDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Recommendation"
+          }
+        },
+        "ACTIVITYLOG_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Policy"
+          }
+        },
+        "ACTIVITYLOG_AUTOSCALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Autoscale"
+          }
+        },
+        "LOG_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Log Analytics"
+          }
+        },
+        "NAGIOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Nagios"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Platform"
+          }
+        },
+        "SCOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOM"
+          }
+        },
+        "SERVICEHEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceHealth"
+          }
+        },
+        "SMARTDETECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SmartDetector"
+          }
+        },
+        "VM_INSIGHTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VM Insights"
+          }
+        },
+        "ZABBIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zabbix"
+          }
+        },
+        "RESOURCE_HEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resource Health"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetSummaryRequestGroupby": {
+      "type": "enum",
+      "members": {
+        "SEVERITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "severity"
+          }
+        },
+        "ALERTSTATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alertState"
+          }
+        },
+        "MONITORCONDITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monitorCondition"
+          }
+        },
+        "MONITORSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monitorService"
+          }
+        },
+        "SIGNALTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "signalType"
+          }
+        },
+        "ALERTRULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alertRule"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetHistory": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertsGetHistoryRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertsGetHistoryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.AlertsManagement/alerts/{alertId}/history",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "Get the history of an alert, which captures any monitor condition changes (Fired/Resolved), alert state changes (New/Acknowledged/Closed) and applied action rules for that particular alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to get history of this particular alert then use parent resource of scope. So in this example get history call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}/history'.",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetHistoryResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertModificationProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertModificationProperties": {
+      "type": "structure",
+      "members": {
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique Id of the alert for which the history is being retrieved"
+          }
+        },
+        "modifications": {
+          "target": "com.azure.alertsmanagement#AlertModificationPropertiesModificationsList",
+          "traits": {
+            "smithy.api#documentation": "Modification details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the alert modification item."
+      }
+    },
+    "com.azure.alertsmanagement#AlertModificationPropertiesModificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#AlertModificationItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Modification details"
+      }
+    },
+    "com.azure.alertsmanagement#AlertModificationItem": {
+      "type": "structure",
+      "members": {
+        "modificationEvent": {
+          "target": "com.azure.alertsmanagement#AlertModificationItemModificationEvent",
+          "traits": {
+            "smithy.api#documentation": "Reason for the modification"
+          }
+        },
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Old value"
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New value"
+          }
+        },
+        "modifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modified date and time"
+          }
+        },
+        "modifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modified user details (Principal client name)"
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modification comments"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the modification"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert modification item."
+      }
+    },
+    "com.azure.alertsmanagement#AlertModificationItemModificationEvent": {
+      "type": "enum",
+      "members": {
+        "ALERTCREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlertCreated"
+          }
+        },
+        "STATECHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StateChange"
+          }
+        },
+        "MONITORCONDITIONCHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MonitorConditionChange"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reason for the modification"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetHistoryRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "scope here is resourceId for which alert is created."
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique ID of an alert instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsChangeState": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertsChangeStateRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertsChangeStateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{scope}/providers/Microsoft.AlertsManagement/alerts/{alertId}/changestate",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "Change the state of an alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to change state of this particular alert then use parent resource of scope. So in this example change state call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}'.",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsChangeStateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertProperties": {
+      "type": "structure",
+      "members": {
+        "essentials": {
+          "target": "com.azure.alertsmanagement#Essentials"
+        },
+        "context": {
+          "target": "smithy.api#Document"
+        },
+        "egressConfig": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert property bag"
+      }
+    },
+    "com.azure.alertsmanagement#Essentials": {
+      "type": "structure",
+      "members": {
+        "severity": {
+          "target": "com.azure.alertsmanagement#EssentialsSeverity",
+          "traits": {
+            "smithy.api#documentation": "Severity of alert Sev0 being highest and Sev4 being lowest."
+          }
+        },
+        "signalType": {
+          "target": "com.azure.alertsmanagement#EssentialsSignalType",
+          "traits": {
+            "smithy.api#documentation": "The type of signal the alert is based on, which could be metrics, logs or activity logs."
+          }
+        },
+        "alertState": {
+          "target": "com.azure.alertsmanagement#EssentialsAlertState",
+          "traits": {
+            "smithy.api#documentation": "Alert object state, which can be modified by the user."
+          }
+        },
+        "monitorCondition": {
+          "target": "com.azure.alertsmanagement#EssentialsMonitorCondition",
+          "traits": {
+            "smithy.api#documentation": "Can be 'Fired' or 'Resolved', which represents whether the underlying conditions have crossed the defined alert rule thresholds."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target ARM resource, on which alert got created."
+          }
+        },
+        "targetResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the target ARM resource name, on which alert got created."
+          }
+        },
+        "targetResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource group of target ARM resource, on which alert got created."
+          }
+        },
+        "targetResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type of target ARM resource, on which alert got created."
+          }
+        },
+        "monitorService": {
+          "target": "com.azure.alertsmanagement#EssentialsMonitorService",
+          "traits": {
+            "smithy.api#documentation": "Monitor service on which the rule(monitor) is set."
+          }
+        },
+        "alertRule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule(monitor) which fired alert instance. Depending on the monitor service,  this would be ARM id or name of the rule."
+          }
+        },
+        "sourceCreatedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique Id created by monitor service for each alert instance. This could be used to track the issue at the monitor service, in case of Nagios, Zabbix, SCOM etc."
+          }
+        },
+        "smartGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique Id of the smart group"
+          }
+        },
+        "smartGroupingReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Verbose reason describing the reason why this alert instance is added to a smart group"
+          }
+        },
+        "startDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation time(ISO-8601 format) of alert instance."
+          }
+        },
+        "lastModifiedDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification time(ISO-8601 format) of alert instance."
+          }
+        },
+        "monitorConditionResolvedDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resolved time(ISO-8601 format) of alert instance. This will be updated when monitor service resolves the alert instance because the rule condition is no longer met."
+          }
+        },
+        "lastModifiedUserName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User who last modified the alert, in case of monitor service updates user would be 'system', otherwise name of the user."
+          }
+        },
+        "actionStatus": {
+          "target": "com.azure.alertsmanagement#ActionStatus"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert description."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object contains consistent fields across different monitor services."
+      }
+    },
+    "com.azure.alertsmanagement#ActionStatus": {
+      "type": "structure",
+      "members": {
+        "isSuppressed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Value indicating whether alert is suppressed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action status"
+      }
+    },
+    "com.azure.alertsmanagement#EssentialsMonitorService": {
+      "type": "enum",
+      "members": {
+        "APPLICATION_INSIGHTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application Insights"
+          }
+        },
+        "ACTIVITYLOG_ADMINISTRATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Administrative"
+          }
+        },
+        "ACTIVITYLOG_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Security"
+          }
+        },
+        "ACTIVITYLOG_RECOMMENDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Recommendation"
+          }
+        },
+        "ACTIVITYLOG_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Policy"
+          }
+        },
+        "ACTIVITYLOG_AUTOSCALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Autoscale"
+          }
+        },
+        "LOG_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Log Analytics"
+          }
+        },
+        "NAGIOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Nagios"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Platform"
+          }
+        },
+        "SCOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOM"
+          }
+        },
+        "SERVICEHEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceHealth"
+          }
+        },
+        "SMARTDETECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SmartDetector"
+          }
+        },
+        "VM_INSIGHTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VM Insights"
+          }
+        },
+        "ZABBIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zabbix"
+          }
+        },
+        "RESOURCE_HEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resource Health"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monitor service on which the rule(monitor) is set."
+      }
+    },
+    "com.azure.alertsmanagement#EssentialsMonitorCondition": {
+      "type": "enum",
+      "members": {
+        "FIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fired"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Can be 'Fired' or 'Resolved', which represents whether the underlying conditions have crossed the defined alert rule thresholds."
+      }
+    },
+    "com.azure.alertsmanagement#EssentialsAlertState": {
+      "type": "enum",
+      "members": {
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "New"
+          }
+        },
+        "ACKNOWLEDGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Acknowledged"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Closed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert object state, which can be modified by the user."
+      }
+    },
+    "com.azure.alertsmanagement#EssentialsSignalType": {
+      "type": "enum",
+      "members": {
+        "METRIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Metric"
+          }
+        },
+        "LOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Log"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of signal the alert is based on, which could be metrics, logs or activity logs."
+      }
+    },
+    "com.azure.alertsmanagement#EssentialsSeverity": {
+      "type": "enum",
+      "members": {
+        "SEV0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev0"
+          }
+        },
+        "SEV1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev1"
+          }
+        },
+        "SEV2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev2"
+          }
+        },
+        "SEV3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev3"
+          }
+        },
+        "SEV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Severity of alert Sev0 being highest and Sev4 being lowest."
+      }
+    },
+    "com.azure.alertsmanagement#AlertsChangeStateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "scope here is resourceId for which alert is created."
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique ID of an alert instance."
+          }
+        },
+        "newState": {
+          "target": "com.azure.alertsmanagement#AlertsChangeStateRequestNewState",
+          "traits": {
+            "smithy.api#httpQuery": "newState",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "New state of the alert."
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsChangeStateRequestNewState": {
+      "type": "enum",
+      "members": {
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "New"
+          }
+        },
+        "ACKNOWLEDGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Acknowledged"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Closed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetById": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertsGetByIdRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertsGetByIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.AlertsManagement/alerts/{alertId}",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "Get a specific alert.\n\nGet information related to a specific alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to get alert by id then use parent resource of scope. So in this example get alert by id call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}'.",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetByIdResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetByIdRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "scope here is resourceId for which alert is created."
+          }
+        },
+        "alertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique ID of an alert instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetAll": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertsGetAllRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.AlertsManagement/alerts",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "List all existing alerts, where the results can be filtered on the basis of multiple parameters (e.g. time range). The results can then be sorted on the basis specific fields, with the default being lastModifiedDateTime.",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to fetch the next set of alerts."
+          }
+        },
+        "value": {
+          "target": "com.azure.alertsmanagement#AlertsListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of alerts"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List the alerts."
+      }
+    },
+    "com.azure.alertsmanagement#AlertsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#Alert"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of alerts"
+      }
+    },
+    "com.azure.alertsmanagement#Alert": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource Id"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource type"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure resource name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An alert created in alert management service."
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "scope here is resourceId for which alert is created."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "targetResource",
+            "smithy.api#documentation": "Filter by target resource( which is full ARM ID) Default value is select all."
+          }
+        },
+        "targetResourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "targetResourceType",
+            "smithy.api#documentation": "Filter by target resource type. Default value is select all."
+          }
+        },
+        "targetResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "targetResourceGroup",
+            "smithy.api#documentation": "Filter by target resource group name. Default value is select all."
+          }
+        },
+        "monitorService": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestMonitorService",
+          "traits": {
+            "smithy.api#httpQuery": "monitorService",
+            "smithy.api#documentation": "Filter by monitor service which generates the alert instance. Default value is select all."
+          }
+        },
+        "monitorCondition": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestMonitorCondition",
+          "traits": {
+            "smithy.api#httpQuery": "monitorCondition",
+            "smithy.api#documentation": "Filter by monitor condition which is either 'Fired' or 'Resolved'. Default value is to select all."
+          }
+        },
+        "severity": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestSeverity",
+          "traits": {
+            "smithy.api#httpQuery": "severity",
+            "smithy.api#documentation": "Filter by severity.  Default value is select all."
+          }
+        },
+        "alertState": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestAlertState",
+          "traits": {
+            "smithy.api#httpQuery": "alertState",
+            "smithy.api#documentation": "Filter by state of the alert instance. Default value is to select all."
+          }
+        },
+        "alertRule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "alertRule",
+            "smithy.api#documentation": "Filter by specific alert rule.  Default value is to select all."
+          }
+        },
+        "smartGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "smartGroupId",
+            "smithy.api#documentation": "Filter the alerts list by the Smart Group Id. Default value is none."
+          }
+        },
+        "includeContext": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeContext",
+            "smithy.api#documentation": "Include context which has contextual data specific to the monitor service. Default value is false'"
+          }
+        },
+        "includeEgressConfig": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeEgressConfig",
+            "smithy.api#documentation": "Include egress config which would be used for displaying the content in portal.  Default value is 'false'."
+          }
+        },
+        "pageCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "pageCount",
+            "smithy.api#documentation": "Determines number of alerts returned per page in response. Permissible value is between 1 to 250. When the \"includeContent\"  filter is selected, maximum value allowed is 25. Default value is 25."
+          }
+        },
+        "sortBy": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestSortBy",
+          "traits": {
+            "smithy.api#httpQuery": "sortBy",
+            "smithy.api#documentation": "Sort the query results by input field,  Default value is 'lastModifiedDateTime'."
+          }
+        },
+        "sortOrder": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestSortOrder",
+          "traits": {
+            "smithy.api#httpQuery": "sortOrder",
+            "smithy.api#documentation": "Sort the query results order in either ascending or descending.  Default value is 'desc' for time fields and 'asc' for others."
+          }
+        },
+        "select": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "select",
+            "smithy.api#documentation": "This filter allows to selection of the fields(comma separated) which would  be part of the essential section. This would allow to project only the  required fields rather than getting entire content.  Default is to fetch all the fields in the essentials section."
+          }
+        },
+        "timeRange": {
+          "target": "com.azure.alertsmanagement#AlertsGetAllRequestTimeRange",
+          "traits": {
+            "smithy.api#httpQuery": "timeRange",
+            "smithy.api#documentation": "Filter by time range by below listed values. Default value is 1 day."
+          }
+        },
+        "customTimeRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "customTimeRange",
+            "smithy.api#documentation": "Filter by custom time range in the format <start-time>/<end-time>  where time is in (ISO-8601 format)'. Permissible values is within 30 days from  query time. Either timeRange or customTimeRange could be used but not both. Default is none."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestTimeRange": {
+      "type": "enum",
+      "members": {
+        "_1H": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1h"
+          }
+        },
+        "_1D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1d"
+          }
+        },
+        "_7D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7d"
+          }
+        },
+        "_30D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "30d"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestSortOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestSortBy": {
+      "type": "enum",
+      "members": {
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "SEVERITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "severity"
+          }
+        },
+        "ALERTSTATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alertState"
+          }
+        },
+        "MONITORCONDITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monitorCondition"
+          }
+        },
+        "TARGETRESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "targetResource"
+          }
+        },
+        "TARGETRESOURCENAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "targetResourceName"
+          }
+        },
+        "TARGETRESOURCEGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "targetResourceGroup"
+          }
+        },
+        "TARGETRESOURCETYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "targetResourceType"
+          }
+        },
+        "STARTDATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "startDateTime"
+          }
+        },
+        "LASTMODIFIEDDATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastModifiedDateTime"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestAlertState": {
+      "type": "enum",
+      "members": {
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "New"
+          }
+        },
+        "ACKNOWLEDGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Acknowledged"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Closed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestSeverity": {
+      "type": "enum",
+      "members": {
+        "SEV0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev0"
+          }
+        },
+        "SEV1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev1"
+          }
+        },
+        "SEV2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev2"
+          }
+        },
+        "SEV3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev3"
+          }
+        },
+        "SEV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev4"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestMonitorCondition": {
+      "type": "enum",
+      "members": {
+        "FIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fired"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolved"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsGetAllRequestMonitorService": {
+      "type": "enum",
+      "members": {
+        "APPLICATION_INSIGHTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application Insights"
+          }
+        },
+        "ACTIVITYLOG_ADMINISTRATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Administrative"
+          }
+        },
+        "ACTIVITYLOG_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Security"
+          }
+        },
+        "ACTIVITYLOG_RECOMMENDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Recommendation"
+          }
+        },
+        "ACTIVITYLOG_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Policy"
+          }
+        },
+        "ACTIVITYLOG_AUTOSCALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActivityLog Autoscale"
+          }
+        },
+        "LOG_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Log Analytics"
+          }
+        },
+        "NAGIOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Nagios"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Platform"
+          }
+        },
+        "SCOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOM"
+          }
+        },
+        "SERVICEHEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceHealth"
+          }
+        },
+        "SMARTDETECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SmartDetector"
+          }
+        },
+        "VM_INSIGHTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VM Insights"
+          }
+        },
+        "ZABBIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Zabbix"
+          }
+        },
+        "RESOURCE_HEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resource Health"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#AlertsMetaData2": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#AlertsMetaDataRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertsMetaData"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AlertsManagement/alertsMetaData",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "List alerts meta data information based on value of identifier parameter.",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsMetaData": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertsMetaDataProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "alert meta data information."
+      }
+    },
+    "com.azure.alertsmanagement#AlertsMetaDataProperties": {
+      "type": "structure",
+      "members": {
+        "metadataIdentifier": {
+          "target": "com.azure.alertsmanagement#AlertsMetaDataPropertiesMetadataIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Identification of the information to be retrieved by API call",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "alert meta data property bag"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsMetaDataPropertiesMetadataIdentifier": {
+      "type": "enum",
+      "members": {
+        "MONITORSERVICELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MonitorServiceList"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identification of the information to be retrieved by API call"
+      }
+    },
+    "com.azure.alertsmanagement#AlertsMetaDataRequest": {
+      "type": "structure",
+      "members": {
+        "identifier": {
+          "target": "com.azure.alertsmanagement#AlertsMetaDataRequestIdentifier",
+          "traits": {
+            "smithy.api#httpQuery": "identifier",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Identification of the information to be retrieved by API call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertsMetaDataRequestIdentifier": {
+      "type": "enum",
+      "members": {
+        "MONITORSERVICELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MonitorServiceList"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#OperationsList2": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#OperationsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AlertsManagement/operations",
+          "code": 200,
+          "apiVersion": "2019-03-01"
+        },
+        "smithy.api#documentation": "List all operations available through Azure Alerts Management Resource Provider.",
+        "com.distilled.openapi#apiVersion": "2019-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#OperationsList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to fetch the next set of alerts."
+          }
+        },
+        "value": {
+          "target": "com.azure.alertsmanagement#OperationsListValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of operations",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists the operations available in the AlertsManagement RP."
+      }
+    },
+    "com.azure.alertsmanagement#OperationsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of operations"
+      }
+    },
+    "com.azure.alertsmanagement#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation"
+          }
+        },
+        "display": {
+          "target": "com.azure.alertsmanagement#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Properties of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation provided by provider"
+      }
+    },
+    "com.azure.alertsmanagement#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider name"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the operation"
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+          "code": 200,
+          "apiVersion": "2021-04-01"
+        },
+        "smithy.api#documentation": "Delete an existing Smart Detector alert rule.",
+        "com.distilled.openapi#apiVersion": "2021-04-01"
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription Id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "alertRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+          "code": 200,
+          "apiVersion": "2021-04-01"
+        },
+        "smithy.api#documentation": "Patch a specific Smart Detector alert rule.",
+        "com.distilled.openapi#apiVersion": "2021-04-01"
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertRuleProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule description."
+          }
+        },
+        "state": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesState",
+          "traits": {
+            "smithy.api#documentation": "The alert rule state.",
+            "smithy.api#required": {}
+          }
+        },
+        "severity": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesSeverity",
+          "traits": {
+            "smithy.api#documentation": "The alert rule severity.",
+            "smithy.api#required": {}
+          }
+        },
+        "frequency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule frequency in ISO8601 format. The time granularity must be in minutes and minimum value is 1 minute, depending on the detector.",
+            "smithy.api#required": {}
+          }
+        },
+        "detector": {
+          "target": "com.azure.alertsmanagement#Detector",
+          "traits": {
+            "smithy.api#documentation": "The alert rule's detector.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesScopeList",
+          "traits": {
+            "smithy.api#documentation": "The alert rule resources scope.",
+            "smithy.api#required": {}
+          }
+        },
+        "actionGroups": {
+          "target": "com.azure.alertsmanagement#ActionGroupsInformation",
+          "traits": {
+            "smithy.api#documentation": "The alert rule actions.",
+            "smithy.api#required": {}
+          }
+        },
+        "throttling": {
+          "target": "com.azure.alertsmanagement#ThrottlingInformation",
+          "traits": {
+            "smithy.api#documentation": "The alert rule throttling information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule properties."
+      }
+    },
+    "com.azure.alertsmanagement#ThrottlingInformation": {
+      "type": "structure",
+      "members": {
+        "duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The required duration (in ISO8601 format) to wait before notifying on the alert rule again. The time granularity must be in minutes and minimum value is 0 minutes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional throttling information for the alert rule."
+      }
+    },
+    "com.azure.alertsmanagement#ActionGroupsInformation": {
+      "type": "structure",
+      "members": {
+        "customEmailSubject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional custom email subject to use in email notifications."
+          }
+        },
+        "customWebhookPayload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional custom web-hook payload to use in web-hook notifications."
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.alertsmanagement#ActionGroupsInformationGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The Action Group resource IDs.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Action Groups information, used by the alert rule."
+      }
+    },
+    "com.azure.alertsmanagement#ActionGroupsInformationGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Action Group resource IDs."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesScopeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule resources scope."
+      }
+    },
+    "com.azure.alertsmanagement#Detector": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detector id.",
+            "smithy.api#required": {}
+          }
+        },
+        "parameters": {
+          "target": "com.azure.alertsmanagement#DetectorParametersMap",
+          "traits": {
+            "smithy.api#documentation": "The detector's parameters.'"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Smart Detector name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Smart Detector description."
+          }
+        },
+        "supportedResourceTypes": {
+          "target": "com.azure.alertsmanagement#DetectorSupportedResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "The Smart Detector supported resource types."
+          }
+        },
+        "imagePaths": {
+          "target": "com.azure.alertsmanagement#DetectorImagePathsList",
+          "traits": {
+            "smithy.api#documentation": "The Smart Detector image path. By default this is not populated, unless it's specified in expandDetector"
+          }
+        },
+        "parameterDefinitions": {
+          "target": "com.azure.alertsmanagement#DetectorParameterDefinitionsList",
+          "traits": {
+            "smithy.api#documentation": "The Smart Detector parameters definitions.'"
+          }
+        },
+        "supportedCadences": {
+          "target": "com.azure.alertsmanagement#DetectorSupportedCadencesList",
+          "traits": {
+            "smithy.api#documentation": "The Smart Detector supported cadences."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The detector information. By default this is not populated, unless it's specified in expandDetector"
+      }
+    },
+    "com.azure.alertsmanagement#DetectorSupportedCadencesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Smart Detector supported cadences."
+      }
+    },
+    "com.azure.alertsmanagement#DetectorParameterDefinitionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#DetectorParameterDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Smart Detector parameters definitions.'"
+      }
+    },
+    "com.azure.alertsmanagement#DetectorParameterDefinition": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detector parameter name."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detector parameter display name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detector parameter description."
+          }
+        },
+        "type": {
+          "target": "com.azure.alertsmanagement#DetectorParameterDefinitionType",
+          "traits": {
+            "smithy.api#documentation": "The detector parameter type."
+          }
+        },
+        "isMandatory": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A value indicating whether this detector parameter is mandatory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The detector parameter definition."
+      }
+    },
+    "com.azure.alertsmanagement#DetectorParameterDefinitionType": {
+      "type": "enum",
+      "members": {
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "String"
+          }
+        },
+        "INTEGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Integer"
+          }
+        },
+        "DOUBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Double"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Boolean"
+          }
+        },
+        "DATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DateTime"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The detector parameter type."
+      }
+    },
+    "com.azure.alertsmanagement#DetectorImagePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Smart Detector image path. By default this is not populated, unless it's specified in expandDetector"
+      }
+    },
+    "com.azure.alertsmanagement#DetectorSupportedResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Smart Detector supported resource types."
+      }
+    },
+    "com.azure.alertsmanagement#DetectorParametersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The detector's parameters.'"
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesSeverity": {
+      "type": "enum",
+      "members": {
+        "SEV0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev0"
+          }
+        },
+        "SEV1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev1"
+          }
+        },
+        "SEV2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev2"
+          }
+        },
+        "SEV3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev3"
+          }
+        },
+        "SEV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule severity."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule state."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription Id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "alertRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert rule."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertRulePatchProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePatchProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule description."
+          }
+        },
+        "state": {
+          "target": "com.azure.alertsmanagement#AlertRulePatchPropertiesState",
+          "traits": {
+            "smithy.api#documentation": "The alert rule state."
+          }
+        },
+        "severity": {
+          "target": "com.azure.alertsmanagement#AlertRulePatchPropertiesSeverity",
+          "traits": {
+            "smithy.api#documentation": "The alert rule severity."
+          }
+        },
+        "frequency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule frequency in ISO8601 format. The time granularity must be in minutes and minimum value is 5 minutes."
+          }
+        },
+        "actionGroups": {
+          "target": "com.azure.alertsmanagement#ActionGroupsInformation",
+          "traits": {
+            "smithy.api#documentation": "The alert rule actions."
+          }
+        },
+        "throttling": {
+          "target": "com.azure.alertsmanagement#ThrottlingInformation",
+          "traits": {
+            "smithy.api#documentation": "The alert rule throttling information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule properties."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePatchPropertiesSeverity": {
+      "type": "enum",
+      "members": {
+        "SEV0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev0"
+          }
+        },
+        "SEV1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev1"
+          }
+        },
+        "SEV2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev2"
+          }
+        },
+        "SEV3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev3"
+          }
+        },
+        "SEV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule severity."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePatchPropertiesState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule state."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+          "code": 200,
+          "apiVersion": "2021-04-01"
+        },
+        "smithy.api#documentation": "Create or update a Smart Detector alert rule.",
+        "com.distilled.openapi#apiVersion": "2021-04-01"
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription Id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "alertRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert rule."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule description."
+          }
+        },
+        "state": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesInputState",
+          "traits": {
+            "smithy.api#documentation": "The alert rule state.",
+            "smithy.api#required": {}
+          }
+        },
+        "severity": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesInputSeverity",
+          "traits": {
+            "smithy.api#documentation": "The alert rule severity.",
+            "smithy.api#required": {}
+          }
+        },
+        "frequency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The alert rule frequency in ISO8601 format. The time granularity must be in minutes and minimum value is 1 minute, depending on the detector.",
+            "smithy.api#required": {}
+          }
+        },
+        "detector": {
+          "target": "com.azure.alertsmanagement#DetectorInput",
+          "traits": {
+            "smithy.api#documentation": "The alert rule's detector.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.azure.alertsmanagement#AlertRulePropertiesInputScopeList",
+          "traits": {
+            "smithy.api#documentation": "The alert rule resources scope.",
+            "smithy.api#required": {}
+          }
+        },
+        "actionGroups": {
+          "target": "com.azure.alertsmanagement#ActionGroupsInformation",
+          "traits": {
+            "smithy.api#documentation": "The alert rule actions.",
+            "smithy.api#required": {}
+          }
+        },
+        "throttling": {
+          "target": "com.azure.alertsmanagement#ThrottlingInformation",
+          "traits": {
+            "smithy.api#documentation": "The alert rule throttling information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule properties."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesInputScopeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule resources scope."
+      }
+    },
+    "com.azure.alertsmanagement#DetectorInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detector id.",
+            "smithy.api#required": {}
+          }
+        },
+        "parameters": {
+          "target": "com.azure.alertsmanagement#DetectorInputParametersMap",
+          "traits": {
+            "smithy.api#documentation": "The detector's parameters.'"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The detector information. By default this is not populated, unless it's specified in expandDetector"
+      }
+    },
+    "com.azure.alertsmanagement#DetectorInputParametersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The detector's parameters.'"
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesInputSeverity": {
+      "type": "enum",
+      "members": {
+        "SEV0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev0"
+          }
+        },
+        "SEV1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev1"
+          }
+        },
+        "SEV2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev2"
+          }
+        },
+        "SEV3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev3"
+          }
+        },
+        "SEV4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sev4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule severity."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulePropertiesInputState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule state."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+          "code": 200,
+          "apiVersion": "2021-04-01"
+        },
+        "smithy.api#documentation": "Get a specific Smart Detector alert rule.",
+        "com.distilled.openapi#apiVersion": "2021-04-01"
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription Id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "alertRuleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the alert rule."
+          }
+        },
+        "expandDetector": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "expandDetector",
+            "smithy.api#documentation": "Indicates if Smart Detector should be expanded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertRulesList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules",
+          "code": 200,
+          "apiVersion": "2021-04-01"
+        },
+        "smithy.api#documentation": "List all the existing Smart Detector alert rules within the subscription and resource group.",
+        "com.distilled.openapi#apiVersion": "2021-04-01"
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulesList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.alertsmanagement#AlertRulesListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Smart Detector alert rules."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Smart Detector alert rules."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRulesListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#AlertRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Smart Detector alert rules."
+      }
+    },
+    "com.azure.alertsmanagement#AlertRule": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#AlertRuleTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#AlertRuleProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the alert rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert rule information"
+      }
+    },
+    "com.azure.alertsmanagement#AlertRuleTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription Id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group."
+          }
+        },
+        "expandDetector": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "expandDetector",
+            "smithy.api#documentation": "Indicates if Smart Detector should be expanded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesListRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#AlertRulesList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/microsoft.alertsManagement/smartDetectorAlertRules",
+          "code": 200,
+          "apiVersion": "2021-04-01"
+        },
+        "smithy.api#documentation": "List all the existing Smart Detector alert rules within the subscription.",
+        "com.distilled.openapi#apiVersion": "2021-04-01"
+      }
+    },
+    "com.azure.alertsmanagement#SmartDetectorAlertRulesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription Id."
+          }
+        },
+        "expandDetector": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "expandDetector",
+            "smithy.api#documentation": "Indicates if Smart Detector should be expanded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+          "code": 200,
+          "apiVersion": "2023-03-01"
+        },
+        "smithy.api#documentation": "Delete a Prometheus rule group definition.",
+        "com.distilled.openapi#apiVersion": "2023-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ruleGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the rule group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+          "code": 200,
+          "apiVersion": "2023-03-01"
+        },
+        "smithy.api#documentation": "Update an Prometheus rule group definition.",
+        "com.distilled.openapi#apiVersion": "2023-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.alertsmanagement#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The Prometheus rule group properties of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Rule group description."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable/disable rule group."
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Apply rule to data from a specific cluster."
+          }
+        },
+        "scopes": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupPropertiesScopesList",
+          "traits": {
+            "smithy.api#documentation": "Target Azure Monitor workspaces resource ids. This api-version is currently limited to creating with one scope. This may change in future.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The interval in which to run the Prometheus rule group represented in ISO 8601 duration format. Should be between 1 and 15 minutes"
+          }
+        },
+        "rules": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupPropertiesRulesList",
+          "traits": {
+            "smithy.api#documentation": "Defines the rules in the Prometheus rule group.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Azure Prometheus rule group."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupPropertiesRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#PrometheusRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the rules in the Prometheus rule group."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRule": {
+      "type": "structure",
+      "members": {
+        "record": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recorded metrics name."
+          }
+        },
+        "alert": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert rule name."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable/disable rule."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PromQL expression to evaluate. https://prometheus.io/docs/prometheus/latest/querying/basics/. Evaluated periodically as given by 'interval', and the result recorded as a new set of time series with the metric name as given by 'record'.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Labels to add or overwrite before storing the result."
+          }
+        },
+        "severity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The severity of the alerts fired by the rule. Must be between 0 and 4."
+          }
+        },
+        "for": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of time alert must be active before firing."
+          }
+        },
+        "annotations": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleAnnotationsMap",
+          "traits": {
+            "smithy.api#documentation": "The annotations clause specifies a set of informational labels that can be used to store longer additional information such as alert descriptions or runbook links. The annotation values can be templated."
+          }
+        },
+        "actions": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleActionsList",
+          "traits": {
+            "smithy.api#documentation": "Actions that are performed when the alert rule becomes active, and when an alert condition is resolved."
+          }
+        },
+        "resolveConfiguration": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleResolveConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Defines the configuration for resolving fired alerts. Only relevant for alerts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Azure Prometheus alerting or recording rule."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleResolveConfiguration": {
+      "type": "structure",
+      "members": {
+        "autoResolved": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable alert auto-resolution."
+          }
+        },
+        "timeToResolve": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alert auto-resolution timeout."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the Prometheus alert rule configuration."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions that are performed when the alert rule becomes active, and when an alert condition is resolved."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupAction": {
+      "type": "structure",
+      "members": {
+        "actionGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource id of the action group to use."
+          }
+        },
+        "actionProperties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupActionActionPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The properties of an action group object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An alert action. Only relevant for alerts."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupActionActionPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of an action group object."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleAnnotationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The annotations clause specifies a set of informational labels that can be used to store longer additional information such as alert descriptions or runbook links. The annotation values can be templated."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels to add or overwrite before storing the result."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupPropertiesScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Target Azure Monitor workspaces resource ids. This api-version is currently limited to creating with one scope. This may change in future."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.alertsmanagement#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.alertsmanagement#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.alertsmanagement#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.alertsmanagement#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ruleGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the rule group."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourcePatchParametersProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupResourcePatchParametersProperties": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "the flag that indicates whether the Prometheus rule group is enabled."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+          "code": 200,
+          "apiVersion": "2023-03-01"
+        },
+        "smithy.api#documentation": "Create or update a Prometheus rule group definition.",
+        "com.distilled.openapi#apiVersion": "2023-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.alertsmanagement#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The Prometheus rule group properties of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ruleGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the rule group."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The Prometheus rule group properties of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+          "code": 200,
+          "apiVersion": "2023-03-01"
+        },
+        "smithy.api#documentation": "Retrieve a Prometheus rule group definition.",
+        "com.distilled.openapi#apiVersion": "2023-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.alertsmanagement#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The Prometheus rule group properties of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ruleGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the rule group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups",
+          "code": 200,
+          "apiVersion": "2023-03-01"
+        },
+        "smithy.api#documentation": "Retrieve Prometheus rule group definitions in a resource group.",
+        "com.distilled.openapi#apiVersion": "2023-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "the values for the alert rule resources."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a collection of alert rule resources."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "the values for the alert rule resources."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.alertsmanagement#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The Prometheus rule group properties of the resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Prometheus rule group resource."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/prometheusRuleGroups",
+          "code": 200,
+          "apiVersion": "2023-03-01"
+        },
+        "smithy.api#documentation": "Retrieve Prometheus all rule group definitions in a subscription.",
+        "com.distilled.openapi#apiVersion": "2023-03-01"
+      }
+    },
+    "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.alertsmanagement#Alertsmanagement": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesDelete"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdate"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByName"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesListBySubscription"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsGetSummary"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsGetHistory"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsChangeState"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsGetById"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsGetAll"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsMetaData2"
+        },
+        {
+          "target": "com.azure.alertsmanagement#OperationsList2"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesDelete"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatch"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGet"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesList"
+        },
+        {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsDelete"
+        },
+        {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdate"
+        },
+        {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGet"
+        },
+        {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscription"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Alertsmanagement",
+        "smithy.api#documentation": "Azure Alertsmanagement API — merged from the alertsmanagement resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

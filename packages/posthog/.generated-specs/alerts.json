@@ -1,0 +1,2588 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.alerts#AlertsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "Optional. Restrict results to alerts created by the user with this UUID."
+          }
+        },
+        "insight_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "insight_id",
+            "smithy.api#documentation": "Optional. Restrict results to alerts on this insight ID."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Optional. Fuzzy match against alert `name` using Postgres trigram word similarity (handles typos, transpositions, and prefix-as-you-type). Results are ordered by relevance, then creation time. Capped at 200 characters; longer queries return a 400 error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#PaginatedAlertList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.alerts#PaginatedAlertListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#Alert": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.alerts#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID monitored by this alert. Note: Response returns full InsightBasicSerializer object."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the alert."
+          }
+        },
+        "subscribed_users": {
+          "target": "com.posthog.alerts#AlertSubscribedUsersList",
+          "traits": {
+            "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+          }
+        },
+        "threshold": {
+          "target": "com.posthog.alerts#Threshold",
+          "traits": {
+            "smithy.api#documentation": "Threshold configuration with bounds and type for evaluating the alert."
+          }
+        },
+        "condition": {
+          "target": "com.posthog.alerts#AlertCondition",
+          "traits": {
+            "smithy.api#documentation": "Alert condition type. Determines how the value is evaluated: absolute_value, relative_increase, or relative_decrease.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current alert state: Firing, Not firing, Errored, or Snoozed."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the alert is actively being evaluated."
+          }
+        },
+        "last_notified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_checked_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_check_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "checks": {
+          "target": "com.posthog.alerts#AlertChecksList",
+          "traits": {
+            "smithy.api#documentation": "Alert check results. By default returns the last 5. Use checks_date_from and checks_date_to (e.g. '-24h', '-7d') to get checks within a time window, checks_limit to cap how many are returned (default 5, max 500), and checks_offset to skip the newest N checks for pagination (0-based). Newest checks first. Only populated on retrieve."
+          }
+        },
+        "checks_total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total alert checks matching the retrieve filters (date window). Only set on alert retrieve; omitted otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "config": {
+          "target": "com.posthog.alerts#AlertConfigUnion",
+          "traits": {
+            "smithy.api#documentation": "Per-insight-kind alert configuration, discriminated by `type`. TrendsAlertConfig: series_index (which series to monitor) and check_ongoing_interval (whether to check the current incomplete interval). HogQLAlertConfig (SQL insights): column (which result column to evaluate, defaults to the single numeric column), evaluation ('last_row' checks the latest value of an oldest->newest query, 'first_row' checks the first value of a newest->oldest query, 'any_row' fires if any row breaches), and label_column (names the evaluated row(s) in breach messages, in every evaluation mode). FunnelsAlertConfig (funnel insights): funnel_step (the step to monitor, null for the overall last step) and metric ('conversion_from_start' or 'conversion_from_previous'); funnel alerts only support absolute_value conditions.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detector_config": {
+          "target": "com.posthog.alerts#DetectorConfig",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "calculation_interval": {
+          "target": "com.posthog.alerts#CalculationIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often the alert is checked: every 15 minutes (Boost+), hourly, daily, weekly, or monthly.\n\n* `every_15_minutes` - every_15_minutes\n* `hourly` - hourly\n* `daily` - daily\n* `weekly` - weekly\n* `monthly` - monthly"
+          }
+        },
+        "snoozed_until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snooze the alert until this time. Pass a relative date string (e.g. '2h', '1d') or null to unsnooze.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "skip_weekend": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip alert evaluation on weekends (Saturday and Sunday, local to project timezone).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "schedule_restriction": {
+          "target": "com.posthog.alerts#AlertScheduleRestriction",
+          "traits": {
+            "smithy.api#documentation": "Blocked local time windows (HH:MM in the project timezone). Interval is half-open [start, end): start inclusive, end exclusive. Use blocked_windows array of {start, end}. Null disables.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The last calculated value from the most recent alert check.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_agent_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+          }
+        },
+        "investigation_gates_notifications": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+          }
+        },
+        "investigation_inconclusive_action": {
+          "target": "com.posthog.alerts#InvestigationInconclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "How to handle an 'inconclusive' verdict when notifications are gated. 'notify' is the safe default — an agent that can't be sure is itself useful signal.\n\n* `notify` - Notify\n* `suppress` - Suppress"
+          }
+        },
+        "search_match_type": {
+          "target": "com.posthog.alerts#SearchMatchTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of a searched field) or `similar` (a fuzzy trigram match only). Results are ordered exact-first. Null when the list is not filtered by `search`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.alerts#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.alerts#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.alerts#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.alerts#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.alerts#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertSubscribedUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+      }
+    },
+    "com.posthog.alerts#Threshold": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name for the threshold."
+          }
+        },
+        "configuration": {
+          "target": "com.posthog.alerts#InsightThreshold",
+          "traits": {
+            "smithy.api#documentation": "Threshold bounds and type. Includes bounds (lower/upper floats) and type (absolute or percentage). For threshold-based alerts (no detector_config), at least one of lower or upper must be set."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#InsightThreshold": {
+      "type": "structure",
+      "members": {
+        "bounds": {
+          "target": "com.posthog.alerts#InsightsThresholdBounds",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.alerts#InsightThresholdType",
+          "traits": {
+            "smithy.api#documentation": "Whether bounds are compared as absolute values or as percentage change from the previous interval."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#InsightsThresholdBounds": {
+      "type": "structure",
+      "members": {
+        "lower": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Alert fires when the value drops below this number.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "upper": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Alert fires when the value exceeds this number.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#InsightThresholdType": {
+      "type": "enum",
+      "members": {
+        "ABSOLUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "absolute"
+          }
+        },
+        "PERCENTAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "percentage"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertCondition": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.alerts#AlertConditionType"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertConditionType": {
+      "type": "enum",
+      "members": {
+        "ABSOLUTE_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "absolute_value"
+          }
+        },
+        "RELATIVE_INCREASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "relative_increase"
+          }
+        },
+        "RELATIVE_DECREASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "relative_decrease"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertCheck": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "calculated_value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.posthog.alerts#AlertCheckStateEnum"
+        },
+        "targets_notified": {
+          "target": "smithy.api#Boolean"
+        },
+        "anomaly_scores": {
+          "target": "smithy.api#Document"
+        },
+        "triggered_points": {
+          "target": "smithy.api#Document"
+        },
+        "triggered_dates": {
+          "target": "smithy.api#Document"
+        },
+        "interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "triggered_metadata": {
+          "target": "smithy.api#Document"
+        },
+        "investigation_status": {
+          "target": "com.posthog.alerts#InvestigationStatusEnum",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_verdict": {
+          "target": "com.posthog.alerts#InvestigationVerdictEnum",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_notebook_short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short ID of the Notebook produced by the investigation agent, when the agent ran for this check.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_sent_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_suppressed_by_agent": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertCheckStateEnum": {
+      "type": "enum",
+      "members": {
+        "FIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Firing"
+          }
+        },
+        "NOT_FIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Not firing"
+          }
+        },
+        "ERRORED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Errored"
+          }
+        },
+        "SNOOZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Snoozed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `Firing` - Firing\n* `Not firing` - Not firing\n* `Errored` - Errored\n* `Snoozed` - Snoozed"
+      }
+    },
+    "com.posthog.alerts#InvestigationStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - pending\n* `running` - running\n* `done` - done\n* `failed` - failed\n* `skipped` - skipped"
+      }
+    },
+    "com.posthog.alerts#InvestigationVerdictEnum": {
+      "type": "enum",
+      "members": {
+        "TRUE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "true_positive"
+          }
+        },
+        "FALSE_POSITIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false_positive"
+          }
+        },
+        "INCONCLUSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inconclusive"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `true_positive` - true_positive\n* `false_positive` - false_positive\n* `inconclusive` - inconclusive"
+      }
+    },
+    "com.posthog.alerts#AlertChecksList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#AlertCheck"
+      },
+      "traits": {
+        "smithy.api#documentation": "Alert check results. By default returns the last 5. Use checks_date_from and checks_date_to (e.g. '-24h', '-7d') to get checks within a time window, checks_limit to cap how many are returned (default 5, max 500), and checks_offset to skip the newest N checks for pagination (0-based). Newest checks first. Only populated on retrieve."
+      }
+    },
+    "com.posthog.alerts#AlertConfigUnion": {
+      "type": "union",
+      "members": {
+        "TrendsAlertConfig": {
+          "target": "com.posthog.alerts#TrendsAlertConfig"
+        },
+        "HogQLAlertConfig": {
+          "target": "com.posthog.alerts#HogQLAlertConfig"
+        },
+        "FunnelsAlertConfig": {
+          "target": "com.posthog.alerts#FunnelsAlertConfig"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-insight-kind alert config, discriminated by ``type`` — keeps the OpenAPI (and the\ngenerated frontend types and MCP tool schemas) in sync with every kind alerts support."
+      }
+    },
+    "com.posthog.alerts#TrendsAlertConfig": {
+      "type": "structure",
+      "members": {
+        "check_ongoing_interval": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, evaluate the current (still incomplete) time interval in addition to completed ones.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "series_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Zero-based index of the series in the insight's query to monitor."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#HogQLAlertConfig": {
+      "type": "structure",
+      "members": {
+        "column": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the result column to evaluate. When unset, the single numeric column is used (an error if the result has more than one numeric column).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "evaluation": {
+          "target": "com.posthog.alerts#HogQLAlertEvaluation",
+          "traits": {
+            "smithy.api#documentation": "How to read the result rows — an explicit choice, no implicit default.",
+            "smithy.api#required": {}
+          }
+        },
+        "label_column": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Column whose value labels the evaluated row(s) in breach messages: every row in `any_row` mode, or the single evaluated row in `last_row`/`first_row`. When unset, the first non-evaluated column is used, falling back to the row number (any_row) or the value column name (last_row/first_row).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#HogQLAlertEvaluation": {
+      "type": "enum",
+      "members": {
+        "LAST_ROW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "last_row"
+          }
+        },
+        "FIRST_ROW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "first_row"
+          }
+        },
+        "ANY_ROW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "any_row"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#FunnelsAlertConfig": {
+      "type": "structure",
+      "members": {
+        "funnel_step": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Zero-based step index to evaluate. Null = the last step (overall conversion).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metric": {
+          "target": "com.posthog.alerts#FunnelConversionMetric",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#FunnelConversionMetric": {
+      "type": "enum",
+      "members": {
+        "CONVERSION_FROM_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "conversion_from_start"
+          }
+        },
+        "CONVERSION_FROM_PREVIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "conversion_from_previous"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#DetectorConfig": {
+      "type": "union",
+      "members": {
+        "EnsembleDetectorConfig": {
+          "target": "com.posthog.alerts#EnsembleDetectorConfig"
+        },
+        "ZScoreDetectorConfig": {
+          "target": "com.posthog.alerts#ZScoreDetectorConfig"
+        },
+        "MADDetectorConfig": {
+          "target": "com.posthog.alerts#MADDetectorConfig"
+        },
+        "IQRDetectorConfig": {
+          "target": "com.posthog.alerts#IQRDetectorConfig"
+        },
+        "ThresholdDetectorConfig": {
+          "target": "com.posthog.alerts#ThresholdDetectorConfig"
+        },
+        "ECODDetectorConfig": {
+          "target": "com.posthog.alerts#ECODDetectorConfig"
+        },
+        "COPODDetectorConfig": {
+          "target": "com.posthog.alerts#COPODDetectorConfig"
+        },
+        "IsolationForestDetectorConfig": {
+          "target": "com.posthog.alerts#IsolationForestDetectorConfig"
+        },
+        "KNNDetectorConfig": {
+          "target": "com.posthog.alerts#KNNDetectorConfig"
+        },
+        "HBOSDetectorConfig": {
+          "target": "com.posthog.alerts#HBOSDetectorConfig"
+        },
+        "LOFDetectorConfig": {
+          "target": "com.posthog.alerts#LOFDetectorConfig"
+        },
+        "OCSVMDetectorConfig": {
+          "target": "com.posthog.alerts#OCSVMDetectorConfig"
+        },
+        "PCADetectorConfig": {
+          "target": "com.posthog.alerts#PCADetectorConfig"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detector configuration types"
+      }
+    },
+    "com.posthog.alerts#EnsembleDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "detectors": {
+          "target": "com.posthog.alerts#EnsembleDetectorConfigDetectorsList",
+          "traits": {
+            "smithy.api#documentation": "Sub-detector configurations (minimum 2)"
+          }
+        },
+        "operator": {
+          "target": "com.posthog.alerts#EnsembleOperator",
+          "traits": {
+            "smithy.api#documentation": "How to combine sub-detector results"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#ZScoreDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold [0-1]. Points above this probability are flagged (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size for calculating mean/std (default: 30)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#PreprocessingConfig": {
+      "type": "structure",
+      "members": {
+        "diffs_n": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Order of differencing. 0 = raw values, 1 = first-order diffs (default: 0)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lags_n": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of lag features. 0 = none, >0 = include n lagged values (default: 0)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "smooth_n": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Moving average window size. 0 = no smoothing, >1 = smooth over n points (default: 0)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#MADDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold [0-1]. Points above this probability are flagged (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size for calculating median/MAD (default: 30)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#IQRDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "multiplier": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "IQR multiplier for fence calculation (default: 1.5, use 3.0 for far outliers)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size for calculating quartiles (default: 30)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#ThresholdDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "lower_bound": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Lower bound - values below this are anomalies",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "upper_bound": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Upper bound - values above this are anomalies",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#ECODDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#COPODDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#IsolationForestDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "n_estimators": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of trees in the forest (default: 100)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#KNNDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "method": {
+          "target": "com.posthog.alerts#Method",
+          "traits": {
+            "smithy.api#documentation": "Distance method: 'largest', 'mean', 'median' (default: 'largest')",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "n_neighbors": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of neighbors to consider (default: 5)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#Method": {
+      "type": "enum",
+      "members": {
+        "LARGEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "largest"
+          }
+        },
+        "MEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mean"
+          }
+        },
+        "MEDIAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "median"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#HBOSDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "n_bins": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of histogram bins (default: 10)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#LOFDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "n_neighbors": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of neighbors for LOF (default: 20)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#OCSVMDetectorConfig": {
+      "type": "structure",
+      "members": {
+        "kernel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SVM kernel type (default: \"rbf\")",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "nu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Upper bound on training errors fraction (default: 0.1)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#PCADetectorConfig": {
+      "type": "structure",
+      "members": {
+        "preprocessing": {
+          "target": "com.posthog.alerts#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing transforms applied before detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Anomaly probability threshold (default: 0.9)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rolling window size — how many historical data points to train on (default: based on calculation interval)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#EnsembleDetectorConfigDetectorsItem": {
+      "type": "union",
+      "members": {
+        "ZScoreDetectorConfig": {
+          "target": "com.posthog.alerts#ZScoreDetectorConfig"
+        },
+        "MADDetectorConfig": {
+          "target": "com.posthog.alerts#MADDetectorConfig"
+        },
+        "IQRDetectorConfig": {
+          "target": "com.posthog.alerts#IQRDetectorConfig"
+        },
+        "ThresholdDetectorConfig": {
+          "target": "com.posthog.alerts#ThresholdDetectorConfig"
+        },
+        "ECODDetectorConfig": {
+          "target": "com.posthog.alerts#ECODDetectorConfig"
+        },
+        "COPODDetectorConfig": {
+          "target": "com.posthog.alerts#COPODDetectorConfig"
+        },
+        "IsolationForestDetectorConfig": {
+          "target": "com.posthog.alerts#IsolationForestDetectorConfig"
+        },
+        "KNNDetectorConfig": {
+          "target": "com.posthog.alerts#KNNDetectorConfig"
+        },
+        "HBOSDetectorConfig": {
+          "target": "com.posthog.alerts#HBOSDetectorConfig"
+        },
+        "LOFDetectorConfig": {
+          "target": "com.posthog.alerts#LOFDetectorConfig"
+        },
+        "OCSVMDetectorConfig": {
+          "target": "com.posthog.alerts#OCSVMDetectorConfig"
+        },
+        "PCADetectorConfig": {
+          "target": "com.posthog.alerts#PCADetectorConfig"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#EnsembleDetectorConfigDetectorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#EnsembleDetectorConfigDetectorsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Sub-detector configurations (minimum 2)"
+      }
+    },
+    "com.posthog.alerts#EnsembleOperator": {
+      "type": "enum",
+      "members": {
+        "AND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "and"
+          }
+        },
+        "OR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "or"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#CalculationIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "EVERY_15_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "every_15_minutes"
+          }
+        },
+        "HOURLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hourly"
+          }
+        },
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "daily"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `every_15_minutes` - every_15_minutes\n* `hourly` - hourly\n* `daily` - daily\n* `weekly` - weekly\n* `monthly` - monthly"
+      }
+    },
+    "com.posthog.alerts#AlertScheduleRestriction": {
+      "type": "structure",
+      "members": {
+        "blocked_windows": {
+          "target": "com.posthog.alerts#AlertScheduleRestrictionBlockedWindowsList",
+          "traits": {
+            "smithy.api#documentation": "Blocked local time windows when the alert must not run. Overlapping or identical windows are merged when saved. At most five windows before normalization; empty array clears quiet hours."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertScheduleRestrictionWindow": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time HH:MM (24-hour, project timezone). Inclusive. Each window must span ≥ 30 minutes on the local daily timeline (half-open [start, end))."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time HH:MM (24-hour). Exclusive (half-open interval). Each window must span ≥ 30 minutes locally."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertScheduleRestrictionBlockedWindowsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#AlertScheduleRestrictionWindow"
+      },
+      "traits": {
+        "smithy.api#documentation": "Blocked local time windows when the alert must not run. Overlapping or identical windows are merged when saved. At most five windows before normalization; empty array clears quiet hours."
+      }
+    },
+    "com.posthog.alerts#InvestigationInconclusiveActionEnum": {
+      "type": "enum",
+      "members": {
+        "NOTIFY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notify"
+          }
+        },
+        "SUPPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suppress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `notify` - Notify\n* `suppress` - Suppress"
+      }
+    },
+    "com.posthog.alerts#SearchMatchTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SIMILAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "similar"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#PaginatedAlertListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#Alert"
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.alerts#PaginatedAlertList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#BadRequest"
+        },
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/alerts/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.alerts#AlertsCreateRequestSubscribedUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+      }
+    },
+    "com.posthog.alerts#ThresholdInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional name for the threshold."
+          }
+        },
+        "configuration": {
+          "target": "com.posthog.alerts#InsightThreshold",
+          "traits": {
+            "smithy.api#documentation": "Threshold bounds and type. Includes bounds (lower/upper floats) and type (absolute or percentage). For threshold-based alerts (no detector_config), at least one of lower or upper must be set."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID monitored by this alert. Note: Response returns full InsightBasicSerializer object."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the alert."
+          }
+        },
+        "subscribed_users": {
+          "target": "com.posthog.alerts#AlertsCreateRequestSubscribedUsersList",
+          "traits": {
+            "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+          }
+        },
+        "threshold": {
+          "target": "com.posthog.alerts#ThresholdInput",
+          "traits": {
+            "smithy.api#documentation": "Threshold configuration with bounds and type for evaluating the alert."
+          }
+        },
+        "condition": {
+          "target": "com.posthog.alerts#AlertCondition",
+          "traits": {
+            "smithy.api#documentation": "Alert condition type. Determines how the value is evaluated: absolute_value, relative_increase, or relative_decrease.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the alert is actively being evaluated."
+          }
+        },
+        "config": {
+          "target": "com.posthog.alerts#AlertConfigUnion",
+          "traits": {
+            "smithy.api#documentation": "Per-insight-kind alert configuration, discriminated by `type`. TrendsAlertConfig: series_index (which series to monitor) and check_ongoing_interval (whether to check the current incomplete interval). HogQLAlertConfig (SQL insights): column (which result column to evaluate, defaults to the single numeric column), evaluation ('last_row' checks the latest value of an oldest->newest query, 'first_row' checks the first value of a newest->oldest query, 'any_row' fires if any row breaches), and label_column (names the evaluated row(s) in breach messages, in every evaluation mode). FunnelsAlertConfig (funnel insights): funnel_step (the step to monitor, null for the overall last step) and metric ('conversion_from_start' or 'conversion_from_previous'); funnel alerts only support absolute_value conditions.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detector_config": {
+          "target": "com.posthog.alerts#DetectorConfig",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "calculation_interval": {
+          "target": "com.posthog.alerts#CalculationIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often the alert is checked: every 15 minutes (Boost+), hourly, daily, weekly, or monthly.\n\n* `every_15_minutes` - every_15_minutes\n* `hourly` - hourly\n* `daily` - daily\n* `weekly` - weekly\n* `monthly` - monthly"
+          }
+        },
+        "snoozed_until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snooze the alert until this time. Pass a relative date string (e.g. '2h', '1d') or null to unsnooze.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "skip_weekend": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip alert evaluation on weekends (Saturday and Sunday, local to project timezone).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "schedule_restriction": {
+          "target": "com.posthog.alerts#AlertScheduleRestriction",
+          "traits": {
+            "smithy.api#documentation": "Blocked local time windows (HH:MM in the project timezone). Interval is half-open [start, end): start inclusive, end exclusive. Use blocked_windows array of {start, end}. Null disables.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_agent_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+          }
+        },
+        "investigation_gates_notifications": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+          }
+        },
+        "investigation_inconclusive_action": {
+          "target": "com.posthog.alerts#InvestigationInconclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "How to handle an 'inconclusive' verdict when notifications are gated. 'notify' is the safe default — an agent that can't be sure is itself useful signal.\n\n* `notify` - Notify\n* `suppress` - Suppress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#AlertsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.alerts#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#BadRequest"
+        },
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/alerts/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.alerts#AlertsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this alert configuration."
+          }
+        },
+        "checks_date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "checks_date_from",
+            "smithy.api#documentation": "Relative date string for the start of the check history window (e.g. '-24h', '-7d', '-14d'). Returns checks created after this time. Max retention is 14 days."
+          }
+        },
+        "checks_date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "checks_date_to",
+            "smithy.api#documentation": "Relative date string for the end of the check history window (e.g. '-1h', '-1d'). Defaults to now if not specified."
+          }
+        },
+        "checks_limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "checks_limit",
+            "smithy.api#documentation": "Maximum number of check results to return (default 5, max 500). Applied after date filtering."
+          }
+        },
+        "checks_offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "checks_offset",
+            "smithy.api#documentation": "Number of newest checks to skip (0-based). Use with checks_limit for pagination. Default 0."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#AlertsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.alerts#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#BadRequest"
+        },
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/alerts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.alerts#AlertsUpdateRequestSubscribedUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+      }
+    },
+    "com.posthog.alerts#AlertsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this alert configuration."
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID monitored by this alert. Note: Response returns full InsightBasicSerializer object."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the alert."
+          }
+        },
+        "subscribed_users": {
+          "target": "com.posthog.alerts#AlertsUpdateRequestSubscribedUsersList",
+          "traits": {
+            "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+          }
+        },
+        "threshold": {
+          "target": "com.posthog.alerts#ThresholdInput",
+          "traits": {
+            "smithy.api#documentation": "Threshold configuration with bounds and type for evaluating the alert."
+          }
+        },
+        "condition": {
+          "target": "com.posthog.alerts#AlertCondition",
+          "traits": {
+            "smithy.api#documentation": "Alert condition type. Determines how the value is evaluated: absolute_value, relative_increase, or relative_decrease.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the alert is actively being evaluated."
+          }
+        },
+        "config": {
+          "target": "com.posthog.alerts#AlertConfigUnion",
+          "traits": {
+            "smithy.api#documentation": "Per-insight-kind alert configuration, discriminated by `type`. TrendsAlertConfig: series_index (which series to monitor) and check_ongoing_interval (whether to check the current incomplete interval). HogQLAlertConfig (SQL insights): column (which result column to evaluate, defaults to the single numeric column), evaluation ('last_row' checks the latest value of an oldest->newest query, 'first_row' checks the first value of a newest->oldest query, 'any_row' fires if any row breaches), and label_column (names the evaluated row(s) in breach messages, in every evaluation mode). FunnelsAlertConfig (funnel insights): funnel_step (the step to monitor, null for the overall last step) and metric ('conversion_from_start' or 'conversion_from_previous'); funnel alerts only support absolute_value conditions.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detector_config": {
+          "target": "com.posthog.alerts#DetectorConfig",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "calculation_interval": {
+          "target": "com.posthog.alerts#CalculationIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often the alert is checked: every 15 minutes (Boost+), hourly, daily, weekly, or monthly.\n\n* `every_15_minutes` - every_15_minutes\n* `hourly` - hourly\n* `daily` - daily\n* `weekly` - weekly\n* `monthly` - monthly"
+          }
+        },
+        "snoozed_until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snooze the alert until this time. Pass a relative date string (e.g. '2h', '1d') or null to unsnooze.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "skip_weekend": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip alert evaluation on weekends (Saturday and Sunday, local to project timezone).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "schedule_restriction": {
+          "target": "com.posthog.alerts#AlertScheduleRestriction",
+          "traits": {
+            "smithy.api#documentation": "Blocked local time windows (HH:MM in the project timezone). Interval is half-open [start, end): start inclusive, end exclusive. Use blocked_windows array of {start, end}. Null disables.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_agent_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+          }
+        },
+        "investigation_gates_notifications": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+          }
+        },
+        "investigation_inconclusive_action": {
+          "target": "com.posthog.alerts#InvestigationInconclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "How to handle an 'inconclusive' verdict when notifications are gated. 'notify' is the safe default — an agent that can't be sure is itself useful signal.\n\n* `notify` - Notify\n* `suppress` - Suppress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#AlertsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.alerts#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#BadRequest"
+        },
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/alerts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.alerts#AlertsPartialUpdateRequestSubscribedUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+      }
+    },
+    "com.posthog.alerts#AlertsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this alert configuration."
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID monitored by this alert. Note: Response returns full InsightBasicSerializer object."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the alert."
+          }
+        },
+        "subscribed_users": {
+          "target": "com.posthog.alerts#AlertsPartialUpdateRequestSubscribedUsersList",
+          "traits": {
+            "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
+          }
+        },
+        "threshold": {
+          "target": "com.posthog.alerts#ThresholdInput",
+          "traits": {
+            "smithy.api#documentation": "Threshold configuration with bounds and type for evaluating the alert."
+          }
+        },
+        "condition": {
+          "target": "com.posthog.alerts#AlertCondition",
+          "traits": {
+            "smithy.api#documentation": "Alert condition type. Determines how the value is evaluated: absolute_value, relative_increase, or relative_decrease.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the alert is actively being evaluated."
+          }
+        },
+        "config": {
+          "target": "com.posthog.alerts#AlertConfigUnion",
+          "traits": {
+            "smithy.api#documentation": "Per-insight-kind alert configuration, discriminated by `type`. TrendsAlertConfig: series_index (which series to monitor) and check_ongoing_interval (whether to check the current incomplete interval). HogQLAlertConfig (SQL insights): column (which result column to evaluate, defaults to the single numeric column), evaluation ('last_row' checks the latest value of an oldest->newest query, 'first_row' checks the first value of a newest->oldest query, 'any_row' fires if any row breaches), and label_column (names the evaluated row(s) in breach messages, in every evaluation mode). FunnelsAlertConfig (funnel insights): funnel_step (the step to monitor, null for the overall last step) and metric ('conversion_from_start' or 'conversion_from_previous'); funnel alerts only support absolute_value conditions.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "detector_config": {
+          "target": "com.posthog.alerts#DetectorConfig",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "calculation_interval": {
+          "target": "com.posthog.alerts#CalculationIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often the alert is checked: every 15 minutes (Boost+), hourly, daily, weekly, or monthly.\n\n* `every_15_minutes` - every_15_minutes\n* `hourly` - hourly\n* `daily` - daily\n* `weekly` - weekly\n* `monthly` - monthly"
+          }
+        },
+        "snoozed_until": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snooze the alert until this time. Pass a relative date string (e.g. '2h', '1d') or null to unsnooze.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "skip_weekend": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip alert evaluation on weekends (Saturday and Sunday, local to project timezone).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "schedule_restriction": {
+          "target": "com.posthog.alerts#AlertScheduleRestriction",
+          "traits": {
+            "smithy.api#documentation": "Blocked local time windows (HH:MM in the project timezone). Interval is half-open [start, end): start inclusive, end exclusive. Use blocked_windows array of {start, end}. Null disables.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "investigation_agent_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+          }
+        },
+        "investigation_gates_notifications": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+          }
+        },
+        "investigation_inconclusive_action": {
+          "target": "com.posthog.alerts#InvestigationInconclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "How to handle an 'inconclusive' verdict when notifications are gated. 'notify' is the safe default — an agent that can't be sure is itself useful signal.\n\n* `notify` - Notify\n* `suppress` - Suppress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#AlertsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.alerts#Alert"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#BadRequest"
+        },
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/alerts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.alerts#AlertsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this alert configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#AlertsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/alerts/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.alerts#AlertsSimulateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID to simulate the detector on."
+          }
+        },
+        "detector_config": {
+          "target": "com.posthog.alerts#DetectorConfig",
+          "traits": {
+            "smithy.api#documentation": "Detector configuration to simulate."
+          }
+        },
+        "series_index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Zero-based index of the series to analyze (trends insights only)."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative date string for how far back to simulate (e.g. '-24h', '-30d', '-4w'). If not provided, uses the detector's minimum required samples. Trends insights only — a SQL query's own rows are the series.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "config": {
+          "target": "com.posthog.alerts#AlertConfigUnion",
+          "traits": {
+            "smithy.api#documentation": "Per-insight-kind alert config. For SQL insights, selects the evaluated column and read direction (last_row/first_row) so the preview matches the alert; ignored for trends.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.posthog.alerts#AlertSimulateResponseDataList",
+          "traits": {
+            "smithy.api#documentation": "Data values for each point."
+          }
+        },
+        "dates": {
+          "target": "com.posthog.alerts#AlertSimulateResponseDatesList",
+          "traits": {
+            "smithy.api#documentation": "Date labels for each point."
+          }
+        },
+        "scores": {
+          "target": "com.posthog.alerts#AlertSimulateResponseScoresList",
+          "traits": {
+            "smithy.api#documentation": "Anomaly score for each point (null if insufficient data)."
+          }
+        },
+        "triggered_indices": {
+          "target": "com.posthog.alerts#AlertSimulateResponseTriggeredIndicesList",
+          "traits": {
+            "smithy.api#documentation": "Indices of points flagged as anomalies."
+          }
+        },
+        "triggered_dates": {
+          "target": "com.posthog.alerts#AlertSimulateResponseTriggeredDatesList",
+          "traits": {
+            "smithy.api#documentation": "Dates of points flagged as anomalies."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interval of the trends query (hour, day, week, month).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_points": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of data points analyzed."
+          }
+        },
+        "anomaly_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of anomalies detected."
+          }
+        },
+        "sub_detector_scores": {
+          "target": "com.posthog.alerts#AlertSimulateResponseSubDetectorScoresList",
+          "traits": {
+            "smithy.api#documentation": "Per-sub-detector scores for ensemble detectors. Each entry has 'type' and 'scores' fields."
+          }
+        },
+        "breakdown_results": {
+          "target": "com.posthog.alerts#AlertSimulateResponseBreakdownResultsList",
+          "traits": {
+            "smithy.api#documentation": "Per-breakdown-value simulation results. Present only when the insight has breakdowns (up to 25 values)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertSimulateResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "Data values for each point."
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponseDatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Date labels for each point."
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponseScoresList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "Anomaly score for each point (null if insufficient data)."
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponseTriggeredIndicesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Indices of points flagged as anomalies."
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponseTriggeredDatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Dates of points flagged as anomalies."
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponseSubDetectorScoresItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#AlertSimulateResponseSubDetectorScoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#AlertSimulateResponseSubDetectorScoresItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-sub-detector scores for ensemble detectors. Each entry has 'type' and 'scores' fields."
+      }
+    },
+    "com.posthog.alerts#BreakdownSimulationResult": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Breakdown value label."
+          }
+        },
+        "data": {
+          "target": "com.posthog.alerts#BreakdownSimulationResultDataList",
+          "traits": {
+            "smithy.api#documentation": "Data values for each point."
+          }
+        },
+        "dates": {
+          "target": "com.posthog.alerts#BreakdownSimulationResultDatesList",
+          "traits": {
+            "smithy.api#documentation": "Date labels for each point."
+          }
+        },
+        "scores": {
+          "target": "com.posthog.alerts#BreakdownSimulationResultScoresList",
+          "traits": {
+            "smithy.api#documentation": "Anomaly score for each point."
+          }
+        },
+        "triggered_indices": {
+          "target": "com.posthog.alerts#BreakdownSimulationResultTriggeredIndicesList",
+          "traits": {
+            "smithy.api#documentation": "Indices of points flagged as anomalies."
+          }
+        },
+        "triggered_dates": {
+          "target": "com.posthog.alerts#BreakdownSimulationResultTriggeredDatesList",
+          "traits": {
+            "smithy.api#documentation": "Dates of points flagged as anomalies."
+          }
+        },
+        "total_points": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of data points analyzed."
+          }
+        },
+        "anomaly_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of anomalies detected."
+          }
+        },
+        "sub_detector_scores": {
+          "target": "com.posthog.alerts#BreakdownSimulationResultSubDetectorScoresList",
+          "traits": {
+            "smithy.api#documentation": "Per-sub-detector scores for ensemble detectors."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#BreakdownSimulationResultDataList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "Data values for each point."
+      }
+    },
+    "com.posthog.alerts#BreakdownSimulationResultDatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Date labels for each point."
+      }
+    },
+    "com.posthog.alerts#BreakdownSimulationResultScoresList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "Anomaly score for each point."
+      }
+    },
+    "com.posthog.alerts#BreakdownSimulationResultTriggeredIndicesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Indices of points flagged as anomalies."
+      }
+    },
+    "com.posthog.alerts#BreakdownSimulationResultTriggeredDatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Dates of points flagged as anomalies."
+      }
+    },
+    "com.posthog.alerts#BreakdownSimulationResultSubDetectorScoresItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.alerts#BreakdownSimulationResultSubDetectorScoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#BreakdownSimulationResultSubDetectorScoresItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-sub-detector scores for ensemble detectors."
+      }
+    },
+    "com.posthog.alerts#AlertSimulateResponseBreakdownResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.alerts#BreakdownSimulationResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-breakdown-value simulation results. Present only when the insight has breakdowns (up to 25 values)."
+      }
+    },
+    "com.posthog.alerts#AlertsSimulateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.alerts#AlertsSimulateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.alerts#AlertSimulateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.alerts#BadRequest"
+        },
+        {
+          "target": "com.posthog.alerts#Forbidden"
+        },
+        {
+          "target": "com.posthog.alerts#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/alerts/simulate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Simulate a detector on an insight's historical data. Read-only — no AlertCheck records are created."
+      }
+    },
+    "com.posthog.alerts#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.alerts#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.alerts#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.alerts#Alerts": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.alerts#AlertsList"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsCreate"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsRetrieve"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsUpdate"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsDestroy"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsSimulateCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

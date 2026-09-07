@@ -1,0 +1,45 @@
+{
+  "description": "Align custom_nameservers#Create with distilled cloudflare/custom-nameservers createCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_nameservers#Create",
+      "path": "/shapes/com.cloudflare.custom_nameservers#CreateCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_nameservers#CreateRequest",
+      "path": "/shapes/com.cloudflare.custom_nameservers#CreateCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_nameservers#CreateCustomNameserver/input/target",
+      "value": "com.cloudflare.custom_nameservers#CreateCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_nameservers#CreateResponse",
+      "path": "/shapes/com.cloudflare.custom_nameservers#CreateCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_nameservers#CreateCustomNameserver/output/target",
+      "value": "com.cloudflare.custom_nameservers#CreateCustomNameserverResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_nameservers#CreateCustomNameserver/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_nameservers#CustomNameserversNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.custom_nameservers#CustomNameserverAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.custom_nameservers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

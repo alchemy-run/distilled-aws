@@ -1,0 +1,4018 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.ssl#AnalyzeCreateRequestBundleMethod": {
+      "type": "enum",
+      "members": {
+        "UBIQUITOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ubiquitous"
+          }
+        },
+        "OPTIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optimal"
+          }
+        },
+        "FORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "force"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#AnalyzeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_method": {
+          "target": "com.cloudflare.ssl#AnalyzeCreateRequestBundleMethod",
+          "traits": {
+            "smithy.api#documentation": "A ubiquitous bundle has the highest probability of being verified everywhere, even by clients using outdated or unusual trust stores. An optimal bundle uses the shortest chain and newest intermediates. And the force bundle verifies the chain, but does not otherwise modify it."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's SSL certificate or certificate and the intermediate(s)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#AnalyzeCreateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ssl#AnalyzeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#AnalyzeCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#AnalyzeCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/ssl/analyze",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the set of hostnames, the signature algorithm, and the expiration date of the certificate."
+      }
+    },
+    "com.cloudflare.ssl#AutoOriginTlsKexEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Controls enablement of Auto-Origin TLS KEX selection for the zone.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#AutoOriginTlsKexEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Auto-Origin TLS KEX selection is enabled for the zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#AutoOriginTlsKexEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#AutoOriginTlsKexEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#AutoOriginTlsKexEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/settings/auto_origin_tls_kex",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable or disable Auto-Origin TLS KEX selection for the zone by sending `{\"enabled\": true}` or `{\"enabled\": false}`. When enabled, Cloudflare runs a periodic scan of the zone's origins to determine the preferred key-exchange algorithm and writes that preference to the edge so it is sent first in the TLS ClientHello to the origin."
+      }
+    },
+    "com.cloudflare.ssl#AutoOriginTlsKexGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#AutoOriginTlsKexGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Auto-Origin TLS KEX selection is enabled for the zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#AutoOriginTlsKexGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#AutoOriginTlsKexGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#AutoOriginTlsKexGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/auto_origin_tls_kex",
+          "code": 200
+        },
+        "smithy.api#documentation": "When enabled, Cloudflare automatically selects the preferred TLS key-exchange algorithm to use when establishing the TLS connection to the zone's origin, picking from the algorithms permitted by the zone's `origin_tls_compliance_modes` setting. When disabled, the default key-exchange ordering is used.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderGetResponseValue": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this setting can be updated or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.ssl#AutomaticUpgraderGetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Current setting of the automatic SSL/TLS.",
+            "smithy.api#required": {}
+          }
+        },
+        "next_scheduled_scan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Next time this zone will be scanned by the Automatic SSL/TLS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#AutomaticUpgraderGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#AutomaticUpgraderGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/ssl_automatic_mode",
+          "code": 200
+        },
+        "smithy.api#documentation": "If the system is enabled, the response will include next_scheduled_scan, representing the next time this zone will be scanned and the zone's ssl/tls encryption mode is potentially upgraded by the system. If the system is disabled, next_scheduled_scan will not be present in the response body.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderPatchRequestValue": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderPatchRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.ssl#AutomaticUpgraderPatchRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Controls enablement of Automatic SSL/TLS.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderPatchResponseValue": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderPatchResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this setting can be updated or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.ssl#AutomaticUpgraderPatchResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Current setting of the automatic SSL/TLS.",
+            "smithy.api#required": {}
+          }
+        },
+        "next_scheduled_scan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Next time this zone will be scanned by the Automatic SSL/TLS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#AutomaticUpgraderPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#AutomaticUpgraderPatchRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#AutomaticUpgraderPatchResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/settings/ssl_automatic_mode",
+          "code": 200
+        },
+        "smithy.api#documentation": "The automatic system is enabled when this endpoint is hit with value in the request body is set to \"auto\", and disabled when the request body value is set to \"custom\"."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateRequestCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateRequestHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateRequestType": {
+      "type": "enum",
+      "members": {
+        "ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateRequestValidationMethod": {
+      "type": "enum",
+      "members": {
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateRequestValidityDays": {
+      "type": "intEnum",
+      "members": {
+        "_14": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 14
+          }
+        },
+        "_30": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 30
+          }
+        },
+        "_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 90
+          }
+        },
+        "_365": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 365
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateRequestCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority selected for the order.  For information on any certificate authority specific details or restrictions [see this page for more details](https://developers.cloudflare.com/ssl/reference/certificate-authorities).",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateRequestHostsList",
+          "traits": {
+            "smithy.api#documentation": "Comma separated list of valid host names for the certificate packs. Must contain the zone apex, may not contain more than 50 hosts, and may not be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateRequestType",
+          "traits": {
+            "smithy.api#documentation": "Type of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateRequestValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Validation Method selected for the order.",
+            "smithy.api#required": {}
+          }
+        },
+        "validity_days": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateRequestValidityDays",
+          "traits": {
+            "smithy.api#documentation": "Validity Days selected for the order.",
+            "smithy.api#required": {}
+          }
+        },
+        "cloudflare_branding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to add Cloudflare Branding for the order.  This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItemHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItemGeoRestrictionsLabel": {
+      "type": "enum",
+      "members": {
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us"
+          }
+        },
+        "EU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu"
+          }
+        },
+        "HIGHEST_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "highest_security"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItemGeoRestrictions": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItemGeoRestrictionsLabel"
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItemHostsList",
+          "traits": {
+            "smithy.api#documentation": "Hostnames covered by this certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate status.",
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate bundle method."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate from the authority expires."
+          }
+        },
+        "geo_restrictions": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItemGeoRestrictions",
+          "traits": {
+            "smithy.api#documentation": "Specify the region where your private key can be held locally."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was last modified."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The order/priority in which the certificate will be used."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_VALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_validation"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "PENDING_ISSUANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_issuance"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "PENDING_EXPIRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_expiration"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INITIALIZING_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing_timed_out"
+          }
+        },
+        "VALIDATION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "validation_timed_out"
+          }
+        },
+        "ISSUANCE_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issuance_timed_out"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        },
+        "PENDING_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_cleanup"
+          }
+        },
+        "STAGING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_deployment"
+          }
+        },
+        "STAGING_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_active"
+          }
+        },
+        "DEACTIVATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deactivating"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        },
+        "BACKUP_ISSUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "backup_issued"
+          }
+        },
+        "HOLDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "holding_deployment"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseType": {
+      "type": "enum",
+      "members": {
+        "MH_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mh_custom"
+          }
+        },
+        "MANAGED_HOSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_hostname"
+          }
+        },
+        "SNI_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sni_custom"
+          }
+        },
+        "UNIVERSAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "universal"
+          }
+        },
+        "ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced"
+          }
+        },
+        "TOTAL_TLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total_tls"
+          }
+        },
+        "KEYLESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyless"
+          }
+        },
+        "LEGACY_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legacy_custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseDcvDelegationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseDcvDelegationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseDcvDelegationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseDcvDelegationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksCreateResponseDcvDelegationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidationErrorsItem": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A domain validation error."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidationErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidationErrorsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidationMethod": {
+      "type": "enum",
+      "members": {
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponseValidityDays": {
+      "type": "intEnum",
+      "members": {
+        "_14": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 14
+          }
+        },
+        "_30": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 30
+          }
+        },
+        "_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 90
+          }
+        },
+        "_365": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 365
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificates": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "Array of certificates in this pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseHostsList",
+          "traits": {
+            "smithy.api#documentation": "Comma separated list of valid host names for the certificate packs. Must contain the zone apex, may not contain more than 50 hosts, and may not be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseType",
+          "traits": {
+            "smithy.api#documentation": "Type of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority selected for the order.  For information on any certificate authority specific details or restrictions [see this page for more details](https://developers.cloudflare.com/ssl/reference/certificate-authorities)."
+          }
+        },
+        "cloudflare_branding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to add Cloudflare Branding for the order.  This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to true."
+          }
+        },
+        "dcv_delegation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseDcvDelegationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DCV Delegation records for domain validation."
+          }
+        },
+        "primary_certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the primary certificate in a pack."
+          }
+        },
+        "validation_errors": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Domain validation errors that have been received by the certificate authority (CA)."
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Validation Method selected for the order."
+          }
+        },
+        "validation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "Certificates' validation records."
+          }
+        },
+        "validity_days": {
+          "target": "com.cloudflare.ssl#CertificatePacksCreateResponseValidityDays",
+          "traits": {
+            "smithy.api#documentation": "Validity Days selected for the order."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#CertificatePacksCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#CertificatePacksCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/ssl/certificate_packs/order",
+          "code": 200
+        },
+        "smithy.api#documentation": "For a given zone, order an advanced certificate pack."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_pack_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#CertificatePacksDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#CertificatePacksDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "For a given zone, delete an advanced certificate pack.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_pack_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cloudflare_branding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to add Cloudflare Branding for the order.  This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItemHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItemGeoRestrictionsLabel": {
+      "type": "enum",
+      "members": {
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us"
+          }
+        },
+        "EU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu"
+          }
+        },
+        "HIGHEST_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "highest_security"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItemGeoRestrictions": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItemGeoRestrictionsLabel"
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItemHostsList",
+          "traits": {
+            "smithy.api#documentation": "Hostnames covered by this certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate status.",
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate bundle method."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate from the authority expires."
+          }
+        },
+        "geo_restrictions": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItemGeoRestrictions",
+          "traits": {
+            "smithy.api#documentation": "Specify the region where your private key can be held locally."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was last modified."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The order/priority in which the certificate will be used."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_VALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_validation"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "PENDING_ISSUANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_issuance"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "PENDING_EXPIRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_expiration"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INITIALIZING_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing_timed_out"
+          }
+        },
+        "VALIDATION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "validation_timed_out"
+          }
+        },
+        "ISSUANCE_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issuance_timed_out"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        },
+        "PENDING_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_cleanup"
+          }
+        },
+        "STAGING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_deployment"
+          }
+        },
+        "STAGING_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_active"
+          }
+        },
+        "DEACTIVATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deactivating"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        },
+        "BACKUP_ISSUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "backup_issued"
+          }
+        },
+        "HOLDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "holding_deployment"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseType": {
+      "type": "enum",
+      "members": {
+        "MH_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mh_custom"
+          }
+        },
+        "MANAGED_HOSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_hostname"
+          }
+        },
+        "SNI_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sni_custom"
+          }
+        },
+        "UNIVERSAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "universal"
+          }
+        },
+        "ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced"
+          }
+        },
+        "TOTAL_TLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total_tls"
+          }
+        },
+        "KEYLESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyless"
+          }
+        },
+        "LEGACY_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legacy_custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseDcvDelegationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseDcvDelegationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseDcvDelegationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseDcvDelegationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksEditResponseDcvDelegationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidationErrorsItem": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A domain validation error."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidationErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidationErrorsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidationMethod": {
+      "type": "enum",
+      "members": {
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponseValidityDays": {
+      "type": "intEnum",
+      "members": {
+        "_14": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 14
+          }
+        },
+        "_30": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 30
+          }
+        },
+        "_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 90
+          }
+        },
+        "_365": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 365
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificates": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "Array of certificates in this pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseHostsList",
+          "traits": {
+            "smithy.api#documentation": "Comma separated list of valid host names for the certificate packs. Must contain the zone apex, may not contain more than 50 hosts, and may not be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseType",
+          "traits": {
+            "smithy.api#documentation": "Type of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority selected for the order.  For information on any certificate authority specific details or restrictions [see this page for more details](https://developers.cloudflare.com/ssl/reference/certificate-authorities)."
+          }
+        },
+        "cloudflare_branding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to add Cloudflare Branding for the order.  This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to true."
+          }
+        },
+        "dcv_delegation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseDcvDelegationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DCV Delegation records for domain validation."
+          }
+        },
+        "primary_certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the primary certificate in a pack."
+          }
+        },
+        "validation_errors": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Domain validation errors that have been received by the certificate authority (CA)."
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Validation Method selected for the order."
+          }
+        },
+        "validation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "Certificates' validation records."
+          }
+        },
+        "validity_days": {
+          "target": "com.cloudflare.ssl#CertificatePacksEditResponseValidityDays",
+          "traits": {
+            "smithy.api#documentation": "Validity Days selected for the order."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#CertificatePacksEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#CertificatePacksEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "For a given zone, restart validation or add cloudflare branding for an advanced certificate pack.  The former is only a validation operation for a Certificate Pack in a validation_timed_out status."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_pack_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItemHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItemGeoRestrictionsLabel": {
+      "type": "enum",
+      "members": {
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us"
+          }
+        },
+        "EU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu"
+          }
+        },
+        "HIGHEST_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "highest_security"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItemGeoRestrictions": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItemGeoRestrictionsLabel"
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItemHostsList",
+          "traits": {
+            "smithy.api#documentation": "Hostnames covered by this certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate status.",
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate bundle method."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate from the authority expires."
+          }
+        },
+        "geo_restrictions": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItemGeoRestrictions",
+          "traits": {
+            "smithy.api#documentation": "Specify the region where your private key can be held locally."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was last modified."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The order/priority in which the certificate will be used."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_VALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_validation"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "PENDING_ISSUANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_issuance"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "PENDING_EXPIRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_expiration"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INITIALIZING_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing_timed_out"
+          }
+        },
+        "VALIDATION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "validation_timed_out"
+          }
+        },
+        "ISSUANCE_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issuance_timed_out"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        },
+        "PENDING_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_cleanup"
+          }
+        },
+        "STAGING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_deployment"
+          }
+        },
+        "STAGING_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_active"
+          }
+        },
+        "DEACTIVATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deactivating"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        },
+        "BACKUP_ISSUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "backup_issued"
+          }
+        },
+        "HOLDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "holding_deployment"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseType": {
+      "type": "enum",
+      "members": {
+        "MH_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mh_custom"
+          }
+        },
+        "MANAGED_HOSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_hostname"
+          }
+        },
+        "SNI_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sni_custom"
+          }
+        },
+        "UNIVERSAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "universal"
+          }
+        },
+        "ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced"
+          }
+        },
+        "TOTAL_TLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total_tls"
+          }
+        },
+        "KEYLESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyless"
+          }
+        },
+        "LEGACY_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legacy_custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseDcvDelegationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseDcvDelegationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseDcvDelegationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseDcvDelegationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksGetResponseDcvDelegationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidationErrorsItem": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A domain validation error."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidationErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidationErrorsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidationMethod": {
+      "type": "enum",
+      "members": {
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponseValidityDays": {
+      "type": "intEnum",
+      "members": {
+        "_14": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 14
+          }
+        },
+        "_30": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 30
+          }
+        },
+        "_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 90
+          }
+        },
+        "_365": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 365
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificates": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "Array of certificates in this pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseHostsList",
+          "traits": {
+            "smithy.api#documentation": "Comma separated list of valid host names for the certificate packs. Must contain the zone apex, may not contain more than 50 hosts, and may not be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseType",
+          "traits": {
+            "smithy.api#documentation": "Type of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority selected for the order.  For information on any certificate authority specific details or restrictions [see this page for more details](https://developers.cloudflare.com/ssl/reference/certificate-authorities)."
+          }
+        },
+        "cloudflare_branding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to add Cloudflare Branding for the order.  This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to true."
+          }
+        },
+        "dcv_delegation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseDcvDelegationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DCV Delegation records for domain validation."
+          }
+        },
+        "primary_certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the primary certificate in a pack."
+          }
+        },
+        "validation_errors": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Domain validation errors that have been received by the certificate authority (CA)."
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Validation Method selected for the order."
+          }
+        },
+        "validation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "Certificates' validation records."
+          }
+        },
+        "validity_days": {
+          "target": "com.cloudflare.ssl#CertificatePacksGetResponseValidityDays",
+          "traits": {
+            "smithy.api#documentation": "Validity Days selected for the order."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#CertificatePacksGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#CertificatePacksGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "For a given zone, get a certificate pack.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListRequestDeploy": {
+      "type": "enum",
+      "members": {
+        "STAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging"
+          }
+        },
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "production"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListRequestStatus": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "deploy": {
+          "target": "com.cloudflare.ssl#CertificatePacksListRequestDeploy",
+          "traits": {
+            "smithy.api#documentation": "Specify the deployment environment for the certificate packs.",
+            "smithy.api#httpQuery": "deploy"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of certificate packs per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.ssl#CertificatePacksListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Include Certificate Packs of all statuses, not just active ones.",
+            "smithy.api#httpQuery": "status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItemHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItemGeoRestrictionsLabel": {
+      "type": "enum",
+      "members": {
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "us"
+          }
+        },
+        "EU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eu"
+          }
+        },
+        "HIGHEST_SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "highest_security"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItemGeoRestrictions": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItemGeoRestrictionsLabel"
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItemHostsList",
+          "traits": {
+            "smithy.api#documentation": "Hostnames covered by this certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate status.",
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate bundle method."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate from the authority expires."
+          }
+        },
+        "geo_restrictions": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItemGeoRestrictions",
+          "traits": {
+            "smithy.api#documentation": "Specify the region where your private key can be held locally."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was last modified."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The order/priority in which the certificate will be used."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare."
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemHostsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_VALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_validation"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "PENDING_ISSUANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_issuance"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "PENDING_EXPIRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_expiration"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "INITIALIZING_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing_timed_out"
+          }
+        },
+        "VALIDATION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "validation_timed_out"
+          }
+        },
+        "ISSUANCE_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issuance_timed_out"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        },
+        "PENDING_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_cleanup"
+          }
+        },
+        "STAGING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_deployment"
+          }
+        },
+        "STAGING_ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "staging_active"
+          }
+        },
+        "DEACTIVATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deactivating"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inactive"
+          }
+        },
+        "BACKUP_ISSUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "backup_issued"
+          }
+        },
+        "HOLDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "holding_deployment"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemType": {
+      "type": "enum",
+      "members": {
+        "MH_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mh_custom"
+          }
+        },
+        "MANAGED_HOSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_hostname"
+          }
+        },
+        "SNI_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sni_custom"
+          }
+        },
+        "UNIVERSAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "universal"
+          }
+        },
+        "ADVANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "advanced"
+          }
+        },
+        "TOTAL_TLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total_tls"
+          }
+        },
+        "KEYLESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyless"
+          }
+        },
+        "LEGACY_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legacy_custom"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemDcvDelegationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemDcvDelegationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemDcvDelegationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemDcvDelegationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksListResultItemDcvDelegationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidationErrorsItem": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A domain validation error."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidationErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidationErrorsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidationMethod": {
+      "type": "enum",
+      "members": {
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidationRecordsItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidationRecordsItem": {
+      "type": "structure",
+      "members": {
+        "cname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record hostname for DCV delegation."
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CNAME record target value for DCV delegation."
+          }
+        },
+        "emails": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidationRecordsItemEmailsList",
+          "traits": {
+            "smithy.api#documentation": "The set of email addresses that the certificate authority (CA) will use to complete domain validation."
+          }
+        },
+        "http_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content that the certificate authority (CA) will expect to find at the http_url during the domain validation."
+          }
+        },
+        "http_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url that will be checked during domain validation."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the validation record."
+          }
+        },
+        "txt_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname that the certificate authority (CA) will check for a TXT record during domain validation ."
+          }
+        },
+        "txt_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TXT record that the certificate authority (CA) will check during domain validation."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidationRecordsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidationRecordsItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItemValidityDays": {
+      "type": "intEnum",
+      "members": {
+        "_14": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 14
+          }
+        },
+        "_30": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 30
+          }
+        },
+        "_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 90
+          }
+        },
+        "_365": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 365
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificates": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "Array of certificates in this pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemHostsList",
+          "traits": {
+            "smithy.api#documentation": "Comma separated list of valid host names for the certificate packs. Must contain the zone apex, may not contain more than 50 hosts, and may not be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of certificate pack.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority selected for the order.  For information on any certificate authority specific details or restrictions [see this page for more details](https://developers.cloudflare.com/ssl/reference/certificate-authorities)."
+          }
+        },
+        "cloudflare_branding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to add Cloudflare Branding for the order.  This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to true."
+          }
+        },
+        "dcv_delegation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemDcvDelegationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "DCV Delegation records for domain validation."
+          }
+        },
+        "primary_certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the primary certificate in a pack."
+          }
+        },
+        "validation_errors": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Domain validation errors that have been received by the certificate authority (CA)."
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Validation Method selected for the order."
+          }
+        },
+        "validation_records": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidationRecordsList",
+          "traits": {
+            "smithy.api#documentation": "Certificates' validation records."
+          }
+        },
+        "validity_days": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultItemValidityDays",
+          "traits": {
+            "smithy.api#documentation": "Validity Days selected for the order."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#CertificatePacksListResultItem"
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ssl#CertificatePacksListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#CertificatePacksListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#CertificatePacksListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ssl/certificate_packs",
+          "code": 200
+        },
+        "smithy.api#documentation": "For a given zone, list all active certificate packs.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksQuotaGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksQuotaGetResponseAdvanced": {
+      "type": "structure",
+      "members": {
+        "allocated": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantity Allocated."
+          }
+        },
+        "used": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantity Used."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksQuotaGetResponse": {
+      "type": "structure",
+      "members": {
+        "advanced": {
+          "target": "com.cloudflare.ssl#CertificatePacksQuotaGetResponseAdvanced"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#CertificatePacksQuotaGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#CertificatePacksQuotaGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#CertificatePacksQuotaGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ssl/certificate_packs/quota",
+          "code": 200
+        },
+        "smithy.api#documentation": "For a given zone, list certificate pack quotas.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#UniversalSettingsEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Disabling Universal SSL removes any currently active Universal SSL certificates for your zone from the edge and prevents any future Universal SSL certificates from being ordered. If there are no advanced certificates or custom certificates uploaded for the domain, visitors will be unable to access the domain over HTTPS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#UniversalSettingsEditResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Disabling Universal SSL removes any currently active Universal SSL certificates for your zone from the edge and prevents any future Universal SSL certificates from being ordered. If there are no advanced certificates or custom certificates uploaded for the domain, visitors will be unable to access the domain over HTTPS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#UniversalSettingsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#UniversalSettingsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#UniversalSettingsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/ssl/universal/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Patch Universal SSL Settings for a Zone."
+      }
+    },
+    "com.cloudflare.ssl#UniversalSettingsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#UniversalSettingsGetResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Disabling Universal SSL removes any currently active Universal SSL certificates for your zone from the edge and prevents any future Universal SSL certificates from being ordered. If there are no advanced certificates or custom certificates uploaded for the domain, visitors will be unable to access the domain over HTTPS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#UniversalSettingsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#UniversalSettingsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#UniversalSettingsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ssl/universal/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Universal SSL Settings for a Zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#VerificationEditRequestValidationMethod": {
+      "type": "enum",
+      "members": {
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationEditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_pack_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate Pack UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#VerificationEditRequestValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Desired validation method.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#VerificationEditResponseValidationMethod": {
+      "type": "enum",
+      "members": {
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationEditResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Result status."
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#VerificationEditResponseValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Desired validation method."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ssl#VerificationEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#VerificationEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#VerificationEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit SSL validation method for a certificate pack. A PATCH request will request an immediate validation check on any certificate, and return the updated status. If a validation method is provided, the validation will be immediately attempted using that method."
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "retry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Immediately retry SSL Verification.",
+            "smithy.api#httpQuery": "retry"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemCertificateStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "AUTHORIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "authorizing"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "ISSUING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "issuing"
+          }
+        },
+        "TIMING_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timing_out"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemSignature": {
+      "type": "enum",
+      "members": {
+        "ECDSAWITHSHA256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECDSAWithSHA256"
+          }
+        },
+        "SHA1WITHRSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHA1WithRSA"
+          }
+        },
+        "SHA256WITHRSA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHA256WithRSA"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemValidationMethod": {
+      "type": "enum",
+      "members": {
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname"
+          }
+        },
+        "TXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemVerificationInfoRecordName": {
+      "type": "enum",
+      "members": {
+        "RECORD_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "record_name"
+          }
+        },
+        "HTTP_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http_url"
+          }
+        },
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname"
+          }
+        },
+        "TXT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt_name"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemVerificationInfoRecordTarget": {
+      "type": "enum",
+      "members": {
+        "RECORD_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "record_value"
+          }
+        },
+        "HTTP_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http_body"
+          }
+        },
+        "CNAME_TARGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname_target"
+          }
+        },
+        "TXT_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "txt_value"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemVerificationInfo": {
+      "type": "structure",
+      "members": {
+        "record_name": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemVerificationInfoRecordName",
+          "traits": {
+            "smithy.api#documentation": "Name of CNAME record."
+          }
+        },
+        "record_target": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemVerificationInfoRecordTarget",
+          "traits": {
+            "smithy.api#documentation": "Target of CNAME record."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItemVerificationType": {
+      "type": "enum",
+      "members": {
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cname"
+          }
+        },
+        "META_TAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "meta tag"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultItem": {
+      "type": "structure",
+      "members": {
+        "certificate_status": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemCertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "brand_check": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority is manually reviewing the order."
+          }
+        },
+        "cert_pack_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate Pack UUID."
+          }
+        },
+        "signature": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemSignature",
+          "traits": {
+            "smithy.api#documentation": "Certificate's signature algorithm."
+          }
+        },
+        "validation_method": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemValidationMethod",
+          "traits": {
+            "smithy.api#documentation": "Validation method in use for a certificate pack order."
+          }
+        },
+        "verification_info": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemVerificationInfo",
+          "traits": {
+            "smithy.api#documentation": "Certificate's required verification information."
+          }
+        },
+        "verification_status": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Status of the required verification information, omitted if verification status is unknown."
+          }
+        },
+        "verification_type": {
+          "target": "com.cloudflare.ssl#VerificationGetResultItemVerificationType",
+          "traits": {
+            "smithy.api#documentation": "Method of verification."
+          }
+        }
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ssl#VerificationGetResultItem"
+      }
+    },
+    "com.cloudflare.ssl#VerificationGetResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ssl#VerificationGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ssl#VerificationGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ssl#VerificationGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ssl#VerificationGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ssl/verification",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get SSL Verification Info for a Zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ssl#Ssl": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.ssl#AnalyzeCreate"
+        },
+        {
+          "target": "com.cloudflare.ssl#AutoOriginTlsKexEdit"
+        },
+        {
+          "target": "com.cloudflare.ssl#AutoOriginTlsKexGet"
+        },
+        {
+          "target": "com.cloudflare.ssl#AutomaticUpgraderGet"
+        },
+        {
+          "target": "com.cloudflare.ssl#AutomaticUpgraderPatch"
+        },
+        {
+          "target": "com.cloudflare.ssl#CertificatePacksCreate"
+        },
+        {
+          "target": "com.cloudflare.ssl#CertificatePacksDelete"
+        },
+        {
+          "target": "com.cloudflare.ssl#CertificatePacksEdit"
+        },
+        {
+          "target": "com.cloudflare.ssl#CertificatePacksGet"
+        },
+        {
+          "target": "com.cloudflare.ssl#CertificatePacksList"
+        },
+        {
+          "target": "com.cloudflare.ssl#CertificatePacksQuotaGet"
+        },
+        {
+          "target": "com.cloudflare.ssl#UniversalSettingsEdit"
+        },
+        {
+          "target": "com.cloudflare.ssl#UniversalSettingsGet"
+        },
+        {
+          "target": "com.cloudflare.ssl#VerificationEdit"
+        },
+        {
+          "target": "com.cloudflare.ssl#VerificationGet"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Ssl",
+        "smithy.api#documentation": "Cloudflare API — ssl resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

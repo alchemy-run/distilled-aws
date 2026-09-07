@@ -1,0 +1,41 @@
+{
+  "description": "Align firewall#WafPackagesGroupsList with distilled cloudflare/firewall listWafPackageGroups",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesGroupsList",
+      "path": "/shapes/com.cloudflare.firewall#ListWafPackageGroups"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesGroupsListRequest",
+      "path": "/shapes/com.cloudflare.firewall#ListWafPackageGroupsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListWafPackageGroups/input/target",
+      "value": "com.cloudflare.firewall#ListWafPackageGroupsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesGroupsListResponse",
+      "path": "/shapes/com.cloudflare.firewall#ListWafPackageGroupsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListWafPackageGroups/output/target",
+      "value": "com.cloudflare.firewall#ListWafPackageGroupsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#ListWafPackageGroups/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

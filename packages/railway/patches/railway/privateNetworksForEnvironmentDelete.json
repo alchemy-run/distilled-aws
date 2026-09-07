@@ -1,0 +1,10 @@
+{
+  "description": "privateNetworksForEnvironmentDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#PrivateNetworksForEnvironmentDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation privateNetworksForEnvironmentDelete($environmentId: String!) {\n  privateNetworksForEnvironmentDelete(environmentId: $environmentId)\n}"
+    }
+  ]
+}

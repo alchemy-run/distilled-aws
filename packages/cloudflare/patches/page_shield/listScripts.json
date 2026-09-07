@@ -1,0 +1,38 @@
+{
+  "description": "Align page_shield#ScriptsList with distilled cloudflare/page-shield listScripts",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ScriptsList",
+      "path": "/shapes/com.cloudflare.page_shield#ListScripts"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ScriptsListRequest",
+      "path": "/shapes/com.cloudflare.page_shield#ListScriptsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#ListScripts/input/target",
+      "value": "com.cloudflare.page_shield#ListScriptsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ScriptsListResponse",
+      "path": "/shapes/com.cloudflare.page_shield#ListScriptsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#ListScripts/output/target",
+      "value": "com.cloudflare.page_shield#ListScriptsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_shield#ListScripts/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

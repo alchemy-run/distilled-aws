@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#TunnelsWarpConnectorDelete with distilled cloudflare/zero-trust deleteTunnelWarpConnector",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelWarpConnector"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelWarpConnectorRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelWarpConnector/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteTunnelWarpConnectorRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelWarpConnectorResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelWarpConnector/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteTunnelWarpConnectorResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteTunnelWarpConnector/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#TunnelNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

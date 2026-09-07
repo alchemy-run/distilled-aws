@@ -1,0 +1,595 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.marketplacenotifications#NotificationGetOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.marketplacenotifications#AvailableOperations"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.MarketplaceNotifications/operations",
+          "code": 200,
+          "apiVersion": "2021-03-03"
+        },
+        "com.distilled.openapi#apiVersion": "2021-03-03"
+      }
+    },
+    "com.azure.marketplacenotifications#AvailableOperations": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.marketplacenotifications#AvailableOperationsValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of available operation details"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL client should use to fetch the next page (per server side paging).\r\nIt's null for now, added for future use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available operations of the service"
+      }
+    },
+    "com.azure.marketplacenotifications#AvailableOperationsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.marketplacenotifications#OperationDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of available operation details"
+      }
+    },
+    "com.azure.marketplacenotifications#OperationDetail": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "display": {
+          "target": "com.azure.marketplacenotifications#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display of the operation"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "operation origin"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "operation properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation detail payload"
+      }
+    },
+    "com.azure.marketplacenotifications#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource of the operation"
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the provider for display purposes"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation for display purposes"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly description for the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation display payload"
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplacenotifications#NotificationGetRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplacenotifications#NotificationGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscription}/providers/Microsoft.MarketplaceNotifications/reviewsNotification/{notification}",
+          "code": 200,
+          "apiVersion": "2021-03-03"
+        },
+        "com.distilled.openapi#apiVersion": "2021-03-03"
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.marketplacenotifications#NotificationGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplacenotifications#OfferProperties",
+          "traits": {
+            "smithy.api#documentation": "The offer data structure."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.marketplacenotifications#OfferProperties": {
+      "type": "structure",
+      "members": {
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "legacy offer id of the notification (publisher.offer)"
+          }
+        },
+        "createdDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date for creating the notification"
+          }
+        },
+        "offerDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "offer display name"
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "user's principal id"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.marketplacenotifications#NotificationGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.marketplacenotifications#NotificationGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.marketplacenotifications#NotificationGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user's subscription id"
+          }
+        },
+        "notification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the notification id"
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "principalId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user's principal id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplacenotifications#NotificationsListRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplacenotifications#NotificationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscription}/providers/Microsoft.MarketplaceNotifications/reviewsNotifications",
+          "code": 200,
+          "apiVersion": "2021-03-03"
+        },
+        "com.distilled.openapi#apiVersion": "2021-03-03"
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.marketplacenotifications#NotificationListValueList"
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL client should use to fetch the next page (per server side paging).\r\nIt's null for now, added for future use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Notifications List"
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.marketplacenotifications#Notification"
+      },
+      "traits": {}
+    },
+    "com.azure.marketplacenotifications#Notification": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.marketplacenotifications#NotificationSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplacenotifications#OfferProperties",
+          "traits": {
+            "smithy.api#documentation": "The offer data structure."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Review notification"
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.marketplacenotifications#NotificationSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.marketplacenotifications#NotificationSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.marketplacenotifications#NotificationsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user's subscription id"
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "principalId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "user's principal id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplacenotifications#Marketplacenotifications": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.marketplacenotifications#NotificationGetOperations"
+        },
+        {
+          "target": "com.azure.marketplacenotifications#NotificationGet"
+        },
+        {
+          "target": "com.azure.marketplacenotifications#NotificationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Marketplacenotifications",
+        "smithy.api#documentation": "Azure Marketplacenotifications API — merged from the marketplacenotifications resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

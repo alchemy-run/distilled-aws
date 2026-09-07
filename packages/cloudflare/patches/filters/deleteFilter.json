@@ -1,0 +1,30 @@
+{
+  "description": "Align filters#Delete with distilled cloudflare/filters deleteFilter",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#Delete",
+      "path": "/shapes/com.cloudflare.filters#DeleteFilter"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#DeleteRequest",
+      "path": "/shapes/com.cloudflare.filters#DeleteFilterRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#DeleteFilter/input/target",
+      "value": "com.cloudflare.filters#DeleteFilterRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#DeleteResponse",
+      "path": "/shapes/com.cloudflare.filters#DeleteFilterResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#DeleteFilter/output/target",
+      "value": "com.cloudflare.filters#DeleteFilterResponse"
+    }
+  ]
+}

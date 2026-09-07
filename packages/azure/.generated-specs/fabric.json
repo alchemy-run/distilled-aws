@@ -1,0 +1,1647 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.fabric#FabricCapacitiesSuspend": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesSuspendRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/suspend",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Suspend operation of the specified Fabric capacity instance.",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesSuspendRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListSkusForCapacity": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesListSkusForCapacityRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#RpSkuEnumerationForExistingResourceResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/skus",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List eligible SKUs for a Microsoft Fabric resource",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#RpSkuEnumerationForExistingResourceResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fabric#RpSkuEnumerationForExistingResourceResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url for the next page.  Null if no more pages available"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents enumerating SKUs for existing resources"
+      }
+    },
+    "com.azure.fabric#RpSkuEnumerationForExistingResourceResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fabric#RpSkuDetailsForExistingResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU details"
+      }
+    },
+    "com.azure.fabric#RpSkuDetailsForExistingResource": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents SKU details for existing resources"
+      }
+    },
+    "com.azure.fabric#RpSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU level.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.fabric#RpSkuTier",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the SKU name and Azure pricing tier for Microsoft Fabric capacity resource."
+      }
+    },
+    "com.azure.fabric#RpSkuTier": {
+      "type": "enum",
+      "members": {
+        "FABRIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fabric"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListSkusForCapacityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesResume": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesResumeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/resume",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Resume operation of the specified Fabric capacity instance.",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesResumeRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Delete a FabricCapacity",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#FabricCapacitiesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Update a FabricCapacity",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fabric#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fabric#FabricCapacitiesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fabric#FabricCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacityProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.fabric#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current deployment state of Microsoft Fabric resource. The provisioningState is to indicate states for resource provisioning."
+          }
+        },
+        "state": {
+          "target": "com.azure.fabric#ResourceState",
+          "traits": {
+            "smithy.api#documentation": "The current state of Microsoft Fabric resource. The state is to indicate more states outside of resource provisioning."
+          }
+        },
+        "administration": {
+          "target": "com.azure.fabric#CapacityAdministration",
+          "traits": {
+            "smithy.api#documentation": "The capacity administration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Microsoft Fabric capacity properties."
+      }
+    },
+    "com.azure.fabric#CapacityAdministration": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.azure.fabric#CapacityAdministrationMembersList",
+          "traits": {
+            "smithy.api#documentation": "An array of administrator user identities.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The administration properties of the Fabric capacity resource"
+      }
+    },
+    "com.azure.fabric#CapacityAdministrationMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of administrator user identities."
+      }
+    },
+    "com.azure.fabric#ResourceState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pausing"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Paused"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "SCALING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scaling"
+          }
+        },
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Preparing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the Fabric capacity resource."
+      }
+    },
+    "com.azure.fabric#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of the Fabric capacity resource."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fabric#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fabric#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fabric#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fabric#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fabric#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details"
+          }
+        },
+        "tags": {
+          "target": "com.azure.fabric#FabricCapacitiesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fabric#FabricCapacityUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacityUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "administration": {
+          "target": "com.azure.fabric#CapacityAdministration",
+          "traits": {
+            "smithy.api#documentation": "The capacity administration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the FabricCapacity."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Create a FabricCapacity",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fabric#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fabric#FabricCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fabric#FabricCapacityPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacityPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "administration": {
+          "target": "com.azure.fabric#CapacityAdministration",
+          "traits": {
+            "smithy.api#documentation": "The capacity administration",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Microsoft Fabric capacity properties."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#FabricCapacitiesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Get a FabricCapacity",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fabric#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fabric#FabricCapacitiesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fabric#FabricCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "capacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#FabricCapacityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List FabricCapacity resources by resource group",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacityListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fabric#FabricCapacityListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The FabricCapacity items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a FabricCapacity list operation."
+      }
+    },
+    "com.azure.fabric#FabricCapacityListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fabric#FabricCapacity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The FabricCapacity items on this page"
+      }
+    },
+    "com.azure.fabric#FabricCapacity": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fabric#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fabric#FabricCapacityTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fabric#FabricCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.fabric#RpSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fabric Capacity resource"
+      }
+    },
+    "com.azure.fabric#FabricCapacityTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesListSkusRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#RpSkuEnumerationForNewResourceResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Fabric/skus",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List eligible SKUs for Microsoft Fabric resource provider",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#RpSkuEnumerationForNewResourceResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fabric#RpSkuEnumerationForNewResourceResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The collection of available SKUs for new resources",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url for the next page.  Null if no more pages available"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents enumerating SKUs for new resources."
+      }
+    },
+    "com.azure.fabric#RpSkuEnumerationForNewResourceResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fabric#RpSkuDetailsForNewResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection of available SKUs for new resources"
+      }
+    },
+    "com.azure.fabric#RpSkuDetailsForNewResource": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU's name",
+            "smithy.api#required": {}
+          }
+        },
+        "locations": {
+          "target": "com.azure.fabric#RpSkuDetailsForNewResourceLocationsList",
+          "traits": {
+            "smithy.api#documentation": "The list of available locations for the SKU",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU details"
+      }
+    },
+    "com.azure.fabric#RpSkuDetailsForNewResourceLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of available locations for the SKU"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListSkusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Fabric/locations/{location}/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "Implements local CheckNameAvailability operations",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the resource name is available."
+          }
+        },
+        "reason": {
+          "target": "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityResponseReason",
+          "traits": {
+            "smithy.api#documentation": "The reason why the given name is not available."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed reason why the given name is available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityResponseReason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason why the given name is not available."
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource for which availability needs to be checked."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fabric#FabricCapacitiesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.fabric#FabricCapacityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Fabric/capacities",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List FabricCapacity resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#FabricCapacitiesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fabric#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.fabric#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Fabric/operations",
+          "code": 200,
+          "apiVersion": "2023-11-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2023-11-01"
+      }
+    },
+    "com.azure.fabric#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fabric#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fabric#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fabric#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.fabric#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.fabric#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.fabric#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.fabric#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.fabric#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.fabric#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.fabric#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.fabric#Fabric": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.fabric#FabricCapacitiesSuspend"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesListSkusForCapacity"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesResume"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesDelete"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesUpdate"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesGet"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesListSkus"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.fabric#FabricCapacitiesListBySubscription"
+        },
+        {
+          "target": "com.azure.fabric#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Fabric",
+        "smithy.api#documentation": "Azure Fabric API — merged from the fabric resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

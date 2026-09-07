@@ -1,0 +1,30 @@
+{
+  "description": "Align origin_tls_compliance_modes#Delete with distilled cloudflare/origin-tls-compliance-modes deleteOriginTlsComplianceMode",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_compliance_modes#Delete",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceMode"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceMode/input/target",
+      "value": "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceMode/output/target",
+      "value": "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeResponse"
+    }
+  ]
+}

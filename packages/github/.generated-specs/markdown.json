@@ -1,0 +1,118 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.markdown#RenderRequestMode": {
+      "type": "enum",
+      "members": {
+        "MARKDOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "markdown"
+          }
+        },
+        "GFM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The rendering mode."
+      }
+    },
+    "com.github.markdown#RenderRequest": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Markdown text to render in HTML.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.github.markdown#RenderRequestMode",
+          "traits": {
+            "smithy.api#documentation": "The rendering mode."
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository context to use when creating references in `gfm` mode.  For example, setting `context` to `octo-org/octo-repo` will change the text `#42` into an HTML link to issue 42 in the `octo-org/octo-repo` repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.markdown#Render": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.markdown#RenderRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/markdown",
+          "code": 200
+        },
+        "smithy.api#documentation": "Render a Markdown document\n\nDepending on what is rendered in the Markdown, you may need to provide additional token scopes for labels, such as `issues:read` or `pull_requests:read`."
+      }
+    },
+    "com.github.markdown#RenderRaw": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/markdown/raw",
+          "code": 200
+        },
+        "smithy.api#documentation": "Render a Markdown document in raw mode\n\nYou must send Markdown as plain text (using a `Content-Type` header of `text/plain` or `text/x-markdown`) to this endpoint, rather than using JSON format. In raw mode, [GitHub Flavored Markdown](https://github.github.com/gfm/) is not supported and Markdown will be rendered in plain format like a README.md file. Markdown content must be 400 KB or less."
+      }
+    },
+    "com.github.markdown#Markdown": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.markdown#Render"
+        },
+        {
+          "target": "com.github.markdown#RenderRaw"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

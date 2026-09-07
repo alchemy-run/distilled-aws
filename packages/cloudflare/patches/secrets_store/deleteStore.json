@@ -1,0 +1,45 @@
+{
+  "description": "Align secrets_store#StoresDelete with distilled cloudflare/secrets-store deleteStore",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresDelete",
+      "path": "/shapes/com.cloudflare.secrets_store#DeleteStore"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresDeleteRequest",
+      "path": "/shapes/com.cloudflare.secrets_store#DeleteStoreRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#DeleteStore/input/target",
+      "value": "com.cloudflare.secrets_store#DeleteStoreRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresDeleteResponse",
+      "path": "/shapes/com.cloudflare.secrets_store#DeleteStoreResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#DeleteStore/output/target",
+      "value": "com.cloudflare.secrets_store#DeleteStoreResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.secrets_store#DeleteStore/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.secrets_store#StoreNotFound"
+        },
+        {
+          "target": "com.cloudflare.secrets_store#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.secrets_store#NotFound"
+        }
+      ]
+    }
+  ]
+}

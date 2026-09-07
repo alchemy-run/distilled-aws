@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#Cf1SitesGet with distilled cloudflare/magic-transit getCf1Site",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesGet",
+      "path": "/shapes/com.cloudflare.magic_transit#GetCf1Site"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesGetRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#GetCf1SiteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetCf1Site/input/target",
+      "value": "com.cloudflare.magic_transit#GetCf1SiteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesGetResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#GetCf1SiteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#GetCf1Site/output/target",
+      "value": "com.cloudflare.magic_transit#GetCf1SiteResponse"
+    }
+  ]
+}

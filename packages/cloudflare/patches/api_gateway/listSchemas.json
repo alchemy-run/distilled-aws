@@ -1,0 +1,39 @@
+{
+  "description": "Align api_gateway#SchemasList with distilled cloudflare/api-gateway listSchemas",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#SchemasList",
+      "path": "/shapes/com.cloudflare.api_gateway#ListSchemas"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#SchemasListRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#ListSchemasRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#ListSchemas/input/target",
+      "value": "com.cloudflare.api_gateway#ListSchemasRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#SchemasListResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#ListSchemasResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#ListSchemas/output/target",
+      "value": "com.cloudflare.api_gateway#ListSchemasResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#ListSchemas/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

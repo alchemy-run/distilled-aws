@@ -1,0 +1,38 @@
+{
+  "description": "Align cloudforce_one#ScansConfigList with distilled cloudflare/cloudforce-one listScanConfigs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigList",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListScanConfigs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigListRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListScanConfigsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListScanConfigs/input/target",
+      "value": "com.cloudflare.cloudforce_one#ListScanConfigsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ScansConfigListResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListScanConfigsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListScanConfigs/output/target",
+      "value": "com.cloudflare.cloudforce_one#ListScanConfigsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListScanConfigs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

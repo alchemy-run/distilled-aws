@@ -1,0 +1,464 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.managed_transforms#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.managed_transforms#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.managed_transforms#DeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/managed_headers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disables all Managed Transforms.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersItemConflictsWithList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable identifier of the Managed Transform.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_conflict": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform conflicts with the currently-enabled Managed Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "conflicts_with": {
+          "target": "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersItemConflictsWithList",
+          "traits": {
+            "smithy.api#documentation": "The Managed Transforms that this Managed Transform conflicts with."
+          }
+        }
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersItem"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersItemConflictsWithList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable identifier of the Managed Transform.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_conflict": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform conflicts with the currently-enabled Managed Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "conflicts_with": {
+          "target": "com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersItemConflictsWithList",
+          "traits": {
+            "smithy.api#documentation": "The Managed Transforms that this Managed Transform conflicts with."
+          }
+        }
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersItem"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "managed_request_headers": {
+          "target": "com.cloudflare.managed_transforms#EditRequestManagedRequestHeadersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Managed Request Transforms."
+          }
+        },
+        "managed_response_headers": {
+          "target": "com.cloudflare.managed_transforms#EditRequestManagedResponseHeadersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Managed Response Transforms."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponseManagedRequestHeadersItemConflictsWithList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponseManagedRequestHeadersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable identifier of the Managed Transform.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_conflict": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform conflicts with the currently-enabled Managed Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "conflicts_with": {
+          "target": "com.cloudflare.managed_transforms#EditResponseManagedRequestHeadersItemConflictsWithList",
+          "traits": {
+            "smithy.api#documentation": "The Managed Transforms that this Managed Transform conflicts with."
+          }
+        }
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponseManagedRequestHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.managed_transforms#EditResponseManagedRequestHeadersItem"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponseManagedResponseHeadersItemConflictsWithList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponseManagedResponseHeadersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable identifier of the Managed Transform.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_conflict": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform conflicts with the currently-enabled Managed Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "conflicts_with": {
+          "target": "com.cloudflare.managed_transforms#EditResponseManagedResponseHeadersItemConflictsWithList",
+          "traits": {
+            "smithy.api#documentation": "The Managed Transforms that this Managed Transform conflicts with."
+          }
+        }
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponseManagedResponseHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.managed_transforms#EditResponseManagedResponseHeadersItem"
+      }
+    },
+    "com.cloudflare.managed_transforms#EditResponse": {
+      "type": "structure",
+      "members": {
+        "managed_request_headers": {
+          "target": "com.cloudflare.managed_transforms#EditResponseManagedRequestHeadersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Managed Request Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "managed_response_headers": {
+          "target": "com.cloudflare.managed_transforms#EditResponseManagedResponseHeadersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Managed Response Transforms.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.managed_transforms#Edit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.managed_transforms#EditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.managed_transforms#EditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/managed_headers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the status of one or more Managed Transforms."
+      }
+    },
+    "com.cloudflare.managed_transforms#ListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponseManagedRequestHeadersItemConflictsWithList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponseManagedRequestHeadersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable identifier of the Managed Transform.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_conflict": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform conflicts with the currently-enabled Managed Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "conflicts_with": {
+          "target": "com.cloudflare.managed_transforms#ListResponseManagedRequestHeadersItemConflictsWithList",
+          "traits": {
+            "smithy.api#documentation": "The Managed Transforms that this Managed Transform conflicts with."
+          }
+        }
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponseManagedRequestHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.managed_transforms#ListResponseManagedRequestHeadersItem"
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponseManagedResponseHeadersItemConflictsWithList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponseManagedResponseHeadersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable identifier of the Managed Transform.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_conflict": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Managed Transform conflicts with the currently-enabled Managed Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "conflicts_with": {
+          "target": "com.cloudflare.managed_transforms#ListResponseManagedResponseHeadersItemConflictsWithList",
+          "traits": {
+            "smithy.api#documentation": "The Managed Transforms that this Managed Transform conflicts with."
+          }
+        }
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponseManagedResponseHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.managed_transforms#ListResponseManagedResponseHeadersItem"
+      }
+    },
+    "com.cloudflare.managed_transforms#ListResponse": {
+      "type": "structure",
+      "members": {
+        "managed_request_headers": {
+          "target": "com.cloudflare.managed_transforms#ListResponseManagedRequestHeadersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Managed Request Transforms.",
+            "smithy.api#required": {}
+          }
+        },
+        "managed_response_headers": {
+          "target": "com.cloudflare.managed_transforms#ListResponseManagedResponseHeadersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Managed Response Transforms.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.managed_transforms#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.managed_transforms#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.managed_transforms#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/managed_headers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches a list of all Managed Transforms.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.managed_transforms#ManagedTransforms": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.managed_transforms#Delete"
+        },
+        {
+          "target": "com.cloudflare.managed_transforms#Edit"
+        },
+        {
+          "target": "com.cloudflare.managed_transforms#List"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare ManagedTransforms",
+        "smithy.api#documentation": "Cloudflare API — managed_transforms resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

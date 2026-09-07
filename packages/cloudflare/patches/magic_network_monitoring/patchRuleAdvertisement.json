@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_network_monitoring#RulesAdvertisementsEdit with distilled cloudflare/magic-network-monitoring patchRuleAdvertisement",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesAdvertisementsEdit",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchRuleAdvertisement"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesAdvertisementsEditRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchRuleAdvertisementRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchRuleAdvertisement/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#PatchRuleAdvertisementRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesAdvertisementsEditResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchRuleAdvertisementResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#PatchRuleAdvertisement/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#PatchRuleAdvertisementResponse"
+    }
+  ]
+}

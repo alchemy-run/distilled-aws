@@ -1,0 +1,42 @@
+{
+  "description": "Align vectorize#IndexesMetadataIndexList with distilled cloudflare/vectorize listIndexMetadataIndexes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesMetadataIndexList",
+      "path": "/shapes/com.cloudflare.vectorize#ListIndexMetadataIndexes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesMetadataIndexListRequest",
+      "path": "/shapes/com.cloudflare.vectorize#ListIndexMetadataIndexesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#ListIndexMetadataIndexes/input/target",
+      "value": "com.cloudflare.vectorize#ListIndexMetadataIndexesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesMetadataIndexListResponse",
+      "path": "/shapes/com.cloudflare.vectorize#ListIndexMetadataIndexesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#ListIndexMetadataIndexes/output/target",
+      "value": "com.cloudflare.vectorize#ListIndexMetadataIndexesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.vectorize#ListIndexMetadataIndexes/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.vectorize#NotFound"
+        },
+        {
+          "target": "com.cloudflare.vectorize#Gone"
+        }
+      ]
+    }
+  ]
+}

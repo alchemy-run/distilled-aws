@@ -1,0 +1,38 @@
+{
+  "description": "Align page_shield#CookiesList with distilled cloudflare/page-shield listCookies",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#CookiesList",
+      "path": "/shapes/com.cloudflare.page_shield#ListCookies"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#CookiesListRequest",
+      "path": "/shapes/com.cloudflare.page_shield#ListCookiesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#ListCookies/input/target",
+      "value": "com.cloudflare.page_shield#ListCookiesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#CookiesListResponse",
+      "path": "/shapes/com.cloudflare.page_shield#ListCookiesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#ListCookies/output/target",
+      "value": "com.cloudflare.page_shield#ListCookiesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_shield#ListCookies/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

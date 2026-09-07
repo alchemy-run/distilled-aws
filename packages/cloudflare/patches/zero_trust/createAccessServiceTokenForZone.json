@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessServiceTokensCreateForZone with distilled cloudflare/zero-trust createAccessServiceTokenForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensCreateForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessServiceTokenForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensCreateForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessServiceTokenForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessServiceTokenForZone/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessServiceTokenForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensCreateForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessServiceTokenForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessServiceTokenForZone/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessServiceTokenForZoneResponse"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align workflows#InstancesGet with distilled cloudflare/workflows getInstance",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesGet",
+      "path": "/shapes/com.cloudflare.workflows#GetInstance"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesGetRequest",
+      "path": "/shapes/com.cloudflare.workflows#GetInstanceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#GetInstance/input/target",
+      "value": "com.cloudflare.workflows#GetInstanceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#InstancesGetResponse",
+      "path": "/shapes/com.cloudflare.workflows#GetInstanceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#GetInstance/output/target",
+      "value": "com.cloudflare.workflows#GetInstanceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#GetInstance/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workflows#WorkflowNotFound"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workflows#InstanceNotFound"
+        }
+      ]
+    }
+  ]
+}

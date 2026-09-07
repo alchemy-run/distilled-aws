@@ -1,0 +1,35 @@
+{
+  "description": "Align kv#NamespacesValuesUpdate with distilled cloudflare/kv putNamespaceValue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesValuesUpdate",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesValuesUpdateRequest",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValue/input/target",
+      "value": "com.cloudflare.kv#PutNamespaceValueRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#PutNamespaceValue/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidExpirationTtl"
+        }
+      ]
+    }
+  ]
+}

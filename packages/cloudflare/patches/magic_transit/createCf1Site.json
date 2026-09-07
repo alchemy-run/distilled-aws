@@ -1,0 +1,38 @@
+{
+  "description": "Align magic_transit#Cf1SitesCreate with distilled cloudflare/magic-transit createCf1Site",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesCreate",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateCf1Site"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesCreateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateCf1SiteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateCf1Site/input/target",
+      "value": "com.cloudflare.magic_transit#CreateCf1SiteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#Cf1SitesCreateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateCf1SiteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateCf1Site/output/target",
+      "value": "com.cloudflare.magic_transit#CreateCf1SiteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#CreateCf1Site/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

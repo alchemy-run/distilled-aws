@@ -1,0 +1,4094 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "recaptchaenterprise",
+    "version": "v1",
+    "title": "reCAPTCHA Enterprise API",
+    "baseUrl": "https://recaptchaenterprise.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataAddress": {
+      "type": "structure",
+      "members": {
+        "recipient": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The recipient name, potentially including information such as \"care of\"."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CLDR country/region of the address."
+          }
+        },
+        "locality": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The town/city of the address."
+          }
+        },
+        "administrativeArea": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The state, province, or otherwise administrative area of the address."
+          }
+        },
+        "address": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The first lines of the address. The first line generally contains the street name and number, and further lines may include information such as an apartment number."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The postal or ZIP code of the address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured address format for billing and shipping addresses."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignals": {
+      "type": "structure",
+      "members": {
+        "userSignals": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals",
+          "traits": {
+            "smithy.api#documentation": "Output only. Signals describing the end user in this transaction."
+          }
+        },
+        "cardSignals": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals",
+          "traits": {
+            "smithy.api#documentation": "Output only. Signals describing the payment card or cards used in this transaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Fraud signals describing users and cards involved in the transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreMetrics": {
+      "type": "structure",
+      "members": {
+        "overallMetrics": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreDistribution",
+          "traits": {
+            "smithy.api#documentation": "Aggregated score metrics for all traffic."
+          }
+        },
+        "actionMetrics": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreDistributionMap",
+          "traits": {
+            "smithy.api#documentation": "Action-based metrics. The map key is the action name which specified by the site owners at time of the \"execute\" client-side call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metrics related to scoring."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreDistributionMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreDistribution"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for RemoveIpOverride."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A stable account identifier to apply to the assessment. This is an alternative to setting `account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request."
+          }
+        },
+        "annotation": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestAnnotationEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent."
+          }
+        },
+        "reasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Reasons for the annotation that are assigned to the event."
+          }
+        },
+        "phoneAuthenticationEvent": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent",
+          "traits": {
+            "smithy.api#documentation": "Optional. If using an external multi-factor authentication provider, provide phone authentication details for fraud detection purposes."
+          }
+        },
+        "transactionEvent": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionEvent",
+          "traits": {
+            "smithy.api#documentation": "Optional. If the assessment is part of a payment transaction, provide details on payment lifecycle events that occur in the transaction."
+          }
+        },
+        "hashedAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A stable hashed account identifier to apply to the assessment. This is an alternative to setting `hashed_account_id` in `CreateAssessment`, for example when a stable account identifier is not yet known in the initial request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message to annotate an Assessment."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestAnnotationEnum": {
+      "type": "enum",
+      "members": {
+        "ANNOTATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANNOTATION_UNSPECIFIED"
+          }
+        },
+        "LEGITIMATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGITIMATE"
+          }
+        },
+        "FRAUDULENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRAUDULENT"
+          }
+        },
+        "PASSWORD_CORRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSWORD_CORRECT"
+          }
+        },
+        "PASSWORD_INCORRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSWORD_INCORRECT"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "CHARGEBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK"
+          }
+        },
+        "CHARGEBACK_FRAUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK_FRAUD"
+          }
+        },
+        "CHARGEBACK_DISPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK_DISPUTE"
+          }
+        },
+        "REFUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND"
+          }
+        },
+        "REFUND_FRAUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND_FRAUD"
+          }
+        },
+        "TRANSACTION_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSACTION_ACCEPTED"
+          }
+        },
+        "TRANSACTION_DECLINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSACTION_DECLINED"
+          }
+        },
+        "PAYMENT_HEURISTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_HEURISTICS"
+          }
+        },
+        "INITIATED_TWO_FACTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIATED_TWO_FACTOR"
+          }
+        },
+        "PASSED_TWO_FACTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED_TWO_FACTOR"
+          }
+        },
+        "FAILED_TWO_FACTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_TWO_FACTOR"
+          }
+        },
+        "CORRECT_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CORRECT_PASSWORD"
+          }
+        },
+        "INCORRECT_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCORRECT_PASSWORD"
+          }
+        },
+        "SOCIAL_SPAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_SPAM"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnum"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict": {
+      "type": "structure",
+      "members": {
+        "risk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Probability of an SMS event being fraudulent. Values are from 0.0 (lowest) to 1.0 (highest)."
+          }
+        },
+        "reasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reasons contributing to the SMS toll fraud verdict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about SMS toll fraud."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnum": {
+      "type": "enum",
+      "members": {
+        "SMS_TOLL_FRAUD_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMS_TOLL_FRAUD_REASON_UNSPECIFIED"
+          }
+        },
+        "INVALID_PHONE_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_PHONE_NUMBER"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnum"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataUser": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The phone number of the user, with country code."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The email address of the user."
+          }
+        },
+        "creationMs": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The epoch milliseconds of the user's account creation."
+          }
+        },
+        "emailVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the email has been verified to be accessible by the user (OTP or similar)."
+          }
+        },
+        "phoneVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the phone number has been verified to be accessible by the user (OTP or similar)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a user's account involved in the transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettings": {
+      "type": "structure",
+      "members": {
+        "allowedDomains": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com' Each key supports a maximum of 250 domains. To use a key on more domains, set `allow_all_domains` to true. When this is set, you are responsible for validating the hostname by checking the `token_properties.hostname` field in each assessment response against your list of allowed domains."
+          }
+        },
+        "integrationType": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsIntegrationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Describes how this key is integrated with the website."
+          }
+        },
+        "challengeSecurityPreference": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSecurityPreferenceEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE."
+          }
+        },
+        "allowAllDomains": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, it means allowed_domains are not enforced."
+          }
+        },
+        "allowAmpTraffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type."
+          }
+        },
+        "challengeSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Challenge settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings specific to keys that can be used by websites."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsIntegrationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "INTEGRATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEGRATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCORE"
+          }
+        },
+        "CHECKBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECKBOX"
+          }
+        },
+        "INVISIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVISIBLE"
+          }
+        },
+        "POLICY_BASED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLICY_BASED_CHALLENGE"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSecurityPreferenceEnum": {
+      "type": "enum",
+      "members": {
+        "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED"
+          }
+        },
+        "USABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USABILITY"
+          }
+        },
+        "BALANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BALANCE"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReasonReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. A risk reason associated with this request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Risk explainability reasons for account defender."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReasonReasonEnum": {
+      "type": "enum",
+      "members": {
+        "RISK_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RISK_REASON_UNSPECIFIED"
+          }
+        },
+        "CLIENT_HISTORICAL_BOT_ACTIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_HISTORICAL_BOT_ACTIVITY"
+          }
+        },
+        "ACCOUNT_IN_LARGE_RELATED_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_IN_LARGE_RELATED_GROUP"
+          }
+        },
+        "CLIENT_ACCESSED_MANY_ACCOUNTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_ACCESSED_MANY_ACCOUNTS"
+          }
+        },
+        "DISPOSABLE_EMAIL_DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPOSABLE_EMAIL_DOMAIN"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment": {
+      "type": "structure",
+      "members": {
+        "transactionRisk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Probability of this transaction being fraudulent. Summarizes the combined risk of attack vectors below. Values are from 0.0 (lowest) to 1.0 (highest)."
+          }
+        },
+        "stolenInstrumentVerdict": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment of this transaction for risk of a stolen instrument."
+          }
+        },
+        "behavioralTrustVerdict": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment of this transaction for behavioral trust."
+          }
+        },
+        "cardTestingVerdict": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment of this transaction for risk of being part of a card testing attack."
+          }
+        },
+        "riskReasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReasonList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reasons why the transaction is probably fraudulent and received a high transaction risk score."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Assessment for Fraud Prevention."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReasonList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Metrics": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. The name of the metrics, in the format `projects/{project}/keys/{key}/metrics`."
+          }
+        },
+        "challengeMetrics": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ChallengeMetricsList",
+          "traits": {
+            "smithy.api#documentation": "Metrics are continuous and in order by dates, and in the granularity of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have challenge-based data."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Inclusive start time aligned to a day in the America/Los_Angeles (Pacific) timezone."
+          }
+        },
+        "scoreMetrics": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreMetricsList",
+          "traits": {
+            "smithy.api#documentation": "Metrics are continuous and in order by dates, and in the granularity of day. All Key types should have score-based data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metrics for a single Key."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ChallengeMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ChallengeMetrics"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreMetricsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreMetrics"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification": {
+      "type": "structure",
+      "members": {
+        "reencryptedUserCredentialsHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash` field. It is used to match potential password leaks within `encrypted_leak_match_prefixes`."
+          }
+        },
+        "encryptedLeakMatchPrefixes": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of prefixes of the encrypted potential password leaks that matched the given parameters. They must be compared with the client-side decryption prefix of `reencrypted_user_credentials_hash`"
+          }
+        },
+        "encryptedUserCredentialsHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Encrypted Scrypt hash of the canonicalized username+password. It is re-encrypted by the server and returned through `reencrypted_user_credentials_hash`."
+          }
+        },
+        "lookupHashPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It is used to look up password leaks associated with that hash prefix."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private password leak verification info."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A block action serves an HTTP error code a prevents the request from hitting the backend."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "An allow action continues processing a request unimpeded."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings": {
+      "type": "structure",
+      "members": {
+        "defaultSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings",
+          "traits": {
+            "smithy.api#documentation": "Required. Defines when a challenge is triggered (unless the default threshold is overridden for the given action, see `action_settings`)."
+          }
+        },
+        "actionSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettingsMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The action to score threshold map. The action name should be the same as the action name passed in the `data-action` attribute (see https://cloud.google.com/recaptcha/docs/actions-website). Action names are case-insensitive. There is a maximum of 100 action settings. An action name has a maximum length of 100."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for POLICY_BASED_CHALLENGE keys to control when a challenge is triggered."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettingsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest": {
+      "type": "structure",
+      "members": {
+        "ipOverrideData": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideData",
+          "traits": {
+            "smithy.api#documentation": "Required. IP override to be removed from the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The RemoveIpOverride request message."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleRpcStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the processing of a policy config fails, an error is populated and the firewall_policy is left empty."
+          }
+        },
+        "firewallPolicy": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
+          "traits": {
+            "smithy.api#documentation": "Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field is left empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Policy config assessment."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals": {
+      "type": "structure",
+      "members": {
+        "cardLabels": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The labels for the payment card in this transaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Signals describing the payment card used in this transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsItemEnum": {
+      "type": "enum",
+      "members": {
+        "CARD_LABEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CARD_LABEL_UNSPECIFIED"
+          }
+        },
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREPAID"
+          }
+        },
+        "VIRTUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIRTUAL"
+          }
+        },
+        "UNEXPECTED_LOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEXPECTED_LOCATION"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsItemEnum"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest": {
+      "type": "structure",
+      "members": {
+        "skipBillingCheck": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://docs.cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The migrate key request message."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent": {
+      "type": "structure",
+      "members": {
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time at which the multi-factor authentication event (challenge or verification) occurred."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Phone number in E.164 format for which a multi-factor authentication challenge was initiated, succeeded, or failed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details on a phone authentication event"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WafSettings": {
+      "type": "structure",
+      "members": {
+        "wafService": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WafSettingsWafServiceEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The Web Application Firewall (WAF) service that uses this key."
+          }
+        },
+        "wafFeature": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WafSettingsWafFeatureEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The Web Application Firewall (WAF) feature for which this key is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings specific to keys that can be used for WAF (Web Application Firewall)."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WafSettingsWafServiceEnum": {
+      "type": "enum",
+      "members": {
+        "WAF_SERVICE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAF_SERVICE_UNSPECIFIED"
+          }
+        },
+        "CA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA"
+          }
+        },
+        "FASTLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FASTLY"
+          }
+        },
+        "CLOUDFLARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUDFLARE"
+          }
+        },
+        "AKAMAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AKAMAI"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WafSettingsWafFeatureEnum": {
+      "type": "enum",
+      "members": {
+        "WAF_FEATURE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WAF_FEATURE_UNSPECIFIED"
+          }
+        },
+        "CHALLENGE_PAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHALLENGE_PAGE"
+          }
+        },
+        "SESSION_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SESSION_TOKEN"
+          }
+        },
+        "ACTION_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_TOKEN"
+          }
+        },
+        "EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPRESS"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo": {
+      "type": "structure",
+      "members": {
+        "lastVerificationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp of the last successful verification for the endpoint, if any."
+          }
+        },
+        "requestToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Token to provide to the client to trigger endpoint verification. It must be used within 15 minutes."
+          }
+        },
+        "emailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address for which to trigger a verification request."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number for which to trigger a verification request. Should be given in E.164 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a verification endpoint that can be used for 2FA."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier. The resource name for this membership in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`."
+          }
+        },
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique stable account identifier of the member. The identifier corresponds to an `account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call."
+          }
+        },
+        "hashedAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: use `account_id` instead. The unique stable hashed account identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A membership in a group of related accounts."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response for AddIpOverride."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AppleDeveloperId": {
+      "type": "structure",
+      "members": {
+        "privateKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. A private key (downloaded as a text file with a .p8 file extension) generated for your Apple Developer account. Ensure that Apple DeviceCheck is enabled for the private key."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Apple team ID (10-character string) owning the provisioning profile used to build your application."
+          }
+        },
+        "keyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Apple developer key ID (10-character string)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains fields that are required to perform Apple-specific integrity checks."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListKeysResponse": {
+      "type": "structure",
+      "members": {
+        "keys": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1KeyList",
+          "traits": {
+            "smithy.api#documentation": "Key details."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results. It is set to empty if no keys remain in results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to request to list keys in a project."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1KeyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest": {
+      "type": "structure",
+      "members": {
+        "ipOverrideData": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideData",
+          "traits": {
+            "smithy.api#documentation": "Required. IP override added to the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AddIpOverride request message."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict": {
+      "type": "structure",
+      "members": {
+        "risk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about stolen instrument fraud, where the user is not the legitimate owner of the instrument being used for the purchase."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse": {
+      "type": "structure",
+      "members": {
+        "firewallPolicies": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicyList",
+          "traits": {
+            "smithy.api#documentation": "Policy details."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results. It is set to empty if no policies remain in results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to request to list firewall policies belonging to a project."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the gateway service (for example, stripe, square, paypal)."
+          }
+        },
+        "gatewayResponseCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Gateway response code describing the state of the transaction."
+          }
+        },
+        "cvvResponseCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. CVV response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization)."
+          }
+        },
+        "avsResponseCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. AVS response code from the gateway (available only when reCAPTCHA Enterprise is called after authorization)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the transaction from the gateway."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ExpressKeySettings": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Settings specific to keys that can be used for reCAPTCHA Express."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The full name of the item."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value per item that the user is paying, in the transaction currency, after discounts."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The quantity of this item that is being purchased."
+          }
+        },
+        "merchantAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. When a merchant is specified, its corresponding account_id. Necessary to populate marketplace-style transactions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Line items being purchased in this transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse": {
+      "type": "structure",
+      "members": {
+        "relatedAccountGroupMemberships": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembershipList",
+          "traits": {
+            "smithy.api#documentation": "The memberships listed by the query."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a `ListRelatedAccountGroupMemberships` call."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembershipList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
+      "type": "structure",
+      "members": {
+        "allowedPackageNames": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Android package names of apps allowed to use the key. Example: 'com.companyname.appname' Each key supports a maximum of 250 package names. To use a key on more apps, set `allow_all_package_names` to true. When this is set, you are responsible for validating the package name by checking the `token_properties.android_package_name` field in each assessment response against your list of allowed package names."
+          }
+        },
+        "supportNonGoogleAppStoreDistribution": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set to true for keys that are used in an Android application that is available for download in app stores in addition to the Google Play Store."
+          }
+        },
+        "allowAllPackageNames": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, allowed_package_names are not enforced."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings specific to keys that can be used by Android apps."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment": {
+      "type": "structure",
+      "members": {
+        "smsTollFraudVerdict": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment of this phone event for risk of SMS toll fraud."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Assessment for Phone Fraud"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier. The resource name for the related account group in the format `projects/{project}/relatedaccountgroups/{related_account_group}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A group of related accounts."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleRpcStatus": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.recaptchaenterprise_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#DocumentMap"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Assessment": {
+      "type": "structure",
+      "members": {
+        "firewallPolicyAssessment": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment returned when firewall policies belonging to the project are evaluated using the field firewall_policy_evaluation."
+          }
+        },
+        "phoneFraudAssessment": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. Account defender and SMS toll fraud protection need to be enabled."
+          }
+        },
+        "event": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Event",
+          "traits": {
+            "smithy.api#documentation": "Optional. The event being assessed."
+          }
+        },
+        "accountDefenderAssessment": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment returned by account defender when an account identifier is provided."
+          }
+        },
+        "fraudSignals": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignals",
+          "traits": {
+            "smithy.api#documentation": "Output only. Fraud Signals specific to the users involved in a payment transaction."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. The resource name for the Assessment in the format `projects/{project}/assessments/{assessment}`."
+          }
+        },
+        "assessmentEnvironment": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment",
+          "traits": {
+            "smithy.api#documentation": "Optional. The environment creating the assessment. This describes your environment (the system invoking CreateAssessment), NOT the environment of your user."
+          }
+        },
+        "fraudPreventionAssessment": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
+          "traits": {
+            "smithy.api#documentation": "Output only. Assessment returned by Fraud Prevention when TransactionData is provided."
+          }
+        },
+        "tokenProperties": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TokenProperties",
+          "traits": {
+            "smithy.api#documentation": "Output only. Properties of the provided event token."
+          }
+        },
+        "riskAnalysis": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
+          "traits": {
+            "smithy.api#documentation": "Output only. The risk analysis result for the event being assessed."
+          }
+        },
+        "accountVerification": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo",
+          "traits": {
+            "smithy.api#documentation": "Optional. Account verification information for identity verification. The assessment event must include a token and site key to use this feature."
+          }
+        },
+        "privatePasswordLeakVerification": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
+          "traits": {
+            "smithy.api#documentation": "Optional. The private password leak verification field contains the parameters that are used to to check for leaks privately without sharing user credentials."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A reCAPTCHA Enterprise assessment resource."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1UserInfo": {
+      "type": "structure",
+      "members": {
+        "createAccountTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Creation time for this account associated with this user. Leave blank for non logged-in actions, guest checkout, or when there is no account associated with the current user."
+          }
+        },
+        "userIds": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1UserIdList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Identifiers associated with this user or request."
+          }
+        },
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. For logged-in requests or login/registration requests, the unique account identifier associated with this user. You can use the username if it is stable (meaning it is the same for every request associated with the same user), or any stable user ID of your choice. Leave blank for non logged-in actions or guest checkout."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User information associated with a request protected by reCAPTCHA Enterprise."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1UserIdList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1UserId"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The header key to set in the request to the backend server."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The header value to set in the request to the backend server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set header action sets a header and forwards the request to the backend. This can be used to trigger custom protection implemented on the backend."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse": {
+      "type": "structure",
+      "members": {
+        "ipOverrides": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideDataList",
+          "traits": {
+            "smithy.api#documentation": "IP Overrides details."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results. If this field is empty, no keys remain in the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for ListIpOverrides."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideData"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment": {
+      "type": "structure",
+      "members": {
+        "client": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - \"github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager\" - \"wordpress.org/plugins/recaptcha-something\""
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The version of the client module. For example, \"1.0.0\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The environment creating the assessment. This describes your environment (the system invoking CreateAssessment), NOT the environment of your user."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReasonReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. A trust reason associated with this request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Trust explainability reasons for account defender."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReasonReasonEnum": {
+      "type": "enum",
+      "members": {
+        "TRUST_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUST_REASON_UNSPECIFIED"
+          }
+        },
+        "PROFILE_MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROFILE_MATCH"
+          }
+        },
+        "ACCOUNT_HISTORY_REPUTABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_HISTORY_REPUTABLE"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique stable account identifier used to search connections. The identifier should correspond to an `account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id or account_id must be set, but not both."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `SearchRelatedAccountGroupMemberships` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchRelatedAccountGroupMemberships` must match the call that provided the page token."
+          }
+        },
+        "hashedAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Deprecated: use `account_id` instead. The unique stable hashed account identifier used to search connections. The identifier should correspond to a `hashed_account_id` provided in a previous `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id or account_id must be set, but not both."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message to search related account group memberships."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals": {
+      "type": "structure",
+      "members": {
+        "syntheticRisk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Likelihood (from 0.0 to 1.0) this user includes synthetic components in their identity, such as a randomly generated email address, temporary phone number, or fake shipping address."
+          }
+        },
+        "activeDaysLowerBound": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. This user (based on email, phone, and other identifiers) has been seen on the internet for at least this number of days."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Signals describing the user involved in this transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse": {
+      "type": "structure",
+      "members": {
+        "relatedAccountGroupMemberships": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembershipList",
+          "traits": {
+            "smithy.api#documentation": "The queried memberships."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a `SearchRelatedAccountGroupMemberships` call."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict": {
+      "type": "structure",
+      "members": {
+        "risk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Account takeover attempt probability. Values are from 0.0 (lowest risk) to 1.0 (highest risk)."
+          }
+        },
+        "riskReasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReasonList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unordered list. Reasons why the request appears risky. Risk reasons can be returned even if the risk is low, as trustworthy requests can still have some risk signals."
+          }
+        },
+        "trustReasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReasonList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unordered list. Reasons why the request appears trustworthy. Trust reasons can be returned even if the risk is high, as risky requests can still have some trust signals."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account takeover risk assessment."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReasonList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReasonList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Empty response for AnnotateAssessment."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse": {
+      "type": "structure",
+      "members": {
+        "legacySecretKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The secret key (also known as shared secret) authorizes communication between your application backend and the reCAPTCHA Enterprise server to create an assessment. The secret key needs to be kept safe for security purposes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Secret key is used only in legacy reCAPTCHA. It must be used in a 3rd party integration with legacy reCAPTCHA."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallAction": {
+      "type": "structure",
+      "members": {
+        "block": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction",
+          "traits": {
+            "smithy.api#documentation": "This action denies access to a given page. The user gets an HTTP error code."
+          }
+        },
+        "includeRecaptchaScript": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction",
+          "traits": {
+            "smithy.api#documentation": "This action injects reCAPTCHA JavaScript code into the HTML page returned by the site backend."
+          }
+        },
+        "allow": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction",
+          "traits": {
+            "smithy.api#documentation": "The user request did not match any policy and should be allowed access to the requested resource."
+          }
+        },
+        "setHeader": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction",
+          "traits": {
+            "smithy.api#documentation": "This action sets a custom header but allow the request to continue to the customer backend."
+          }
+        },
+        "redirect": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction",
+          "traits": {
+            "smithy.api#documentation": "This action redirects the request to a reCAPTCHA interstitial to attach a token."
+          }
+        },
+        "substitute": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction",
+          "traits": {
+            "smithy.api#documentation": "This action transparently serves a different page to an offending user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An individual action. Each action represents what to do if a policy matches."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Event": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user response token provided by the reCAPTCHA Enterprise client-side integration on your site."
+          }
+        },
+        "express": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference an Express site key."
+          }
+        },
+        "hashedAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Deprecated: use `user_info.account_id` instead. Unique stable hashed user identifier for the request. The identifier must be hashed using hmac-sha256 with stable secret."
+          }
+        },
+        "headers": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. HTTP header information about the request."
+          }
+        },
+        "fraudPrevention": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1EventFraudPreventionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Fraud Prevention setting for this assessment."
+          }
+        },
+        "wafTokenAssessment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Flag for running Web Application Firewall (WAF) token assessment. If enabled, the token must be specified, and have been created by a WAF-enabled key."
+          }
+        },
+        "userAgent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user agent present in the request from the user's device related to this event."
+          }
+        },
+        "requestedUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URI resource the user requested that triggered an assessment."
+          }
+        },
+        "firewallPolicyEvaluation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy is evaluated and a suggested firewall action is returned in the response."
+          }
+        },
+        "userInfo": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1UserInfo",
+          "traits": {
+            "smithy.api#documentation": "Optional. Information about the user that generates this event, when they can be identified. They are often identified through the use of an account for logged-in requests or login/registration requests, or by providing user identifiers for guest actions like checkout."
+          }
+        },
+        "userIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The IP address in the request from the user's device related to this event."
+          }
+        },
+        "expectedAction": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise."
+          }
+        },
+        "siteKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The site key that was used to invoke reCAPTCHA Enterprise on your site and generate the token."
+          }
+        },
+        "ja3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. JA3 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/salesforce/ja3."
+          }
+        },
+        "ja4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. JA4 fingerprint for SSL clients. To learn how to compute this fingerprint, please refer to https://github.com/FoxIO-LLC/ja4."
+          }
+        },
+        "transactionData": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionData",
+          "traits": {
+            "smithy.api#documentation": "Optional. Data describing a payment transaction to be assessed. Sending this data enables reCAPTCHA Enterprise Fraud Prevention and the FraudPreventionAssessment component in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The event being assessed."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1EventFraudPreventionEnum": {
+      "type": "enum",
+      "members": {
+        "FRAUD_PREVENTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRAUD_PREVENTION_UNSPECIFIED"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "An include reCAPTCHA script action involves injecting reCAPTCHA JavaScript code into the HTML returned by the site backend. This reCAPTCHA script is tasked with collecting user signals on the requested web page, issuing tokens as a cookie within the site domain, and enabling their utilization in subsequent page requests."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The address to redirect to. The target is a relative path in the current host. Example: \"/blog/404.html\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A substitute action transparently serves a different page than the one requested."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1UserId": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An email address."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A unique username, if different from all the other identifiers and `account_id` that are provided. Can be a unique login handle or display name for a user."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A phone number. Should use the E.164 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An identifier associated with a user."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionEvent": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The reason or standardized code that corresponds with this transaction event, if one exists. For example, a CHARGEBACK event with code 6005."
+          }
+        },
+        "eventType": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionEventEventTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of this transaction event."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value that corresponds with this transaction event, if one exists. For example, a refund event where $5.00 was refunded. Currency is obtained from the original transaction data."
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Timestamp when this transaction event occurred; otherwise assumed to be the time of the API call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes an event in the lifecycle of a payment transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionEventEventTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TRANSACTION_EVENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSACTION_EVENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "MERCHANT_APPROVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_APPROVE"
+          }
+        },
+        "MERCHANT_DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_DENY"
+          }
+        },
+        "MANUAL_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANUAL_REVIEW"
+          }
+        },
+        "AUTHORIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZATION"
+          }
+        },
+        "AUTHORIZATION_DECLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZATION_DECLINE"
+          }
+        },
+        "PAYMENT_CAPTURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_CAPTURE"
+          }
+        },
+        "PAYMENT_CAPTURE_DECLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_CAPTURE_DECLINE"
+          }
+        },
+        "CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCEL"
+          }
+        },
+        "CHARGEBACK_INQUIRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK_INQUIRY"
+          }
+        },
+        "CHARGEBACK_ALERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK_ALERT"
+          }
+        },
+        "FRAUD_NOTIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRAUD_NOTIFICATION"
+          }
+        },
+        "CHARGEBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK"
+          }
+        },
+        "CHARGEBACK_REPRESENTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK_REPRESENTMENT"
+          }
+        },
+        "CHARGEBACK_REVERSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARGEBACK_REVERSE"
+          }
+        },
+        "REFUND_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND_REQUEST"
+          }
+        },
+        "REFUND_DECLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND_DECLINE"
+          }
+        },
+        "REFUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND"
+          }
+        },
+        "REFUND_REVERSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUND_REVERSE"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Bot": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent * browser-base * chat-gpt * aws-bedrock * cybaa-bot * cloudflare * payhawk Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive."
+          }
+        },
+        "botType": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1BotBotTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Enumerated field representing the type of bot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Bot information and metadata."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1BotBotTypeEnum": {
+      "type": "enum",
+      "members": {
+        "BOT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOT_TYPE_UNSPECIFIED"
+          }
+        },
+        "AI_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI_AGENT"
+          }
+        },
+        "CONTENT_SCRAPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTENT_SCRAPER"
+          }
+        },
+        "SEARCH_INDEXER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEARCH_INDEXER"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysis": {
+      "type": "structure",
+      "members": {
+        "extendedVerdictReasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Additional reasons contributing to the risk analysis verdict. These reasons are available to Enterprise tier projects only. Contact sales for more information. The set of reasons is subject to change."
+          }
+        },
+        "verifiedBots": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1BotList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Bots with identities that have been verified by reCAPTCHA and detected in the event."
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic)."
+          }
+        },
+        "challenge": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysisChallengeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys."
+          }
+        },
+        "reasons": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reasons contributing to the risk analysis verdict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Risk analysis result for an event."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1BotList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Bot"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysisChallengeEnum": {
+      "type": "enum",
+      "members": {
+        "CHALLENGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHALLENGE_UNSPECIFIED"
+          }
+        },
+        "NOCAPTCHA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOCAPTCHA"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnum": {
+      "type": "enum",
+      "members": {
+        "CLASSIFICATION_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLASSIFICATION_REASON_UNSPECIFIED"
+          }
+        },
+        "AUTOMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMATION"
+          }
+        },
+        "UNEXPECTED_ENVIRONMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEXPECTED_ENVIRONMENT"
+          }
+        },
+        "TOO_MUCH_TRAFFIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_MUCH_TRAFFIC"
+          }
+        },
+        "UNEXPECTED_USAGE_PATTERNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEXPECTED_USAGE_PATTERNS"
+          }
+        },
+        "LOW_CONFIDENCE_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW_CONFIDENCE_SCORE"
+          }
+        },
+        "SUSPECTED_CARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPECTED_CARDING"
+          }
+        },
+        "SUSPECTED_CHARGEBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPECTED_CHARGEBACK"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnum"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionData": {
+      "type": "structure",
+      "members": {
+        "cardLastFour": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The last four digits of the card."
+          }
+        },
+        "user": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
+          "traits": {
+            "smithy.api#documentation": "Optional. Information about the user paying/initiating the transaction."
+          }
+        },
+        "shippingAddress": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
+          "traits": {
+            "smithy.api#documentation": "Optional. Destination address if this transaction involves shipping a physical item."
+          }
+        },
+        "transactionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the transaction. This custom identifier can be used to reference this transaction in the future, for example, labeling a refund or chargeback event. Two attempts at the same transaction should use the same transaction id."
+          }
+        },
+        "cardBin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Bank Identification Number - generally the first 6 or 8 digits of the card."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The currency code in ISO-4217 format."
+          }
+        },
+        "merchants": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataUserList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Information about the user or users fulfilling the transaction."
+          }
+        },
+        "items": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataItemList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Items purchased in this transaction."
+          }
+        },
+        "gatewayInfo": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo",
+          "traits": {
+            "smithy.api#documentation": "Optional. Information about the payment gateway's response to the transaction."
+          }
+        },
+        "shippingValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value of shipping in the specified currency. 0 for free or no shipping."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The decimal value of the transaction in the specified currency."
+          }
+        },
+        "paymentMethod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The payment method for the transaction. The allowed values are: * credit-card * debit-card * gift-card * processor-{name} (If a third-party is used, for example, processor-paypal) * custom-{name} (If an alternative method is used, for example, custom-crypto)"
+          }
+        },
+        "billingAddress": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataAddress",
+          "traits": {
+            "smithy.api#documentation": "Optional. Address associated with the payment method when applicable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transaction data associated with a payment protected by reCAPTCHA Enterprise."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataUserList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataUser"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TransactionDataItem"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict": {
+      "type": "structure",
+      "members": {
+        "risk": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Probability of this transaction attempt being part of a card testing attack. Values are from 0.0 (lowest) to 1.0 (highest)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about card testing fraud, where an adversary is testing fraudulently obtained cards or brute forcing their details."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ChallengeMetrics": {
+      "type": "structure",
+      "members": {
+        "pageloadCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Count of reCAPTCHA checkboxes or badges rendered. This is mostly equivalent to a count of pageloads for pages that include reCAPTCHA."
+          }
+        },
+        "nocaptchaCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Count of nocaptchas (successful verification without a challenge) issued."
+          }
+        },
+        "failedCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Count of submitted challenge solutions that were incorrect or otherwise deemed suspicious such that a subsequent challenge was triggered."
+          }
+        },
+        "passedCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Count of nocaptchas (successful verification without a challenge) plus submitted challenge solutions that were correct and resulted in verification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metrics related to challenges."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The reorder firewall policies response message."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideData": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The IP address to override (can be IPv4, IPv6 or CIDR). The IP override must be a valid IPv4 or IPv6 address, or a CIDR range. The IP override must be a public IP address. Example of IPv4: 168.192.5.6 Example of IPv6: 2001:0000:130F:0000:0000:09C0:876A:130B Example of IPv4 with CIDR: 168.192.5.0/24 Example of IPv6 with CIDR: 2001:0DB8:1234::/48"
+          }
+        },
+        "overrideType": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideDataOverrideTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Describes the type of IP override."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the IP or IP range override."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IpOverrideDataOverrideTypeEnum": {
+      "type": "enum",
+      "members": {
+        "OVERRIDE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVERRIDE_TYPE_UNSPECIFIED"
+          }
+        },
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALLOW"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict": {
+      "type": "structure",
+      "members": {
+        "trust": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Probability of this transaction attempt being executed in a behaviorally trustworthy way. Values are from 0.0 (lowest) to 1.0 (highest)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about behavioral trust of the transaction."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IOSKeySettings": {
+      "type": "structure",
+      "members": {
+        "allowedBundleIds": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. iOS bundle IDs of apps allowed to use the key. Example: 'com.companyname.productname.appname' Each key supports a maximum of 250 bundle IDs. To use a key on more apps, set `allow_all_bundle_ids` to true. When this is set, you are responsible for validating the bundle id by checking the `token_properties.ios_bundle_id` field in each assessment response against your list of allowed bundle IDs."
+          }
+        },
+        "allowAllBundleIds": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, allowed_bundle_ids are not enforced."
+          }
+        },
+        "appleDeveloperId": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AppleDeveloperId",
+          "traits": {
+            "smithy.api#documentation": "Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA to get a better assessment of the integrity of your app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings specific to keys that can be used by iOS apps."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ScoreDistribution": {
+      "type": "structure",
+      "members": {
+        "scoreBuckets": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Map key is score value multiplied by 100. The scores are discrete values between [0, 1]. The maximum number of buckets is on order of a few dozen, but typically much lower (ie. 10)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Score distribution."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "names": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. A list containing all policy names, in the new order. Each name is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reorder firewall policies request message."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "relatedAccountGroups": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupList",
+          "traits": {
+            "smithy.api#documentation": "The groups of related accounts listed by the query."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response to a `ListRelatedAccountGroups` call."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp corresponding to the creation of this key."
+          }
+        },
+        "testingOptions": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TestingOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. Options for user acceptance testing."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Human-readable display name of this key. Modifiable by user."
+          }
+        },
+        "iosSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for keys that can be used by iOS apps."
+          }
+        },
+        "wafSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WafSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings for Web Application Firewall (WAF)."
+          }
+        },
+        "expressSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ExpressKeySettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for keys that can be used by reCAPTCHA Express."
+          }
+        },
+        "webSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for keys that can be used by websites."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.recaptchaenterprise_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha/docs/labels)."
+          }
+        },
+        "androidSettings": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for keys that can be used by Android apps."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name for the Key in the format `projects/{project}/keys/{key}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A key used to identify and configure applications (web and/or mobile) that use reCAPTCHA Enterprise."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TestingOptions": {
+      "type": "structure",
+      "members": {
+        "testingScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. All assessments for this Key return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive."
+          }
+        },
+        "testingChallenge": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TestingOptionsTestingChallengeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for user acceptance testing."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TestingOptionsTestingChallengeEnum": {
+      "type": "enum",
+      "members": {
+        "TESTING_CHALLENGE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TESTING_CHALLENGE_UNSPECIFIED"
+          }
+        },
+        "NOCAPTCHA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOCAPTCHA"
+          }
+        },
+        "UNSOLVABLE_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSOLVABLE_CHALLENGE"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReasonReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Risk reasons applicable to the Fraud Prevention assessment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Risk reasons applicable to the Fraud Prevention assessment."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReasonReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "HIGH_TRANSACTION_VELOCITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH_TRANSACTION_VELOCITY"
+          }
+        },
+        "EXCESSIVE_ENUMERATION_PATTERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXCESSIVE_ENUMERATION_PATTERN"
+          }
+        },
+        "SHORT_IDENTITY_HISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHORT_IDENTITY_HISTORY"
+          }
+        },
+        "GEOLOCATION_DISCREPANCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEOLOCATION_DISCREPANCY"
+          }
+        },
+        "ASSOCIATED_WITH_FRAUD_CLUSTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASSOCIATED_WITH_FRAUD_CLUSTER"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the account that is being verified. Deprecated. Customers should now provide the `account_id` field in `event.user_info`."
+          }
+        },
+        "latestVerificationResult": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountVerificationInfoLatestVerificationResultEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Result of the latest account verification challenge."
+          }
+        },
+        "endpoints": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfoList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Endpoints that can be used for identity verification."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Language code preference for the verification message, set as a IETF BCP 47 language code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about account verification, used for identity verification."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountVerificationInfoLatestVerificationResultEnum": {
+      "type": "enum",
+      "members": {
+        "RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESULT_UNSPECIFIED"
+          }
+        },
+        "SUCCESS_USER_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS_USER_VERIFIED"
+          }
+        },
+        "ERROR_USER_NOT_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_USER_NOT_VERIFIED"
+          }
+        },
+        "ERROR_SITE_ONBOARDING_INCOMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_SITE_ONBOARDING_INCOMPLETE"
+          }
+        },
+        "ERROR_RECIPIENT_NOT_ALLOWED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_RECIPIENT_NOT_ALLOWED"
+          }
+        },
+        "ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED"
+          }
+        },
+        "ERROR_CRITICAL_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_CRITICAL_INTERNAL"
+          }
+        },
+        "ERROR_CUSTOMER_QUOTA_EXHAUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_CUSTOMER_QUOTA_EXHAUSTED"
+          }
+        },
+        "ERROR_VERIFICATION_BYPASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_VERIFICATION_BYPASSED"
+          }
+        },
+        "ERROR_VERDICT_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_VERDICT_MISMATCH"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
+      "type": "structure",
+      "members": {
+        "accountTakeoverVerdict": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict",
+          "traits": {
+            "smithy.api#documentation": "Output only. Account takeover risk assessment for this request."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Labels for this request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account defender risk assessment."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemEnum": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED"
+          }
+        },
+        "PROFILE_MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROFILE_MATCH"
+          }
+        },
+        "SUSPICIOUS_LOGIN_ACTIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPICIOUS_LOGIN_ACTIVITY"
+          }
+        },
+        "SUSPICIOUS_ACCOUNT_CREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPICIOUS_ACCOUNT_CREATION"
+          }
+        },
+        "RELATED_ACCOUNTS_NUMBER_HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELATED_ACCOUNTS_NUMBER_HIGH"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemEnum"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings": {
+      "type": "structure",
+      "members": {
+        "scoreThreshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. A challenge is triggered if the end-user score is below that threshold. Value must be between 0 and 1 (inclusive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-action challenge settings."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The path for which this policy applies, specified as a glob pattern. For more information on glob, see the [manual page](https://man7.org/linux/man-pages/man7/glob.7.html). A path has a max length of 200 characters."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of what this policy aims to achieve, for convenience purposes. The description can at most include 256 UTF-8 characters."
+          }
+        },
+        "actions": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The actions that the caller should take regarding user access. There should be at most one terminal action. A terminal action is any action that forces a response, such as `AllowAction`, `BlockAction` or `SubstituteAction`. Zero or more non-terminal actions such as `SetHeader` might be specified. A single policy can contain up to 16 actions."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A CEL (Common Expression Language) conditional expression that specifies if this policy applies to an incoming user request. If this condition evaluates to true and the requested path matched the path pattern, the associated actions should be executed by the caller. The condition string is checked for CEL syntax correctness on creation. For more information, see the [CEL spec](https://github.com/google/cel-spec) and its [language definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md). A condition has a max length of 500 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A FirewallPolicy represents a single matching pattern and resulting actions to take."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallAction"
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TokenProperties": {
+      "type": "structure",
+      "members": {
+        "androidPackageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the Android package with which the token was generated (Android keys only)."
+          }
+        },
+        "valid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether the provided user response token is valid. If `false`, the token is invalid, either because the user failed the challenge or for a reason provided in the `invalid_reason` field."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The hostname of the page on which the token was generated (Web keys only)."
+          }
+        },
+        "iosBundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID of the iOS bundle with which the token was generated (iOS keys only)."
+          }
+        },
+        "invalidReason": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TokenPropertiesInvalidReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reason associated with the response when valid = false."
+          }
+        },
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Action name provided at token generation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp corresponding to the generation of the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the provided event token."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1TokenPropertiesInvalidReasonEnum": {
+      "type": "enum",
+      "members": {
+        "INVALID_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_REASON_UNSPECIFIED"
+          }
+        },
+        "UNKNOWN_INVALID_REASON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_INVALID_REASON"
+          }
+        },
+        "MALFORMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALFORMED"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPIRED"
+          }
+        },
+        "DUPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DUPE"
+          }
+        },
+        "MISSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISSING"
+          }
+        },
+        "BROWSER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BROWSER_ERROR"
+          }
+        },
+        "UNEXPECTED_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNEXPECTED_ACTION"
+          }
+        },
+        "KEY_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KEY_MISMATCH"
+          }
+        },
+        "DOMAIN_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMAIN_MISMATCH"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A redirect action returns a 307 (temporary redirect) response, pointing the user to a reCAPTCHA interstitial page to attach a token."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsRelatedaccountgroupsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project to list related account groups from, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListRelatedAccountGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRelatedAccountGroups` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 50 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsRelatedaccountgroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#ListProjectsRelatedaccountgroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/relatedaccountgroups"
+        },
+        "smithy.api#documentation": "List groups of related accounts.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsRelatedaccountgroupsMembershipsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name for the related account group in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListRelatedAccountGroupMemberships` call. When paginating, all other parameters provided to `ListRelatedAccountGroupMemberships` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of accounts to return. The service might return fewer than this value. If unspecified, at most 50 accounts are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsRelatedaccountgroupsMemberships": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#ListProjectsRelatedaccountgroupsMembershipsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/memberships"
+        },
+        "smithy.api#documentation": "Get memberships in a group of related accounts.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GetProjectsFirewallpoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the requested policy, in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GetProjectsFirewallpolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#GetProjectsFirewallpoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns the specified firewall policy."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#DeleteProjectsFirewallpoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the policy to be deleted, in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#DeleteProjectsFirewallpolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#DeleteProjectsFirewallpoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified firewall policy."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ReorderProjectsFirewallpoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project to list the policies for, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ReorderProjectsFirewallpolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#ReorderProjectsFirewallpoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/firewallpolicies:reorder"
+        },
+        "smithy.api#documentation": "Reorders all firewall policies."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsFirewallpoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project to list the policies for, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous. ListFirewallPoliciesRequest, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of policies to return. Default is 10. Max limit is 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsFirewallpolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#ListProjectsFirewallpoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/firewallpolicies"
+        },
+        "smithy.api#documentation": "Returns the list of all firewall policies that belong to a project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#PatchProjectsFirewallpoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields are updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name for the FirewallPolicy in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#PatchProjectsFirewallpolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#PatchProjectsFirewallpoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the specified firewall policy."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#CreateProjectsFirewallpoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project this policy applies to, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#CreateProjectsFirewallpolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#CreateProjectsFirewallpoliciesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1FirewallPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/firewallpolicies"
+        },
+        "smithy.api#documentation": "Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA Enterprise actions can be executed. A project may have a maximum of 1000 policies."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#PatchProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name for the Key in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields are updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#PatchProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#PatchProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the specified key."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#MigrateProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the key to be migrated, in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#MigrateProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#MigrateProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:migrate"
+        },
+        "smithy.api#documentation": "Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#RetrieveLegacySecretKeyProjectsKeysRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.recaptchaenterprise_v1#RetrieveLegacySecretKeyProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#RetrieveLegacySecretKeyProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+key}:retrieveLegacySecretKey"
+        },
+        "smithy.api#documentation": "Returns the secret key related to the specified public key. You must use the legacy secret key only in a 3rd party integration with legacy reCAPTCHA."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#AddIpOverrideProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the key to which the IP override is added, in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#AddIpOverrideProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#AddIpOverrideProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:addIpOverride"
+        },
+        "smithy.api#documentation": "Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 1000. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GetProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the requested key, in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GetProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#GetProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns the specified key."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#CreateProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project in which the key is created, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#CreateProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#CreateProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Key"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/keys"
+        },
+        "smithy.api#documentation": "Creates a new reCAPTCHA Enterprise key."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project that contains the keys that is listed, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous. ListKeysRequest, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of keys to return. Default is 10. Max limit is 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#ListProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListKeysResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/keys"
+        },
+        "smithy.api#documentation": "Returns the list of all keys that belong to a project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#DeleteProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the key to be deleted, in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#DeleteProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#DeleteProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes the specified key."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#RemoveIpOverrideProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the key from which the IP override is removed, in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#RemoveIpOverrideProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#RemoveIpOverrideProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:removeIpOverride"
+        },
+        "smithy.api#documentation": "Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error is returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error is returned."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListIpOverridesProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent key for which the IP overrides are listed, in the format `projects/{project}/keys/{key}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous ListIpOverridesRequest, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of overrides to return. Default is 10. Max limit is 100. If the number of overrides is less than the page_size, all overrides are returned. If the page size is more than 100, it is coerced to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#ListIpOverridesProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#ListIpOverridesProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}:listIpOverrides"
+        },
+        "smithy.api#documentation": "Lists all IP overrides for a key.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GetMetricsProjectsKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the requested metrics, in the format `projects/{project}/keys/{key}/metrics`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#GetMetricsProjectsKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#GetMetricsProjectsKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Metrics"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get some aggregated metrics for a Key. This data can be used to build dashboards."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#SearchProjectsRelatedaccountgroupmembershipsRequest": {
+      "type": "structure",
+      "members": {
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project to search related account group memberships from. Specify the project name in the following format: `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#SearchProjectsRelatedaccountgroupmemberships": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#SearchProjectsRelatedaccountgroupmembershipsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+project}/relatedaccountgroupmemberships:search"
+        },
+        "smithy.api#documentation": "Search group memberships related to a given account."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#CreateProjectsAssessmentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project in which the assessment is created, in the format `projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Assessment",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#CreateProjectsAssessments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#CreateProjectsAssessmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1Assessment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/assessments"
+        },
+        "smithy.api#documentation": "Creates an Assessment of the likelihood an event is legitimate."
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#AnnotateProjectsAssessmentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Assessment, in the format `projects/{project}/assessments/{assessment}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recaptchaenterprise_v1#AnnotateProjectsAssessments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recaptchaenterprise_v1#AnnotateProjectsAssessmentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recaptchaenterprise_v1#GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recaptchaenterprise_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:annotate"
+        },
+        "smithy.api#documentation": "Annotates a previously created Assessment to provide additional information on whether the event turned out to be authentic or fraudulent."
+      }
+    }
+  }
+}

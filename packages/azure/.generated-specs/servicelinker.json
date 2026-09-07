@@ -1,0 +1,4082 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.servicelinker#LinkersListDaprConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersListDaprConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#DaprConfigurationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/daprConfigurations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List the dapr configuration supported by Service Connector.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#DaprConfigurationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.servicelinker#DaprConfigurationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of dapr configurations"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to next page of resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dapr configuration list supported by Service Connector"
+      }
+    },
+    "com.azure.servicelinker#DaprConfigurationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#DaprConfigurationResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of dapr configurations"
+      }
+    },
+    "com.azure.servicelinker#DaprConfigurationResource": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.servicelinker#DaprConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dapr configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent one resource of the dapr configuration list"
+      }
+    },
+    "com.azure.servicelinker#DaprConfigurationProperties": {
+      "type": "structure",
+      "members": {
+        "targetType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Supported target resource type, extract from resource id, uppercase"
+          }
+        },
+        "authType": {
+          "target": "com.azure.servicelinker#AuthType"
+        },
+        "daprProperties": {
+          "target": "com.azure.servicelinker#DaprProperties"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.servicelinker#DaprProperties": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The dapr component version",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "componentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The dapr component type",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "secretStoreComponent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of a secret store dapr to retrieve secret",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metadata": {
+          "target": "com.azure.servicelinker#DaprPropertiesMetadataList",
+          "traits": {
+            "smithy.api#documentation": "Additional dapr metadata"
+          }
+        },
+        "scopes": {
+          "target": "com.azure.servicelinker#DaprPropertiesScopesList",
+          "traits": {
+            "smithy.api#documentation": "The dapr component scopes"
+          }
+        },
+        "runtimeVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runtime version supported by the properties",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bindingComponentDirection": {
+          "target": "com.azure.servicelinker#DaprPropertiesBindingComponentDirection",
+          "traits": {
+            "smithy.api#documentation": "The direction supported by the dapr binding component",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates some additional properties for dapr client type"
+      }
+    },
+    "com.azure.servicelinker#DaprPropertiesBindingComponentDirection": {
+      "type": "enum",
+      "members": {
+        "INPUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "input"
+          }
+        },
+        "OUTPUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "output"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The direction supported by the dapr binding component"
+      }
+    },
+    "com.azure.servicelinker#DaprPropertiesScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The dapr component scopes"
+      }
+    },
+    "com.azure.servicelinker#DaprPropertiesMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#DaprMetadata"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional dapr metadata"
+      }
+    },
+    "com.azure.servicelinker#DaprMetadata": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metadata property name."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metadata property value."
+          }
+        },
+        "secretRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The secret name where dapr could get value"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the metadata, returned from configuration api"
+          }
+        },
+        "required": {
+          "target": "com.azure.servicelinker#DaprMetadataRequired",
+          "traits": {
+            "smithy.api#documentation": "The value indicating whether the metadata is required or not"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The dapr component metadata."
+      }
+    },
+    "com.azure.servicelinker#DaprMetadataRequired": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "true"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The value indicating whether the metadata is required or not"
+      }
+    },
+    "com.azure.servicelinker#AuthType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "systemAssignedIdentity"
+          }
+        },
+        "USERASSIGNEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "userAssignedIdentity"
+          }
+        },
+        "SERVICEPRINCIPALSECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "servicePrincipalSecret"
+          }
+        },
+        "SERVICEPRINCIPALCERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "servicePrincipalCertificate"
+          }
+        },
+        "SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "secret"
+          }
+        },
+        "ACCESSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accessKey"
+          }
+        },
+        "USERACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "userAccount"
+          }
+        },
+        "EASYAUTHMICROSOFTENTRAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "easyAuthMicrosoftEntraID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The authentication type."
+      }
+    },
+    "com.azure.servicelinker#LinkersListDaprConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConfigurationNamesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConfigurationNamesListRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConfigurationNameResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ServiceLinker/configurationNames",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Lists the configuration names generated by Service Connector for all target, client types, auth types.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationNameResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.servicelinker#ConfigurationNameResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Expected configuration names for each target service."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to next page of resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration Name list which will be set based on different target resource, client type, auth type."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationNameResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#ConfigurationNameItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected configuration names for each target service."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationNameItem": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.servicelinker#ConfigurationNames",
+          "traits": {
+            "smithy.api#documentation": "The result detail.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.servicelinker#ConfigurationNames": {
+      "type": "structure",
+      "members": {
+        "targetService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target service provider name and resource name."
+          }
+        },
+        "clientType": {
+          "target": "com.azure.servicelinker#ClientType",
+          "traits": {
+            "smithy.api#documentation": "The client type for configuration names."
+          }
+        },
+        "authType": {
+          "target": "com.azure.servicelinker#AuthType",
+          "traits": {
+            "smithy.api#documentation": "The auth type."
+          }
+        },
+        "secretType": {
+          "target": "com.azure.servicelinker#SecretSourceType",
+          "traits": {
+            "smithy.api#documentation": "Indicates where the secrets in configuration from. Used when secrets are from Keyvault."
+          }
+        },
+        "daprProperties": {
+          "target": "com.azure.servicelinker#DaprProperties",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, please use #/definitions/DaprConfigurationList instead"
+          }
+        },
+        "names": {
+          "target": "com.azure.servicelinker#ConfigurationNamesNamesList",
+          "traits": {
+            "smithy.api#documentation": "The configuration names to be set in compute service environment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration names which will be set based on specific target resource, client type, auth type."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationNamesNamesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#ConfigurationName"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration names to be set in compute service environment."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description for the configuration name."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Represent the configuration is required or not"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration names."
+      }
+    },
+    "com.azure.servicelinker#SecretSourceType": {
+      "type": "enum",
+      "members": {
+        "RAWVALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rawValue"
+          }
+        },
+        "KEYVAULTSECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyVaultSecret"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of secret source."
+      }
+    },
+    "com.azure.servicelinker#ClientType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "DOTNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dotnet"
+          }
+        },
+        "JAVA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "java"
+          }
+        },
+        "PYTHON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "PHP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "php"
+          }
+        },
+        "RUBY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ruby"
+          }
+        },
+        "DJANGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "django"
+          }
+        },
+        "NODEJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nodejs"
+          }
+        },
+        "SPRINGBOOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "springBoot"
+          }
+        },
+        "KAFKA_SPRINGBOOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kafka-springBoot"
+          }
+        },
+        "JMS_SPRINGBOOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jms-springBoot"
+          }
+        },
+        "DAPR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dapr"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The application client type"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationNamesListRequest": {
+      "type": "structure",
+      "members": {
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "OData filter options."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "OData skipToken option for pagination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ServiceLinker/operations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Lists the available ServiceLinker REST API operations.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.servicelinker#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.servicelinker#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.servicelinker#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.servicelinker#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.servicelinker#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.servicelinker#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.servicelinker#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.servicelinker#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.servicelinker#LinkersGenerateConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersGenerateConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConfigurationResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/generateConfigurations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Generate configurations for a Linker.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationResult": {
+      "type": "structure",
+      "members": {
+        "configurations": {
+          "target": "com.azure.servicelinker#ConfigurationResultConfigurationsList",
+          "traits": {
+            "smithy.api#documentation": "The configuration properties for source resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configurations for source resource, include appSettings, connectionString and serviceBindings"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationResultConfigurationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#SourceConfiguration"
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration properties for source resource."
+      }
+    },
+    "com.azure.servicelinker#SourceConfiguration": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of setting."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of setting",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "configType": {
+          "target": "com.azure.servicelinker#LinkerConfigurationType",
+          "traits": {
+            "smithy.api#documentation": "The type of setting"
+          }
+        },
+        "keyVaultReferenceIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity for key vault reference, system or user-assigned managed identity ID",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive information for the configuration",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A configuration item for source resource"
+      }
+    },
+    "com.azure.servicelinker#LinkerConfigurationType": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Default"
+          }
+        },
+        "KEYVAULTSECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KeyVaultSecret"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of configuration to determine whether the configuration can be modified after creation. KeyvaultSecret means the configuration references a key vault secret, such as App Service/ACA key vault reference. Default means the configuration is real value, such as user name, raw secret, etc."
+      }
+    },
+    "com.azure.servicelinker#LinkersGenerateConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        },
+        "deleteOrUpdateBehavior": {
+          "target": "com.azure.servicelinker#DeleteOrUpdateBehavior",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to clean up previous operation when Linker is updating or deleting"
+          }
+        },
+        "action": {
+          "target": "com.azure.servicelinker#ActionType",
+          "traits": {
+            "smithy.api#documentation": "Optional, indicate whether to apply configurations on source application. If enable, generate configurations and applied to the source application. Default is enable. If optOut, no configuration change will be made on source."
+          }
+        },
+        "customizedKeys": {
+          "target": "com.azure.servicelinker#LinkersGenerateConfigurationsRequestCustomizedKeysMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+          }
+        },
+        "daprProperties": {
+          "target": "com.azure.servicelinker#DaprPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Indicates some additional properties for dapr client type"
+          }
+        },
+        "additionalConfigurations": {
+          "target": "com.azure.servicelinker#LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+          }
+        },
+        "additionalConnectionStringProperties": {
+          "target": "com.azure.servicelinker#LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+          }
+        },
+        "configurationStore": {
+          "target": "com.azure.servicelinker#ConfigurationStore",
+          "traits": {
+            "smithy.api#documentation": "An option to store configuration into different place",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConfigurationStore": {
+      "type": "structure",
+      "members": {
+        "appConfigurationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The app configuration id to store configuration",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An option to store configuration into different place"
+      }
+    },
+    "com.azure.servicelinker#LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+      }
+    },
+    "com.azure.servicelinker#LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+      }
+    },
+    "com.azure.servicelinker#DaprPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The dapr component version",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "componentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The dapr component type",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "secretStoreComponent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of a secret store dapr to retrieve secret",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metadata": {
+          "target": "com.azure.servicelinker#DaprPropertiesInputMetadataList",
+          "traits": {
+            "smithy.api#documentation": "Additional dapr metadata"
+          }
+        },
+        "scopes": {
+          "target": "com.azure.servicelinker#DaprPropertiesInputScopesList",
+          "traits": {
+            "smithy.api#documentation": "The dapr component scopes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates some additional properties for dapr client type"
+      }
+    },
+    "com.azure.servicelinker#DaprPropertiesInputScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The dapr component scopes"
+      }
+    },
+    "com.azure.servicelinker#DaprPropertiesInputMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#DaprMetadata"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional dapr metadata"
+      }
+    },
+    "com.azure.servicelinker#LinkersGenerateConfigurationsRequestCustomizedKeysMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+      }
+    },
+    "com.azure.servicelinker#ActionType": {
+      "type": "enum",
+      "members": {
+        "ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enable"
+          }
+        },
+        "OPTOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optOut"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates how to apply the connector operations, such as opt out network configuration, opt in configuration."
+      }
+    },
+    "com.azure.servicelinker#DeleteOrUpdateBehavior": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Default"
+          }
+        },
+        "FORCEDCLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ForcedCleanup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The cleanup behavior to indicate whether clean up operation when resource is deleted or updated"
+      }
+    },
+    "com.azure.servicelinker#LinkersDeleteDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersDeleteDryrunRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "delete a dryrun job",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkersDeleteDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkersUpdateDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersUpdateDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#LinkersUpdateDryrunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "add a dryrun job to do necessary check before actual creation",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkersUpdateDryrunResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#DryrunProperties": {
+      "type": "structure",
+      "members": {
+        "parameters": {
+          "target": "com.azure.servicelinker#DryrunParameters",
+          "traits": {
+            "smithy.api#documentation": "The parameters of the dryrun"
+          }
+        },
+        "prerequisiteResults": {
+          "target": "com.azure.servicelinker#DryrunPropertiesPrerequisiteResultsList",
+          "traits": {
+            "smithy.api#documentation": "the result of the dryrun"
+          }
+        },
+        "operationPreviews": {
+          "target": "com.azure.servicelinker#DryrunPropertiesOperationPreviewsList",
+          "traits": {
+            "smithy.api#documentation": "the preview of the operations for creation"
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the dryrun job"
+      }
+    },
+    "com.azure.servicelinker#DryrunPropertiesOperationPreviewsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#DryrunOperationPreview"
+      },
+      "traits": {
+        "smithy.api#documentation": "the preview of the operations for creation"
+      }
+    },
+    "com.azure.servicelinker#DryrunOperationPreview": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The operation name"
+          }
+        },
+        "operationType": {
+          "target": "com.azure.servicelinker#DryrunOperationPreviewOperationType",
+          "traits": {
+            "smithy.api#documentation": "The operation type"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the operation"
+          }
+        },
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The action defined by RBAC, refer https://docs.microsoft.com/azure/role-based-access-control/role-definitions#actions-format"
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope of the operation, refer https://docs.microsoft.com/azure/role-based-access-control/scope-overview"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The preview of the operations for creation"
+      }
+    },
+    "com.azure.servicelinker#DryrunOperationPreviewOperationType": {
+      "type": "enum",
+      "members": {
+        "CONFIGCONNECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configConnection"
+          }
+        },
+        "CONFIGNETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configNetwork"
+          }
+        },
+        "CONFIGAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configAuth"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation type"
+      }
+    },
+    "com.azure.servicelinker#DryrunPropertiesPrerequisiteResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#DryrunPrerequisiteResult"
+      },
+      "traits": {
+        "smithy.api#documentation": "the result of the dryrun"
+      }
+    },
+    "com.azure.servicelinker#DryrunPrerequisiteResult": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.servicelinker#DryrunPrerequisiteResultType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A result of dryrun"
+      }
+    },
+    "com.azure.servicelinker#DryrunPrerequisiteResultType": {
+      "type": "enum",
+      "members": {
+        "BASICERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "basicError"
+          }
+        },
+        "PERMISSIONSMISSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "permissionsMissing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of dryrun result."
+      }
+    },
+    "com.azure.servicelinker#DryrunParameters": {
+      "type": "structure",
+      "members": {
+        "actionName": {
+          "target": "com.azure.servicelinker#DryrunActionName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The parameters of the dryrun"
+      }
+    },
+    "com.azure.servicelinker#DryrunActionName": {
+      "type": "enum",
+      "members": {
+        "CREATEORUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "createOrUpdate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of action for you dryrun job."
+      }
+    },
+    "com.azure.servicelinker#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.servicelinker#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.servicelinker#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.servicelinker#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.servicelinker#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.servicelinker#LinkersUpdateDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#DryrunPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "parameters": {
+          "target": "com.azure.servicelinker#DryrunParameters",
+          "traits": {
+            "smithy.api#documentation": "The parameters of the dryrun"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the dryrun job"
+      }
+    },
+    "com.azure.servicelinker#LinkersCreateDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersCreateDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#LinkersCreateDryrunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "create a dryrun job to do necessary check before actual creation",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkersCreateDryrunResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#LinkersCreateDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkersGetDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersGetDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#LinkersGetDryrunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "get a dryrun job",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkersGetDryrunResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#LinkersGetDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkersListDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkersListDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#DryrunList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/dryruns",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "list dryrun jobs",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#DryrunList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of dryrun list.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "value": {
+          "target": "com.azure.servicelinker#DryrunListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of dryrun."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of dryrun."
+      }
+    },
+    "com.azure.servicelinker#DryrunListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#DryrunResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of dryrun."
+      }
+    },
+    "com.azure.servicelinker#DryrunResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "a dryrun job resource"
+      }
+    },
+    "com.azure.servicelinker#LinkersListDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerListConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerListConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConfigurationResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/listConfigurations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "list source configurations for a Linker.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkerListConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerValidate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerValidateRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ValidateOperationResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/validateLinker",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Validate a Linker.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ValidateOperationResult": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.servicelinker#ValidateResult",
+          "traits": {
+            "smithy.api#documentation": "The validation result detail.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Validated Linker id.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Validation operation status.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The validation operation result for a Linker."
+      }
+    },
+    "com.azure.servicelinker#ValidateResult": {
+      "type": "structure",
+      "members": {
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The linker name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "isConnectionAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean value indicating whether the connection is available or not",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reportStartTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the validation report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reportEndTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the validation report.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource id of the Linker source application.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "targetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource Id of target service.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "authType": {
+          "target": "com.azure.servicelinker#AuthType",
+          "traits": {
+            "smithy.api#documentation": "The authentication type.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "validationDetail": {
+          "target": "com.azure.servicelinker#ValidateResultValidationDetailList",
+          "traits": {
+            "smithy.api#documentation": "The detail of validation result"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The validation result for a Linker."
+      }
+    },
+    "com.azure.servicelinker#ValidateResultValidationDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#ValidationResultItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The detail of validation result"
+      }
+    },
+    "com.azure.servicelinker#ValidationResultItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The validation item name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of validation item",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "result": {
+          "target": "com.azure.servicelinker#ValidationResultItemResult",
+          "traits": {
+            "smithy.api#documentation": "The result of validation",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message of validation result",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "errorCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code of validation result",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The validation item for a Linker."
+      }
+    },
+    "com.azure.servicelinker#ValidationResultItemResult": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failure"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The result of validation"
+      }
+    },
+    "com.azure.servicelinker#LinkerValidateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Linker.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkerDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#LinkerUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Operation to update an existing Linker.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkerUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerProperties": {
+      "type": "structure",
+      "members": {
+        "targetService": {
+          "target": "com.azure.servicelinker#TargetServiceBase",
+          "traits": {
+            "smithy.api#documentation": "The target service properties"
+          }
+        },
+        "authInfo": {
+          "target": "com.azure.servicelinker#AuthInfoBase",
+          "traits": {
+            "smithy.api#documentation": "The authentication type."
+          }
+        },
+        "clientType": {
+          "target": "com.azure.servicelinker#ClientType",
+          "traits": {
+            "smithy.api#documentation": "The application client type"
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state. "
+          }
+        },
+        "vNetSolution": {
+          "target": "com.azure.servicelinker#VNetSolution",
+          "traits": {
+            "smithy.api#documentation": "The VNet solution.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "secretStore": {
+          "target": "com.azure.servicelinker#SecretStore",
+          "traits": {
+            "smithy.api#documentation": "An option to store secret value in secure place",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "connection scope in source service.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "publicNetworkSolution": {
+          "target": "com.azure.servicelinker#PublicNetworkSolution",
+          "traits": {
+            "smithy.api#documentation": "The network solution.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "configurationInfo": {
+          "target": "com.azure.servicelinker#ConfigurationInfo",
+          "traits": {
+            "smithy.api#documentation": "The connection information consumed by applications, including secrets, connection strings.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the Linker."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfo": {
+      "type": "structure",
+      "members": {
+        "deleteOrUpdateBehavior": {
+          "target": "com.azure.servicelinker#DeleteOrUpdateBehavior",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to clean up previous operation when Linker is updating or deleting"
+          }
+        },
+        "action": {
+          "target": "com.azure.servicelinker#ActionType",
+          "traits": {
+            "smithy.api#documentation": "Optional, indicate whether to apply configurations on source application. If enable, generate configurations and applied to the source application. Default is enable. If optOut, no configuration change will be made on source."
+          }
+        },
+        "customizedKeys": {
+          "target": "com.azure.servicelinker#ConfigurationInfoCustomizedKeysMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+          }
+        },
+        "daprProperties": {
+          "target": "com.azure.servicelinker#DaprProperties",
+          "traits": {
+            "smithy.api#documentation": "Indicates some additional properties for dapr client type"
+          }
+        },
+        "additionalConfigurations": {
+          "target": "com.azure.servicelinker#ConfigurationInfoAdditionalConfigurationsMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+          }
+        },
+        "additionalConnectionStringProperties": {
+          "target": "com.azure.servicelinker#ConfigurationInfoAdditionalConnectionStringPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+          }
+        },
+        "configurationStore": {
+          "target": "com.azure.servicelinker#ConfigurationStore",
+          "traits": {
+            "smithy.api#documentation": "An option to store configuration into different place",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration information, used to generate configurations or save to applications"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoAdditionalConnectionStringPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoAdditionalConfigurationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoCustomizedKeysMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+      }
+    },
+    "com.azure.servicelinker#PublicNetworkSolution": {
+      "type": "structure",
+      "members": {
+        "deleteOrUpdateBehavior": {
+          "target": "com.azure.servicelinker#DeleteOrUpdateBehavior",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to clean up previous operation(such as firewall rules) when Linker is updating or deleting"
+          }
+        },
+        "action": {
+          "target": "com.azure.servicelinker#ActionType",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates public network solution. If enable, enable public network access of target service with best try. Default is enable. If optOut, opt out public network access configuration."
+          }
+        },
+        "firewallRules": {
+          "target": "com.azure.servicelinker#FirewallRules",
+          "traits": {
+            "smithy.api#documentation": "Describe firewall rules of target service to make sure source application could connect to the target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates public network solution, include firewall rules"
+      }
+    },
+    "com.azure.servicelinker#FirewallRules": {
+      "type": "structure",
+      "members": {
+        "ipRanges": {
+          "target": "com.azure.servicelinker#FirewallRulesIpRangesList",
+          "traits": {
+            "smithy.api#documentation": "This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account."
+          }
+        },
+        "azureServices": {
+          "target": "com.azure.servicelinker#AllowType",
+          "traits": {
+            "smithy.api#documentation": "Allow Azure services to access the target service if true."
+          }
+        },
+        "callerClientIP": {
+          "target": "com.azure.servicelinker#AllowType",
+          "traits": {
+            "smithy.api#documentation": "Allow caller client IP to access the target service if true. the property is used when connecting local application to target service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target service's firewall rules. to allow connections from source service."
+      }
+    },
+    "com.azure.servicelinker#AllowType": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "true"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether to allow firewall rules."
+      }
+    },
+    "com.azure.servicelinker#FirewallRulesIpRangesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account."
+      }
+    },
+    "com.azure.servicelinker#SecretStore": {
+      "type": "structure",
+      "members": {
+        "keyVaultId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key vault id to store secret",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "keyVaultSecretName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key vault secret name to store secret, only valid when storing one secret",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An option to store secret value in secure place"
+      }
+    },
+    "com.azure.servicelinker#VNetSolution": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.servicelinker#VNetSolutionType",
+          "traits": {
+            "smithy.api#documentation": "Type of VNet solution.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleteOrUpdateBehavior": {
+          "target": "com.azure.servicelinker#DeleteOrUpdateBehavior",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to clean up previous operation when Linker is updating or deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The VNet solution for linker"
+      }
+    },
+    "com.azure.servicelinker#VNetSolutionType": {
+      "type": "enum",
+      "members": {
+        "SERVICEENDPOINT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "serviceEndpoint"
+          }
+        },
+        "PRIVATELINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "privateLink"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of VNet solution."
+      }
+    },
+    "com.azure.servicelinker#AuthInfoBase": {
+      "type": "structure",
+      "members": {
+        "authType": {
+          "target": "com.azure.servicelinker#AuthType",
+          "traits": {
+            "smithy.api#documentation": "The authentication type.",
+            "smithy.api#required": {}
+          }
+        },
+        "authMode": {
+          "target": "com.azure.servicelinker#AuthMode",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates how to configure authentication. If optInAllAuth, service linker configures authentication such as enabling identity on source resource and granting RBAC roles. If optOutAllAuth, opt out authentication setup. Default is optInAllAuth."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The authentication info"
+      }
+    },
+    "com.azure.servicelinker#AuthMode": {
+      "type": "enum",
+      "members": {
+        "OPTINALLAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optInAllAuth"
+          }
+        },
+        "OPTOUTALLAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "optOutAllAuth"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates how to apply the authentication configuration operations."
+      }
+    },
+    "com.azure.servicelinker#TargetServiceBase": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.servicelinker#TargetServiceType",
+          "traits": {
+            "smithy.api#documentation": "The target service type.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The target service properties"
+      }
+    },
+    "com.azure.servicelinker#TargetServiceType": {
+      "type": "enum",
+      "members": {
+        "AZURERESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureResource"
+          }
+        },
+        "CONFLUENTBOOTSTRAPSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConfluentBootstrapServer"
+          }
+        },
+        "CONFLUENTSCHEMAREGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConfluentSchemaRegistry"
+          }
+        },
+        "SELFHOSTEDSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SelfHostedServer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The target service type."
+      }
+    },
+    "com.azure.servicelinker#LinkerUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Linker properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "targetService": {
+          "target": "com.azure.servicelinker#TargetServiceBase",
+          "traits": {
+            "smithy.api#documentation": "The target service properties"
+          }
+        },
+        "authInfo": {
+          "target": "com.azure.servicelinker#AuthInfoBase",
+          "traits": {
+            "smithy.api#documentation": "The authentication type."
+          }
+        },
+        "clientType": {
+          "target": "com.azure.servicelinker#ClientType",
+          "traits": {
+            "smithy.api#documentation": "The application client type"
+          }
+        },
+        "vNetSolution": {
+          "target": "com.azure.servicelinker#VNetSolution",
+          "traits": {
+            "smithy.api#documentation": "The VNet solution.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "secretStore": {
+          "target": "com.azure.servicelinker#SecretStore",
+          "traits": {
+            "smithy.api#documentation": "An option to store secret value in secure place",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "connection scope in source service.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "publicNetworkSolution": {
+          "target": "com.azure.servicelinker#PublicNetworkSolution",
+          "traits": {
+            "smithy.api#documentation": "The network solution.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "configurationInfo": {
+          "target": "com.azure.servicelinker#ConfigurationInfoInput",
+          "traits": {
+            "smithy.api#documentation": "The connection information consumed by applications, including secrets, connection strings.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the Linker."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoInput": {
+      "type": "structure",
+      "members": {
+        "deleteOrUpdateBehavior": {
+          "target": "com.azure.servicelinker#DeleteOrUpdateBehavior",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to clean up previous operation when Linker is updating or deleting"
+          }
+        },
+        "action": {
+          "target": "com.azure.servicelinker#ActionType",
+          "traits": {
+            "smithy.api#documentation": "Optional, indicate whether to apply configurations on source application. If enable, generate configurations and applied to the source application. Default is enable. If optOut, no configuration change will be made on source."
+          }
+        },
+        "customizedKeys": {
+          "target": "com.azure.servicelinker#ConfigurationInfoInputCustomizedKeysMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+          }
+        },
+        "daprProperties": {
+          "target": "com.azure.servicelinker#DaprPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Indicates some additional properties for dapr client type"
+          }
+        },
+        "additionalConfigurations": {
+          "target": "com.azure.servicelinker#ConfigurationInfoInputAdditionalConfigurationsMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+          }
+        },
+        "additionalConnectionStringProperties": {
+          "target": "com.azure.servicelinker#ConfigurationInfoInputAdditionalConnectionStringPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+          }
+        },
+        "configurationStore": {
+          "target": "com.azure.servicelinker#ConfigurationStore",
+          "traits": {
+            "smithy.api#documentation": "An option to store configuration into different place",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration information, used to generate configurations or save to applications"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoInputAdditionalConnectionStringPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoInputAdditionalConfigurationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+      }
+    },
+    "com.azure.servicelinker#ConfigurationInfoInputCustomizedKeysMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+      }
+    },
+    "com.azure.servicelinker#LinkerCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#LinkerCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create or update Linker resource.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkerCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerGetRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#LinkerGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Returns Linker resource for a given name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#LinkerGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        },
+        "linkerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name Linker resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#LinkerList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#LinkerListRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Returns list of Linkers which connects to the resource. which supports to config both application and target service during the resource provision.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ResourceList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Linker used to get the next page of Linker list.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "value": {
+          "target": "com.azure.servicelinker#ResourceListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of Linkers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Linker."
+      }
+    },
+    "com.azure.servicelinker#ResourceListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.servicelinker#LinkerResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Linkers."
+      }
+    },
+    "com.azure.servicelinker#LinkerResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Linker of source and target resource"
+      }
+    },
+    "com.azure.servicelinker#LinkerListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource to be connected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorGenerateConfigurations": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorGenerateConfigurationsRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConfigurationResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}/generateConfigurations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Generate configurations for a Connector.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorGenerateConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of resource."
+          }
+        },
+        "deleteOrUpdateBehavior": {
+          "target": "com.azure.servicelinker#DeleteOrUpdateBehavior",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to clean up previous operation when Linker is updating or deleting"
+          }
+        },
+        "action": {
+          "target": "com.azure.servicelinker#ActionType",
+          "traits": {
+            "smithy.api#documentation": "Optional, indicate whether to apply configurations on source application. If enable, generate configurations and applied to the source application. Default is enable. If optOut, no configuration change will be made on source."
+          }
+        },
+        "customizedKeys": {
+          "target": "com.azure.servicelinker#ConnectorGenerateConfigurationsRequestCustomizedKeysMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+          }
+        },
+        "daprProperties": {
+          "target": "com.azure.servicelinker#DaprPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Indicates some additional properties for dapr client type"
+          }
+        },
+        "additionalConfigurations": {
+          "target": "com.azure.servicelinker#ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+          }
+        },
+        "additionalConnectionStringProperties": {
+          "target": "com.azure.servicelinker#ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+          }
+        },
+        "configurationStore": {
+          "target": "com.azure.servicelinker#ConfigurationStore",
+          "traits": {
+            "smithy.api#documentation": "An option to store configuration into different place",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional properties to be added in the end of connection string."
+      }
+    },
+    "com.azure.servicelinker#ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations"
+      }
+    },
+    "com.azure.servicelinker#ConnectorGenerateConfigurationsRequestCustomizedKeysMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations"
+      }
+    },
+    "com.azure.servicelinker#ConnectorValidate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorValidateRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ValidateOperationResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}/validate",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Validate a Connector.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorValidateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Connector.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConnectorUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Operation to update an existing Connector.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Linker properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConnectorCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create or update Connector resource.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorGetRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConnectorGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Returns Connector resource for a given name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#LinkerProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Linker.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "connectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorListRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Returns list of connector which connects to the resource, which supports to config the target service during the resource provision.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorDeleteDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorDeleteDryrunRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "delete a dryrun job",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorDeleteDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorUpdateDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorUpdateDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConnectorUpdateDryrunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "update a dryrun job to do necessary check before actual creation",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorUpdateDryrunResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorUpdateDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorCreateDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorCreateDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConnectorCreateDryrunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "create a dryrun job to do necessary check before actual creation",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorCreateDryrunResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorCreateDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorGetDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorGetDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#ConnectorGetDryrunResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/dryruns/{dryrunName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "get a dryrun job",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorGetDryrunResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.servicelinker#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.servicelinker#DryrunProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the dryrun job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorGetDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "dryrunName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of dryrun."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#ConnectorListDryrun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.servicelinker#ConnectorListDryrunRequest"
+      },
+      "output": {
+        "target": "com.azure.servicelinker#DryrunList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/dryruns",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "list dryrun jobs",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.servicelinker#ConnectorListDryrunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.servicelinker#Servicelinker": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.servicelinker#LinkersListDaprConfigurations"
+        },
+        {
+          "target": "com.azure.servicelinker#ConfigurationNamesList"
+        },
+        {
+          "target": "com.azure.servicelinker#OperationsList"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkersGenerateConfigurations"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkersDeleteDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkersUpdateDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkersCreateDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkersGetDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkersListDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerListConfigurations"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerValidate"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerDelete"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerUpdate"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerGet"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerList"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorGenerateConfigurations"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorValidate"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorDelete"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorUpdate"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorGet"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorList"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorDeleteDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorUpdateDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorCreateDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorGetDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorListDryrun"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Servicelinker",
+        "smithy.api#documentation": "Azure Servicelinker API — merged from the servicelinker resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

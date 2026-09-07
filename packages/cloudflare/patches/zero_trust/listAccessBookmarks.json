@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#AccessBookmarksList with distilled cloudflare/zero-trust listAccessBookmarks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessBookmarks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessBookmarksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessBookmarks/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessBookmarksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessBookmarksListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessBookmarksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessBookmarks/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessBookmarksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessBookmarks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

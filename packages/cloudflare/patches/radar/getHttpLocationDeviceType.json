@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpLocationsDeviceTypeGet with distilled cloudflare/radar getHttpLocationDeviceType",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsDeviceTypeGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationDeviceType"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsDeviceTypeGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationDeviceTypeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationDeviceType/input/target",
+      "value": "com.cloudflare.radar#GetHttpLocationDeviceTypeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpLocationsDeviceTypeGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationDeviceTypeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpLocationDeviceType/output/target",
+      "value": "com.cloudflare.radar#GetHttpLocationDeviceTypeResponse"
+    }
+  ]
+}

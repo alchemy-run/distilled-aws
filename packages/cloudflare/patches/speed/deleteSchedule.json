@@ -1,0 +1,42 @@
+{
+  "description": "Align speed#ScheduleDelete with distilled cloudflare/speed deleteSchedule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#ScheduleDelete",
+      "path": "/shapes/com.cloudflare.speed#DeleteSchedule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#ScheduleDeleteRequest",
+      "path": "/shapes/com.cloudflare.speed#DeleteScheduleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#DeleteSchedule/input/target",
+      "value": "com.cloudflare.speed#DeleteScheduleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#ScheduleDeleteResponse",
+      "path": "/shapes/com.cloudflare.speed#DeleteScheduleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#DeleteSchedule/output/target",
+      "value": "com.cloudflare.speed#DeleteScheduleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.speed#DeleteSchedule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.speed#TestScheduleNotFound"
+        },
+        {
+          "target": "com.cloudflare.speed#Forbidden"
+        }
+      ]
+    }
+  ]
+}

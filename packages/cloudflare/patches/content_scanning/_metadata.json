@@ -1,0 +1,19 @@
+{
+  "description": "Key dictionary / op aliases for content_scanning (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "getSetting",
+          "target": "getContentScanning"
+        },
+        {
+          "alias": "putContentScanning",
+          "target": "createContentScanning"
+        }
+      ]
+    }
+  ]
+}

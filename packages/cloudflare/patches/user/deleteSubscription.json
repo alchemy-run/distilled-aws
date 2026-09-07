@@ -1,0 +1,30 @@
+{
+  "description": "Align user#SubscriptionsDelete with distilled cloudflare/user deleteSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#SubscriptionsDelete",
+      "path": "/shapes/com.cloudflare.user#DeleteSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#SubscriptionsDeleteRequest",
+      "path": "/shapes/com.cloudflare.user#DeleteSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#DeleteSubscription/input/target",
+      "value": "com.cloudflare.user#DeleteSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#SubscriptionsDeleteResponse",
+      "path": "/shapes/com.cloudflare.user#DeleteSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#DeleteSubscription/output/target",
+      "value": "com.cloudflare.user#DeleteSubscriptionResponse"
+    }
+  ]
+}

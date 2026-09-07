@@ -1,0 +1,32 @@
+{
+  "description": "Align alerting#SilencesDelete with distilled cloudflare/alerting deleteSilence",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesDelete",
+      "path": "/shapes/com.cloudflare.alerting#DeleteSilence"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesDeleteRequest",
+      "path": "/shapes/com.cloudflare.alerting#DeleteSilenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#DeleteSilence/input/target",
+      "value": "com.cloudflare.alerting#DeleteSilenceRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#DeleteSilence/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#SilenceNotFound"
+        }
+      ]
+    }
+  ]
+}

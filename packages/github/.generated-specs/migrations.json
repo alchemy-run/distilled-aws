@@ -1,0 +1,3236 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.migrations#ListForOrgRequestExcludeItem": {
+      "type": "enum",
+      "members": {
+        "REPOSITORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repositories"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed values that can be passed to the exclude param."
+      }
+    },
+    "com.github.migrations#ListForOrgRequestExcludeList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#ListForOrgRequestExcludeItem"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#ListForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "exclude": {
+          "target": "com.github.migrations#ListForOrgRequestExcludeList",
+          "traits": {
+            "smithy.api#httpQuery": "exclude",
+            "smithy.api#documentation": "Exclude attributes from the API response to improve performance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#Migration": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.migrations#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "guid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lock_repositories": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exclude_metadata": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exclude_git_data": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exclude_attachments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exclude_releases": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "exclude_owner_projects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "org_metadata_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories": {
+          "target": "com.github.migrations#MigrationRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "The repositories included in the migration. Only returned for export migrations.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String"
+        },
+        "exclude": {
+          "target": "com.github.migrations#MigrationExcludeList",
+          "traits": {
+            "smithy.api#documentation": "Exclude related items from being returned in the response in order to improve performance of the request. The array can include any of: `\"repositories\"`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A migration."
+      }
+    },
+    "com.github.migrations#NullableSimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.migrations#Repository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the repository",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "license": {
+          "target": "com.github.migrations#NullableLicenseSimple",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.migrations#RepositoryPermissions"
+        },
+        "owner": {
+          "target": "com.github.migrations#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is private or public.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0.",
+            "smithy.api#required": {}
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default branch of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this repository acts as a template that can be used to generate new repositories."
+          }
+        },
+        "topics": {
+          "target": "com.github.migrations#RepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether issues are enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether projects are enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the wiki is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether downloads are enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether discussions are enabled."
+          }
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether pull requests are enabled."
+          }
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.migrations#RepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is archived.",
+            "smithy.api#required": {}
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Returns whether or not this repository disabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository visibility: public, private, or internal."
+          }
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "allow_rebase_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow rebase merges for pull requests."
+          }
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow squash merges for pull requests."
+          }
+        },
+        "allow_auto_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow Auto-merge to be used on pull requests."
+          }
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to delete head branches when pull requests are merged"
+          }
+        },
+        "allow_update_branch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not a pull request head branch that is behind its base branch can always be updated even if it is not required to be up to date before merging."
+          }
+        },
+        "use_squash_pr_title_as_default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead."
+          }
+        },
+        "squash_merge_commit_title": {
+          "target": "com.github.migrations#RepositorySquashMergeCommitTitle",
+          "traits": {
+            "smithy.api#documentation": "The default value for a squash merge commit title:\n\n- `PR_TITLE` - default to the pull request's title.\n- `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit)."
+          }
+        },
+        "squash_merge_commit_message": {
+          "target": "com.github.migrations#RepositorySquashMergeCommitMessage",
+          "traits": {
+            "smithy.api#documentation": "The default value for a squash merge commit message:\n\n- `PR_BODY` - default to the pull request's body.\n- `COMMIT_MESSAGES` - default to the branch's commit messages.\n- `BLANK` - default to a blank commit message."
+          }
+        },
+        "merge_commit_title": {
+          "target": "com.github.migrations#RepositoryMergeCommitTitle",
+          "traits": {
+            "smithy.api#documentation": "The default value for a merge commit title.\n\n- `PR_TITLE` - default to the pull request's title.\n- `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name)."
+          }
+        },
+        "merge_commit_message": {
+          "target": "com.github.migrations#RepositoryMergeCommitMessage",
+          "traits": {
+            "smithy.api#documentation": "The default value for a merge commit message.\n\n- `PR_TITLE` - default to the pull request's title.\n- `PR_BODY` - default to the pull request's body.\n- `BLANK` - default to a blank commit message."
+          }
+        },
+        "allow_merge_commit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow merge commits for pull requests."
+          }
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow forking this repo"
+          }
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to require contributors to sign off on web-based commits"
+          }
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "watchers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "master_branch": {
+          "target": "smithy.api#String"
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "anonymous_access_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether anonymous git access is enabled for this repository"
+          }
+        },
+        "code_search_index_status": {
+          "target": "com.github.migrations#RepositoryCodeSearchIndexStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the code search index for this repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A repository on GitHub."
+      }
+    },
+    "com.github.migrations#NullableLicenseSimple": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spdx_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "License Simple"
+      }
+    },
+    "com.github.migrations#RepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pull": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.migrations#RepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#RepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.migrations#RepositorySquashMergeCommitTitle": {
+      "type": "enum",
+      "members": {
+        "PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_TITLE"
+          }
+        },
+        "COMMIT_OR_PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMIT_OR_PR_TITLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a squash merge commit title:\n\n- `PR_TITLE` - default to the pull request's title.\n- `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit)."
+      }
+    },
+    "com.github.migrations#RepositorySquashMergeCommitMessage": {
+      "type": "enum",
+      "members": {
+        "PR_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_BODY"
+          }
+        },
+        "COMMIT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMIT_MESSAGES"
+          }
+        },
+        "BLANK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLANK"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a squash merge commit message:\n\n- `PR_BODY` - default to the pull request's body.\n- `COMMIT_MESSAGES` - default to the branch's commit messages.\n- `BLANK` - default to a blank commit message."
+      }
+    },
+    "com.github.migrations#RepositoryMergeCommitTitle": {
+      "type": "enum",
+      "members": {
+        "PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_TITLE"
+          }
+        },
+        "MERGE_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERGE_MESSAGE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a merge commit title.\n\n- `PR_TITLE` - default to the pull request's title.\n- `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name)."
+      }
+    },
+    "com.github.migrations#RepositoryMergeCommitMessage": {
+      "type": "enum",
+      "members": {
+        "PR_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_BODY"
+          }
+        },
+        "PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_TITLE"
+          }
+        },
+        "BLANK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLANK"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a merge commit message.\n\n- `PR_TITLE` - default to the pull request's title.\n- `PR_BODY` - default to the pull request's body.\n- `BLANK` - default to a blank commit message."
+      }
+    },
+    "com.github.migrations#RepositoryCodeSearchIndexStatus": {
+      "type": "structure",
+      "members": {
+        "lexical_search_ok": {
+          "target": "smithy.api#Boolean"
+        },
+        "lexical_commit_sha": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the code search index for this repository"
+      }
+    },
+    "com.github.migrations#MigrationRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#Repository"
+      },
+      "traits": {
+        "smithy.api#documentation": "The repositories included in the migration. Only returned for export migrations."
+      }
+    },
+    "com.github.migrations#MigrationExcludeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Exclude related items from being returned in the response in order to improve performance of the request. The array can include any of: `\"repositories\"`."
+      }
+    },
+    "com.github.migrations#ListForOrgResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#Migration"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#ListForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.migrations#ListForOrgResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.migrations#ListForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#ListForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#ListForOrgResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/migrations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization migrations\n\nLists the most recent migrations, including both exports (which can be started through the REST API) and imports (which cannot be started using the REST API).\n\nA list of `repositories` is only returned for export migrations."
+      }
+    },
+    "com.github.migrations#StartForOrgRequestRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of arrays indicating which repositories should be migrated."
+      }
+    },
+    "com.github.migrations#StartForOrgRequestExcludeItem": {
+      "type": "enum",
+      "members": {
+        "REPOSITORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repositories"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#StartForOrgRequestExcludeList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#StartForOrgRequestExcludeItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Exclude related items from being returned in the response in order to improve performance of the request."
+      }
+    },
+    "com.github.migrations#StartForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "repositories": {
+          "target": "com.github.migrations#StartForOrgRequestRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "A list of arrays indicating which repositories should be migrated.",
+            "smithy.api#required": {}
+          }
+        },
+        "lock_repositories": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether repositories should be locked (to prevent manipulation) while migrating data."
+          }
+        },
+        "exclude_metadata": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether metadata should be excluded and only git source should be included for the migration."
+          }
+        },
+        "exclude_git_data": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the repository git data should be excluded from the migration."
+          }
+        },
+        "exclude_attachments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether attachments should be excluded from the migration (to reduce migration archive file size)."
+          }
+        },
+        "exclude_releases": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether releases should be excluded from the migration (to reduce migration archive file size)."
+          }
+        },
+        "exclude_owner_projects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether projects owned by the organization or users should be excluded. from the migration."
+          }
+        },
+        "org_metadata_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether this should only include organization metadata (repositories array should be empty and will ignore other flags)."
+          }
+        },
+        "exclude": {
+          "target": "com.github.migrations#StartForOrgRequestExcludeList",
+          "traits": {
+            "smithy.api#documentation": "Exclude related items from being returned in the response in order to improve performance of the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#StartForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#StartForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#Migration"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        },
+        {
+          "target": "com.github.migrations#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/migrations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start an organization migration\n\nInitiates the generation of a migration archive."
+      }
+    },
+    "com.github.migrations#GetStatusForOrgRequestExcludeItem": {
+      "type": "enum",
+      "members": {
+        "REPOSITORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repositories"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed values that can be passed to the exclude param."
+      }
+    },
+    "com.github.migrations#GetStatusForOrgRequestExcludeList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#GetStatusForOrgRequestExcludeItem"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#GetStatusForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        },
+        "exclude": {
+          "target": "com.github.migrations#GetStatusForOrgRequestExcludeList",
+          "traits": {
+            "smithy.api#httpQuery": "exclude",
+            "smithy.api#documentation": "Exclude attributes from the API response to improve performance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#GetStatusForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#GetStatusForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#Migration"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/migrations/{migration_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an organization migration status\n\nFetches the status of a migration.\n\nThe `state` of a migration can be one of the following values:\n\n*   `pending`, which means the migration hasn't started yet.\n*   `exporting`, which means the migration is in progress.\n*   `exported`, which means the migration finished successfully.\n*   `failed`, which means the migration failed."
+      }
+    },
+    "com.github.migrations#DownloadArchiveForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#DownloadArchiveForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#DownloadArchiveForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/migrations/{migration_id}/archive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Download an organization migration archive\n\nFetches the URL to a migration archive."
+      }
+    },
+    "com.github.migrations#DeleteArchiveForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#DeleteArchiveForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#DeleteArchiveForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/migrations/{migration_id}/archive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an organization migration archive\n\nDeletes a previous migration archive. Migration archives are automatically deleted after seven days."
+      }
+    },
+    "com.github.migrations#UnlockRepoForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "repo_name parameter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#UnlockRepoForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#UnlockRepoForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/migrations/{migration_id}/repos/{repo_name}/lock",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unlock an organization repository\n\nUnlocks a repository that was locked for migration. You should unlock each migrated repository and [delete them](https://docs.github.com/rest/repos/repos#delete-a-repository) when the migration is complete and you no longer need the source data."
+      }
+    },
+    "com.github.migrations#ListReposForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#MinimalRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.migrations#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String"
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String"
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String"
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String"
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0."
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String"
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.github.migrations#MinimalRepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.migrations#MinimalRepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.migrations#MinimalRepositoryPermissions"
+        },
+        "role_name": {
+          "target": "smithy.api#String"
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "subscribers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "network_count": {
+          "target": "smithy.api#Integer"
+        },
+        "code_of_conduct": {
+          "target": "com.github.migrations#CodeOfConduct"
+        },
+        "license": {
+          "target": "com.github.migrations#MinimalRepositoryLicense",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer"
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers": {
+          "target": "smithy.api#Integer"
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "security_and_analysis": {
+          "target": "com.github.migrations#SecurityAndAnalysis",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.migrations#MinimalRepositoryCustomPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimal Repository"
+      }
+    },
+    "com.github.migrations#MinimalRepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#MinimalRepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.migrations#MinimalRepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#CodeOfConduct": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Of Conduct"
+      }
+    },
+    "com.github.migrations#MinimalRepositoryLicense": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "spdx_id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysis": {
+      "type": "structure",
+      "members": {
+        "advanced_security": {
+          "target": "com.github.migrations#SecurityAndAnalysisAdvancedSecurity",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+          }
+        },
+        "code_security": {
+          "target": "com.github.migrations#SecurityAndAnalysisCodeSecurity"
+        },
+        "dependabot_security_updates": {
+          "target": "com.github.migrations#SecurityAndAnalysisDependabotSecurityUpdates",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+          }
+        },
+        "secret_scanning": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanning"
+        },
+        "secret_scanning_push_protection": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningPushProtection"
+        },
+        "secret_scanning_non_provider_patterns": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningNonProviderPatterns"
+        },
+        "secret_scanning_ai_detection": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningAiDetection"
+        },
+        "secret_scanning_delegated_alert_dismissal": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal"
+        },
+        "secret_scanning_delegated_bypass": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypass"
+        },
+        "secret_scanning_delegated_bypass_options": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptions"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisAdvancedSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisAdvancedSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisAdvancedSecurityStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+      }
+    },
+    "com.github.migrations#SecurityAndAnalysisCodeSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisCodeSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisCodeSecurityStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisDependabotSecurityUpdatesStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+      }
+    },
+    "com.github.migrations#SecurityAndAnalysisDependabotSecurityUpdates": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisDependabotSecurityUpdatesStatus",
+          "traits": {
+            "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+      }
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanning": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningPushProtectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningPushProtection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningPushProtectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningNonProviderPatterns": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningAiDetectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningAiDetection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningAiDetectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypass": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM"
+          }
+        },
+        "ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the bypass reviewer"
+      }
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS"
+          }
+        },
+        "EXEMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXEMPT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass mode for the reviewer"
+      }
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem": {
+      "type": "structure",
+      "members": {
+        "reviewer_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team or role selected as a bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "reviewer_type": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType",
+          "traits": {
+            "smithy.api#documentation": "The type of the bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode",
+          "traits": {
+            "smithy.api#documentation": "The bypass mode for the reviewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+      }
+    },
+    "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptions": {
+      "type": "structure",
+      "members": {
+        "reviewers": {
+          "target": "com.github.migrations#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList",
+          "traits": {
+            "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.migrations#MinimalRepositoryCustomPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+      }
+    },
+    "com.github.migrations#ListReposForOrgResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#MinimalRepository"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#ListReposForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.migrations#ListReposForOrgResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.migrations#ListReposForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#ListReposForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#ListReposForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/migrations/{migration_id}/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repositories in an organization migration\n\nList all the repositories for this organization migration."
+      }
+    },
+    "com.github.migrations#ListForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#ListForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#Migration"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#ListForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.migrations#ListForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.migrations#ListForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#ListForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#ListForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/migrations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List user migrations\n\nLists all migrations a user has started."
+      }
+    },
+    "com.github.migrations#StartForAuthenticatedUserRequestExcludeItem": {
+      "type": "enum",
+      "members": {
+        "REPOSITORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repositories"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allowed values that can be passed to the exclude param."
+      }
+    },
+    "com.github.migrations#StartForAuthenticatedUserRequestExcludeList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#StartForAuthenticatedUserRequestExcludeItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Exclude attributes from the API response to improve performance"
+      }
+    },
+    "com.github.migrations#StartForAuthenticatedUserRequestRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#StartForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "lock_repositories": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Lock the repositories being migrated at the start of the migration"
+          }
+        },
+        "exclude_metadata": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether metadata should be excluded and only git source should be included for the migration."
+          }
+        },
+        "exclude_git_data": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the repository git data should be excluded from the migration."
+          }
+        },
+        "exclude_attachments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not include attachments in the migration"
+          }
+        },
+        "exclude_releases": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Do not include releases in the migration"
+          }
+        },
+        "exclude_owner_projects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether projects owned by the organization or users should be excluded."
+          }
+        },
+        "org_metadata_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether this should only include organization metadata (repositories array should be empty and will ignore other flags)."
+          }
+        },
+        "exclude": {
+          "target": "com.github.migrations#StartForAuthenticatedUserRequestExcludeList",
+          "traits": {
+            "smithy.api#documentation": "Exclude attributes from the API response to improve performance"
+          }
+        },
+        "repositories": {
+          "target": "com.github.migrations#StartForAuthenticatedUserRequestRepositoriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#StartForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#StartForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#Migration"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#Forbidden"
+        },
+        {
+          "target": "com.github.migrations#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/migrations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start a user migration\n\nInitiates the generation of a user migration archive."
+      }
+    },
+    "com.github.migrations#GetStatusForAuthenticatedUserRequestExcludeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#GetStatusForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        },
+        "exclude": {
+          "target": "com.github.migrations#GetStatusForAuthenticatedUserRequestExcludeList",
+          "traits": {
+            "smithy.api#httpQuery": "exclude"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#GetStatusForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#GetStatusForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#Migration"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#Forbidden"
+        },
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/migrations/{migration_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a user migration status\n\nFetches a single user migration. The response includes the `state` of the migration, which can be one of the following values:\n\n*   `pending` - the migration hasn't started yet.\n*   `exporting` - the migration is in progress.\n*   `exported` - the migration finished successfully.\n*   `failed` - the migration failed.\n\nOnce the migration has been `exported` you can [download the migration archive](https://docs.github.com/rest/migrations/users#download-a-user-migration-archive)."
+      }
+    },
+    "com.github.migrations#GetArchiveForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#GetArchiveForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#GetArchiveForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/migrations/{migration_id}/archive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Download a user migration archive\n\nFetches the URL to download the migration archive as a `tar.gz` file. Depending on the resources your repository uses, the migration archive can contain JSON files with data for these objects:\n\n*   attachments\n*   bases\n*   commit\\_comments\n*   issue\\_comments\n*   issue\\_events\n*   issues\n*   milestones\n*   organizations\n*   projects\n*   protected\\_branches\n*   pull\\_request\\_reviews\n*   pull\\_requests\n*   releases\n*   repositories\n*   review\\_comments\n*   schema\n*   users\n\nThe archive will also contain an `attachments` directory that includes all attachment files uploaded to GitHub.com and a `repositories` directory that contains the repository's Git data."
+      }
+    },
+    "com.github.migrations#DeleteArchiveForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#DeleteArchiveForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#DeleteArchiveForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#Forbidden"
+        },
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/migrations/{migration_id}/archive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a user migration archive\n\nDeletes a previous migration archive. Downloadable migration archives are automatically deleted after seven days. Migration metadata, which is returned in the [List user migrations](https://docs.github.com/rest/migrations/users#list-user-migrations) and [Get a user migration status](https://docs.github.com/rest/migrations/users#get-a-user-migration-status) endpoints, will continue to be available even after an archive is deleted."
+      }
+    },
+    "com.github.migrations#UnlockRepoForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "repo_name parameter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#UnlockRepoForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#UnlockRepoForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#Forbidden"
+        },
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/migrations/{migration_id}/repos/{repo_name}/lock",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unlock a user repository\n\nUnlocks a repository. You can lock repositories when you [start a user migration](https://docs.github.com/rest/migrations/users#start-a-user-migration). Once the migration is complete you can unlock each repository to begin using it again or [delete the repository](https://docs.github.com/rest/repos/repos#delete-a-repository) if you no longer need the source data. Returns a status of `404 Not Found` if the repository is not locked."
+      }
+    },
+    "com.github.migrations#ListReposForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "migration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the migration."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.migrations#ListReposForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.migrations#MinimalRepository"
+      },
+      "traits": {}
+    },
+    "com.github.migrations#ListReposForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.migrations#ListReposForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.migrations#ListReposForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.migrations#ListReposForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.migrations#ListReposForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.migrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/migrations/{migration_id}/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List repositories for a user migration\n\nLists all the repositories for this user migration."
+      }
+    },
+    "com.github.migrations#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.migrations#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.migrations#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.migrations#Migrations": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.migrations#ListForOrg"
+        },
+        {
+          "target": "com.github.migrations#StartForOrg"
+        },
+        {
+          "target": "com.github.migrations#GetStatusForOrg"
+        },
+        {
+          "target": "com.github.migrations#DownloadArchiveForOrg"
+        },
+        {
+          "target": "com.github.migrations#DeleteArchiveForOrg"
+        },
+        {
+          "target": "com.github.migrations#UnlockRepoForOrg"
+        },
+        {
+          "target": "com.github.migrations#ListReposForOrg"
+        },
+        {
+          "target": "com.github.migrations#ListForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#StartForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#GetStatusForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#GetArchiveForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#DeleteArchiveForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#UnlockRepoForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#ListReposForAuthenticatedUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

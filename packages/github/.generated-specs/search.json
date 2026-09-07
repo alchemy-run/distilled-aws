@@ -1,0 +1,5863 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.search#CodeRequestSort": {
+      "type": "enum",
+      "members": {
+        "INDEXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "indexed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CodeRequestOrder": {
+      "type": "enum",
+      "members": {
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CodeRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See \"[Searching code](https://docs.github.com/search-github/searching-on-github/searching-code)\" for a detailed list of qualifiers."
+          }
+        },
+        "sort": {
+          "target": "com.github.search#CodeRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "**This field is closing down.** Sorts the results of your query. Can only be `indexed`, which indicates how recently a file has been indexed by the GitHub search infrastructure. Default: [best match](https://docs.github.com/rest/search/search#ranking-search-results)"
+          }
+        },
+        "order": {
+          "target": "com.github.search#CodeRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "**This field is closing down.** Determines whether the first search result returned is the highest number of matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you provide `sort`. "
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#CodeSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "com.github.search#MinimalRepository",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "file_size": {
+          "target": "smithy.api#Integer"
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_modified_at": {
+          "target": "smithy.api#String"
+        },
+        "line_numbers": {
+          "target": "com.github.search#CodeSearchResultItemLineNumbersList"
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Search Result Item"
+      }
+    },
+    "com.github.search#MinimalRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.search#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String"
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String"
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String"
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String"
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0."
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String"
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.github.search#MinimalRepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.search#MinimalRepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.search#MinimalRepositoryPermissions"
+        },
+        "role_name": {
+          "target": "smithy.api#String"
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "subscribers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "network_count": {
+          "target": "smithy.api#Integer"
+        },
+        "code_of_conduct": {
+          "target": "com.github.search#CodeOfConduct"
+        },
+        "license": {
+          "target": "com.github.search#MinimalRepositoryLicense",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer"
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers": {
+          "target": "smithy.api#Integer"
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "security_and_analysis": {
+          "target": "com.github.search#SecurityAndAnalysis",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.search#MinimalRepositoryCustomPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimal Repository"
+      }
+    },
+    "com.github.search#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.search#MinimalRepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.search#MinimalRepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.search#MinimalRepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CodeOfConduct": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Of Conduct"
+      }
+    },
+    "com.github.search#MinimalRepositoryLicense": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "spdx_id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysis": {
+      "type": "structure",
+      "members": {
+        "advanced_security": {
+          "target": "com.github.search#SecurityAndAnalysisAdvancedSecurity",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+          }
+        },
+        "code_security": {
+          "target": "com.github.search#SecurityAndAnalysisCodeSecurity"
+        },
+        "dependabot_security_updates": {
+          "target": "com.github.search#SecurityAndAnalysisDependabotSecurityUpdates",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+          }
+        },
+        "secret_scanning": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanning"
+        },
+        "secret_scanning_push_protection": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningPushProtection"
+        },
+        "secret_scanning_non_provider_patterns": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningNonProviderPatterns"
+        },
+        "secret_scanning_ai_detection": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningAiDetection"
+        },
+        "secret_scanning_delegated_alert_dismissal": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal"
+        },
+        "secret_scanning_delegated_bypass": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypass"
+        },
+        "secret_scanning_delegated_bypass_options": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptions"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisAdvancedSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisAdvancedSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisAdvancedSecurityStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+      }
+    },
+    "com.github.search#SecurityAndAnalysisCodeSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisCodeSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisCodeSecurityStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisDependabotSecurityUpdatesStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+      }
+    },
+    "com.github.search#SecurityAndAnalysisDependabotSecurityUpdates": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisDependabotSecurityUpdatesStatus",
+          "traits": {
+            "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+      }
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanning": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningPushProtectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningPushProtection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningPushProtectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningNonProviderPatterns": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningAiDetectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningAiDetection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningAiDetectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypass": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM"
+          }
+        },
+        "ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the bypass reviewer"
+      }
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS"
+          }
+        },
+        "EXEMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXEMPT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass mode for the reviewer"
+      }
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem": {
+      "type": "structure",
+      "members": {
+        "reviewer_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team or role selected as a bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "reviewer_type": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType",
+          "traits": {
+            "smithy.api#documentation": "The type of the bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode",
+          "traits": {
+            "smithy.api#documentation": "The bypass mode for the reviewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+      }
+    },
+    "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptions": {
+      "type": "structure",
+      "members": {
+        "reviewers": {
+          "target": "com.github.search#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList",
+          "traits": {
+            "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#MinimalRepositoryCustomPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+      }
+    },
+    "com.github.search#CodeSearchResultItemLineNumbersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.search#SearchResultTextMatches": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#SearchResultTextMatchesItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#SearchResultTextMatchesItemMatchesItemIndicesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.github.search#SearchResultTextMatchesItemMatchesItem": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String"
+        },
+        "indices": {
+          "target": "com.github.search#SearchResultTextMatchesItemMatchesItemIndicesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#SearchResultTextMatchesItemMatchesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#SearchResultTextMatchesItemMatchesItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#SearchResultTextMatchesItem": {
+      "type": "structure",
+      "members": {
+        "object_url": {
+          "target": "smithy.api#String"
+        },
+        "object_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "property": {
+          "target": "smithy.api#String"
+        },
+        "fragment": {
+          "target": "smithy.api#String"
+        },
+        "matches": {
+          "target": "com.github.search#SearchResultTextMatchesItemMatchesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CodeResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#CodeSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#CodeResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#CodeResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#Code": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#CodeRequest"
+      },
+      "output": {
+        "target": "com.github.search#CodeResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.search#Forbidden"
+        },
+        {
+          "target": "com.github.search#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/code",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search code\n\nSearches for query terms inside of a file. This method returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).\n\nWhen searching for code, you can get text match metadata for the file **content** and file **path** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you want to find the definition of the `addClass` function inside [jQuery](https://github.com/jquery/jquery) repository, your query would look something like this:\n\n`q=addClass+in:file+language:js+repo:jquery/jquery`\n\nThis query searches for the keyword `addClass` within a file's contents. The query limits the search to files where the language is JavaScript in the `jquery/jquery` repository.\n\nConsiderations for code search:\n\nDue to the complexity of searching code, there are a few restrictions on how searches are performed:\n\n*   Only the _default branch_ is considered. In most cases, this will be the `master` branch.\n*   Only files smaller than 384 KB are searchable.\n*   You must always include at least one search term when searching source code. For example, searching for [`language:go`](https://github.com/search?utf8=%E2%9C%93&q=language%3Ago&type=Code) is not valid, while [`amazing\nlanguage:go`](https://github.com/search?utf8=%E2%9C%93&q=amazing+language%3Ago&type=Code) is.\n\n> [!NOTE]\n> `repository.description`, `repository.owner.type`, and `repository.owner.node_id` are closing down on this endpoint and will return `null` in a future API version. Use the [Get a repository](https://docs.github.com/rest/repos/repos#get-a-repository) endpoint (`GET /repos/{owner}/{repo}`) to retrieve full repository metadata.\n\nThis endpoint requires you to authenticate and limits you to 10 requests per minute."
+      }
+    },
+    "com.github.search#CommitsRequestSort": {
+      "type": "enum",
+      "members": {
+        "AUTHOR_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "author-date"
+          }
+        },
+        "COMMITTER_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "committer-date"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CommitsRequestOrder": {
+      "type": "enum",
+      "members": {
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CommitsRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See \"[Searching commits](https://docs.github.com/search-github/searching-on-github/searching-commits)\" for a detailed list of qualifiers."
+          }
+        },
+        "sort": {
+          "target": "com.github.search#CommitsRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sorts the results of your query by `author-date` or `committer-date`. Default: [best match](https://docs.github.com/rest/search/search#ranking-search-results)"
+          }
+        },
+        "order": {
+          "target": "com.github.search#CommitsRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Determines whether the first search result returned is the highest number of matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you provide `sort`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#CommitSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commit": {
+          "target": "com.github.search#CommitSearchResultItemCommit",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "committer": {
+          "target": "com.github.search#NullableGitUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parents": {
+          "target": "com.github.search#CommitSearchResultItemParentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "com.github.search#MinimalRepository",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Commit Search Result Item"
+      }
+    },
+    "com.github.search#CommitSearchResultItemCommitAuthor": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#NullableGitUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "date": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metaproperties for Git author/committer information."
+      }
+    },
+    "com.github.search#CommitSearchResultItemCommitTree": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#Verification": {
+      "type": "structure",
+      "members": {
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "verified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CommitSearchResultItemCommit": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "com.github.search#CommitSearchResultItemCommitAuthor",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "committer": {
+          "target": "com.github.search#NullableGitUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comment_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tree": {
+          "target": "com.github.search#CommitSearchResultItemCommitTree",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verification": {
+          "target": "com.github.search#Verification"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#NullableSimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.search#CommitSearchResultItemParentsItem": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "sha": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#CommitSearchResultItemParentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#CommitSearchResultItemParentsItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#CommitsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#CommitSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#CommitsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#CommitsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#Commits": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#CommitsRequest"
+      },
+      "output": {
+        "target": "com.github.search#CommitsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/commits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search commits\n\nFind commits via various criteria on the default branch (usually `main`). This method returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).\n\nWhen searching for commits, you can get text match metadata for the **message** field when you provide the `text-match` media type. For more details about how to receive highlighted search results, see [Text match\nmetadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you want to find commits related to CSS in the [octocat/Spoon-Knife](https://github.com/octocat/Spoon-Knife) repository. Your query would look something like this:\n\n`q=repo:octocat/Spoon-Knife+css`"
+      }
+    },
+    "com.github.search#IssuesAndPullRequestsRequestSort": {
+      "type": "enum",
+      "members": {
+        "COMMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comments"
+          }
+        },
+        "REACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions"
+          }
+        },
+        "REACTIONS_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions-+1"
+          }
+        },
+        "REACTIONS_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions--1"
+          }
+        },
+        "REACTIONS_SMILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions-smile"
+          }
+        },
+        "REACTIONS_THINKING_FACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions-thinking_face"
+          }
+        },
+        "REACTIONS_HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions-heart"
+          }
+        },
+        "REACTIONS_TADA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reactions-tada"
+          }
+        },
+        "INTERACTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "interactions"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssuesAndPullRequestsRequestOrder": {
+      "type": "enum",
+      "members": {
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssuesAndPullRequestsRequestSearchType": {
+      "type": "enum",
+      "members": {
+        "SEMANTIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "semantic"
+          }
+        },
+        "HYBRID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hybrid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssuesAndPullRequestsRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See \"[Searching issues and pull requests](https://docs.github.com/search-github/searching-on-github/searching-issues-and-pull-requests)\" for a detailed list of qualifiers."
+          }
+        },
+        "sort": {
+          "target": "com.github.search#IssuesAndPullRequestsRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sorts the results of your query by the number of `comments`, `reactions`, `reactions-+1`, `reactions--1`, `reactions-smile`, `reactions-thinking_face`, `reactions-heart`, `reactions-tada`, or `interactions`. You can also sort results by how recently the items were `created` or `updated`, Default: [best match](https://docs.github.com/rest/search/search#ranking-search-results)"
+          }
+        },
+        "order": {
+          "target": "com.github.search#IssuesAndPullRequestsRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Determines whether the first search result returned is the highest number of matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you provide `sort`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "advanced_search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "advanced_search",
+            "smithy.api#documentation": "Set to `true` to use advanced search.\nExample: `http://api.github.com/search/issues?q={query}&advanced_search=true`"
+          }
+        },
+        "search_type": {
+          "target": "com.github.search#IssuesAndPullRequestsRequestSearchType",
+          "traits": {
+            "smithy.api#httpQuery": "search_type",
+            "smithy.api#documentation": "The type of search to perform on issues. When not specified, the default is lexical search.\n\n- `semantic` — performs a pure semantic (vector) search using embedding-based understanding.\n- `hybrid` — combines semantic search with lexical search for best results.\n\nSemantic and hybrid search require authentication and are rate limited to 10 requests per minute.\nOnly applies to issue searches (`/search/issues`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#IssueSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "locked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active_lock_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "assignees": {
+          "target": "com.github.search#IssueSearchResultItemAssigneesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "labels": {
+          "target": "com.github.search#IssueSearchResultItemLabelsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sub_issues_summary": {
+          "target": "com.github.search#SubIssuesSummary"
+        },
+        "issue_dependencies_summary": {
+          "target": "com.github.search#IssueDependenciesSummary"
+        },
+        "issue_field_values": {
+          "target": "com.github.search#IssueSearchResultItemIssueFieldValuesList"
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "assignee": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "milestone": {
+          "target": "com.github.search#NullableMilestone",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "closed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        },
+        "pull_request": {
+          "target": "com.github.search#IssueSearchResultItemPullRequest"
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author_association": {
+          "target": "com.github.search#AuthorAssociation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "draft": {
+          "target": "smithy.api#Boolean"
+        },
+        "repository": {
+          "target": "com.github.search#Repository"
+        },
+        "body_html": {
+          "target": "smithy.api#String"
+        },
+        "body_text": {
+          "target": "smithy.api#String"
+        },
+        "timeline_url": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "com.github.search#IssueType",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "performed_via_github_app": {
+          "target": "com.github.search#NullableIntegration",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "pinned_comment": {
+          "target": "com.github.search#NullableIssueComment",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reactions": {
+          "target": "com.github.search#ReactionRollup"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Issue Search Result Item"
+      }
+    },
+    "com.github.search#IssueSearchResultItemAssigneesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.search#IssueSearchResultItemLabelsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "color": {
+          "target": "smithy.api#String"
+        },
+        "default": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssueSearchResultItemLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#IssueSearchResultItemLabelsItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#SubIssuesSummary": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "completed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "percent_completed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssueDependenciesSummary": {
+      "type": "structure",
+      "members": {
+        "blocked_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blocking": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_blocked_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_blocking": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssueFieldValue": {
+      "type": "structure",
+      "members": {
+        "issue_field_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the issue field.",
+            "smithy.api#required": {}
+          }
+        },
+        "issue_field_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable name of the issue field."
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data_type": {
+          "target": "com.github.search#IssueFieldValueDataType",
+          "traits": {
+            "smithy.api#documentation": "The data type of the issue field",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.github.search#IssueFieldValueValue",
+          "traits": {
+            "smithy.api#documentation": "The value of the issue field",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "single_select_option": {
+          "target": "com.github.search#IssueFieldValueSingleSelectOption",
+          "traits": {
+            "smithy.api#documentation": "Details about the selected option (only present for single_select fields)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "multi_select_options": {
+          "target": "com.github.search#IssueFieldValueMultiSelectOptionsList",
+          "traits": {
+            "smithy.api#documentation": "Details about the selected options",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A value assigned to an issue field"
+      }
+    },
+    "com.github.search#IssueFieldValueDataType": {
+      "type": "enum",
+      "members": {
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "SINGLE_SELECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "single_select"
+          }
+        },
+        "MULTI_SELECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_select"
+          }
+        },
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "number"
+          }
+        },
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The data type of the issue field"
+      }
+    },
+    "com.github.search#IssueFieldValueValue": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "smithy.api#Double"
+        },
+        "Case2": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The value of the issue field"
+      }
+    },
+    "com.github.search#IssueFieldValueSingleSelectOption": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the option.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the option",
+            "smithy.api#required": {}
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The color of the option",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the selected option (only present for single_select fields)"
+      }
+    },
+    "com.github.search#IssueFieldValueMultiSelectOptionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the option.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the option",
+            "smithy.api#required": {}
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The color of the option",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssueFieldValueMultiSelectOptionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#IssueFieldValueMultiSelectOptionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the selected options"
+      }
+    },
+    "com.github.search#IssueSearchResultItemIssueFieldValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#IssueFieldValue"
+      },
+      "traits": {}
+    },
+    "com.github.search#NullableMilestone": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of the milestone.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.github.search#NullableMilestoneState",
+          "traits": {
+            "smithy.api#documentation": "The state of the milestone.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the milestone.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creator": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "closed_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "closed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "due_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of related issues and pull requests."
+      }
+    },
+    "com.github.search#NullableMilestoneState": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the milestone."
+      }
+    },
+    "com.github.search#IssueSearchResultItemPullRequest": {
+      "type": "structure",
+      "members": {
+        "merged_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diff_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "patch_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#AuthorAssociation": {
+      "type": "enum",
+      "members": {
+        "COLLABORATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLABORATOR"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRIBUTOR"
+          }
+        },
+        "FIRST_TIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_TIMER"
+          }
+        },
+        "FIRST_TIME_CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_TIME_CONTRIBUTOR"
+          }
+        },
+        "MANNEQUIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANNEQUIN"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the author is associated with the repository."
+      }
+    },
+    "com.github.search#Repository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the repository",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "license": {
+          "target": "com.github.search#NullableLicenseSimple",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.search#RepositoryPermissions"
+        },
+        "owner": {
+          "target": "com.github.search#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is private or public.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0.",
+            "smithy.api#required": {}
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default branch of the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this repository acts as a template that can be used to generate new repositories."
+          }
+        },
+        "topics": {
+          "target": "com.github.search#RepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether issues are enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether projects are enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the wiki is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether downloads are enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether discussions are enabled."
+          }
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether pull requests are enabled."
+          }
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.search#RepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is archived.",
+            "smithy.api#required": {}
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Returns whether or not this repository disabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository visibility: public, private, or internal."
+          }
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "allow_rebase_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow rebase merges for pull requests."
+          }
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow squash merges for pull requests."
+          }
+        },
+        "allow_auto_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow Auto-merge to be used on pull requests."
+          }
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to delete head branches when pull requests are merged"
+          }
+        },
+        "allow_update_branch": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not a pull request head branch that is behind its base branch can always be updated even if it is not required to be up to date before merging."
+          }
+        },
+        "use_squash_pr_title_as_default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a squash merge commit can use the pull request title as default. **This property is closing down. Please use `squash_merge_commit_title` instead."
+          }
+        },
+        "squash_merge_commit_title": {
+          "target": "com.github.search#RepositorySquashMergeCommitTitle",
+          "traits": {
+            "smithy.api#documentation": "The default value for a squash merge commit title:\n\n- `PR_TITLE` - default to the pull request's title.\n- `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit)."
+          }
+        },
+        "squash_merge_commit_message": {
+          "target": "com.github.search#RepositorySquashMergeCommitMessage",
+          "traits": {
+            "smithy.api#documentation": "The default value for a squash merge commit message:\n\n- `PR_BODY` - default to the pull request's body.\n- `COMMIT_MESSAGES` - default to the branch's commit messages.\n- `BLANK` - default to a blank commit message."
+          }
+        },
+        "merge_commit_title": {
+          "target": "com.github.search#RepositoryMergeCommitTitle",
+          "traits": {
+            "smithy.api#documentation": "The default value for a merge commit title.\n\n- `PR_TITLE` - default to the pull request's title.\n- `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name)."
+          }
+        },
+        "merge_commit_message": {
+          "target": "com.github.search#RepositoryMergeCommitMessage",
+          "traits": {
+            "smithy.api#documentation": "The default value for a merge commit message.\n\n- `PR_TITLE` - default to the pull request's title.\n- `PR_BODY` - default to the pull request's body.\n- `BLANK` - default to a blank commit message."
+          }
+        },
+        "allow_merge_commit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow merge commits for pull requests."
+          }
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow forking this repo"
+          }
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to require contributors to sign off on web-based commits"
+          }
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "watchers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "master_branch": {
+          "target": "smithy.api#String"
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "anonymous_access_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether anonymous git access is enabled for this repository"
+          }
+        },
+        "code_search_index_status": {
+          "target": "com.github.search#RepositoryCodeSearchIndexStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the code search index for this repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A repository on GitHub."
+      }
+    },
+    "com.github.search#NullableLicenseSimple": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spdx_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "License Simple"
+      }
+    },
+    "com.github.search#RepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pull": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#RepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.search#RepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.search#RepositorySquashMergeCommitTitle": {
+      "type": "enum",
+      "members": {
+        "PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_TITLE"
+          }
+        },
+        "COMMIT_OR_PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMIT_OR_PR_TITLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a squash merge commit title:\n\n- `PR_TITLE` - default to the pull request's title.\n- `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit)."
+      }
+    },
+    "com.github.search#RepositorySquashMergeCommitMessage": {
+      "type": "enum",
+      "members": {
+        "PR_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_BODY"
+          }
+        },
+        "COMMIT_MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMIT_MESSAGES"
+          }
+        },
+        "BLANK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLANK"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a squash merge commit message:\n\n- `PR_BODY` - default to the pull request's body.\n- `COMMIT_MESSAGES` - default to the branch's commit messages.\n- `BLANK` - default to a blank commit message."
+      }
+    },
+    "com.github.search#RepositoryMergeCommitTitle": {
+      "type": "enum",
+      "members": {
+        "PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_TITLE"
+          }
+        },
+        "MERGE_MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERGE_MESSAGE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a merge commit title.\n\n- `PR_TITLE` - default to the pull request's title.\n- `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name)."
+      }
+    },
+    "com.github.search#RepositoryMergeCommitMessage": {
+      "type": "enum",
+      "members": {
+        "PR_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_BODY"
+          }
+        },
+        "PR_TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR_TITLE"
+          }
+        },
+        "BLANK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLANK"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The default value for a merge commit message.\n\n- `PR_TITLE` - default to the pull request's title.\n- `PR_BODY` - default to the pull request's body.\n- `BLANK` - default to a blank commit message."
+      }
+    },
+    "com.github.search#RepositoryCodeSearchIndexStatus": {
+      "type": "structure",
+      "members": {
+        "lexical_search_ok": {
+          "target": "smithy.api#Boolean"
+        },
+        "lexical_commit_sha": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the code search index for this repository"
+      }
+    },
+    "com.github.search#IssueType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the issue type.",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The node identifier of the issue type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the issue type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the issue type.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "color": {
+          "target": "com.github.search#IssueTypeColor",
+          "traits": {
+            "smithy.api#documentation": "The color of the issue type.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the issue type created."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the issue type last updated."
+          }
+        },
+        "is_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The enabled state of the issue type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type assigned to the issue. This is only present for issues in repositories where issue types are supported."
+      }
+    },
+    "com.github.search#IssueTypeColor": {
+      "type": "enum",
+      "members": {
+        "GRAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gray"
+          }
+        },
+        "BLUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blue"
+          }
+        },
+        "GREEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "green"
+          }
+        },
+        "YELLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yellow"
+          }
+        },
+        "ORANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "orange"
+          }
+        },
+        "RED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "red"
+          }
+        },
+        "PINK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pink"
+          }
+        },
+        "PURPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "purple"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The color of the issue type."
+      }
+    },
+    "com.github.search#NullableIntegration": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the GitHub app",
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The slug name of the GitHub app"
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.github.search#NullableIntegrationOwner",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the GitHub app",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "external_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.search#NullableIntegrationPermissions",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions for the GitHub app",
+            "smithy.api#required": {}
+          }
+        },
+        "events": {
+          "target": "com.github.search#NullableIntegrationEventsList",
+          "traits": {
+            "smithy.api#documentation": "The list of events for the GitHub app. Note that the `installation_target`, `security_advisory`, and `meta` events are not included because they are global events and not specific to an installation.",
+            "smithy.api#required": {}
+          }
+        },
+        "installations_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of installations associated with the GitHub app. Only returned when the integration is requesting details about itself."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GitHub apps are a new way to extend GitHub. They can be installed directly on organizations and user accounts and granted access to specific repositories. They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub."
+      }
+    },
+    "com.github.search#Enterprise": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the enterprise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "website_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The enterprise's website URL.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the enterprise.",
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The slug url identifier for the enterprise.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An enterprise on GitHub."
+      }
+    },
+    "com.github.search#NullableIntegrationOwner": {
+      "type": "union",
+      "members": {
+        "SimpleUser": {
+          "target": "com.github.search#SimpleUser"
+        },
+        "Enterprise": {
+          "target": "com.github.search#Enterprise"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#NullableIntegrationPermissions": {
+      "type": "structure",
+      "members": {
+        "issues": {
+          "target": "smithy.api#String"
+        },
+        "checks": {
+          "target": "smithy.api#String"
+        },
+        "metadata": {
+          "target": "smithy.api#String"
+        },
+        "contents": {
+          "target": "smithy.api#String"
+        },
+        "deployments": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of permissions for the GitHub app"
+      }
+    },
+    "com.github.search#NullableIntegrationEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of events for the GitHub app. Note that the `installation_target`, `security_advisory`, and `meta` events are not included because they are global events and not specific to an installation."
+      }
+    },
+    "com.github.search#NullableIssueComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the issue comment",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the issue comment",
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contents of the issue comment"
+          }
+        },
+        "body_text": {
+          "target": "smithy.api#String"
+        },
+        "body_html": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author_association": {
+          "target": "com.github.search#AuthorAssociation"
+        },
+        "performed_via_github_app": {
+          "target": "com.github.search#NullableIntegration",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reactions": {
+          "target": "com.github.search#ReactionRollup"
+        },
+        "pin": {
+          "target": "com.github.search#NullablePinnedIssueComment",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "minimized": {
+          "target": "com.github.search#NullableIssueCommentMinimized",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Comments provide a way for people to collaborate on an issue."
+      }
+    },
+    "com.github.search#ReactionRollup": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#jsonName": "+1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#jsonName": "-1"
+          }
+        },
+        "laugh": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "confused": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "heart": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hooray": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "eyes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "rocket": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#NullablePinnedIssueComment": {
+      "type": "structure",
+      "members": {
+        "pinned_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pinned_by": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Context around who pinned an issue comment and when it was pinned."
+      }
+    },
+    "com.github.search#NullableIssueCommentMinimized": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason the comment was minimized.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about why an issue comment was minimized."
+      }
+    },
+    "com.github.search#IssuesAndPullRequestsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#IssueSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#IssuesAndPullRequestsResponseSearchType": {
+      "type": "enum",
+      "members": {
+        "LEXICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lexical"
+          }
+        },
+        "SEMANTIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "semantic"
+          }
+        },
+        "HYBRID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hybrid"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of search that was performed. Possible values are `lexical`, `semantic`, or `hybrid`."
+      }
+    },
+    "com.github.search#IssuesAndPullRequestsResponseLexicalFallbackReasonItem": {
+      "type": "enum",
+      "members": {
+        "NO_TEXT_TERMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_text_terms"
+          }
+        },
+        "QUOTED_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "quoted_text"
+          }
+        },
+        "NON_ISSUE_TARGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "non_issue_target"
+          }
+        },
+        "OR_BOOLEAN_NOT_SUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "or_boolean_not_supported"
+          }
+        },
+        "NO_ACCESSIBLE_REPOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_accessible_repos"
+          }
+        },
+        "SERVER_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server_error"
+          }
+        },
+        "ONLY_NON_SEMANTIC_FIELDS_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "only_non_semantic_fields_requested"
+          }
+        },
+        "SERVICE_UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "service_unavailable"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#IssuesAndPullRequestsResponseLexicalFallbackReasonList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#IssuesAndPullRequestsResponseLexicalFallbackReasonItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "When a semantic or hybrid search falls back to lexical search, this field contains the reasons for the fallback. Only present when a fallback occurred."
+      }
+    },
+    "com.github.search#IssuesAndPullRequestsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#IssuesAndPullRequestsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "search_type": {
+          "target": "com.github.search#IssuesAndPullRequestsResponseSearchType",
+          "traits": {
+            "smithy.api#documentation": "The type of search that was performed. Possible values are `lexical`, `semantic`, or `hybrid`.",
+            "smithy.api#required": {}
+          }
+        },
+        "lexical_fallback_reason": {
+          "target": "com.github.search#IssuesAndPullRequestsResponseLexicalFallbackReasonList",
+          "traits": {
+            "smithy.api#documentation": "When a semantic or hybrid search falls back to lexical search, this field contains the reasons for the fallback. Only present when a fallback occurred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#IssuesAndPullRequests": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#IssuesAndPullRequestsRequest"
+      },
+      "output": {
+        "target": "com.github.search#IssuesAndPullRequestsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.search#Forbidden"
+        },
+        {
+          "target": "com.github.search#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/issues",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search issues and pull requests\n\nFind issues by state and keyword. This method returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).\n\nWhen searching for issues, you can get text match metadata for the issue **title**, issue **body**, and issue **comment body** fields when you pass the `text-match` media type. For more details about how to receive highlighted\nsearch results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you want to find the oldest unresolved Python bugs on Windows. Your query might look something like this.\n\n`q=windows+label:bug+language:python+state:open&sort=created&order=asc`\n\nThis query searches for the keyword `windows`, within any open issue that is labeled as `bug`. The search runs across repositories whose primary language is Python. The results are sorted by creation date in ascending order, which means the oldest issues appear first in the search results.\n\n> [!NOTE]\n> For requests made by GitHub Apps with a user access token, you can't retrieve a combination of issues and pull requests in a single query. Requests that don't include the `is:issue` or `is:pull-request` qualifier will receive an HTTP `422 Unprocessable Entity` response. To get results for both issues and pull requests, you must send separate queries for issues and pull requests. For more information about the `is` qualifier, see \"[Searching only issues or pull requests](https://docs.github.com/github/searching-for-information-on-github/searching-issues-and-pull-requests#search-only-issues-or-pull-requests).\""
+      }
+    },
+    "com.github.search#LabelsRequestSort": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#LabelsRequestOrder": {
+      "type": "enum",
+      "members": {
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#LabelsRequest": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "repository_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the repository."
+          }
+        },
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The search keywords. This endpoint does not accept qualifiers in the query. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query)."
+          }
+        },
+        "sort": {
+          "target": "com.github.search#LabelsRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sorts the results of your query by when the label was `created` or `updated`. Default: [best match](https://docs.github.com/rest/search/search#ranking-search-results)"
+          }
+        },
+        "order": {
+          "target": "com.github.search#LabelsRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Determines whether the first search result returned is the highest number of matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you provide `sort`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#LabelSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Label Search Result Item"
+      }
+    },
+    "com.github.search#LabelsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#LabelSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#LabelsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#LabelsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#Labels": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#LabelsRequest"
+      },
+      "output": {
+        "target": "com.github.search#LabelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.search#Forbidden"
+        },
+        {
+          "target": "com.github.search#NotFound"
+        },
+        {
+          "target": "com.github.search#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/labels",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search labels\n\nFind labels in a repository with names or descriptions that match search keywords. Returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).\n\nWhen searching for labels, you can get text match metadata for the label **name** and **description** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you want to find labels in the `linguist` repository that match `bug`, `defect`, or `enhancement`. Your query might look like this:\n\n`q=bug+defect+enhancement&repository_id=64778136`\n\nThe labels that best match the query appear first in the search results."
+      }
+    },
+    "com.github.search#ReposRequestSort": {
+      "type": "enum",
+      "members": {
+        "STARS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stars"
+          }
+        },
+        "FORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "forks"
+          }
+        },
+        "HELP_WANTED_ISSUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "help-wanted-issues"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#ReposRequestOrder": {
+      "type": "enum",
+      "members": {
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#ReposRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See \"[Searching for repositories](https://docs.github.com/articles/searching-for-repositories/)\" for a detailed list of qualifiers."
+          }
+        },
+        "sort": {
+          "target": "com.github.search#ReposRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sorts the results of your query by number of `stars`, `forks`, or `help-wanted-issues` or how recently the items were `updated`. Default: [best match](https://docs.github.com/rest/search/search#ranking-search-results)"
+          }
+        },
+        "order": {
+          "target": "com.github.search#ReposRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Determines whether the first search result returned is the highest number of matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you provide `sort`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#RepoSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.search#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "master_branch": {
+          "target": "smithy.api#String"
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "watchers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "topics": {
+          "target": "com.github.search#RepoSearchResultItemTopicsList"
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.search#RepoSearchResultItemPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Returns whether or not this repository disabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The repository visibility: public, private, or internal."
+          }
+        },
+        "license": {
+          "target": "com.github.search#NullableLicenseSimple",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.search#RepoSearchResultItemPermissions"
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "allow_merge_commit": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_auto_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repo Search Result Item"
+      }
+    },
+    "com.github.search#RepoSearchResultItemTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.search#RepoSearchResultItemPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.search#RepoSearchResultItemPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#ReposResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#RepoSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#ReposResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#ReposResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#Repos": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#ReposRequest"
+      },
+      "output": {
+        "target": "com.github.search#ReposResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.search#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search repositories\n\nFind repositories via various criteria. This method returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).\n\nWhen searching for repositories, you can get text match metadata for the **name** and **description** fields when you pass the `text-match` media type. For more details about how to receive highlighted search results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you want to search for popular Tetris repositories written in assembly code, your query might look like this:\n\n`q=tetris+language:assembly&sort=stars&order=desc`\n\nThis query searches for repositories with the word `tetris` in the name, the description, or the README. The results are limited to repositories where the primary language is assembly. The results are sorted by stars in descending order, so that the most popular repositories appear first in the search results."
+      }
+    },
+    "com.github.search#TopicsRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query)."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#TopicSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "short_description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "released": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "featured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "curated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "logo_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        },
+        "related": {
+          "target": "com.github.search#TopicSearchResultItemRelatedList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "aliases": {
+          "target": "com.github.search#TopicSearchResultItemAliasesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Topic Search Result Item"
+      }
+    },
+    "com.github.search#TopicSearchResultItemRelatedItemTopicRelation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "topic_id": {
+          "target": "smithy.api#Integer"
+        },
+        "relation_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicSearchResultItemRelatedItem": {
+      "type": "structure",
+      "members": {
+        "topic_relation": {
+          "target": "com.github.search#TopicSearchResultItemRelatedItemTopicRelation"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicSearchResultItemRelatedList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#TopicSearchResultItemRelatedItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicSearchResultItemAliasesItemTopicRelation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "topic_id": {
+          "target": "smithy.api#Integer"
+        },
+        "relation_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicSearchResultItemAliasesItem": {
+      "type": "structure",
+      "members": {
+        "topic_relation": {
+          "target": "com.github.search#TopicSearchResultItemAliasesItemTopicRelation"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicSearchResultItemAliasesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#TopicSearchResultItemAliasesItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#TopicSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#TopicsResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#TopicsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#Topics": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#TopicsRequest"
+      },
+      "output": {
+        "target": "com.github.search#TopicsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/topics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search topics\n\nFind topics via various criteria. Results are sorted by best match. This method returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api). See \"[Searching topics](https://docs.github.com/articles/searching-topics/)\" for a detailed list of qualifiers.\n\nWhen searching for topics, you can get text match metadata for the topic's **short\\_description**, **description**, **name**, or **display\\_name** field when you pass the `text-match` media type. For more details about how to receive highlighted search results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you want to search for topics related to Ruby that are featured on https://github.com/topics. Your query might look like this:\n\n`q=ruby+is:featured`\n\nThis query searches for topics with the keyword `ruby` and limits the results to find only topics that are featured. The topics that are the best match for the query appear first in the search results."
+      }
+    },
+    "com.github.search#UsersRequestSort": {
+      "type": "enum",
+      "members": {
+        "FOLLOWERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "followers"
+          }
+        },
+        "REPOSITORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repositories"
+          }
+        },
+        "JOINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "joined"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#UsersRequestOrder": {
+      "type": "enum",
+      "members": {
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        },
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.search#UsersRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See \"[Searching users](https://docs.github.com/search-github/searching-on-github/searching-users)\" for a detailed list of qualifiers."
+          }
+        },
+        "sort": {
+          "target": "com.github.search#UsersRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sorts the results of your query by number of `followers` or `repositories`, or when the person `joined` GitHub. Default: [best match](https://docs.github.com/rest/search/search#ranking-search-results)"
+          }
+        },
+        "order": {
+          "target": "com.github.search#UsersRequestOrder",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Determines whether the first search result returned is the highest number of matches (`desc`) or lowest number of matches (`asc`). This parameter is ignored unless you provide `sort`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.search#UserSearchResultItem": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_repos": {
+          "target": "smithy.api#Integer"
+        },
+        "public_gists": {
+          "target": "smithy.api#Integer"
+        },
+        "followers": {
+          "target": "smithy.api#Integer"
+        },
+        "following": {
+          "target": "smithy.api#Integer"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bio": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hireable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "text_matches": {
+          "target": "com.github.search#SearchResultTextMatches"
+        },
+        "blog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "suspended_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User Search Result Item"
+      }
+    },
+    "com.github.search#UsersResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.search#UserSearchResultItem"
+      },
+      "traits": {}
+    },
+    "com.github.search#UsersResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "incomplete_results": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.github.search#UsersResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.search#Users": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.search#UsersRequest"
+      },
+      "output": {
+        "target": "com.github.search#UsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.search#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/search/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search users\n\nFind users via various criteria. This method returns up to 100 results [per page](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api).\n\nWhen searching for users, you can get text match metadata for the issue **login**, public **email**, and **name** fields when you pass the `text-match` media type. For more details about highlighting search results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata). For more details about how to receive highlighted search results, see [Text match metadata](https://docs.github.com/rest/search/search#text-match-metadata).\n\nFor example, if you're looking for a list of popular users, you might try this query:\n\n`q=tom+repos:%3E42+followers:%3E1000`\n\nThis query searches for users with the name `tom`. The results are restricted to users with more than 42 repositories and over 1,000 followers.\n\nThis endpoint does not accept authentication and will only include publicly visible users. As an alternative, you can use the GraphQL API. The GraphQL API requires authentication and will return private users, including Enterprise Managed Users (EMUs), that you are authorized to view. For more information, see \"[GraphQL Queries](https://docs.github.com/graphql/reference/queries#search).\""
+      }
+    },
+    "com.github.search#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.search#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.search#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.search#Search": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.search#Code"
+        },
+        {
+          "target": "com.github.search#Commits"
+        },
+        {
+          "target": "com.github.search#IssuesAndPullRequests"
+        },
+        {
+          "target": "com.github.search#Labels"
+        },
+        {
+          "target": "com.github.search#Repos"
+        },
+        {
+          "target": "com.github.search#Topics"
+        },
+        {
+          "target": "com.github.search#Users"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

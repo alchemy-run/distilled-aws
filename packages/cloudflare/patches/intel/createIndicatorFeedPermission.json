@@ -1,0 +1,42 @@
+{
+  "description": "Align intel#IndicatorFeedsPermissionsCreate with distilled cloudflare/intel createIndicatorFeedPermission",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsCreate",
+      "path": "/shapes/com.cloudflare.intel#CreateIndicatorFeedPermission"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsCreateRequest",
+      "path": "/shapes/com.cloudflare.intel#CreateIndicatorFeedPermissionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#CreateIndicatorFeedPermission/input/target",
+      "value": "com.cloudflare.intel#CreateIndicatorFeedPermissionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsCreateResponse",
+      "path": "/shapes/com.cloudflare.intel#CreateIndicatorFeedPermissionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#CreateIndicatorFeedPermission/output/target",
+      "value": "com.cloudflare.intel#CreateIndicatorFeedPermissionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#CreateIndicatorFeedPermission/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.intel#IndicatorFeedNotFound"
+        },
+        {
+          "target": "com.cloudflare.intel#Forbidden"
+        }
+      ]
+    }
+  ]
+}

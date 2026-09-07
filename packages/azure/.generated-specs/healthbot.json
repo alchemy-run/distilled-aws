@@ -1,0 +1,1391 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.healthbot#BotsRegenerateApiJwtSecret": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsRegenerateApiJwtSecretRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#HealthBotKey"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}/regenerateApiJwtSecret",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Regenerate the API JWT Secret of a HealthBot.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#HealthBotKey": {
+      "type": "structure",
+      "members": {
+        "keyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the key."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An entry of HealthBotKeysResponse"
+      }
+    },
+    "com.azure.healthbot#BotsRegenerateApiJwtSecretRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "botName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Bot resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#BotsListSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsListSecretsRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#HealthBotKeysResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}/listSecrets",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "List all secrets of a HealthBot.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#HealthBotKeysResponse": {
+      "type": "structure",
+      "members": {
+        "secrets": {
+          "target": "com.azure.healthbot#HealthBotKeysResponseSecretsList",
+          "traits": {
+            "smithy.api#documentation": "Array of Azure Health Bot Secrets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Health Bot Keys Response."
+      }
+    },
+    "com.azure.healthbot#HealthBotKeysResponseSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.healthbot#HealthBotKey"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of Azure Health Bot Secrets."
+      }
+    },
+    "com.azure.healthbot#BotsListSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "botName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Bot resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#BotsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Delete a HealthBot.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#BotsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "botName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Bot resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#BotsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#BotsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Patch a HealthBot.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#BotsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.healthbot#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.healthbot#BotsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.healthbot#HealthBotProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to Azure Health Bot resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.healthbot#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the Azure Health Bot.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.healthbot#Identity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the Azure Health Bot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.healthbot#Identity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of resource identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of resource. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.healthbot#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The identity type. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the Azure Health Bot"
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.healthbot#IdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form:\n'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.healthbot#IdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.healthbot#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form:\n'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+      }
+    },
+    "com.azure.healthbot#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of user assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of user assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the user assigned managed identity used by the Video Analyzer resource."
+      }
+    },
+    "com.azure.healthbot#ResourceIdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned, UserAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The identity type. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the Azure Health Bot"
+      }
+    },
+    "com.azure.healthbot#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.healthbot#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure Health Bot SKU",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.healthbot#SkuName": {
+      "type": "enum",
+      "members": {
+        "F0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "F0"
+          }
+        },
+        "C0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "C0"
+          }
+        },
+        "PES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PES"
+          }
+        },
+        "C1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "C1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the Azure Health Bot SKU"
+      }
+    },
+    "com.azure.healthbot#HealthBotProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the Azure Health Bot resource."
+          }
+        },
+        "botManagementPortalLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link."
+          }
+        },
+        "keyVaultProperties": {
+          "target": "com.azure.healthbot#KeyVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "KeyVault properties for the resource encryption."
+          }
+        },
+        "accessControlMethod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The access control method for the Azure Health Bot resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Azure Health Bot. The Health Bot Service is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs."
+      }
+    },
+    "com.azure.healthbot#KeyVaultProperties": {
+      "type": "structure",
+      "members": {
+        "keyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the key vault key.",
+            "smithy.api#required": {}
+          }
+        },
+        "keyVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the key vault key."
+          }
+        },
+        "keyVaultUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Uri of the key vault.",
+            "smithy.api#required": {}
+          }
+        },
+        "userIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user assigned identity (ARM resource id) that has access to the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the key vault."
+      }
+    },
+    "com.azure.healthbot#BotsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.healthbot#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.healthbot#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.healthbot#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.healthbot#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.healthbot#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.healthbot#BotsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "botName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Bot resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.healthbot#HealthBotPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of Azure Health Bot."
+          }
+        },
+        "tags": {
+          "target": "com.azure.healthbot#BotsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for a Azure Health Bot."
+          }
+        },
+        "sku": {
+          "target": "com.azure.healthbot#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the Azure Health Bot."
+          }
+        },
+        "identity": {
+          "target": "com.azure.healthbot#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The identity of the Azure Health Bot."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#IdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.healthbot#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The identity type. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the Azure Health Bot"
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.healthbot#IdentityInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form:\n'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.healthbot#IdentityInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.healthbot#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form:\n'/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+      }
+    },
+    "com.azure.healthbot#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The details of the user assigned managed identity used by the Video Analyzer resource."
+      }
+    },
+    "com.azure.healthbot#BotsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for a Azure Health Bot."
+      }
+    },
+    "com.azure.healthbot#HealthBotPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "keyVaultProperties": {
+          "target": "com.azure.healthbot#KeyVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "KeyVault properties for the resource encryption."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of a Azure Health Bot. The Health Bot Service is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs."
+      }
+    },
+    "com.azure.healthbot#BotsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#BotsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Create a new Azure Health Bot.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#BotsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.healthbot#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.healthbot#BotsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.healthbot#HealthBotProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to Azure Health Bot resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.healthbot#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the Azure Health Bot.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.healthbot#Identity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the Azure Health Bot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.healthbot#BotsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.healthbot#BotsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "botName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Bot resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.healthbot#BotsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.healthbot#HealthBotPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to Azure Health Bot resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.healthbot#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the Azure Health Bot.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.healthbot#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The identity of the Azure Health Bot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#BotsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.healthbot#BotsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#BotsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Get a HealthBot.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#BotsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.healthbot#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.healthbot#BotsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.healthbot#HealthBotProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to Azure Health Bot resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.healthbot#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the Azure Health Bot.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.healthbot#Identity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the Azure Health Bot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.healthbot#BotsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.healthbot#BotsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "botName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Bot resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#BotsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#BotResponseList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Returns all the resources of a particular type belonging to a resource group",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#BotResponseList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.healthbot#BotResponseListValueList",
+          "traits": {
+            "smithy.api#documentation": "The HealthBot items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Azure Health Bot operation response."
+      }
+    },
+    "com.azure.healthbot#BotResponseListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.healthbot#HealthBot"
+      },
+      "traits": {
+        "smithy.api#documentation": "The HealthBot items on this page"
+      }
+    },
+    "com.azure.healthbot#HealthBot": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.healthbot#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.healthbot#HealthBotTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.healthbot#HealthBotProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to Azure Health Bot resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.healthbot#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the Azure Health Bot.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.healthbot#Identity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the Azure Health Bot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Health Bot resource definition"
+      }
+    },
+    "com.azure.healthbot#HealthBotTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.healthbot#BotsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#BotsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.healthbot#BotsListRequest"
+      },
+      "output": {
+        "target": "com.azure.healthbot#BotResponseList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.HealthBot/healthBots",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Returns all the resources of a particular type belonging to a subscription.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#BotsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.healthbot#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.healthbot#AvailableOperations"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.HealthBot/operations",
+          "code": 200,
+          "apiVersion": "2025-11-01"
+        },
+        "smithy.api#documentation": "Lists all the available Azure Health Bot operations.",
+        "com.distilled.openapi#apiVersion": "2025-11-01"
+      }
+    },
+    "com.azure.healthbot#AvailableOperations": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.healthbot#AvailableOperationsValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of available operation details.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL client should use to fetch the next page (per server side paging).\nIt's null for now, added for future use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available operations of the service."
+      }
+    },
+    "com.azure.healthbot#AvailableOperationsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.healthbot#OperationDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of available operation details."
+      }
+    },
+    "com.azure.healthbot#OperationDetail": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "display": {
+          "target": "com.azure.healthbot#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display of the operation"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation"
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Additional properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation detail payload"
+      }
+    },
+    "com.azure.healthbot#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider of the operation"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource of the operation"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly name for the operation"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly description for the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation display payload"
+      }
+    },
+    "com.azure.healthbot#Healthbot": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.healthbot#BotsRegenerateApiJwtSecret"
+        },
+        {
+          "target": "com.azure.healthbot#BotsListSecrets"
+        },
+        {
+          "target": "com.azure.healthbot#BotsDelete"
+        },
+        {
+          "target": "com.azure.healthbot#BotsUpdate"
+        },
+        {
+          "target": "com.azure.healthbot#BotsCreate"
+        },
+        {
+          "target": "com.azure.healthbot#BotsGet"
+        },
+        {
+          "target": "com.azure.healthbot#BotsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.healthbot#BotsList"
+        },
+        {
+          "target": "com.azure.healthbot#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Healthbot",
+        "smithy.api#documentation": "Azure Healthbot API — merged from the healthbot resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

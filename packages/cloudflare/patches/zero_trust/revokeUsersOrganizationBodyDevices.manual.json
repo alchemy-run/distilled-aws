@@ -1,0 +1,13 @@
+{
+  "description": "revoke_user accepts `devices` both as a query param and as a body field with the identical documented meaning (\"revoke all devices associated with the user\"). The converter dedup surfaced the body copy as `devices2`; drop the duplicate and keep the query param, which carries the same flag.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForAccountRequest/members/devices_2"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForZoneRequest/members/devices_2"
+    }
+  ]
+}

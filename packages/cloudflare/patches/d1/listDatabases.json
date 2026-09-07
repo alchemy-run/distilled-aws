@@ -1,0 +1,41 @@
+{
+  "description": "Align d1#DatabaseList with distilled cloudflare/d1 listDatabases",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseList",
+      "path": "/shapes/com.cloudflare.d1#ListDatabases"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseListRequest",
+      "path": "/shapes/com.cloudflare.d1#ListDatabasesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#ListDatabases/input/target",
+      "value": "com.cloudflare.d1#ListDatabasesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseListResponse",
+      "path": "/shapes/com.cloudflare.d1#ListDatabasesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#ListDatabases/output/target",
+      "value": "com.cloudflare.d1#ListDatabasesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#ListDatabases/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

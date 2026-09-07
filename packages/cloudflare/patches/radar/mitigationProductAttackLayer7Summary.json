@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7SummaryMitigationProduct with distilled cloudflare/radar mitigationProductAttackLayer7Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryMitigationProduct",
+      "path": "/shapes/com.cloudflare.radar#MitigationProductAttackLayer7Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryMitigationProductRequest",
+      "path": "/shapes/com.cloudflare.radar#MitigationProductAttackLayer7SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MitigationProductAttackLayer7Summary/input/target",
+      "value": "com.cloudflare.radar#MitigationProductAttackLayer7SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryMitigationProductResponse",
+      "path": "/shapes/com.cloudflare.radar#MitigationProductAttackLayer7SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MitigationProductAttackLayer7Summary/output/target",
+      "value": "com.cloudflare.radar#MitigationProductAttackLayer7SummaryResponse"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.request_tracers#TracesCreateRequestBody": {
+      "type": "structure",
+      "members": {
+        "base64": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Base64 encoded request body"
+          }
+        },
+        "json": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Arbitrary json as request body"
+          }
+        },
+        "plain_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request body as plain text"
+          }
+        }
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreateRequestContextGeoloc": {
+      "type": "structure",
+      "members": {
+        "city": {
+          "target": "smithy.api#String"
+        },
+        "continent": {
+          "target": "smithy.api#String"
+        },
+        "is_eu_country": {
+          "target": "smithy.api#Boolean"
+        },
+        "iso_code": {
+          "target": "smithy.api#String"
+        },
+        "latitude": {
+          "target": "smithy.api#Double"
+        },
+        "longitude": {
+          "target": "smithy.api#Double"
+        },
+        "postal_code": {
+          "target": "smithy.api#String"
+        },
+        "region_code": {
+          "target": "smithy.api#String"
+        },
+        "subdivision_2_iso_code": {
+          "target": "smithy.api#String"
+        },
+        "timezone": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreateRequestContext": {
+      "type": "structure",
+      "members": {
+        "bot_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Bot score used for evaluating tracing request processing"
+          }
+        },
+        "geoloc": {
+          "target": "com.cloudflare.request_tracers#TracesCreateRequestContextGeoloc",
+          "traits": {
+            "smithy.api#documentation": "Geodata for tracing request"
+          }
+        },
+        "skip_challenge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to skip any challenges for tracing request (e.g.: captcha)"
+          }
+        },
+        "threat_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Threat score used for evaluating tracing request processing"
+          }
+        }
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreateRequestCookiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreateRequestHeadersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP Method of tracing request",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to which perform tracing request",
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.request_tracers#TracesCreateRequestBody"
+        },
+        "context": {
+          "target": "com.cloudflare.request_tracers#TracesCreateRequestContext",
+          "traits": {
+            "smithy.api#documentation": "Additional request parameters"
+          }
+        },
+        "cookies": {
+          "target": "com.cloudflare.request_tracers#TracesCreateRequestCookiesMap",
+          "traits": {
+            "smithy.api#documentation": "Cookies added to tracing request"
+          }
+        },
+        "headers": {
+          "target": "com.cloudflare.request_tracers#TracesCreateRequestHeadersMap",
+          "traits": {
+            "smithy.api#documentation": "Headers added to tracing request"
+          }
+        },
+        "protocol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP Protocol of tracing request"
+          }
+        },
+        "skip_response": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip sending the request to the Origin server after all rules evaluation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "status_code": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "HTTP Status code of zone response"
+          }
+        },
+        "trace": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.request_tracers#TracesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.request_tracers#TracesCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.request_tracers#TracesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/request-tracer/trace",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request Trace"
+      }
+    },
+    "com.cloudflare.request_tracers#RequestTracers": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.request_tracers#TracesCreate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare RequestTracers",
+        "smithy.api#documentation": "Cloudflare API — request_tracers resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

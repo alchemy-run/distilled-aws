@@ -1,0 +1,45 @@
+{
+  "description": "Align addressing#PrefixesBgpPrefixesCreate with distilled cloudflare/addressing createPrefixBgpPrefix",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesBgpPrefixesCreate",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixBgpPrefix"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesBgpPrefixesCreateRequest",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixBgpPrefixRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixBgpPrefix/input/target",
+      "value": "com.cloudflare.addressing#CreatePrefixBgpPrefixRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesBgpPrefixesCreateResponse",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixBgpPrefixResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixBgpPrefix/output/target",
+      "value": "com.cloudflare.addressing#CreatePrefixBgpPrefixResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixBgpPrefix/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#NonexistentAccountPrefix"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidNetworkCidr"
+        }
+      ]
+    }
+  ]
+}

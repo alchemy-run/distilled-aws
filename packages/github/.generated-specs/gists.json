@@ -1,0 +1,2607 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.gists#ListRequest": {
+      "type": "structure",
+      "members": {
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#BaseGist": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_pull_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_push_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.github.gists#BaseGistFilesMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "user": {
+          "target": "com.github.gists#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.gists#SimpleUser"
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean"
+        },
+        "forks": {
+          "target": "com.github.gists#BaseGistForksList"
+        },
+        "history": {
+          "target": "com.github.gists#BaseGistHistoryList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Base Gist"
+      }
+    },
+    "com.github.gists#BaseGistFilesValue": {
+      "type": "structure",
+      "members": {
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "raw_url": {
+          "target": "smithy.api#String"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "encoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoding used for `content`. Currently, `\"utf-8\"` and `\"base64\"` are supported."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#BaseGistFilesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.gists#BaseGistFilesValue"
+      },
+      "traits": {}
+    },
+    "com.github.gists#NullableSimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.gists#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.gists#BaseGistForksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.gists#BaseGistHistoryList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#BaseGist"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists",
+          "code": 200
+        },
+        "smithy.api#documentation": "List gists for the authenticated user\n\nLists the authenticated user's gists or if called anonymously, this endpoint returns all public gists:"
+      }
+    },
+    "com.github.gists#CreateRequestFilesValue": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content of the file",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#CreateRequestFilesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.gists#CreateRequestFilesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "Names and content for the files that make up the gist"
+      }
+    },
+    "com.github.gists#CreateRequestPublicCase1": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "true"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#CreateRequestPublic": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case1": {
+          "target": "com.github.gists#CreateRequestPublicCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the gist"
+          }
+        },
+        "files": {
+          "target": "com.github.gists#CreateRequestFilesMap",
+          "traits": {
+            "smithy.api#documentation": "Names and content for the files that make up the gist",
+            "smithy.api#required": {}
+          }
+        },
+        "public": {
+          "target": "com.github.gists#CreateRequestPublic"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#GistSimple": {
+      "type": "structure",
+      "members": {
+        "forks": {
+          "target": "com.github.gists#GistSimpleForksList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "history": {
+          "target": "com.github.gists#GistSimpleHistoryList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork_of": {
+          "target": "com.github.gists#GistSimpleForkOf",
+          "traits": {
+            "smithy.api#documentation": "Gist",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "forks_url": {
+          "target": "smithy.api#String"
+        },
+        "commits_url": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        },
+        "git_pull_url": {
+          "target": "smithy.api#String"
+        },
+        "git_push_url": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "files": {
+          "target": "com.github.gists#GistSimpleFilesMap"
+        },
+        "public": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#Integer"
+        },
+        "comments_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.github.gists#SimpleUser"
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gist Simple"
+      }
+    },
+    "com.github.gists#PublicUser": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "blog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hireable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bio": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "twitter_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "public_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_gists": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.github.gists#PublicUserPlan"
+        },
+        "private_gists": {
+          "target": "smithy.api#Integer"
+        },
+        "total_private_repos": {
+          "target": "smithy.api#Integer"
+        },
+        "owned_private_repos": {
+          "target": "smithy.api#Integer"
+        },
+        "disk_usage": {
+          "target": "smithy.api#Integer"
+        },
+        "collaborators": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public User"
+      }
+    },
+    "com.github.gists#PublicUserPlan": {
+      "type": "structure",
+      "members": {
+        "collaborators": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "space": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private_repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForksItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.github.gists#PublicUser"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForksList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#GistSimpleForksItem"
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistHistory": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "com.github.gists#NullableSimpleUser",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String"
+        },
+        "committed_at": {
+          "target": "smithy.api#String"
+        },
+        "change_status": {
+          "target": "com.github.gists#GistHistoryChangeStatus"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gist History"
+      }
+    },
+    "com.github.gists#GistHistoryChangeStatus": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer"
+        },
+        "additions": {
+          "target": "smithy.api#Integer"
+        },
+        "deletions": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleHistoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#GistHistory"
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForkOfFilesValue": {
+      "type": "structure",
+      "members": {
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "raw_url": {
+          "target": "smithy.api#String"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForkOfFilesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.gists#GistSimpleForkOfFilesValue"
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForkOfForksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForkOfHistoryList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleForkOf": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_pull_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_push_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.github.gists#GistSimpleForkOfFilesMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "user": {
+          "target": "com.github.gists#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.gists#NullableSimpleUser",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean"
+        },
+        "forks": {
+          "target": "com.github.gists#GistSimpleForkOfForksList"
+        },
+        "history": {
+          "target": "com.github.gists#GistSimpleForkOfHistoryList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gist"
+      }
+    },
+    "com.github.gists#GistSimpleFilesValue": {
+      "type": "structure",
+      "members": {
+        "filename": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "raw_url": {
+          "target": "smithy.api#String"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean"
+        },
+        "content": {
+          "target": "smithy.api#String"
+        },
+        "encoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoding used for `content`. Currently, `\"utf-8\"` and `\"base64\"` are supported."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#GistSimpleFilesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.gists#GistSimpleFilesValue"
+      },
+      "traits": {}
+    },
+    "com.github.gists#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#CreateRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistSimple"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        },
+        {
+          "target": "com.github.gists#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/gists",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a gist\n\nAllows you to add a new gist with one or more files.\n\n> [!NOTE]\n> Don't name your files \"gistfile\" with a numerical suffix. This is the format of the automatic naming scheme that Gist uses internally."
+      }
+    },
+    "com.github.gists#ListPublicRequest": {
+      "type": "structure",
+      "members": {
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#ListPublicResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#BaseGist"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListPublicResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListPublicResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#ListPublic": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListPublicRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListPublicResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/public",
+          "code": 200
+        },
+        "smithy.api#documentation": "List public gists\n\nList public gists sorted by most recently updated to least recently updated.\n\nNote: With [pagination](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api), you can fetch up to 3000 gists. For example, you can fetch 100 pages with 30 gists per page or 30 pages with 100 gists per page."
+      }
+    },
+    "com.github.gists#ListStarredRequest": {
+      "type": "structure",
+      "members": {
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#ListStarredResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#BaseGist"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListStarredResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListStarredResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#ListStarred": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListStarredRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListStarredResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/starred",
+          "code": 200
+        },
+        "smithy.api#documentation": "List starred gists\n\nList the authenticated user's starred gists:"
+      }
+    },
+    "com.github.gists#GetRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#GetRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistSimple"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a gist\n\nGets a specified gist.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#UpdateRequestFilesValue": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new content of the file."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new filename for the file.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#UpdateRequestFilesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.github.gists#UpdateRequestFilesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The gist files to be updated, renamed, or deleted. Each `key` must match the current filename\n(including extension) of the targeted gist file. For example: `hello.py`.\n\nTo delete a file, set the whole file to null. For example: `hello.py : null`. The file will also be\ndeleted if the specified object does not contain at least one of `content` or `filename`."
+      }
+    },
+    "com.github.gists#UpdateRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the gist."
+          }
+        },
+        "files": {
+          "target": "com.github.gists#UpdateRequestFilesMap",
+          "traits": {
+            "smithy.api#documentation": "The gist files to be updated, renamed, or deleted. Each `key` must match the current filename\n(including extension) of the targeted gist file. For example: `hello.py`.\n\nTo delete a file, set the whole file to null. For example: `hello.py : null`. The file will also be\ndeleted if the specified object does not contain at least one of `content` or `filename`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#Update": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#UpdateRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistSimple"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#NotFound"
+        },
+        {
+          "target": "com.github.gists#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/gists/{gist_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a gist\n\nAllows you to update a gist's description and to update, delete, or rename gist files. Files\nfrom the previous version of the gist that aren't explicitly changed during an edit\nare unchanged.\n\nAt least one of `description` or `files` is required.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#DeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/gists/{gist_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a gist"
+      }
+    },
+    "com.github.gists#ListCommentsRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#GistComment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The comment text.",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "com.github.gists#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author_association": {
+          "target": "com.github.gists#AuthorAssociation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A comment made to a gist."
+      }
+    },
+    "com.github.gists#AuthorAssociation": {
+      "type": "enum",
+      "members": {
+        "COLLABORATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLABORATOR"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRIBUTOR"
+          }
+        },
+        "FIRST_TIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_TIMER"
+          }
+        },
+        "FIRST_TIME_CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST_TIME_CONTRIBUTOR"
+          }
+        },
+        "MANNEQUIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANNEQUIN"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBER"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the author is associated with the repository."
+      }
+    },
+    "com.github.gists#ListCommentsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#GistComment"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListCommentsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListCommentsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#ListComments": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListCommentsRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListCommentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}/comments",
+          "code": 200
+        },
+        "smithy.api#documentation": "List gist comments\n\nLists the comments on a gist.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#CreateCommentRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The comment text.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#CreateComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#CreateCommentRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistComment"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/gists/{gist_id}/comments",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a gist comment\n\nCreates a comment on a gist.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#GetCommentRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#GetComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#GetCommentRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistComment"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}/comments/{comment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a gist comment\n\nGets a comment on a gist.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#UpdateCommentRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The comment text.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#UpdateComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#UpdateCommentRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistComment"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/gists/{gist_id}/comments/{comment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a gist comment\n\nUpdates a comment on a gist.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#DeleteCommentRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "comment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the comment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#DeleteComment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#DeleteCommentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/gists/{gist_id}/comments/{comment_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a gist comment"
+      }
+    },
+    "com.github.gists#ListCommitsRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#GistCommit": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "com.github.gists#NullableSimpleUser",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "change_status": {
+          "target": "com.github.gists#GistCommitChangeStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "committed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gist Commit"
+      }
+    },
+    "com.github.gists#GistCommitChangeStatus": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer"
+        },
+        "additions": {
+          "target": "smithy.api#Integer"
+        },
+        "deletions": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListCommitsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#GistCommit"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListCommitsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListCommitsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#ListCommits": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListCommitsRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListCommitsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}/commits",
+          "code": 200
+        },
+        "smithy.api#documentation": "List gist commits"
+      }
+    },
+    "com.github.gists#ListForksRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#ListForksResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#GistSimple"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListForksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListForksResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#ListForks": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListForksRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListForksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}/forks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List gist forks"
+      }
+    },
+    "com.github.gists#ForkRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#Fork": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ForkRequest"
+      },
+      "output": {
+        "target": "com.github.gists#BaseGist"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        },
+        {
+          "target": "com.github.gists#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/gists/{gist_id}/forks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fork a gist"
+      }
+    },
+    "com.github.gists#CheckIsStarredRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#CheckIsStarred": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#CheckIsStarredRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}/star",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a gist is starred"
+      }
+    },
+    "com.github.gists#StarRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#Star": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#StarRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/gists/{gist_id}/star",
+          "code": 200
+        },
+        "smithy.api#documentation": "Star a gist\n\nNote that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see \"[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method).\""
+      }
+    },
+    "com.github.gists#UnstarRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#Unstar": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#UnstarRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/gists/{gist_id}/star",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unstar a gist"
+      }
+    },
+    "com.github.gists#GetRevisionRequest": {
+      "type": "structure",
+      "members": {
+        "gist_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the gist."
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#GetRevision": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#GetRevisionRequest"
+      },
+      "output": {
+        "target": "com.github.gists#GistSimple"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#Forbidden"
+        },
+        {
+          "target": "com.github.gists#NotFound"
+        },
+        {
+          "target": "com.github.gists#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/gists/{gist_id}/{sha}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a gist revision\n\nGets a specified gist revision.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type."
+      }
+    },
+    "com.github.gists#ListForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.gists#ListForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.gists#BaseGist"
+      },
+      "traits": {}
+    },
+    "com.github.gists#ListForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.gists#ListForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.gists#ListForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.gists#ListForUserRequest"
+      },
+      "output": {
+        "target": "com.github.gists#ListForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.gists#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/gists",
+          "code": 200
+        },
+        "smithy.api#documentation": "List gists for a user\n\nLists public gists for the specified user:"
+      }
+    },
+    "com.github.gists#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.gists#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.gists#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.gists#Gists": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.gists#List"
+        },
+        {
+          "target": "com.github.gists#Create"
+        },
+        {
+          "target": "com.github.gists#ListPublic"
+        },
+        {
+          "target": "com.github.gists#ListStarred"
+        },
+        {
+          "target": "com.github.gists#Get"
+        },
+        {
+          "target": "com.github.gists#Update"
+        },
+        {
+          "target": "com.github.gists#Delete"
+        },
+        {
+          "target": "com.github.gists#ListComments"
+        },
+        {
+          "target": "com.github.gists#CreateComment"
+        },
+        {
+          "target": "com.github.gists#GetComment"
+        },
+        {
+          "target": "com.github.gists#UpdateComment"
+        },
+        {
+          "target": "com.github.gists#DeleteComment"
+        },
+        {
+          "target": "com.github.gists#ListCommits"
+        },
+        {
+          "target": "com.github.gists#ListForks"
+        },
+        {
+          "target": "com.github.gists#Fork"
+        },
+        {
+          "target": "com.github.gists#CheckIsStarred"
+        },
+        {
+          "target": "com.github.gists#Star"
+        },
+        {
+          "target": "com.github.gists#Unstar"
+        },
+        {
+          "target": "com.github.gists#GetRevision"
+        },
+        {
+          "target": "com.github.gists#ListForUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

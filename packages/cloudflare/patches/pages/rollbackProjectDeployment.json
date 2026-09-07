@@ -1,0 +1,30 @@
+{
+  "description": "Align pages#ProjectsDeploymentsRollback with distilled cloudflare/pages rollbackProjectDeployment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsRollback",
+      "path": "/shapes/com.cloudflare.pages#RollbackProjectDeployment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsRollbackRequest",
+      "path": "/shapes/com.cloudflare.pages#RollbackProjectDeploymentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#RollbackProjectDeployment/input/target",
+      "value": "com.cloudflare.pages#RollbackProjectDeploymentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsRollbackResponse",
+      "path": "/shapes/com.cloudflare.pages#RollbackProjectDeploymentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#RollbackProjectDeployment/output/target",
+      "value": "com.cloudflare.pages#RollbackProjectDeploymentResponse"
+    }
+  ]
+}

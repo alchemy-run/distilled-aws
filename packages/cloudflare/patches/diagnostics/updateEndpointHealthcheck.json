@@ -1,0 +1,45 @@
+{
+  "description": "Align diagnostics#EndpointHealthchecksUpdate with distilled cloudflare/diagnostics updateEndpointHealthcheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksUpdate",
+      "path": "/shapes/com.cloudflare.diagnostics#UpdateEndpointHealthcheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksUpdateRequest",
+      "path": "/shapes/com.cloudflare.diagnostics#UpdateEndpointHealthcheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#UpdateEndpointHealthcheck/input/target",
+      "value": "com.cloudflare.diagnostics#UpdateEndpointHealthcheckRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.diagnostics#EndpointHealthchecksUpdateResponse",
+      "path": "/shapes/com.cloudflare.diagnostics#UpdateEndpointHealthcheckResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.diagnostics#UpdateEndpointHealthcheck/output/target",
+      "value": "com.cloudflare.diagnostics#UpdateEndpointHealthcheckResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.diagnostics#UpdateEndpointHealthcheck/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.diagnostics#EndpointHealthcheckNotFound"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#InvalidHealthcheckEndpoint"
+        },
+        {
+          "target": "com.cloudflare.diagnostics#Forbidden"
+        }
+      ]
+    }
+  ]
+}

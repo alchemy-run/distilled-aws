@@ -1,0 +1,21 @@
+{
+  "description": "Key dictionary / op aliases for magic_network_monitoring (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "automaticAdvertisement": "automatic_advertisement",
+        "bandwidthThreshold": "bandwidth_threshold",
+        "defaultSampling": "default_sampling",
+        "packetThreshold": "packet_threshold",
+        "prefixMatch": "prefix_match",
+        "routerIp": "router_ip",
+        "routerIps": "router_ips",
+        "warpDevices": "warp_devices",
+        "zscoreSensitivity": "zscore_sensitivity",
+        "zscoreTarget": "zscore_target"
+      }
+    }
+  ]
+}

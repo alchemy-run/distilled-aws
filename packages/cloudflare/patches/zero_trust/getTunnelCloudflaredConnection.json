@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#TunnelsCloudflaredConnectionsGet with distilled cloudflare/zero-trust getTunnelCloudflaredConnection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConnectionsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConnection"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConnectionsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConnectionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConnection/input/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelCloudflaredConnectionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConnectionsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConnectionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConnection/output/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelCloudflaredConnectionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConnection/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

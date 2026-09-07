@@ -1,0 +1,50 @@
+{
+  "description": "Align dns#RecordsList with distilled cloudflare/dns listRecords",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsList",
+      "path": "/shapes/com.cloudflare.dns#ListRecords"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsListRequest",
+      "path": "/shapes/com.cloudflare.dns#ListRecordsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ListRecords/input/target",
+      "value": "com.cloudflare.dns#ListRecordsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsListResponse",
+      "path": "/shapes/com.cloudflare.dns#ListRecordsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ListRecords/output/target",
+      "value": "com.cloudflare.dns#ListRecordsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#ListRecords/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#ListRecords/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,575 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.insight_variables#InsightVariablesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "A page number within the paginated result set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.insight_variables#PaginatedInsightVariableList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.insight_variables#PaginatedInsightVariableListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insight_variables#InsightVariable": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the SQL variable."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the SQL variable."
+          }
+        },
+        "type": {
+          "target": "com.posthog.insight_variables#InsightVariableTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Variable type. Controls how the value is rendered and substituted in HogQL.\n\n* `String` - String\n* `Number` - Number\n* `Boolean` - Boolean\n* `List` - List\n* `Date` - Date"
+          }
+        },
+        "default_value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Default value used when a query references this variable."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who created the SQL variable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the SQL variable was created."
+          }
+        },
+        "code_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generated code-safe name used in HogQL as {variables.code_name}. Derived from name.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "values": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Allowed values for List variables. Null for other variable types."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insight_variables#InsightVariableTypeEnum": {
+      "type": "enum",
+      "members": {
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "String"
+          }
+        },
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Number"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Boolean"
+          }
+        },
+        "LIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "List"
+          }
+        },
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `String` - String\n* `Number` - Number\n* `Boolean` - Boolean\n* `List` - List\n* `Date` - Date"
+      }
+    },
+    "com.posthog.insight_variables#PaginatedInsightVariableListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.insight_variables#InsightVariable"
+      },
+      "traits": {}
+    },
+    "com.posthog.insight_variables#InsightVariablesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.insight_variables#InsightVariablesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.insight_variables#PaginatedInsightVariableList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.insight_variables#BadRequest"
+        },
+        {
+          "target": "com.posthog.insight_variables#Forbidden"
+        },
+        {
+          "target": "com.posthog.insight_variables#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/insight_variables/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the SQL variable."
+          }
+        },
+        "type": {
+          "target": "com.posthog.insight_variables#InsightVariableTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Variable type. Controls how the value is rendered and substituted in HogQL.\n\n* `String` - String\n* `Number` - Number\n* `Boolean` - Boolean\n* `List` - List\n* `Date` - Date"
+          }
+        },
+        "default_value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Default value used when a query references this variable."
+          }
+        },
+        "values": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Allowed values for List variables. Null for other variable types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.insight_variables#InsightVariablesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.insight_variables#InsightVariable"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.insight_variables#BadRequest"
+        },
+        {
+          "target": "com.posthog.insight_variables#Forbidden"
+        },
+        {
+          "target": "com.posthog.insight_variables#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/insight_variables/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this insight variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.insight_variables#InsightVariablesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.insight_variables#InsightVariable"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.insight_variables#Forbidden"
+        },
+        {
+          "target": "com.posthog.insight_variables#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/insight_variables/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this insight variable."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the SQL variable."
+          }
+        },
+        "type": {
+          "target": "com.posthog.insight_variables#InsightVariableTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Variable type. Controls how the value is rendered and substituted in HogQL.\n\n* `String` - String\n* `Number` - Number\n* `Boolean` - Boolean\n* `List` - List\n* `Date` - Date"
+          }
+        },
+        "default_value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Default value used when a query references this variable."
+          }
+        },
+        "values": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Allowed values for List variables. Null for other variable types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.insight_variables#InsightVariablesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.insight_variables#InsightVariable"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.insight_variables#BadRequest"
+        },
+        {
+          "target": "com.posthog.insight_variables#Forbidden"
+        },
+        {
+          "target": "com.posthog.insight_variables#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/insight_variables/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this insight variable."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the SQL variable."
+          }
+        },
+        "type": {
+          "target": "com.posthog.insight_variables#InsightVariableTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Variable type. Controls how the value is rendered and substituted in HogQL.\n\n* `String` - String\n* `Number` - Number\n* `Boolean` - Boolean\n* `List` - List\n* `Date` - Date"
+          }
+        },
+        "default_value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Default value used when a query references this variable."
+          }
+        },
+        "values": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Allowed values for List variables. Null for other variable types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.insight_variables#InsightVariablesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.insight_variables#InsightVariable"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.insight_variables#BadRequest"
+        },
+        {
+          "target": "com.posthog.insight_variables#Forbidden"
+        },
+        {
+          "target": "com.posthog.insight_variables#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/insight_variables/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this insight variable."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.insight_variables#InsightVariablesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.insight_variables#InsightVariablesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.insight_variables#Forbidden"
+        },
+        {
+          "target": "com.posthog.insight_variables#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/insight_variables/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.insight_variables#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.insight_variables#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.insight_variables#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.insight_variables#InsightVariables": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesList"
+        },
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesCreate"
+        },
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesRetrieve"
+        },
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesUpdate"
+        },
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

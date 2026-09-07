@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_search#NamespacesInstancesItemsLogs with distilled cloudflare/aisearch logsNamespaceInstanceItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsLogs",
+      "path": "/shapes/com.cloudflare.ai_search#LogsNamespaceInstanceItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsLogsRequest",
+      "path": "/shapes/com.cloudflare.ai_search#LogsNamespaceInstanceItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#LogsNamespaceInstanceItem/input/target",
+      "value": "com.cloudflare.ai_search#LogsNamespaceInstanceItemRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesItemsLogsResponse",
+      "path": "/shapes/com.cloudflare.ai_search#LogsNamespaceInstanceItemResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#LogsNamespaceInstanceItem/output/target",
+      "value": "com.cloudflare.ai_search#LogsNamespaceInstanceItemResponse"
+    }
+  ]
+}

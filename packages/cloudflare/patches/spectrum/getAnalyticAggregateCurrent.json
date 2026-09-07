@@ -1,0 +1,30 @@
+{
+  "description": "Align spectrum#AnalyticsAggregatesCurrentsGet with distilled cloudflare/spectrum getAnalyticAggregateCurrent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AnalyticsAggregatesCurrentsGet",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticAggregateCurrent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AnalyticsAggregatesCurrentsGetRequest",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticAggregateCurrentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticAggregateCurrent/input/target",
+      "value": "com.cloudflare.spectrum#GetAnalyticAggregateCurrentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AnalyticsAggregatesCurrentsGetResponse",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticAggregateCurrentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticAggregateCurrent/output/target",
+      "value": "com.cloudflare.spectrum#GetAnalyticAggregateCurrentResponse"
+    }
+  ]
+}

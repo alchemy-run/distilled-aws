@@ -1,0 +1,42 @@
+{
+  "description": "Align realtime_kit#PresetsCreate with distilled cloudflare/realtime-kit createPreset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#PresetsCreate",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePreset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#PresetsCreateRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePresetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePreset/input/target",
+      "value": "com.cloudflare.realtime_kit#CreatePresetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#PresetsCreateResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePresetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePreset/output/target",
+      "value": "com.cloudflare.realtime_kit#CreatePresetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePreset/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.realtime_kit#RealtimeKitPresetExists"
+        },
+        {
+          "target": "com.cloudflare.realtime_kit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

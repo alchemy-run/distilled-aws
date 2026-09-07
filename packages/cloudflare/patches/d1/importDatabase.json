@@ -1,0 +1,39 @@
+{
+  "description": "Align d1#DatabaseImport with distilled cloudflare/d1 importDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseImport",
+      "path": "/shapes/com.cloudflare.d1#ImportDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseImportRequest",
+      "path": "/shapes/com.cloudflare.d1#ImportDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#ImportDatabase/input/target",
+      "value": "com.cloudflare.d1#ImportDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseImportResponse",
+      "path": "/shapes/com.cloudflare.d1#ImportDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#ImportDatabase/output/target",
+      "value": "com.cloudflare.d1#ImportDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#ImportDatabase/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

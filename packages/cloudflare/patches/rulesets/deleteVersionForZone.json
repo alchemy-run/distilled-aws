@@ -1,0 +1,20 @@
+{
+  "description": "Align rulesets#VersionsDeleteForZone with distilled cloudflare/rulesets deleteVersionForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsDeleteForZone",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteVersionForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#VersionsDeleteForZoneRequest",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteVersionForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#DeleteVersionForZone/input/target",
+      "value": "com.cloudflare.rulesets#DeleteVersionForZoneRequest"
+    }
+  ]
+}

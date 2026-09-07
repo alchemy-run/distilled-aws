@@ -1,0 +1,30 @@
+{
+  "description": "Align speed#PagesTrend with distilled cloudflare/speed trendPage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTrend",
+      "path": "/shapes/com.cloudflare.speed#TrendPage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTrendRequest",
+      "path": "/shapes/com.cloudflare.speed#TrendPageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#TrendPage/input/target",
+      "value": "com.cloudflare.speed#TrendPageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.speed#PagesTrendResponse",
+      "path": "/shapes/com.cloudflare.speed#TrendPageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.speed#TrendPage/output/target",
+      "value": "com.cloudflare.speed#TrendPageResponse"
+    }
+  ]
+}

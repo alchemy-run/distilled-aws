@@ -1,0 +1,45 @@
+{
+  "description": "Align custom_certificates#Edit with distilled cloudflare/custom-certificates patchCustomCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#Edit",
+      "path": "/shapes/com.cloudflare.custom_certificates#PatchCustomCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#EditRequest",
+      "path": "/shapes/com.cloudflare.custom_certificates#PatchCustomCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_certificates#PatchCustomCertificate/input/target",
+      "value": "com.cloudflare.custom_certificates#PatchCustomCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_certificates#EditResponse",
+      "path": "/shapes/com.cloudflare.custom_certificates#PatchCustomCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_certificates#PatchCustomCertificate/output/target",
+      "value": "com.cloudflare.custom_certificates#PatchCustomCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_certificates#PatchCustomCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.custom_certificates#CustomCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_certificates#PlanLevelNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.custom_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

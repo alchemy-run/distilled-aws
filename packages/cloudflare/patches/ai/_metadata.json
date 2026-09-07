@@ -1,0 +1,50 @@
+{
+  "description": "Key dictionary / op aliases for ai (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "completionTokens": "completion_tokens",
+        "createdAt": "created_at",
+        "fileName": "file_name",
+        "frequencyPenalty": "frequency_penalty",
+        "ignoreEos": "ignore_eos",
+        "imageB64": "image_b64",
+        "imageUrl": "image_url",
+        "inputText": "input_text",
+        "jsonSchema": "json_schema",
+        "maxLength": "max_length",
+        "maxTokens": "max_tokens",
+        "modifiedAt": "modified_at",
+        "negativePrompt": "negative_prompt",
+        "numSteps": "num_steps",
+        "perPage": "per_page",
+        "presencePenalty": "presence_penalty",
+        "promptTokens": "prompt_tokens",
+        "repetitionPenalty": "repetition_penalty",
+        "responseFormat": "response_format",
+        "resultInfo": "result_info",
+        "sourceLang": "source_lang",
+        "targetLang": "target_lang",
+        "toolCalls": "tool_calls",
+        "topK": "top_k",
+        "topP": "top_p",
+        "totalCount": "total_count",
+        "totalTokens": "total_tokens",
+        "translatedText": "translated_text",
+        "wordCount": "word_count"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "createAiToMarkdown",
+          "target": "transformToMarkdown"
+        }
+      ]
+    }
+  ]
+}

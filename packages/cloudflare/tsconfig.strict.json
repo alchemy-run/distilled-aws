@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.ts"],
+  // Full type checking for the hand-written src files only. src/index.ts is
+  // excluded because it re-exports ./services, which would pull every
+  // generated module into the checked program.
+  "exclude": ["src/services", "src/index.ts"],
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "@distilled.cloud/core/*": ["../core/src/*"]
+    }
+  }
+}

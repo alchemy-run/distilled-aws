@@ -1,0 +1,17 @@
+{
+  "errorCategories": {
+    "ThrottlingException": ["ThrottlingError", "RetryableError"],
+    "OperationAbortedException": ["ConflictError", "RetryableError"],
+    "LimitExceededException": ["QuotaError"],
+    "ServiceQuotaExceededException": ["QuotaError"],
+    "ResourceNotFoundException": ["NotFoundError"],
+    "ConflictException": ["ConflictError"],
+    "InvalidParameterException": ["BadRequestError"],
+    "InvalidOperationException": ["BadRequestError"],
+    "ValidationException": ["BadRequestError"],
+    "MalformedQueryException": ["BadRequestError"],
+    "InvalidSequenceTokenException": ["BadRequestError"],
+    "DataAlreadyAcceptedException": ["ConflictError"],
+    "UnrecognizedClientException": ["AuthError"]
+  }
+}

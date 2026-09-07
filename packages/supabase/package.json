@@ -1,0 +1,86 @@
+{
+  "name": "@distilled.cloud/supabase",
+  "version": "1.0.0-rc.8",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alchemy-run/distilled",
+    "directory": "packages/supabase"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "module": "src/index.ts",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "bun": "./src/index.ts",
+      "worker": "./src/index.ts",
+      "default": "./lib/index.js"
+    },
+    "./Credentials": {
+      "types": "./lib/credentials.d.ts",
+      "bun": "./src/credentials.ts",
+      "worker": "./src/credentials.ts",
+      "default": "./lib/credentials.js"
+    },
+    "./Errors": {
+      "types": "./lib/errors.d.ts",
+      "bun": "./src/errors.ts",
+      "worker": "./src/errors.ts",
+      "default": "./lib/errors.js"
+    },
+    "./Traits": {
+      "types": "./lib/traits.d.ts",
+      "bun": "./src/traits.ts",
+      "worker": "./src/traits.ts",
+      "default": "./lib/traits.js"
+    },
+    "./Retry": {
+      "types": "./lib/retry.d.ts",
+      "bun": "./src/retry.ts",
+      "worker": "./src/retry.ts",
+      "default": "./lib/retry.js"
+    },
+    "./Protocol": {
+      "types": "./lib/protocol.d.ts",
+      "bun": "./src/protocol.ts",
+      "worker": "./src/protocol.ts",
+      "default": "./lib/protocol.js"
+    },
+    "./Operations": {
+      "types": "./lib/services/supabase.d.ts",
+      "bun": "./src/services/supabase.ts",
+      "worker": "./src/services/supabase.ts",
+      "default": "./lib/services/supabase.js"
+    },
+    "./*": {
+      "types": "./lib/services/*.d.ts",
+      "bun": "./src/services/*.ts",
+      "worker": "./src/services/*.ts",
+      "default": "./lib/services/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "convert": "bun scripts/convert.ts",
+    "generate": "bun scripts/generate.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "specs:fetch": "git submodule update --force --init --recursive --depth=1 specs/distilled-spec-supabase && git -C specs/distilled-spec-supabase checkout -- .",
+    "specs:update": "git -C specs/distilled-spec-supabase fetch && git -C specs/distilled-spec-supabase checkout main && git -C specs/distilled-spec-supabase pull"
+  },
+  "dependencies": {
+    "@distilled.cloud/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:tooling",
+    "@types/node": "catalog:tooling",
+    "@effect/platform-bun": "catalog:effect"
+  },
+  "peerDependencies": {
+    "effect": "catalog:effect"
+  }
+}

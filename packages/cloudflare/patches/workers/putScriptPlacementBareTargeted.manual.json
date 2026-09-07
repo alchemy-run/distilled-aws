@@ -1,0 +1,28 @@
+{
+  "description": "the live API can return a bare { mode: \"targeted\" } placement with no target on script uploads (observed on putScript for workers with targeted placement) — the docs only model smart and targeted-with-target (port of distilled#393)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ScriptsUpdateResponsePlacementCase8",
+      "value": {
+        "type": "structure",
+        "members": {
+          "mode": {
+            "target": "com.cloudflare.workers#ScriptsUpdateResponsePlacementCase7Mode",
+            "traits": {
+              "smithy.api#documentation": "Targeted placement mode (no target echoed).",
+              "smithy.api#required": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ScriptsUpdateResponsePlacement/members/case8",
+      "value": {
+        "target": "com.cloudflare.workers#ScriptsUpdateResponsePlacementCase8"
+      }
+    }
+  ]
+}

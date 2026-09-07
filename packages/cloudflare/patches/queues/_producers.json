@@ -1,0 +1,35 @@
+{
+  "description": "Rename the worker-producer member `script` to `script_name` so it camelizes to `scriptName` like the consumer shapes. The runtime key dictionary already aliases the wire's `script` to `scriptName` on decode; with the member named `script`, the dictionary rename made the decoded key miss the union case's key set and the producer's script name was silently dropped.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#CreateResponseProducersItemMqWorkerProducer/members/script",
+      "path": "/shapes/com.cloudflare.queues#CreateResponseProducersItemMqWorkerProducer/members/script_name"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#EditResponseProducersItemMqWorkerProducer/members/script",
+      "path": "/shapes/com.cloudflare.queues#EditResponseProducersItemMqWorkerProducer/members/script_name"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#GetResponseProducersItemMqWorkerProducer/members/script",
+      "path": "/shapes/com.cloudflare.queues#GetResponseProducersItemMqWorkerProducer/members/script_name"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#ListResultItemProducersItemMqWorkerProducer/members/script",
+      "path": "/shapes/com.cloudflare.queues#ListResultItemProducersItemMqWorkerProducer/members/script_name"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#UpdateResponseProducersItemMqWorkerProducer/members/script",
+      "path": "/shapes/com.cloudflare.queues#UpdateResponseProducersItemMqWorkerProducer/members/script_name"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#PurgeStartResponseProducersItemMqWorkerProducer/members/script",
+      "path": "/shapes/com.cloudflare.queues#PurgeStartResponseProducersItemMqWorkerProducer/members/script_name"
+    }
+  ]
+}

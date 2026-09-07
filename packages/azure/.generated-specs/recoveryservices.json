@@ -1,0 +1,4910 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.recoveryservices#UsagesListByVaults": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#UsagesListByVaultsRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultUsageList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/usages",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Fetches the usages of the vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultUsageList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.recoveryservices#VaultUsageListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of usages for the given vault."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Usage for vault."
+      }
+    },
+    "com.azure.recoveryservices#VaultUsageListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#VaultUsage"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of usages for the given vault."
+      }
+    },
+    "com.azure.recoveryservices#VaultUsage": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "com.azure.recoveryservices#UsagesUnit",
+          "traits": {
+            "smithy.api#documentation": "Unit of the usage."
+          }
+        },
+        "quotaPeriod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Quota period of usage."
+          }
+        },
+        "nextResetTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Next reset time of usage."
+          }
+        },
+        "currentValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current value of usage."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Limit of usage."
+          }
+        },
+        "name": {
+          "target": "com.azure.recoveryservices#NameInfo",
+          "traits": {
+            "smithy.api#documentation": "Name of usage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Usages of a vault."
+      }
+    },
+    "com.azure.recoveryservices#NameInfo": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of usage."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized value of usage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of usage."
+      }
+    },
+    "com.azure.recoveryservices#UsagesUnit": {
+      "type": "enum",
+      "members": {
+        "COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Count"
+          }
+        },
+        "BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Bytes"
+          }
+        },
+        "SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Seconds"
+          }
+        },
+        "PERCENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Percent"
+          }
+        },
+        "COUNTPERSECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CountPerSecond"
+          }
+        },
+        "BYTESPERSECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BytesPerSecond"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Unit of the usage."
+      }
+    },
+    "com.azure.recoveryservices#UsagesListByVaultsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#ReplicationUsagesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#ReplicationUsagesListRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#ReplicationUsageList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/replicationUsages",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Fetches the replication usages of the vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#ReplicationUsageList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.recoveryservices#ReplicationUsageListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of replication usages for the given vault."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Replication usages for vault."
+      }
+    },
+    "com.azure.recoveryservices#ReplicationUsageListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#ReplicationUsage"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of replication usages for the given vault."
+      }
+    },
+    "com.azure.recoveryservices#ReplicationUsage": {
+      "type": "structure",
+      "members": {
+        "monitoringSummary": {
+          "target": "com.azure.recoveryservices#MonitoringSummary",
+          "traits": {
+            "smithy.api#documentation": "Summary of the replication monitoring data for this vault."
+          }
+        },
+        "jobsSummary": {
+          "target": "com.azure.recoveryservices#JobsSummary",
+          "traits": {
+            "smithy.api#documentation": "Summary of the replication jobs data for this vault."
+          }
+        },
+        "protectedItemCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of replication protected items for this vault."
+          }
+        },
+        "recoveryPlanCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of replication recovery plans for this vault."
+          }
+        },
+        "registeredServersCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of servers registered to this vault."
+          }
+        },
+        "recoveryServicesProviderAuthType": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The authentication type of recovery service providers in the vault."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Replication usages of a vault."
+      }
+    },
+    "com.azure.recoveryservices#JobsSummary": {
+      "type": "structure",
+      "members": {
+        "failedJobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of failed jobs."
+          }
+        },
+        "suspendedJobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of suspended jobs."
+          }
+        },
+        "inProgressJobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of in-progress jobs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Summary of the replication job data for this vault."
+      }
+    },
+    "com.azure.recoveryservices#MonitoringSummary": {
+      "type": "structure",
+      "members": {
+        "unHealthyVmCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of unhealthy VMs."
+          }
+        },
+        "unHealthyProviderCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of unhealthy replication providers."
+          }
+        },
+        "eventsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of all critical warnings."
+          }
+        },
+        "deprecatedProviderCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of all deprecated recovery service providers."
+          }
+        },
+        "supportedProviderCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of all the supported recovery service providers."
+          }
+        },
+        "unsupportedProviderCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of all the unsupported recovery service providers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Summary of the replication monitoring data for this vault."
+      }
+    },
+    "com.azure.recoveryservices#ReplicationUsagesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#RegisteredIdentitiesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#RegisteredIdentitiesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/registeredIdentities/{identityName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Unregisters the given container from your Recovery Services vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#RegisteredIdentitiesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        },
+        "identityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the protection container to unregister."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#PrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#PrivateLinkResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateLinkResources/{privateLinkResourceName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Returns a specified private link resource that need to be created for Backup and SiteRecovery",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "e.g. f9ad6492-33d4-4690-9999-6bfd52a0d081 (Backup) or f9ad6492-33d4-4690-9999-6bfd52a0d082 (SiteRecovery)"
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.recoveryservices#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "[backup-ecs1, backup-prot1, backup-prot1b, backup-prot1c, backup-id1]"
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.recoveryservices#PrivateLinkResourcePropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource Private link DNS zone name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private link resource."
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcePropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource Private link DNS zone name."
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "[backup-ecs1, backup-prot1, backup-prot1b, backup-prot1c, backup-id1]"
+      }
+    },
+    "com.azure.recoveryservices#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.recoveryservices#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.recoveryservices#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.recoveryservices#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.recoveryservices#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        },
+        "privateLinkResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#PrivateLinkResourcesListRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#PrivateLinkResources"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Returns the list of private link resources that need to be created for Backup and SiteRecovery",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResources": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.recoveryservices#PrivateLinkResourcesValueList",
+          "traits": {
+            "smithy.api#documentation": "The PrivateLinkResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Class which represent the stamps associated with the vault."
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcesValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateLinkResource items on this page"
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information of the private link resource."
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkResourcesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#GetOperationStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#GetOperationStatusRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#OperationResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/operationStatus/{operationId}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Gets the operation status for a resource.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#OperationResource": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time of the operation"
+          }
+        },
+        "error": {
+          "target": "com.azure.recoveryservices#Error",
+          "traits": {
+            "smithy.api#documentation": "Required if status == failed or status == canceled. This is the OData v4 error format, used by the RPC and will go into the v2.2 Azure REST API guidelines."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It should match what is used to GET the operation result"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "It must match the last segment of the \"id\" field, and will typically be a GUID / system generated value"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the operation. (InProgress/Success/Failed/Cancelled)"
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation Resource"
+      }
+    },
+    "com.azure.recoveryservices#Error": {
+      "type": "structure",
+      "members": {
+        "additionalInfo": {
+          "target": "com.azure.recoveryservices#ErrorAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "details": {
+          "target": "com.azure.recoveryservices#ErrorDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error response."
+      }
+    },
+    "com.azure.recoveryservices#ErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#Error"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.recoveryservices#ErrorAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#ErrorAdditionalInfoItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.recoveryservices#ErrorAdditionalInfoItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.recoveryservices#GetOperationStatusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#GetOperationResult": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#GetOperationResultRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#GetOperationResultResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/operationResults/{operationId}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Gets the operation result for a resource.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#GetOperationResultResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#GetOperationResultResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityData",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.recoveryservices#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Name of SKU is RS0 (Recovery Services 0th version) and the tier is standard tier. They do not have affect on backend storage redundancy or any other vault settings. To manage storage redundancy, use the backupstorageconfig",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Sku tier."
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sku family"
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sku size"
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sku capacity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+      }
+    },
+    "com.azure.recoveryservices#SkuName": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "RS0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RS0"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of SKU is RS0 (Recovery Services 0th version) and the tier is standard tier. They do not have affect on backend storage redundancy or any other vault settings. To manage storage redundancy, use the backupstorageconfig"
+      }
+    },
+    "com.azure.recoveryservices#IdentityData": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of resource identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of resource."
+          }
+        },
+        "type": {
+          "target": "com.azure.recoveryservices#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities.",
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.recoveryservices#IdentityDataUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The list of user-assigned identities associated with the resource. The user-assigned identity dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.recoveryservices#IdentityDataUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.recoveryservices#UserIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of user-assigned identities associated with the resource. The user-assigned identity dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+      }
+    },
+    "com.azure.recoveryservices#UserIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the user-assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the user-assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource identity that is managed by the user of the service."
+      }
+    },
+    "com.azure.recoveryservices#ResourceIdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned, UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities."
+      }
+    },
+    "com.azure.recoveryservices#VaultProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provisioning State."
+          }
+        },
+        "upgradeDetails": {
+          "target": "com.azure.recoveryservices#UpgradeDetails",
+          "traits": {
+            "smithy.api#documentation": "Details for upgrading vault."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.recoveryservices#VaultPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connection."
+          }
+        },
+        "privateEndpointStateForBackup": {
+          "target": "com.azure.recoveryservices#VaultPrivateEndpointState",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint state for backup."
+          }
+        },
+        "privateEndpointStateForSiteRecovery": {
+          "target": "com.azure.recoveryservices#VaultPrivateEndpointState",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint state for site recovery."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.recoveryservices#VaultPropertiesEncryption",
+          "traits": {
+            "smithy.api#documentation": "Customer Managed Key details of the resource."
+          }
+        },
+        "moveDetails": {
+          "target": "com.azure.recoveryservices#VaultPropertiesMoveDetails",
+          "traits": {
+            "smithy.api#documentation": "The details of the latest move operation performed on the Azure Resource"
+          }
+        },
+        "moveState": {
+          "target": "com.azure.recoveryservices#ResourceMoveState",
+          "traits": {
+            "smithy.api#documentation": "The State of the Resource after the move operation"
+          }
+        },
+        "backupStorageVersion": {
+          "target": "com.azure.recoveryservices#BackupStorageVersion",
+          "traits": {
+            "smithy.api#documentation": "Backup storage version"
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.recoveryservices#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "property to enable or disable resource provider inbound network traffic from public clients"
+          }
+        },
+        "monitoringSettings": {
+          "target": "com.azure.recoveryservices#MonitoringSettings",
+          "traits": {
+            "smithy.api#documentation": "Monitoring Settings of the vault"
+          }
+        },
+        "costManagementSettings": {
+          "target": "com.azure.recoveryservices#CostManagementSettings",
+          "traits": {
+            "smithy.api#documentation": "Cost Management Settings of the vault"
+          }
+        },
+        "restoreSettings": {
+          "target": "com.azure.recoveryservices#RestoreSettings",
+          "traits": {
+            "smithy.api#documentation": "Restore Settings of the vault"
+          }
+        },
+        "redundancySettings": {
+          "target": "com.azure.recoveryservices#VaultPropertiesRedundancySettings",
+          "traits": {
+            "smithy.api#documentation": "The redundancy Settings of a Vault"
+          }
+        },
+        "securitySettings": {
+          "target": "com.azure.recoveryservices#SecuritySettings",
+          "traits": {
+            "smithy.api#documentation": "Security Settings of the vault"
+          }
+        },
+        "secureScore": {
+          "target": "com.azure.recoveryservices#SecureScoreLevel",
+          "traits": {
+            "smithy.api#documentation": "Secure Score of Recovery Services Vault"
+          }
+        },
+        "bcdrSecurityLevel": {
+          "target": "com.azure.recoveryservices#BCDRSecurityLevel",
+          "traits": {
+            "smithy.api#documentation": "Security levels of Recovery Services Vault for business continuity and disaster recovery"
+          }
+        },
+        "resourceGuardOperationRequests": {
+          "target": "com.azure.recoveryservices#VaultPropertiesResourceGuardOperationRequestsList",
+          "traits": {
+            "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the vault."
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesResourceGuardOperationRequestsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
+      }
+    },
+    "com.azure.recoveryservices#BCDRSecurityLevel": {
+      "type": "enum",
+      "members": {
+        "POOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Poor"
+          }
+        },
+        "FAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fair"
+          }
+        },
+        "GOOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Good"
+          }
+        },
+        "EXCELLENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Excellent"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Security levels of Recovery Services Vault for business continuity and disaster recovery"
+      }
+    },
+    "com.azure.recoveryservices#SecureScoreLevel": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "MINIMUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Minimum"
+          }
+        },
+        "ADEQUATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Adequate"
+          }
+        },
+        "MAXIMUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Maximum"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Secure Score of Recovery Services Vault"
+      }
+    },
+    "com.azure.recoveryservices#SecuritySettings": {
+      "type": "structure",
+      "members": {
+        "immutabilitySettings": {
+          "target": "com.azure.recoveryservices#ImmutabilitySettings",
+          "traits": {
+            "smithy.api#documentation": "Immutability Settings of a vault"
+          }
+        },
+        "softDeleteSettings": {
+          "target": "com.azure.recoveryservices#SoftDeleteSettings",
+          "traits": {
+            "smithy.api#documentation": "Soft delete Settings of a vault"
+          }
+        },
+        "multiUserAuthorization": {
+          "target": "com.azure.recoveryservices#MultiUserAuthorization",
+          "traits": {
+            "smithy.api#documentation": "MUA Settings of a vault"
+          }
+        },
+        "sourceScanConfiguration": {
+          "target": "com.azure.recoveryservices#SourceScanConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Source scan configuration of vault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Security Settings of the vault"
+      }
+    },
+    "com.azure.recoveryservices#SourceScanConfiguration": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.recoveryservices#State"
+        },
+        "sourceScanIdentity": {
+          "target": "com.azure.recoveryservices#AssociatedIdentity",
+          "traits": {
+            "smithy.api#documentation": "Identity details to be used for an operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Source scan configuration of vault"
+      }
+    },
+    "com.azure.recoveryservices#AssociatedIdentity": {
+      "type": "structure",
+      "members": {
+        "operationIdentityType": {
+          "target": "com.azure.recoveryservices#IdentityType",
+          "traits": {
+            "smithy.api#documentation": "Identity type that should be used for an operation."
+          }
+        },
+        "userAssignedIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User assigned identity to be used for an operation if operationIdentityType is UserAssigned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity details to be used for an operation"
+      }
+    },
+    "com.azure.recoveryservices#IdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity type that should be used for an operation."
+      }
+    },
+    "com.azure.recoveryservices#State": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#MultiUserAuthorization": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MUA Settings of vault"
+      }
+    },
+    "com.azure.recoveryservices#SoftDeleteSettings": {
+      "type": "structure",
+      "members": {
+        "softDeleteState": {
+          "target": "com.azure.recoveryservices#SoftDeleteState"
+        },
+        "softDeleteRetentionPeriodInDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Soft delete retention period in days"
+          }
+        },
+        "enhancedSecurityState": {
+          "target": "com.azure.recoveryservices#EnhancedSecurityState"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Soft delete Settings of vault"
+      }
+    },
+    "com.azure.recoveryservices#EnhancedSecurityState": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ALWAYSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlwaysON"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#SoftDeleteState": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ALWAYSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlwaysON"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#ImmutabilitySettings": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.recoveryservices#ImmutabilityState"
+        },
+        "configuration": {
+          "target": "com.azure.recoveryservices#ImmutabilityConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Immutability configuration of the vault — selects whether immutability is\ninherited from the backup policy (AsPerPolicy) or fixed for a specific\nduration (TimeBased)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Immutability Settings of vault"
+      }
+    },
+    "com.azure.recoveryservices#ImmutabilityConfiguration": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.recoveryservices#ImmutabilityType",
+          "traits": {
+            "smithy.api#documentation": "Immutability type. 'AsPerPolicy' inherits duration from backup policy; 'TimeBased' requires explicit durationInDays."
+          }
+        },
+        "durationInDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Duration in days. Required when type is TimeBased, omitted when AsPerPolicy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Immutability configuration of vault."
+      }
+    },
+    "com.azure.recoveryservices#ImmutabilityType": {
+      "type": "enum",
+      "members": {
+        "ASPERPOLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AsPerPolicy"
+          }
+        },
+        "TIMEBASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TimeBased"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Immutability config type."
+      }
+    },
+    "com.azure.recoveryservices#ImmutabilityState": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "UNLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unlocked"
+          }
+        },
+        "LOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Locked"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#VaultPropertiesRedundancySettings": {
+      "type": "structure",
+      "members": {
+        "standardTierStorageRedundancy": {
+          "target": "com.azure.recoveryservices#StandardTierStorageRedundancy",
+          "traits": {
+            "smithy.api#documentation": "The storage redundancy setting of a vault"
+          }
+        },
+        "crossRegionRestore": {
+          "target": "com.azure.recoveryservices#CrossRegionRestore",
+          "traits": {
+            "smithy.api#documentation": "Flag to show if Cross Region Restore is enabled on the Vault or not"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The redundancy Settings of a Vault"
+      }
+    },
+    "com.azure.recoveryservices#CrossRegionRestore": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Flag to show if Cross Region Restore is enabled on the Vault or not"
+      }
+    },
+    "com.azure.recoveryservices#StandardTierStorageRedundancy": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "LOCALLYREDUNDANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LocallyRedundant"
+          }
+        },
+        "GEOREDUNDANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GeoRedundant"
+          }
+        },
+        "ZONEREDUNDANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZoneRedundant"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The storage redundancy setting of a vault"
+      }
+    },
+    "com.azure.recoveryservices#RestoreSettings": {
+      "type": "structure",
+      "members": {
+        "crossSubscriptionRestoreSettings": {
+          "target": "com.azure.recoveryservices#CrossSubscriptionRestoreSettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for CrossSubscriptionRestore"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Restore Settings  of the vault"
+      }
+    },
+    "com.azure.recoveryservices#CrossSubscriptionRestoreSettings": {
+      "type": "structure",
+      "members": {
+        "crossSubscriptionRestoreState": {
+          "target": "com.azure.recoveryservices#CrossSubscriptionRestoreState"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for Cross Subscription Restore Settings"
+      }
+    },
+    "com.azure.recoveryservices#CrossSubscriptionRestoreState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "PERMANENTLYDISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PermanentlyDisabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#CostManagementSettings": {
+      "type": "structure",
+      "members": {
+        "granularityLevel": {
+          "target": "com.azure.recoveryservices#GranularityLevel",
+          "traits": {
+            "smithy.api#documentation": "Settings for granularity level"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cost Management Settings of the vault"
+      }
+    },
+    "com.azure.recoveryservices#GranularityLevel": {
+      "type": "enum",
+      "members": {
+        "VAULTLEVEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VaultLevel"
+          }
+        },
+        "PROTECTEDITEMLEVEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProtectedItemLevel"
+          }
+        },
+        "PROTECTEDITEMWITHPARENTTAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProtectedItemWithParentTag"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#MonitoringSettings": {
+      "type": "structure",
+      "members": {
+        "azureMonitorAlertSettings": {
+          "target": "com.azure.recoveryservices#AzureMonitorAlertSettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for Azure Monitor based alerts"
+          }
+        },
+        "classicAlertSettings": {
+          "target": "com.azure.recoveryservices#ClassicAlertSettings",
+          "traits": {
+            "smithy.api#documentation": "Settings for classic alerts"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monitoring Settings of the vault"
+      }
+    },
+    "com.azure.recoveryservices#ClassicAlertSettings": {
+      "type": "structure",
+      "members": {
+        "alertsForCriticalOperations": {
+          "target": "com.azure.recoveryservices#AlertsState"
+        },
+        "emailNotificationsForSiteRecovery": {
+          "target": "com.azure.recoveryservices#AlertsState"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for classic alerts"
+      }
+    },
+    "com.azure.recoveryservices#AlertsState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#AzureMonitorAlertSettings": {
+      "type": "structure",
+      "members": {
+        "alertsForAllJobFailures": {
+          "target": "com.azure.recoveryservices#AlertsState"
+        },
+        "alertsForAllReplicationIssues": {
+          "target": "com.azure.recoveryservices#AlertsState"
+        },
+        "alertsForAllFailoverIssues": {
+          "target": "com.azure.recoveryservices#AlertsState"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for Azure Monitor based alerts"
+      }
+    },
+    "com.azure.recoveryservices#PublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "property to enable or disable resource provider inbound network traffic from public clients"
+      }
+    },
+    "com.azure.recoveryservices#BackupStorageVersion": {
+      "type": "enum",
+      "members": {
+        "V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V1"
+          }
+        },
+        "V2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "V2"
+          }
+        },
+        "UNASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unassigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backup storage version"
+      }
+    },
+    "com.azure.recoveryservices#ResourceMoveState": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "PREPAREFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PrepareFailed"
+          }
+        },
+        "COMMITFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CommitFailed"
+          }
+        },
+        "PREPARETIMEDOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PrepareTimedout"
+          }
+        },
+        "COMMITTIMEDOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CommitTimedout"
+          }
+        },
+        "MOVESUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MoveSucceeded"
+          }
+        },
+        "FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failure"
+          }
+        },
+        "CRITICALFAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CriticalFailure"
+          }
+        },
+        "PARTIALSUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PartialSuccess"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The State of the Resource after the move operation"
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesMoveDetails": {
+      "type": "structure",
+      "members": {
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OperationId of the Resource Move Operation"
+          }
+        },
+        "startTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start Time of the Resource Move Operation"
+          }
+        },
+        "completionTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End Time of the Resource Move Operation"
+          }
+        },
+        "sourceResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source Resource of the Resource Move Operation"
+          }
+        },
+        "targetResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target Resource of the Resource Move Operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the latest move operation performed on the Azure Resource"
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesEncryption": {
+      "type": "structure",
+      "members": {
+        "keyVaultProperties": {
+          "target": "com.azure.recoveryservices#CmkKeyVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the Key Vault which hosts CMK"
+          }
+        },
+        "kekIdentity": {
+          "target": "com.azure.recoveryservices#CmkKekIdentity",
+          "traits": {
+            "smithy.api#documentation": "The details of the identity used for CMK"
+          }
+        },
+        "infrastructureEncryption": {
+          "target": "com.azure.recoveryservices#InfrastructureEncryptionState",
+          "traits": {
+            "smithy.api#documentation": "Enabling/Disabling the Double Encryption state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customer Managed Key details of the resource."
+      }
+    },
+    "com.azure.recoveryservices#InfrastructureEncryptionState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enabling/Disabling the Double Encryption state"
+      }
+    },
+    "com.azure.recoveryservices#CmkKekIdentity": {
+      "type": "structure",
+      "members": {
+        "useSystemAssignedIdentity": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicate that system assigned identity should be used. Mutually exclusive with 'userAssignedIdentity' field"
+          }
+        },
+        "userAssignedIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user assigned identity to be used to grant permissions in case the type of identity used is UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the identity used for CMK"
+      }
+    },
+    "com.azure.recoveryservices#CmkKeyVaultProperties": {
+      "type": "structure",
+      "members": {
+        "keyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key uri of the Customer Managed Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the Key Vault which hosts CMK"
+      }
+    },
+    "com.azure.recoveryservices#VaultPrivateEndpointState": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint state for backup."
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#PrivateEndpointConnectionVaultProperties"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connection."
+      }
+    },
+    "com.azure.recoveryservices#PrivateEndpointConnectionVaultProperties": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Format of id subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.[Service]/{resource}/{resourceName}/privateEndpointConnections/{connectionName}."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#PrivateEndpointConnection",
+          "traits": {
+            "smithy.api#documentation": "Private Endpoint Connection Response Properties."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the private Endpoint Connection"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type, which will be of the format, Microsoft.RecoveryServices/vaults/privateEndpointConnections"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the private Endpoint connection"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information to be stored in Vault properties as an element of privateEndpointConnections List."
+      }
+    },
+    "com.azure.recoveryservices#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.recoveryservices#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets provisioning state of the private endpoint connection."
+          }
+        },
+        "privateEndpoint": {
+          "target": "com.azure.recoveryservices#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The Private Endpoint network resource that is linked to the Private Endpoint connection."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.recoveryservices#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets private link service connection state."
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.recoveryservices#PrivateEndpointConnectionGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "Group Ids for the Private Endpoint"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private Endpoint Connection Response Properties."
+      }
+    },
+    "com.azure.recoveryservices#PrivateEndpointConnectionGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#VaultSubResourceType"
+      },
+      "traits": {
+        "smithy.api#documentation": "Group Ids for the Private Endpoint"
+      }
+    },
+    "com.azure.recoveryservices#VaultSubResourceType": {
+      "type": "enum",
+      "members": {
+        "AZUREBACKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureBackup"
+          }
+        },
+        "AZUREBACKUP_SECONDARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureBackup_secondary"
+          }
+        },
+        "AZURESITERECOVERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureSiteRecovery"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subresource type for vault AzureBackup, AzureBackup_secondary or AzureSiteRecovery"
+      }
+    },
+    "com.azure.recoveryservices#PrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.recoveryservices#PrivateEndpointConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the status."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets description."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets actions required."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets private link service connection state."
+      }
+    },
+    "com.azure.recoveryservices#PrivateEndpointConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the status."
+      }
+    },
+    "com.azure.recoveryservices#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint network resource that is linked to the Private Endpoint connection."
+      }
+    },
+    "com.azure.recoveryservices#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets provisioning state of the private endpoint connection."
+      }
+    },
+    "com.azure.recoveryservices#UpgradeDetails": {
+      "type": "structure",
+      "members": {
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the vault upgrade operation."
+          }
+        },
+        "startTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTC time at which the upgrade operation has started."
+          }
+        },
+        "lastUpdatedTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTC time at which the upgrade operation status was last updated."
+          }
+        },
+        "endTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTC time at which the upgrade operation has ended."
+          }
+        },
+        "status": {
+          "target": "com.azure.recoveryservices#VaultUpgradeState",
+          "traits": {
+            "smithy.api#documentation": "Status of the vault upgrade operation."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message to the user containing information about the upgrade operation."
+          }
+        },
+        "triggerType": {
+          "target": "com.azure.recoveryservices#TriggerType",
+          "traits": {
+            "smithy.api#documentation": "The way the vault upgrade was triggered."
+          }
+        },
+        "upgradedResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID of the upgraded vault."
+          }
+        },
+        "previousResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID of the vault before the upgrade."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details for upgrading vault."
+      }
+    },
+    "com.azure.recoveryservices#TriggerType": {
+      "type": "enum",
+      "members": {
+        "USERTRIGGERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserTriggered"
+          }
+        },
+        "FORCEDUPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ForcedUpgrade"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The way the vault upgrade was triggered."
+      }
+    },
+    "com.azure.recoveryservices#VaultUpgradeState": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "UPGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Upgraded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the vault upgrade operation."
+      }
+    },
+    "com.azure.recoveryservices#GetOperationResultResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#GetOperationResultRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultExtendedInfoUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultExtendedInfoUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Update vault extended info.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultExtendedInfo",
+          "traits": {
+            "smithy.api#documentation": "Vault extended information."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfo": {
+      "type": "structure",
+      "members": {
+        "integrityKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Integrity key."
+          }
+        },
+        "encryptionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encryption key."
+          }
+        },
+        "encryptionKeyThumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encryption key thumbprint."
+          }
+        },
+        "algorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Algorithm for Vault ExtendedInfo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Vault extended information."
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultExtendedInfo",
+          "traits": {
+            "smithy.api#documentation": "Vault extended information."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Create vault extended info.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultExtendedInfo",
+          "traits": {
+            "smithy.api#documentation": "Vault extended information."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultExtendedInfo",
+          "traits": {
+            "smithy.api#documentation": "Vault extended information."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultExtendedInfoGetRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultExtendedInfoGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Get the vault extended info.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultExtendedInfo",
+          "traits": {
+            "smithy.api#documentation": "Vault extended information."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultExtendedInfoGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultCertificatesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultCertificatesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/certificates/{certificateName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Uploads a certificate for a resource.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name associated with the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/..."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id represents the complete path to the resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#ResourceCertificateDetails",
+          "traits": {
+            "smithy.api#documentation": "Certificate details representing the Vault credentials."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Certificate corresponding to a vault that can be used by clients to register themselves with the vault."
+      }
+    },
+    "com.azure.recoveryservices#ResourceCertificateDetails": {
+      "type": "structure",
+      "members": {
+        "authType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The base64 encoded certificate raw data string."
+          }
+        },
+        "friendlyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate friendly name."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate issuer."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Resource ID of the vault."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate Subject Name."
+          }
+        },
+        "thumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate thumbprint."
+          }
+        },
+        "validFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate Validity start Date time."
+          }
+        },
+        "validTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate Validity End Date time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Certificate details representing the Vault credentials."
+      }
+    },
+    "com.azure.recoveryservices#VaultCertificatesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the recovery services vault."
+          }
+        },
+        "certificateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Certificate friendly name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#RawCertificateData",
+          "traits": {
+            "smithy.api#documentation": "Raw certificate data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#RawCertificateData": {
+      "type": "structure",
+      "members": {
+        "authType": {
+          "target": "com.azure.recoveryservices#AuthType",
+          "traits": {
+            "smithy.api#documentation": "Specifies the authentication type."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The base64 encoded certificate raw data string"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Raw certificate data."
+      }
+    },
+    "com.azure.recoveryservices#AuthType": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ACS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACS"
+          }
+        },
+        "AAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAD"
+          }
+        },
+        "ACCESSCONTROLSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AccessControlService"
+          }
+        },
+        "AZUREACTIVEDIRECTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureActiveDirectory"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the authentication type."
+      }
+    },
+    "com.azure.recoveryservices#VaultsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Deletes a vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Updates the vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#VaultsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityData",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#VaultsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#VaultsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional ETag."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityDataInput",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#IdentityDataInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.recoveryservices#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities.",
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.recoveryservices#IdentityDataInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The list of user-assigned identities associated with the resource. The user-assigned identity dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.recoveryservices#IdentityDataInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.recoveryservices#UserIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of user-assigned identities associated with the resource. The user-assigned identity dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+      }
+    },
+    "com.azure.recoveryservices#UserIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A resource identity that is managed by the user of the service."
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "upgradeDetails": {
+          "target": "com.azure.recoveryservices#UpgradeDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Details for upgrading vault."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.recoveryservices#VaultPropertiesEncryption",
+          "traits": {
+            "smithy.api#documentation": "Customer Managed Key details of the resource."
+          }
+        },
+        "moveDetails": {
+          "target": "com.azure.recoveryservices#VaultPropertiesMoveDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "The details of the latest move operation performed on the Azure Resource"
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.recoveryservices#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "property to enable or disable resource provider inbound network traffic from public clients"
+          }
+        },
+        "monitoringSettings": {
+          "target": "com.azure.recoveryservices#MonitoringSettings",
+          "traits": {
+            "smithy.api#documentation": "Monitoring Settings of the vault"
+          }
+        },
+        "costManagementSettings": {
+          "target": "com.azure.recoveryservices#CostManagementSettings",
+          "traits": {
+            "smithy.api#documentation": "Cost Management Settings of the vault"
+          }
+        },
+        "restoreSettings": {
+          "target": "com.azure.recoveryservices#RestoreSettings",
+          "traits": {
+            "smithy.api#documentation": "Restore Settings of the vault"
+          }
+        },
+        "redundancySettings": {
+          "target": "com.azure.recoveryservices#VaultPropertiesRedundancySettings",
+          "traits": {
+            "smithy.api#documentation": "The redundancy Settings of a Vault"
+          }
+        },
+        "securitySettings": {
+          "target": "com.azure.recoveryservices#SecuritySettings",
+          "traits": {
+            "smithy.api#documentation": "Security Settings of the vault"
+          }
+        },
+        "resourceGuardOperationRequests": {
+          "target": "com.azure.recoveryservices#VaultPropertiesInputResourceGuardOperationRequestsList",
+          "traits": {
+            "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the vault."
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesInputResourceGuardOperationRequestsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "ResourceGuardOperationRequests on which LAC check will be performed"
+      }
+    },
+    "com.azure.recoveryservices#VaultPropertiesMoveDetailsInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The details of the latest move operation performed on the Azure Resource"
+      }
+    },
+    "com.azure.recoveryservices#UpgradeDetailsInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Details for upgrading vault."
+      }
+    },
+    "com.azure.recoveryservices#VaultsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#VaultsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Creates or updates a Recovery Services vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#VaultsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityData",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#VaultsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#VaultsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityDataInput",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#VaultsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Get the Vault details.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#VaultsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityData",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#VaultsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Vault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Retrieve a list of Vaults.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.recoveryservices#VaultListValueList",
+          "traits": {
+            "smithy.api#documentation": "The Vault items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response model for a list of Vaults."
+      }
+    },
+    "com.azure.recoveryservices#VaultListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#Vault"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Vault items on this page"
+      }
+    },
+    "com.azure.recoveryservices#Vault": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.recoveryservices#VaultTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#VaultProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the vault."
+          }
+        },
+        "identity": {
+          "target": "com.azure.recoveryservices#IdentityData",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.recoveryservices#Sku",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique system identifier for each Azure resource."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "etag for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource information, as returned by the resource provider."
+      }
+    },
+    "com.azure.recoveryservices#VaultTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.recoveryservices#VaultsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#RecoveryServicesCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#RecoveryServicesCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#CheckNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/locations/{location}/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "API to check for resource name availability.\nA name is available if no other resource exists that has the same SubscriptionId, Resource Name and Type\nor if one or more such resources exist, each of these must be GC'd and their time of deletion be more than 24 Hours Ago\n\nAPI to check for resource name availability.\nA name is available if no other resource exists that has the same SubscriptionId, Resource Name and Type\nor if one or more such resources exist, each of these must be GC'd and their time of deletion be more than 24 Hours Ago",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#CheckNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean"
+        },
+        "reason": {
+          "target": "smithy.api#String"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for check name availability API. Resource provider will set availability as true | false."
+      }
+    },
+    "com.azure.recoveryservices#RecoveryServicesCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the Resource type: Microsoft.RecoveryServices/Vaults"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for which availability needs to be checked"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#VaultsListBySubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#VaultsListBySubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#VaultList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/vaults",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Fetches all the resources of the specified type in the subscription.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#VaultsListBySubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsUndelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#DeletedVaultsUndeleteRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#DeletedVaultsUndeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}/undelete",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Start undelete of a deleted vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsUndeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#DeletedVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultProperties": {
+      "type": "structure",
+      "members": {
+        "vaultId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM Id of the Vault which was deleted."
+          }
+        },
+        "vaultDeletionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time in UTC at which the Vault was deleted."
+          }
+        },
+        "purgeAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time in UTC at which the DeletedVault will be purged."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the DeletedVault."
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsUndeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "deletedVaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the DeletedVault"
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#DeletedVaultUndeleteInputProperties",
+          "traits": {
+            "smithy.api#documentation": "Undelete input properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultUndeleteInputProperties": {
+      "type": "structure",
+      "members": {
+        "recoveryResourceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recovery resource group Id.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input definition for DeletedVault undelete properties."
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsGetOperationStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#DeletedVaultsGetOperationStatusRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#OperationResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}/operations/{operationId}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Get the operation status of a deleted vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsGetOperationStatusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "deletedVaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of deleted vault."
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#DeletedVaultsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#DeletedVaultsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "Get a specific deleted vault.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#DeletedVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "deletedVaultName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the DeletedVault"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsListBySubscriptionId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#DeletedVaultsListBySubscriptionIdRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#DeletedVaultList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "List deleted vaults in a subscription.",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.recoveryservices#DeletedVaultListValueList",
+          "traits": {
+            "smithy.api#documentation": "The DeletedVault items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response model for a list of DeletedVaults."
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#DeletedVault"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DeletedVault items on this page"
+      }
+    },
+    "com.azure.recoveryservices#DeletedVault": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.recoveryservices#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#DeletedVaultProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DeletedVault information as returned by the resource provider."
+      }
+    },
+    "com.azure.recoveryservices#DeletedVaultsListBySubscriptionIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#RecoveryServicesCapabilities": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.recoveryservices#RecoveryServicesCapabilitiesRequest"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#RecoveryServicesCapabilitiesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/capabilities",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "API to get details about capabilities provided by Microsoft.RecoveryServices RP\n\nAPI to get details about capabilities provided by Microsoft.RecoveryServices RP",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#RecoveryServicesCapabilitiesResponse": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the Resource type: Microsoft.RecoveryServices/Vaults",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#CapabilitiesResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Capabilities properties in response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.recoveryservices#CapabilitiesResponseProperties": {
+      "type": "structure",
+      "members": {
+        "dnsZones": {
+          "target": "com.azure.recoveryservices#CapabilitiesResponsePropertiesDnsZonesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capabilities properties in response"
+      }
+    },
+    "com.azure.recoveryservices#CapabilitiesResponsePropertiesDnsZonesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#DNSZoneResponse"
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#DNSZoneResponse": {
+      "type": "structure",
+      "members": {
+        "subResource": {
+          "target": "com.azure.recoveryservices#VaultSubResourceType",
+          "traits": {
+            "smithy.api#documentation": "Subresource type for vault AzureBackup, AzureBackup_secondary or AzureSiteRecovery"
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.recoveryservices#DNSZoneResponseRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource Private link DNS zone names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DNSZone information for Microsoft.RecoveryServices"
+      }
+    },
+    "com.azure.recoveryservices#DNSZoneResponseRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource Private link DNS zone names."
+      }
+    },
+    "com.azure.recoveryservices#RecoveryServicesCapabilitiesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The location of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes the Resource type: Microsoft.RecoveryServices/Vaults",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#CapabilitiesProperties",
+          "traits": {
+            "smithy.api#documentation": "Capabilities information"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.recoveryservices#CapabilitiesProperties": {
+      "type": "structure",
+      "members": {
+        "dnsZones": {
+          "target": "com.azure.recoveryservices#CapabilitiesPropertiesDnsZonesList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capabilities information"
+      }
+    },
+    "com.azure.recoveryservices#CapabilitiesPropertiesDnsZonesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#DNSZone"
+      },
+      "traits": {}
+    },
+    "com.azure.recoveryservices#DNSZone": {
+      "type": "structure",
+      "members": {
+        "subResource": {
+          "target": "com.azure.recoveryservices#VaultSubResourceType",
+          "traits": {
+            "smithy.api#documentation": "Subresource type for vault AzureBackup, AzureBackup_secondary or AzureSiteRecovery"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DNSZone information"
+      }
+    },
+    "com.azure.recoveryservices#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.recoveryservices#ClientDiscoveryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.RecoveryServices/operations",
+          "code": 200,
+          "apiVersion": "2026-05-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2026-05-01"
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.recoveryservices#ClientDiscoveryResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The ClientDiscoveryValueForSingleApi items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of ClientDiscoveryValueForSingleApi items"
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#ClientDiscoveryValueForSingleApi"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ClientDiscoveryValueForSingleApi items on this page"
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryValueForSingleApi": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Operation."
+          }
+        },
+        "display": {
+          "target": "com.azure.recoveryservices#ClientDiscoveryDisplay",
+          "traits": {
+            "smithy.api#documentation": "Contains the localized display information for this particular operation"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation;governs the display of the operation in the RBAC UX and the audit logs UX"
+          }
+        },
+        "properties": {
+          "target": "com.azure.recoveryservices#ClientDiscoveryForProperties",
+          "traits": {
+            "smithy.api#documentation": "ShoeBox properties for the given operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available operation details."
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryForProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.recoveryservices#ClientDiscoveryForServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "Operation properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Class to represent shoebox properties in json client discovery."
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryForServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "logSpecifications": {
+          "target": "com.azure.recoveryservices#ClientDiscoveryForServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "List of log specifications of this operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Class to represent shoebox service specification in json client discovery."
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryForServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.recoveryservices#ClientDiscoveryForLogSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of log specifications of this operation."
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryForLogSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the log."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized display name"
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Blobs created in customer storage account per hour"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Class to represent shoebox log specification in json client discovery."
+      }
+    },
+    "com.azure.recoveryservices#ClientDiscoveryDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the provider for display purposes"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ResourceType for which this Operation can be performed."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operations Name itself."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation having details of what operation is about."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information of an operation."
+      }
+    },
+    "com.azure.recoveryservices#Recoveryservices": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.recoveryservices#UsagesListByVaults"
+        },
+        {
+          "target": "com.azure.recoveryservices#ReplicationUsagesList"
+        },
+        {
+          "target": "com.azure.recoveryservices#RegisteredIdentitiesDelete"
+        },
+        {
+          "target": "com.azure.recoveryservices#PrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.recoveryservices#PrivateLinkResourcesList"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultExtendedInfoUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultExtendedInfoGet"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultCertificatesCreate"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultsDelete"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultsUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultsGet"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.recoveryservices#RecoveryServicesCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.recoveryservices#VaultsListBySubscriptionId"
+        },
+        {
+          "target": "com.azure.recoveryservices#DeletedVaultsUndelete"
+        },
+        {
+          "target": "com.azure.recoveryservices#DeletedVaultsGetOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservices#DeletedVaultsGet"
+        },
+        {
+          "target": "com.azure.recoveryservices#DeletedVaultsListBySubscriptionId"
+        },
+        {
+          "target": "com.azure.recoveryservices#RecoveryServicesCapabilities"
+        },
+        {
+          "target": "com.azure.recoveryservices#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Recoveryservices",
+        "smithy.api#documentation": "Azure Recoveryservices API — merged from the recoveryservices resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

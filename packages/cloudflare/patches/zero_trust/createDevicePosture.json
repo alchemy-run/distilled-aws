@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#DevicesPostureCreate with distilled cloudflare/zero-trust createDevicePosture",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPostureCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDevicePosture"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPostureCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDevicePostureRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDevicePosture/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDevicePostureRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPostureCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDevicePostureResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDevicePosture/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDevicePostureResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDevicePosture/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

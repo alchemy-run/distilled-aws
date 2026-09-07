@@ -1,0 +1,42 @@
+{
+  "description": "Align resource_tagging#ZoneTagsGet with distilled cloudflare/resource-tagging getZoneTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ZoneTagsGet",
+      "path": "/shapes/com.cloudflare.resource_tagging#GetZoneTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ZoneTagsGetRequest",
+      "path": "/shapes/com.cloudflare.resource_tagging#GetZoneTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#GetZoneTag/input/target",
+      "value": "com.cloudflare.resource_tagging#GetZoneTagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ZoneTagsGetResponse",
+      "path": "/shapes/com.cloudflare.resource_tagging#GetZoneTagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#GetZoneTag/output/target",
+      "value": "com.cloudflare.resource_tagging#GetZoneTagResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_tagging#GetZoneTag/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.resource_tagging#ZoneTagResourceNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        }
+      ]
+    }
+  ]
+}

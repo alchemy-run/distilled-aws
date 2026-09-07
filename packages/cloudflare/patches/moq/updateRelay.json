@@ -1,0 +1,30 @@
+{
+  "description": "Align moq#RelaysUpdate with distilled cloudflare/moq updateRelay",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysUpdate",
+      "path": "/shapes/com.cloudflare.moq#UpdateRelay"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysUpdateRequest",
+      "path": "/shapes/com.cloudflare.moq#UpdateRelayRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#UpdateRelay/input/target",
+      "value": "com.cloudflare.moq#UpdateRelayRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysUpdateResponse",
+      "path": "/shapes/com.cloudflare.moq#UpdateRelayResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#UpdateRelay/output/target",
+      "value": "com.cloudflare.moq#UpdateRelayResponse"
+    }
+  ]
+}

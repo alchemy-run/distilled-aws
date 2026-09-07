@@ -1,0 +1,12 @@
+{
+  "description": "Type Conflict (409) on volumeDelete so still-attached deletes can be retried.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1volumes~1{volume_id}/delete/responses/409",
+      "value": {
+        "description": "Conflict"
+      }
+    }
+  ]
+}

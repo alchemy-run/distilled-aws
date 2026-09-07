@@ -1,0 +1,10 @@
+{
+  "description": "serviceDomainUpdate returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ServiceDomainUpdateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation serviceDomainUpdate($input: ServiceDomainUpdateInput!) {\n  serviceDomainUpdate(input: $input)\n}"
+    }
+  ]
+}

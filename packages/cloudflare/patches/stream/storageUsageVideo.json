@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#VideosStorageUsage with distilled cloudflare/stream storageUsageVideo",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#VideosStorageUsage",
+      "path": "/shapes/com.cloudflare.stream#StorageUsageVideo"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#VideosStorageUsageRequest",
+      "path": "/shapes/com.cloudflare.stream#StorageUsageVideoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#StorageUsageVideo/input/target",
+      "value": "com.cloudflare.stream#StorageUsageVideoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#VideosStorageUsageResponse",
+      "path": "/shapes/com.cloudflare.stream#StorageUsageVideoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#StorageUsageVideo/output/target",
+      "value": "com.cloudflare.stream#StorageUsageVideoResponse"
+    }
+  ]
+}

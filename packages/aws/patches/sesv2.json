@@ -1,0 +1,17 @@
+{
+  "structures": {
+    "MailFromAttributes": {
+      "members": {
+        "MailFromDomain": {
+          "optional": true
+        },
+        "MailFromDomainStatus": {
+          "optional": true
+        },
+        "BehaviorOnMxFailure": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

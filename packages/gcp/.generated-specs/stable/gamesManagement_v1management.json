@@ -1,0 +1,1164 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "gamesManagement",
+    "version": "v1management",
+    "title": "Google Play Games Services Management API",
+    "baseUrl": "https://gamesmanagement.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.gamesManagement_v1management#AchievementResetResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#achievementResetResponse`."
+          }
+        },
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of an achievement for which player state has been updated."
+          }
+        },
+        "updateOccurred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate if the requested update actually occurred."
+          }
+        },
+        "currentState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current state of the achievement. This is the same as the initial state of the achievement. Possible values are: - \"`HIDDEN`\"- Achievement is hidden. - \"`REVEALED`\" - Achievement is revealed. - \"`UNLOCKED`\" - Achievement is unlocked. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An achievement reset response."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#AchievementResetAllResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#achievementResetAllResponse`."
+          }
+        },
+        "results": {
+          "target": "com.gcp.gamesManagement_v1management#AchievementResetResponseList",
+          "traits": {
+            "smithy.api#documentation": "The achievement reset results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Achievement reset all response."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#AchievementResetResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.gamesManagement_v1management#AchievementResetResponse"
+      }
+    },
+    "com.gcp.gamesManagement_v1management#AchievementResetMultipleForAllRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#achievementResetMultipleForAllRequest`."
+          }
+        },
+        "achievement_ids": {
+          "target": "com.gcp.gamesManagement_v1management#StringList",
+          "traits": {
+            "smithy.api#documentation": "The IDs of achievements to reset."
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.gamesManagement_v1management#EventsResetMultipleForAllRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#eventsResetMultipleForAllRequest`."
+          }
+        },
+        "event_ids": {
+          "target": "com.gcp.gamesManagement_v1management#StringList",
+          "traits": {
+            "smithy.api#documentation": "The IDs of events to reset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Multiple events reset all request."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#HiddenPlayerList": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#hiddenPlayerList`."
+          }
+        },
+        "items": {
+          "target": "com.gcp.gamesManagement_v1management#HiddenPlayerList_",
+          "traits": {
+            "smithy.api#documentation": "The players."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token for the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of hidden players."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#HiddenPlayerList_": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.gamesManagement_v1management#HiddenPlayer"
+      }
+    },
+    "com.gcp.gamesManagement_v1management#HiddenPlayer": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#hiddenPlayer`."
+          }
+        },
+        "player": {
+          "target": "com.gcp.gamesManagement_v1management#Player",
+          "traits": {
+            "smithy.api#documentation": "Output only. The player information."
+          }
+        },
+        "hiddenTimeMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time this player was hidden."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HiddenPlayer resource."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#Player": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#player`."
+          }
+        },
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the player."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name to display for the player."
+          }
+        },
+        "avatarImageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The base URL for the image that represents the player."
+          }
+        },
+        "bannerUrlPortrait": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url to the portrait mode player banner image."
+          }
+        },
+        "bannerUrlLandscape": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url to the landscape mode player banner image."
+          }
+        },
+        "profileSettings": {
+          "target": "com.gcp.gamesManagement_v1management#ProfileSettings",
+          "traits": {
+            "smithy.api#documentation": "The player's profile settings. Controls whether or not the player's profile is visible to other players."
+          }
+        },
+        "name": {
+          "target": "com.gcp.gamesManagement_v1management#PlayerName",
+          "traits": {
+            "smithy.api#documentation": "An object representation of the individual components of the player's name. For some players, these fields may not be present."
+          }
+        },
+        "experienceInfo": {
+          "target": "com.gcp.gamesManagement_v1management#GamesPlayerExperienceInfoResource",
+          "traits": {
+            "smithy.api#documentation": "An object to represent Play Game experience information for the player."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The player's title rewarded for their game activities."
+          }
+        },
+        "originalPlayerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Player resource."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#PlayerName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The given name of this player. In some places, this is known as the first name."
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The family name of this player. In some places, this is known as the last name."
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ProfileSettings": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#profileSettings`."
+          }
+        },
+        "profileVisible": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Profile settings"
+      }
+    },
+    "com.gcp.gamesManagement_v1management#GamesPlayerExperienceInfoResource": {
+      "type": "structure",
+      "members": {
+        "currentExperiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current number of experience points for the player."
+          }
+        },
+        "lastLevelUpTimestampMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the player was leveled up, in millis since Unix epoch UTC."
+          }
+        },
+        "currentLevel": {
+          "target": "com.gcp.gamesManagement_v1management#GamesPlayerLevelResource",
+          "traits": {
+            "smithy.api#documentation": "The current level of the player."
+          }
+        },
+        "nextLevel": {
+          "target": "com.gcp.gamesManagement_v1management#GamesPlayerLevelResource",
+          "traits": {
+            "smithy.api#documentation": "The next level of the player. If the current level is the maximum level, this should be same as the current level."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "1P/3P metadata about the player's experience."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#GamesPlayerLevelResource": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The level for the user."
+          }
+        },
+        "minExperiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum experience points for this level."
+          }
+        },
+        "maxExperiencePoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum experience points for this level."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "1P/3P metadata about a user's level."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#PlayerScoreResetResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#playerScoreResetResponse`."
+          }
+        },
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of an leaderboard for which player state has been updated."
+          }
+        },
+        "resetScoreTimeSpans": {
+          "target": "com.gcp.gamesManagement_v1management#StringList",
+          "traits": {
+            "smithy.api#documentation": "The time spans of the updated score. Possible values are: - \"`ALL_TIME`\" - The score is an all-time score. - \"`WEEKLY`\" - The score is a weekly score. - \"`DAILY`\" - The score is a daily score. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of reset leaderboard entry resources."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#PlayerScoreResetAllResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#playerScoreResetAllResponse`."
+          }
+        },
+        "results": {
+          "target": "com.gcp.gamesManagement_v1management#PlayerScoreResetResponseList",
+          "traits": {
+            "smithy.api#documentation": "The leaderboard reset results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of leaderboard reset resources."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#PlayerScoreResetResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.gamesManagement_v1management#PlayerScoreResetResponse"
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ScoresResetMultipleForAllRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Uniquely identifies the type of this resource. Value is always the fixed string `gamesManagement#scoresResetMultipleForAllRequest`."
+          }
+        },
+        "leaderboard_ids": {
+          "target": "com.gcp.gamesManagement_v1management#StringList",
+          "traits": {
+            "smithy.api#documentation": "The IDs of leaderboards to reset."
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement used by this method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.gamesManagement_v1management#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.gamesManagement_v1management#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.gamesManagement_v1management#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.gamesManagement_v1management#AchievementResetResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/achievements/{achievementId}/reset"
+        },
+        "smithy.api#documentation": "Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllAchievementsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAllAchievementsRequest"
+      },
+      "output": {
+        "target": "com.gcp.gamesManagement_v1management#AchievementResetAllResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/achievements/reset"
+        },
+        "smithy.api#documentation": "Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersAchievementsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersAchievementsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/achievements/resetAllForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets all draft achievements for all players. This method is only available to user accounts for your developer console."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetForAllPlayersAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "achievementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the achievement used by this method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetForAllPlayersAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetForAllPlayersAchievementsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/achievements/{achievementId}/resetForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersAchievementsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.gamesManagement_v1management#AchievementResetMultipleForAllRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersAchievements": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersAchievementsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/achievements/resetMultipleForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetEventsRequest": {
+      "type": "structure",
+      "members": {
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the event.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetEventsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/events/{eventId}/reset"
+        },
+        "smithy.api#documentation": "Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllEventsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAllEventsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/events/reset"
+        },
+        "smithy.api#documentation": "Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersEventsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersEventsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/events/resetAllForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets all draft events for all players. This method is only available to user accounts for your developer console."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetForAllPlayersEventsRequest": {
+      "type": "structure",
+      "members": {
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the event.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetForAllPlayersEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetForAllPlayersEventsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/events/{eventId}/resetForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersEventsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.gamesManagement_v1management#EventsResetMultipleForAllRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersEvents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersEventsRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/events/resetMultipleForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#HidePlayersRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID from the Google Play developer console.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#HidePlayers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#HidePlayersRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/applications/{applicationId}/players/hidden/{playerId}"
+        },
+        "smithy.api#documentation": "Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#UnhidePlayersRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID from the Google Play developer console.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "playerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A player ID. A value of `me` may be used in place of the authenticated player's ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#UnhidePlayers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#UnhidePlayersRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "games/v1management/applications/{applicationId}/players/hidden/{playerId}"
+        },
+        "smithy.api#documentation": "Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ListHiddenApplicationsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application ID from the Google Play developer console.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token returned by the previous request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ListHiddenApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ListHiddenApplicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.gamesManagement_v1management#HiddenPlayerList"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "games/v1management/applications/{applicationId}/players/hidden"
+        },
+        "smithy.api#documentation": "Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetScoresRequest": {
+      "type": "structure",
+      "members": {
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.gamesManagement_v1management#PlayerScoreResetResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/leaderboards/{leaderboardId}/scores/reset"
+        },
+        "smithy.api#documentation": "Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllScoresRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAllScoresRequest"
+      },
+      "output": {
+        "target": "com.gcp.gamesManagement_v1management#PlayerScoreResetAllResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/scores/reset"
+        },
+        "smithy.api#documentation": "Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersScoresRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetAllForAllPlayersScoresRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/scores/resetAllForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetForAllPlayersScoresRequest": {
+      "type": "structure",
+      "members": {
+        "leaderboardId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the leaderboard.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetForAllPlayersScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetForAllPlayersScoresRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset."
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersScoresRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.gamesManagement_v1management#ScoresResetMultipleForAllRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersScores": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.gamesManagement_v1management#ResetMultipleForAllPlayersScoresRequest"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.gamesManagement_v1management#NotFound"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Forbidden"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#BadRequest"
+        },
+        {
+          "target": "com.gcp.gamesManagement_v1management#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "games/v1management/scores/resetMultipleForAllPlayers"
+        },
+        "smithy.api#documentation": "Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset."
+      }
+    }
+  }
+}

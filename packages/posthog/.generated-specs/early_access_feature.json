@@ -1,0 +1,808 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.early_access_feature#EarlyAccessFeatureListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.early_access_feature#PaginatedEarlyAccessFeatureList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.early_access_feature#PaginatedEarlyAccessFeatureListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeature2": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "feature_flag": {
+          "target": "com.posthog.early_access_feature#MinimalFeatureFlag"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the early access feature."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A longer description of what this early access feature does, shown to users in the opt-in UI."
+          }
+        },
+        "stage": {
+          "target": "com.posthog.early_access_feature#StageEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle stage. Valid values: draft, concept, alpha, beta, general-availability, archived. Moving to an active stage (alpha/beta/general-availability) enables the feature flag for opted-in users.\n\n* `draft` - draft\n* `concept` - concept\n* `alpha` - alpha\n* `beta` - beta\n* `general-availability` - general availability\n* `archived` - archived"
+          }
+        },
+        "documentation_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to external documentation for this feature. Shown to users in the opt-in UI."
+          }
+        },
+        "payload": {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeaturePayloadMap",
+          "traits": {
+            "smithy.api#documentation": "Feature flag payload for this early access feature"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#MinimalFeatureFlag": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "team_id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "filters": {
+          "target": "com.posthog.early_access_feature#MinimalFeatureFlagFiltersMap"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "ensure_experience_continuity": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "evaluation_runtime": {
+          "target": "com.posthog.early_access_feature#MinimalFeatureFlagEvaluationRuntime",
+          "traits": {
+            "smithy.api#documentation": "Specifies where this feature flag should be evaluated\n\n* `server` - Server\n* `client` - Client\n* `all` - All",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bucketing_identifier": {
+          "target": "com.posthog.early_access_feature#MinimalFeatureFlagBucketingIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "evaluation_contexts": {
+          "target": "com.posthog.early_access_feature#MinimalFeatureFlagEvaluationContextsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#MinimalFeatureFlagFiltersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#EvaluationRuntimeEnum": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "CLIENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `server` - Server\n* `client` - Client\n* `all` - All"
+      }
+    },
+    "com.posthog.early_access_feature#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#MinimalFeatureFlagEvaluationRuntime": {
+      "type": "union",
+      "members": {
+        "EvaluationRuntimeEnum": {
+          "target": "com.posthog.early_access_feature#EvaluationRuntimeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.early_access_feature#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies where this feature flag should be evaluated\n\n* `server` - Server\n* `client` - Client\n* `all` - All"
+      }
+    },
+    "com.posthog.early_access_feature#BucketingIdentifierEnum": {
+      "type": "enum",
+      "members": {
+        "DISTINCT_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "distinct_id"
+          }
+        },
+        "DEVICE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "device_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `distinct_id` - User ID (default)\n* `device_id` - Device ID"
+      }
+    },
+    "com.posthog.early_access_feature#MinimalFeatureFlagBucketingIdentifier": {
+      "type": "union",
+      "members": {
+        "BucketingIdentifierEnum": {
+          "target": "com.posthog.early_access_feature#BucketingIdentifierEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.early_access_feature#BlankEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID"
+      }
+    },
+    "com.posthog.early_access_feature#MinimalFeatureFlagEvaluationContextsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#StageEnum": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "CONCEPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "concept"
+          }
+        },
+        "ALPHA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alpha"
+          }
+        },
+        "BETA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "beta"
+          }
+        },
+        "GENERAL_AVAILABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "general-availability"
+          }
+        },
+        "ARCHIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "archived"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `draft` - draft\n* `concept` - concept\n* `alpha` - alpha\n* `beta` - beta\n* `general-availability` - general availability\n* `archived` - archived"
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeaturePayloadMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Feature flag payload for this early access feature"
+      }
+    },
+    "com.posthog.early_access_feature#PaginatedEarlyAccessFeatureListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeatureListRequest"
+      },
+      "output": {
+        "target": "com.posthog.early_access_feature#PaginatedEarlyAccessFeatureList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.early_access_feature#BadRequest"
+        },
+        {
+          "target": "com.posthog.early_access_feature#Forbidden"
+        },
+        {
+          "target": "com.posthog.early_access_feature#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/early_access_feature/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the early access feature."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A longer description of what this early access feature does, shown to users in the opt-in UI."
+          }
+        },
+        "stage": {
+          "target": "com.posthog.early_access_feature#StageEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle stage. Valid values: draft, concept, alpha, beta, general-availability, archived. Moving to an active stage (alpha/beta/general-availability) enables the feature flag for opted-in users.\n\n* `draft` - draft\n* `concept` - concept\n* `alpha` - alpha\n* `beta` - beta\n* `general-availability` - general availability\n* `archived` - archived"
+          }
+        },
+        "documentation_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to external documentation for this feature. Shown to users in the opt-in UI."
+          }
+        },
+        "payload": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Arbitrary JSON metadata associated with this feature."
+          }
+        },
+        "feature_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional ID of an existing feature flag to link. If omitted, a new flag is auto-created from the feature name. The flag must not already be linked to another feature, must not be group-based, and must not be multivariate."
+          }
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureSerializerCreateOnlyOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the early access feature."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A longer description of what this early access feature does, shown to users in the opt-in UI."
+          }
+        },
+        "stage": {
+          "target": "com.posthog.early_access_feature#StageEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle stage. Valid values: draft, concept, alpha, beta, general-availability, archived. Moving to an active stage (alpha/beta/general-availability) enables the feature flag for opted-in users.\n\n* `draft` - draft\n* `concept` - concept\n* `alpha` - alpha\n* `beta` - beta\n* `general-availability` - general availability\n* `archived` - archived"
+          }
+        },
+        "documentation_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to external documentation for this feature. Shown to users in the opt-in UI."
+          }
+        },
+        "payload": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Arbitrary JSON metadata associated with this feature."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "feature_flag": {
+          "target": "com.posthog.early_access_feature#MinimalFeatureFlag"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeatureCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeatureSerializerCreateOnlyOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.early_access_feature#BadRequest"
+        },
+        {
+          "target": "com.posthog.early_access_feature#Forbidden"
+        },
+        {
+          "target": "com.posthog.early_access_feature#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/early_access_feature/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this early access feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeatureRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.early_access_feature#Forbidden"
+        },
+        {
+          "target": "com.posthog.early_access_feature#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/early_access_feature/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this early access feature."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the early access feature."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A longer description of what this early access feature does, shown to users in the opt-in UI."
+          }
+        },
+        "stage": {
+          "target": "com.posthog.early_access_feature#StageEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle stage. Valid values: draft, concept, alpha, beta, general-availability, archived. Moving to an active stage (alpha/beta/general-availability) enables the feature flag for opted-in users.\n\n* `draft` - draft\n* `concept` - concept\n* `alpha` - alpha\n* `beta` - beta\n* `general-availability` - general availability\n* `archived` - archived"
+          }
+        },
+        "documentation_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to external documentation for this feature. Shown to users in the opt-in UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeatureUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.early_access_feature#BadRequest"
+        },
+        {
+          "target": "com.posthog.early_access_feature#Forbidden"
+        },
+        {
+          "target": "com.posthog.early_access_feature#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/early_access_feature/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this early access feature."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the early access feature."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A longer description of what this early access feature does, shown to users in the opt-in UI."
+          }
+        },
+        "stage": {
+          "target": "com.posthog.early_access_feature#StageEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle stage. Valid values: draft, concept, alpha, beta, general-availability, archived. Moving to an active stage (alpha/beta/general-availability) enables the feature flag for opted-in users.\n\n* `draft` - draft\n* `concept` - concept\n* `alpha` - alpha\n* `beta` - beta\n* `general-availability` - general availability\n* `archived` - archived"
+          }
+        },
+        "documentation_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to external documentation for this feature. Shown to users in the opt-in UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.early_access_feature#BadRequest"
+        },
+        {
+          "target": "com.posthog.early_access_feature#Forbidden"
+        },
+        {
+          "target": "com.posthog.early_access_feature#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/early_access_feature/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this early access feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeatureDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.early_access_feature#Forbidden"
+        },
+        {
+          "target": "com.posthog.early_access_feature#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/early_access_feature/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.early_access_feature#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.early_access_feature#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.early_access_feature#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.early_access_feature#EarlyAccessFeature": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureList"
+        },
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureCreate"
+        },
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureRetrieve"
+        },
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureUpdate"
+        },
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdate"
+        },
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

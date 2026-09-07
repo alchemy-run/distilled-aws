@@ -1,0 +1,45 @@
+{
+  "description": "Align addressing#PrefixesDelegationsCreate with distilled cloudflare/addressing createPrefixDelegation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesDelegationsCreate",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixDelegation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesDelegationsCreateRequest",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixDelegationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixDelegation/input/target",
+      "value": "com.cloudflare.addressing#CreatePrefixDelegationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesDelegationsCreateResponse",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixDelegationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixDelegation/output/target",
+      "value": "com.cloudflare.addressing#CreatePrefixDelegationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixDelegation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#PrefixNotFound"
+        },
+        {
+          "target": "com.cloudflare.addressing#MissingAccountId"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

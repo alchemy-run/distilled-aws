@@ -1,0 +1,2547 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.powerbidedicated#CapacitiesSuspend": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesSuspendRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}/suspend",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Suspends operation of the specified dedicated capacity instance.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesSuspendRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListSkusForCapacity": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesListSkusForCapacityRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#SkuEnumerationForExistingResourceResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}/skus",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Lists eligible SKUs for a PowerBI Dedicated resource.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#SkuEnumerationForExistingResourceResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbidedicated#SkuEnumerationForExistingResourceResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The collection of available SKUs for existing resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents enumerating SKUs for existing resources"
+      }
+    },
+    "com.azure.powerbidedicated#SkuEnumerationForExistingResourceResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#SkuDetailsForExistingResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection of available SKUs for existing resources"
+      }
+    },
+    "com.azure.powerbidedicated#SkuDetailsForExistingResource": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type"
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU in SKU details for existing resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents SKU details for existing resources"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitySku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU level.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.powerbidedicated#CapacitySkuTier",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The capacity of the SKU."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the SKU name and Azure pricing tier for PowerBI Dedicated capacity resource."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitySkuTier": {
+      "type": "enum",
+      "members": {
+        "PBIE_AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PBIE_Azure"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        },
+        "AUTOPREMIUMHOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AutoPremiumHost"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListSkusForCapacityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesResume": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesResumeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}/resume",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Resumes operation of the specified Dedicated capacity instance.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesResumeRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Deletes the specified Dedicated capacity.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#CapacitiesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Updates the current state of the specified Dedicated capacity.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#CapacitiesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the PowerBI Dedicated capacity resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacityProperties": {
+      "type": "structure",
+      "members": {
+        "administration": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityAdministrators",
+          "traits": {
+            "smithy.api#documentation": "A collection of Dedicated capacity administrators"
+          }
+        },
+        "mode": {
+          "target": "com.azure.powerbidedicated#Mode",
+          "traits": {
+            "smithy.api#documentation": "Specifies the generation of the Power BI Embedded capacity. If no value is specified, the default value 'Gen2' is used. [Learn More](https://docs.microsoft.com/power-bi/developer/embedded/power-bi-embedded-generation-2)"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant ID for the capacity. Used for creating Pro Plus capacity."
+          }
+        },
+        "friendlyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Capacity name"
+          }
+        },
+        "state": {
+          "target": "com.azure.powerbidedicated#State",
+          "traits": {
+            "smithy.api#documentation": "The current state of PowerBI Dedicated resource. The state is to indicate more states outside of resource provisioning."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.powerbidedicated#CapacityProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current deployment state of PowerBI Dedicated resource. The provisioningState is to indicate states for resource provisioning."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of Dedicated Capacity resource."
+      }
+    },
+    "com.azure.powerbidedicated#CapacityProvisioningState": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Paused"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pausing"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Preparing"
+          }
+        },
+        "SCALING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scaling"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment state of PowerBI Dedicated resource. The provisioningState is to indicate states for resource provisioning."
+      }
+    },
+    "com.azure.powerbidedicated#State": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Paused"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspending"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pausing"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        },
+        "PREPARING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Preparing"
+          }
+        },
+        "SCALING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scaling"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of PowerBI Dedicated resource. The state is to indicate more states outside of resource provisioning."
+      }
+    },
+    "com.azure.powerbidedicated#Mode": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the generation of the Power BI Embedded capacity. If no value is specified, the default value 'Gen2' is used. [Learn More](https://docs.microsoft.com/power-bi/developer/embedded/power-bi-embedded-generation-2)"
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacityAdministrators": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityAdministratorsMembersList",
+          "traits": {
+            "smithy.api#documentation": "An array of administrator user identities."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of administrator user identities"
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacityAdministratorsMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of administrator user identities."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.powerbidedicated#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.powerbidedicated#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.powerbidedicated#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.powerbidedicated#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the Dedicated capacity resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#CapacitiesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityMutablePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacityMutablePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "administration": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityAdministrators",
+          "traits": {
+            "smithy.api#documentation": "A collection of Dedicated capacity administrators"
+          }
+        },
+        "mode": {
+          "target": "com.azure.powerbidedicated#Mode",
+          "traits": {
+            "smithy.api#documentation": "Specifies the generation of the Power BI Embedded capacity. If no value is specified, the default value 'Gen2' is used. [Learn More](https://docs.microsoft.com/power-bi/developer/embedded/power-bi-embedded-generation-2)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a set of mutable Dedicated capacity resource properties."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#CapacitiesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Provisions the specified Dedicated capacity based on the configuration specified in the request.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#CapacitiesCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the PowerBI Dedicated capacity resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#CapacitiesCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the PowerBI Dedicated capacity resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacityPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "administration": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityAdministrators",
+          "traits": {
+            "smithy.api#documentation": "A collection of Dedicated capacity administrators"
+          }
+        },
+        "mode": {
+          "target": "com.azure.powerbidedicated#Mode",
+          "traits": {
+            "smithy.api#documentation": "Specifies the generation of the Power BI Embedded capacity. If no value is specified, the default value 'Gen2' is used. [Learn More](https://docs.microsoft.com/power-bi/developer/embedded/power-bi-embedded-generation-2)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of Dedicated Capacity resource."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesGetDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesGetDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#CapacitiesGetDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities/{dedicatedCapacityName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Gets details about the specified dedicated capacity.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesGetDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#CapacitiesGetDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the PowerBI Dedicated capacity resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesGetDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesGetDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "dedicatedCapacityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the dedicated capacity. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#DedicatedCapacities"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/capacities",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Gets all the Dedicated capacities for the given resource group.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacities": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacitiesValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of Dedicated capacities resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Dedicated capacities resources."
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacitiesValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#DedicatedCapacity"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Dedicated capacities resources."
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacity": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#DedicatedCapacityProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#CapacitySku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the PowerBI Dedicated capacity resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an instance of a Dedicated Capacity resource."
+      }
+    },
+    "com.azure.powerbidedicated#DedicatedCapacityTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/autoScaleVCores/{vcoreName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Deletes the specified auto scale v-core.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vcoreName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the auto scale v-core. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/autoScaleVCores/{vcoreName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Updates the current state of the specified auto scale v-core.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of an auto scale v-core resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the auto scale v-core resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoreSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU level.",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.powerbidedicated#VCoreSkuTier",
+          "traits": {
+            "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The capacity of an auto scale v-core resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the SKU name and Azure pricing tier for auto scale v-core resource."
+      }
+    },
+    "com.azure.powerbidedicated#VCoreSkuTier": {
+      "type": "enum",
+      "members": {
+        "AUTOSCALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AutoScale"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoreProperties": {
+      "type": "structure",
+      "members": {
+        "capacityLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum capacity of an auto scale v-core resource."
+          }
+        },
+        "capacityObjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The object ID of the capacity resource associated with the auto scale v-core resource."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.powerbidedicated#VCoreProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current deployment state of an auto scale v-core resource. The provisioningState is to indicate states for resource provisioning."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of an auto scale v-core resource."
+      }
+    },
+    "com.azure.powerbidedicated#VCoreProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current deployment state of an auto scale v-core resource. The provisioningState is to indicate states for resource provisioning."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vcoreName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the auto scale v-core. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the auto scale v-core resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreMutableProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the update operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoreMutableProperties": {
+      "type": "structure",
+      "members": {
+        "capacityLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum capacity of an auto scale v-core resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a set of mutable auto scale v-core resource properties."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/autoScaleVCores/{vcoreName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Provisions the specified auto scale v-core based on the configuration specified in the request.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of an auto scale v-core resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the auto scale v-core resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vcoreName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the auto scale v-core. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of an auto scale v-core resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the auto scale v-core resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresGetRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/autoScaleVCores/{vcoreName}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Gets details about the specified auto scale v-core.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of an auto scale v-core resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the auto scale v-core resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "vcoreName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the auto scale v-core. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoreListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBIDedicated/autoScaleVCores",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Gets all the auto scale v-cores for the given resource group.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoreListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of auto scale v-core resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of auto scale v-core resources."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoreListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCore"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of auto scale v-core resources."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCore": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.powerbidedicated#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of an auto scale v-core resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoreSku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of the auto scale v-core resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an instance of an auto scale v-core resource."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoreTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesListSkusRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#SkuEnumerationForNewResourceResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBIDedicated/skus",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Lists eligible SKUs for PowerBI Dedicated resource provider.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#SkuEnumerationForNewResourceResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbidedicated#SkuEnumerationForNewResourceResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The collection of available SKUs for new resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents enumerating SKUs for new resources"
+      }
+    },
+    "com.azure.powerbidedicated#SkuEnumerationForNewResourceResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#CapacitySku"
+      },
+      "traits": {
+        "smithy.api#documentation": "The collection of available SKUs for new resources"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListSkusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#CheckCapacityNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBIDedicated/locations/{location}/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Check the name availability in the target location.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CheckCapacityNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicator of availability of the capacity name."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason of unavailability."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detailed message of the request unavailability."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The checking result of capacity name availability."
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for checking availability."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type of PowerBI dedicated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#CapacitiesListRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#DedicatedCapacities"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBIDedicated/capacities",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Lists all the Dedicated capacities for the given subscription.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#CapacitiesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoresListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#AutoScaleVCoreListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.PowerBIDedicated/autoScaleVCores",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Lists all the auto scale v-cores for the given subscription.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#AutoScaleVCoresListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.powerbidedicated#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.powerbidedicated#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.PowerBIDedicated/operations",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.powerbidedicated#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.powerbidedicated#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of capacities supported by the Microsoft.PowerBIDedicated resource provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result listing capacities. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.powerbidedicated#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of capacities supported by the Microsoft.PowerBIDedicated resource provider."
+      }
+    },
+    "com.azure.powerbidedicated#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}."
+          }
+        },
+        "display": {
+          "target": "com.azure.powerbidedicated#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that represents the operation."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation."
+          }
+        },
+        "properties": {
+          "target": "com.azure.powerbidedicated#OperationProperties",
+          "traits": {
+            "smithy.api#documentation": "Additional properties to expose performance metrics to shoebox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capacities REST API operation."
+      }
+    },
+    "com.azure.powerbidedicated#OperationProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.powerbidedicated#ServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "Service specification for exposing performance metrics to shoebox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional properties to expose performance metrics to shoebox."
+      }
+    },
+    "com.azure.powerbidedicated#ServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.powerbidedicated#ServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Metric specifications for exposing performance metrics to shoebox."
+          }
+        },
+        "logSpecifications": {
+          "target": "com.azure.powerbidedicated#ServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Log specifications for exposing diagnostic logs to shoebox."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service specification for exposing performance metrics to shoebox."
+      }
+    },
+    "com.azure.powerbidedicated#ServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#LogSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "Log specifications for exposing diagnostic logs to shoebox."
+      }
+    },
+    "com.azure.powerbidedicated#LogSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the log"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localizable name of the log"
+          }
+        },
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Blob duration for the log"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log specification for exposing diagnostic logs to shoebox."
+      }
+    },
+    "com.azure.powerbidedicated#ServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#MetricSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specifications for exposing performance metrics to shoebox."
+      }
+    },
+    "com.azure.powerbidedicated#MetricSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric name"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localizable metric name"
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localizable description of metric"
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit for the metric"
+          }
+        },
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation type for the metric"
+          }
+        },
+        "metricFilterPattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pattern used to filter the metric"
+          }
+        },
+        "dimensions": {
+          "target": "com.azure.powerbidedicated#MetricSpecificationDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "For describing multi dimensional metrics"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specification for exposing performance metrics to shoebox."
+      }
+    },
+    "com.azure.powerbidedicated#MetricSpecificationDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.powerbidedicated#MetricSpecificationDimensionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "For describing multi dimensional metrics"
+      }
+    },
+    "com.azure.powerbidedicated#MetricSpecificationDimensionsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dimension of the metric"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localizable dimension of the metric"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.powerbidedicated#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.PowerBIDedicated."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed: capacity, etc."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type: create, update, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized description of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that represents the operation."
+      }
+    },
+    "com.azure.powerbidedicated#Powerbidedicated": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesSuspend"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesListSkusForCapacity"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesResume"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesDelete"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesUpdate"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesCreate"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesGetDetails"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresDelete"
+        },
+        {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresUpdate"
+        },
+        {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresCreate"
+        },
+        {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresGet"
+        },
+        {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresListByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesListSkus"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CapacitiesList"
+        },
+        {
+          "target": "com.azure.powerbidedicated#AutoScaleVCoresListBySubscription"
+        },
+        {
+          "target": "com.azure.powerbidedicated#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Powerbidedicated",
+        "smithy.api#documentation": "Azure Powerbidedicated API — merged from the powerbidedicated resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

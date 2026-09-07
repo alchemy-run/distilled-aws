@@ -1,0 +1,39 @@
+{
+  "description": "Align pipelines#DeleteV1 with distilled cloudflare/pipelines deleteV1Pipeline",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#DeleteV1",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteV1Pipeline"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#DeleteV1Request",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteV1PipelineRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteV1Pipeline/input/target",
+      "value": "com.cloudflare.pipelines#DeleteV1PipelineRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#DeleteV1Response",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteV1PipelineResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteV1Pipeline/output/target",
+      "value": "com.cloudflare.pipelines#DeleteV1PipelineResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#DeleteV1Pipeline/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pipelines#PipelineNotExists"
+        }
+      ]
+    }
+  ]
+}

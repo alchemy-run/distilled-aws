@@ -1,0 +1,30 @@
+{
+  "description": "Align email_security#InvestigateGet with distilled cloudflare/email-security getInvestigate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateGet",
+      "path": "/shapes/com.cloudflare.email_security#GetInvestigate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateGetRequest",
+      "path": "/shapes/com.cloudflare.email_security#GetInvestigateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetInvestigate/input/target",
+      "value": "com.cloudflare.email_security#GetInvestigateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#InvestigateGetResponse",
+      "path": "/shapes/com.cloudflare.email_security#GetInvestigateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#GetInvestigate/output/target",
+      "value": "com.cloudflare.email_security#GetInvestigateResponse"
+    }
+  ]
+}

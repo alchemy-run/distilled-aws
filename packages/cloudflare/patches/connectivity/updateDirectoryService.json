@@ -1,0 +1,48 @@
+{
+  "description": "Align connectivity#DirectoryServicesUpdate with distilled cloudflare/connectivity updateDirectoryService",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesUpdate",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryService"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesUpdateRequest",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryServiceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryService/input/target",
+      "value": "com.cloudflare.connectivity#UpdateDirectoryServiceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesUpdateResponse",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryServiceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryService/output/target",
+      "value": "com.cloudflare.connectivity#UpdateDirectoryServiceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#UpdateDirectoryService/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.connectivity#VpcServiceNotFound"
+        },
+        {
+          "target": "com.cloudflare.connectivity#VpcServiceNameAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.connectivity#VpcTunnelNotFound"
+        },
+        {
+          "target": "com.cloudflare.connectivity#Forbidden"
+        }
+      ]
+    }
+  ]
+}

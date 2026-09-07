@@ -1,0 +1,29 @@
+{
+  "description": "Align managed_transforms#Delete with distilled cloudflare/managed-transforms deleteManagedTransform",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.managed_transforms#Delete",
+      "path": "/shapes/com.cloudflare.managed_transforms#DeleteManagedTransform"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.managed_transforms#DeleteRequest",
+      "path": "/shapes/com.cloudflare.managed_transforms#DeleteManagedTransformRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.managed_transforms#DeleteManagedTransform/input/target",
+      "value": "com.cloudflare.managed_transforms#DeleteManagedTransformRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.managed_transforms#DeleteManagedTransform/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.managed_transforms#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "kgsearch",
+    "version": "v1",
+    "title": "Knowledge Graph Search API",
+    "baseUrl": "https://kgsearch.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.kgsearch_v1#SearchResponse": {
+      "type": "structure",
+      "members": {
+        "@type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The schema type of top-level JSON-LD object, e.g. ItemList."
+          }
+        },
+        "itemListElement": {
+          "target": "com.gcp.kgsearch_v1#DocumentList",
+          "traits": {
+            "smithy.api#documentation": "The item list of search results."
+          }
+        },
+        "@context": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message includes the context and a list of matching results which contain the detail of associated entities."
+      }
+    },
+    "com.gcp.kgsearch_v1#DocumentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.kgsearch_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.kgsearch_v1#SearchEntitiesRequest": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The literal query string for search.",
+            "smithy.api#httpQuery": "query"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Limits the number of entities to be returned.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "ids": {
+          "target": "com.gcp.kgsearch_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B",
+            "smithy.api#httpQuery": "ids"
+          }
+        },
+        "types": {
+          "target": "com.gcp.kgsearch_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.",
+            "smithy.api#httpQuery": "types"
+          }
+        },
+        "languages": {
+          "target": "com.gcp.kgsearch_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'.",
+            "smithy.api#httpQuery": "languages"
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables prefix match against names and aliases of entities",
+            "smithy.api#httpQuery": "prefix"
+          }
+        },
+        "indent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables indenting of json results.",
+            "smithy.api#httpQuery": "indent"
+          }
+        }
+      }
+    },
+    "com.gcp.kgsearch_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.kgsearch_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.kgsearch_v1#SearchEntities": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.kgsearch_v1#SearchEntitiesRequest"
+      },
+      "output": {
+        "target": "com.gcp.kgsearch_v1#SearchResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.kgsearch_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.kgsearch_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/entities:search"
+        },
+        "smithy.api#documentation": "Searches Knowledge Graph for entities that match the constraints. A list of matched entities will be returned in response, which will be in JSON-LD format and compatible with http://schema.org"
+      }
+    }
+  }
+}

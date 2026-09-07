@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#ScriptsScriptAndVersionSettingsEdit with distilled cloudflare/workers patchScriptScriptAndVersionSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsScriptAndVersionSettingsEdit",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsScriptAndVersionSettingsEditRequest",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSetting/input/target",
+      "value": "com.cloudflare.workers#PatchScriptScriptAndVersionSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsScriptAndVersionSettingsEditResponse",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSetting/output/target",
+      "value": "com.cloudflare.workers#PatchScriptScriptAndVersionSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PatchScriptScriptAndVersionSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#ContentTypeRequired"
+        }
+      ]
+    }
+  ]
+}

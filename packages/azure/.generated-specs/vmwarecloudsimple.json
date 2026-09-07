@@ -1,0 +1,5058 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.vmwarecloudsimple#VirtualMachinesStop": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesStopRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}/stop",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements shutdown, poweroff, and suspend method for a virtual machine\n\nPower off virtual machine, options: shutdown, poweroff, and suspend",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesStopRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "virtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine name"
+          }
+        },
+        "mode": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesStopRequestMode",
+          "traits": {
+            "smithy.api#httpQuery": "mode",
+            "smithy.api#documentation": "query stop mode parameter (reboot, shutdown, etc...)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesStopRequestMode": {
+      "type": "enum",
+      "members": {
+        "REBOOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reboot"
+          }
+        },
+        "SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspend"
+          }
+        },
+        "SHUTDOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shutdown"
+          }
+        },
+        "POWEROFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "poweroff"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesStart": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesStartRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}/start",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements a start method for a virtual machine\n\nPower on virtual machine",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesStartRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "virtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements virtual machine DELETE method\n\nDelete virtual machine",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "virtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachine"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements virtual machine PATCH method\n\nPatch virtual machine properties",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachine": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/virtualMachines/{virtualMachineName}"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{virtualMachineName}"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineProperties",
+          "traits": {
+            "smithy.api#documentation": "Virtual machine properties"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The list of tags"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual machine model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#Tags": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineProperties": {
+      "type": "structure",
+      "members": {
+        "amountOfRam": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of memory",
+            "smithy.api#required": {}
+          }
+        },
+        "controllers": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesControllersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Disks' Controllers"
+          }
+        },
+        "customization": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSCustomization",
+          "traits": {
+            "smithy.api#documentation": "Virtual machine properties"
+          }
+        },
+        "disks": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesDisksList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Disks"
+          }
+        },
+        "dnsname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS name of Virtual Machine in VCenter"
+          }
+        },
+        "exposeToGuestVM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Expose Guest OS or not"
+          }
+        },
+        "folder": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path to virtual machine folder in VCenter"
+          }
+        },
+        "guestOS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of Guest OS"
+          }
+        },
+        "guestOSType": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesGuestOSType",
+          "traits": {
+            "smithy.api#documentation": "The Guest OS type"
+          }
+        },
+        "nics": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesNicsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual NICs"
+          }
+        },
+        "numberOfCores": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of CPU cores",
+            "smithy.api#required": {}
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Password for login. Deprecated - use customization property",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Cloud Id",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning status of the resource"
+          }
+        },
+        "publicIP": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The public ip of Virtual Machine"
+          }
+        },
+        "resourcePool": {
+          "target": "com.azure.vmwarecloudsimple#ResourcePool",
+          "traits": {
+            "smithy.api#documentation": "Virtual Machines Resource Pool"
+          }
+        },
+        "status": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of Virtual machine"
+          }
+        },
+        "templateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual Machine Template Id"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username for login. Deprecated - use customization property"
+          }
+        },
+        "vSphereNetworks": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesVSphereNetworksList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual VSphere Networks"
+          }
+        },
+        "vmId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The internal id of Virtual Machine in VCenter"
+          }
+        },
+        "vmwaretools": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "VMware tools version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of virtual machine"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesVSphereNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual VSphere Networks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "POWEREDOFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "poweredoff"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updating"
+          }
+        },
+        "DEALLOCATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deallocating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of Virtual machine"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePool": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "resource pool id (privateCloudId:vsphereId)",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{ResourcePoolName}"
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Private Cloud Id"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#ResourcePoolProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource pool properties"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource pool model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolProperties": {
+      "type": "structure",
+      "members": {
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hierarchical resource pool name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of resource pool"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesNicsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNic"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual NICs"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNic": {
+      "type": "structure",
+      "members": {
+        "customization": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSNICCustomization",
+          "traits": {
+            "smithy.api#documentation": "guest OS customization for nic"
+          }
+        },
+        "ipAddresses": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNicIpAddressesList",
+          "traits": {
+            "smithy.api#documentation": "NIC ip address"
+          }
+        },
+        "macAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NIC MAC address"
+          }
+        },
+        "network": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetwork",
+          "traits": {
+            "smithy.api#documentation": "Virtual Network",
+            "smithy.api#required": {}
+          }
+        },
+        "nicType": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNicNicType",
+          "traits": {
+            "smithy.api#documentation": "NIC type",
+            "smithy.api#required": {}
+          }
+        },
+        "powerOnBoot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is NIC powered on/off on boot"
+          }
+        },
+        "virtualNicId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NIC id"
+          }
+        },
+        "virtualNicName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NIC name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual NIC model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNicNicType": {
+      "type": "enum",
+      "members": {
+        "E1000": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E1000"
+          }
+        },
+        "E1000E": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E1000E"
+          }
+        },
+        "PCNET32": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PCNET32"
+          }
+        },
+        "VMXNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMXNET"
+          }
+        },
+        "VMXNET2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMXNET2"
+          }
+        },
+        "VMXNET3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMXNET3"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NIC type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetwork": {
+      "type": "structure",
+      "members": {
+        "assignable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "can be used in vm creation/deletion"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "virtual network id (privateCloudId:vsphereId)",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{VirtualNetworkName}"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetworkProperties",
+          "traits": {
+            "smithy.api#documentation": "Virtual Network properties"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual network model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworkProperties": {
+      "type": "structure",
+      "members": {
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Private Cloud id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of virtual network"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNicIpAddressesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "NIC ip address"
+      }
+    },
+    "com.azure.vmwarecloudsimple#GuestOSNICCustomization": {
+      "type": "structure",
+      "members": {
+        "allocation": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSNICCustomizationAllocation",
+          "traits": {
+            "smithy.api#documentation": "IP address allocation method"
+          }
+        },
+        "dnsServers": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSNICCustomizationDnsServersList",
+          "traits": {
+            "smithy.api#documentation": "List of dns servers to use"
+          }
+        },
+        "gateway": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSNICCustomizationGatewayList",
+          "traits": {
+            "smithy.api#documentation": "Gateway addresses assigned to nic"
+          }
+        },
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Static ip address for nic"
+          }
+        },
+        "mask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Network mask for nic"
+          }
+        },
+        "primaryWinsServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "primary WINS server for Windows"
+          }
+        },
+        "secondaryWinsServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "secondary WINS server for Windows"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest OS nic customization"
+      }
+    },
+    "com.azure.vmwarecloudsimple#GuestOSNICCustomizationGatewayList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gateway addresses assigned to nic"
+      }
+    },
+    "com.azure.vmwarecloudsimple#GuestOSNICCustomizationDnsServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dns servers to use"
+      }
+    },
+    "com.azure.vmwarecloudsimple#GuestOSNICCustomizationAllocation": {
+      "type": "enum",
+      "members": {
+        "STATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "static"
+          }
+        },
+        "DYNAMIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dynamic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address allocation method"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesGuestOSType": {
+      "type": "enum",
+      "members": {
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linux"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "windows"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Guest OS type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualDisk"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Disks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualDisk": {
+      "type": "structure",
+      "members": {
+        "controllerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk's Controller id",
+            "smithy.api#required": {}
+          }
+        },
+        "independenceMode": {
+          "target": "com.azure.vmwarecloudsimple#VirtualDiskIndependenceMode",
+          "traits": {
+            "smithy.api#documentation": "Disk's independence mode type",
+            "smithy.api#required": {}
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Disk's total size",
+            "smithy.api#required": {}
+          }
+        },
+        "virtualDiskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk's id"
+          }
+        },
+        "virtualDiskName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk's display name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual disk model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualDiskIndependenceMode": {
+      "type": "enum",
+      "members": {
+        "PERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "persistent"
+          }
+        },
+        "INDEPENDENT_PERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "independent_persistent"
+          }
+        },
+        "INDEPENDENT_NONPERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "independent_nonpersistent"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disk's independence mode type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#GuestOSCustomization": {
+      "type": "structure",
+      "members": {
+        "dnsServers": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSCustomizationDnsServersList",
+          "traits": {
+            "smithy.api#documentation": "List of dns servers to use"
+          }
+        },
+        "hostName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual Machine hostname"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Password for login",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "id of customization policy"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username for login"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Guest OS Customization properties"
+      }
+    },
+    "com.azure.vmwarecloudsimple#GuestOSCustomizationDnsServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dns servers to use"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesControllersList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualDiskController"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Disks' Controllers"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualDiskController": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Controller's id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of Controller"
+          }
+        },
+        "subType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "dik controller subtype (VMWARE_PARAVIRTUAL, BUS_PARALLEL, LSI_PARALLEL, LSI_SAS)"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "disk controller type (SCSI)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual disk controller model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "virtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The tags key:value pairs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachine"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements virtual machine PUT method\n\nCreate Or Update Virtual Machine",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "virtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine name"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Virtual machine properties"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The list of tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "amountOfRam": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of memory",
+            "smithy.api#required": {}
+          }
+        },
+        "customization": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSCustomization",
+          "traits": {
+            "smithy.api#documentation": "Virtual machine properties"
+          }
+        },
+        "disks": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInputDisksList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Disks"
+          }
+        },
+        "exposeToGuestVM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Expose Guest OS or not"
+          }
+        },
+        "nics": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInputNicsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual NICs"
+          }
+        },
+        "numberOfCores": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of CPU cores",
+            "smithy.api#required": {}
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Password for login. Deprecated - use customization property",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Cloud Id",
+            "smithy.api#required": {}
+          }
+        },
+        "resourcePool": {
+          "target": "com.azure.vmwarecloudsimple#ResourcePoolInput",
+          "traits": {
+            "smithy.api#documentation": "Virtual Machines Resource Pool"
+          }
+        },
+        "templateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual Machine Template Id"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username for login. Deprecated - use customization property"
+          }
+        },
+        "vSphereNetworks": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInputVSphereNetworksList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual VSphere Networks"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of virtual machine"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInputVSphereNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual VSphere Networks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "resource pool id (privateCloudId:vsphereId)",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#ResourcePoolPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource pool properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource pool model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Properties of resource pool"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInputNicsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNicInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual NICs"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNicInput": {
+      "type": "structure",
+      "members": {
+        "customization": {
+          "target": "com.azure.vmwarecloudsimple#GuestOSNICCustomization",
+          "traits": {
+            "smithy.api#documentation": "guest OS customization for nic"
+          }
+        },
+        "ipAddresses": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNicInputIpAddressesList",
+          "traits": {
+            "smithy.api#documentation": "NIC ip address"
+          }
+        },
+        "macAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NIC MAC address"
+          }
+        },
+        "network": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetworkInput",
+          "traits": {
+            "smithy.api#documentation": "Virtual Network",
+            "smithy.api#required": {}
+          }
+        },
+        "nicType": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNicInputNicType",
+          "traits": {
+            "smithy.api#documentation": "NIC type",
+            "smithy.api#required": {}
+          }
+        },
+        "powerOnBoot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is NIC powered on/off on boot"
+          }
+        },
+        "virtualNicId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NIC id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual NIC model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNicInputNicType": {
+      "type": "enum",
+      "members": {
+        "E1000": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E1000"
+          }
+        },
+        "E1000E": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E1000E"
+          }
+        },
+        "PCNET32": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PCNET32"
+          }
+        },
+        "VMXNET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMXNET"
+          }
+        },
+        "VMXNET2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMXNET2"
+          }
+        },
+        "VMXNET3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMXNET3"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "NIC type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworkInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "virtual network id (privateCloudId:vsphereId)",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetworkPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Virtual Network properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual network model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworkPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Properties of virtual network"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNicInputIpAddressesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "NIC ip address"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinePropertiesInputDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualDiskInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Disks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualDiskInput": {
+      "type": "structure",
+      "members": {
+        "controllerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk's Controller id",
+            "smithy.api#required": {}
+          }
+        },
+        "independenceMode": {
+          "target": "com.azure.vmwarecloudsimple#VirtualDiskInputIndependenceMode",
+          "traits": {
+            "smithy.api#documentation": "Disk's independence mode type",
+            "smithy.api#required": {}
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Disk's total size",
+            "smithy.api#required": {}
+          }
+        },
+        "virtualDiskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disk's id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual disk model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualDiskInputIndependenceMode": {
+      "type": "enum",
+      "members": {
+        "PERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "persistent"
+          }
+        },
+        "INDEPENDENT_PERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "independent_persistent"
+          }
+        },
+        "INDEPENDENT_NONPERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "independent_nonpersistent"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disk's independence mode type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachine"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements virtual machine GET method\n\nGet virtual machine",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "virtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list virtual machine within RG method\n\nReturns list of virtual machine within resource group",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of VirtualMachines"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the VirtualMachine list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of virtual machines"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachine"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the VirtualMachine list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The maximum number of record sets to return"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "to be used by nextLink implementation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicatedCloudService DELETE method\n\nDelete dedicate cloud service",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicatedCloudService PATCH method\n\nPatch dedicated cloud service's properties",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudService": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/dedicatedCloudServices/{dedicatedCloudServiceName}"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{dedicatedCloudServiceName}"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of Dedicated Node Service"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The list of tags"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dedicated cloud service model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServiceProperties": {
+      "type": "structure",
+      "members": {
+        "gatewaySubnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gateway Subnet for the account. It will collect the subnet address and always treat it as /28",
+            "smithy.api#required": {}
+          }
+        },
+        "isAccountOnboarded": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicePropertiesIsAccountOnboarded",
+          "traits": {
+            "smithy.api#documentation": "indicates whether account onboarded or not in a given region"
+          }
+        },
+        "nodes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "total nodes purchased"
+          }
+        },
+        "serviceURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "link to a service management web portal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of dedicated cloud service"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicePropertiesIsAccountOnboarded": {
+      "type": "enum",
+      "members": {
+        "NOTONBOARDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notOnBoarded"
+          }
+        },
+        "ONBOARDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onBoarded"
+          }
+        },
+        "ONBOARDINGFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onBoardingFailed"
+          }
+        },
+        "ONBOARDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "onBoarding"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "indicates whether account onboarded or not in a given region"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud service name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The tags key:value pairs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicated cloud service PUT method\n\nCreate dedicate cloud service",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud Service name"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The properties of Dedicated Node Service"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The list of tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "gatewaySubnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "gateway Subnet for the account. It will collect the subnet address and always treat it as /28",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of dedicated cloud service"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicatedCloudService GET method\n\nReturns Dedicate Cloud Service",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud Service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServiceListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list of dedicatedCloudService objects within RG method\n\nReturns list of dedicated cloud services within a resource group",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServiceListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of DedicatedCloudNode"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServiceListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the DedicatedCloudService list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated cloud services"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServiceListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudService"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the DedicatedCloudService list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The maximum number of record sets to return"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "to be used by nextLink implementation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicated cloud node DELETE method\n\nDelete dedicated cloud node",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudNodeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud node name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNode"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicated cloud node PATCH method\n\nPatches dedicated node properties",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNode": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/dedicatedCloudNodes/{dedicatedCloudNodeName}"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{dedicatedCloudNodeName}"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodeProperties",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes properties"
+          }
+        },
+        "sku": {
+          "target": "com.azure.vmwarecloudsimple#Sku",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes SKU"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes tags"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dedicated cloud node model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#Sku": {
+      "type": "structure",
+      "members": {
+        "capacity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The capacity of the SKU"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "dedicatedCloudNode example: 8 x Ten-Core Intel® Xeon® Processor E5-2640 v4 2.40GHz 25MB Cache (90W); 12 x 64GB PC4-19200 2400MHz DDR4 ECC Registered DIMM, ..."
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU for VMWare CloudSimple Node",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tier of the SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The purchase SKU for CloudSimple paid resources"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodeProperties": {
+      "type": "structure",
+      "members": {
+        "availabilityZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Availability Zone id, e.g. \"az1\"",
+            "smithy.api#required": {}
+          }
+        },
+        "availabilityZoneName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Availability Zone name, e.g. \"Availability Zone 1\""
+          }
+        },
+        "cloudRackName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "VMWare Cloud Rack Name"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date time the resource was created"
+          }
+        },
+        "nodesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "count of nodes to create",
+            "smithy.api#required": {}
+          }
+        },
+        "placementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Placement Group id, e.g. \"n1\"",
+            "smithy.api#required": {}
+          }
+        },
+        "placementGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Placement Name, e.g. \"Placement Group 1\""
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Cloud Id"
+          }
+        },
+        "privateCloudName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Pool Name"
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning status of the resource"
+          }
+        },
+        "purchaseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "purchase id",
+            "smithy.api#required": {}
+          }
+        },
+        "skuDescription": {
+          "target": "com.azure.vmwarecloudsimple#SkuDescription",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes SKU's description"
+          }
+        },
+        "status": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodePropertiesStatus",
+          "traits": {
+            "smithy.api#documentation": "Node status, indicates is private cloud set up on this node or not"
+          }
+        },
+        "vmwareClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "VMWare Cluster Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of dedicated cloud node"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodePropertiesStatus": {
+      "type": "enum",
+      "members": {
+        "UNUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unused"
+          }
+        },
+        "USED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Node status, indicates is private cloud set up on this node or not"
+      }
+    },
+    "com.azure.vmwarecloudsimple#SkuDescription": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU's id",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU's name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The purchase SKU for CloudSimple paid resources"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudNodeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud node name"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "The tags key:value pairs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNode"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicated cloud node PUT method\n\nReturns dedicated cloud node by its name",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudNodeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud node name"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes properties"
+          }
+        },
+        "sku": {
+          "target": "com.azure.vmwarecloudsimple#Sku",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes SKU"
+          }
+        },
+        "tags": {
+          "target": "com.azure.vmwarecloudsimple#Tags",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "availabilityZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Availability Zone id, e.g. \"az1\"",
+            "smithy.api#required": {}
+          }
+        },
+        "nodesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "count of nodes to create",
+            "smithy.api#required": {}
+          }
+        },
+        "placementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Placement Group id, e.g. \"n1\"",
+            "smithy.api#required": {}
+          }
+        },
+        "purchaseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "purchase id",
+            "smithy.api#required": {}
+          }
+        },
+        "skuDescription": {
+          "target": "com.azure.vmwarecloudsimple#SkuDescription",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Cloud Nodes SKU's description"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of dedicated cloud node"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNode"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements dedicated cloud node GET method\n\nReturns dedicated cloud node",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "dedicatedCloudNodeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "dedicated cloud node name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodeListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list of dedicated cloud nodes within RG method\n\nReturns list of dedicate cloud nodes within resource group",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodeListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of DedicatedCloudNode"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodeListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the DedicatedCloudNode list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated nodes response model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodeListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNode"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the DedicatedCloudNode list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The maximum number of record sets to return"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "to be used by nextLink implementation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachinesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/virtualMachines",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list virtual machine within subscription method\n\nReturns list virtual machine within subscription",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachinesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The maximum number of record sets to return"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "to be used by nextLink implementation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#UsagesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#UsagesListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#UsageListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/usages",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements Usages List method\n\nReturns list of usage in region",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#UsageListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of DedicatedCloudNode"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#UsageListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of usages"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of usages"
+      }
+    },
+    "com.azure.vmwarecloudsimple#UsageListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#Usage"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of usages"
+      }
+    },
+    "com.azure.vmwarecloudsimple#Usage": {
+      "type": "structure",
+      "members": {
+        "currentValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current usage value",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "limit of a given sku in a region for a subscription. The maximum permitted value for the usage quota. If there is no limit, this value will be -1",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.azure.vmwarecloudsimple#UsageName",
+          "traits": {
+            "smithy.api#documentation": "Usage name value and localized name"
+          }
+        },
+        "unit": {
+          "target": "com.azure.vmwarecloudsimple#UsageUnit",
+          "traits": {
+            "smithy.api#documentation": "The usages' unit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Usage model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#UsageUnit": {
+      "type": "enum",
+      "members": {
+        "COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Count"
+          }
+        },
+        "BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Bytes"
+          }
+        },
+        "SECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Seconds"
+          }
+        },
+        "PERCENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Percent"
+          }
+        },
+        "COUNTPERSECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CountPerSecond"
+          }
+        },
+        "BYTESPERSECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BytesPerSecond"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The usages' unit"
+      }
+    },
+    "com.azure.vmwarecloudsimple#UsageName": {
+      "type": "structure",
+      "members": {
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "e.g. \"Virtual Machines\""
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "resource type or resource type sku name, e.g. virtualMachines"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User name model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#UsagesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation. only name.value is allowed here as a filter e.g. $filter=name.value eq 'xxxx'"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworksGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNetworksGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNetwork"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualNetworks/{virtualNetworkName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements virtual network GET method\n\nReturn virtual network by its name",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworksGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "virtualNetworkName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual network id (vsphereId)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworksList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNetworksListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNetworkListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualNetworks",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list available virtual networks within a subscription method\n\nReturn list of virtual networks in location for private cloud",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworkListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of VirtualNetwork"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetworkListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the VirtualNetwork list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of virtual networks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworkListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNetwork"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the VirtualNetwork list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualNetworksListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "resourcePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourcePoolName",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource pool used to derive vSphere cluster which contains virtual networks"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplate"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualMachineTemplates/{virtualMachineTemplateName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements virtual machine template GET method\n\nReturns virtual machine templates by its name",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "virtual machine template id (privateCloudId:vsphereId)"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{virtualMachineTemplateName}"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplateProperties",
+          "traits": {
+            "smithy.api#documentation": "The Virtual Machine Template properties"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Virtual machine template model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplateProperties": {
+      "type": "structure",
+      "members": {
+        "amountOfRam": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of memory"
+          }
+        },
+        "controllers": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesControllersList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Disk Controllers"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of Virtual Machine Template"
+          }
+        },
+        "disks": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesDisksList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Disks"
+          }
+        },
+        "exposeToGuestVM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Expose Guest OS or not"
+          }
+        },
+        "guestOS": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Guest OS"
+          }
+        },
+        "guestOSType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Guest OS types"
+          }
+        },
+        "nics": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesNicsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual NICs"
+          }
+        },
+        "numberOfCores": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of CPU cores"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "path to folder"
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Private Cloud Id",
+            "smithy.api#required": {}
+          }
+        },
+        "vSphereNetworks": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesVSphereNetworksList",
+          "traits": {
+            "smithy.api#documentation": "The list of VSphere networks"
+          }
+        },
+        "vSphereTags": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesVSphereTagsList",
+          "traits": {
+            "smithy.api#documentation": "The tags from VSphere"
+          }
+        },
+        "vmwaretools": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The VMware tools version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of virtual machine template"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesVSphereTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The tags from VSphere"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesVSphereNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of VSphere networks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesNicsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNic"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual NICs"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualDisk"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Disks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatePropertiesControllersList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualDiskController"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Disk Controllers"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "virtualMachineTemplateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "virtual machine template id (vsphereId)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatesListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplateListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualMachineTemplates",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list of available VM templates\n\nReturns list of virtual machine templates in region for private cloud",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplateListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of VirtualMachineTemplate"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplateListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the VM template list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of virtual machine templates"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplateListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplate"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the VM template list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#VirtualMachineTemplatesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "resourcePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "resourcePoolName",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource pool used to derive vSphere cluster which contains VM templates"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#ResourcePoolsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#ResourcePool"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/resourcePools/{resourcePoolName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements get of resource pool\n\nReturns resource pool templates by its name",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "resourcePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "resource pool id (vsphereId)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#ResourcePoolsListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#ResourcePoolsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/resourcePools",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements get of resource pools list\n\nReturns list of resource pools in region for private cloud",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolsListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of ResourcePoolsList"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#ResourcePoolsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the Resource pools list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of resource pools response model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#ResourcePool"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the Resource pools list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#ResourcePoolsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPoliciesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#CustomizationPoliciesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#CustomizationPolicy"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/customizationPolicies/{customizationPolicyName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements get of customization policy\n\nReturns customization policy by its name",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPolicy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customization policy azure id"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure region"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customization policy name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationPolicyProperties",
+          "traits": {
+            "smithy.api#documentation": "Customization Policy properties"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The virtual machine customization policy"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPolicyProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy description"
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Private cloud id"
+          }
+        },
+        "specification": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationSpecification",
+          "traits": {
+            "smithy.api#documentation": "Detailed customization policy specification"
+          }
+        },
+        "type": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationPolicyPropertiesType",
+          "traits": {
+            "smithy.api#documentation": "The type of customization (Linux or Windows)"
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of Customization policy"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPolicyPropertiesType": {
+      "type": "enum",
+      "members": {
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINUX"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WINDOWS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of customization (Linux or Windows)"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationSpecification": {
+      "type": "structure",
+      "members": {
+        "identity": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIdentity",
+          "traits": {
+            "smithy.api#documentation": "Customization Identity. It contains data about user and hostname"
+          }
+        },
+        "nicSettings": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationSpecificationNicSettingsList",
+          "traits": {
+            "smithy.api#documentation": "Network interface settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The specification for Customization Policy"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationSpecificationNicSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#CustomizationNicSetting"
+      },
+      "traits": {
+        "smithy.api#documentation": "Network interface settings"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationNicSetting": {
+      "type": "structure",
+      "members": {
+        "adapter": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIPSettings",
+          "traits": {
+            "smithy.api#documentation": "The list of adapters' settings"
+          }
+        },
+        "macAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NIC mac address"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIPSettings": {
+      "type": "structure",
+      "members": {
+        "gateway": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIPSettingsGatewayList",
+          "traits": {
+            "smithy.api#documentation": "The list of gateways"
+          }
+        },
+        "ip": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIPAddress",
+          "traits": {
+            "smithy.api#documentation": "Ip address customization settings"
+          }
+        },
+        "subnetMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Adapter subnet mask"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIPAddress": {
+      "type": "structure",
+      "members": {
+        "argument": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Argument when Custom ip type is selected"
+          }
+        },
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defined Ip Address when Fixed ip type is selected"
+          }
+        },
+        "type": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIPAddressType",
+          "traits": {
+            "smithy.api#documentation": "Customization Specification ip type"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIPAddressType": {
+      "type": "enum",
+      "members": {
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        },
+        "DHCP_IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DHCP_IP"
+          }
+        },
+        "FIXED_IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED_IP"
+          }
+        },
+        "USER_DEFINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_DEFINED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customization Specification ip type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIPSettingsGatewayList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of gateways"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIdentity": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Windows Text Identity. Prepared data"
+          }
+        },
+        "hostName": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationHostName",
+          "traits": {
+            "smithy.api#documentation": "Virtual machine host name settings"
+          }
+        },
+        "type": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIdentityType",
+          "traits": {
+            "smithy.api#documentation": "Identity type"
+          }
+        },
+        "userData": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationIdentityUserData",
+          "traits": {
+            "smithy.api#documentation": "Windows Identity. User data customization"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIdentityUserData": {
+      "type": "structure",
+      "members": {
+        "isPasswordPredefined": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is password predefined in customization policy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Windows Identity. User data customization"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationIdentityType": {
+      "type": "enum",
+      "members": {
+        "WINDOWS_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WINDOWS_TEXT"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WINDOWS"
+          }
+        },
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINUX"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationHostName": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname"
+          }
+        },
+        "type": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationHostNameType",
+          "traits": {
+            "smithy.api#documentation": "Type of host name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Host name model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationHostNameType": {
+      "type": "enum",
+      "members": {
+        "USER_DEFINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_DEFINED"
+          }
+        },
+        "PREFIX_BASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREFIX_BASED"
+          }
+        },
+        "FIXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED"
+          }
+        },
+        "VIRTUAL_MACHINE_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIRTUAL_MACHINE_NAME"
+          }
+        },
+        "CUSTOM_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM_NAME"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of host name"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPoliciesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "customizationPolicyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "customization policy name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPoliciesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#CustomizationPoliciesListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#CustomizationPoliciesListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/customizationPolicies",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements get of customization policies list\n\nReturns list of customization policies in region for private cloud",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPoliciesListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of the Customization policy"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#CustomizationPoliciesListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of the customization policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of customization polices response model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPoliciesListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#CustomizationPolicy"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the customization policies"
+      }
+    },
+    "com.azure.vmwarecloudsimple#CustomizationPoliciesListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation. only type is allowed here as a filter e.g. $filter=type eq 'xxxx'"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#PrivateCloudsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#PrivateCloud"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements private cloud GET method\n\nReturns private cloud by its name",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloud": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Id, e.g. \"/subscriptions/4da99247-a172-4ed6-8ae9-ebed2d12f839/providers/Microsoft.VMwareCloudSimple/privateClouds/cloud123\""
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location where private cloud created, e.g \"westus\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private cloud name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudProperties",
+          "traits": {
+            "smithy.api#documentation": "Private cloud properties"
+          }
+        },
+        "type": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudType",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private cloud model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_VMWARECLOUDSIMPLE_PRIVATECLOUDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.VMwareCloudSimple/privateClouds"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Resource type"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudProperties": {
+      "type": "structure",
+      "members": {
+        "availabilityZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Availability Zone id, e.g. \"az1\""
+          }
+        },
+        "availabilityZoneName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Availability Zone name, e.g. \"Availability Zone 1\""
+          }
+        },
+        "clustersNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of clusters"
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's emails who created cloud"
+          }
+        },
+        "createdOn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When private cloud was created"
+          }
+        },
+        "dnsServers": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudPropertiesDnsServersList",
+          "traits": {
+            "smithy.api#documentation": "Array of DNS servers"
+          }
+        },
+        "expires": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration date of PC"
+          }
+        },
+        "nsxType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Nsx Type, e.g. \"Advanced\""
+          }
+        },
+        "placementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Placement Group id, e.g. \"n1\""
+          }
+        },
+        "placementGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Placement Group name"
+          }
+        },
+        "privateCloudId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of a private cloud"
+          }
+        },
+        "resourcePools": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudPropertiesResourcePoolsList",
+          "traits": {
+            "smithy.api#documentation": "The list of Resource Pools"
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Cloud state, e.g. \"operational\""
+          }
+        },
+        "totalCpuCores": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of cores"
+          }
+        },
+        "totalNodes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of nodes"
+          }
+        },
+        "totalRam": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Memory size"
+          }
+        },
+        "totalStorage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Disk space in TB"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtualization type e.g. \"vSphere\""
+          }
+        },
+        "vSphereVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "e.g. \"6.5u2\""
+          }
+        },
+        "vcenterFqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FQDN for vcenter access"
+          }
+        },
+        "vcenterRefid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Vcenter ip address"
+          }
+        },
+        "virtualMachineTemplates": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudPropertiesVirtualMachineTemplatesList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Machine Templates"
+          }
+        },
+        "virtualNetworks": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudPropertiesVirtualNetworksList",
+          "traits": {
+            "smithy.api#documentation": "The list of Virtual Networks"
+          }
+        },
+        "vrOpsEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is vRealize Operations Manager enabled/disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of private"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudPropertiesVirtualNetworksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualNetwork"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Networks"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudPropertiesVirtualMachineTemplatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplate"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Virtual Machine Templates"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudPropertiesResourcePoolsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#ResourcePool"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Resource Pools"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudPropertiesDnsServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of DNS servers"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "pcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The private cloud name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#PrivateCloudsListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#PrivateCloudList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements private cloud list GET method\n\nReturns list of private clouds in particular region",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of Private Clouds"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudListValueList",
+          "traits": {
+            "smithy.api#documentation": "the list of private clouds"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private clouds"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#PrivateCloud"
+      },
+      "traits": {
+        "smithy.api#documentation": "the list of private clouds"
+      }
+    },
+    "com.azure.vmwarecloudsimple#PrivateCloudsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#OperationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#OperationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#OperationResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/operationResults/{operationId}",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements get of async operation\n\nReturn an async operation",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#OperationResource": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time of the operation"
+          }
+        },
+        "error": {
+          "target": "com.azure.vmwarecloudsimple#OperationError",
+          "traits": {
+            "smithy.api#documentation": "Error Message if operation failed"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation ID"
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time of the operation"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation status response"
+      }
+    },
+    "com.azure.vmwarecloudsimple#OperationError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error's code"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error's message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation error model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#OperationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "operation id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#SkusAvailabilityList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#SkusAvailabilityListRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#SkuAvailabilityListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/availabilities",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements SkuAvailability List method\n\nReturns list of available resources in region",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#SkuAvailabilityListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of DedicatedCloudNode"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#SkuAvailabilityListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Results of the DedicatedPlacementGroupSkuAvailability list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of SKU availabilities"
+      }
+    },
+    "com.azure.vmwarecloudsimple#SkuAvailabilityListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#SkuAvailability"
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of the DedicatedPlacementGroupSkuAvailability list"
+      }
+    },
+    "com.azure.vmwarecloudsimple#SkuAvailability": {
+      "type": "structure",
+      "members": {
+        "dedicatedAvailabilityZoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CloudSimple Availability Zone id"
+          }
+        },
+        "dedicatedAvailabilityZoneName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CloudSimple Availability Zone Name"
+          }
+        },
+        "dedicatedPlacementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CloudSimple Placement Group Id"
+          }
+        },
+        "dedicatedPlacementGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CloudSimple Placement Group name"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "indicates how many resources of a given SKU is available in a AZ->PG",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "resource type e.g. DedicatedCloudNodes"
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sku id"
+          }
+        },
+        "skuName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sku name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU availability model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#SkusAvailabilityListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "regionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region Id (westus, eastus)"
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "skuId",
+            "smithy.api#documentation": "sku id, if no sku is passed availability for all skus will be returned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudServiceListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list of dedicatedCloudService objects within subscription method\n\nReturns list of dedicated cloud services within a subscription",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudServicesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The maximum number of record sets to return"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "to be used by nextLink implementation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodeListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list of dedicated cloud nodes within subscription method\n\nReturns list of dedicate cloud nodes within subscription",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#DedicatedCloudNodesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The maximum number of record sets to return"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "to be used by nextLink implementation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmwarecloudsimple#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.vmwarecloudsimple#AvailableOperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.VMwareCloudSimple/operations",
+          "code": 200,
+          "apiVersion": "2019-04-01"
+        },
+        "smithy.api#documentation": "Implements list of available operations\n\nReturn list of operations",
+        "com.distilled.openapi#apiVersion": "2019-04-01"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link for next list of available operations"
+          }
+        },
+        "value": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Returns a list of available operations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of available operations"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#AvailableOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns a list of available operations"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperation": {
+      "type": "structure",
+      "members": {
+        "display": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The list of operations"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicating whether the operation is a data action or not"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "{resourceProviderNamespace}/{resourceType}/{read|write|delete|action}"
+          }
+        },
+        "origin": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The origin of operation"
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "The list of operation properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource provider available operation model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsList",
+          "traits": {
+            "smithy.api#documentation": "The list of specification's service metrics"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available operation display property service specification model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsList": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Metric specifications of operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of available operation display property service specification metrics"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specifications of operation"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsItem": {
+      "type": "structure",
+      "members": {
+        "aggregationType": {
+          "target": "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType",
+          "traits": {
+            "smithy.api#documentation": "Metric's aggregation type for e.g. (Average, Total)",
+            "smithy.api#required": {}
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric's description",
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable metric's name",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric's name/id",
+            "smithy.api#required": {}
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric's unit",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available operation display property service specification metrics item"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType": {
+      "type": "enum",
+      "members": {
+        "AVERAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Average"
+          }
+        },
+        "TOTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Total"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric's aggregation type for e.g. (Average, Total)"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The origin of operation"
+      }
+    },
+    "com.azure.vmwarecloudsimple#AvailableOperationDisplay": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation for display purposes"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation for display purposes"
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the provider for display purposes"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource type for display purposes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource provider available operation display model"
+      }
+    },
+    "com.azure.vmwarecloudsimple#Vmwarecloudsimple": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesStop"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesStart"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesDelete"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesDelete"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesDelete"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachinesListBySubscription"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#UsagesList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetworksGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualNetworksList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatesGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#VirtualMachineTemplatesList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ResourcePoolsGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ResourcePoolsList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#CustomizationPoliciesGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#CustomizationPoliciesList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudsGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#PrivateCloudsList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#OperationsGet"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#SkusAvailabilityList"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesListBySubscription"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesListBySubscription"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Vmwarecloudsimple",
+        "smithy.api#documentation": "Azure Vmwarecloudsimple API — merged from the vmwarecloudsimple resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

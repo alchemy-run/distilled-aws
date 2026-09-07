@@ -1,0 +1,39 @@
+{
+  "description": "Align iam#ResourceGroupsDelete with distilled cloudflare/iam deleteResourceGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsDelete",
+      "path": "/shapes/com.cloudflare.iam#DeleteResourceGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsDeleteRequest",
+      "path": "/shapes/com.cloudflare.iam#DeleteResourceGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteResourceGroup/input/target",
+      "value": "com.cloudflare.iam#DeleteResourceGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsDeleteResponse",
+      "path": "/shapes/com.cloudflare.iam#DeleteResourceGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteResourceGroup/output/target",
+      "value": "com.cloudflare.iam#DeleteResourceGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#DeleteResourceGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#ResourceGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

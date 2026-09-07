@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_cloud_networking#ResourcesPolicyPreview with distilled cloudflare/magic-cloud-networking policyPreviewResource",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesPolicyPreview",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PolicyPreviewResource"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesPolicyPreviewRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PolicyPreviewResourceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PolicyPreviewResource/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#PolicyPreviewResourceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesPolicyPreviewResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PolicyPreviewResourceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PolicyPreviewResource/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#PolicyPreviewResourceResponse"
+    }
+  ]
+}

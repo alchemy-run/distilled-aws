@@ -1,0 +1,42 @@
+{
+  "description": "Align ai_gateway#EvaluationsCreate with distilled cloudflare/ai-gateway createEvaluation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationsCreate",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateEvaluation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationsCreateRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateEvaluationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateEvaluation/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateEvaluationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationsCreateResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateEvaluationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateEvaluation/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateEvaluationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateEvaluation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#GatewayNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_gateway#EvaluationNameAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align kv#NamespacesCreate with distilled cloudflare/kv createNamespace",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesCreate",
+      "path": "/shapes/com.cloudflare.kv#CreateNamespace"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesCreateRequest",
+      "path": "/shapes/com.cloudflare.kv#CreateNamespaceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#CreateNamespace/input/target",
+      "value": "com.cloudflare.kv#CreateNamespaceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesCreateResponse",
+      "path": "/shapes/com.cloudflare.kv#CreateNamespaceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#CreateNamespace/output/target",
+      "value": "com.cloudflare.kv#CreateNamespaceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#CreateNamespace/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#TitleRequired"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceTitleAlreadyExists"
+        }
+      ]
+    }
+  ]
+}

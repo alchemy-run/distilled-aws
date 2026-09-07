@@ -1,0 +1,42 @@
+{
+  "description": "Align firewall#AccessRulesDeleteForAccount with distilled cloudflare/firewall deleteAccessRuleForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesDeleteForAccount",
+      "path": "/shapes/com.cloudflare.firewall#DeleteAccessRuleForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.firewall#DeleteAccessRuleForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteAccessRuleForAccount/input/target",
+      "value": "com.cloudflare.firewall#DeleteAccessRuleForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.firewall#DeleteAccessRuleForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteAccessRuleForAccount/output/target",
+      "value": "com.cloudflare.firewall#DeleteAccessRuleForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#DeleteAccessRuleForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#AccessRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

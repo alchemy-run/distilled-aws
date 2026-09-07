@@ -1,0 +1,45 @@
+{
+  "description": "Docs gap: worker asset upload is multipart/form-data (one part per asset hash) with the session JWT as Bearer Authorization. Neither the JWT nor the file-map body is in the docs; transcribed from the distilled SDK.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUploadRequest/members/jwt_token",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Authorization",
+          "smithy.api#documentation": "Asset-upload session JWT (sent as Bearer Authorization)."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUpload/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUploadBodyMap",
+      "value": {
+        "type": "map",
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUploadRequest/members/body",
+      "value": {
+        "target": "com.cloudflare.workers#CreateAssetUploadBodyMap",
+        "traits": {
+          "smithy.api#httpPayload": {},
+          "smithy.api#documentation": "Map of asset hash -> base64 file content; each entry is a multipart form part."
+        }
+      }
+    }
+  ]
+}

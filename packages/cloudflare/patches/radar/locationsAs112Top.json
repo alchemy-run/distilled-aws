@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112TopLocations with distilled cloudflare/radar locationsAs112Top",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TopLocations",
+      "path": "/shapes/com.cloudflare.radar#LocationsAs112Top"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TopLocationsRequest",
+      "path": "/shapes/com.cloudflare.radar#LocationsAs112TopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsAs112Top/input/target",
+      "value": "com.cloudflare.radar#LocationsAs112TopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TopLocationsResponse",
+      "path": "/shapes/com.cloudflare.radar#LocationsAs112TopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsAs112Top/output/target",
+      "value": "com.cloudflare.radar#LocationsAs112TopResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Docs gap: gateway proxy endpoint `ips: array of GatewayIPs` leaves the item type opaque, but each item is a CIDR string on the wire (v0 typed string[]).",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsCreateResultIPIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsEditRequestIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsEditResultIPIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsGetResultIPIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsListResultItemIPIpsList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

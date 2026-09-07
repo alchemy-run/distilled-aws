@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#TunnelsWarpConnectorFailoverUpdate with distilled cloudflare/zero-trust putTunnelWarpConnectorFailover",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorFailoverUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PutTunnelWarpConnectorFailover"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorFailoverUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutTunnelWarpConnectorFailoverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutTunnelWarpConnectorFailover/input/target",
+      "value": "com.cloudflare.zero_trust#PutTunnelWarpConnectorFailoverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsWarpConnectorFailoverUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutTunnelWarpConnectorFailoverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutTunnelWarpConnectorFailover/output/target",
+      "value": "com.cloudflare.zero_trust#PutTunnelWarpConnectorFailoverResponse"
+    }
+  ]
+}

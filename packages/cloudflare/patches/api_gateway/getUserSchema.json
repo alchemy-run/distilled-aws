@@ -1,0 +1,45 @@
+{
+  "description": "Align api_gateway#UserSchemasGet with distilled cloudflare/api-gateway getUserSchema",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasGet",
+      "path": "/shapes/com.cloudflare.api_gateway#GetUserSchema"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasGetRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#GetUserSchemaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetUserSchema/input/target",
+      "value": "com.cloudflare.api_gateway#GetUserSchemaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasGetResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#GetUserSchemaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetUserSchema/output/target",
+      "value": "com.cloudflare.api_gateway#GetUserSchemaResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#GetUserSchema/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#SchemaNotFound"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

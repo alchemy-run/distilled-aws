@@ -1,0 +1,17 @@
+{
+  "description": "createVersionDynamicRouting response drift: the docs describe the result as the created version ({id, created_at, elements, ...}) but the live API's result is route metadata carrying the new version's id as a top-level `version_id` (plus resource_id etc.). Add the member so callers can deploy the version they just created.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateVersionDynamicRoutingResponse/members/versionId",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#jsonName": "version_id",
+          "smithy.api#required": {},
+          "smithy.api#documentation": "Identifier of the newly created version (top-level on the live wire; the docs' nested shape is stale)."
+        }
+      }
+    }
+  ]
+}

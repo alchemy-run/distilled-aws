@@ -1,0 +1,27 @@
+{
+  "description": "Dashboard.version is declared as `integer format int64` but the actual Axiom API emits 64-bit hybrid-logical-clock timestamps that exceed JavaScript's Number.MAX_SAFE_INTEGER (e.g. 1777031138824767043). In live responses the value even switches between JSON number and JSON string for the same field. Using `Schema.Number` silently truncates precision and the follow-up update returns 'dashboard version mismatch'. We model it as `oneOf` string|integer so the generator emits Schema.Unknown and the client forwards whatever the server sent.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/components/schemas/DashboardResource/properties/version",
+      "value": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer", "format": "int64" }
+        ],
+        "description": "64-bit server-assigned version (hybrid-logical-clock timestamp). Emitted as either JSON number or JSON string, sometimes exceeding JavaScript Number precision."
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/components/schemas/DashboardUpsertRequest/properties/version",
+      "value": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer", "format": "int64" }
+        ],
+        "description": "Required for updates when overwrite is false. Pass back the version value received from the server verbatim (string or number)."
+      }
+    }
+  ]
+}

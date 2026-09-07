@@ -1,0 +1,4252 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.orgs#RevokeMemberTokenRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tokenId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#RevokeMemberToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#RevokeMemberTokenRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/settings/tokens/{tokenId}/revoke",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke member token\n\nAn org admin can revoke a token's access to the org. The token itself isn't deleted, it still works outside the org. The token id is the one displayed in the org token settings page or through the tokens listing API endpoint. Enterprise only."
+      }
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesRequestType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter by repository type"
+      }
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesRequestSort": {
+      "type": "enum",
+      "members": {
+        "STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage"
+          }
+        },
+        "UPDATEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updatedAt"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sort field (default: storage)"
+      }
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sort direction (default: desc)"
+      }
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search"
+          }
+        },
+        "type": {
+          "target": "com.huggingface.orgs#ListOrganizationRepositoriesRequestType",
+          "traits": {
+            "smithy.api#httpQuery": "type"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "sort": {
+          "target": "com.huggingface.orgs#ListOrganizationRepositoriesRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "direction": {
+          "target": "com.huggingface.orgs#ListOrganizationRepositoriesRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyItemType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyItemVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "PROTECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "protected"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyItemVisibility",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "storage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "storagePercent": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ListOrganizationRepositoriesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.orgs#ListOrganizationRepositoriesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#ListOrganizationRepositories": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#ListOrganizationRepositoriesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#ListOrganizationRepositoriesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/settings/repositories",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization repositories"
+      }
+    },
+    "com.huggingface.orgs#ExportAuditLogRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemType": {
+      "type": "enum",
+      "members": {
+        "BILLING_UPDATE_PAYMENT_METHOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.update_payment_method"
+          }
+        },
+        "BILLING_CREATE_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.create_customer"
+          }
+        },
+        "BILLING_REMOVE_PAYMENT_METHOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.remove_payment_method"
+          }
+        },
+        "BILLING_AWS_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.aws_add"
+          }
+        },
+        "BILLING_AWS_REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.aws_remove"
+          }
+        },
+        "BILLING_GCP_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.gcp_add"
+          }
+        },
+        "BILLING_GCP_REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.gcp_remove"
+          }
+        },
+        "BILLING_MARKETPLACE_APPROVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.marketplace_approve"
+          }
+        },
+        "BILLING_CANCEL_SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.cancel_subscription"
+          }
+        },
+        "BILLING_RENEW_SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.renew_subscription"
+          }
+        },
+        "BILLING_START_SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.start_subscription"
+          }
+        },
+        "BILLING_UN_CANCEL_SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.un_cancel_subscription"
+          }
+        },
+        "BILLING_UPDATE_SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.update_subscription"
+          }
+        },
+        "BILLING_UPDATE_SUBSCRIPTION_PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing.update_subscription_plan"
+          }
+        },
+        "COLLECTION_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collection.create"
+          }
+        },
+        "COLLECTION_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collection.delete"
+          }
+        },
+        "COLLECTION_UPDATE_RESOURCE_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collection.update_resource_group"
+          }
+        },
+        "ORG_ADD_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.add_user"
+          }
+        },
+        "ORG_CHANGE_ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.change_role"
+          }
+        },
+        "ORG_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.create"
+          }
+        },
+        "ORG_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.delete"
+          }
+        },
+        "ORG_RESTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.restore"
+          }
+        },
+        "ORG_INVITE_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.invite_user"
+          }
+        },
+        "ORG_INVITE_ACCEPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.invite.accept"
+          }
+        },
+        "ORG_INVITE_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.invite.email"
+          }
+        },
+        "ORG_JOIN_FROM_DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.join.from_domain"
+          }
+        },
+        "ORG_JOIN_AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.join.automatic"
+          }
+        },
+        "ORG_LEAVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.leave"
+          }
+        },
+        "ORG_REMOVE_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.remove_user"
+          }
+        },
+        "ORG_RENAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.rename"
+          }
+        },
+        "ORG_ROTATE_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.rotate_token"
+          }
+        },
+        "ORG_SSO_LOGIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.sso_login"
+          }
+        },
+        "ORG_SSO_JOIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.sso_join"
+          }
+        },
+        "ORG_UPDATE_JOIN_SETTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.update_join_settings"
+          }
+        },
+        "ORG_UPDATE_SETTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.update_settings"
+          }
+        },
+        "ORG_SETTINGS_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.regions"
+          }
+        },
+        "ORG_SETTINGS_PROFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.profile"
+          }
+        },
+        "ORG_SETTINGS_RESOURCE_GROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.resource_groups"
+          }
+        },
+        "ORG_SETTINGS_PUBLISHER_GATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.publisher_gating"
+          }
+        },
+        "ORG_SETTINGS_INFERENCE_PROVIDERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.inference_providers"
+          }
+        },
+        "ORG_SETTINGS_INFERENCE_PROVIDERS_KEYS_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.inference_providers.keys.add"
+          }
+        },
+        "ORG_SETTINGS_INFERENCE_PROVIDERS_KEYS_REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.inference_providers.keys.remove"
+          }
+        },
+        "ORG_SETTINGS_INFERENCE_PROVIDERS_USAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.inference_providers.usage"
+          }
+        },
+        "ORG_SETTINGS_SSO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.sso"
+          }
+        },
+        "ORG_SETTINGS_SSO_ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.sso.enable"
+          }
+        },
+        "ORG_SETTINGS_SSO_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.sso.disable"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_REPO_VISIBILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.repo_visibility"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_2FA_ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.2fa.enable"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_2FA_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.2fa.disable"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_AUTO_JOIN_ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.auto_join.enable"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_AUTO_JOIN_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.auto_join.disable"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_MEMBERS_PRIVACY_ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.members_privacy.enable"
+          }
+        },
+        "ORG_SETTINGS_SECURITY_MEMBERS_PRIVACY_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.security.members_privacy.disable"
+          }
+        },
+        "ORG_SETTINGS_NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.network"
+          }
+        },
+        "ORG_SETTINGS_NETWORK_IP_RESTRICTION_ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.network.ip_restriction.enable"
+          }
+        },
+        "ORG_SETTINGS_NETWORK_IP_RESTRICTION_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.network.ip_restriction.disable"
+          }
+        },
+        "ORG_SETTINGS_NETWORK_AUTH_ENFORCEMENT_ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.network.auth_enforcement.enable"
+          }
+        },
+        "ORG_SETTINGS_NETWORK_AUTH_ENFORCEMENT_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.settings.network.auth_enforcement.disable"
+          }
+        },
+        "ORG_TOKEN_APPROVAL_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.token_approval.enabled"
+          }
+        },
+        "ORG_TOKEN_APPROVAL_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.token_approval.disabled"
+          }
+        },
+        "ORG_TOKEN_APPROVAL_AUTHORIZATION_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.token_approval.authorization_request"
+          }
+        },
+        "ORG_TOKEN_APPROVAL_AUTHORIZATION_REQUEST_AUTHORIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.token_approval.authorization_request.authorized"
+          }
+        },
+        "ORG_TOKEN_APPROVAL_AUTHORIZATION_REQUEST_REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.token_approval.authorization_request.revoked"
+          }
+        },
+        "ORG_TOKEN_APPROVAL_AUTHORIZATION_REQUEST_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.token_approval.authorization_request.denied"
+          }
+        },
+        "REPO_ADD_SECRETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.add_secrets"
+          }
+        },
+        "REPO_REMOVE_SECRETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.remove_secrets"
+          }
+        },
+        "REPO_ADD_SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.add_secret"
+          }
+        },
+        "REPO_UPDATE_SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.update_secret"
+          }
+        },
+        "REPO_REMOVE_SECRET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.remove_secret"
+          }
+        },
+        "REPO_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.create"
+          }
+        },
+        "REPO_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.delete"
+          }
+        },
+        "REPO_DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.disable"
+          }
+        },
+        "REPO_REMOVEDISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.removeDisable"
+          }
+        },
+        "REPO_DUPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.duplication"
+          }
+        },
+        "REPO_DELETE_DOI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.delete_doi"
+          }
+        },
+        "REPO_MOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.move"
+          }
+        },
+        "REPO_UPDATE_RESOURCE_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.update_resource_group"
+          }
+        },
+        "REPO_UPDATE_SETTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.update_settings"
+          }
+        },
+        "REPO_ADD_VARIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.add_variable"
+          }
+        },
+        "REPO_UPDATE_VARIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.update_variable"
+          }
+        },
+        "REPO_REMOVE_VARIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.remove_variable"
+          }
+        },
+        "REPO_ADD_VARIABLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.add_variables"
+          }
+        },
+        "REPO_REMOVE_VARIABLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.remove_variables"
+          }
+        },
+        "REPO_DELETE_LFS_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.delete_lfs_file"
+          }
+        },
+        "REPO_ADD_TRUSTED_PUBLISHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.add_trusted_publisher"
+          }
+        },
+        "REPO_REMOVE_TRUSTED_PUBLISHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repo.remove_trusted_publisher"
+          }
+        },
+        "SPACES_ADD_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces.add_storage"
+          }
+        },
+        "SPACES_REMOVE_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces.remove_storage"
+          }
+        },
+        "SPACES_SET_VOLUMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces.set_volumes"
+          }
+        },
+        "SPACES_REMOVE_VOLUMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces.remove_volumes"
+          }
+        },
+        "SPACES_UPDATE_HARDWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces.update_hardware"
+          }
+        },
+        "SPACES_UPDATE_SLEEP_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces.update_sleep_time"
+          }
+        },
+        "RESOURCE_GROUP_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource_group.create"
+          }
+        },
+        "RESOURCE_GROUP_ADD_USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource_group.add_users"
+          }
+        },
+        "RESOURCE_GROUP_REMOVE_USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource_group.remove_users"
+          }
+        },
+        "RESOURCE_GROUP_CHANGE_ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource_group.change_role"
+          }
+        },
+        "RESOURCE_GROUP_SETTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource_group.settings"
+          }
+        },
+        "RESOURCE_GROUP_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource_group.delete"
+          }
+        },
+        "JOBS_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs.create"
+          }
+        },
+        "JOBS_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs.cancel"
+          }
+        },
+        "JOBS_UPDATE_LABELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs.update_labels"
+          }
+        },
+        "JOBS_UPDATE_EXPOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs.update_expose"
+          }
+        },
+        "SCHEDULED_JOB_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.create"
+          }
+        },
+        "SCHEDULED_JOB_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.delete"
+          }
+        },
+        "SCHEDULED_JOB_RESUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.resume"
+          }
+        },
+        "SCHEDULED_JOB_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.suspend"
+          }
+        },
+        "SCHEDULED_JOB_RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.run"
+          }
+        },
+        "SCHEDULED_JOB_UPDATE_SCHEDULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.update_schedule"
+          }
+        },
+        "SCHEDULED_JOB_UPDATE_LABELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled_job.update_labels"
+          }
+        },
+        "ORG_SERVICE_ACCOUNT_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.service_account.create"
+          }
+        },
+        "ORG_SERVICE_ACCOUNT_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.service_account.delete"
+          }
+        },
+        "ORG_SERVICE_ACCOUNT_TOKEN_CREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.service_account.token.create"
+          }
+        },
+        "ORG_SERVICE_ACCOUNT_TOKEN_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.service_account.token.delete"
+          }
+        },
+        "ORG_SERVICE_ACCOUNT_TOKEN_ROTATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.service_account.token.rotate"
+          }
+        },
+        "ORG_SERVICE_ACCOUNT_TOKEN_UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.service_account.token.update"
+          }
+        },
+        "OAUTH_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oauth.token"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemLocation": {
+      "type": "structure",
+      "members": {
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String"
+        },
+        "city": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemAuthorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemAuthor": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemAuthorType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemTokenRole": {
+      "type": "enum",
+      "members": {
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "FINEGRAINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fineGrained"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemToken": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemTokenRole"
+        },
+        "last4": {
+          "target": "smithy.api#String"
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItemOauth": {
+      "type": "structure",
+      "members": {
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "data": {
+          "target": "smithy.api#Document"
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemLocation"
+        },
+        "userAgent": {
+          "target": "smithy.api#String"
+        },
+        "author": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemAuthor",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemToken"
+        },
+        "oauth": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItemOauth"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#ExportAuditLogResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ExportAuditLogResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.orgs#ExportAuditLogResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#ExportAuditLog": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#ExportAuditLogRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#ExportAuditLogResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/audit-log/export",
+          "code": 200
+        },
+        "smithy.api#documentation": "Export the audit log\n\nExport the audit log events in JSON format for a Team or Enterprise organization. The export is limited to the last 100,000 events."
+      }
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseEnforceAuth": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseIpRangesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsItemResourceCase0": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsItemResource": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsItemResourceCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsItem": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsItemResource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsItemResourceCase0": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsItemResource": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsItemResourceCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsItem": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsItemResource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettingsResponse": {
+      "type": "structure",
+      "members": {
+        "enforceAuth": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseEnforceAuth",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enforceIpRestriction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "highRateLimits": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ipRanges": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseIpRangesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blockedContents": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseBlockedContentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "allowedContents": {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponseAllowedContentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keepReposMetadataVisible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetNetworkSecuritySettings": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetNetworkSecuritySettingsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetNetworkSecuritySettingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/settings/network-security",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get network security settings\n\nGet the network security settings for an organization."
+      }
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestIpRangesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsItemResourceCase0": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsItemResource": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsItemResourceCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsItem": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsItemResource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsItemResourceCase0": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsItemResource": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsItemResourceCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsItem": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsItemResource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enforceAuth": {
+          "target": "smithy.api#Boolean"
+        },
+        "enforceIpRestriction": {
+          "target": "smithy.api#Boolean"
+        },
+        "highRateLimits": {
+          "target": "smithy.api#Boolean"
+        },
+        "ipRanges": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestIpRangesList"
+        },
+        "blockedContents": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestBlockedContentsList"
+        },
+        "allowedContents": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityRequestAllowedContentsList"
+        },
+        "keepReposMetadataVisible": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseEnforceAuth": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseIpRangesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsItemResourceCase0": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsItemResource": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsItemResourceCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsItem": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsItemResource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsItemResourceCase0": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bucket"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsItemResource": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsItemResourceCase0"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsItem": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsItemResource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurityResponse": {
+      "type": "structure",
+      "members": {
+        "enforceAuth": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseEnforceAuth",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "enforceIpRestriction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "highRateLimits": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ipRanges": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseIpRangesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blockedContents": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseBlockedContentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "allowedContents": {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurityResponseAllowedContentsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keepReposMetadataVisible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#UpdateNetworkSecurity": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#UpdateNetworkSecurityRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#UpdateNetworkSecurityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/settings/network-security",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update network security\n\nUpdate the network security settings for an organization."
+      }
+    },
+    "com.huggingface.orgs#GetAvatarRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "redirect": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "redirect"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetAvatarResponse": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetAvatar": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetAvatarRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetAvatarResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/avatar",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get avatar\n\nRetrieve organization avatar. This endpoint returns a JSON with the avatar URL for the organization.\n\nIf called with the `Sec-Fetch-Dest: image` header, it instead redirects to the avatar URL"
+      }
+    },
+    "com.huggingface.orgs#GetOrganizationMembersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "email"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemResourceGroupsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemResourceGroupsItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemResourceGroupsItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemResourceGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemResourceGroupsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemRole"
+        },
+        "resourceGroups": {
+          "target": "com.huggingface.orgs#GetOrganizationMembersResponseBodyItemResourceGroupsList"
+        },
+        "twoFaEnabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "verifiedEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's SSO email, if the org has a Team or Enterprise plan and the requester is an admin",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "isExternalCollaborator": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetOrganizationMembersResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrganizationMembersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.orgs#GetOrganizationMembersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetOrganizationMembers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetOrganizationMembersRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetOrganizationMembersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/members",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get organization members\n\nGet a list of members for the organization with optional search and pagination."
+      }
+    },
+    "com.huggingface.orgs#ChangeMemberRoleRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ChangeMemberRoleRequestResourceGroupsItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ChangeMemberRoleRequestResourceGroupsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.orgs#ChangeMemberRoleRequestResourceGroupsItemRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ChangeMemberRoleRequestResourceGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#ChangeMemberRoleRequestResourceGroupsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#ChangeMemberRoleRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.huggingface.orgs#ChangeMemberRoleRequestRole",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroups": {
+          "target": "com.huggingface.orgs#ChangeMemberRoleRequestResourceGroupsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#ChangeMemberRole": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#ChangeMemberRoleRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/organizations/{name}/members/{username}/role",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change member role\n\nChange the role of a member in the organization. Need a paid plan."
+      }
+    },
+    "com.huggingface.orgs#GetOrgUsageRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "periodId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "periodId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetOrgUsageResponseUsageValueItemProduct": {
+      "type": "enum",
+      "members": {
+        "HF_REPOSITORY_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hf/repository-storage"
+          }
+        },
+        "JOBS_CPU_BASIC_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/cpu-basic/minutes"
+          }
+        },
+        "JOBS_CPU_UPGRADE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/cpu-upgrade/minutes"
+          }
+        },
+        "JOBS_CPU_PERFORMANCE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/cpu-performance/minutes"
+          }
+        },
+        "JOBS_CPU_XL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/cpu-xl/minutes"
+          }
+        },
+        "JOBS_SPRX8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/sprx8/minutes"
+          }
+        },
+        "JOBS_T4_SMALL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/t4-small/minutes"
+          }
+        },
+        "JOBS_T4_MEDIUM_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/t4-medium/minutes"
+          }
+        },
+        "JOBS_A10G_SMALL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a10g-small/minutes"
+          }
+        },
+        "JOBS_A10G_LARGE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a10g-large/minutes"
+          }
+        },
+        "JOBS_A10G_LARGEX2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a10g-largex2/minutes"
+          }
+        },
+        "JOBS_A10G_LARGEX4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a10g-largex4/minutes"
+          }
+        },
+        "JOBS_A100_LARGE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a100-large/minutes"
+          }
+        },
+        "JOBS_A100X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a100x4/minutes"
+          }
+        },
+        "JOBS_A100X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/a100x8/minutes"
+          }
+        },
+        "JOBS_H100_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/h100/minutes"
+          }
+        },
+        "JOBS_H100X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/h100x8/minutes"
+          }
+        },
+        "JOBS_H200_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/h200/minutes"
+          }
+        },
+        "JOBS_H200X2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/h200x2/minutes"
+          }
+        },
+        "JOBS_H200X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/h200x4/minutes"
+          }
+        },
+        "JOBS_H200X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/h200x8/minutes"
+          }
+        },
+        "JOBS_RTX_PRO_6000_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/rtx-pro-6000/minutes"
+          }
+        },
+        "JOBS_RTX_PRO_6000X2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/rtx-pro-6000x2/minutes"
+          }
+        },
+        "JOBS_RTX_PRO_6000X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/rtx-pro-6000x4/minutes"
+          }
+        },
+        "JOBS_RTX_PRO_6000X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/rtx-pro-6000x8/minutes"
+          }
+        },
+        "JOBS_L4X1_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/l4x1/minutes"
+          }
+        },
+        "JOBS_L4X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/l4x4/minutes"
+          }
+        },
+        "JOBS_L40SX1_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/l40sx1/minutes"
+          }
+        },
+        "JOBS_L40SX4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/l40sx4/minutes"
+          }
+        },
+        "JOBS_L40SX8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/l40sx8/minutes"
+          }
+        },
+        "JOBS_V5E_2X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/v5e-2x4/minutes"
+          }
+        },
+        "JOBS_V5E_2X2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/v5e-2x2/minutes"
+          }
+        },
+        "JOBS_V5E_1X1_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/v5e-1x1/minutes"
+          }
+        },
+        "JOBS_INF2X6_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jobs/inf2x6/minutes"
+          }
+        },
+        "SPACES_ZERO_A10G_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/zero-a10g/minutes"
+          }
+        },
+        "SPACES_CPU_BASIC_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/cpu-basic/minutes"
+          }
+        },
+        "SPACES_CPU_UPGRADE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/cpu-upgrade/minutes"
+          }
+        },
+        "SPACES_CPU_PERFORMANCE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/cpu-performance/minutes"
+          }
+        },
+        "SPACES_CPU_XL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/cpu-xl/minutes"
+          }
+        },
+        "SPACES_SPRX8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/sprx8/minutes"
+          }
+        },
+        "SPACES_T4_SMALL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/t4-small/minutes"
+          }
+        },
+        "SPACES_T4_MEDIUM_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/t4-medium/minutes"
+          }
+        },
+        "SPACES_A10G_SMALL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a10g-small/minutes"
+          }
+        },
+        "SPACES_A10G_LARGE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a10g-large/minutes"
+          }
+        },
+        "SPACES_A10G_LARGEX2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a10g-largex2/minutes"
+          }
+        },
+        "SPACES_A10G_LARGEX4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a10g-largex4/minutes"
+          }
+        },
+        "SPACES_A100_LARGE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a100-large/minutes"
+          }
+        },
+        "SPACES_A100X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a100x4/minutes"
+          }
+        },
+        "SPACES_A100X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/a100x8/minutes"
+          }
+        },
+        "SPACES_H100_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/h100/minutes"
+          }
+        },
+        "SPACES_H100X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/h100x8/minutes"
+          }
+        },
+        "SPACES_H200_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/h200/minutes"
+          }
+        },
+        "SPACES_H200X2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/h200x2/minutes"
+          }
+        },
+        "SPACES_H200X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/h200x4/minutes"
+          }
+        },
+        "SPACES_H200X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/h200x8/minutes"
+          }
+        },
+        "SPACES_RTX_PRO_6000_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/rtx-pro-6000/minutes"
+          }
+        },
+        "SPACES_RTX_PRO_6000X2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/rtx-pro-6000x2/minutes"
+          }
+        },
+        "SPACES_RTX_PRO_6000X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/rtx-pro-6000x4/minutes"
+          }
+        },
+        "SPACES_RTX_PRO_6000X8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/rtx-pro-6000x8/minutes"
+          }
+        },
+        "SPACES_L4X1_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/l4x1/minutes"
+          }
+        },
+        "SPACES_L4X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/l4x4/minutes"
+          }
+        },
+        "SPACES_L40SX1_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/l40sx1/minutes"
+          }
+        },
+        "SPACES_L40SX4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/l40sx4/minutes"
+          }
+        },
+        "SPACES_L40SX8_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/l40sx8/minutes"
+          }
+        },
+        "SPACES_INF2X6_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/inf2x6/minutes"
+          }
+        },
+        "SPACES_V5E_2X4_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/v5e-2x4/minutes"
+          }
+        },
+        "SPACES_V5E_2X2_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/v5e-2x2/minutes"
+          }
+        },
+        "SPACES_V5E_1X1_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/v5e-1x1/minutes"
+          }
+        },
+        "SPACES_STORAGE_SMALL_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/storage-small/minutes"
+          }
+        },
+        "SPACES_STORAGE_MEDIUM_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/storage-medium/minutes"
+          }
+        },
+        "SPACES_STORAGE_LARGE_MINUTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "spaces/storage-large/minutes"
+          }
+        },
+        "ENDPOINTS_AZURE_INTEL_XEON_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/azure/intel-xeon/x1"
+          }
+        },
+        "ENDPOINTS_AZURE_INTEL_XEON_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/azure/intel-xeon/x2"
+          }
+        },
+        "ENDPOINTS_AZURE_INTEL_XEON_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/azure/intel-xeon/x4"
+          }
+        },
+        "ENDPOINTS_AZURE_INTEL_XEON_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/azure/intel-xeon/x8"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_ICL_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-icl/x1"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_ICL_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-icl/x2"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_ICL_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-icl/x4"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_ICL_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-icl/x8"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_SPR_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-spr/x1"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_SPR_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-spr/x2"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_SPR_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-spr/x4"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_SPR_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-spr/x8"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_SPR_X16": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-spr/x16"
+          }
+        },
+        "ENDPOINTS_AWS_INTEL_SPR_OVERCOMMITTED_X16": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/intel-spr-overcommitted/x16"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_T4_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-t4/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_T4_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-t4/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_L4_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-l4/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_L4_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-l4/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_L40S_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-l40s/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_L40S_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-l40s/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_L40S_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-l40s/x8"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_A10G_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-a10g/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_A10G_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-a10g/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_A100_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-a100/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_A100_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-a100/x2"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_A100_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-a100/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_A100_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-a100/x8"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H100_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h100/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H100_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h100/x2"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H100_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h100/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H100_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h100/x8"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H200_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h200/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H200_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h200/x2"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H200_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h200/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_H200_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-h200/x8"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_B200_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-b200/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_B200_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-b200/x2"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_B200_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-b200/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_B200_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-b200/x8"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_RTX_PRO_6000_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-rtx-pro-6000/x1"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_RTX_PRO_6000_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-rtx-pro-6000/x2"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_RTX_PRO_6000_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-rtx-pro-6000/x4"
+          }
+        },
+        "ENDPOINTS_AWS_NVIDIA_RTX_PRO_6000_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/nvidia-rtx-pro-6000/x8"
+          }
+        },
+        "ENDPOINTS_AWS_INF2_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/inf2/x1"
+          }
+        },
+        "ENDPOINTS_AWS_INF2_X1_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/inf2/x1-large"
+          }
+        },
+        "ENDPOINTS_AWS_INF2_X12": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/aws/inf2/x12"
+          }
+        },
+        "ENDPOINTS_GCP_INTEL_SPR_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/intel-spr/x1"
+          }
+        },
+        "ENDPOINTS_GCP_INTEL_SPR_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/intel-spr/x2"
+          }
+        },
+        "ENDPOINTS_GCP_INTEL_SPR_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/intel-spr/x4"
+          }
+        },
+        "ENDPOINTS_GCP_INTEL_SPR_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/intel-spr/x8"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_T4_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-t4/x1"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_L4_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-l4/x1"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_L4_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-l4/x4"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_A100_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-a100/x1"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_A100_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-a100/x2"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_A100_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-a100/x4"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_A100_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-a100/x8"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_H100_X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-h100/x1"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_H100_X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-h100/x2"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_H100_X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-h100/x4"
+          }
+        },
+        "ENDPOINTS_GCP_NVIDIA_H100_X8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/nvidia-h100/x8"
+          }
+        },
+        "ENDPOINTS_GCP_V5E_1X1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/v5e/1x1"
+          }
+        },
+        "ENDPOINTS_GCP_V5E_2X2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/v5e/2x2"
+          }
+        },
+        "ENDPOINTS_GCP_V5E_2X4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "endpoints/gcp/v5e/2x4"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponseUsageValueItem": {
+      "type": "structure",
+      "members": {
+        "entityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "product": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponseUsageValueItemProduct",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#String"
+        },
+        "stoppedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "freeGrant": {
+          "target": "smithy.api#Boolean"
+        },
+        "productPrettyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unitLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "totalCostMicroUSD": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unitCostMicroUSD": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponseUsageValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetOrgUsageResponseUsageValueItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponseUsageMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.huggingface.orgs#GetOrgUsageResponseUsageValueList"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodEntityType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "ORG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase0Status": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "paid"
+          }
+        },
+        "UNCOLLECTIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uncollectible"
+          }
+        },
+        "VOID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "void"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unpaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase0CollectionMethod": {
+      "type": "enum",
+      "members": {
+        "CHARGE_AUTOMATICALLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "charge_automatically"
+          }
+        },
+        "SEND_INVOICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send_invoice"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "amountDueCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "totalCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase0Status",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "dueDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collectionMethod": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase0CollectionMethod"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoiceCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesItemBilledThrough": {
+      "type": "enum",
+      "members": {
+        "STRIPE_PAYMENT_INTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stripe-payment-intent"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesItemPaymentIntentStatus": {
+      "type": "enum",
+      "members": {
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canceled"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "processing"
+          }
+        },
+        "REQUIRES_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requires_action"
+          }
+        },
+        "REQUIRES_CAPTURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requires_capture"
+          }
+        },
+        "REQUIRES_CONFIRMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requires_confirmation"
+          }
+        },
+        "REQUIRES_PAYMENT_METHOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requires_payment_method"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "succeeded"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "dueDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "usageAtChargeTimeMicroUSD": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "amountCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "billedThrough": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesItemBilledThrough",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paymentIntentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paymentIntentStatus": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesItemPaymentIntentStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponsePeriod": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "entityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "entityType": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodEntityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "entityName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "periodStart": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "periodEnd": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "invoice": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodInvoice"
+        },
+        "charges": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriodChargesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetOrgUsageResponse": {
+      "type": "structure",
+      "members": {
+        "usage": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponseUsageMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "com.huggingface.orgs#GetOrgUsageResponsePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetOrgUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetOrgUsageRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetOrgUsageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/billing/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get org usage\n\nGet org usage for a given period"
+      }
+    },
+    "com.huggingface.orgs#GetOrgUsageV2Request": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "startDate",
+            "smithy.api#required": {}
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "endDate",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetOrgUsageV2": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetOrgUsageV2Request"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/billing/usage-v2",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get org usage\n\nGet org usage for a given period"
+      }
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "startDate"
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "endDate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemStorage": {
+      "type": "structure",
+      "members": {
+        "privateGB": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "publicGB": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemInference": {
+      "type": "structure",
+      "members": {
+        "requestCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "costCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemComputeSpaces": {
+      "type": "structure",
+      "members": {
+        "uptimeSec": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "costCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemComputeEndpoints": {
+      "type": "structure",
+      "members": {
+        "uptimeSec": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "costCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemComputeJobs": {
+      "type": "structure",
+      "members": {
+        "uptimeSec": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "costCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemCompute": {
+      "type": "structure",
+      "members": {
+        "spaces": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemComputeSpaces",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "endpoints": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemComputeEndpoints",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "jobs": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemComputeJobs",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "storage": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemStorage",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "inference": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemInference",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compute": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItemCompute",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItem": {
+      "type": "structure",
+      "members": {
+        "period": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroups": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItemResourceGroupsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetResourceGroupUsageResponse": {
+      "type": "structure",
+      "members": {
+        "currency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "periods": {
+          "target": "com.huggingface.orgs#GetResourceGroupUsageResponsePeriodsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetResourceGroupUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetResourceGroupUsageRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetResourceGroupUsageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/billing/usage-by-resource-group",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get resource group usage\n\nGet org usage breakdown per resource group, returned as a time-series of monthly periods. Window is [startDate, endDate], defaults to the current month. Both dates must fall within the last 12 months. Storage values are the peak observed within each monthly period."
+      }
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsageRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "startDate"
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "endDate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsItemSessionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "requestCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "costCents": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsItemSessionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsItemSessionsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsItem": {
+      "type": "structure",
+      "members": {
+        "period": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sessions": {
+          "target": "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsItemSessionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsageResponse": {
+      "type": "structure",
+      "members": {
+        "currency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "periods": {
+          "target": "com.huggingface.orgs#GetSessionInferenceUsageResponsePeriodsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetSessionInferenceUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetSessionInferenceUsageRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetSessionInferenceUsageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/billing/usage-by-inference-session",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get session inference usage\n\nGet org inference-provider usage broken down per session id, as a time-series of monthly periods."
+      }
+    },
+    "com.huggingface.orgs#StreamUsageRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#StreamUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#StreamUsageRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/billing/usage/live",
+          "code": 200
+        },
+        "smithy.api#documentation": "Stream usage\n\nGet live usage for org"
+      }
+    },
+    "com.huggingface.orgs#GetSocialHandlesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.orgs#GetSocialHandlesResponseSocialHandles": {
+      "type": "structure",
+      "members": {
+        "twitter": {
+          "target": "smithy.api#String"
+        },
+        "github": {
+          "target": "smithy.api#String"
+        },
+        "linkedin": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.orgs#GetSocialHandlesResponse": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "socialHandles": {
+          "target": "com.huggingface.orgs#GetSocialHandlesResponseSocialHandles",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.orgs#GetSocialHandles": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.orgs#GetSocialHandlesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.orgs#GetSocialHandlesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/socials",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get social handles\n\nGet an organization's social media handles"
+      }
+    },
+    "com.huggingface.orgs#Orgs": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.orgs#RevokeMemberToken"
+        },
+        {
+          "target": "com.huggingface.orgs#ListOrganizationRepositories"
+        },
+        {
+          "target": "com.huggingface.orgs#ExportAuditLog"
+        },
+        {
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettings"
+        },
+        {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurity"
+        },
+        {
+          "target": "com.huggingface.orgs#GetAvatar"
+        },
+        {
+          "target": "com.huggingface.orgs#GetOrganizationMembers"
+        },
+        {
+          "target": "com.huggingface.orgs#ChangeMemberRole"
+        },
+        {
+          "target": "com.huggingface.orgs#GetOrgUsage"
+        },
+        {
+          "target": "com.huggingface.orgs#GetOrgUsageV2"
+        },
+        {
+          "target": "com.huggingface.orgs#GetResourceGroupUsage"
+        },
+        {
+          "target": "com.huggingface.orgs#GetSessionInferenceUsage"
+        },
+        {
+          "target": "com.huggingface.orgs#StreamUsage"
+        },
+        {
+          "target": "com.huggingface.orgs#GetSocialHandles"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#CacheReserveStatus with distilled cloudflare/cache statusCacheReserve",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveStatus",
+      "path": "/shapes/com.cloudflare.cache#StatusCacheReserve"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveStatusRequest",
+      "path": "/shapes/com.cloudflare.cache#StatusCacheReserveRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#StatusCacheReserve/input/target",
+      "value": "com.cloudflare.cache#StatusCacheReserveRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveStatusResponse",
+      "path": "/shapes/com.cloudflare.cache#StatusCacheReserveResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#StatusCacheReserve/output/target",
+      "value": "com.cloudflare.cache#StatusCacheReserveResponse"
+    }
+  ]
+}

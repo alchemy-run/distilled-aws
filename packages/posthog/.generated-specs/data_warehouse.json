@@ -1,0 +1,754 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.data_warehouse#DataWarehouseCheckDatabaseNameRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Database name to check"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#CheckDatabaseNameResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_warehouse#DataWarehouseCheckDatabaseNameRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseCheckDatabaseNameRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_warehouse#CheckDatabaseNameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/check-database-name/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check if a database name is available."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/completed_activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns completed/non-running activities (jobs with status 'Completed').\nSupports pagination and cutoff time filtering."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/data_health_issues/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns failed/disabled data pipeline items for the Pipeline status side panel.\nIncludes: materializations, syncs, sources, destinations, and transformations."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/data_ops_dashboard/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the data ops overview dashboard ID for this team, creating it if it doesn't exist yet."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseDeprovisionCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseDeprovisionCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseDeprovisionCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/data_warehouse/deprovision/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start deprovisioning the organization's managed warehouse. Restricted to organization admins."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseEnableBackfillCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "table_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for this environment's warehouse tables (events_<name>, persons_<name>, …). Lowercase letters, numbers, and underscores only; used verbatim as the suffix and must be unique across the organization's environments.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#EnableWarehouseBackfillResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether warehouse backfill is now enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "table_suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Suffix used for this environment's tables (events_<suffix>, persons_<suffix>)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_warehouse#DataWarehouseEnableBackfillCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseEnableBackfillCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_warehouse#EnableWarehouseBackfillResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/data_warehouse/enable_backfill/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable warehouse backfill for this environment with a dedicated set of tables.\n\nRequires a table name and records the environment's membership in the\norganization's managed warehouse. Restricted to organization admins."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/job_stats/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns success and failed job statistics for the last 1, 7, or 30 days.\nQuery parameter 'days' can be 1, 7, or 30 (default: 7)."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/property_values/",
+          "code": 200
+        },
+        "smithy.api#documentation": "API endpoints for data warehouse aggregate statistics and operations."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseProvisionCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "database_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the new database",
+            "smithy.api#required": {}
+          }
+        },
+        "table_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the provisioning project's warehouse tables (events_<name>, persons_<name>, …). Lowercase letters, numbers, and underscores only; used verbatim as the suffix. Required so the first project gets its own per-environment tables.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseProvisionCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseProvisionCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/data_warehouse/provision/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Start provisioning a managed warehouse for this organization (shared by all its teams)."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseResetPasswordCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#ResetPasswordResponse": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_warehouse#DataWarehouseResetPasswordCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseResetPasswordCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_warehouse#ResetPasswordResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/data_warehouse/reset-password/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reset the root password for the managed warehouse."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/running_activity/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns currently running activities (jobs with status 'Running').\nSupports pagination and cutoff time filtering."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/total_rows_stats/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns aggregated statistics for the data warehouse total rows processed within the current billing period.\nUsed by the frontend data warehouse scene to display usage information."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.data_warehouse#WarehouseStatusResponse": {
+      "type": "structure",
+      "members": {
+        "org_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "duckgres org identifier (the PostHog organization id)",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.posthog.data_warehouse#WarehouseStatusResponseStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Overall provisioning lifecycle state\n\n* `pending` - pending\n* `provisioning` - provisioning\n* `ready` - ready\n* `failed` - failed\n* `deleting` - deleting\n* `deleted` - deleted",
+            "smithy.api#required": {}
+          }
+        },
+        "status_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable detail for the current state",
+            "smithy.api#required": {}
+          }
+        },
+        "s3_state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Object-store sub-resource provisioning state",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata_store_state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metadata-store sub-resource provisioning state",
+            "smithy.api#required": {}
+          }
+        },
+        "identity_state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Worker identity sub-resource provisioning state",
+            "smithy.api#required": {}
+          }
+        },
+        "secrets_state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Credentials sub-resource provisioning state",
+            "smithy.api#required": {}
+          }
+        },
+        "ready_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the warehouse became ready",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "failed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When provisioning failed",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "connection": {
+          "target": "com.posthog.data_warehouse#WarehouseConnection",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_backfill": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this project already has a warehouse backfill configured. When true, its table name is fixed and the enable form should not be shown.",
+            "smithy.api#required": {}
+          }
+        },
+        "table_suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This project's per-environment table suffix (events_<suffix>). Null when the project still writes to the shared tables.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_warehouse#WarehouseStatusResponseStateEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provisioning"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - pending\n* `provisioning` - provisioning\n* `ready` - ready\n* `failed` - failed\n* `deleting` - deleting\n* `deleted` - deleted"
+      }
+    },
+    "com.posthog.data_warehouse#WarehouseConnection": {
+      "type": "structure",
+      "members": {
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connection host — the warehouse name is the SNI subdomain, e.g. my-warehouse.dw.us.postwh.com",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Postgres wire-protocol port",
+            "smithy.api#required": {}
+          }
+        },
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Database to connect to — always 'ducklake'",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root database username",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.data_warehouse#WarehouseStatusResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/data_warehouse/warehouse_status/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the current provisioning status of the managed warehouse, with this project's backfill state."
+      }
+    },
+    "com.posthog.data_warehouse#DataWarehouse": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseCheckDatabaseNameRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseDeprovisionCreate"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseEnableBackfillCreate"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseProvisionCreate"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseResetPasswordCreate"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieve"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

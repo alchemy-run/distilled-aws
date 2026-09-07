@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#ConnectorsSnapshotsList with distilled cloudflare/magic-transit listConnectorSnapshots",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsSnapshotsList",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorSnapshots"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsSnapshotsListRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorSnapshotsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorSnapshots/input/target",
+      "value": "com.cloudflare.magic_transit#ListConnectorSnapshotsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsSnapshotsListResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorSnapshotsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorSnapshots/output/target",
+      "value": "com.cloudflare.magic_transit#ListConnectorSnapshotsResponse"
+    }
+  ]
+}

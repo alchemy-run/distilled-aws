@@ -1,0 +1,28 @@
+{
+  "structures": {
+    "ServiceLevelObjectiveBudgetReportError": {
+      "members": {
+        "Name": {
+          "optional": true
+        }
+      }
+    },
+    "Service": {
+      "members": {
+        "KeyAttributes": {
+          "optional": true
+        },
+        "MetricReferences": {
+          "optional": true
+        }
+      }
+    },
+    "RecurrenceRule": {
+      "members": {
+        "Expression": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

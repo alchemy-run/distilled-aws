@@ -1,0 +1,28 @@
+{
+  "operations": {
+    "createLandingZone": { "errors": ["UnauthorizedException"] },
+    "getLandingZone": { "errors": ["UnauthorizedException"] },
+    "updateLandingZone": { "errors": ["UnauthorizedException"] },
+    "deleteLandingZone": { "errors": ["UnauthorizedException"] },
+    "resetLandingZone": { "errors": ["UnauthorizedException"] },
+    "getLandingZoneOperation": { "errors": ["UnauthorizedException"] },
+    "listLandingZoneOperations": { "errors": ["UnauthorizedException"] },
+    "listLandingZones": { "errors": ["UnauthorizedException"] },
+    "getBaseline": { "errors": ["UnauthorizedException"] },
+    "listBaselines": { "errors": ["UnauthorizedException"] },
+    "getBaselineOperation": { "errors": ["UnauthorizedException"] },
+    "enableBaseline": { "errors": ["UnauthorizedException"] },
+    "disableBaseline": { "errors": ["UnauthorizedException"] },
+    "updateEnabledBaseline": { "errors": ["UnauthorizedException"] },
+    "resetEnabledBaseline": { "errors": ["UnauthorizedException"] },
+    "getEnabledBaseline": { "errors": ["UnauthorizedException"] },
+    "listEnabledBaselines": { "errors": ["UnauthorizedException"] },
+    "listTagsForResource": { "errors": ["BadRequestException"] },
+    "tagResource": { "errors": ["BadRequestException"] },
+    "untagResource": { "errors": ["BadRequestException"] }
+  },
+  "errorCategories": {
+    "UnauthorizedException": ["AuthError"],
+    "BadRequestException": ["BadRequestError"]
+  }
+}

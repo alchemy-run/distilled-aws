@@ -1,0 +1,50 @@
+{
+  "description": "Align cache#OriginCloudRegionsList with distilled cloudflare/cache listOriginCloudRegions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsList",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsListRequest",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegions/input/target",
+      "value": "com.cloudflare.cache#ListOriginCloudRegionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsListResponse",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegions/output/target",
+      "value": "com.cloudflare.cache#ListOriginCloudRegionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#ListOriginCloudRegions/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Key dictionary / op aliases for page_rules (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "checkPresence": "check_presence",
+        "createdOn": "created_on",
+        "deviceType": "device_type",
+        "modifiedOn": "modified_on",
+        "queryString": "query_string",
+        "statusCode": "status_code"
+      }
+    }
+  ]
+}

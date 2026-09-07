@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#RoutesEmpty with distilled cloudflare/magic-transit emptyRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#RoutesEmpty",
+      "path": "/shapes/com.cloudflare.magic_transit#EmptyRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#RoutesEmptyRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#EmptyRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#EmptyRoute/input/target",
+      "value": "com.cloudflare.magic_transit#EmptyRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#RoutesEmptyResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#EmptyRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#EmptyRoute/output/target",
+      "value": "com.cloudflare.magic_transit#EmptyRouteResponse"
+    }
+  ]
+}

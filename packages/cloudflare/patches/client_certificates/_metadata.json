@@ -1,0 +1,22 @@
+{
+  "description": "Key dictionary / op aliases for client_certificates (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "certificateAuthority": "certificate_authority",
+        "commonName": "common_name",
+        "expiresOn": "expires_on",
+        "fingerprintSha256": "fingerprint_sha256",
+        "issuedOn": "issued_on",
+        "organizationalUnit": "organizational_unit",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "serialNumber": "serial_number",
+        "totalCount": "total_count",
+        "validityDays": "validity_days"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align addressing#PrefixesServiceBindingsCreate with distilled cloudflare/addressing createPrefixServiceBinding",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsCreate",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixServiceBinding"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsCreateRequest",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixServiceBindingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixServiceBinding/input/target",
+      "value": "com.cloudflare.addressing#CreatePrefixServiceBindingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PrefixesServiceBindingsCreateResponse",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixServiceBindingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixServiceBinding/output/target",
+      "value": "com.cloudflare.addressing#CreatePrefixServiceBindingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#CreatePrefixServiceBinding/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#UnsupportedBindingConfiguration"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

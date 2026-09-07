@@ -1,0 +1,45 @@
+{
+  "description": "Align ai_gateway#ProviderConfigsCreate with distilled cloudflare/ai-gateway createProviderConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#ProviderConfigsCreate",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateProviderConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#ProviderConfigsCreateRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateProviderConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateProviderConfig/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateProviderConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#ProviderConfigsCreateResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateProviderConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateProviderConfig/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateProviderConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateProviderConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#ProviderConfigSecretNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_gateway#ProviderConfigAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.ai_gateway#GatewayNotFound"
+        }
+      ]
+    }
+  ]
+}

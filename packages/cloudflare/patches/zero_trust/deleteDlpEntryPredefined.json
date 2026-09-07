@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEntriesPredefinedDelete with distilled cloudflare/zero-trust deleteDlpEntryPredefined",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesPredefinedDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryPredefined"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesPredefinedDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryPredefinedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryPredefined/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpEntryPredefinedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesPredefinedDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryPredefinedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryPredefined/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpEntryPredefinedResponse"
+    }
+  ]
+}

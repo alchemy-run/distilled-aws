@@ -1,0 +1,30 @@
+{
+  "description": "Align origin_tls_compliance_modes#Update with distilled cloudflare/origin-tls-compliance-modes putOriginTlsComplianceMode",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_compliance_modes#Update",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceMode"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_compliance_modes#UpdateRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceMode/input/target",
+      "value": "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_compliance_modes#UpdateResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceMode/output/target",
+      "value": "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeResponse"
+    }
+  ]
+}

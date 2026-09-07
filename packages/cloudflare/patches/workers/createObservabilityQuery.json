@@ -1,0 +1,30 @@
+{
+  "description": "Align workers#ObservabilityQueriesCreate with distilled cloudflare/workers createObservabilityQuery",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityQueriesCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateObservabilityQuery"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityQueriesCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateObservabilityQueryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateObservabilityQuery/input/target",
+      "value": "com.cloudflare.workers#CreateObservabilityQueryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityQueriesCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateObservabilityQueryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateObservabilityQuery/output/target",
+      "value": "com.cloudflare.workers#CreateObservabilityQueryResponse"
+    }
+  ]
+}

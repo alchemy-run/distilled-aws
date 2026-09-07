@@ -1,0 +1,10 @@
+{
+  "description": "customDomainIssueCertificate returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#CustomDomainIssueCertificateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation customDomainIssueCertificate($id: String!) {\n  customDomainIssueCertificate(id: $id)\n}"
+    }
+  ]
+}

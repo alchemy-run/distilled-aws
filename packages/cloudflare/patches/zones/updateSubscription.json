@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#SubscriptionsUpdate with distilled cloudflare/zones updateSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SubscriptionsUpdate",
+      "path": "/shapes/com.cloudflare.zones#UpdateSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SubscriptionsUpdateRequest",
+      "path": "/shapes/com.cloudflare.zones#UpdateSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#UpdateSubscription/input/target",
+      "value": "com.cloudflare.zones#UpdateSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#SubscriptionsUpdateResponse",
+      "path": "/shapes/com.cloudflare.zones#UpdateSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#UpdateSubscription/output/target",
+      "value": "com.cloudflare.zones#UpdateSubscriptionResponse"
+    }
+  ]
+}

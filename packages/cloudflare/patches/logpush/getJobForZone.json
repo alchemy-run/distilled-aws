@@ -1,0 +1,42 @@
+{
+  "description": "Align logpush#JobsGetForZone with distilled cloudflare/logpush getJobForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForZone",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForZoneRequest",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForZone/input/target",
+      "value": "com.cloudflare.logpush#GetJobForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForZoneResponse",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForZone/output/target",
+      "value": "com.cloudflare.logpush#GetJobForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logpush#JobNotFound"
+        },
+        {
+          "target": "com.cloudflare.logpush#Forbidden"
+        }
+      ]
+    }
+  ]
+}

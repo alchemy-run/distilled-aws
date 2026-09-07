@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#GatewayCertificatesList with distilled cloudflare/zero-trust listGatewayCertificates",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCertificatesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayCertificates"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCertificatesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayCertificatesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayCertificates/input/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayCertificatesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCertificatesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayCertificatesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayCertificates/output/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayCertificatesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayCertificates/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

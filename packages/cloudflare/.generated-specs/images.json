@@ -1,0 +1,2059 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.images#V1CreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1CreateResponseVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.images#V1CreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can set the creator field with an internal user ID."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image file name."
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "User modifiable key-value store. Can be used for keeping references to another system of record for managing images. Metadata must not exceed 1024 bytes."
+          }
+        },
+        "requireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the image can be a accessed only using it's UID. If set to true, a signed token needs to be generated with a signing key to view the image."
+          }
+        },
+        "uploaded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the media item was uploaded."
+          }
+        },
+        "variants": {
+          "target": "com.cloudflare.images#V1CreateResponseVariantsList",
+          "traits": {
+            "smithy.api#documentation": "Object specifying available variants for an image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/images/v1",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload an image to CF Images. Images up to 10 Megabytes can be uploaded using a single HTTP POST (multipart/form-data) request by sending an image file or passing a URL accessible to the API."
+      }
+    },
+    "com.cloudflare.images#V1DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "image_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.images#V1Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1DeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/images/v1/{image_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an image on Cloudflare Images. On success, all copies of the image are deleted and purged from cache.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.images#V1EditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "image_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can set the creator field with an internal user ID."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "User modifiable key-value store. Can be used for keeping references to another system of record for managing images. No change if not specified."
+          }
+        },
+        "requireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the image can be accessed using only its UID. If set to `true`, a signed token needs to be generated with a signing key to view the image. Returns a new UID on a change. No change if not specified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1EditResponseVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.images#V1EditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can set the creator field with an internal user ID."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image file name."
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "User modifiable key-value store. Can be used for keeping references to another system of record for managing images. Metadata must not exceed 1024 bytes."
+          }
+        },
+        "requireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the image can be a accessed only using it's UID. If set to true, a signed token needs to be generated with a signing key to view the image."
+          }
+        },
+        "uploaded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the media item was uploaded."
+          }
+        },
+        "variants": {
+          "target": "com.cloudflare.images#V1EditResponseVariantsList",
+          "traits": {
+            "smithy.api#documentation": "Object specifying available variants for an image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1Edit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1EditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1EditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/images/v1/{image_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a CF Images image's metadata, creator, or access control. On access control change, all copies of the image are purged from cache."
+      }
+    },
+    "com.cloudflare.images#V1GetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "image_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1GetResponseVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.images#V1GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can set the creator field with an internal user ID."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image file name."
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "User modifiable key-value store. Can be used for keeping references to another system of record for managing images. Metadata must not exceed 1024 bytes."
+          }
+        },
+        "requireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the image can be a accessed only using it's UID. If set to true, a signed token needs to be generated with a signing key to view the image."
+          }
+        },
+        "uploaded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the media item was uploaded."
+          }
+        },
+        "variants": {
+          "target": "com.cloudflare.images#V1GetResponseVariantsList",
+          "traits": {
+            "smithy.api#documentation": "Object specifying available variants for an image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1/{image_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch details for a CF Images image.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V1ListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal user ID set within the creator field. Setting to empty string \"\" will return images where creator field is not set",
+            "smithy.api#httpQuery": "creator"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1ListResponseImagesItemVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.images#V1ListResponseImagesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can set the creator field with an internal user ID."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image file name."
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "User modifiable key-value store. Can be used for keeping references to another system of record for managing images. Metadata must not exceed 1024 bytes."
+          }
+        },
+        "requireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the image can be a accessed only using it's UID. If set to true, a signed token needs to be generated with a signing key to view the image."
+          }
+        },
+        "uploaded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the media item was uploaded."
+          }
+        },
+        "variants": {
+          "target": "com.cloudflare.images#V1ListResponseImagesItemVariantsList",
+          "traits": {
+            "smithy.api#documentation": "Object specifying available variants for an image."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1ListResponseImagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.images#V1ListResponseImagesItem"
+      }
+    },
+    "com.cloudflare.images#V1ListResponse": {
+      "type": "structure",
+      "members": {
+        "images": {
+          "target": "com.cloudflare.images#V1ListResponseImagesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1",
+          "code": 200
+        },
+        "smithy.api#documentation": "List up to 100 images with one request. Use the optional parameters below to get a specific range of images.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V1BlobsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "image_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1BlobsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1BlobsGetRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1/{image_id}/blob",
+          "code": 200
+        },
+        "smithy.api#documentation": "Download an image from CF Images. For most images this will be the originally uploaded file. For larger images it can be a near-lossless version of the original.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V1KeysDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "signing_key_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1KeysDeleteResponseKeysItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key name."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key value."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1KeysDeleteResponseKeysList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.images#V1KeysDeleteResponseKeysItem"
+      }
+    },
+    "com.cloudflare.images#V1KeysDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "keys": {
+          "target": "com.cloudflare.images#V1KeysDeleteResponseKeysList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1KeysDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1KeysDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1KeysDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/images/v1/keys/{signing_key_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a CF Images signing key with specified name. Returns all keys available. When the last key is removed, a new default signing key will be generated.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.images#V1KeysListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1KeysListResponseKeysItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key name."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key value."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1KeysListResponseKeysList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.images#V1KeysListResponseKeysItem"
+      }
+    },
+    "com.cloudflare.images#V1KeysListResponse": {
+      "type": "structure",
+      "members": {
+        "keys": {
+          "target": "com.cloudflare.images#V1KeysListResponseKeysList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1KeysList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1KeysListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1KeysListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1/keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "List your CF Images signing keys.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V1KeysUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "signing_key_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1KeysUpdateResponseKeysItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key name."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key value."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1KeysUpdateResponseKeysList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.images#V1KeysUpdateResponseKeysItem"
+      }
+    },
+    "com.cloudflare.images#V1KeysUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "keys": {
+          "target": "com.cloudflare.images#V1KeysUpdateResponseKeysList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1KeysUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1KeysUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1KeysUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/images/v1/keys/{signing_key_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new CF Images signing key with specified name. Returns all keys available.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.images#V1StatsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1StatsGetResponseCount": {
+      "type": "structure",
+      "members": {
+        "allowed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Images allowed usage."
+          }
+        },
+        "current": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Images current usage."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1StatsGetResponse": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "com.cloudflare.images#V1StatsGetResponseCount"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1StatsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1StatsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1StatsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1/stats",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch image statistics details for Cloudflare Images. The returned statistics detail storage usage, including the current image count vs this account's allowance.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateRequestOptionsFit": {
+      "type": "enum",
+      "members": {
+        "SCALE_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale-down"
+          }
+        },
+        "CONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contain"
+          }
+        },
+        "COVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cover"
+          }
+        },
+        "CROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crop"
+          }
+        },
+        "PAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pad"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateRequestOptionsMetadata": {
+      "type": "enum",
+      "members": {
+        "KEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keep"
+          }
+        },
+        "COPYRIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateRequestOptions": {
+      "type": "structure",
+      "members": {
+        "fit": {
+          "target": "com.cloudflare.images#V1VariantsCreateRequestOptionsFit",
+          "traits": {
+            "smithy.api#documentation": "The fit property describes how the width and height dimensions should be interpreted.",
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum height in image pixels.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.cloudflare.images#V1VariantsCreateRequestOptionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "What EXIF data should be preserved in the output image.",
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum width in image pixels.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.images#V1VariantsCreateRequestOptions",
+          "traits": {
+            "smithy.api#documentation": "Allows you to define image resizing sizes for different use cases.",
+            "smithy.api#required": {}
+          }
+        },
+        "neverRequireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateResponseVariantOptionsFit": {
+      "type": "enum",
+      "members": {
+        "SCALE_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale-down"
+          }
+        },
+        "CONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contain"
+          }
+        },
+        "COVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cover"
+          }
+        },
+        "CROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crop"
+          }
+        },
+        "PAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pad"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateResponseVariantOptionsMetadata": {
+      "type": "enum",
+      "members": {
+        "KEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keep"
+          }
+        },
+        "COPYRIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateResponseVariantOptions": {
+      "type": "structure",
+      "members": {
+        "fit": {
+          "target": "com.cloudflare.images#V1VariantsCreateResponseVariantOptionsFit",
+          "traits": {
+            "smithy.api#documentation": "The fit property describes how the width and height dimensions should be interpreted.",
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum height in image pixels.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.cloudflare.images#V1VariantsCreateResponseVariantOptionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "What EXIF data should be preserved in the output image.",
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum width in image pixels.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateResponseVariant": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.images#V1VariantsCreateResponseVariantOptions",
+          "traits": {
+            "smithy.api#documentation": "Allows you to define image resizing sizes for different use cases.",
+            "smithy.api#required": {}
+          }
+        },
+        "neverRequireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "variant": {
+          "target": "com.cloudflare.images#V1VariantsCreateResponseVariant"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1VariantsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1VariantsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1VariantsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/images/v1/variants",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a CF Images variant that allows you to resize images for different use cases."
+      }
+    },
+    "com.cloudflare.images#V1VariantsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "variant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1VariantsDeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1VariantsDeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/images/v1/variants/{variant_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a CF Images variant. This will purge the cache for all images associated with the variant.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditRequestOptionsFit": {
+      "type": "enum",
+      "members": {
+        "SCALE_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale-down"
+          }
+        },
+        "CONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contain"
+          }
+        },
+        "COVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cover"
+          }
+        },
+        "CROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crop"
+          }
+        },
+        "PAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pad"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditRequestOptionsMetadata": {
+      "type": "enum",
+      "members": {
+        "KEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keep"
+          }
+        },
+        "COPYRIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditRequestOptions": {
+      "type": "structure",
+      "members": {
+        "fit": {
+          "target": "com.cloudflare.images#V1VariantsEditRequestOptionsFit",
+          "traits": {
+            "smithy.api#documentation": "The fit property describes how the width and height dimensions should be interpreted.",
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum height in image pixels.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.cloudflare.images#V1VariantsEditRequestOptionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "What EXIF data should be preserved in the output image.",
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum width in image pixels.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "variant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.images#V1VariantsEditRequestOptions",
+          "traits": {
+            "smithy.api#documentation": "Allows you to define image resizing sizes for different use cases.",
+            "smithy.api#required": {}
+          }
+        },
+        "neverRequireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditResponseVariantOptionsFit": {
+      "type": "enum",
+      "members": {
+        "SCALE_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale-down"
+          }
+        },
+        "CONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contain"
+          }
+        },
+        "COVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cover"
+          }
+        },
+        "CROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crop"
+          }
+        },
+        "PAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pad"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditResponseVariantOptionsMetadata": {
+      "type": "enum",
+      "members": {
+        "KEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keep"
+          }
+        },
+        "COPYRIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditResponseVariantOptions": {
+      "type": "structure",
+      "members": {
+        "fit": {
+          "target": "com.cloudflare.images#V1VariantsEditResponseVariantOptionsFit",
+          "traits": {
+            "smithy.api#documentation": "The fit property describes how the width and height dimensions should be interpreted.",
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum height in image pixels.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.cloudflare.images#V1VariantsEditResponseVariantOptionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "What EXIF data should be preserved in the output image.",
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum width in image pixels.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditResponseVariant": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.images#V1VariantsEditResponseVariantOptions",
+          "traits": {
+            "smithy.api#documentation": "Allows you to define image resizing sizes for different use cases.",
+            "smithy.api#required": {}
+          }
+        },
+        "neverRequireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsEditResponse": {
+      "type": "structure",
+      "members": {
+        "variant": {
+          "target": "com.cloudflare.images#V1VariantsEditResponseVariant"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1VariantsEdit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1VariantsEditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1VariantsEditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/images/v1/variants/{variant_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a CF Images variant. This will purge the cache for all images associated with the variant."
+      }
+    },
+    "com.cloudflare.images#V1VariantsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "variant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsGetResponseVariantOptionsFit": {
+      "type": "enum",
+      "members": {
+        "SCALE_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale-down"
+          }
+        },
+        "CONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contain"
+          }
+        },
+        "COVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cover"
+          }
+        },
+        "CROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crop"
+          }
+        },
+        "PAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pad"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsGetResponseVariantOptionsMetadata": {
+      "type": "enum",
+      "members": {
+        "KEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keep"
+          }
+        },
+        "COPYRIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsGetResponseVariantOptions": {
+      "type": "structure",
+      "members": {
+        "fit": {
+          "target": "com.cloudflare.images#V1VariantsGetResponseVariantOptionsFit",
+          "traits": {
+            "smithy.api#documentation": "The fit property describes how the width and height dimensions should be interpreted.",
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum height in image pixels.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.cloudflare.images#V1VariantsGetResponseVariantOptionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "What EXIF data should be preserved in the output image.",
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum width in image pixels.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsGetResponseVariant": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.images#V1VariantsGetResponseVariantOptions",
+          "traits": {
+            "smithy.api#documentation": "Allows you to define image resizing sizes for different use cases.",
+            "smithy.api#required": {}
+          }
+        },
+        "neverRequireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsGetResponse": {
+      "type": "structure",
+      "members": {
+        "variant": {
+          "target": "com.cloudflare.images#V1VariantsGetResponseVariant"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1VariantsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1VariantsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1VariantsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1/variants/{variant_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetch details for a CF Images variant.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V1VariantsListResponseVariantsHeroOptionsFit": {
+      "type": "enum",
+      "members": {
+        "SCALE_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scale-down"
+          }
+        },
+        "CONTAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contain"
+          }
+        },
+        "COVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cover"
+          }
+        },
+        "CROP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crop"
+          }
+        },
+        "PAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pad"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsListResponseVariantsHeroOptionsMetadata": {
+      "type": "enum",
+      "members": {
+        "KEEP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keep"
+          }
+        },
+        "COPYRIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsListResponseVariantsHeroOptions": {
+      "type": "structure",
+      "members": {
+        "fit": {
+          "target": "com.cloudflare.images#V1VariantsListResponseVariantsHeroOptionsFit",
+          "traits": {
+            "smithy.api#documentation": "The fit property describes how the width and height dimensions should be interpreted.",
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum height in image pixels.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.cloudflare.images#V1VariantsListResponseVariantsHeroOptionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "What EXIF data should be preserved in the output image.",
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum width in image pixels.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsListResponseVariantsHero": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.cloudflare.images#V1VariantsListResponseVariantsHeroOptions",
+          "traits": {
+            "smithy.api#documentation": "Allows you to define image resizing sizes for different use cases.",
+            "smithy.api#required": {}
+          }
+        },
+        "neverRequireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsListResponseVariants": {
+      "type": "structure",
+      "members": {
+        "hero": {
+          "target": "com.cloudflare.images#V1VariantsListResponseVariantsHero"
+        }
+      }
+    },
+    "com.cloudflare.images#V1VariantsListResponse": {
+      "type": "structure",
+      "members": {
+        "variants": {
+          "target": "com.cloudflare.images#V1VariantsListResponseVariants"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V1VariantsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V1VariantsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V1VariantsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v1/variants",
+          "code": 200
+        },
+        "smithy.api#documentation": "List existing CF Images variants.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V2ListRequestMeta": {
+      "type": "structure",
+      "members": {
+        "_field___operator__": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Optional metadata filter(s). Multiple filters can be combined with AND logic.",
+            "smithy.api#jsonName": "<field>[<operator>]"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V2ListRequestSortOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V2ListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "continuation_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token to fetch next page. Passed as a query param when requesting List V2 api endpoint.",
+            "smithy.api#httpQuery": "continuation_token"
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal user ID set within the creator field. Setting to empty string \"\" will return images where creator field is not set",
+            "smithy.api#httpQuery": "creator"
+          }
+        },
+        "meta": {
+          "target": "com.cloudflare.images#V2ListRequestMeta",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "meta"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "sort_order": {
+          "target": "com.cloudflare.images#V2ListRequestSortOrder",
+          "traits": {
+            "smithy.api#documentation": "Sorting order by upload time",
+            "smithy.api#httpQuery": "sort_order"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V2ListResponseImagesItemVariantsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.images#V2ListResponseImagesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can set the creator field with an internal user ID."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image file name."
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "User modifiable key-value store. Can be used for keeping references to another system of record for managing images. Metadata must not exceed 1024 bytes."
+          }
+        },
+        "requireSignedURLs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the image can be a accessed only using it's UID. If set to true, a signed token needs to be generated with a signing key to view the image."
+          }
+        },
+        "uploaded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the media item was uploaded."
+          }
+        },
+        "variants": {
+          "target": "com.cloudflare.images#V2ListResponseImagesItemVariantsList",
+          "traits": {
+            "smithy.api#documentation": "Object specifying available variants for an image."
+          }
+        }
+      }
+    },
+    "com.cloudflare.images#V2ListResponseImagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.images#V2ListResponseImagesItem"
+      }
+    },
+    "com.cloudflare.images#V2ListResponse": {
+      "type": "structure",
+      "members": {
+        "continuation_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token to fetch next page. Passed as a query param when requesting List V2 api endpoint."
+          }
+        },
+        "images": {
+          "target": "com.cloudflare.images#V2ListResponseImagesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V2List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V2ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V2ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/images/v2",
+          "code": 200
+        },
+        "smithy.api#documentation": "List up to 10000 images from CF Images, with up to 1000 results per page. Use the optional parameters below to get a specific range of images. Pagination is supported via continuation_token. **Metadata Filtering (Optional):** You can optionally filter images by custom metadata fields using the `meta.<field>[<operator>]=<value>` syntax. **Supported Operators:** - `eq` / `eq:string` / `eq:number` / `eq:boolean` - Exact match - `gt` / `gt:number` - Greater than (number only) - `gte` / `gte:number` - Greater than or equal (number only) - `lt` / `lt:number` - Less than (number only) - `lte` / `lte:number` - Less than or equal (number only) - `in` / `in:string` / `in:number` - Match any value in list (pipe-separated) **Metadata Filter Constraints:** - Maximum 5 metadata filters per request - Maximum 5 levels of nesting (e.g., `meta.first.second.third.fourth.fifth`) - Maximum 10 elements for list operators (`in`) - Supports string, number, and boolean value types - Range operators (`gt`, `gte`, `lt`, `lte`) only accept numeric values **Filter Consistency:** Filters are combined with AND logic. The system does not validate whether filter combinations are logically consistent. For example, `meta.priority[eq:number]=5&meta.priority[lte:number]=3` will return zero results because no value can satisfy both conditions simultaneously. It is the caller's responsibility to ensure filter combinations make sense. **Examples:** ``` # List all images /images/v2 # Filter by metadata [eq] /images/v2?meta.status[eq:string]=active # Filter by metadata [in] /images/v2?meta.status[in]=pending|deleted|flagged # Filter by metadata [in:number] /images/v2?meta.ratings[in:number]=4|5 # Filter by metadata range [gte:number] /images/v2?meta.priority[gte:number]=1 # Filter by bounded range /images/v2?meta.priority[gte:number]=1&meta.priority[lte:number]=5 # Filter by nested metadata /images/v2?meta.region.name[eq]=eu-west # Combine metadata filters with creator /images/v2?meta.status[eq]=active&creator=user123 # Multiple metadata filters (AND logic) /images/v2?meta.status[eq]=active&meta.priority[eq:number]=5 ```",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.images#V2DirectUploadsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.images#V2DirectUploadsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image unique identifier."
+          }
+        },
+        "uploadURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL the unauthenticated upload can be performed to using a single HTTP POST (multipart/form-data) request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.images#V2DirectUploadsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.images#V2DirectUploadsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.images#V2DirectUploadsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/images/v2/direct_upload",
+          "code": 200
+        },
+        "smithy.api#documentation": "Direct uploads allow users to upload images without API keys. A common use case are web apps, client-side applications, or mobile devices where users upload content directly to Cloudflare Images. This method creates a draft record for a future image. It returns an upload URL and an image identifier. To verify if the image itself has been uploaded, send an image details request (accounts/:account_identifier/images/v1/:identifier), and check that the `draft: true` property is not present."
+      }
+    },
+    "com.cloudflare.images#Images": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.images#V1Create"
+        },
+        {
+          "target": "com.cloudflare.images#V1Delete"
+        },
+        {
+          "target": "com.cloudflare.images#V1Edit"
+        },
+        {
+          "target": "com.cloudflare.images#V1Get"
+        },
+        {
+          "target": "com.cloudflare.images#V1List"
+        },
+        {
+          "target": "com.cloudflare.images#V1BlobsGet"
+        },
+        {
+          "target": "com.cloudflare.images#V1KeysDelete"
+        },
+        {
+          "target": "com.cloudflare.images#V1KeysList"
+        },
+        {
+          "target": "com.cloudflare.images#V1KeysUpdate"
+        },
+        {
+          "target": "com.cloudflare.images#V1StatsGet"
+        },
+        {
+          "target": "com.cloudflare.images#V1VariantsCreate"
+        },
+        {
+          "target": "com.cloudflare.images#V1VariantsDelete"
+        },
+        {
+          "target": "com.cloudflare.images#V1VariantsEdit"
+        },
+        {
+          "target": "com.cloudflare.images#V1VariantsGet"
+        },
+        {
+          "target": "com.cloudflare.images#V1VariantsList"
+        },
+        {
+          "target": "com.cloudflare.images#V2List"
+        },
+        {
+          "target": "com.cloudflare.images#V2DirectUploadsCreate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Images",
+        "smithy.api#documentation": "Cloudflare API — images resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

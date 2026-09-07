@@ -1,0 +1,26 @@
+{
+  "description": "Key dictionary / op aliases for connectivity (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "appProtocol": "app_protocol",
+        "certVerificationMode": "cert_verification_mode",
+        "createdAt": "created_at",
+        "httpPort": "http_port",
+        "httpsPort": "https_port",
+        "perPage": "per_page",
+        "resolverIps": "resolver_ips",
+        "resolverNetwork": "resolver_network",
+        "resultInfo": "result_info",
+        "serviceId": "service_id",
+        "tcpPort": "tcp_port",
+        "tlsSettings": "tls_settings",
+        "totalCount": "total_count",
+        "tunnelId": "tunnel_id",
+        "updatedAt": "updated_at"
+      }
+    }
+  ]
+}

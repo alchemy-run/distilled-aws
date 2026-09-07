@@ -1,0 +1,614 @@
+# Bookmarks
+
+## List Bookmark applications
+
+**get** `/accounts/{account_id}/access/bookmarks`
+
+Lists Bookmark applications.
+
+### Path Parameters
+
+- `account_id: string`
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional array of Bookmark`
+
+  - `id: optional string`
+
+    The unique identifier for the Bookmark application.
+
+  - `app_launcher_visible: optional boolean`
+
+    Displays the application in the App Launcher.
+
+  - `domain: optional string`
+
+    The domain of the Bookmark application.
+
+  - `logo_url: optional string`
+
+    The image URL for the logo shown in the App Launcher dashboard.
+
+  - `name: optional string`
+
+    The name of the Bookmark application.
+
+- `result_info: optional object { count, page, per_page, 2 more }`
+
+  - `count: optional number`
+
+    Total number of results for the requested service.
+
+  - `page: optional number`
+
+    Current page within paginated list of results.
+
+  - `per_page: optional number`
+
+    Number of results per page of results.
+
+  - `total_count: optional number`
+
+    Total results available without any search parameters.
+
+  - `total_pages: optional number`
+
+    The number of total pages in the entire result set.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/access/bookmarks \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": [
+    {
+      "id": "id",
+      "app_launcher_visible": true,
+      "created_at": "2014-01-01T05:20:00.12345Z",
+      "domain": "example.com",
+      "logo_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+      "name": "My Website",
+      "updated_at": "2014-01-01T05:20:00.12345Z"
+    }
+  ],
+  "result_info": {
+    "count": 1,
+    "page": 1,
+    "per_page": 20,
+    "total_count": 2000,
+    "total_pages": 100
+  }
+}
+```
+
+## Get a Bookmark application
+
+**get** `/accounts/{account_id}/access/bookmarks/{bookmark_id}`
+
+Fetches a single Bookmark application.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `bookmark_id: string`
+
+  UUID.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional Bookmark`
+
+  - `id: optional string`
+
+    The unique identifier for the Bookmark application.
+
+  - `app_launcher_visible: optional boolean`
+
+    Displays the application in the App Launcher.
+
+  - `domain: optional string`
+
+    The domain of the Bookmark application.
+
+  - `logo_url: optional string`
+
+    The image URL for the logo shown in the App Launcher dashboard.
+
+  - `name: optional string`
+
+    The name of the Bookmark application.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/access/bookmarks/$BOOKMARK_ID \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "id": "id",
+    "app_launcher_visible": true,
+    "created_at": "2014-01-01T05:20:00.12345Z",
+    "domain": "example.com",
+    "logo_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+    "name": "My Website",
+    "updated_at": "2014-01-01T05:20:00.12345Z"
+  }
+}
+```
+
+## Create a Bookmark application
+
+**post** `/accounts/{account_id}/access/bookmarks/{bookmark_id}`
+
+Create a new Bookmark application.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `bookmark_id: string`
+
+  UUID.
+
+### Body Parameters
+
+- `body: unknown`
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional Bookmark`
+
+  - `id: optional string`
+
+    The unique identifier for the Bookmark application.
+
+  - `app_launcher_visible: optional boolean`
+
+    Displays the application in the App Launcher.
+
+  - `domain: optional string`
+
+    The domain of the Bookmark application.
+
+  - `logo_url: optional string`
+
+    The image URL for the logo shown in the App Launcher dashboard.
+
+  - `name: optional string`
+
+    The name of the Bookmark application.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/access/bookmarks/$BOOKMARK_ID \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{}'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "id": "id",
+    "app_launcher_visible": true,
+    "created_at": "2014-01-01T05:20:00.12345Z",
+    "domain": "example.com",
+    "logo_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+    "name": "My Website",
+    "updated_at": "2014-01-01T05:20:00.12345Z"
+  }
+}
+```
+
+## Update a Bookmark application
+
+**put** `/accounts/{account_id}/access/bookmarks/{bookmark_id}`
+
+Updates a configured Bookmark application.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `bookmark_id: string`
+
+  UUID.
+
+### Body Parameters
+
+- `body: unknown`
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional Bookmark`
+
+  - `id: optional string`
+
+    The unique identifier for the Bookmark application.
+
+  - `app_launcher_visible: optional boolean`
+
+    Displays the application in the App Launcher.
+
+  - `domain: optional string`
+
+    The domain of the Bookmark application.
+
+  - `logo_url: optional string`
+
+    The image URL for the logo shown in the App Launcher dashboard.
+
+  - `name: optional string`
+
+    The name of the Bookmark application.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/access/bookmarks/$BOOKMARK_ID \
+    -X PUT \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{}'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "id": "id",
+    "app_launcher_visible": true,
+    "created_at": "2014-01-01T05:20:00.12345Z",
+    "domain": "example.com",
+    "logo_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+    "name": "My Website",
+    "updated_at": "2014-01-01T05:20:00.12345Z"
+  }
+}
+```
+
+## Delete a Bookmark application
+
+**delete** `/accounts/{account_id}/access/bookmarks/{bookmark_id}`
+
+Deletes a Bookmark application.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `bookmark_id: string`
+
+  UUID.
+
+### Returns
+
+- `errors: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of object { code, message, documentation_url, source }`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result: optional object { id }`
+
+  - `id: optional string`
+
+    UUID.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/access/bookmarks/$BOOKMARK_ID \
+    -X DELETE \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "success": true,
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"
+  }
+}
+```
+
+## Domain Types
+
+### Bookmark
+
+- `Bookmark object { id, app_launcher_visible, domain, 2 more }`
+
+  - `id: optional string`
+
+    The unique identifier for the Bookmark application.
+
+  - `app_launcher_visible: optional boolean`
+
+    Displays the application in the App Launcher.
+
+  - `domain: optional string`
+
+    The domain of the Bookmark application.
+
+  - `logo_url: optional string`
+
+    The image URL for the logo shown in the App Launcher dashboard.
+
+  - `name: optional string`
+
+    The name of the Bookmark application.
+
+### Bookmark Delete Response
+
+- `BookmarkDeleteResponse object { id }`
+
+  - `id: optional string`
+
+    UUID.

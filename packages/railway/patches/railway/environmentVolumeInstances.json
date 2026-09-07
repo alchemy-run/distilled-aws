@@ -1,0 +1,127 @@
+{
+  "description": "Select environment.volumeInstances so Volume can observe and list instances scoped to owned projects (the public list API; Volume.volumeInstances is deprecated).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentResponseVolumeInstancesEdgesItemNode",
+      "value": {
+        "type": "structure",
+        "members": {
+          "createdAt": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "currentSizeMB": {
+            "target": "smithy.api#Double",
+            "traits": { "smithy.api#required": {} }
+          },
+          "deletedAt": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "environmentId": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "id": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "isPendingDeletion": {
+            "target": "smithy.api#Boolean",
+            "traits": { "smithy.api#required": {} }
+          },
+          "mountPath": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          },
+          "region": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "serviceId": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "sizeMB": {
+            "target": "smithy.api#Integer",
+            "traits": { "smithy.api#required": {} }
+          },
+          "state": {
+            "target": "com.railway.api#VolumeState",
+            "traits": {
+              "smithy.api#required": {},
+              "com.railway.graphql#nullable": {}
+            }
+          },
+          "volume": {
+            "target": "com.railway.api#AdminVolumeInstancesForVolumeResultItemVolume",
+            "traits": { "smithy.api#required": {} }
+          },
+          "volumeId": {
+            "target": "smithy.api#String",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentResponseVolumeInstancesEdgesItem",
+      "value": {
+        "type": "structure",
+        "members": {
+          "node": {
+            "target": "com.railway.api#EnvironmentResponseVolumeInstancesEdgesItemNode",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentResponseVolumeInstancesEdgesList",
+      "value": {
+        "type": "list",
+        "member": {
+          "target": "com.railway.api#EnvironmentResponseVolumeInstancesEdgesItem"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentResponseVolumeInstances",
+      "value": {
+        "type": "structure",
+        "members": {
+          "edges": {
+            "target": "com.railway.api#EnvironmentResponseVolumeInstancesEdgesList",
+            "traits": { "smithy.api#required": {} }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#EnvironmentResponse/members/volumeInstances",
+      "value": {
+        "target": "com.railway.api#EnvironmentResponseVolumeInstances",
+        "traits": { "smithy.api#required": {} }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#EnvironmentRequest/traits/com.railway.graphql#operation/query",
+      "value": "query environment($id: String!, $projectId: String) {\n  environment(id: $id, projectId: $projectId) {\n    canAccess\n    canvasGroupRefs\n    configEtag\n    createdAt\n    deletedAt\n    id\n    isEphemeral\n    meta {\n      baseBranch\n      branch\n      latestSuccessfulGitHubDeploymentId\n      prCommentId\n      prNumber\n      prRepo\n      prTitle\n      skippedResourceIds\n    }\n    name\n    projectId\n    unmergedChangesCount\n    updatedAt\n    volumeInstances(first: 200) {\n      edges {\n        node {\n          createdAt\n          currentSizeMB\n          deletedAt\n          environmentId\n          id\n          isPendingDeletion\n          mountPath\n          region\n          serviceId\n          sizeMB\n          state\n          volume {\n            createdAt\n            id\n            name\n            projectId\n          }\n          volumeId\n        }\n      }\n    }\n  }\n}"
+    }
+  ]
+}

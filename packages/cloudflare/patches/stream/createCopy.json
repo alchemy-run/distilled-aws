@@ -1,0 +1,35 @@
+{
+  "description": "Align stream#CopyCreate with distilled cloudflare/stream createCopy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CopyCreate",
+      "path": "/shapes/com.cloudflare.stream#CreateCopy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CopyCreateRequest",
+      "path": "/shapes/com.cloudflare.stream#CreateCopyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateCopy/input/target",
+      "value": "com.cloudflare.stream#CreateCopyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CopyCreateResponse",
+      "path": "/shapes/com.cloudflare.stream#CreateCopyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateCopy/output/target",
+      "value": "com.cloudflare.stream#CreateCopyResponse"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CreateCopyRequest/members/Upload_Creator",
+      "path": "/shapes/com.cloudflare.stream#CreateCopyRequest/members/uploadCreator"
+    }
+  ]
+}

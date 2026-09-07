@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsDatasetsCreate with distilled cloudflare/cloudforce-one createThreatEventDataset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsDatasetsCreate",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateThreatEventDataset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsDatasetsCreateRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateThreatEventDatasetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateThreatEventDataset/input/target",
+      "value": "com.cloudflare.cloudforce_one#CreateThreatEventDatasetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsDatasetsCreateResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateThreatEventDatasetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateThreatEventDataset/output/target",
+      "value": "com.cloudflare.cloudforce_one#CreateThreatEventDatasetResponse"
+    }
+  ]
+}

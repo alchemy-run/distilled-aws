@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_pages#UpdateForZone with distilled cloudflare/custom-pages putCustomPageForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#UpdateForZone",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#UpdateForZoneRequest",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForZone/input/target",
+      "value": "com.cloudflare.custom_pages#PutCustomPageForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_pages#UpdateForZoneResponse",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_pages#PutCustomPageForZone/output/target",
+      "value": "com.cloudflare.custom_pages#PutCustomPageForZoneResponse"
+    }
+  ]
+}

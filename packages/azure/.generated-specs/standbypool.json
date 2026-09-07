@@ -1,0 +1,3141 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.standbypool#StandbyVirtualMachinesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/standbyVirtualMachines/{standbyVirtualMachineName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Get a StandbyVirtualMachineResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachineResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachineResourceProperties": {
+      "type": "structure",
+      "members": {
+        "virtualMachineResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource id of the virtual machine.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.standbypool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StandbyVirtualMachine."
+      }
+    },
+    "com.azure.standbypool#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state"
+      }
+    },
+    "com.azure.standbypool#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.standbypool#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.standbypool#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.standbypool#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.standbypool#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        },
+        "standbyVirtualMachineName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinesListByStandbyVirtualMachinePoolResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinesListByStandbyVirtualMachinePoolResourceRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachineResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/standbyVirtualMachines",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyVirtualMachineResource resources by StandbyVirtualMachinePoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachineResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.standbypool#StandbyVirtualMachineResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StandbyVirtualMachineResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StandbyVirtualMachineResource list operation."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachineResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#StandbyVirtualMachineResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StandbyVirtualMachineResource items on this page"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachineResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachineResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinesListByStandbyVirtualMachinePoolResourceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews/{runtimeView}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Get a StandbyVirtualMachinePoolRuntimeViewResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceProperties": {
+      "type": "structure",
+      "members": {
+        "instanceCountSummary": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourcePropertiesInstanceCountSummaryList",
+          "traits": {
+            "smithy.api#documentation": "A list containing the counts of virtual machines in each possible power state for each zone if enabled, as known by the StandbyPool resource provider. If zones are not enabled on the attached VMSS, the list will contain a single entry without zone values. Note: any resources in the Running state may still be installing extensions / not fully provisioned.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.azure.standbypool#PoolStatus",
+          "traits": {
+            "smithy.api#documentation": "Display status of the standby pool"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.standbypool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Displays the provisioning state of the standby pool"
+          }
+        },
+        "prediction": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolPrediction",
+          "traits": {
+            "smithy.api#documentation": "Displays prediction information of the standby pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about a standby pool as last known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolPrediction": {
+      "type": "structure",
+      "members": {
+        "forecastValues": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolForecastValues",
+          "traits": {
+            "smithy.api#documentation": "Displays the forecast information of the standby pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "forecastStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Displays the UTC timestamp of when the prediction was retrieved for the standby pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "forecastInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Displays additional information for the prediction of the standby pool.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays prediction information of the standby pool."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolForecastValues": {
+      "type": "structure",
+      "members": {
+        "instancesRequestedCount": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolForecastValuesInstancesRequestedCountList",
+          "traits": {
+            "smithy.api#documentation": "Displays the predicted count of instances to be requested from the standby pool.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the forecast information of the standby pool."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolForecastValuesInstancesRequestedCountList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the predicted count of instances to be requested from the standby pool."
+      }
+    },
+    "com.azure.standbypool#PoolStatus": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.azure.standbypool#HealthStateCode",
+          "traits": {
+            "smithy.api#documentation": "Displays the healthy state of the StandbyPool.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Displays the StandbyPool health state details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays StandbyPool status."
+      }
+    },
+    "com.azure.standbypool#HealthStateCode": {
+      "type": "enum",
+      "members": {
+        "HEALTHSTATE_HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HealthState/healthy"
+          }
+        },
+        "HEALTHSTATE_DEGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HealthState/degraded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "StandbyPool health state."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourcePropertiesInstanceCountSummaryList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#VirtualMachineInstanceCountSummary"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list containing the counts of virtual machines in each possible power state for each zone if enabled, as known by the StandbyPool resource provider. If zones are not enabled on the attached VMSS, the list will contain a single entry without zone values. Note: any resources in the Running state may still be installing extensions / not fully provisioned."
+      }
+    },
+    "com.azure.standbypool#VirtualMachineInstanceCountSummary": {
+      "type": "structure",
+      "members": {
+        "zone": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The zone that the provided counts are in. It will not have a value if zones are not enabled on the attached VMSS."
+          }
+        },
+        "instanceCountsByState": {
+          "target": "com.azure.standbypool#VirtualMachineInstanceCountSummaryInstanceCountsByStateList",
+          "traits": {
+            "smithy.api#documentation": "The count of pooled virtual machines in each state for the given zone.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the counts of VMs in each power state in a given zone, fault domain, as known by the StandbyPool resource provider. Note: any resources in the Running state may still be installing extensions / not fully provisioned."
+      }
+    },
+    "com.azure.standbypool#VirtualMachineInstanceCountSummaryInstanceCountsByStateList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#PoolVirtualMachineStateCount"
+      },
+      "traits": {
+        "smithy.api#documentation": "The count of pooled virtual machines in each state for the given zone."
+      }
+    },
+    "com.azure.standbypool#PoolVirtualMachineStateCount": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.standbypool#PoolVirtualMachineState",
+          "traits": {
+            "smithy.api#documentation": "The state that the pooled virtual machines count is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The count of pooled virtual machines in the given state.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the counts of pooled virtual machines in each state, as known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#PoolVirtualMachineState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Starting"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "DEALLOCATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deallocated"
+          }
+        },
+        "DEALLOCATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deallocating"
+          }
+        },
+        "HIBERNATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hibernated"
+          }
+        },
+        "HIBERNATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hibernating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the pooled virtual machines."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        },
+        "runtimeView": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier for the runtime view. The input string should be the word 'latest', which will get the latest runtime view of the pool, otherwise the request will fail with NotFound exception."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsListByStandbyPool": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsListByStandbyPoolRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}/runtimeViews",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyVirtualMachinePoolRuntimeViewResource resources by StandbyVirtualMachinePoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StandbyVirtualMachinePoolRuntimeViewResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StandbyVirtualMachinePoolRuntimeViewResource list operation."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StandbyVirtualMachinePoolRuntimeViewResource items on this page"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about a standby virtual machine pool as last known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsListByStandbyPoolRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Delete a StandbyVirtualMachinePoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Update a StandbyVirtualMachinePoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResourceProperties": {
+      "type": "structure",
+      "members": {
+        "elasticityProfile": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolElasticityProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the elasticity profile of the standby virtual machine pools."
+          }
+        },
+        "virtualMachineState": {
+          "target": "com.azure.standbypool#VirtualMachineState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the desired state of virtual machines in the pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "vmStateDistribution": {
+          "target": "com.azure.standbypool#VmStateDistribution",
+          "traits": {
+            "smithy.api#documentation": "Specifies the distribution of virtual machine states in the pool when virtualMachineState is set to Mix."
+          }
+        },
+        "attachedVirtualMachineScaleSetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the fully qualified resource ID of a virtual machine scale set the pool is attached to."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.standbypool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StandbyVirtualMachinePool."
+      }
+    },
+    "com.azure.standbypool#VmStateDistribution": {
+      "type": "structure",
+      "members": {
+        "runningPercent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the percentage of virtual machines in the Running state in the standby pool."
+          }
+        },
+        "deallocatedPercent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the percentage of virtual machines in the Deallocated state in the standby pool."
+          }
+        },
+        "hibernatedPercent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the percentage of virtual machines in the Hibernated state in the standby pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the distribution of virtual machine states in the pool."
+      }
+    },
+    "com.azure.standbypool#VirtualMachineState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "DEALLOCATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deallocated"
+          }
+        },
+        "HIBERNATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hibernated"
+          }
+        },
+        "MIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Mix"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of standby virtual machines"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolElasticityProfile": {
+      "type": "structure",
+      "members": {
+        "maxReadyCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the maximum number of virtual machines in the standby virtual machine pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "minReadyCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the desired minimum number of virtual machines in the standby virtual machine pool. MinReadyCapacity cannot exceed MaxReadyCapacity."
+          }
+        },
+        "postProvisioningDelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the duration to wait after virtual machine provisioning before the virtual machine becomes available for use. The duration should be specified in ISO 8601 format (e.g., PT2S for 2 seconds)."
+          }
+        },
+        "dynamicSizing": {
+          "target": "com.azure.standbypool#DynamicSizing",
+          "traits": {
+            "smithy.api#documentation": "Specifies the dynamic sizing configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the elasticity profile."
+      }
+    },
+    "com.azure.standbypool#DynamicSizing": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether dynamic sizing is enabled for the standby pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the dynamic sizing configuration."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResourceUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "elasticityProfile": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolElasticityProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the elasticity profile of the standby virtual machine pools."
+          }
+        },
+        "virtualMachineState": {
+          "target": "com.azure.standbypool#VirtualMachineState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the desired state of virtual machines in the pool."
+          }
+        },
+        "vmStateDistribution": {
+          "target": "com.azure.standbypool#VmStateDistribution",
+          "traits": {
+            "smithy.api#documentation": "Specifies the distribution of virtual machine states in the pool when virtualMachineState is set to Mix."
+          }
+        },
+        "attachedVirtualMachineScaleSetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the fully qualified resource ID of a virtual machine scale set the pool is attached to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the StandbyVirtualMachinePoolResource."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Create a StandbyVirtualMachinePoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "elasticityProfile": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolElasticityProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the elasticity profile of the standby virtual machine pools."
+          }
+        },
+        "virtualMachineState": {
+          "target": "com.azure.standbypool#VirtualMachineState",
+          "traits": {
+            "smithy.api#documentation": "Specifies the desired state of virtual machines in the pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "vmStateDistribution": {
+          "target": "com.azure.standbypool#VmStateDistribution",
+          "traits": {
+            "smithy.api#documentation": "Specifies the distribution of virtual machine states in the pool when virtualMachineState is set to Mix."
+          }
+        },
+        "attachedVirtualMachineScaleSetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the fully qualified resource ID of a virtual machine scale set the pool is attached to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StandbyVirtualMachinePool."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Get a StandbyVirtualMachinePoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyVirtualMachinePoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby virtual machine pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyVirtualMachinePoolResource resources by resource group",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StandbyVirtualMachinePoolResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StandbyVirtualMachinePoolResource list operation."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StandbyVirtualMachinePoolResource items on this page"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A StandbyVirtualMachinePoolResource."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}/runtimeViews/{runtimeView}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Get a StandbyContainerGroupPoolRuntimeViewResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceProperties": {
+      "type": "structure",
+      "members": {
+        "instanceCountSummary": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourcePropertiesInstanceCountSummaryList",
+          "traits": {
+            "smithy.api#documentation": "A list containing the counts of container groups in each possible state, as known by the StandbyPool resource provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.azure.standbypool#PoolStatus",
+          "traits": {
+            "smithy.api#documentation": "Display status of the standby pool"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.standbypool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Displays the provisioning state of the standby pool"
+          }
+        },
+        "prediction": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolPrediction",
+          "traits": {
+            "smithy.api#documentation": "Displays prediction information of the standby pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about a standby pool as last known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolPrediction": {
+      "type": "structure",
+      "members": {
+        "forecastValues": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolForecastValues",
+          "traits": {
+            "smithy.api#documentation": "Displays the forecast information of the standby pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "forecastStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Displays the UTC timestamp of when the prediction was retrieved for the standby pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "forecastInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Displays additional information for the prediction of the standby pool.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays prediction information of the standby pool."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolForecastValues": {
+      "type": "structure",
+      "members": {
+        "instancesRequestedCount": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolForecastValuesInstancesRequestedCountList",
+          "traits": {
+            "smithy.api#documentation": "Displays the predicted count of instances to be requested from the standby pool.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the forecast information of the standby pool."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolForecastValuesInstancesRequestedCountList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the predicted count of instances to be requested from the standby pool."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourcePropertiesInstanceCountSummaryList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#ContainerGroupInstanceCountSummary"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list containing the counts of container groups in each possible state, as known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#ContainerGroupInstanceCountSummary": {
+      "type": "structure",
+      "members": {
+        "zone": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The zone that the provided counts are in. It will not have a value if zones are not enabled."
+          }
+        },
+        "instanceCountsByState": {
+          "target": "com.azure.standbypool#ContainerGroupInstanceCountSummaryInstanceCountsByStateList",
+          "traits": {
+            "smithy.api#documentation": "The count of pooled container groups in each state for the given zone.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the counts of container groups in each state, as known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#ContainerGroupInstanceCountSummaryInstanceCountsByStateList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#PoolContainerGroupStateCount"
+      },
+      "traits": {
+        "smithy.api#documentation": "The count of pooled container groups in each state for the given zone."
+      }
+    },
+    "com.azure.standbypool#PoolContainerGroupStateCount": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.azure.standbypool#PoolContainerGroupState",
+          "traits": {
+            "smithy.api#documentation": "The state that the pooled container groups count is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The count of pooled container groups in the given state.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Displays the counts of pooled container groups in each state, as known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#PoolContainerGroupState": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the pooled container groups."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyContainerGroupPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby container group pool"
+          }
+        },
+        "runtimeView": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier for the runtime view. The input string should be the word 'latest', which will get the latest runtime view of the pool, otherwise the request will fail with NotFound exception."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsListByStandbyPool": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsListByStandbyPoolRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}/runtimeViews",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyContainerGroupPoolRuntimeViewResource resources by StandbyContainerGroupPoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StandbyContainerGroupPoolRuntimeViewResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StandbyContainerGroupPoolRuntimeViewResource list operation."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StandbyContainerGroupPoolRuntimeViewResource items on this page"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about a standby container group pool as last known by the StandbyPool resource provider."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsListByStandbyPoolRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyContainerGroupPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby container group pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Delete a StandbyContainerGroupPoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyContainerGroupPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby container group pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Update a StandbyContainerGroupPoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourceProperties": {
+      "type": "structure",
+      "members": {
+        "elasticityProfile": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolElasticityProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies elasticity profile of standby container group pools.",
+            "smithy.api#required": {}
+          }
+        },
+        "containerGroupProperties": {
+          "target": "com.azure.standbypool#ContainerGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies container group properties of standby container group pools.",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourcePropertiesZonesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies zones of standby container group pools."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.standbypool#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StandbyContainerGroupPool."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourcePropertiesZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies zones of standby container group pools."
+      }
+    },
+    "com.azure.standbypool#ContainerGroupProperties": {
+      "type": "structure",
+      "members": {
+        "containerGroupProfile": {
+          "target": "com.azure.standbypool#ContainerGroupProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies container group profile of standby container groups.",
+            "smithy.api#required": {}
+          }
+        },
+        "subnetIds": {
+          "target": "com.azure.standbypool#ContainerGroupPropertiesSubnetIdsList",
+          "traits": {
+            "smithy.api#documentation": "Specifies subnet Ids for container group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the ContainerGroupProperties."
+      }
+    },
+    "com.azure.standbypool#ContainerGroupPropertiesSubnetIdsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#Subnet"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies subnet Ids for container group."
+      }
+    },
+    "com.azure.standbypool#Subnet": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies ARM resource id of the subnet.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subnet of container group"
+      }
+    },
+    "com.azure.standbypool#ContainerGroupProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies container group profile id of standby container groups.",
+            "smithy.api#required": {}
+          }
+        },
+        "revision": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies revision of container group profile."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the ContainerGroupProfile."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolElasticityProfile": {
+      "type": "structure",
+      "members": {
+        "maxReadyCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies maximum number of standby container groups in the standby pool.",
+            "smithy.api#required": {}
+          }
+        },
+        "refillPolicy": {
+          "target": "com.azure.standbypool#RefillPolicy",
+          "traits": {
+            "smithy.api#documentation": "Specifies refill policy of the pool."
+          }
+        },
+        "dynamicSizing": {
+          "target": "com.azure.standbypool#DynamicSizing",
+          "traits": {
+            "smithy.api#documentation": "Specifies the dynamic sizing configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the elasticity profile of the standby container group pools."
+      }
+    },
+    "com.azure.standbypool#RefillPolicy": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "always"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Refill policy of standby pool"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyContainerGroupPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby container group pool"
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourceUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "elasticityProfile": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolElasticityProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies elasticity profile of standby container group pools."
+          }
+        },
+        "containerGroupProperties": {
+          "target": "com.azure.standbypool#ContainerGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies container group properties of standby container group pools."
+          }
+        },
+        "zones": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceUpdatePropertiesZonesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies zones of standby container group pools."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the StandbyContainerGroupPoolResource."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourceUpdatePropertiesZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies zones of standby container group pools."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Create a StandbyContainerGroupPoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyContainerGroupPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby container group pool"
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "elasticityProfile": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolElasticityProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies elasticity profile of standby container group pools.",
+            "smithy.api#required": {}
+          }
+        },
+        "containerGroupProperties": {
+          "target": "com.azure.standbypool#ContainerGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies container group properties of standby container group pools.",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourcePropertiesInputZonesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies zones of standby container group pools."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StandbyContainerGroupPool."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourcePropertiesInputZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies zones of standby container group pools."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools/{standbyContainerGroupPoolName}",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "Get a StandbyContainerGroupPoolResource",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "standbyContainerGroupPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the standby container group pool"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyContainerGroupPools",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyContainerGroupPoolResource resources by resource group",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StandbyContainerGroupPoolResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StandbyContainerGroupPoolResource list operation."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StandbyContainerGroupPoolResource items on this page"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.standbypool#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A StandbyContainerGroupPoolResource."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyVirtualMachinePoolResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyVirtualMachinePoolResource resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyVirtualMachinePoolsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.standbypool#StandbyContainerGroupPoolResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StandbyPool/standbyContainerGroupPools",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List StandbyContainerGroupPoolResource resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#StandbyContainerGroupPoolsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.standbypool#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.standbypool#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.StandbyPool/operations",
+          "code": 200,
+          "apiVersion": "2026-04-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2026-04-01"
+      }
+    },
+    "com.azure.standbypool#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.standbypool#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.standbypool#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.standbypool#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.standbypool#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.standbypool#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.standbypool#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.standbypool#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.standbypool#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.standbypool#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.standbypool#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.standbypool#Standbypool": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinesGet"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinesListByStandbyVirtualMachinePoolResource"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsGet"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolRuntimeViewsListByStandbyPool"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsDelete"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsUpdate"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsGet"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsGet"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolRuntimeViewsListByStandbyPool"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsDelete"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsUpdate"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsGet"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyVirtualMachinePoolsListBySubscription"
+        },
+        {
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsListBySubscription"
+        },
+        {
+          "target": "com.azure.standbypool#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Standbypool",
+        "smithy.api#documentation": "Azure Standbypool API — merged from the standbypool resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

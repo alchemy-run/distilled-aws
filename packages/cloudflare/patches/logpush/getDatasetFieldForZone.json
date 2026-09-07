@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#DatasetsFieldsGetForZone with distilled cloudflare/logpush getDatasetFieldForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsFieldsGetForZone",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsFieldsGetForZoneRequest",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForZone/input/target",
+      "value": "com.cloudflare.logpush#GetDatasetFieldForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsFieldsGetForZoneResponse",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForZone/output/target",
+      "value": "com.cloudflare.logpush#GetDatasetFieldForZoneResponse"
+    }
+  ]
+}

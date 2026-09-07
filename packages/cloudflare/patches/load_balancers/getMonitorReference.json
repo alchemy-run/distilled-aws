@@ -1,0 +1,38 @@
+{
+  "description": "Align load_balancers#MonitorsReferencesGet with distilled cloudflare/load-balancers getMonitorReference",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsReferencesGet",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorReference"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsReferencesGetRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorReferenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorReference/input/target",
+      "value": "com.cloudflare.load_balancers#GetMonitorReferenceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#MonitorsReferencesGetResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorReferenceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorReference/output/target",
+      "value": "com.cloudflare.load_balancers#GetMonitorReferenceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#GetMonitorReference/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

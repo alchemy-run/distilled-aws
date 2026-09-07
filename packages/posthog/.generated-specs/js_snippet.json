@@ -1,0 +1,286 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.js_snippet#JsSnippetResolveRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetResolveRetrieveResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.js_snippet#JsSnippetResolveRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.js_snippet#JsSnippetResolveRetrieveResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetResolveRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.js_snippet#JsSnippetResolveRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.js_snippet#JsSnippetResolveRetrieveResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.js_snippet#Forbidden"
+        },
+        {
+          "target": "com.posthog.js_snippet#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/js-snippet/resolve/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Preview what a given pin would resolve to, without saving it."
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetVersionRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetVersionRetrieveResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.js_snippet#JsSnippetVersionRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.js_snippet#JsSnippetVersionRetrieveResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetVersionRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.js_snippet#JsSnippetVersionRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.js_snippet#JsSnippetVersionRetrieveResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.js_snippet#Forbidden"
+        },
+        {
+          "target": "com.posthog.js_snippet#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/js-snippet/version/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the team's current version pin and resolved version."
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetVersionPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "js_snippet_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version pin: null for latest, \"1.358.0\" for exact, \"1\" for major, \"1.358\" for minor",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetVersionPartialUpdateResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.js_snippet#JsSnippetVersionPartialUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.js_snippet#JsSnippetVersionPartialUpdateResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.js_snippet#JsSnippetVersionPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.js_snippet#JsSnippetVersionPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.js_snippet#JsSnippetVersionPartialUpdateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.js_snippet#BadRequest"
+        },
+        {
+          "target": "com.posthog.js_snippet#Forbidden"
+        },
+        {
+          "target": "com.posthog.js_snippet#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/js-snippet/version/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the team's version pin."
+      }
+    },
+    "com.posthog.js_snippet#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.js_snippet#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.js_snippet#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.js_snippet#JsSnippet": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.js_snippet#JsSnippetResolveRetrieve"
+        },
+        {
+          "target": "com.posthog.js_snippet#JsSnippetVersionRetrieve"
+        },
+        {
+          "target": "com.posthog.js_snippet#JsSnippetVersionPartialUpdate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#IpsGet with distilled cloudflare/intel getIp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IpsGet",
+      "path": "/shapes/com.cloudflare.intel#GetIp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IpsGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetIpRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetIp/input/target",
+      "value": "com.cloudflare.intel#GetIpRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IpsGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetIpResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetIp/output/target",
+      "value": "com.cloudflare.intel#GetIpResponse"
+    }
+  ]
+}

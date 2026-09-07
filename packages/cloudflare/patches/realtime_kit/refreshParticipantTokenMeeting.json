@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#MeetingsRefreshParticipantToken with distilled cloudflare/realtime-kit refreshParticipantTokenMeeting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#MeetingsRefreshParticipantToken",
+      "path": "/shapes/com.cloudflare.realtime_kit#RefreshParticipantTokenMeeting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#MeetingsRefreshParticipantTokenRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#RefreshParticipantTokenMeetingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#RefreshParticipantTokenMeeting/input/target",
+      "value": "com.cloudflare.realtime_kit#RefreshParticipantTokenMeetingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#MeetingsRefreshParticipantTokenResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#RefreshParticipantTokenMeetingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#RefreshParticipantTokenMeeting/output/target",
+      "value": "com.cloudflare.realtime_kit#RefreshParticipantTokenMeetingResponse"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessKeysUpdate with distilled cloudflare/zero-trust putAccessKey",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessKeysUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessKey"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessKeysUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessKeyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessKey/input/target",
+      "value": "com.cloudflare.zero_trust#PutAccessKeyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessKeysUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessKeyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessKey/output/target",
+      "value": "com.cloudflare.zero_trust#PutAccessKeyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessKey/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

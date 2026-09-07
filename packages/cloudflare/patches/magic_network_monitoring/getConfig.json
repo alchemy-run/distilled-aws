@@ -1,0 +1,39 @@
+{
+  "description": "Align magic_network_monitoring#ConfigsGet with distilled cloudflare/magic-network-monitoring getConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsGet",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsGetRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfig/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#GetConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsGetResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfig/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#GetConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#GetConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_network_monitoring#Forbidden"
+        }
+      ]
+    }
+  ]
+}

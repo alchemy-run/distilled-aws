@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsSummaryQueryType with distilled cloudflare/radar queryTypeDnsSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryQueryType",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryQueryTypeRequest",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsSummary/input/target",
+      "value": "com.cloudflare.radar#QueryTypeDnsSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryQueryTypeResponse",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#QueryTypeDnsSummary/output/target",
+      "value": "com.cloudflare.radar#QueryTypeDnsSummaryResponse"
+    }
+  ]
+}

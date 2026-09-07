@@ -1,0 +1,1994 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.subscriptions#SubscriptionsListRequestResourceType": {
+      "type": "enum",
+      "members": {
+        "AI_PROMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai_prompt"
+          }
+        },
+        "DASHBOARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dashboard"
+          }
+        },
+        "INSIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "insight"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionsListRequestTargetType": {
+      "type": "enum",
+      "members": {
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "Filter by creator user UUID."
+          }
+        },
+        "dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "dashboard",
+            "smithy.api#documentation": "Filter by dashboard ID."
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "insight",
+            "smithy.api#documentation": "Filter by insight ID."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "ordering": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ordering",
+            "smithy.api#documentation": "Which field to use when ordering the results."
+          }
+        },
+        "resource_type": {
+          "target": "com.posthog.subscriptions#SubscriptionsListRequestResourceType",
+          "traits": {
+            "smithy.api#httpQuery": "resource_type",
+            "smithy.api#documentation": "Filter by subscription resource: insight, dashboard export, or AI report."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "A search term."
+          }
+        },
+        "target_type": {
+          "target": "com.posthog.subscriptions#SubscriptionsListRequestTargetType",
+          "traits": {
+            "smithy.api#httpQuery": "target_type",
+            "smithy.api#documentation": "Filter by delivery channel (email or Slack)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#PaginatedSubscriptionList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.subscriptions#PaginatedSubscriptionListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#Subscription": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "resource_type": {
+          "target": "com.posthog.subscriptions#ResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the subscription delivers: 'insight' (snapshot of one insight), 'dashboard' (snapshot of one dashboard), or 'ai_prompt' (LLM-generated report). Read-only — derived from the populated target (insight → insight, dashboard → dashboard, prompt → ai_prompt).\n\n* `insight` - Insight\n* `dashboard` - Dashboard\n* `ai_prompt` - AI prompt"
+          }
+        },
+        "dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Dashboard ID to subscribe to (mutually exclusive with insight on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID to subscribe to (mutually exclusive with dashboard on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight_short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resource_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_export_insights": {
+          "target": "com.posthog.subscriptions#SubscriptionDashboardExportInsightsList",
+          "traits": {
+            "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-text prompt that drives the AI-generated report. Required when resource_type is 'ai_prompt'. Max 4000 characters.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "target_type": {
+          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+          }
+        },
+        "target_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.subscriptions#RecurrenceIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to deliver: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Interval multiplier (e.g. 2 with weekly frequency means every 2 weeks). Required on create; must be 1 or greater."
+          }
+        },
+        "byweekday": {
+          "target": "com.posthog.subscriptions#SubscriptionByweekdayList",
+          "traits": {
+            "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bysetpos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Position within byweekday set for monthly frequency (e.g. 1 for first, -1 for last).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of deliveries before the subscription stops. Null for unlimited.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+          }
+        },
+        "until_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to stop delivering (ISO 8601 datetime). Null for indefinite.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.subscriptions#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete. Subscriptions cannot be hard-deleted."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the subscription is active. Set to false to pause delivery without deleting. Auto-set to false when the delivery integration becomes invalid."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for this subscription.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable schedule summary, e.g. 'sent daily'."
+          }
+        },
+        "next_delivery_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "integration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of a connected Slack integration. Required when target_type is slack.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message included in the invitation email when adding new recipients.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to attach an AI-generated summary to each delivery (insight and dashboard subscriptions only). Requires the organization to have approved AI data processing, and is subject to the org's active-summary cap and AI credit budget; otherwise the write is rejected. Not applicable to prompt subscriptions, which are themselves AI-generated."
+          }
+        },
+        "summary_prompt_guide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Standard Subscription serializer."
+      }
+    },
+    "com.posthog.subscriptions#ResourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "INSIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "insight"
+          }
+        },
+        "DASHBOARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dashboard"
+          }
+        },
+        "AI_PROMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai_prompt"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `insight` - Insight\n* `dashboard` - Dashboard\n* `ai_prompt` - AI prompt"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionDashboardExportInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+      }
+    },
+    "com.posthog.subscriptions#TargetTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `email` - Email\n* `slack` - Slack"
+      }
+    },
+    "com.posthog.subscriptions#RecurrenceIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "daily"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        },
+        "YEARLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yearly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionByweekdayItem": {
+      "type": "enum",
+      "members": {
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monday"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tuesday"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wednesday"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thursday"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "friday"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saturday"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sunday"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionByweekdayList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.subscriptions#SubscriptionByweekdayItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
+      }
+    },
+    "com.posthog.subscriptions#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.subscriptions#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.subscriptions#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.subscriptions#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.subscriptions#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.subscriptions#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#PaginatedSubscriptionListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.subscriptions#Subscription"
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#PaginatedSubscriptionList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#BadRequest"
+        },
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/subscriptions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsCreateRequestDashboardExportInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayItem": {
+      "type": "enum",
+      "members": {
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monday"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tuesday"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wednesday"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thursday"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "friday"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saturday"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sunday"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Dashboard ID to subscribe to (mutually exclusive with insight on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID to subscribe to (mutually exclusive with dashboard on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_export_insights": {
+          "target": "com.posthog.subscriptions#SubscriptionsCreateRequestDashboardExportInsightsList",
+          "traits": {
+            "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-text prompt that drives the AI-generated report. Required when resource_type is 'ai_prompt'. Max 4000 characters.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "target_type": {
+          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+          }
+        },
+        "target_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.subscriptions#RecurrenceIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to deliver: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Interval multiplier (e.g. 2 with weekly frequency means every 2 weeks). Required on create; must be 1 or greater."
+          }
+        },
+        "byweekday": {
+          "target": "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayList",
+          "traits": {
+            "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bysetpos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Position within byweekday set for monthly frequency (e.g. 1 for first, -1 for last).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of deliveries before the subscription stops. Null for unlimited.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+          }
+        },
+        "until_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to stop delivering (ISO 8601 datetime). Null for indefinite.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete. Subscriptions cannot be hard-deleted."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the subscription is active. Set to false to pause delivery without deleting. Auto-set to false when the delivery integration becomes invalid."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for this subscription.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "integration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of a connected Slack integration. Required when target_type is slack.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message included in the invitation email when adding new recipients.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to attach an AI-generated summary to each delivery (insight and dashboard subscriptions only). Requires the organization to have approved AI data processing, and is subject to the org's active-summary cap and AI credit budget; otherwise the write is rejected. Not applicable to prompt subscriptions, which are themselves AI-generated."
+          }
+        },
+        "summary_prompt_guide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#BadRequest"
+        },
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/subscriptions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/subscriptions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsUpdateRequestDashboardExportInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayItem": {
+      "type": "enum",
+      "members": {
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monday"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tuesday"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wednesday"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thursday"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "friday"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saturday"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sunday"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this subscription."
+          }
+        },
+        "dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Dashboard ID to subscribe to (mutually exclusive with insight on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID to subscribe to (mutually exclusive with dashboard on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_export_insights": {
+          "target": "com.posthog.subscriptions#SubscriptionsUpdateRequestDashboardExportInsightsList",
+          "traits": {
+            "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-text prompt that drives the AI-generated report. Required when resource_type is 'ai_prompt'. Max 4000 characters.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "target_type": {
+          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+          }
+        },
+        "target_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.subscriptions#RecurrenceIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to deliver: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Interval multiplier (e.g. 2 with weekly frequency means every 2 weeks). Required on create; must be 1 or greater."
+          }
+        },
+        "byweekday": {
+          "target": "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayList",
+          "traits": {
+            "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bysetpos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Position within byweekday set for monthly frequency (e.g. 1 for first, -1 for last).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of deliveries before the subscription stops. Null for unlimited.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+          }
+        },
+        "until_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to stop delivering (ISO 8601 datetime). Null for indefinite.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete. Subscriptions cannot be hard-deleted."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the subscription is active. Set to false to pause delivery without deleting. Auto-set to false when the delivery integration becomes invalid."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for this subscription.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "integration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of a connected Slack integration. Required when target_type is slack.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message included in the invitation email when adding new recipients.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to attach an AI-generated summary to each delivery (insight and dashboard subscriptions only). Requires the organization to have approved AI data processing, and is subject to the org's active-summary cap and AI credit budget; otherwise the write is rejected. Not applicable to prompt subscriptions, which are themselves AI-generated."
+          }
+        },
+        "summary_prompt_guide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#BadRequest"
+        },
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/subscriptions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestDashboardExportInsightsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayItem": {
+      "type": "enum",
+      "members": {
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monday"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tuesday"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wednesday"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thursday"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "friday"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saturday"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sunday"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this subscription."
+          }
+        },
+        "dashboard": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Dashboard ID to subscribe to (mutually exclusive with insight on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Insight ID to subscribe to (mutually exclusive with dashboard on create).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dashboard_export_insights": {
+          "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestDashboardExportInsightsList",
+          "traits": {
+            "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 6."
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-text prompt that drives the AI-generated report. Required when resource_type is 'ai_prompt'. Max 4000 characters.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "target_type": {
+          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+          }
+        },
+        "target_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.subscriptions#RecurrenceIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "How often to deliver: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Interval multiplier (e.g. 2 with weekly frequency means every 2 weeks). Required on create; must be 1 or greater."
+          }
+        },
+        "byweekday": {
+          "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayList",
+          "traits": {
+            "smithy.api#documentation": "Days of week for weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "bysetpos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Position within byweekday set for monthly frequency (e.g. 1 for first, -1 for last).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of deliveries before the subscription stops. Null for unlimited.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+          }
+        },
+        "until_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When to stop delivering (ISO 8601 datetime). Null for indefinite.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete. Subscriptions cannot be hard-deleted."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the subscription is active. Set to false to pause delivery without deleting. Auto-set to false when the delivery integration becomes invalid."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for this subscription.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "integration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of a connected Slack integration. Required when target_type is slack.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message included in the invitation email when adding new recipients.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to attach an AI-generated summary to each delivery (insight and dashboard subscriptions only). Requires the organization to have approved AI data processing, and is subject to the org's active-summary cap and AI credit budget; otherwise the write is rejected. Not applicable to prompt subscriptions, which are themselves AI-generated."
+          }
+        },
+        "summary_prompt_guide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#Subscription"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#BadRequest"
+        },
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/subscriptions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/subscriptions/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsTestDeliveryCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsTestDeliveryCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsTestDeliveryCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.subscriptions#Forbidden"
+        },
+        {
+          "target": "com.posthog.subscriptions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/subscriptions/{id}/test-delivery/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsDeliveriesListRequestStatus": {
+      "type": "enum",
+      "members": {
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "starting"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionsDeliveriesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "subscription_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "The pagination cursor value."
+          }
+        },
+        "status": {
+          "target": "com.posthog.subscriptions#SubscriptionsDeliveriesListRequestStatus",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Return only deliveries in this run status (starting, completed, failed, or skipped)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#PaginatedSubscriptionDeliveryList": {
+      "type": "structure",
+      "members": {
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.subscriptions#PaginatedSubscriptionDeliveryListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionDelivery": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primary key for this delivery row."
+          }
+        },
+        "subscription": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Parent subscription id."
+          }
+        },
+        "temporal_workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporal workflow id for this delivery run."
+          }
+        },
+        "idempotency_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dedupes activity retries for the same logical run."
+          }
+        },
+        "trigger_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why the run started (e.g. scheduled, manual, target_change)."
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Planned send time when applicable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "target_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel snapshot at send time (email or slack)."
+          }
+        },
+        "target_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination snapshot at send time (emails, channel id, URL)."
+          }
+        },
+        "exported_asset_ids": {
+          "target": "com.posthog.subscriptions#SubscriptionDeliveryExportedAssetIdsList",
+          "traits": {
+            "smithy.api#documentation": "ExportedAsset ids generated for this send."
+          }
+        },
+        "content_snapshot": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Snapshot at send time: dashboard metadata, total_insight_count, and per-exported-insight entries (id, short_id, name, query_hash, cache_key, query_results, optional query_error)."
+          }
+        },
+        "recipient_results": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Per-destination outcomes; items use status success, failed, or partial."
+          }
+        },
+        "status": {
+          "target": "com.posthog.subscriptions#SubscriptionDeliveryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Overall run status: starting, completed, failed, or skipped.\n\n* `starting` - Starting\n* `completed` - Completed\n* `failed` - Failed\n* `skipped` - Skipped"
+          }
+        },
+        "error": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Top-level failure payload when status is failed, if any."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the delivery row was created."
+          }
+        },
+        "last_updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last ORM update to this row."
+          }
+        },
+        "finished_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the run finished, if applicable.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "change_summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AI-generated summary included in this delivery, when one was produced.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionDeliveryExportedAssetIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "ExportedAsset ids generated for this send."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionDeliveryStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "starting"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `starting` - Starting\n* `completed` - Completed\n* `failed` - Failed\n* `skipped` - Skipped"
+      }
+    },
+    "com.posthog.subscriptions#PaginatedSubscriptionDeliveryListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.subscriptions#SubscriptionDelivery"
+      },
+      "traits": {}
+    },
+    "com.posthog.subscriptions#SubscriptionsDeliveriesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsDeliveriesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#PaginatedSubscriptionDeliveryList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/subscriptions/{subscription_id}/deliveries/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List subscription deliveries\n\nPaginated delivery history for a subscription. Requires premium subscriptions."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "subscription_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this subscription delivery."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#SubscriptionDelivery"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/subscriptions/{subscription_id}/deliveries/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve subscription delivery\n\nFetch one delivery row by id."
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "active_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "at_limit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/subscriptions/summary_quota/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.subscriptions#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.subscriptions#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.subscriptions#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.subscriptions#Subscriptions": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsList"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsCreate"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsRetrieve"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsUpdate"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsDestroy"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsTestDeliveryCreate"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsDeliveriesList"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieve"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

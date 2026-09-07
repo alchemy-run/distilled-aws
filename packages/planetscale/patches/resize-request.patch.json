@@ -1,0 +1,87 @@
+{
+  "description": "Fix PostgresClusterResizeRequest and PaginatedPostgresClusterResizeRequest schema: completed_at can be null, and restart is no longer returned (removed from PlanetScale's API and current spec)",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/definitions/PostgresClusterResizeRequest/required",
+      "value": [
+        "id",
+        "state",
+        "started_at",
+        "created_at",
+        "updated_at",
+        "actor",
+        "cluster_name",
+        "cluster_display_name",
+        "cluster_metal",
+        "replicas",
+        "parameters",
+        "previous_cluster_name",
+        "previous_cluster_display_name",
+        "previous_cluster_metal",
+        "previous_replicas",
+        "previous_parameters",
+        "minimum_storage_bytes",
+        "maximum_storage_bytes",
+        "storage_autoscaling",
+        "storage_shrinking",
+        "storage_type",
+        "storage_iops",
+        "storage_throughput_mibs",
+        "previous_minimum_storage_bytes",
+        "previous_maximum_storage_bytes",
+        "previous_storage_autoscaling",
+        "previous_storage_shrinking",
+        "previous_storage_type",
+        "previous_storage_iops",
+        "previous_storage_throughput_mibs"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresClusterResizeRequest/properties/completed_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedPostgresClusterResizeRequest/properties/data/items/required",
+      "value": [
+        "id",
+        "state",
+        "started_at",
+        "created_at",
+        "updated_at",
+        "actor",
+        "cluster_name",
+        "cluster_display_name",
+        "cluster_metal",
+        "replicas",
+        "parameters",
+        "previous_cluster_name",
+        "previous_cluster_display_name",
+        "previous_cluster_metal",
+        "previous_replicas",
+        "previous_parameters",
+        "minimum_storage_bytes",
+        "maximum_storage_bytes",
+        "storage_autoscaling",
+        "storage_shrinking",
+        "storage_type",
+        "storage_iops",
+        "storage_throughput_mibs",
+        "previous_minimum_storage_bytes",
+        "previous_maximum_storage_bytes",
+        "previous_storage_autoscaling",
+        "previous_storage_shrinking",
+        "previous_storage_type",
+        "previous_storage_iops",
+        "previous_storage_throughput_mibs"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresClusterResizeRequest/properties/data/items/properties/completed_at/x-nullable",
+      "value": true
+    }
+  ]
+}

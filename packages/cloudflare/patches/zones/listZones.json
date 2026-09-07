@@ -1,0 +1,41 @@
+{
+  "description": "Align zones#List with distilled cloudflare/zones listZones",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#List",
+      "path": "/shapes/com.cloudflare.zones#ListZones"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#ListRequest",
+      "path": "/shapes/com.cloudflare.zones#ListZonesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#ListZones/input/target",
+      "value": "com.cloudflare.zones#ListZonesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#ListResponse",
+      "path": "/shapes/com.cloudflare.zones#ListZonesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#ListZones/output/target",
+      "value": "com.cloudflare.zones#ListZonesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#ListZones/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

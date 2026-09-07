@@ -1,0 +1,32 @@
+{
+  "description": "Align page_shield#PoliciesDelete with distilled cloudflare/page-shield deletePolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesDelete",
+      "path": "/shapes/com.cloudflare.page_shield#DeletePolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#PoliciesDeleteRequest",
+      "path": "/shapes/com.cloudflare.page_shield#DeletePolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#DeletePolicy/input/target",
+      "value": "com.cloudflare.page_shield#DeletePolicyRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_shield#DeletePolicy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_shield#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    }
+  ]
+}

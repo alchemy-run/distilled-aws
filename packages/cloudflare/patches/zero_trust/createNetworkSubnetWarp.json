@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksSubnetsWarpCreate with distilled cloudflare/zero-trust createNetworkSubnetWarp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkSubnetWarp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkSubnetWarpRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkSubnetWarp/input/target",
+      "value": "com.cloudflare.zero_trust#CreateNetworkSubnetWarpRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkSubnetWarpResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkSubnetWarp/output/target",
+      "value": "com.cloudflare.zero_trust#CreateNetworkSubnetWarpResponse"
+    }
+  ]
+}

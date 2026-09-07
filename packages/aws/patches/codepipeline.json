@@ -1,0 +1,21 @@
+{
+  "structures": {
+    "WebhookAuthConfiguration": {
+      "members": {
+        "SecretToken": { "sensitive": true }
+      }
+    },
+    "ActionRevision": {
+      "members": {
+        "revisionChangeId": { "optional": true },
+        "created": { "optional": true }
+      }
+    },
+    "RuleRevision": {
+      "members": {
+        "revisionChangeId": { "optional": true },
+        "created": { "optional": true }
+      }
+    }
+  }
+}

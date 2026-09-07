@@ -1,0 +1,39 @@
+{
+  "description": "Key dictionary / op aliases for d1 (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "atBookmark": "at_bookmark",
+        "changedDb": "changed_db",
+        "createdAt": "created_at",
+        "currentBookmark": "current_bookmark",
+        "dumpOptions": "dump_options",
+        "fileSize": "file_size",
+        "finalBookmark": "final_bookmark",
+        "lastRowId": "last_row_id",
+        "noData": "no_data",
+        "noSchema": "no_schema",
+        "numQueries": "num_queries",
+        "numTables": "num_tables",
+        "outputFormat": "output_format",
+        "perPage": "per_page",
+        "previousBookmark": "previous_bookmark",
+        "primaryLocationHint": "primary_location_hint",
+        "readReplication": "read_replication",
+        "resultInfo": "result_info",
+        "rowsRead": "rows_read",
+        "rowsWritten": "rows_written",
+        "servedByColo": "served_by_colo",
+        "servedByPrimary": "served_by_primary",
+        "servedByRegion": "served_by_region",
+        "signedUrl": "signed_url",
+        "sizeAfter": "size_after",
+        "sqlDurationMs": "sql_duration_ms",
+        "totalCount": "total_count",
+        "uploadUrl": "upload_url"
+      }
+    }
+  ]
+}

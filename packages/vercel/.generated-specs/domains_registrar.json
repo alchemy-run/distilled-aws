@@ -1,0 +1,4165 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.domains_registrar#GetSupportedTldsRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetSupportedTldsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the TLDs supported by Vercel."
+      }
+    },
+    "com.vercel.domains_registrar#GetSupportedTldsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.domains_registrar#GetSupportedTldsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetSupportedTlds": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetSupportedTldsRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetSupportedTldsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/tlds/supported",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get supported TLDs\n\nGet a list of TLDs supported by Vercel"
+      }
+    },
+    "com.vercel.domains_registrar#GetTldRequest": {
+      "type": "structure",
+      "members": {
+        "tld": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetTldResponseSupportedLanguageCodesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The language codes that are supported for the TLD. The key is the language code, and the value is the name of the language."
+      }
+    },
+    "com.vercel.domains_registrar#GetTldResponse": {
+      "type": "structure",
+      "members": {
+        "supportedLanguageCodes": {
+          "target": "com.vercel.domains_registrar#GetTldResponseSupportedLanguageCodesMap",
+          "traits": {
+            "smithy.api#documentation": "The language codes that are supported for the TLD. The key is the language code, and the value is the name of the language.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetTld": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetTldRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetTldResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/tlds/{tld}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get TLD\n\nGet the metadata for a specific TLD."
+      }
+    },
+    "com.vercel.domains_registrar#GetTldPriceRequest": {
+      "type": "structure",
+      "members": {
+        "tld": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "years",
+            "smithy.api#documentation": "The number of years to get the price for. If not provided, the minimum number of years for the TLD will be used."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetTldPriceResponsePurchasePrice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Double"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetTldPriceResponseRenewalPrice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Double"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetTldPriceResponseTransferPrice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Double"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetTldPriceResponse": {
+      "type": "structure",
+      "members": {
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years the returned price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "purchasePrice": {
+          "target": "com.vercel.domains_registrar#GetTldPriceResponsePurchasePrice",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "renewalPrice": {
+          "target": "com.vercel.domains_registrar#GetTldPriceResponseRenewalPrice",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "transferPrice": {
+          "target": "com.vercel.domains_registrar#GetTldPriceResponseTransferPrice",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetTldPrice": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetTldPriceRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetTldPriceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/tlds/{tld}/price",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get TLD price data\n\nGet price data for a specific TLD. This only reflects base prices for the given TLD. Premium domains may have different prices. Use the [Get price data for a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-price-data-for-a-domain) endpoint to get the price data for a specific domain."
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetDomainAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetDomainAvailabilityResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/domains/{domain}/availability",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get availability for a domain\n\nGet availability for a specific domain. If the domain is available, it can be purchased using the [Buy a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/buy-a-domain) endpoint or the [Buy multiple domains](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/buy-multiple-domains) endpoint."
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainPriceRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "years",
+            "smithy.api#documentation": "The number of years to get the price for. If not provided, the minimum number of years for the TLD will be used."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainPriceResponsePurchasePrice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Double"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetDomainPriceResponseRenewalPrice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Double"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetDomainPriceResponseTransferPrice": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Double"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetDomainPriceResponse": {
+      "type": "structure",
+      "members": {
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "purchasePrice": {
+          "target": "com.vercel.domains_registrar#GetDomainPriceResponsePurchasePrice",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "renewalPrice": {
+          "target": "com.vercel.domains_registrar#GetDomainPriceResponseRenewalPrice",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "transferPrice": {
+          "target": "com.vercel.domains_registrar#GetDomainPriceResponseTransferPrice",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainPrice": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetDomainPriceRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetDomainPriceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/domains/{domain}/price",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get price data for a domain\n\nGet price data for a specific domain"
+      }
+    },
+    "com.vercel.domains_registrar#GetBulkAvailabilityRequestDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "an array of at most 50 item(s)"
+      }
+    },
+    "com.vercel.domains_registrar#GetBulkAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "domains": {
+          "target": "com.vercel.domains_registrar#GetBulkAvailabilityRequestDomainsList",
+          "traits": {
+            "smithy.api#documentation": "an array of at most 50 item(s)",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetBulkAvailabilityResponseResultsItem": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetBulkAvailabilityResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.domains_registrar#GetBulkAvailabilityResponseResultsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetBulkAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.vercel.domains_registrar#GetBulkAvailabilityResponseResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetBulkAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetBulkAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetBulkAvailabilityResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/registrar/domains/availability",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get availability for multiple domains\n\nGet availability for multiple domains. If the domains are available, they can be purchased using the [Buy a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/buy-a-domain) endpoint or the [Buy multiple domains](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/buy-multiple-domains) endpoint."
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainAuthCodeRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainAuthCodeResponse": {
+      "type": "structure",
+      "members": {
+        "authCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainAuthCode": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetDomainAuthCodeRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetDomainAuthCodeResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/domains/{domain}/auth-code",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the auth code for a domain\n\nGet the auth code for a domain. This is required to transfer a domain from Vercel to another registrar."
+      }
+    },
+    "com.vercel.domains_registrar#BuySingleDomainRequestContactInformation": {
+      "type": "structure",
+      "members": {
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address2": {
+          "target": "smithy.api#String"
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "zip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "companyName": {
+          "target": "smithy.api#String"
+        },
+        "fax": {
+          "target": "smithy.api#String"
+        },
+        "additional": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The contact information for the domain. Some TLDs require additional contact information. Use the [Get contact info schema](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-contact-info-schema) endpoint to retrieve the required fields."
+      }
+    },
+    "com.vercel.domains_registrar#BuySingleDomainRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the domain should be auto-renewed before it expires. This can be configured later through the Vercel Dashboard or the [Update auto-renew for a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain) endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years to purchase the domain for.",
+            "smithy.api#required": {}
+          }
+        },
+        "expectedPrice": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contactInformation": {
+          "target": "com.vercel.domains_registrar#BuySingleDomainRequestContactInformation",
+          "traits": {
+            "smithy.api#documentation": "The contact information for the domain. Some TLDs require additional contact information. Use the [Get contact info schema](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-contact-info-schema) endpoint to retrieve the required fields.",
+            "smithy.api#required": {}
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language code for the domain. For punycode domains, this must be provided. The list of supported language codes for a TLD can be retrieved from the [Get TLD](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-tld) endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#BuySingleDomainResponseLinksValueMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuySingleDomainResponseLinksValue": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.vercel.domains_registrar#BuySingleDomainResponseLinksValueMethod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuySingleDomainResponseLinksMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.domains_registrar#BuySingleDomainResponseLinksValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuySingleDomainResponse": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_links": {
+          "target": "com.vercel.domains_registrar#BuySingleDomainResponseLinksMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#BuySingleDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#BuySingleDomainRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#BuySingleDomainResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/registrar/domains/{domain}/buy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Buy a domain\n\nBuy a domain"
+      }
+    },
+    "com.vercel.domains_registrar#BuyDomainsRequestDomainsItem": {
+      "type": "structure",
+      "members": {
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the domain should be auto-renewed before it expires. This can be configured later through the Vercel Dashboard or the [Update auto-renew for a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain) endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years to purchase the domain for.",
+            "smithy.api#required": {}
+          }
+        },
+        "expectedPrice": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language code for the domain. For punycode domains, this must be provided. The list of supported language codes for a TLD can be retrieved from the [Get TLD](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-tld) endpoint."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuyDomainsRequestDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.domains_registrar#BuyDomainsRequestDomainsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuyDomainsRequestContactInformation": {
+      "type": "structure",
+      "members": {
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address2": {
+          "target": "smithy.api#String"
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "zip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "companyName": {
+          "target": "smithy.api#String"
+        },
+        "fax": {
+          "target": "smithy.api#String"
+        },
+        "additional": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The contact information for the domain. Some TLDs require additional contact information. Use the [Get contact info schema](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-contact-info-schema) endpoint to retrieve the required fields."
+      }
+    },
+    "com.vercel.domains_registrar#BuyDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "domains": {
+          "target": "com.vercel.domains_registrar#BuyDomainsRequestDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contactInformation": {
+          "target": "com.vercel.domains_registrar#BuyDomainsRequestContactInformation",
+          "traits": {
+            "smithy.api#documentation": "The contact information for the domain. Some TLDs require additional contact information. Use the [Get contact info schema](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/get-contact-info-schema) endpoint to retrieve the required fields.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#BuyDomainsResponseLinksValueMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuyDomainsResponseLinksValue": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.vercel.domains_registrar#BuyDomainsResponseLinksValueMethod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuyDomainsResponseLinksMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.domains_registrar#BuyDomainsResponseLinksValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#BuyDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_links": {
+          "target": "com.vercel.domains_registrar#BuyDomainsResponseLinksMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#BuyDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#BuyDomainsRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#BuyDomainsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/registrar/domains/buy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Buy multiple domains\n\nBuy multiple domains at once"
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainTransferInRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainTransferInResponseStatus": {
+      "type": "enum",
+      "members": {
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canceled"
+          }
+        },
+        "CANCELED_PENDING_REFUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canceled_pending_refund"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "PENDING_INSERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_insert"
+          }
+        },
+        "PENDING_NEW_AUTH_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_new_auth_code"
+          }
+        },
+        "PENDING_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_transfer"
+          }
+        },
+        "PENDING_UNLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_unlock"
+          }
+        },
+        "PENDING_REGISTRY_UNLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_registry_unlock"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rejected"
+          }
+        },
+        "SUBMITTING_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "submitting_transfer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetDomainTransferInResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.vercel.domains_registrar#GetDomainTransferInResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainTransferIn": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetDomainTransferInRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetDomainTransferInResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/domains/{domain}/transfer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a domain's transfer status\n\nGet the transfer status for a domain"
+      }
+    },
+    "com.vercel.domains_registrar#TransferInDomainRequestContactInformation": {
+      "type": "structure",
+      "members": {
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address2": {
+          "target": "smithy.api#String"
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "zip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "companyName": {
+          "target": "smithy.api#String"
+        },
+        "fax": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#TransferInDomainRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "authCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The auth code for the domain. You must obtain this code from the losing registrar.",
+            "smithy.api#required": {}
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the domain should be auto-renewed before it expires. This can be configured later through the Vercel Dashboard or the [Update auto-renew for a domain](https://vercel.com/docs/rest-api/reference/endpoints/domains-registrar/update-auto-renew-for-a-domain) endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years to renew the domain for once it is transferred in. This must be a valid number of transfer years for the TLD.",
+            "smithy.api#required": {}
+          }
+        },
+        "expectedPrice": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contactInformation": {
+          "target": "com.vercel.domains_registrar#TransferInDomainRequestContactInformation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#TransferInDomainResponseLinksValueMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#TransferInDomainResponseLinksValue": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.vercel.domains_registrar#TransferInDomainResponseLinksValueMethod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#TransferInDomainResponseLinksMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.domains_registrar#TransferInDomainResponseLinksValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#TransferInDomainResponse": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_links": {
+          "target": "com.vercel.domains_registrar#TransferInDomainResponseLinksMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#TransferInDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#TransferInDomainRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#TransferInDomainResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/registrar/domains/{domain}/transfer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Transfer-in a domain\n\nTransfer a domain in from another registrar"
+      }
+    },
+    "com.vercel.domains_registrar#RenewDomainRequestContactInformation": {
+      "type": "structure",
+      "members": {
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address2": {
+          "target": "smithy.api#String"
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "zip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "companyName": {
+          "target": "smithy.api#String"
+        },
+        "fax": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#RenewDomainRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years to renew the domain for.",
+            "smithy.api#required": {}
+          }
+        },
+        "expectedPrice": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contactInformation": {
+          "target": "com.vercel.domains_registrar#RenewDomainRequestContactInformation"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#RenewDomainResponseLinksValueMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#RenewDomainResponseLinksValue": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.vercel.domains_registrar#RenewDomainResponseLinksValueMethod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#RenewDomainResponseLinksMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.domains_registrar#RenewDomainResponseLinksValue"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#RenewDomainResponse": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "_links": {
+          "target": "com.vercel.domains_registrar#RenewDomainResponseLinksMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#RenewDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#RenewDomainRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#RenewDomainResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/registrar/domains/{domain}/renew",
+          "code": 200
+        },
+        "smithy.api#documentation": "Renew a domain\n\nRenew a domain"
+      }
+    },
+    "com.vercel.domains_registrar#UpdateDomainAutoRenewRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#UpdateDomainAutoRenew": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#UpdateDomainAutoRenewRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/registrar/domains/{domain}/auto-renew",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update auto-renew for a domain\n\nUpdate the auto-renew setting for a domain"
+      }
+    },
+    "com.vercel.domains_registrar#UpdateDomainNameserversRequestNameserversList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#UpdateDomainNameserversRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        },
+        "nameservers": {
+          "target": "com.vercel.domains_registrar#UpdateDomainNameserversRequestNameserversList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#UpdateDomainNameservers": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#UpdateDomainNameserversRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/registrar/domains/{domain}/nameservers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update nameservers for a domain\n\nUpdate the nameservers for a domain. Pass an empty array to use Vercel's default nameservers."
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainContactVerificationRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#ContactVerified": {
+      "type": "structure",
+      "members": {
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The registrant contact has been verified."
+      }
+    },
+    "com.vercel.domains_registrar#ContactPendingVerification": {
+      "type": "structure",
+      "members": {
+        "verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verifyBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The registrant contact has not yet been verified. The contact must be verified by `verifyBy`, and a verification email is sent to `email`."
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainContactVerificationResponseBody": {
+      "type": "union",
+      "members": {
+        "ContactVerified": {
+          "target": "com.vercel.domains_registrar#ContactVerified"
+        },
+        "ContactPendingVerification": {
+          "target": "com.vercel.domains_registrar#ContactPendingVerification"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetDomainContactVerificationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.domains_registrar#GetDomainContactVerificationResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetDomainContactVerification": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetDomainContactVerificationRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetDomainContactVerificationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/domains/{domain}/contact-verification",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get contact verification status for a domain\n\nGet the registrant contact verification status for a domain. Use this after purchasing a domain to determine whether the contact has been verified. Note that a bought_too_recently error will be returned if the domain was bought less than 30 minutes before the request."
+      }
+    },
+    "com.vercel.domains_registrar#GetContactInfoSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetContactInfoSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetContactInfoSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetContactInfoSchemaRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetContactInfoSchemaResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/domains/{domain}/contact-info/schema",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get contact info schema\n\nSome TLDs require additional contact information. Use this endpoint to get the schema for the tld-specific contact information for a domain."
+      }
+    },
+    "com.vercel.domains_registrar#GetOrderRequest": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0PurchaseType": {
+      "type": "enum",
+      "members": {
+        "PURCHASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "purchase"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0Status": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refunded"
+          }
+        },
+        "REFUND_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refund-failed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case0Code": {
+      "type": "enum",
+      "members": {
+        "UNSUPPORTED_LANGUAGE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsupported-language-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case0Details": {
+      "type": "structure",
+      "members": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case0": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case0Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case0Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case1Code": {
+      "type": "enum",
+      "members": {
+        "INCORRECT_LANGUAGE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incorrect-language-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case1Details": {
+      "type": "structure",
+      "members": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case1Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case1Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case2Code": {
+      "type": "enum",
+      "members": {
+        "CLIENT_TRANSFER_PROHIBITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client-transfer-prohibited"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case2": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case2Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case3Code": {
+      "type": "enum",
+      "members": {
+        "INCORRECT_AUTH_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incorrect-auth-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case3": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case3Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case4Code": {
+      "type": "enum",
+      "members": {
+        "CLAIMS_NOTICE_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "claims-notice-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case4": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case4Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case5Code": {
+      "type": "enum",
+      "members": {
+        "CANNOT_TRANSFER_IN_UNTIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cannot-transfer-in-until"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case5Details": {
+      "type": "structure",
+      "members": {
+        "numDaysUntilTransferrable": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case5": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case5Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case5Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case6Code": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_TRANSFER_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account-transfer-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case6": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case6Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case7Code": {
+      "type": "enum",
+      "members": {
+        "PRICE_CHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "price-change"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case7": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case7Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case8Code": {
+      "type": "enum",
+      "members": {
+        "UNAVAILABLE_LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable-legal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case8": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case8Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9Code": {
+      "type": "enum",
+      "members": {
+        "INVALID_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invalid-contact"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9DetailsInvalidField": {
+      "type": "enum",
+      "members": {
+        "FIRSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firstName"
+          }
+        },
+        "LASTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastName"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phone"
+          }
+        },
+        "ADDRESS1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "address1"
+          }
+        },
+        "ADDRESS2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "address2"
+          }
+        },
+        "CITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "city"
+          }
+        },
+        "STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "state"
+          }
+        },
+        "ZIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zip"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "country"
+          }
+        },
+        "COMPANYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "companyName"
+          }
+        },
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fax"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9Details": {
+      "type": "structure",
+      "members": {
+        "invalidField": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9DetailsInvalidField"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case1"
+        },
+        "Case2": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case2"
+        },
+        "Case3": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case3"
+        },
+        "Case4": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case4"
+        },
+        "Case5": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case5"
+        },
+        "Case6": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case6"
+        },
+        "Case7": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case7"
+        },
+        "Case8": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case8"
+        },
+        "Case9": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0Case9"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0Error": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0ErrorCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0": {
+      "type": "structure",
+      "members": {
+        "purchaseType": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0PurchaseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years the domain is being purchased for.",
+            "smithy.api#required": {}
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0Status",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "price": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0Error"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1PurchaseType": {
+      "type": "enum",
+      "members": {
+        "RENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "renewal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1Status": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refunded"
+          }
+        },
+        "REFUND_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refund-failed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case0Code": {
+      "type": "enum",
+      "members": {
+        "UNSUPPORTED_LANGUAGE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsupported-language-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case0Details": {
+      "type": "structure",
+      "members": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case0": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case0Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case0Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case1Code": {
+      "type": "enum",
+      "members": {
+        "INCORRECT_LANGUAGE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incorrect-language-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case1Details": {
+      "type": "structure",
+      "members": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case1Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case1Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case2Code": {
+      "type": "enum",
+      "members": {
+        "CLIENT_TRANSFER_PROHIBITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client-transfer-prohibited"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case2": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case2Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case3Code": {
+      "type": "enum",
+      "members": {
+        "INCORRECT_AUTH_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incorrect-auth-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case3": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case3Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case4Code": {
+      "type": "enum",
+      "members": {
+        "CLAIMS_NOTICE_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "claims-notice-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case4": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case4Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case5Code": {
+      "type": "enum",
+      "members": {
+        "CANNOT_TRANSFER_IN_UNTIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cannot-transfer-in-until"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case5Details": {
+      "type": "structure",
+      "members": {
+        "numDaysUntilTransferrable": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case5": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case5Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case5Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case6Code": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_TRANSFER_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account-transfer-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case6": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case6Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case7Code": {
+      "type": "enum",
+      "members": {
+        "PRICE_CHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "price-change"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case7": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case7Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case8Code": {
+      "type": "enum",
+      "members": {
+        "UNAVAILABLE_LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable-legal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case8": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case8Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9Code": {
+      "type": "enum",
+      "members": {
+        "INVALID_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invalid-contact"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9DetailsInvalidField": {
+      "type": "enum",
+      "members": {
+        "FIRSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firstName"
+          }
+        },
+        "LASTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastName"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phone"
+          }
+        },
+        "ADDRESS1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "address1"
+          }
+        },
+        "ADDRESS2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "address2"
+          }
+        },
+        "CITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "city"
+          }
+        },
+        "STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "state"
+          }
+        },
+        "ZIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zip"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "country"
+          }
+        },
+        "COMPANYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "companyName"
+          }
+        },
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fax"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9Details": {
+      "type": "structure",
+      "members": {
+        "invalidField": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9DetailsInvalidField"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case1"
+        },
+        "Case2": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case2"
+        },
+        "Case3": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case3"
+        },
+        "Case4": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case4"
+        },
+        "Case5": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case5"
+        },
+        "Case6": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case6"
+        },
+        "Case7": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case7"
+        },
+        "Case8": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case8"
+        },
+        "Case9": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0Case9"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1Error": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1ErrorCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1": {
+      "type": "structure",
+      "members": {
+        "purchaseType": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1PurchaseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years the domain is being renewed for.",
+            "smithy.api#required": {}
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1Status",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "price": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1Error"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2PurchaseType": {
+      "type": "enum",
+      "members": {
+        "TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "transfer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2Status": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refunded"
+          }
+        },
+        "REFUND_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "refund-failed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case0Code": {
+      "type": "enum",
+      "members": {
+        "UNSUPPORTED_LANGUAGE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsupported-language-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case0Details": {
+      "type": "structure",
+      "members": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case0": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case0Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case0Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case1Code": {
+      "type": "enum",
+      "members": {
+        "INCORRECT_LANGUAGE_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incorrect-language-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case1Details": {
+      "type": "structure",
+      "members": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case1Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case1Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case2Code": {
+      "type": "enum",
+      "members": {
+        "CLIENT_TRANSFER_PROHIBITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "client-transfer-prohibited"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case2": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case2Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case3Code": {
+      "type": "enum",
+      "members": {
+        "INCORRECT_AUTH_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incorrect-auth-code"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case3": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case3Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case4Code": {
+      "type": "enum",
+      "members": {
+        "CLAIMS_NOTICE_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "claims-notice-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case4": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case4Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case5Code": {
+      "type": "enum",
+      "members": {
+        "CANNOT_TRANSFER_IN_UNTIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cannot-transfer-in-until"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case5Details": {
+      "type": "structure",
+      "members": {
+        "numDaysUntilTransferrable": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case5": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case5Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case5Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case6Code": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_TRANSFER_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account-transfer-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case6": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case6Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case7Code": {
+      "type": "enum",
+      "members": {
+        "PRICE_CHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "price-change"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case7": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case7Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case8Code": {
+      "type": "enum",
+      "members": {
+        "UNAVAILABLE_LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unavailable-legal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case8": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case8Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9Code": {
+      "type": "enum",
+      "members": {
+        "INVALID_CONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invalid-contact"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9DetailsInvalidField": {
+      "type": "enum",
+      "members": {
+        "FIRSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firstName"
+          }
+        },
+        "LASTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastName"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phone"
+          }
+        },
+        "ADDRESS1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "address1"
+          }
+        },
+        "ADDRESS2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "address2"
+          }
+        },
+        "CITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "city"
+          }
+        },
+        "STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "state"
+          }
+        },
+        "ZIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zip"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "country"
+          }
+        },
+        "COMPANYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "companyName"
+          }
+        },
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fax"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9Details": {
+      "type": "structure",
+      "members": {
+        "invalidField": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9DetailsInvalidField"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case1"
+        },
+        "Case2": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case2"
+        },
+        "Case3": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case3"
+        },
+        "Case4": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case4"
+        },
+        "Case5": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case5"
+        },
+        "Case6": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case6"
+        },
+        "Case7": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case7"
+        },
+        "Case8": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case8"
+        },
+        "Case9": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0Case9"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2Error": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2ErrorCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2": {
+      "type": "structure",
+      "members": {
+        "purchaseType": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2PurchaseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "autoRenew": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "years": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of years the domain is being transferred for.",
+            "smithy.api#required": {}
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2Status",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "price": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2Error"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase1"
+        },
+        "Case2": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItemCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.domains_registrar#GetOrderResponseDomainsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseStatus": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "draft"
+          }
+        },
+        "PURCHASING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "purchasing"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case0Code": {
+      "type": "enum",
+      "members": {
+        "PAYMENT_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payment-failed"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case0": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case0Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1Code": {
+      "type": "enum",
+      "members": {
+        "TLD_OUTAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tld-outage"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1DetailsTldsItem": {
+      "type": "structure",
+      "members": {
+        "tldName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "endsAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1DetailsTldsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1DetailsTldsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1Details": {
+      "type": "structure",
+      "members": {
+        "tlds": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1DetailsTldsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case2Code": {
+      "type": "enum",
+      "members": {
+        "PRICE_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "price-mismatch"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case2Details": {
+      "type": "structure",
+      "members": {
+        "expectedPrice": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "actualPrice": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case2": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case2Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case2Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case3Code": {
+      "type": "enum",
+      "members": {
+        "UNEXPECTED_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unexpected-error"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case3": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case3Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4Code": {
+      "type": "enum",
+      "members": {
+        "CLAIMS_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "claims-required"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4DetailsDomainNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4Details": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "domainNames": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4DetailsDomainNamesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4Details",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case5Code": {
+      "type": "enum",
+      "members": {
+        "DOMAIN_MISMATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain-mismatch"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case5": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case5Code",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase0": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case1"
+        },
+        "Case2": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case2"
+        },
+        "Case3": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case3"
+        },
+        "Case4": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case4"
+        },
+        "Case5": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0Case5"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseErrorCase1": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponseError": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase0"
+        },
+        "Case1": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseErrorCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.domains_registrar#GetOrderResponse": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "domains": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.vercel.domains_registrar#GetOrderResponseError"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.domains_registrar#GetOrder": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.domains_registrar#GetOrderRequest"
+      },
+      "output": {
+        "target": "com.vercel.domains_registrar#GetOrderResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.domains_registrar#BadRequest"
+        },
+        {
+          "target": "com.vercel.domains_registrar#Forbidden"
+        },
+        {
+          "target": "com.vercel.domains_registrar#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/registrar/orders/{orderId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a domain order\n\nGet information about a domain order by its ID"
+      }
+    },
+    "com.vercel.domains_registrar#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.domains_registrar#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.domains_registrar#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.domains_registrar#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.vercel.domains_registrar#DomainsRegistrar": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.domains_registrar#GetSupportedTlds"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetTld"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetTldPrice"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainAvailability"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainPrice"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetBulkAvailability"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainAuthCode"
+        },
+        {
+          "target": "com.vercel.domains_registrar#BuySingleDomain"
+        },
+        {
+          "target": "com.vercel.domains_registrar#BuyDomains"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainTransferIn"
+        },
+        {
+          "target": "com.vercel.domains_registrar#TransferInDomain"
+        },
+        {
+          "target": "com.vercel.domains_registrar#RenewDomain"
+        },
+        {
+          "target": "com.vercel.domains_registrar#UpdateDomainAutoRenew"
+        },
+        {
+          "target": "com.vercel.domains_registrar#UpdateDomainNameservers"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainContactVerification"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetContactInfoSchema"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetOrder"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

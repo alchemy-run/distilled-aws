@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEmailRulesCreate with distilled cloudflare/zero-trust createDlpEmailRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailRule/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpEmailRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEmailRulesCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEmailRule/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpEmailRuleResponse"
+    }
+  ]
+}

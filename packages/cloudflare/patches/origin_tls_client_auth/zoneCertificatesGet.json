@@ -1,0 +1,17 @@
+{
+  "description": "Align origin_tls_client_auth#ZoneCertificatesGet with distilled cloudflare/origin-tls-client-auth getOriginTlsClientAuth (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ZoneCertificatesGet/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

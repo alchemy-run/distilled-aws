@@ -1,0 +1,4354 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestIdList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "COMMAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command"
+          }
+        },
+        "COMMAND_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:asc"
+          }
+        },
+        "COMMAND_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:desc"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "STATUS_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:asc"
+          }
+        },
+        "STATUS_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:desc"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started"
+          }
+        },
+        "STARTED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:asc"
+          }
+        },
+        "STARTED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:desc"
+          }
+        },
+        "FINISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished"
+          }
+        },
+        "FINISHED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:asc"
+          }
+        },
+        "FINISHED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestStatusItem": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestStatusItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestIdList",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "Filter the actions by ID. May be used multiple times.\n\nThe response will only contain actions matching the specified IDs.\n"
+          }
+        },
+        "sort": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort actions by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequestStatusList",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the actions by status. May be used multiple times.\n\nThe response will only contain actions matching the specified statuses.\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponse": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseActionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancersActions": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/load_balancers/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Actions\n\nReturns all Action objects. You can `sort` the results by using the sort URI parameter, and filter them with the `status` and `id` parameter.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "actions",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#GetLoadBalancersAction": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#GetLoadBalancersActionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/load_balancers/actions/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an Action\n\nReturns a specific Action object."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "COMMAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command"
+          }
+        },
+        "COMMAND_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:asc"
+          }
+        },
+        "COMMAND_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "command:desc"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        },
+        "STATUS_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:asc"
+          }
+        },
+        "STATUS_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status:desc"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started"
+          }
+        },
+        "STARTED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:asc"
+          }
+        },
+        "STARTED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started:desc"
+          }
+        },
+        "FINISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished"
+          }
+        },
+        "FINISHED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:asc"
+          }
+        },
+        "FINISHED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "finished:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestStatusItem": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestStatusItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "sort": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort actions by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequestStatusList",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the actions by status. May be used multiple times.\n\nThe response will only contain actions matching the specified statuses.\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItemError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponse": {
+      "type": "structure",
+      "members": {
+        "actions": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseActionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ListLoadBalancerActions": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/load_balancers/{id}/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Actions for a Load Balancer\n\nReturns all Action objects for a Load Balancer. You can sort the results by using the `sort` URI parameter, and filter them with the `status` parameter.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "actions",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "https"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protocol of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheckProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the health check."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheckHttpStatusCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheckHttp": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead."
+          }
+        },
+        "response": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that must be contained in HTTP response in order to pass the health check."
+          }
+        },
+        "status_codes": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheckHttpStatusCodesList",
+          "traits": {
+            "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+          }
+        },
+        "tls": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use HTTPS for health check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional configuration for protocol http."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheck": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheckProtocol",
+          "traits": {
+            "smithy.api#documentation": "Type of the health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the health check will be performed on.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time interval in seconds health checks are performed.",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time in seconds after an attempt is considered a timeout.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unsuccessful retries needed until a target is considered unhealthy; an unhealthy target needs the same number of successful retries to become healthy again.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheckHttp",
+          "traits": {
+            "smithy.api#documentation": "Additional configuration for protocol http."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHttpCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough or if `protocol` is `http`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHttp": {
+      "type": "structure",
+      "members": {
+        "cookie_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the cookie used for sticky sessions."
+          }
+        },
+        "cookie_lifetime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lifetime of the cookie used for sticky sessions (in seconds)."
+          }
+        },
+        "timeout_idle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Idle timeout in seconds for the client and server side."
+          }
+        },
+        "certificates": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHttpCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough or if `protocol` is `http`."
+          }
+        },
+        "redirect_http": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Redirect HTTP requests to HTTPS. Only available if `protocol` is `https`."
+          }
+        },
+        "sticky_sessions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use sticky sessions. Only available if `protocol` is `http` or `https`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration option for protocols http and https."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestProtocol",
+          "traits": {
+            "smithy.api#documentation": "Protocol of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer listens on.",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer will balance to.",
+            "smithy.api#required": {}
+          }
+        },
+        "proxyprotocol": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Proxyprotocol enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "health_check": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHealthCheck",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequestHttp",
+          "traits": {
+            "smithy.api#documentation": "Configuration option for protocols http and https."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerService": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#AddLoadBalancerServiceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/add_service",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Service\n\nAdds a service to a Load Balancer.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional public IP of the Server to use as target.\nMust be the Primary IPv4 of the Server, or an IPv6 host address within IPv6 /64 subnet of the Server. If omitted, the Primary IPv4 of the Server is used. Must not be a private IP and is only valid for public targets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for type Server, only valid and required if type is `server`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for label selector targets, only valid and required if type is `label_selector`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestIp": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of a server that belongs to the same customer (public IPv4/IPv6) or private IP in a subnet type vswitch.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for an IP target. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only valid and required if type is `ip`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "type": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestServer",
+          "traits": {
+            "smithy.api#documentation": "Configuration for type Server, only valid and required if type is `server`."
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "Configuration for label selector targets, only valid and required if type is `label_selector`."
+          }
+        },
+        "ip": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequestIp",
+          "traits": {
+            "smithy.api#documentation": "Configuration for an IP target. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only valid and required if type is `ip`."
+          }
+        },
+        "use_private_ip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use the private network IP instead of the public IP of the Server, requires the Server and Load Balancer to be in the same network. Only valid for target types `server` and `label_selector`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#AddLoadBalancerTarget": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTargetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/add_target",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Target\n\nAdds a target to a Load Balancer.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of an existing network to attach the Load Balancer to.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP to request to be assigned to this Load Balancer; if you do not provide this then you will be auto assigned an IP address."
+          }
+        },
+        "ip_range": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP range in CIDR block notation of the subnet to attach to.\n\nThis allows for auto assigning an IP address for a specific subnet.\nProviding `ip` that is not part of `ip_range` will result in an error.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetworkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/attach_to_network",
+          "code": 200
+        },
+        "smithy.api#documentation": "Attach a Load Balancer to a Network\n\nAttach a Load Balancer to a Network.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmRequestType": {
+      "type": "enum",
+      "members": {
+        "ROUND_ROBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "round_robin"
+          }
+        },
+        "LEAST_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "least_connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the algorithm."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "type": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmRequestType",
+          "traits": {
+            "smithy.api#documentation": "Type of the algorithm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithm": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithmResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/change_algorithm",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change Algorithm\n\nChange the algorithm that determines to which target new requests are sent."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Single IPv4 or IPv6 address to create pointer for.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain Name to point to.\n\nPTR record content used for reverse DNS. Set to null to reset (IPv4) to the default value or remove (IPv6) the record.\n",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtr": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtrResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/change_dns_ptr",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change reverse DNS entry for this Load Balancer\n\nChanges the hostname that will appear when getting the hostname belonging to the public IPs (IPv4 and IPv6) of this Load Balancer.\n\nFloating IPs assigned to the Server are not affected by this."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, prevents the Load Balancer from being deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtection": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtectionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/change_protection",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change Load Balancer Protection\n\nChanges the protection configuration of a Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "load_balancer_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID or name of Load Balancer type the Load Balancer should migrate to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#ChangeLoadBalancerType": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerTypeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/change_type",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change the Type of a Load Balancer\n\nChanges the type (Max Services, Max Targets and Max Connections) of a Load Balancer.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The listen port of the service you want to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#DeleteLoadBalancerService": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerServiceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/delete_service",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Service\n\nDelete a service of a Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of an existing network to detach the Load Balancer from.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetwork": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetworkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/detach_from_network",
+          "code": 200
+        },
+        "smithy.api#documentation": "Detach a Load Balancer from a Network\n\nDetaches a Load Balancer from a network."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterfaceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/disable_public_interface",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable the public interface of a Load Balancer\n\nDisable the public interface of a Load Balancer. The Load Balancer will be not accessible from the internet via its public IPs.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterfaceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/enable_public_interface",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable the public interface of a Load Balancer\n\nEnable the public interface of a Load Balancer. The Load Balancer will be accessible from the internet via its public IPs."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional public IP of the Server to use as target.\nMust be the Primary IPv4 of the Server, or an IPv6 host address within IPv6 /64 subnet of the Server. If omitted, the Primary IPv4 of the Server is used. Must not be a private IP and is only valid for public targets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for type Server, only valid and required if type is `server`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for label selector targets, only valid and required if type is `label_selector`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestIp": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of a server that belongs to the same customer (public IPv4/IPv6) or private IP in a subnet type vswitch.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for an IP target. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only valid and required if type is `ip`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "type": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestServer",
+          "traits": {
+            "smithy.api#documentation": "Configuration for type Server, only valid and required if type is `server`."
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "Configuration for label selector targets, only valid and required if type is `label_selector`."
+          }
+        },
+        "ip": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequestIp",
+          "traits": {
+            "smithy.api#documentation": "Configuration for an IP target. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only valid and required if type is `ip`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#RemoveLoadBalancerTarget": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTargetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/remove_target",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove Target\n\nRemoves a target from a Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "https"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protocol of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheckProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the health check."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheckHttpStatusCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheckHttp": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead."
+          }
+        },
+        "response": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that must be contained in HTTP response in order to pass the health check."
+          }
+        },
+        "status_codes": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheckHttpStatusCodesList",
+          "traits": {
+            "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+          }
+        },
+        "tls": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use HTTPS for health check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional configuration for protocol http."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheck": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheckProtocol",
+          "traits": {
+            "smithy.api#documentation": "Type of the health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the health check will be performed on.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time interval in seconds health checks are performed.",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time in seconds after an attempt is considered a timeout.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unsuccessful retries needed until a target is considered unhealthy; an unhealthy target needs the same number of successful retries to become healthy again.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheckHttp",
+          "traits": {
+            "smithy.api#documentation": "Additional configuration for protocol http."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHttpCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough or if `protocol` is `http`."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHttp": {
+      "type": "structure",
+      "members": {
+        "cookie_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the cookie used for sticky sessions."
+          }
+        },
+        "cookie_lifetime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lifetime of the cookie used for sticky sessions (in seconds)."
+          }
+        },
+        "timeout_idle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Idle timeout in seconds for the client and server side."
+          }
+        },
+        "certificates": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHttpCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough or if `protocol` is `http`."
+          }
+        },
+        "redirect_http": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Redirect HTTP requests to HTTPS. Only available if `protocol` is `https`."
+          }
+        },
+        "sticky_sessions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use sticky sessions. Only available if `protocol` is `http` or `https`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration option for protocols http and https."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "protocol": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestProtocol",
+          "traits": {
+            "smithy.api#documentation": "Protocol of the Load Balancer."
+          }
+        },
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer listens on.",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer will balance to."
+          }
+        },
+        "proxyprotocol": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Proxyprotocol enabled or not."
+          }
+        },
+        "health_check": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHealthCheck"
+        },
+        "http": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequestHttp",
+          "traits": {
+            "smithy.api#documentation": "Configuration option for protocols http and https."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponse": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancer_actions#UpdateLoadBalancerService": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerServiceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers/{id}/actions/update_service",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Service\n\nUpdates a Load Balancer Service.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancer_actions#LoadBalancerActions": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActions"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersAction"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActions"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerService"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#AddLoadBalancerTarget"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#AttachLoadBalancerToNetwork"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerAlgorithm"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerDnsPtr"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerProtection"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#ChangeLoadBalancerType"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#DeleteLoadBalancerService"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#DetachLoadBalancerFromNetwork"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#DisableLoadBalancerPublicInterface"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterface"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTarget"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#UpdateLoadBalancerService"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

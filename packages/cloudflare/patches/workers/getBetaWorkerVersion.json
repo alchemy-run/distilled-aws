@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#BetaWorkersVersionsGet with distilled cloudflare/workers getBetaWorkerVersion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsGet",
+      "path": "/shapes/com.cloudflare.workers#GetBetaWorkerVersion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetBetaWorkerVersionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetBetaWorkerVersion/input/target",
+      "value": "com.cloudflare.workers#GetBetaWorkerVersionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetBetaWorkerVersionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetBetaWorkerVersion/output/target",
+      "value": "com.cloudflare.workers#GetBetaWorkerVersionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetBetaWorkerVersion/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#WorkerVersionNotFound"
+        }
+      ]
+    }
+  ]
+}

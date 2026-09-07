@@ -1,0 +1,42 @@
+{
+  "description": "Align accounts#Create with distilled cloudflare/accounts createAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#Create",
+      "path": "/shapes/com.cloudflare.accounts#CreateAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#CreateRequest",
+      "path": "/shapes/com.cloudflare.accounts#CreateAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#CreateAccount/input/target",
+      "value": "com.cloudflare.accounts#CreateAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#CreateResponse",
+      "path": "/shapes/com.cloudflare.accounts#CreateAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#CreateAccount/output/target",
+      "value": "com.cloudflare.accounts#CreateAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#CreateAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#AccountCreationForbidden"
+        },
+        {
+          "target": "com.cloudflare.accounts#MissingName"
+        }
+      ]
+    }
+  ]
+}

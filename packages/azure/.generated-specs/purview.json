@@ -1,0 +1,4048 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.purview#UsagesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#UsagesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#UsageList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/locations/{location}/usages",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the Usage quota configuration.\n\nGet the usage quota configuration",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#UsageList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.purview#UsageListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of usage values."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Url of next result page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for usage get request"
+      }
+    },
+    "com.azure.purview#UsageListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#Usage"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of usage values."
+      }
+    },
+    "com.azure.purview#Usage": {
+      "type": "structure",
+      "members": {
+        "currentValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current usage quota value"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ARM resource Id"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Usage quota limit"
+          }
+        },
+        "name": {
+          "target": "com.azure.purview#QuotaName",
+          "traits": {
+            "smithy.api#documentation": "Quota name"
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Quota usage unit."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for usage information"
+      }
+    },
+    "com.azure.purview#QuotaName": {
+      "type": "structure",
+      "members": {
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the localized name value."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota name"
+      }
+    },
+    "com.azure.purview#UsagesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The region."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#CheckNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Checks the account name availability.\n\nChecks if account name is available.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#CheckNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message"
+          }
+        },
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if name is valid and available."
+          }
+        },
+        "reason": {
+          "target": "com.azure.purview#CheckNameAvailabilityResultReason",
+          "traits": {
+            "smithy.api#documentation": "The reason the name is not available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response payload for CheckNameAvailability API"
+      }
+    },
+    "com.azure.purview#CheckNameAvailabilityResultReason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason the name is not available."
+      }
+    },
+    "com.azure.purview#AccountsCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name to verify for availability"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource type which includes provider namespace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#PrivateLinkResourcesGetByGroupId": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#PrivateLinkResourcesGetByGroupIdRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateLinkResources/{groupId}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets a privately linkable resources for an account with given group identifier.\n\nGets a privately linkable resources for an account with given group identifier",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#PrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The private link resource properties."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A privately linkable resource."
+      }
+    },
+    "com.azure.purview#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group identifier."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.purview#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "This translates to how many Private IPs should be created for each privately linkable resource."
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.purview#PrivateLinkResourcePropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The required zone names for private link resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A privately linkable resource properties."
+      }
+    },
+    "com.azure.purview#PrivateLinkResourcePropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The required zone names for private link resource."
+      }
+    },
+    "com.azure.purview#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "This translates to how many Private IPs should be created for each privately linkable resource."
+      }
+    },
+    "com.azure.purview#PrivateLinkResourcesGetByGroupIdRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The group identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#PrivateLinkResourcesListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#PrivateLinkResourcesListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#PrivateLinkResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets a list of privately linkable resources for an account.\n\nGets a list of privately linkable resources for an account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#PrivateLinkResourceList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Url of next result page."
+          }
+        },
+        "value": {
+          "target": "com.azure.purview#PrivateLinkResourceListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of items of type results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged list of private link resources"
+      }
+    },
+    "com.azure.purview#PrivateLinkResourceListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of items of type results."
+      }
+    },
+    "com.azure.purview#PrivateLinkResourcesListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#PrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Deletes private endpoint connection.\n\nDelete a private endpoint connection",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Approves/Rejects private endpoint connection request.\n\nCreate or update a private endpoint connection",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "The connection identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.purview#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint information."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.purview#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "The private link service connection state."
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private endpoint connection properties class."
+      }
+    },
+    "com.azure.purview#PrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The required actions."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description."
+          }
+        },
+        "status": {
+          "target": "com.azure.purview#PrivateLinkServiceConnectionStateStatus",
+          "traits": {
+            "smithy.api#documentation": "The status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link service connection state."
+      }
+    },
+    "com.azure.purview#PrivateLinkServiceConnectionStateStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        },
+        "DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disconnected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status."
+      }
+    },
+    "com.azure.purview#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private endpoint class."
+      }
+    },
+    "com.azure.purview#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.purview#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the last modification the resource (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.purview#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.purview#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.purview#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private endpoint connection."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The connection identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.purview#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint information."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.purview#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "The private link service connection state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private endpoint connection properties class."
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#PrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#PrivateEndpointConnectionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets private endpoint connection information.\n\nGet a private endpoint connection",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "The connection identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#PrivateEndpointConnectionsListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#PrivateEndpointConnectionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets private endpoint connections.\n\nGet private endpoint connections for account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Url of next result page."
+          }
+        },
+        "value": {
+          "target": "com.azure.purview#PrivateEndpointConnectionListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of items of type results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged list of private endpoint connections"
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of items of type results."
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "The connection identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private endpoint connection class."
+      }
+    },
+    "com.azure.purview#PrivateEndpointConnectionsListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "The skip token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.purview#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Purview/operations",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Lists the available operations\n\nList of available operations",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#OperationList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Url of next result page."
+          }
+        },
+        "value": {
+          "target": "com.azure.purview#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of items of type results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged list of operation resources"
+      }
+    },
+    "com.azure.purview#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of items of type results."
+      }
+    },
+    "com.azure.purview#Operation": {
+      "type": "structure",
+      "members": {
+        "display": {
+          "target": "com.azure.purview#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Properties on the operation"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether operation is a data action"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name for display purposes"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "origin of the operation"
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#OperationProperties",
+          "traits": {
+            "smithy.api#documentation": "properties for the operation meta info"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation resource"
+      }
+    },
+    "com.azure.purview#OperationProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.purview#OperationMetaServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "meta service specification"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "properties on meta info"
+      }
+    },
+    "com.azure.purview#OperationMetaServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "logSpecifications": {
+          "target": "com.azure.purview#OperationMetaServiceSpecificationLogSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "log specifications for the operation"
+          }
+        },
+        "metricSpecifications": {
+          "target": "com.azure.purview#OperationMetaServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "metric specifications for the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation meta service specification"
+      }
+    },
+    "com.azure.purview#OperationMetaServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#OperationMetaMetricSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "metric specifications for the operation"
+      }
+    },
+    "com.azure.purview#OperationMetaMetricSpecification": {
+      "type": "structure",
+      "members": {
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "aggregation type of metric"
+          }
+        },
+        "dimensions": {
+          "target": "com.azure.purview#OperationMetaMetricSpecificationDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "properties for dimension"
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "description of the metric"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "localized name of the metric"
+          }
+        },
+        "enableRegionalMdmAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "enable regional mdm account"
+          }
+        },
+        "internalMetricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "internal metric name"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the metric"
+          }
+        },
+        "resourceIdDimensionNameOverride": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "dimension name use to replace resource id if specified"
+          }
+        },
+        "sourceMdmNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric namespace.\r\nOnly set the namespace if different from the default value, \r\nleaving it empty makes it use the value from the ARM manifest."
+          }
+        },
+        "supportedAggregationTypes": {
+          "target": "com.azure.purview#OperationMetaMetricSpecificationSupportedAggregationTypesList",
+          "traits": {
+            "smithy.api#documentation": "supported aggregation types"
+          }
+        },
+        "supportedTimeGrainTypes": {
+          "target": "com.azure.purview#OperationMetaMetricSpecificationSupportedTimeGrainTypesList",
+          "traits": {
+            "smithy.api#documentation": "supported time grain types"
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "units for the metric"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "metric specifications for the operation"
+      }
+    },
+    "com.azure.purview#OperationMetaMetricSpecificationSupportedTimeGrainTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "supported time grain types"
+      }
+    },
+    "com.azure.purview#OperationMetaMetricSpecificationSupportedAggregationTypesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "supported aggregation types"
+      }
+    },
+    "com.azure.purview#OperationMetaMetricSpecificationDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#DimensionProperties"
+      },
+      "traits": {
+        "smithy.api#documentation": "properties for dimension"
+      }
+    },
+    "com.azure.purview#DimensionProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "localized display name of the dimension to customer"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "dimension name"
+          }
+        },
+        "toBeExportedForCustomer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "flag indicating whether this dimension should be included to the customer in Azure Monitor logs (aka Shoebox)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "properties for dimension"
+      }
+    },
+    "com.azure.purview#OperationMetaServiceSpecificationLogSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#OperationMetaLogSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "log specifications for the operation"
+      }
+    },
+    "com.azure.purview#OperationMetaLogSpecification": {
+      "type": "structure",
+      "members": {
+        "blobDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "blob duration of the log"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "localized name of the log category"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the log category"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "log specifications for operation api"
+      }
+    },
+    "com.azure.purview#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the operation for display purposes"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation for display purposes"
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the provider for display purposes"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource type for display purposes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response model for get operation properties"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#KafkaConfigurationsListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#KafkaConfigurationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the list of Kafka configurations for the account.\n\nLists the Kafka configurations in the Account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Url of next result page."
+          }
+        },
+        "value": {
+          "target": "com.azure.purview#KafkaConfigurationListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of items of type results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged list of kafka configuration resources"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#KafkaConfiguration"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of items of type results."
+      }
+    },
+    "com.azure.purview#KafkaConfiguration": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#KafkaConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the kafka configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration of the event streaming service resource attached to the Purview account for kafka notifications."
+      }
+    },
+    "com.azure.purview#KafkaConfigurationProperties": {
+      "type": "structure",
+      "members": {
+        "consumerGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Consumer group for hook event hub."
+          }
+        },
+        "credentials": {
+          "target": "com.azure.purview#Credentials",
+          "traits": {
+            "smithy.api#documentation": "Credentials to access event hub."
+          }
+        },
+        "eventHubResourceId": {
+          "target": "smithy.api#String"
+        },
+        "eventHubType": {
+          "target": "com.azure.purview#KafkaConfigurationPropertiesEventHubType",
+          "traits": {
+            "smithy.api#documentation": "The event hub type."
+          }
+        },
+        "eventStreamingState": {
+          "target": "com.azure.purview#KafkaConfigurationPropertiesEventStreamingState",
+          "traits": {
+            "smithy.api#documentation": "The state of the event streaming service"
+          }
+        },
+        "eventStreamingType": {
+          "target": "com.azure.purview#KafkaConfigurationPropertiesEventStreamingType",
+          "traits": {
+            "smithy.api#documentation": "The event streaming service type"
+          }
+        },
+        "eventHubPartitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional partition Id for notification event hub. If not set, all partitions will be leveraged."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kafka configuration properties of the event streaming service attached to the Purview account for kafka notifications."
+      }
+    },
+    "com.azure.purview#KafkaConfigurationPropertiesEventStreamingType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "MANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Managed"
+          }
+        },
+        "AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Azure"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The event streaming service type"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationPropertiesEventStreamingState": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The state of the event streaming service"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationPropertiesEventHubType": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Notification"
+          }
+        },
+        "HOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hook"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The event hub type."
+      }
+    },
+    "com.azure.purview#Credentials": {
+      "type": "structure",
+      "members": {
+        "identityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity identifier for UserAssign type."
+          }
+        },
+        "type": {
+          "target": "com.azure.purview#CredentialsType",
+          "traits": {
+            "smithy.api#documentation": "Identity Type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Credentials to access the event streaming service attached to the purview account."
+      }
+    },
+    "com.azure.purview#CredentialsType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity Type."
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "The skip token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#KafkaConfigurationsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Deletes the kafka configuration on the account.\n\nDeletes a KafkaConfiguration resource.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "kafkaConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of kafka configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#KafkaConfigurationsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#KafkaConfigurationsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Create or update the kafka configuration.\n\nCreate or update Kafka Configuration",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#KafkaConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the kafka configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "kafkaConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The kafka configuration name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#KafkaConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the kafka configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#KafkaConfigurationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#KafkaConfigurationsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the kafka configuration.\n\nGets the kafka configuration for the account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#KafkaConfigurationProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the kafka configuration properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#KafkaConfigurationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "kafkaConfigurationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of kafka configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#FeaturesSubscriptionGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#FeaturesSubscriptionGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#BatchFeatureStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/locations/{locations}/listFeatures",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets a list of features and their status for the location and subscription.\r\nStatus of enabled features will be true. Status of disabled features will be false.\r\nFeatures that don't exist will be excluded from the results.\n\nGets details from a list of feature names.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#BatchFeatureStatus": {
+      "type": "structure",
+      "members": {
+        "features": {
+          "target": "com.azure.purview#BatchFeatureStatusFeaturesMap",
+          "traits": {
+            "smithy.api#documentation": "Features with enabled status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of features with enabled status"
+      }
+    },
+    "com.azure.purview#BatchFeatureStatusFeaturesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Boolean"
+      },
+      "traits": {
+        "smithy.api#documentation": "Features with enabled status"
+      }
+    },
+    "com.azure.purview#FeaturesSubscriptionGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "locations": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Location of feature."
+          }
+        },
+        "features": {
+          "target": "com.azure.purview#FeaturesSubscriptionGetRequestFeaturesList",
+          "traits": {
+            "smithy.api#documentation": "Set of features"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#FeaturesSubscriptionGetRequestFeaturesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Set of features"
+      }
+    },
+    "com.azure.purview#FeaturesAccountGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#FeaturesAccountGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#BatchFeatureStatus"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/listFeatures",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets a list of features and their status for the account.\r\nStatus of enabled features will be true. Status of disabled features will be false.\r\nFeatures that don't exist will be excluded from the results.\n\nGets details from a list of feature names.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#FeaturesAccountGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "features": {
+          "target": "com.azure.purview#FeaturesAccountGetRequestFeaturesList",
+          "traits": {
+            "smithy.api#documentation": "Set of features"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#FeaturesAccountGetRequestFeaturesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Set of features"
+      }
+    },
+    "com.azure.purview#DefaultAccountsRemove": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#DefaultAccountsRemoveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Purview/removeDefaultAccount",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Removes the default account from the scope.\n\nRemoves the default account from the scope.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#DefaultAccountsRemoveRequest": {
+      "type": "structure",
+      "members": {
+        "scopeTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scopeTenantId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The tenant ID."
+          }
+        },
+        "scopeType": {
+          "target": "com.azure.purview#DefaultAccountsRemoveRequestScopeType",
+          "traits": {
+            "smithy.api#httpQuery": "scopeType",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope for the default account."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scope",
+            "smithy.api#documentation": "The Id of the scope object, for example if the scope is \"Subscription\" then it is the ID of that subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#DefaultAccountsRemoveRequestScopeType": {
+      "type": "enum",
+      "members": {
+        "TENANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Tenant"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Subscription"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.purview#DefaultAccountsSet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#DefaultAccountsSetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#DefaultAccountPayload"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Purview/setDefaultAccount",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Sets the default account for the scope.\n\nSets the default account for the scope.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#DefaultAccountPayload": {
+      "type": "structure",
+      "members": {
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the account that is set as the default."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource group name of the account that is set as the default."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope object ID. For example, sub ID or tenant ID."
+          }
+        },
+        "scopeTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope tenant in which the default account is set."
+          }
+        },
+        "scopeType": {
+          "target": "com.azure.purview#DefaultAccountPayloadScopeType",
+          "traits": {
+            "smithy.api#documentation": "The scope where the default account is set."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subscription ID of the account that is set as the default."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Payload to get and set the default account in the given scope"
+      }
+    },
+    "com.azure.purview#DefaultAccountPayloadScopeType": {
+      "type": "enum",
+      "members": {
+        "TENANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Tenant"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scope where the default account is set."
+      }
+    },
+    "com.azure.purview#DefaultAccountsSetRequest": {
+      "type": "structure",
+      "members": {
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the account that is set as the default."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource group name of the account that is set as the default."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope object ID. For example, sub ID or tenant ID."
+          }
+        },
+        "scopeTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope tenant in which the default account is set."
+          }
+        },
+        "scopeType": {
+          "target": "com.azure.purview#DefaultAccountsSetRequestScopeType",
+          "traits": {
+            "smithy.api#documentation": "The scope where the default account is set."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subscription ID of the account that is set as the default."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#DefaultAccountsSetRequestScopeType": {
+      "type": "enum",
+      "members": {
+        "TENANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Tenant"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scope where the default account is set."
+      }
+    },
+    "com.azure.purview#DefaultAccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#DefaultAccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#DefaultAccountPayload"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Purview/getDefaultAccount",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the default account information set for the scope.\n\nGet the default account for the scope.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#DefaultAccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "scopeTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scopeTenantId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The tenant ID."
+          }
+        },
+        "scopeType": {
+          "target": "com.azure.purview#DefaultAccountsGetRequestScopeType",
+          "traits": {
+            "smithy.api#httpQuery": "scopeType",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The scope for the default account."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scope",
+            "smithy.api#documentation": "The Id of the scope object, for example if the scope is \"Subscription\" then it is the ID of that subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#DefaultAccountsGetRequestScopeType": {
+      "type": "enum",
+      "members": {
+        "TENANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Tenant"
+          }
+        },
+        "SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Subscription"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.purview#AccountsAddRootCollectionAdmin": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsAddRootCollectionAdminRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/addRootCollectionAdmin",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Add the administrator for root collection.\n\nAdd the administrator for root collection associated with this account.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountsAddRootCollectionAdminRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "objectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the object identifier of the admin."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsListKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsListKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#AccessKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/listkeys",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Lists the keys asynchronous.\n\nList the authorization keys associated with this account.",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccessKeys": {
+      "type": "structure",
+      "members": {
+        "atlasKafkaPrimaryEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the primary connection string."
+          }
+        },
+        "atlasKafkaSecondaryEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the secondary connection string."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Account access keys."
+      }
+    },
+    "com.azure.purview#AccountsListKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Deletes the account resource.\n\nDeletes an account resource",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#AccountsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Patches the account resource.\n\nUpdates an account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "identity": {
+          "target": "com.azure.purview#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity Info on the tracked resource"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.purview#AccountsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags on the azure resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#AccountProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the properties."
+          }
+        },
+        "sku": {
+          "target": "com.azure.purview#AccountSku",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the Sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#AccountSku": {
+      "type": "structure",
+      "members": {
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the sku capacity."
+          }
+        },
+        "name": {
+          "target": "com.azure.purview#AccountSkuName",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the sku name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Sku"
+      }
+    },
+    "com.azure.purview#AccountSkuName": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the sku name."
+      }
+    },
+    "com.azure.purview#AccountProperties": {
+      "type": "structure",
+      "members": {
+        "accountStatus": {
+          "target": "com.azure.purview#AccountStatus",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the status of the account."
+          }
+        },
+        "cloudConnectors": {
+          "target": "com.azure.purview#CloudConnectors",
+          "traits": {
+            "smithy.api#documentation": "Cloud connectors.\r\nExternal cloud identifier used as part of scanning configuration."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the time at which the entity was created."
+          }
+        },
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the creator of the entity."
+          }
+        },
+        "createdByObjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the creators of the entity's object id."
+          }
+        },
+        "endpoints": {
+          "target": "com.azure.purview#AccountEndpoints",
+          "traits": {
+            "smithy.api#documentation": "The URIs that are the public endpoints of the account."
+          }
+        },
+        "friendlyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the friendly name."
+          }
+        },
+        "managedEventHubState": {
+          "target": "com.azure.purview#AccountPropertiesManagedEventHubState",
+          "traits": {
+            "smithy.api#documentation": " Gets or sets the state of managed eventhub. If enabled managed eventhub will be created, if disabled the managed eventhub will be removed."
+          }
+        },
+        "managedResourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the managed resource group name"
+          }
+        },
+        "managedResources": {
+          "target": "com.azure.purview#ManagedResources",
+          "traits": {
+            "smithy.api#documentation": "Gets the resource identifiers of the managed resources."
+          }
+        },
+        "managedResourcesPublicNetworkAccess": {
+          "target": "com.azure.purview#AccountPropertiesManagedResourcesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the public network access for managed resources."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.purview#AccountPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "Gets the private endpoint connections information."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.purview#AccountPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the state of the provisioning."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.purview#AccountPropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the public network access."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The account properties"
+      }
+    },
+    "com.azure.purview#AccountPropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the public network access."
+      }
+    },
+    "com.azure.purview#AccountPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "MOVING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Moving"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SOFTDELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SoftDeleting"
+          }
+        },
+        "SOFTDELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SoftDeleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the state of the provisioning."
+      }
+    },
+    "com.azure.purview#AccountPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets the private endpoint connections information."
+      }
+    },
+    "com.azure.purview#AccountPropertiesManagedResourcesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the public network access for managed resources."
+      }
+    },
+    "com.azure.purview#ManagedResources": {
+      "type": "structure",
+      "members": {
+        "eventHubNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the managed event hub namespace resource identifier."
+          }
+        },
+        "resourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the managed resource group resource identifier. This resource group will host resource dependencies for the account."
+          }
+        },
+        "storageAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the managed storage account resource identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The managed resources in customer subscription."
+      }
+    },
+    "com.azure.purview#AccountPropertiesManagedEventHubState": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": " Gets or sets the state of managed eventhub. If enabled managed eventhub will be created, if disabled the managed eventhub will be removed."
+      }
+    },
+    "com.azure.purview#AccountEndpoints": {
+      "type": "structure",
+      "members": {
+        "catalog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the catalog endpoint."
+          }
+        },
+        "guardian": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the guardian endpoint."
+          }
+        },
+        "scan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the scan endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The account endpoints"
+      }
+    },
+    "com.azure.purview#CloudConnectors": {
+      "type": "structure",
+      "members": {
+        "awsExternalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AWS external identifier.\r\nConfigured in AWS to allow use of the role arn used for scanning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "External Cloud Service connectors"
+      }
+    },
+    "com.azure.purview#AccountStatus": {
+      "type": "structure",
+      "members": {
+        "accountProvisioningState": {
+          "target": "com.azure.purview#AccountStatusAccountProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Gets the account status code."
+          }
+        },
+        "errorDetails": {
+          "target": "com.azure.purview#ErrorModel",
+          "traits": {
+            "smithy.api#documentation": "Gets the account error details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The account status."
+      }
+    },
+    "com.azure.purview#ErrorModel": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the code."
+          }
+        },
+        "details": {
+          "target": "com.azure.purview#ErrorModelDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the details."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the messages."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the target."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Default error model"
+      }
+    },
+    "com.azure.purview#ErrorModelDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#ErrorModel"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the details."
+      }
+    },
+    "com.azure.purview#AccountStatusAccountProvisioningState": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "MOVING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Moving"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SOFTDELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SoftDeleting"
+          }
+        },
+        "SOFTDELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SoftDeleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets the account status code."
+      }
+    },
+    "com.azure.purview#AccountsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags on the azure resource."
+      }
+    },
+    "com.azure.purview#Identity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service principal object Id"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant Id"
+          }
+        },
+        "type": {
+          "target": "com.azure.purview#IdentityType",
+          "traits": {
+            "smithy.api#documentation": "Identity Type"
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.purview#IdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "User Assigned Identities"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Managed Identity of the resource"
+      }
+    },
+    "com.azure.purview#IdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.purview#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "User Assigned Identities"
+      }
+    },
+    "com.azure.purview#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or Sets Client ID"
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or Sets Principal ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Uses client ID and Principal ID"
+      }
+    },
+    "com.azure.purview#IdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity Type"
+      }
+    },
+    "com.azure.purview#AccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "identity": {
+          "target": "com.azure.purview#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "Identity related info to add/remove userAssignedIdentities."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#AccountPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The account properties."
+          }
+        },
+        "tags": {
+          "target": "com.azure.purview#AccountsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags on the azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags on the azure resource."
+      }
+    },
+    "com.azure.purview#AccountPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "cloudConnectors": {
+          "target": "com.azure.purview#CloudConnectorsInput",
+          "traits": {
+            "smithy.api#documentation": "Cloud connectors.\r\nExternal cloud identifier used as part of scanning configuration."
+          }
+        },
+        "managedEventHubState": {
+          "target": "com.azure.purview#AccountPropertiesInputManagedEventHubState",
+          "traits": {
+            "smithy.api#documentation": " Gets or sets the state of managed eventhub. If enabled managed eventhub will be created, if disabled the managed eventhub will be removed."
+          }
+        },
+        "managedResourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the managed resource group name"
+          }
+        },
+        "managedResourcesPublicNetworkAccess": {
+          "target": "com.azure.purview#AccountPropertiesInputManagedResourcesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the public network access for managed resources."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.purview#AccountPropertiesInputPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the public network access."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The account properties"
+      }
+    },
+    "com.azure.purview#AccountPropertiesInputPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the public network access."
+      }
+    },
+    "com.azure.purview#AccountPropertiesInputManagedResourcesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the public network access for managed resources."
+      }
+    },
+    "com.azure.purview#AccountPropertiesInputManagedEventHubState": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": " Gets or sets the state of managed eventhub. If enabled managed eventhub will be created, if disabled the managed eventhub will be removed."
+      }
+    },
+    "com.azure.purview#CloudConnectorsInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "External Cloud Service connectors"
+      }
+    },
+    "com.azure.purview#IdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.purview#IdentityInputType",
+          "traits": {
+            "smithy.api#documentation": "Identity Type"
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.purview#IdentityInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "User Assigned Identities"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Managed Identity of the resource"
+      }
+    },
+    "com.azure.purview#IdentityInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.purview#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "User Assigned Identities"
+      }
+    },
+    "com.azure.purview#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Uses client ID and Principal ID"
+      }
+    },
+    "com.azure.purview#IdentityInputType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity Type"
+      }
+    },
+    "com.azure.purview#AccountsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#AccountsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Create or update an account resource\n\nCreates or updates an account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "identity": {
+          "target": "com.azure.purview#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity Info on the tracked resource"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.purview#AccountsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags on the azure resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#AccountProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the properties."
+          }
+        },
+        "sku": {
+          "target": "com.azure.purview#AccountSku",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the Sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#AccountsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags on the azure resource."
+      }
+    },
+    "com.azure.purview#AccountsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        },
+        "identity": {
+          "target": "com.azure.purview#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "Identity Info on the tracked resource"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.purview#AccountsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags on the azure resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#AccountPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags on the azure resource."
+      }
+    },
+    "com.azure.purview#AccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#AccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the account resource.\n\nGet an account",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "identity": {
+          "target": "com.azure.purview#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity Info on the tracked resource"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.purview#AccountsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags on the azure resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#AccountProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the properties."
+          }
+        },
+        "sku": {
+          "target": "com.azure.purview#AccountSku",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the Sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.purview#AccountsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags on the azure resource."
+      }
+    },
+    "com.azure.purview#AccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#AccountList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/accounts",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the accounts resources by subscription.\n\nList accounts in Subscription",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total item count."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Url of next result page."
+          }
+        },
+        "value": {
+          "target": "com.azure.purview#AccountListValueList",
+          "traits": {
+            "smithy.api#documentation": "Collection of items of type results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged list of Account resources"
+      }
+    },
+    "com.azure.purview#AccountListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.purview#Account"
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of items of type results."
+      }
+    },
+    "com.azure.purview#Account": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the identifier."
+          }
+        },
+        "identity": {
+          "target": "com.azure.purview#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity Info on the tracked resource"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the name."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.purview#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.purview#AccountTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags on the azure resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.purview#AccountProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the properties."
+          }
+        },
+        "sku": {
+          "target": "com.azure.purview#AccountSku",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the Sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account resource"
+      }
+    },
+    "com.azure.purview#AccountTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags on the azure resource."
+      }
+    },
+    "com.azure.purview#AccountsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "The skip token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#AccountsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.purview#AccountsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.purview#AccountList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts",
+          "code": 200,
+          "apiVersion": "2021-12-01"
+        },
+        "smithy.api#documentation": "Gets the accounts resources by resource group.\n\nList accounts in ResourceGroup",
+        "com.distilled.openapi#apiVersion": "2021-12-01"
+      }
+    },
+    "com.azure.purview#AccountsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription identifier"
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "The skip token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.purview#Purview": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.purview#UsagesGet"
+        },
+        {
+          "target": "com.azure.purview#AccountsCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.purview#PrivateLinkResourcesGetByGroupId"
+        },
+        {
+          "target": "com.azure.purview#PrivateLinkResourcesListByAccount"
+        },
+        {
+          "target": "com.azure.purview#PrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.purview#PrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.purview#PrivateEndpointConnectionsListByAccount"
+        },
+        {
+          "target": "com.azure.purview#OperationsList"
+        },
+        {
+          "target": "com.azure.purview#KafkaConfigurationsListByAccount"
+        },
+        {
+          "target": "com.azure.purview#KafkaConfigurationsDelete"
+        },
+        {
+          "target": "com.azure.purview#KafkaConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.purview#KafkaConfigurationsGet"
+        },
+        {
+          "target": "com.azure.purview#FeaturesSubscriptionGet"
+        },
+        {
+          "target": "com.azure.purview#FeaturesAccountGet"
+        },
+        {
+          "target": "com.azure.purview#DefaultAccountsRemove"
+        },
+        {
+          "target": "com.azure.purview#DefaultAccountsSet"
+        },
+        {
+          "target": "com.azure.purview#DefaultAccountsGet"
+        },
+        {
+          "target": "com.azure.purview#AccountsAddRootCollectionAdmin"
+        },
+        {
+          "target": "com.azure.purview#AccountsListKeys"
+        },
+        {
+          "target": "com.azure.purview#AccountsDelete"
+        },
+        {
+          "target": "com.azure.purview#AccountsUpdate"
+        },
+        {
+          "target": "com.azure.purview#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.purview#AccountsGet"
+        },
+        {
+          "target": "com.azure.purview#AccountsListBySubscription"
+        },
+        {
+          "target": "com.azure.purview#AccountsListByResourceGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Purview",
+        "smithy.api#documentation": "Azure Purview API — merged from the purview resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "description": "Select service.templateId on the slim project GET so Template.list can observe marketplace deploys without templateSourceForProject (often Forbidden on a shared project).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#ProjectResponseServicesEdgesItemNode/members/templateId",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#required": {},
+          "com.railway.graphql#nullable": {}
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ProjectRequest/traits/com.railway.graphql#operation/query",
+      "value": "query project($id: String!) {\n  project(id: $id) {\n    baseEnvironmentId\n    createdAt\n    deletedAt\n    description\n    id\n    name\n    primaryEnvironmentId\n    updatedAt\n    workspaceId\n    services(first: 50) {\n      edges {\n        node {\n          createdAt\n          deletedAt\n          groupId\n          id\n          name\n          projectId\n          templateId\n        }\n      }\n    }\n    buckets(first: 50) {\n      edges {\n        node {\n          createdAt\n          groupId\n          id\n          name\n          projectId\n          updatedAt\n        }\n      }\n    }\n    groups(first: 50) {\n      edges {\n        node {\n          color\n          groupId\n          icon\n          id\n          isCollapsed\n          name\n          projectId\n        }\n      }\n    }\n  }\n}"
+    }
+  ]
+}

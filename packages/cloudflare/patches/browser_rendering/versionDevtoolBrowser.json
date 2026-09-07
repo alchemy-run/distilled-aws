@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#DevtoolsBrowserVersion with distilled cloudflare/browser-rendering versionDevtoolBrowser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserVersion",
+      "path": "/shapes/com.cloudflare.browser_rendering#VersionDevtoolBrowser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserVersionRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#VersionDevtoolBrowserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#VersionDevtoolBrowser/input/target",
+      "value": "com.cloudflare.browser_rendering#VersionDevtoolBrowserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserVersionResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#VersionDevtoolBrowserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#VersionDevtoolBrowser/output/target",
+      "value": "com.cloudflare.browser_rendering#VersionDevtoolBrowserResponse"
+    }
+  ]
+}

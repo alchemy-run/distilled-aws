@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#LivestreamsGetLivestreamAnalyticsDaywise with distilled cloudflare/realtime-kit getLivestreamAnalyticsDaywiseLivestream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetLivestreamAnalyticsDaywise",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetLivestreamAnalyticsDaywiseRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestream/input/target",
+      "value": "com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsGetLivestreamAnalyticsDaywiseResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestream/output/target",
+      "value": "com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestreamResponse"
+    }
+  ]
+}

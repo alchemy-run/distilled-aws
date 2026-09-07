@@ -1,0 +1,54 @@
+{
+  "description": "Align r2#BucketsObjectsUpload with distilled cloudflare/r2 uploadBucketObject, and type the missing-bucket rejection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsUpload",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObject"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsUploadRequest",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObject/input/target",
+      "value": "com.cloudflare.r2#UploadBucketObjectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsUploadResponse",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObject/output/target",
+      "value": "com.cloudflare.r2#UploadBucketObjectResponse"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/cf_r2_storage_class",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/cfR2StorageClass"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/object_key",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/object_name"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObject/traits/smithy.api#http/uri",
+      "value": "/accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_name}"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObject/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        }
+      ]
+    }
+  ]
+}

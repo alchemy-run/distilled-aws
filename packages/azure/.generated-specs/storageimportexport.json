@@ -1,0 +1,1865 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.storageimportexport#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#ListOperationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ImportExport/operations",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Returns the list of operations supported by the import/export resource provider.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storageimportexport#ListOperationsResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "operations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List operations response"
+      }
+    },
+    "com.azure.storageimportexport#ListOperationsResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "operations"
+      }
+    },
+    "com.azure.storageimportexport#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "display": {
+          "target": "com.azure.storageimportexport#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "operation display properties",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a supported operation by the Storage Import/Export job API."
+      }
+    },
+    "com.azure.storageimportexport#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource provider name to which the operation belongs."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource to which the operation belongs."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the operation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "operation display properties"
+      }
+    },
+    "com.azure.storageimportexport#BitLockerKeysList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#BitLockerKeysListRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#GetBitLockerKeysResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}/listBitLockerKeys",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Returns the BitLocker Keys for all drives in the specified job.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#GetBitLockerKeysResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storageimportexport#GetBitLockerKeysResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "drive status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GetBitLockerKeys response"
+      }
+    },
+    "com.azure.storageimportexport#GetBitLockerKeysResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#DriveBitLockerKey"
+      },
+      "traits": {
+        "smithy.api#documentation": "drive status"
+      }
+    },
+    "com.azure.storageimportexport#DriveBitLockerKey": {
+      "type": "structure",
+      "members": {
+        "bitLockerKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "BitLocker recovery key or password"
+          }
+        },
+        "driveId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Drive ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "BitLocker recovery key or password to the specified drive"
+      }
+    },
+    "com.azure.storageimportexport#BitLockerKeysListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name uniquely identifies the resource group within the user subscription."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the import/export job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#JobsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#JobsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Deletes an existing job. Only jobs in the Creating or Completed states can be deleted.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#JobsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name uniquely identifies the resource group within the user subscription."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the import/export job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#JobsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#JobsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#JobResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Updates specific properties of a job. You can call this operation to notify the Import/Export service that the hard drives comprising the import or export job have been shipped to the Microsoft data center. It can also be used to cancel an existing job.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#JobResponse": {
+      "type": "structure",
+      "members": {
+        "systemData": {
+          "target": "com.azure.storageimportexport#JobResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the resource identifier of the job."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the job."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of the job resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Azure location where the job is created."
+          }
+        },
+        "tags": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tags that are assigned to the job."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storageimportexport#JobDetails",
+          "traits": {
+            "smithy.api#documentation": "Specifies the job properties"
+          }
+        },
+        "identity": {
+          "target": "com.azure.storageimportexport#IdentityDetails",
+          "traits": {
+            "smithy.api#documentation": "Specifies the job identity details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the job information."
+      }
+    },
+    "com.azure.storageimportexport#IdentityDetails": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.storageimportexport#IdentityDetailsType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity"
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the principal id for the identity for the job. "
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tenant id for the identity for the job. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the identity properties. "
+      }
+    },
+    "com.azure.storageimportexport#IdentityDetailsType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity"
+      }
+    },
+    "com.azure.storageimportexport#JobDetails": {
+      "type": "structure",
+      "members": {
+        "storageAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier of the storage account where data will be imported to or exported from."
+          }
+        },
+        "jobType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of job"
+          }
+        },
+        "returnAddress": {
+          "target": "com.azure.storageimportexport#ReturnAddress",
+          "traits": {
+            "smithy.api#documentation": "Specifies the return address information for the job. "
+          }
+        },
+        "returnShipping": {
+          "target": "com.azure.storageimportexport#ReturnShipping",
+          "traits": {
+            "smithy.api#documentation": "Specifies the return carrier and customer's account with the carrier. "
+          }
+        },
+        "shippingInformation": {
+          "target": "com.azure.storageimportexport#ShippingInformation",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the Microsoft datacenter to which the drives should be shipped. "
+          }
+        },
+        "deliveryPackage": {
+          "target": "com.azure.storageimportexport#DeliveryPackageInformation",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the package being shipped by the customer to the Microsoft data center. "
+          }
+        },
+        "returnPackage": {
+          "target": "com.azure.storageimportexport#PackageInformation",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the package being shipped from the Microsoft data center to the customer to return the drives. The format is the same as the deliveryPackage property above. This property is not included if the drives have not yet been returned. "
+          }
+        },
+        "diagnosticsPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The virtual blob directory to which the copy logs and backups of drive manifest files (if enabled) will be stored."
+          }
+        },
+        "logLevel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default value is Error. Indicates whether error logging or verbose logging will be enabled."
+          }
+        },
+        "backupDriveManifest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Default value is false. Indicates whether the manifest files on the drives should be copied to block blobs."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current state of the job."
+          }
+        },
+        "cancelRequested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether a request has been submitted to cancel the job."
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Overall percentage completed for the job."
+          }
+        },
+        "incompleteBlobListUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A blob path that points to a block blob containing a list of blob names that were not exported due to insufficient drive space. If all blobs were exported successfully, then this element is not included in the response."
+          }
+        },
+        "driveList": {
+          "target": "com.azure.storageimportexport#JobDetailsDriveListList",
+          "traits": {
+            "smithy.api#documentation": "List of up to ten drives that comprise the job. The drive list is a required element for an import job; it is not specified for export jobs."
+          }
+        },
+        "export": {
+          "target": "com.azure.storageimportexport#Export",
+          "traits": {
+            "smithy.api#documentation": "A property containing information about the blobs to be exported for an export job. This property is included for export jobs only."
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the provisioning state of the job."
+          }
+        },
+        "encryptionKey": {
+          "target": "com.azure.storageimportexport#EncryptionKeyDetails",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the encryption key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the job properties"
+      }
+    },
+    "com.azure.storageimportexport#EncryptionKeyDetails": {
+      "type": "structure",
+      "members": {
+        "kekType": {
+          "target": "com.azure.storageimportexport#EncryptionKeyDetailsKekType",
+          "traits": {
+            "smithy.api#documentation": "The type of kek encryption key"
+          }
+        },
+        "kekUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the url for kek encryption key. "
+          }
+        },
+        "kekVaultResourceID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the keyvault resource id for kek encryption key. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the encryption key properties"
+      }
+    },
+    "com.azure.storageimportexport#EncryptionKeyDetailsKekType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFTMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MicrosoftManaged"
+          }
+        },
+        "CUSTOMERMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerManaged"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of kek encryption key"
+      }
+    },
+    "com.azure.storageimportexport#Export": {
+      "type": "structure",
+      "members": {
+        "blobList": {
+          "target": "com.azure.storageimportexport#ExportBlobList",
+          "traits": {
+            "smithy.api#documentation": "A list of the blobs to be exported."
+          }
+        },
+        "blobListBlobPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relative URI to the block blob that contains the list of blob paths or blob path prefixes as defined above, beginning with the container name. If the blob is in root container, the URI must begin with $root. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A property containing information about the blobs to be exported for an export job. This property is required for export jobs, but must not be specified for import jobs."
+      }
+    },
+    "com.azure.storageimportexport#ExportBlobList": {
+      "type": "structure",
+      "members": {
+        "blobPath": {
+          "target": "com.azure.storageimportexport#ExportBlobListBlobPathList",
+          "traits": {
+            "smithy.api#documentation": "A collection of blob-path strings."
+          }
+        },
+        "blobPathPrefix": {
+          "target": "com.azure.storageimportexport#ExportBlobListBlobPathPrefixList",
+          "traits": {
+            "smithy.api#documentation": "A collection of blob-prefix strings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of the blobs to be exported."
+      }
+    },
+    "com.azure.storageimportexport#ExportBlobListBlobPathPrefixList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of blob-prefix strings."
+      }
+    },
+    "com.azure.storageimportexport#ExportBlobListBlobPathList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of blob-path strings."
+      }
+    },
+    "com.azure.storageimportexport#JobDetailsDriveListList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#DriveStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of up to ten drives that comprise the job. The drive list is a required element for an import job; it is not specified for export jobs."
+      }
+    },
+    "com.azure.storageimportexport#DriveStatus": {
+      "type": "structure",
+      "members": {
+        "driveId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The drive's hardware serial number, without spaces."
+          }
+        },
+        "bitLockerKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BitLocker key used to encrypt the drive."
+          }
+        },
+        "manifestFile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relative path of the manifest file on the drive. "
+          }
+        },
+        "manifestHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Base16-encoded MD5 hash of the manifest file on the drive."
+          }
+        },
+        "driveHeaderHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The drive header hash value."
+          }
+        },
+        "state": {
+          "target": "com.azure.storageimportexport#DriveStatusState",
+          "traits": {
+            "smithy.api#documentation": "The drive's current state. "
+          }
+        },
+        "copyStatus": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed status about the data transfer process. This field is not returned in the response until the drive is in the Transferring state."
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Percentage completed for the drive. "
+          }
+        },
+        "verboseLogUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URI that points to the blob containing the verbose log for the data transfer operation. "
+          }
+        },
+        "errorLogUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URI that points to the blob containing the error log for the data transfer operation."
+          }
+        },
+        "manifestUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A URI that points to the blob containing the drive manifest file. "
+          }
+        },
+        "bytesSucceeded": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Bytes successfully transferred for the drive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides information about the drive's status"
+      }
+    },
+    "com.azure.storageimportexport#DriveStatusState": {
+      "type": "enum",
+      "members": {
+        "SPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Specified"
+          }
+        },
+        "RECEIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Received"
+          }
+        },
+        "NEVERRECEIVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NeverReceived"
+          }
+        },
+        "TRANSFERRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Transferring"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "COMPLETEDMOREINFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CompletedMoreInfo"
+          }
+        },
+        "SHIPPEDBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ShippedBack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The drive's current state. "
+      }
+    },
+    "com.azure.storageimportexport#PackageInformation": {
+      "type": "structure",
+      "members": {
+        "carrierName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the carrier that is used to ship the import or export drives.",
+            "smithy.api#required": {}
+          }
+        },
+        "trackingNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking number of the package.",
+            "smithy.api#required": {}
+          }
+        },
+        "driveCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of drives included in the package.",
+            "smithy.api#required": {}
+          }
+        },
+        "shipDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the package is shipped.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about the package being shipped by the customer to the Microsoft data center."
+      }
+    },
+    "com.azure.storageimportexport#DeliveryPackageInformation": {
+      "type": "structure",
+      "members": {
+        "carrierName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the carrier that is used to ship the import or export drives.",
+            "smithy.api#required": {}
+          }
+        },
+        "trackingNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tracking number of the package.",
+            "smithy.api#required": {}
+          }
+        },
+        "driveCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of drives included in the package."
+          }
+        },
+        "shipDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the package is shipped."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about the delivery package being shipped by the customer to the Microsoft data center."
+      }
+    },
+    "com.azure.storageimportexport#ShippingInformation": {
+      "type": "structure",
+      "members": {
+        "recipientName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the recipient who will receive the hard drives when they are returned. "
+          }
+        },
+        "streetAddress1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the street address to use when returning the drives. "
+          }
+        },
+        "streetAddress2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the street address to use when returning the drives. "
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city name to use when returning the drives."
+          }
+        },
+        "stateOrProvince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state or province to use when returning the drives."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code to use when returning the drives."
+          }
+        },
+        "countryOrRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country or region to use when returning the drives. "
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number of the recipient of the returned drives."
+          }
+        },
+        "additionalInformation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional shipping information for customer, specific to datacenter to which customer should send their disks."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about the Microsoft datacenter to which the drives should be shipped."
+      }
+    },
+    "com.azure.storageimportexport#ReturnShipping": {
+      "type": "structure",
+      "members": {
+        "carrierName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The carrier's name.",
+            "smithy.api#required": {}
+          }
+        },
+        "carrierAccountNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The customer's account number with the carrier.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the return carrier and customer's account with the carrier."
+      }
+    },
+    "com.azure.storageimportexport#ReturnAddress": {
+      "type": "structure",
+      "members": {
+        "recipientName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the recipient who will receive the hard drives when they are returned. ",
+            "smithy.api#required": {}
+          }
+        },
+        "streetAddress1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the street address to use when returning the drives. ",
+            "smithy.api#required": {}
+          }
+        },
+        "streetAddress2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the street address to use when returning the drives. "
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city name to use when returning the drives.",
+            "smithy.api#required": {}
+          }
+        },
+        "stateOrProvince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state or province to use when returning the drives."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code to use when returning the drives.",
+            "smithy.api#required": {}
+          }
+        },
+        "countryOrRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country or region to use when returning the drives. ",
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number of the recipient of the returned drives.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the recipient of the returned drives.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the return address information for the job."
+      }
+    },
+    "com.azure.storageimportexport#JobResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.storageimportexport#JobResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.storageimportexport#JobResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.storageimportexport#JobResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.storageimportexport#JobResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.storageimportexport#JobsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name uniquely identifies the resource group within the user subscription."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the import/export job."
+          }
+        },
+        "tags": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tags that will be assigned to the job"
+          }
+        },
+        "properties": {
+          "target": "com.azure.storageimportexport#JobsUpdateRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the properties of a UpdateJob."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#JobsUpdateRequestProperties": {
+      "type": "structure",
+      "members": {
+        "cancelRequested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If specified, the value must be true. The service will attempt to cancel the job. "
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, the value must be Shipping, which tells the Import/Export service that the package for the job has been shipped. The ReturnAddress and DeliveryPackage properties must have been set either in this request or in a previous request, otherwise the request will fail. "
+          }
+        },
+        "returnAddress": {
+          "target": "com.azure.storageimportexport#ReturnAddress",
+          "traits": {
+            "smithy.api#documentation": "Specifies the return address information for the job."
+          }
+        },
+        "returnShipping": {
+          "target": "com.azure.storageimportexport#ReturnShipping",
+          "traits": {
+            "smithy.api#documentation": "Specifies the return carrier and customer's account with the carrier."
+          }
+        },
+        "deliveryPackage": {
+          "target": "com.azure.storageimportexport#DeliveryPackageInformation",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the package being shipped by the customer to the Microsoft data center."
+          }
+        },
+        "logLevel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether error logging or verbose logging is enabled."
+          }
+        },
+        "backupDriveManifest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the manifest files on the drives should be copied to block blobs."
+          }
+        },
+        "driveList": {
+          "target": "com.azure.storageimportexport#JobsUpdateRequestPropertiesDriveListList",
+          "traits": {
+            "smithy.api#documentation": "List of drives that comprise the job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the properties of a UpdateJob."
+      }
+    },
+    "com.azure.storageimportexport#JobsUpdateRequestPropertiesDriveListList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#DriveStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of drives that comprise the job."
+      }
+    },
+    "com.azure.storageimportexport#JobsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#JobsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#JobResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Creates a new job or updates an existing job in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#JobsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name uniquely identifies the resource group within the user subscription."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the import/export job."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the supported Azure location where the job should be created"
+          }
+        },
+        "tags": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Specifies the tags that will be assigned to the job."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storageimportexport#JobDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Specifies the job properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#JobDetailsInput": {
+      "type": "structure",
+      "members": {
+        "storageAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource identifier of the storage account where data will be imported to or exported from."
+          }
+        },
+        "jobType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of job"
+          }
+        },
+        "returnAddress": {
+          "target": "com.azure.storageimportexport#ReturnAddress",
+          "traits": {
+            "smithy.api#documentation": "Specifies the return address information for the job. "
+          }
+        },
+        "returnShipping": {
+          "target": "com.azure.storageimportexport#ReturnShipping",
+          "traits": {
+            "smithy.api#documentation": "Specifies the return carrier and customer's account with the carrier. "
+          }
+        },
+        "shippingInformation": {
+          "target": "com.azure.storageimportexport#ShippingInformationInput",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the Microsoft datacenter to which the drives should be shipped. "
+          }
+        },
+        "deliveryPackage": {
+          "target": "com.azure.storageimportexport#DeliveryPackageInformation",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the package being shipped by the customer to the Microsoft data center. "
+          }
+        },
+        "returnPackage": {
+          "target": "com.azure.storageimportexport#PackageInformation",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the package being shipped from the Microsoft data center to the customer to return the drives. The format is the same as the deliveryPackage property above. This property is not included if the drives have not yet been returned. "
+          }
+        },
+        "diagnosticsPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The virtual blob directory to which the copy logs and backups of drive manifest files (if enabled) will be stored."
+          }
+        },
+        "logLevel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default value is Error. Indicates whether error logging or verbose logging will be enabled."
+          }
+        },
+        "backupDriveManifest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Default value is false. Indicates whether the manifest files on the drives should be copied to block blobs."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current state of the job."
+          }
+        },
+        "cancelRequested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether a request has been submitted to cancel the job."
+          }
+        },
+        "percentComplete": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Overall percentage completed for the job."
+          }
+        },
+        "incompleteBlobListUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A blob path that points to a block blob containing a list of blob names that were not exported due to insufficient drive space. If all blobs were exported successfully, then this element is not included in the response."
+          }
+        },
+        "driveList": {
+          "target": "com.azure.storageimportexport#JobDetailsInputDriveListList",
+          "traits": {
+            "smithy.api#documentation": "List of up to ten drives that comprise the job. The drive list is a required element for an import job; it is not specified for export jobs."
+          }
+        },
+        "export": {
+          "target": "com.azure.storageimportexport#Export",
+          "traits": {
+            "smithy.api#documentation": "A property containing information about the blobs to be exported for an export job. This property is included for export jobs only."
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the provisioning state of the job."
+          }
+        },
+        "encryptionKey": {
+          "target": "com.azure.storageimportexport#EncryptionKeyDetails",
+          "traits": {
+            "smithy.api#documentation": "Contains information about the encryption key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the job properties"
+      }
+    },
+    "com.azure.storageimportexport#JobDetailsInputDriveListList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#DriveStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of up to ten drives that comprise the job. The drive list is a required element for an import job; it is not specified for export jobs."
+      }
+    },
+    "com.azure.storageimportexport#ShippingInformationInput": {
+      "type": "structure",
+      "members": {
+        "recipientName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the recipient who will receive the hard drives when they are returned. "
+          }
+        },
+        "streetAddress1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the street address to use when returning the drives. "
+          }
+        },
+        "streetAddress2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the street address to use when returning the drives. "
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city name to use when returning the drives."
+          }
+        },
+        "stateOrProvince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state or province to use when returning the drives."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code to use when returning the drives."
+          }
+        },
+        "countryOrRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country or region to use when returning the drives. "
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number of the recipient of the returned drives."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information about the Microsoft datacenter to which the drives should be shipped."
+      }
+    },
+    "com.azure.storageimportexport#JobsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#JobsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#JobResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Gets information about an existing job.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#JobsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name uniquely identifies the resource group within the user subscription."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the import/export job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#JobsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#JobsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#ListJobsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Returns all active and completed jobs in a resource group.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#ListJobsResponse": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "link to next batch of jobs"
+          }
+        },
+        "value": {
+          "target": "com.azure.storageimportexport#ListJobsResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Job list"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List jobs response"
+      }
+    },
+    "com.azure.storageimportexport#ListJobsResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#JobResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Job list"
+      }
+    },
+    "com.azure.storageimportexport#JobsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name uniquely identifies the resource group within the user subscription."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "An integer value that specifies how many jobs at most should be returned. The value cannot exceed 100."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Can be used to restrict the results to certain conditions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#JobsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#JobsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#ListJobsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ImportExport/jobs",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Returns all active and completed jobs in a subscription.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#JobsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID for the Azure user."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "An integer value that specifies how many jobs at most should be returned. The value cannot exceed 100."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Can be used to restrict the results to certain conditions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#LocationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storageimportexport#LocationsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#Location"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ImportExport/locations/{locationName}",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Returns the details about a location to which you can ship the disks associated with an import or export job. A location is an Azure region.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#Location": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the resource identifier of the location. "
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the name of the location. Use List Locations to get all supported locations. "
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the type of the location. "
+          }
+        },
+        "properties": {
+          "target": "com.azure.storageimportexport#LocationProperties",
+          "traits": {
+            "smithy.api#documentation": "location properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides information about an Azure data center location."
+      }
+    },
+    "com.azure.storageimportexport#LocationProperties": {
+      "type": "structure",
+      "members": {
+        "recipientName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recipient name to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "streetAddress1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the street address to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "streetAddress2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the street address to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The city name to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "stateOrProvince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state or province to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "countryOrRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country or region to use when shipping the drives to the Azure data center. "
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The phone number for the Azure data center. "
+          }
+        },
+        "additionalShippingInformation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional shipping information for customer, specific to datacenter to which customer should send their disks."
+          }
+        },
+        "supportedCarriers": {
+          "target": "com.azure.storageimportexport#LocationPropertiesSupportedCarriersList",
+          "traits": {
+            "smithy.api#documentation": "A list of carriers that are supported at this location. "
+          }
+        },
+        "alternateLocations": {
+          "target": "com.azure.storageimportexport#LocationPropertiesAlternateLocationsList",
+          "traits": {
+            "smithy.api#documentation": "A list of location IDs that should be used to ship shipping drives to for jobs created against the current location. If the current location is active, it will be part of the list. If it is temporarily closed due to maintenance, this list may contain other locations. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "location properties"
+      }
+    },
+    "com.azure.storageimportexport#LocationPropertiesAlternateLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of location IDs that should be used to ship shipping drives to for jobs created against the current location. If the current location is active, it will be part of the list. If it is temporarily closed due to maintenance, this list may contain other locations. "
+      }
+    },
+    "com.azure.storageimportexport#LocationPropertiesSupportedCarriersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of carriers that are supported at this location. "
+      }
+    },
+    "com.azure.storageimportexport#LocationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "locationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the location. For example, West US or westus."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storageimportexport#LocationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.storageimportexport#LocationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ImportExport/locations",
+          "code": 200,
+          "apiVersion": "2020-08-01"
+        },
+        "smithy.api#documentation": "Returns a list of locations to which you can ship the disks associated with an import or export job. A location is a Microsoft data center region.",
+        "com.distilled.openapi#apiVersion": "2020-08-01"
+      }
+    },
+    "com.azure.storageimportexport#LocationsResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storageimportexport#LocationsResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "locations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Locations response"
+      }
+    },
+    "com.azure.storageimportexport#LocationsResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storageimportexport#Location"
+      },
+      "traits": {
+        "smithy.api#documentation": "locations"
+      }
+    },
+    "com.azure.storageimportexport#Storageimportexport": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.storageimportexport#OperationsList"
+        },
+        {
+          "target": "com.azure.storageimportexport#BitLockerKeysList"
+        },
+        {
+          "target": "com.azure.storageimportexport#JobsDelete"
+        },
+        {
+          "target": "com.azure.storageimportexport#JobsUpdate"
+        },
+        {
+          "target": "com.azure.storageimportexport#JobsCreate"
+        },
+        {
+          "target": "com.azure.storageimportexport#JobsGet"
+        },
+        {
+          "target": "com.azure.storageimportexport#JobsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.storageimportexport#JobsListBySubscription"
+        },
+        {
+          "target": "com.azure.storageimportexport#LocationsGet"
+        },
+        {
+          "target": "com.azure.storageimportexport#LocationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Storageimportexport",
+        "smithy.api#documentation": "Azure Storageimportexport API — merged from the storageimportexport resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

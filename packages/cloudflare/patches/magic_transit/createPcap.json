@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#PcapsCreate with distilled cloudflare/magic-transit createPcap",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsCreate",
+      "path": "/shapes/com.cloudflare.magic_transit#CreatePcap"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsCreateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#CreatePcapRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreatePcap/input/target",
+      "value": "com.cloudflare.magic_transit#CreatePcapRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#PcapsCreateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#CreatePcapResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#CreatePcap/output/target",
+      "value": "com.cloudflare.magic_transit#CreatePcapResponse"
+    }
+  ]
+}

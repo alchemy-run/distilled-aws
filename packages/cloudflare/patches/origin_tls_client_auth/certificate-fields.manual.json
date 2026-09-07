@@ -1,0 +1,92 @@
+{
+  "description": "Docs drift: the zone client-certificate responses (create/get/list item) omit the certificate metadata the live wire returns — expires_on, issuer, signature, status, uploaded_on (distilled models all of them). Alchemy's Certificate provider reads expiresOn/issuer/status and got undefined.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuthResponse/members/expiresOn",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": { "smithy.api#jsonName": "expires_on" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuthResponse/members/issuer",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuthResponse/members/signature",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuthResponse/members/status",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuthResponse/members/uploadedOn",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": { "smithy.api#jsonName": "uploaded_on" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse/members/expiresOn",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": { "smithy.api#jsonName": "expires_on" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse/members/issuer",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse/members/signature",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse/members/status",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#GetOriginTlsClientAuthResponse/members/uploadedOn",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": { "smithy.api#jsonName": "uploaded_on" }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListResultItem/members/expires_on",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListResultItem/members/issuer",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListResultItem/members/signature",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListResultItem/members/status",
+      "value": { "target": "smithy.api#String" }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListResultItem/members/uploaded_on",
+      "value": { "target": "smithy.api#String" }
+    }
+  ]
+}

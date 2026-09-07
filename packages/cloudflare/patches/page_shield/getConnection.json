@@ -1,0 +1,30 @@
+{
+  "description": "Align page_shield#ConnectionsGet with distilled cloudflare/page-shield getConnection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ConnectionsGet",
+      "path": "/shapes/com.cloudflare.page_shield#GetConnection"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ConnectionsGetRequest",
+      "path": "/shapes/com.cloudflare.page_shield#GetConnectionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetConnection/input/target",
+      "value": "com.cloudflare.page_shield#GetConnectionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_shield#ConnectionsGetResponse",
+      "path": "/shapes/com.cloudflare.page_shield#GetConnectionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_shield#GetConnection/output/target",
+      "value": "com.cloudflare.page_shield#GetConnectionResponse"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.certificate_authorities#HostnameAssociationsGetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mtls_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UUID to match against for a certificate that was uploaded to the mTLS Certificate Management endpoint. If no mtls_certificate_id is given, the results will be the hostnames associated to your active Cloudflare Managed CA.",
+            "smithy.api#httpQuery": "mtls_certificate_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponseHostnamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponse": {
+      "type": "structure",
+      "members": {
+        "hostnames": {
+          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponseHostnamesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/certificate_authorities/hostname_associations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Hostname Associations.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequestHostnamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hostnames": {
+          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequestHostnamesList"
+        },
+        "mtls_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UUID for a certificate that was uploaded to the mTLS Certificate Management endpoint. If no mtls_certificate_id is given, the hostnames will be associated to your active Cloudflare Managed CA."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponseHostnamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "hostnames": {
+          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponseHostnamesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/certificate_authorities/hostname_associations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Replace Hostname Associations.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.certificate_authorities#CertificateAuthorities": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGet"
+        },
+        {
+          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare CertificateAuthorities",
+        "smithy.api#documentation": "Cloudflare API — certificate_authorities resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

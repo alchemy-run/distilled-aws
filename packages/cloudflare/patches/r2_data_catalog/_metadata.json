@@ -1,0 +1,25 @@
+{
+  "description": "Key dictionary / op aliases for r2_data_catalog (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdAt": "created_at",
+        "credentialStatus": "credential_status",
+        "maintenanceConfig": "maintenance_config",
+        "maxSnapshotAge": "max_snapshot_age",
+        "metadataLocation": "metadata_location",
+        "minSnapshotsToKeep": "min_snapshots_to_keep",
+        "namespaceUuid": "namespace_uuid",
+        "namespaceUuids": "namespace_uuids",
+        "nextPageToken": "next_page_token",
+        "snapshotExpiration": "snapshot_expiration",
+        "tableUuid": "table_uuid",
+        "tableUuids": "table_uuids",
+        "targetSizeMb": "target_size_mb",
+        "updatedAt": "updated_at"
+      }
+    }
+  ]
+}

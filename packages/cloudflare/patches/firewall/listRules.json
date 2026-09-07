@@ -1,0 +1,41 @@
+{
+  "description": "Align firewall#RulesList with distilled cloudflare/firewall listRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesList",
+      "path": "/shapes/com.cloudflare.firewall#ListRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesListRequest",
+      "path": "/shapes/com.cloudflare.firewall#ListRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListRules/input/target",
+      "value": "com.cloudflare.firewall#ListRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesListResponse",
+      "path": "/shapes/com.cloudflare.firewall#ListRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListRules/output/target",
+      "value": "com.cloudflare.firewall#ListRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#ListRules/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

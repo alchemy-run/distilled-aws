@@ -1,0 +1,50 @@
+{
+  "description": "Align pages#ProjectsDomainsList with distilled cloudflare/pages listProjectDomains",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsList",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomains"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsListRequest",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomainsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomains/input/target",
+      "value": "com.cloudflare.pages#ListProjectDomainsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDomainsListResponse",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomainsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomains/output/target",
+      "value": "com.cloudflare.pages#ListProjectDomainsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomains/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#ListProjectDomains/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pages#ProjectNotFound"
+        },
+        {
+          "target": "com.cloudflare.pages#Forbidden"
+        }
+      ]
+    }
+  ]
+}

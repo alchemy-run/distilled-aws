@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112SummaryIpVersion with distilled cloudflare/radar ipVersionAs112Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryIpVersion",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAs112Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryIpVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAs112SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAs112Summary/input/target",
+      "value": "com.cloudflare.radar#IpVersionAs112SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryIpVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAs112SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionAs112Summary/output/target",
+      "value": "com.cloudflare.radar#IpVersionAs112SummaryResponse"
+    }
+  ]
+}

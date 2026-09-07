@@ -1,0 +1,9 @@
+{
+  "structures": {
+    "GetAuthorizationTokenResult": {
+      "members": {
+        "authorizationToken": { "sensitive": true }
+      }
+    }
+  }
+}

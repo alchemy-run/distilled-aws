@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#TunnelsCloudflaredConfigurationsGet with distilled cloudflare/zero-trust getTunnelCloudflaredConfiguration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConfigurationsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConfiguration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConfigurationsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConfigurationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConfiguration/input/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelCloudflaredConfigurationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#TunnelsCloudflaredConfigurationsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConfigurationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConfiguration/output/target",
+      "value": "com.cloudflare.zero_trust#GetTunnelCloudflaredConfigurationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetTunnelCloudflaredConfiguration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#TunnelConfigurationNotFound"
+        }
+      ]
+    }
+  ]
+}

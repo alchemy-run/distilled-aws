@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#ActiveSessionCreatePoll with distilled cloudflare/realtime-kit createPollActiveSession",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionCreatePoll",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePollActiveSession"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionCreatePollRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePollActiveSessionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePollActiveSession/input/target",
+      "value": "com.cloudflare.realtime_kit#CreatePollActiveSessionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionCreatePollResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePollActiveSessionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#CreatePollActiveSession/output/target",
+      "value": "com.cloudflare.realtime_kit#CreatePollActiveSessionResponse"
+    }
+  ]
+}

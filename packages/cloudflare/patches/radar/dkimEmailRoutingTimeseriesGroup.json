@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailRoutingTimeseriesGroupsDkim with distilled cloudflare/radar dkimEmailRoutingTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsDkim",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailRoutingTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsDkimRequest",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailRoutingTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#DkimEmailRoutingTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailRoutingTimeseriesGroupsDkimResponse",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailRoutingTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailRoutingTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#DkimEmailRoutingTimeseriesGroupResponse"
+    }
+  ]
+}

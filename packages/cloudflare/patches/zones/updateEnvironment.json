@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#EnvironmentsUpdate with distilled cloudflare/zones updateEnvironment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsUpdate",
+      "path": "/shapes/com.cloudflare.zones#UpdateEnvironment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsUpdateRequest",
+      "path": "/shapes/com.cloudflare.zones#UpdateEnvironmentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#UpdateEnvironment/input/target",
+      "value": "com.cloudflare.zones#UpdateEnvironmentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsUpdateResponse",
+      "path": "/shapes/com.cloudflare.zones#UpdateEnvironmentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#UpdateEnvironment/output/target",
+      "value": "com.cloudflare.zones#UpdateEnvironmentResponse"
+    }
+  ]
+}

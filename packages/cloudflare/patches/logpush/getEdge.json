@@ -1,0 +1,38 @@
+{
+  "description": "Align logpush#EdgeGet with distilled cloudflare/logpush getEdge",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#EdgeGet",
+      "path": "/shapes/com.cloudflare.logpush#GetEdge"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#EdgeGetRequest",
+      "path": "/shapes/com.cloudflare.logpush#GetEdgeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetEdge/input/target",
+      "value": "com.cloudflare.logpush#GetEdgeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#EdgeGetResponse",
+      "path": "/shapes/com.cloudflare.logpush#GetEdgeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetEdge/output/target",
+      "value": "com.cloudflare.logpush#GetEdgeResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#GetEdge/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

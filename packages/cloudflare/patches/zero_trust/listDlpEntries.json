@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DlpEntriesList with distilled cloudflare/zero-trust listDlpEntries",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEntries"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEntriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEntries/input/target",
+      "value": "com.cloudflare.zero_trust#ListDlpEntriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEntriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEntries/output/target",
+      "value": "com.cloudflare.zero_trust#ListDlpEntriesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpEntries/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

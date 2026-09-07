@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpTimeseriesGroupsDeviceType with distilled cloudflare/radar deviceTypeHttpTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsDeviceType",
+      "path": "/shapes/com.cloudflare.radar#DeviceTypeHttpTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsDeviceTypeRequest",
+      "path": "/shapes/com.cloudflare.radar#DeviceTypeHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DeviceTypeHttpTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#DeviceTypeHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsDeviceTypeResponse",
+      "path": "/shapes/com.cloudflare.radar#DeviceTypeHttpTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DeviceTypeHttpTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#DeviceTypeHttpTimeseriesGroupResponse"
+    }
+  ]
+}

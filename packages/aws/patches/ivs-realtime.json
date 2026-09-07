@@ -1,0 +1,12 @@
+{
+  "operations": {
+    "createStage": { "errors": ["ThrottlingException"] },
+    "deleteStage": { "errors": ["ThrottlingException"] },
+    "getStage": { "errors": ["ThrottlingException"] },
+    "listStages": { "errors": ["ThrottlingException"] },
+    "listTagsForResource": { "errors": ["ThrottlingException"] },
+    "tagResource": { "errors": ["ThrottlingException"] },
+    "untagResource": { "errors": ["ThrottlingException"] },
+    "updateStage": { "errors": ["ThrottlingException"] }
+  }
+}

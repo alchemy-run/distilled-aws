@@ -1,0 +1,39 @@
+{
+  "description": "Align alerting#AvailableAlertsList with distilled cloudflare/alerting listAvailableAlerts",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#AvailableAlertsList",
+      "path": "/shapes/com.cloudflare.alerting#ListAvailableAlerts"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#AvailableAlertsListRequest",
+      "path": "/shapes/com.cloudflare.alerting#ListAvailableAlertsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListAvailableAlerts/input/target",
+      "value": "com.cloudflare.alerting#ListAvailableAlertsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#AvailableAlertsListResponse",
+      "path": "/shapes/com.cloudflare.alerting#ListAvailableAlertsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListAvailableAlerts/output/target",
+      "value": "com.cloudflare.alerting#ListAvailableAlertsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#ListAvailableAlerts/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

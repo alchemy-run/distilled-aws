@@ -1,0 +1,19 @@
+{
+  "description": "Disconnected volumes have no Service. Omit the non-null service selection and make the member optional so volumeInstance parses for unattached volumes.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VolumeInstanceRequest/traits/com.railway.graphql#operation/query",
+      "value": "query volumeInstance($id: String!) {\n  volumeInstance(id: $id) {\n    createdAt\n    currentSizeMB\n    deletedAt\n    environment {\n      canAccess\n      canvasGroupRefs\n      configEtag\n      createdAt\n      deletedAt\n      id\n      isEphemeral\n      name\n      projectId\n      unmergedChangesCount\n      updatedAt\n    }\n    environmentId\n    externalId\n    id\n    isPendingDeletion\n    mountPath\n    region\n    serviceId\n    sizeMB\n    state\n    volume {\n      createdAt\n      id\n      name\n      projectId\n    }\n    volumeId\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#VolumeInstanceResponse/members/service/traits/smithy.api#required"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.railway.api#VolumeInstanceResponse/members/service/traits/com.railway.graphql#nullable",
+      "value": {}
+    }
+  ]
+}

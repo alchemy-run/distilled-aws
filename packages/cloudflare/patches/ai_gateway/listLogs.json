@@ -1,0 +1,41 @@
+{
+  "description": "Align ai_gateway#LogsList with distilled cloudflare/ai-gateway listLogs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsList",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListLogs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsListRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListLogsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListLogs/input/target",
+      "value": "com.cloudflare.ai_gateway#ListLogsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#LogsListResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListLogsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListLogs/output/target",
+      "value": "com.cloudflare.ai_gateway#ListLogsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListLogs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

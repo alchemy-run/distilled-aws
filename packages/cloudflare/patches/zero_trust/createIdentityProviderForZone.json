@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#IdentityProvidersCreateForZone with distilled cloudflare/zero-trust createIdentityProviderForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersCreateForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersCreateForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForZone/input/target",
+      "value": "com.cloudflare.zero_trust#CreateIdentityProviderForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersCreateForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForZone/output/target",
+      "value": "com.cloudflare.zero_trust#CreateIdentityProviderForZoneResponse"
+    }
+  ]
+}

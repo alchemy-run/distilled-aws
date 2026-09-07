@@ -1,0 +1,42 @@
+{
+  "description": "Align zaraz#ConfigGet with distilled cloudflare/zaraz getConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ConfigGet",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ConfigGetRequest",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfig/input/target",
+      "value": "com.cloudflare.zaraz#GetConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ConfigGetResponse",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfig/output/target",
+      "value": "com.cloudflare.zaraz#GetConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zaraz#GetConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zaraz#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.zaraz#NotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#DomainsGet with distilled cloudflare/workers getDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsGet",
+      "path": "/shapes/com.cloudflare.workers#GetDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetDomain/input/target",
+      "value": "com.cloudflare.workers#GetDomainRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetDomainResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetDomain/output/target",
+      "value": "com.cloudflare.workers#GetDomainResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#DomainNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

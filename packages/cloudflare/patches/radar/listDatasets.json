@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DatasetsList with distilled cloudflare/radar listDatasets",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsList",
+      "path": "/shapes/com.cloudflare.radar#ListDatasets"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsListRequest",
+      "path": "/shapes/com.cloudflare.radar#ListDatasetsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListDatasets/input/target",
+      "value": "com.cloudflare.radar#ListDatasetsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsListResponse",
+      "path": "/shapes/com.cloudflare.radar#ListDatasetsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListDatasets/output/target",
+      "value": "com.cloudflare.radar#ListDatasetsResponse"
+    }
+  ]
+}

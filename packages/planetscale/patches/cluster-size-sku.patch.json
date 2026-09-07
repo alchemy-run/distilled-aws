@@ -1,0 +1,51 @@
+{
+  "description": "Fix ClusterSizeSkuSerializer: make many fields nullable (storage, provider, rates, etc.)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/ClusterSizeSkuSerializer/properties/storage/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ClusterSizeSkuSerializer/properties/provider/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ClusterSizeSkuSerializer/properties/default_vtgate_rate/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ClusterSizeSkuSerializer/properties/architecture/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ClusterSizeSkuSerializer/properties/rate/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ClusterSizeSkuSerializer/properties/replica_rate/x-nullable",
+      "value": true
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/ClusterSizeSkuSerializer/required",
+      "value": [
+        "name",
+        "display_name",
+        "cpu",
+        "ram",
+        "metal",
+        "enabled",
+        "default_vtgate",
+        "sort_order",
+        "development",
+        "production"
+      ]
+    }
+  ]
+}

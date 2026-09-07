@@ -1,0 +1,41 @@
+{
+  "description": "Align memberships#List with distilled cloudflare/memberships listMemberships",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#List",
+      "path": "/shapes/com.cloudflare.memberships#ListMemberships"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#ListRequest",
+      "path": "/shapes/com.cloudflare.memberships#ListMembershipsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#ListMemberships/input/target",
+      "value": "com.cloudflare.memberships#ListMembershipsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#ListResponse",
+      "path": "/shapes/com.cloudflare.memberships#ListMembershipsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#ListMemberships/output/target",
+      "value": "com.cloudflare.memberships#ListMembershipsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.memberships#ListMemberships/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

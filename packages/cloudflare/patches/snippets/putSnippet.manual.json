@@ -1,0 +1,32 @@
+{
+  "description": "Docs gap: PUT /zones/{zone_id}/snippets/{snippet_name} requires multipart/form-data — a JSON `metadata` part ({main_module}) plus the snippet module file(s) — but the docs model it as a bare JSON PUT with no body members, so the live API rejects it with 'bad Content-Type, expected multipart/form'. Transcribed from the distilled SDK's putSnippet; the service key dictionary carries mainModule -> main_module.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippetRequest/members/metadata",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#required": {},
+          "smithy.api#documentation": "Snippet metadata ({ mainModule }), JSON-encoded as the multipart `metadata` part."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippetRequest/members/files",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "com.cloudflare.protocols#formDataFile": {},
+          "smithy.api#documentation": "Snippet module file(s), appended under their own filenames."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.snippets#PutSnippet/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    }
+  ]
+}

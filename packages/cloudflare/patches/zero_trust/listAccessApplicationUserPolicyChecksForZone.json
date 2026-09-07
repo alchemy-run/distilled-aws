@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessApplicationsUserPolicyChecksListForZone with distilled cloudflare/zero-trust listAccessApplicationUserPolicyChecksForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUserPolicyChecksListForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUserPolicyChecksListForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZone/input/target",
+      "value": "com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUserPolicyChecksListForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZone/output/target",
+      "value": "com.cloudflare.zero_trust#ListAccessApplicationUserPolicyChecksForZoneResponse"
+    }
+  ]
+}

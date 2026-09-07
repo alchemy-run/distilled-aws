@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#BgpTopPrefixes with distilled cloudflare/radar prefixesBgpTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpTopPrefixes",
+      "path": "/shapes/com.cloudflare.radar#PrefixesBgpTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpTopPrefixesRequest",
+      "path": "/shapes/com.cloudflare.radar#PrefixesBgpTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#PrefixesBgpTop/input/target",
+      "value": "com.cloudflare.radar#PrefixesBgpTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#BgpTopPrefixesResponse",
+      "path": "/shapes/com.cloudflare.radar#PrefixesBgpTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#PrefixesBgpTop/output/target",
+      "value": "com.cloudflare.radar#PrefixesBgpTopResponse"
+    }
+  ]
+}

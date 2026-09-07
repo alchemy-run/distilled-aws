@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksRoutesIpsGet with distilled cloudflare/zero-trust getNetworkRouteIp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesIpsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetNetworkRouteIp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesIpsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetNetworkRouteIpRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetNetworkRouteIp/input/target",
+      "value": "com.cloudflare.zero_trust#GetNetworkRouteIpRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksRoutesIpsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetNetworkRouteIpResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetNetworkRouteIp/output/target",
+      "value": "com.cloudflare.zero_trust#GetNetworkRouteIpResponse"
+    }
+  ]
+}

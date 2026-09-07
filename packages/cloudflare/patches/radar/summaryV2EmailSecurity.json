@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummaryV2 with distilled cloudflare/radar summaryV2EmailSecurity",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryV2",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2EmailSecurity"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryV2Request",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2EmailSecurityRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2EmailSecurity/input/target",
+      "value": "com.cloudflare.radar#SummaryV2EmailSecurityRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryV2Response",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2EmailSecurityResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2EmailSecurity/output/target",
+      "value": "com.cloudflare.radar#SummaryV2EmailSecurityResponse"
+    }
+  ]
+}

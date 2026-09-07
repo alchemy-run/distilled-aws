@@ -1,0 +1,39 @@
+{
+  "description": "Align api_gateway#LabelsUserUpdate with distilled cloudflare/api-gateway putLabelUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserUpdate",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserUpdateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUser/input/target",
+      "value": "com.cloudflare.api_gateway#PutLabelUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserUpdateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUser/output/target",
+      "value": "com.cloudflare.api_gateway#PutLabelUserResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUser/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#LabelNotFound"
+        }
+      ]
+    }
+  ]
+}

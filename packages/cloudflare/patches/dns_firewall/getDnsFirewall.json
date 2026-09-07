@@ -1,0 +1,42 @@
+{
+  "description": "Align dns_firewall#Get with distilled cloudflare/dns-firewall getDnsFirewall",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#Get",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetDnsFirewall"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#GetRequest",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetDnsFirewallRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetDnsFirewall/input/target",
+      "value": "com.cloudflare.dns_firewall#GetDnsFirewallRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#GetResponse",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetDnsFirewallResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetDnsFirewall/output/target",
+      "value": "com.cloudflare.dns_firewall#GetDnsFirewallResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetDnsFirewall/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns_firewall#DnsFirewallNotFound"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

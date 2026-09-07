@@ -1,0 +1,42 @@
+{
+  "description": "Align accounts#TokensGet with distilled cloudflare/accounts getToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensGet",
+      "path": "/shapes/com.cloudflare.accounts#GetToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensGetRequest",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetToken/input/target",
+      "value": "com.cloudflare.accounts#GetTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensGetResponse",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetToken/output/target",
+      "value": "com.cloudflare.accounts#GetTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#GetToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#TokenNotFound"
+        }
+      ]
+    }
+  ]
+}

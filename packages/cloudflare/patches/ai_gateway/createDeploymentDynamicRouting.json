@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#DynamicRoutingCreateDeployment with distilled cloudflare/ai-gateway createDeploymentDynamicRouting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateDeployment",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateDeploymentDynamicRouting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateDeploymentRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateDeploymentDynamicRoutingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateDeploymentDynamicRouting/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateDeploymentDynamicRoutingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingCreateDeploymentResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateDeploymentDynamicRoutingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateDeploymentDynamicRouting/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateDeploymentDynamicRoutingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateDeploymentDynamicRouting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#RouteNotFound"
+        }
+      ]
+    }
+  ]
+}

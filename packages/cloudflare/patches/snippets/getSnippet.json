@@ -1,0 +1,39 @@
+{
+  "description": "Align snippets#Get with distilled cloudflare/snippets getSnippet",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#Get",
+      "path": "/shapes/com.cloudflare.snippets#GetSnippet"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#GetRequest",
+      "path": "/shapes/com.cloudflare.snippets#GetSnippetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#GetSnippet/input/target",
+      "value": "com.cloudflare.snippets#GetSnippetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#GetResponse",
+      "path": "/shapes/com.cloudflare.snippets#GetSnippetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#GetSnippet/output/target",
+      "value": "com.cloudflare.snippets#GetSnippetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.snippets#GetSnippet/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.snippets#SnippetNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1203 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.taggers#TaggersListRequestIdInList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggersListRequestOrderByItem": {
+      "type": "enum",
+      "members": {
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-name"
+          }
+        },
+        "UPDATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-updated_at"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "NAME_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "UPDATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated_at"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggersListRequestOrderByList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TaggersListRequestOrderByItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggersListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "enabled",
+            "smithy.api#documentation": "Filter by enabled status"
+          }
+        },
+        "id__in": {
+          "target": "com.posthog.taggers#TaggersListRequestIdInList",
+          "traits": {
+            "smithy.api#httpQuery": "id__in",
+            "smithy.api#documentation": "Multiple values may be separated by commas."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "com.posthog.taggers#TaggersListRequestOrderByList",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Ordering\n\n* `created_at` - Created At\n* `-created_at` - Created At (descending)\n* `updated_at` - Updated At\n* `-updated_at` - Updated At (descending)\n* `name` - Name\n* `-name` - Name (descending)"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search in name or description"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#PaginatedTaggerList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.taggers#PaginatedTaggerListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#Tagger": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "tagger_type": {
+          "target": "com.posthog.taggers#TaggerTypeEnum"
+        },
+        "tagger_config": {
+          "target": "com.posthog.taggers#TaggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Tagger configuration. For tagger_type 'llm': {prompt, tags, min_tags?, max_tags?}. For tagger_type 'hog': {source, tags?}.",
+            "smithy.api#required": {}
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.taggers#TaggerConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Conditions that scope when the tagger runs"
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.taggers#TaggerModelConfiguration",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.taggers#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggerTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LLM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "llm"
+          }
+        },
+        "HOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hog"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `llm` - LLM\n* `hog` - Hog"
+      }
+    },
+    "com.posthog.taggers#TaggerConfig": {
+      "type": "union",
+      "members": {
+        "LLMTaggerConfig": {
+          "target": "com.posthog.taggers#LLMTaggerConfig"
+        },
+        "HogTaggerConfig": {
+          "target": "com.posthog.taggers#HogTaggerConfig"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#LLMTaggerConfig": {
+      "type": "structure",
+      "members": {
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prompt instructing the LLM how to tag generations",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.taggers#LLMTaggerConfigTagsList",
+          "traits": {
+            "smithy.api#documentation": "Available tags the LLM can assign",
+            "smithy.api#required": {}
+          }
+        },
+        "min_tags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum number of tags to apply"
+          }
+        },
+        "max_tags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of tags to apply (null = no limit)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TagDefinition": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tag identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description to help the LLM classify"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#LLMTaggerConfigTagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TagDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available tags the LLM can assign"
+      }
+    },
+    "com.posthog.taggers#HogTaggerConfig": {
+      "type": "structure",
+      "members": {
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code to classify a generation into tags.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.taggers#HogTaggerConfigTagsList",
+          "traits": {
+            "smithy.api#documentation": "Optional tag whitelist. Leave empty to allow any tag returned by the Hog code."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#HogTaggerConfigTagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TagDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional tag whitelist. Leave empty to allow any tag returned by the Hog code."
+      }
+    },
+    "com.posthog.taggers#TaggerCondition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier for this condition",
+            "smithy.api#required": {}
+          }
+        },
+        "rollout_percentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Percentage of matching events to apply this condition to"
+          }
+        },
+        "properties": {
+          "target": "com.posthog.taggers#TaggerConditionPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "Property filters that scope when this condition fires"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggerConditionPropertiesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggerConditionPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TaggerConditionPropertiesItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Property filters that scope when this condition fires"
+      }
+    },
+    "com.posthog.taggers#TaggerConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TaggerCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions that scope when the tagger runs"
+      }
+    },
+    "com.posthog.taggers#TaggerModelConfiguration": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.posthog.taggers#LLMProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "LLM provider to use for this tagger.\n\n* `openai` - Openai\n* `anthropic` - Anthropic\n* `gemini` - Gemini\n* `openrouter` - Openrouter\n* `fireworks` - Fireworks\n* `azure_openai` - Azure OpenAI\n* `together_ai` - Together AI",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider model identifier to use for this tagger.",
+            "smithy.api#required": {}
+          }
+        },
+        "provider_key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Existing LLM provider key UUID for the current project. Do not invent this value; use a real provider key ID returned by PostHog, or omit/null when no provider key should be pinned.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "provider_key_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Nested serializer for model configuration."
+      }
+    },
+    "com.posthog.taggers#LLMProviderEnum": {
+      "type": "enum",
+      "members": {
+        "OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai"
+          }
+        },
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "GEMINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gemini"
+          }
+        },
+        "OPENROUTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openrouter"
+          }
+        },
+        "FIREWORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fireworks"
+          }
+        },
+        "AZURE_OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure_openai"
+          }
+        },
+        "TOGETHER_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "together_ai"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `openai` - Openai\n* `anthropic` - Anthropic\n* `gemini` - Gemini\n* `openrouter` - Openrouter\n* `fireworks` - Fireworks\n* `azure_openai` - Azure OpenAI\n* `together_ai` - Together AI"
+      }
+    },
+    "com.posthog.taggers#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.taggers#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.taggers#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.taggers#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.taggers#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.taggers#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#PaginatedTaggerListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#Tagger"
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersListRequest"
+      },
+      "output": {
+        "target": "com.posthog.taggers#PaginatedTaggerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/taggers/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.taggers#TaggersCreateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TaggerCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions that scope when the tagger runs"
+      }
+    },
+    "com.posthog.taggers#TaggerModelConfigurationWrite": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.posthog.taggers#LLMProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "LLM provider to use for this tagger.\n\n* `openai` - Openai\n* `anthropic` - Anthropic\n* `gemini` - Gemini\n* `openrouter` - Openrouter\n* `fireworks` - Fireworks\n* `azure_openai` - Azure OpenAI\n* `together_ai` - Together AI",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider model identifier to use for this tagger.",
+            "smithy.api#required": {}
+          }
+        },
+        "provider_key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Existing LLM provider key UUID for the current project. Do not invent this value; use a real provider key ID returned by PostHog, or omit/null when no provider key should be pinned.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "tagger_type": {
+          "target": "com.posthog.taggers#TaggerTypeEnum"
+        },
+        "tagger_config": {
+          "target": "com.posthog.taggers#TaggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Tagger configuration. For tagger_type 'llm': {prompt, tags, min_tags?, max_tags?}. For tagger_type 'hog': {source, tags?}.",
+            "smithy.api#required": {}
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.taggers#TaggersCreateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Conditions that scope when the tagger runs"
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.taggers#TaggerModelConfigurationWrite",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#TaggersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.taggers#Tagger"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/taggers/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.taggers#TaggersRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this tagger."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#TaggersRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.taggers#Tagger"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/taggers/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.taggers#TaggersUpdateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TaggerCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions that scope when the tagger runs"
+      }
+    },
+    "com.posthog.taggers#TaggersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this tagger."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "tagger_type": {
+          "target": "com.posthog.taggers#TaggerTypeEnum"
+        },
+        "tagger_config": {
+          "target": "com.posthog.taggers#TaggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Tagger configuration. For tagger_type 'llm': {prompt, tags, min_tags?, max_tags?}. For tagger_type 'hog': {source, tags?}.",
+            "smithy.api#required": {}
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.taggers#TaggersUpdateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Conditions that scope when the tagger runs"
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.taggers#TaggerModelConfigurationWrite",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#TaggersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.taggers#Tagger"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/taggers/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.taggers#TaggersPartialUpdateRequestConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TaggerCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions that scope when the tagger runs"
+      }
+    },
+    "com.posthog.taggers#TaggersPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this tagger."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "tagger_type": {
+          "target": "com.posthog.taggers#TaggerTypeEnum"
+        },
+        "tagger_config": {
+          "target": "com.posthog.taggers#TaggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Tagger configuration. For tagger_type 'llm': {prompt, tags, min_tags?, max_tags?}. For tagger_type 'hog': {source, tags?}."
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.taggers#TaggersPartialUpdateRequestConditionsList",
+          "traits": {
+            "smithy.api#documentation": "Conditions that scope when the tagger runs"
+          }
+        },
+        "model_configuration": {
+          "target": "com.posthog.taggers#TaggerModelConfigurationWrite",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#TaggersPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.taggers#Tagger"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/taggers/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.taggers#TaggersDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this tagger."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#TaggersDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/taggers/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.taggers#TestHogTaggerTag": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tag identifier to allow in Hog test results.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description for the tag."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TaggersTestHogCreateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TestHogTaggerTag"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional tag whitelist. Returned tags outside this list are filtered out."
+      }
+    },
+    "com.posthog.taggers#TaggersTestHogCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hog source code to test. Return a tag name string, a list of tag name strings, or null.",
+            "smithy.api#required": {}
+          }
+        },
+        "sample_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of recent $ai_generation events to test against (1-10, default 5)."
+          }
+        },
+        "tags": {
+          "target": "com.posthog.taggers#TaggersTestHogCreateRequestTagsList",
+          "traits": {
+            "smithy.api#documentation": "Optional tag whitelist. Returned tags outside this list are filtered out."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.taggers#TestHogTaggerResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.taggers#TestHogTaggerResponseResultsList",
+          "traits": {
+            "smithy.api#documentation": "Per-event Hog tagger test results.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional message, for example when no recent AI events were found."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TestHogTaggerResultItem": {
+      "type": "structure",
+      "members": {
+        "event_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the sampled $ai_generation event.",
+            "smithy.api#required": {}
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID if available.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "input_preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First 200 characters of the generation input.",
+            "smithy.api#required": {}
+          }
+        },
+        "output_preview": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First 200 characters of the generation output.",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.taggers#TestHogTaggerResultItemTagsList",
+          "traits": {
+            "smithy.api#documentation": "Tag names returned by the Hog code.",
+            "smithy.api#required": {}
+          }
+        },
+        "reasoning": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text written to stdout by the Hog code.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message if the Hog code failed.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.taggers#TestHogTaggerResultItemTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tag names returned by the Hog code."
+      }
+    },
+    "com.posthog.taggers#TestHogTaggerResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.taggers#TestHogTaggerResultItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-event Hog tagger test results."
+      }
+    },
+    "com.posthog.taggers#TaggersTestHogCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.taggers#TaggersTestHogCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.taggers#TestHogTaggerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/taggers/test_hog/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Test Hog tagger code against sample events without saving."
+      }
+    },
+    "com.posthog.taggers#Taggers": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.taggers#TaggersList"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersCreate"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersRetrieve"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersUpdate"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersPartialUpdate"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersDestroy"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersTestHogCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

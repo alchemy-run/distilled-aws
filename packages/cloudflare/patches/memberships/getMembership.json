@@ -1,0 +1,30 @@
+{
+  "description": "Align memberships#Get with distilled cloudflare/memberships getMembership",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#Get",
+      "path": "/shapes/com.cloudflare.memberships#GetMembership"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#GetRequest",
+      "path": "/shapes/com.cloudflare.memberships#GetMembershipRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#GetMembership/input/target",
+      "value": "com.cloudflare.memberships#GetMembershipRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.memberships#GetResponse",
+      "path": "/shapes/com.cloudflare.memberships#GetMembershipResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.memberships#GetMembership/output/target",
+      "value": "com.cloudflare.memberships#GetMembershipResponse"
+    }
+  ]
+}

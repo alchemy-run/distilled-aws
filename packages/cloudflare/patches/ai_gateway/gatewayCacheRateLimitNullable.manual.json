@@ -1,0 +1,35 @@
+{
+  "description": "Docs gap: on gateway create/update, `cache_ttl`, `rate_limiting_interval`, and `rate_limiting_limit` accept an explicit null on the wire — null disables the setting (v0 modeled number | null). Mark the write-side members nullable so disabling stays expressible.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGatewayRequest/members/cache_ttl/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGatewayRequest/members/rate_limiting_interval/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateAiGatewayRequest/members/rate_limiting_limit/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGatewayRequest/members/cache_ttl/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGatewayRequest/members/rate_limiting_interval/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#UpdateAiGatewayRequest/members/rate_limiting_limit/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    }
+  ]
+}

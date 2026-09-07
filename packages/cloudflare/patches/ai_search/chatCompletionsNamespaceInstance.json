@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_search#NamespacesInstancesChatCompletions with distilled cloudflare/aisearch chatCompletionsNamespaceInstance",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesChatCompletions",
+      "path": "/shapes/com.cloudflare.ai_search#ChatCompletionsNamespaceInstance"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesChatCompletionsRequest",
+      "path": "/shapes/com.cloudflare.ai_search#ChatCompletionsNamespaceInstanceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#ChatCompletionsNamespaceInstance/input/target",
+      "value": "com.cloudflare.ai_search#ChatCompletionsNamespaceInstanceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesChatCompletionsResponse",
+      "path": "/shapes/com.cloudflare.ai_search#ChatCompletionsNamespaceInstanceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#ChatCompletionsNamespaceInstance/output/target",
+      "value": "com.cloudflare.ai_search#ChatCompletionsNamespaceInstanceResponse"
+    }
+  ]
+}

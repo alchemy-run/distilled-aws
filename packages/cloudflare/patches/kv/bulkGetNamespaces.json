@@ -1,0 +1,48 @@
+{
+  "description": "Align kv#NamespacesBulkGet with distilled cloudflare/kv bulkGetNamespaces",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesBulkGet",
+      "path": "/shapes/com.cloudflare.kv#BulkGetNamespaces"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesBulkGetRequest",
+      "path": "/shapes/com.cloudflare.kv#BulkGetNamespacesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#BulkGetNamespaces/input/target",
+      "value": "com.cloudflare.kv#BulkGetNamespacesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesBulkGetResponse",
+      "path": "/shapes/com.cloudflare.kv#BulkGetNamespacesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#BulkGetNamespaces/output/target",
+      "value": "com.cloudflare.kv#BulkGetNamespacesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#BulkGetNamespaces/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.kv#MinimumKeysRequired"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

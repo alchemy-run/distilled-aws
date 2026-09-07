@@ -1,0 +1,10 @@
+{
+  "description": "privateNetworkEndpointDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#PrivateNetworkEndpointDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation privateNetworkEndpointDelete($id: String!) {\n  privateNetworkEndpointDelete(id: $id)\n}"
+    }
+  ]
+}

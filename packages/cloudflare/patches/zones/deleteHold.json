@@ -1,0 +1,42 @@
+{
+  "description": "Align zones#HoldsDelete with distilled cloudflare/zones deleteHold",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#HoldsDelete",
+      "path": "/shapes/com.cloudflare.zones#DeleteHold"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#HoldsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zones#DeleteHoldRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteHold/input/target",
+      "value": "com.cloudflare.zones#DeleteHoldRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#HoldsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zones#DeleteHoldResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteHold/output/target",
+      "value": "com.cloudflare.zones#DeleteHoldResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#DeleteHold/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.zones#Forbidden"
+        }
+      ]
+    }
+  ]
+}

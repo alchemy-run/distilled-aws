@@ -1,0 +1,41 @@
+{
+  "description": "Key dictionary / op aliases for r2 (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "creationDate": "creation_date",
+        "customMetadata": "custom_metadata",
+        "httpMetadata": "http_metadata",
+        "lastModified": "last_modified",
+        "perPage": "per_page",
+        "queueId": "queue",
+        "resultInfo": "result_info",
+        "storageClass": "storage_class"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "deleteObject",
+          "target": "deleteBucketObject"
+        },
+        {
+          "alias": "getObject",
+          "target": "getBucketObject"
+        },
+        {
+          "alias": "listObjects",
+          "target": "listBucketObjects"
+        },
+        {
+          "alias": "putObject",
+          "target": "uploadBucketObject"
+        }
+      ]
+    }
+  ]
+}

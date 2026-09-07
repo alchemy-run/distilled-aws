@@ -1,0 +1,30 @@
+{
+  "description": "Align email_auth#DmarcReportsGet with distilled cloudflare/email-auth getDmarcReport",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_auth#DmarcReportsGet",
+      "path": "/shapes/com.cloudflare.email_auth#GetDmarcReport"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_auth#DmarcReportsGetRequest",
+      "path": "/shapes/com.cloudflare.email_auth#GetDmarcReportRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_auth#GetDmarcReport/input/target",
+      "value": "com.cloudflare.email_auth#GetDmarcReportRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_auth#DmarcReportsGetResponse",
+      "path": "/shapes/com.cloudflare.email_auth#GetDmarcReportResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_auth#GetDmarcReport/output/target",
+      "value": "com.cloudflare.email_auth#GetDmarcReportResponse"
+    }
+  ]
+}

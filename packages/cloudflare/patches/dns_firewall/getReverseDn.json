@@ -1,0 +1,42 @@
+{
+  "description": "Align dns_firewall#ReverseDnsGet with distilled cloudflare/dns-firewall getReverseDn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#ReverseDnsGet",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetReverseDn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#ReverseDnsGetRequest",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetReverseDnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetReverseDn/input/target",
+      "value": "com.cloudflare.dns_firewall#GetReverseDnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#ReverseDnsGetResponse",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetReverseDnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetReverseDn/output/target",
+      "value": "com.cloudflare.dns_firewall#GetReverseDnResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetReverseDn/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.dns_firewall#DnsFirewallNotFound"
+        },
+        {
+          "target": "com.cloudflare.dns_firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

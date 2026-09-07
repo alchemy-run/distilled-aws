@@ -1,0 +1,38 @@
+{
+  "description": "Align d1#DatabaseQuery with distilled cloudflare/d1 queryDatabase",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseQuery",
+      "path": "/shapes/com.cloudflare.d1#QueryDatabase"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseQueryRequest",
+      "path": "/shapes/com.cloudflare.d1#QueryDatabaseRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#QueryDatabase/input/target",
+      "value": "com.cloudflare.d1#QueryDatabaseRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseQueryResponse",
+      "path": "/shapes/com.cloudflare.d1#QueryDatabaseResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#QueryDatabase/output/target",
+      "value": "com.cloudflare.d1#QueryDatabaseResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#QueryDatabase/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

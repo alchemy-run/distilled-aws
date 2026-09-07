@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#CtLogsGet with distilled cloudflare/radar getCtLog",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#CtLogsGet",
+      "path": "/shapes/com.cloudflare.radar#GetCtLog"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#CtLogsGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetCtLogRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetCtLog/input/target",
+      "value": "com.cloudflare.radar#GetCtLogRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#CtLogsGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetCtLogResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetCtLog/output/target",
+      "value": "com.cloudflare.radar#GetCtLogResponse"
+    }
+  ]
+}

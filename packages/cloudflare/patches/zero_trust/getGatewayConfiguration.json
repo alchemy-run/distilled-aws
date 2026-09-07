@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#GatewayConfigurationsGet with distilled cloudflare/zero-trust getGatewayConfiguration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayConfigurationsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayConfiguration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayConfigurationsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayConfigurationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayConfiguration/input/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayConfigurationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayConfigurationsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayConfigurationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayConfiguration/output/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayConfigurationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayConfiguration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

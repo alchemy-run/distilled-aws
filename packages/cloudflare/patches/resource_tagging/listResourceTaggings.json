@@ -1,0 +1,40 @@
+{
+  "description": "Align resource_tagging#List with distilled cloudflare/resource-tagging listResourceTaggings",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#List",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListResourceTaggings"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ListRequest",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListResourceTaggingsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListResourceTaggings/input/target",
+      "value": "com.cloudflare.resource_tagging#ListResourceTaggingsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#ListResponse",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListResourceTaggingsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListResourceTaggings/output/target",
+      "value": "com.cloudflare.resource_tagging#ListResourceTaggingsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_tagging#ListResourceTaggings/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursors.after",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#DevtoolsBrowserTargetsCreate with distilled cloudflare/browser-rendering createDevtoolBrowserTarget",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserTargetsCreate",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateDevtoolBrowserTarget"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserTargetsCreateRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateDevtoolBrowserTargetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateDevtoolBrowserTarget/input/target",
+      "value": "com.cloudflare.browser_rendering#CreateDevtoolBrowserTargetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#DevtoolsBrowserTargetsCreateResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateDevtoolBrowserTargetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateDevtoolBrowserTarget/output/target",
+      "value": "com.cloudflare.browser_rendering#CreateDevtoolBrowserTargetResponse"
+    }
+  ]
+}

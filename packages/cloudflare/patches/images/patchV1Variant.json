@@ -1,0 +1,45 @@
+{
+  "description": "Align images#V1VariantsEdit with distilled cloudflare/images patchV1Variant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1VariantsEdit",
+      "path": "/shapes/com.cloudflare.images#PatchV1Variant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1VariantsEditRequest",
+      "path": "/shapes/com.cloudflare.images#PatchV1VariantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#PatchV1Variant/input/target",
+      "value": "com.cloudflare.images#PatchV1VariantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1VariantsEditResponse",
+      "path": "/shapes/com.cloudflare.images#PatchV1VariantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#PatchV1Variant/output/target",
+      "value": "com.cloudflare.images#PatchV1VariantResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.images#PatchV1Variant/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.images#ImagesAccessNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.images#VariantNameNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.images#VariantNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5708 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.sphere#CatalogsUploadImage": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsUploadImageRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/uploadImage",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Creates an image. Use this action when the image ID is unknown.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsUploadImageRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ImagePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ImagePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on image reads."
+          }
+        },
+        "imageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image ID"
+          }
+        },
+        "regionalDataBoundary": {
+          "target": "com.azure.sphere#RegionalDataBoundary",
+          "traits": {
+            "smithy.api#documentation": "Regional data boundary for an image"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of image"
+      }
+    },
+    "com.azure.sphere#RegionalDataBoundary": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "EU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Regional data boundary values."
+      }
+    },
+    "com.azure.sphere#ProductsGenerateDefaultDeviceGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsGenerateDefaultDeviceGroupsRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/generateDefaultDeviceGroups",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Generates default device groups for the product. '.default' and '.unassigned' are system defined values and cannot be used for product name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#DeviceGroupListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The DeviceGroup items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a DeviceGroup list operation."
+      }
+    },
+    "com.azure.sphere#DeviceGroupListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#DeviceGroup"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DeviceGroup items on this page"
+      }
+    },
+    "com.azure.sphere#DeviceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An device group resource belonging to a product resource."
+      }
+    },
+    "com.azure.sphere#DeviceGroupProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the device group."
+          }
+        },
+        "osFeedType": {
+          "target": "com.azure.sphere#OSFeedType",
+          "traits": {
+            "smithy.api#documentation": "Operating system feed type of the device group."
+          }
+        },
+        "updatePolicy": {
+          "target": "com.azure.sphere#UpdatePolicy",
+          "traits": {
+            "smithy.api#documentation": "Update policy of the device group."
+          }
+        },
+        "allowCrashDumpsCollection": {
+          "target": "com.azure.sphere#AllowCrashDumpCollection",
+          "traits": {
+            "smithy.api#documentation": "Flag to define if the user allows for crash dump collection."
+          }
+        },
+        "regionalDataBoundary": {
+          "target": "com.azure.sphere#RegionalDataBoundary",
+          "traits": {
+            "smithy.api#documentation": "Regional data boundary for the device group."
+          }
+        },
+        "hasDeployment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Deployment status for the device group."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of deviceGroup"
+      }
+    },
+    "com.azure.sphere#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state of resource."
+      }
+    },
+    "com.azure.sphere#AllowCrashDumpCollection": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allow crash dumps values."
+      }
+    },
+    "com.azure.sphere#UpdatePolicy": {
+      "type": "enum",
+      "members": {
+        "UPDATEALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpdateAll"
+          }
+        },
+        "NO3RDPARTYAPPUPDATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "No3rdPartyAppUpdates"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Update policy values."
+      }
+    },
+    "com.azure.sphere#OSFeedType": {
+      "type": "enum",
+      "members": {
+        "RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Retail"
+          }
+        },
+        "RETAILEVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RetailEval"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OS feed type values."
+      }
+    },
+    "com.azure.sphere#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.sphere#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.sphere#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.sphere#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.sphere#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.sphere#ProductsGenerateDefaultDeviceGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DevicesGenerateCapabilityImage": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DevicesGenerateCapabilityImageRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#SignedCapabilityImageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}/generateCapabilityImage",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Generates the capability image for the device. Use '.unassigned' or '.default' for the device group and product names to generate the image for a device that does not belong to a specific device group and product.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#SignedCapabilityImageResponse": {
+      "type": "structure",
+      "members": {
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The signed device capability image as a UTF-8 encoded base 64 string."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Signed device capability image response"
+      }
+    },
+    "com.azure.sphere#DevicesGenerateCapabilityImageRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Device name"
+          }
+        },
+        "capabilities": {
+          "target": "com.azure.sphere#DevicesGenerateCapabilityImageRequestCapabilitiesList",
+          "traits": {
+            "smithy.api#documentation": "List of capabilities to create",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DevicesGenerateCapabilityImageRequestCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#CapabilityType"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of capabilities to create"
+      }
+    },
+    "com.azure.sphere#CapabilityType": {
+      "type": "enum",
+      "members": {
+        "APPLICATIONDEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ApplicationDevelopment"
+          }
+        },
+        "FIELDSERVICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FieldServicing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capability image type"
+      }
+    },
+    "com.azure.sphere#DevicesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DevicesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Device",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DevicesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Device name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DevicesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DevicesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DevicesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Update a Device. Use '.unassigned' or '.default' for the device group and product names to move a device to the catalog level.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DevicesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeviceProperties": {
+      "type": "structure",
+      "members": {
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device ID"
+          }
+        },
+        "chipSku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU of the chip"
+          }
+        },
+        "lastAvailableOsVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OS version available for installation when update requested"
+          }
+        },
+        "lastInstalledOsVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OS version running on device when update requested"
+          }
+        },
+        "lastOsUpdateUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time when update requested and new OS version available"
+          }
+        },
+        "lastUpdateRequestUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time when update was last requested"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of device"
+      }
+    },
+    "com.azure.sphere#DevicesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Device name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The updatable properties of the Device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "deviceGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device group id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the Device."
+      }
+    },
+    "com.azure.sphere#DevicesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DevicesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DevicesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a Device. Use '.unassigned' or '.default' for the device group and product names to claim a device to the catalog only.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DevicesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DevicesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Device name"
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DevicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DevicePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of device"
+      }
+    },
+    "com.azure.sphere#DevicesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DevicesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DevicesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a Device. Use '.unassigned' or '.default' for the device group and product names when a device does not belong to a device group and product.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DevicesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DevicesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Device name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DevicesListByDeviceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DevicesListByDeviceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#DeviceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Device items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Device list operation."
+      }
+    },
+    "com.azure.sphere#DeviceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Device"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Device items on this page"
+      }
+    },
+    "com.azure.sphere#Device": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An device resource belonging to a device group resource."
+      }
+    },
+    "com.azure.sphere#DevicesListByDeviceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeploymentsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeploymentsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeploymentsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeploymentsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeploymentsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeploymentsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeploymentsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeploymentProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeploymentProperties": {
+      "type": "structure",
+      "members": {
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deployment ID"
+          }
+        },
+        "deployedImages": {
+          "target": "com.azure.sphere#DeploymentPropertiesDeployedImagesList",
+          "traits": {
+            "smithy.api#documentation": "Images deployed"
+          }
+        },
+        "deploymentDateUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deployment date UTC"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of deployment"
+      }
+    },
+    "com.azure.sphere#DeploymentPropertiesDeployedImagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Image"
+      },
+      "traits": {
+        "smithy.api#documentation": "Images deployed"
+      }
+    },
+    "com.azure.sphere#Image": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ImageProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An image resource belonging to a catalog resource."
+      }
+    },
+    "com.azure.sphere#ImageProperties": {
+      "type": "structure",
+      "members": {
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on image reads."
+          }
+        },
+        "imageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image ID"
+          }
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image name"
+          }
+        },
+        "regionalDataBoundary": {
+          "target": "com.azure.sphere#RegionalDataBoundary",
+          "traits": {
+            "smithy.api#documentation": "Regional data boundary for an image"
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location the image"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image description."
+          }
+        },
+        "componentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image component id."
+          }
+        },
+        "imageType": {
+          "target": "com.azure.sphere#ImageType",
+          "traits": {
+            "smithy.api#documentation": "The image type."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of image"
+      }
+    },
+    "com.azure.sphere#ImageType": {
+      "type": "enum",
+      "members": {
+        "INVALIDIMAGETYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InvalidImageType"
+          }
+        },
+        "ONEBL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OneBl"
+          }
+        },
+        "PLUTONRUNTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PlutonRuntime"
+          }
+        },
+        "WIFIFIRMWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WifiFirmware"
+          }
+        },
+        "SECURITYMONITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SecurityMonitor"
+          }
+        },
+        "NORMALWORLDLOADER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NormalWorldLoader"
+          }
+        },
+        "NORMALWORLDDTB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NormalWorldDtb"
+          }
+        },
+        "NORMALWORLDKERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NormalWorldKernel"
+          }
+        },
+        "ROOTFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RootFs"
+          }
+        },
+        "SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Services"
+          }
+        },
+        "APPLICATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Applications"
+          }
+        },
+        "FWCONFIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FwConfig"
+          }
+        },
+        "BOOTMANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BootManifest"
+          }
+        },
+        "NWFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Nwfs"
+          }
+        },
+        "TRUSTEDKEYSTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TrustedKeystore"
+          }
+        },
+        "POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Policy"
+          }
+        },
+        "CUSTOMERBOARDCONFIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerBoardConfig"
+          }
+        },
+        "UPDATECERTSTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpdateCertStore"
+          }
+        },
+        "BASESYSTEMUPDATEMANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BaseSystemUpdateManifest"
+          }
+        },
+        "FIRMWAREUPDATEMANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FirmwareUpdateManifest"
+          }
+        },
+        "CUSTOMERUPDATEMANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerUpdateManifest"
+          }
+        },
+        "RECOVERYMANIFEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RecoveryManifest"
+          }
+        },
+        "MANIFESTSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManifestSet"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Image type values."
+      }
+    },
+    "com.azure.sphere#DeploymentsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeploymentPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeploymentPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "deploymentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deployment ID"
+          }
+        },
+        "deployedImages": {
+          "target": "com.azure.sphere#DeploymentPropertiesInputDeployedImagesList",
+          "traits": {
+            "smithy.api#documentation": "Images deployed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of deployment"
+      }
+    },
+    "com.azure.sphere#DeploymentPropertiesInputDeployedImagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#ImageInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Images deployed"
+      }
+    },
+    "com.azure.sphere#ImageInput": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.sphere#ImagePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An image resource belonging to a catalog resource."
+      }
+    },
+    "com.azure.sphere#DeploymentsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeploymentsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeploymentsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeploymentsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeploymentProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeploymentsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deploymentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeploymentsListByDeviceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeploymentsListByDeviceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeploymentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeploymentListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#DeploymentListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Deployment items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Deployment list operation."
+      }
+    },
+    "com.azure.sphere#DeploymentListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Deployment"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Deployment items on this page"
+      }
+    },
+    "com.azure.sphere#Deployment": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeploymentProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An deployment resource belonging to a device group resource."
+      }
+    },
+    "com.azure.sphere#DeploymentsListByDeviceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsCountDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsCountDevicesRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupsCountDevicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/countDevices",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Counts devices in device group. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsCountDevicesResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of children resources in parent resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsCountDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsClaimDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsClaimDevicesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names when bulk claiming devices to a catalog only.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsClaimDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "deviceIdentifiers": {
+          "target": "com.azure.sphere#DeviceGroupsClaimDevicesRequestDeviceIdentifiersList",
+          "traits": {
+            "smithy.api#documentation": "Device identifiers of the devices to be claimed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsClaimDevicesRequestDeviceIdentifiersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Device identifiers of the devices to be claimed."
+      }
+    },
+    "com.azure.sphere#DeviceGroupsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceGroupUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The updatable properties of the DeviceGroup."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the device group."
+          }
+        },
+        "osFeedType": {
+          "target": "com.azure.sphere#OSFeedType",
+          "traits": {
+            "smithy.api#documentation": "Operating system feed type of the device group."
+          }
+        },
+        "updatePolicy": {
+          "target": "com.azure.sphere#UpdatePolicy",
+          "traits": {
+            "smithy.api#documentation": "Update policy of the device group."
+          }
+        },
+        "allowCrashDumpsCollection": {
+          "target": "com.azure.sphere#AllowCrashDumpCollection",
+          "traits": {
+            "smithy.api#documentation": "Flag to define if the user allows for crash dump collection."
+          }
+        },
+        "regionalDataBoundary": {
+          "target": "com.azure.sphere#RegionalDataBoundary",
+          "traits": {
+            "smithy.api#documentation": "Regional data boundary for the device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the DeviceGroup."
+      }
+    },
+    "com.azure.sphere#DeviceGroupsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceGroupPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the device group."
+          }
+        },
+        "osFeedType": {
+          "target": "com.azure.sphere#OSFeedType",
+          "traits": {
+            "smithy.api#documentation": "Operating system feed type of the device group."
+          }
+        },
+        "updatePolicy": {
+          "target": "com.azure.sphere#UpdatePolicy",
+          "traits": {
+            "smithy.api#documentation": "Update policy of the device group."
+          }
+        },
+        "allowCrashDumpsCollection": {
+          "target": "com.azure.sphere#AllowCrashDumpCollection",
+          "traits": {
+            "smithy.api#documentation": "Flag to define if the user allows for crash dump collection."
+          }
+        },
+        "regionalDataBoundary": {
+          "target": "com.azure.sphere#RegionalDataBoundary",
+          "traits": {
+            "smithy.api#documentation": "Regional data boundary for the device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of deviceGroup"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#DeviceGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of device group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#DeviceGroupsListByProduct": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#DeviceGroupsListByProductRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values and cannot be used for product name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#DeviceGroupsListByProductRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ProductsCountDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsCountDevicesRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ProductsCountDevicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/countDevices",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Counts devices in product. '.default' and '.unassigned' are system defined values and cannot be used for product name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ProductsCountDevicesResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of children resources in parent resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#ProductsCountDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ProductsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name'",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ProductsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ProductsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ProductsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ProductsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ProductProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#ProductProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the product"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of product"
+      }
+    },
+    "com.azure.sphere#ProductsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ProductUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The updatable properties of the Product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ProductUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the product"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The updatable properties of the Product."
+      }
+    },
+    "com.azure.sphere#ProductsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ProductsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ProductsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ProductProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#ProductsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ProductProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ProductsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ProductsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ProductsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ProductProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#ProductsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "productName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ProductsListByCatalog": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ProductsListByCatalogRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ProductListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Product resources by Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ProductListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#ProductListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Product items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Product list operation."
+      }
+    },
+    "com.azure.sphere#ProductListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Product"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Product items on this page"
+      }
+    },
+    "com.azure.sphere#Product": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ProductProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An product resource belonging to a catalog resource."
+      }
+    },
+    "com.azure.sphere#ProductsListByCatalogRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsListDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsListDevicesRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Lists devices for catalog.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsListDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsListDeviceInsights": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsListDeviceInsightsRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#PagedDeviceInsight"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Lists device insights for catalog.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#PagedDeviceInsight": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#PagedDeviceInsightValueList",
+          "traits": {
+            "smithy.api#documentation": "The DeviceInsight items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of DeviceInsight items"
+      }
+    },
+    "com.azure.sphere#PagedDeviceInsightValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#DeviceInsight"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DeviceInsight items on this page"
+      }
+    },
+    "com.azure.sphere#DeviceInsight": {
+      "type": "structure",
+      "members": {
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device ID",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event description",
+            "smithy.api#required": {}
+          }
+        },
+        "startTimestampUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event start timestamp",
+            "smithy.api#required": {}
+          }
+        },
+        "endTimestampUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event end timestamp",
+            "smithy.api#required": {}
+          }
+        },
+        "eventCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event category",
+            "smithy.api#required": {}
+          }
+        },
+        "eventClass": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event class",
+            "smithy.api#required": {}
+          }
+        },
+        "eventType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Event type",
+            "smithy.api#required": {}
+          }
+        },
+        "eventCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Event count",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device insight report."
+      }
+    },
+    "com.azure.sphere#CatalogsListDeviceInsightsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsListDeviceGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsListDeviceGroupsRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeviceGroupListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List the device groups for the catalog.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsListDeviceGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        },
+        "deviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device Group name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsListDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsListDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#DeploymentListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Lists deployments for catalog.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsListDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ImagesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ImagesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Image",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ImagesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Image name. Use an image GUID for GA versions of the API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ImagesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ImagesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ImagesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a Image",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ImagesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ImageProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#ImagesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Image name. Use an image GUID for GA versions of the API."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ImagePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ImagesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ImagesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ImagesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a Image",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ImagesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#ImageProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#ImagesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Image name. Use an image GUID for GA versions of the API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#ImagesListByCatalog": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#ImagesListByCatalogRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#ImageListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Image resources by Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#ImageListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#ImageListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Image items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Image list operation."
+      }
+    },
+    "com.azure.sphere#ImageListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Image"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Image items on this page"
+      }
+    },
+    "com.azure.sphere#ImagesListByCatalogRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsCountDevices": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsCountDevicesRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CatalogsCountDevicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/countDevices",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Counts devices in catalog.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsCountDevicesResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of children resources in parent resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#CatalogsCountDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonce": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Gets the proof of possession nonce.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceResponse": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate as a UTF-8 encoded base 64 string."
+          }
+        },
+        "status": {
+          "target": "com.azure.sphere#CertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "The certificate status."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate subject."
+          }
+        },
+        "thumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate thumbprint."
+          }
+        },
+        "expiryUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate expiry date."
+          }
+        },
+        "notBeforeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate not before date."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#CertificateStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "INACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Inactive"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Revoked"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Certificate status values."
+      }
+    },
+    "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Serial number of the certificate. Use '.default' to get current active certificate."
+          }
+        },
+        "proofOfPossessionNonce": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The proof of possession nonce",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CertificatesRetrieveCertChain": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CertificatesRetrieveCertChainRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CertificateChainResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Retrieves cert chain.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CertificateChainResponse": {
+      "type": "structure",
+      "members": {
+        "certificateChain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate chain."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The certificate chain response."
+      }
+    },
+    "com.azure.sphere#CertificatesRetrieveCertChainRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Serial number of the certificate. Use '.default' to get current active certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CertificatesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CertificatesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CertificatesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a Certificate",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CertificatesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CertificateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#CertificateProperties": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate as a UTF-8 encoded base 64 string."
+          }
+        },
+        "status": {
+          "target": "com.azure.sphere#CertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "The certificate status."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate subject."
+          }
+        },
+        "thumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate thumbprint."
+          }
+        },
+        "expiryUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate expiry date."
+          }
+        },
+        "notBeforeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate not before date."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of certificate"
+      }
+    },
+    "com.azure.sphere#CertificatesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Serial number of the certificate. Use '.default' to get current active certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CertificatesListByCatalog": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CertificatesListByCatalogRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CertificateListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Certificate resources by Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CertificateListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#CertificateListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Certificate items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Certificate list operation."
+      }
+    },
+    "com.azure.sphere#CertificateListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Certificate"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Certificate items on this page"
+      }
+    },
+    "com.azure.sphere#Certificate": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CertificateProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An certificate resource belonging to a catalog resource."
+      }
+    },
+    "com.azure.sphere#CertificatesListByCatalogRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "Filter the result list using the given expression"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of result items to return."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The number of result items to skip."
+          }
+        },
+        "_maxpagesize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$maxpagesize",
+            "smithy.api#documentation": "The maximum number of result items per page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CatalogsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Update a Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.sphere#CatalogsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#CatalogProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Sphere tenant ID associated with the catalog."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.sphere#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Catalog properties"
+      }
+    },
+    "com.azure.sphere#CatalogsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.sphere#CatalogsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "tags": {
+          "target": "com.azure.sphere#CatalogsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.sphere#CatalogsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CatalogsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.sphere#CatalogsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#CatalogsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.sphere#CatalogsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        },
+        "tags": {
+          "target": "com.azure.sphere#CatalogsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CatalogPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogPropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Catalog properties"
+      }
+    },
+    "com.azure.sphere#CatalogsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.sphere#CatalogsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CatalogsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a Catalog",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.sphere#CatalogsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#CatalogsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.sphere#CatalogsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of catalog"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CatalogListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Catalog resources by resource group",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#CatalogListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Catalog items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Catalog list operation."
+      }
+    },
+    "com.azure.sphere#CatalogListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Catalog"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Catalog items on this page"
+      }
+    },
+    "com.azure.sphere#Catalog": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.sphere#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.sphere#CatalogTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.sphere#CatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Azure Sphere catalog"
+      }
+    },
+    "com.azure.sphere#CatalogTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.sphere#CatalogsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#CatalogsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.sphere#CatalogsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.sphere#CatalogListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AzureSphere/catalogs",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List Catalog resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#CatalogsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.sphere#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.sphere#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.AzureSphere/operations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.sphere#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.sphere#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.sphere#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.sphere#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.sphere#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.sphere#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.sphere#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.sphere#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.sphere#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.sphere#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.sphere#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.sphere#Sphere": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.sphere#CatalogsUploadImage"
+        },
+        {
+          "target": "com.azure.sphere#ProductsGenerateDefaultDeviceGroups"
+        },
+        {
+          "target": "com.azure.sphere#DevicesGenerateCapabilityImage"
+        },
+        {
+          "target": "com.azure.sphere#DevicesDelete"
+        },
+        {
+          "target": "com.azure.sphere#DevicesUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DevicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DevicesGet"
+        },
+        {
+          "target": "com.azure.sphere#DevicesListByDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#DeploymentsDelete"
+        },
+        {
+          "target": "com.azure.sphere#DeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DeploymentsGet"
+        },
+        {
+          "target": "com.azure.sphere#DeploymentsListByDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsCountDevices"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsClaimDevices"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsDelete"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsGet"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsListByProduct"
+        },
+        {
+          "target": "com.azure.sphere#ProductsCountDevices"
+        },
+        {
+          "target": "com.azure.sphere#ProductsDelete"
+        },
+        {
+          "target": "com.azure.sphere#ProductsUpdate"
+        },
+        {
+          "target": "com.azure.sphere#ProductsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#ProductsGet"
+        },
+        {
+          "target": "com.azure.sphere#ProductsListByCatalog"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsListDevices"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsListDeviceInsights"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsListDeviceGroups"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsListDeployments"
+        },
+        {
+          "target": "com.azure.sphere#ImagesDelete"
+        },
+        {
+          "target": "com.azure.sphere#ImagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#ImagesGet"
+        },
+        {
+          "target": "com.azure.sphere#ImagesListByCatalog"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsCountDevices"
+        },
+        {
+          "target": "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonce"
+        },
+        {
+          "target": "com.azure.sphere#CertificatesRetrieveCertChain"
+        },
+        {
+          "target": "com.azure.sphere#CertificatesGet"
+        },
+        {
+          "target": "com.azure.sphere#CertificatesListByCatalog"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsDelete"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsUpdate"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsGet"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.sphere#CatalogsListBySubscription"
+        },
+        {
+          "target": "com.azure.sphere#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Sphere",
+        "smithy.api#documentation": "Azure Sphere API — merged from the sphere resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

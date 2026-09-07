@@ -1,0 +1,30 @@
+{
+  "description": "Align spectrum#AnalyticsEventsBytimesGet with distilled cloudflare/spectrum getAnalyticEventBytime",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AnalyticsEventsBytimesGet",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticEventBytime"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AnalyticsEventsBytimesGetRequest",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticEventBytimeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticEventBytime/input/target",
+      "value": "com.cloudflare.spectrum#GetAnalyticEventBytimeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AnalyticsEventsBytimesGetResponse",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticEventBytimeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#GetAnalyticEventBytime/output/target",
+      "value": "com.cloudflare.spectrum#GetAnalyticEventBytimeResponse"
+    }
+  ]
+}

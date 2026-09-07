@@ -1,0 +1,47 @@
+{
+  "description": "Align workers#DomainsList with distilled cloudflare/workers listDomains",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsList",
+      "path": "/shapes/com.cloudflare.workers#ListDomains"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsListRequest",
+      "path": "/shapes/com.cloudflare.workers#ListDomainsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListDomains/input/target",
+      "value": "com.cloudflare.workers#ListDomainsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsListResponse",
+      "path": "/shapes/com.cloudflare.workers#ListDomainsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListDomains/output/target",
+      "value": "com.cloudflare.workers#ListDomainsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListDomains/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListDomains/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Key dictionary / op aliases for stream (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "channelLink": "channel_link",
+        "keyId": "key_id",
+        "mediaId": "media_id",
+        "shareLink": "share_link"
+      }
+    }
+  ]
+}

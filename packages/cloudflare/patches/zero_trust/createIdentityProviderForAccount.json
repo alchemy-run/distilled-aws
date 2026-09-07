@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#IdentityProvidersCreateForAccount with distilled cloudflare/zero-trust createIdentityProviderForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersCreateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#CreateIdentityProviderForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#IdentityProvidersCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateIdentityProviderForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#CreateIdentityProviderForAccountResponse"
+    }
+  ]
+}

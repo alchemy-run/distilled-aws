@@ -1,0 +1,85 @@
+{
+  "description": "Docs bug: Access group RESPONSES type `is_default` as a rule-item list with a copy-pasted 'Rules evaluated with an AND' doc, but the wire value is a boolean (the create/update REQUEST side is already a documented boolean: 'Whether this is the default group'). Retype the response member on get/create/update/list, account and zone.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccountResponse/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForZoneResponse/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForAccountResponse/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessGroupForZoneResponse/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessGroupForAccountResponse/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessGroupForZoneResponse/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessGroupsListForAccountResultItem/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#AccessGroupsListForZoneResultItem/members/is_default",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {
+          "smithy.api#documentation": "Whether this is the default group"
+        }
+      }
+    }
+  ]
+}

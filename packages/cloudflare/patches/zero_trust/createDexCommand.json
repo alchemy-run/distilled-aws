@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexCommandsCreate with distilled cloudflare/zero-trust createDexCommand",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDexCommand"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDexCommandRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDexCommand/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDexCommandRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDexCommandResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDexCommand/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDexCommandResponse"
+    }
+  ]
+}

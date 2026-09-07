@@ -1,0 +1,9 @@
+{
+  "structures": {
+    "StaticKeyProvider": {
+      "members": {
+        "StaticKeyValue": { "sensitive": true }
+      }
+    }
+  }
+}

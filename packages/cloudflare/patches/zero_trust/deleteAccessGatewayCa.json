@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessGatewayCaDelete with distilled cloudflare/zero-trust deleteAccessGatewayCa",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGatewayCaDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGatewayCa"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGatewayCaDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGatewayCaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGatewayCa/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessGatewayCaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessGatewayCaDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGatewayCaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessGatewayCa/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessGatewayCaResponse"
+    }
+  ]
+}

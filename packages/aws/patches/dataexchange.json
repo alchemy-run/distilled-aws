@@ -1,0 +1,19 @@
+{
+  "structures": {
+    "ImportAssetFromApiGatewayApiRequestDetails": {
+      "members": {
+        "ApiKey": { "sensitive": true }
+      }
+    },
+    "ImportAssetFromApiGatewayApiResponseDetails": {
+      "members": {
+        "ApiKey": { "sensitive": true }
+      }
+    },
+    "ApiGatewayApiAsset": {
+      "members": {
+        "ApiKey": { "sensitive": true }
+      }
+    }
+  }
+}

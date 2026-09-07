@@ -1,0 +1,123 @@
+{
+  "structures": {
+    "TemporaryCredentials": {
+      "members": {
+        "SecretAccessKey": { "sensitive": true },
+        "SessionToken": { "sensitive": true }
+      }
+    },
+    "GetTemporaryGluePartitionCredentialsResponse": {
+      "members": {
+        "SecretAccessKey": { "sensitive": true },
+        "SessionToken": { "sensitive": true }
+      }
+    },
+    "GetTemporaryGlueTableCredentialsResponse": {
+      "members": {
+        "SecretAccessKey": { "sensitive": true },
+        "SessionToken": { "sensitive": true }
+      }
+    },
+    "AssumeDecoratedRoleWithSAMLResponse": {
+      "members": {
+        "SecretAccessKey": { "sensitive": true },
+        "SessionToken": { "sensitive": true }
+      }
+    }
+  },
+  "operations": {
+    "deregisterResource": {
+      "syntheticErrors": [
+        {
+          "name": "LastServiceLinkedRoleRegistration",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Must manually delete service-linked role"
+          }
+        }
+      ]
+    },
+    "grantPermissions": {
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    },
+    "revokePermissions": {
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    },
+    "listPermissions": {
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    },
+    "putDataLakeSettings": {
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    },
+    "createLakeFormationOptIn": {
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    },
+    "deleteLakeFormationOptIn": {
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    },
+    "listLakeFormationOptIns": {
+      "errors": ["EntityNotFoundException"],
+      "syntheticErrors": [
+        {
+          "name": "InvalidLakeFormationPrincipal",
+          "from": "InvalidInputException",
+          "message": {
+            "includes": "Invalid principal"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "LastServiceLinkedRoleRegistration": ["ConflictError"],
+    "InvalidLakeFormationPrincipal": ["BadRequestError", "RetryableError"]
+  }
+}

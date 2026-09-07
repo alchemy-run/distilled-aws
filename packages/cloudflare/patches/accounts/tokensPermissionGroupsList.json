@@ -1,0 +1,14 @@
+{
+  "description": "Align accounts#TokensPermissionGroupsList with distilled cloudflare/accounts getTokenPermissionGroup (duplicate export name — errors/pagination only, no rename)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#TokensPermissionGroupsList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

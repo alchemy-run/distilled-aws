@@ -1,0 +1,2272 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.abuse_reports#CreateRequestAct": {
+      "type": "enum",
+      "members": {
+        "ABUSE_DMCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_dmca"
+          }
+        },
+        "ABUSE_TRADEMARK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_trademark"
+          }
+        },
+        "ABUSE_GENERAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_general"
+          }
+        },
+        "ABUSE_PHISHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_phishing"
+          }
+        },
+        "ABUSE_CHILDREN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_children"
+          }
+        },
+        "ABUSE_THREAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_threat"
+          }
+        },
+        "ABUSE_REGISTRAR_WHOIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_registrar_whois"
+          }
+        },
+        "ABUSE_NCSEI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "abuse_ncsei"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestAgree": {
+      "type": "intEnum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestHostNotificationAbuseGeneral": {
+      "type": "enum",
+      "members": {
+        "SEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send"
+          }
+        },
+        "SEND_ANON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send-anon"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestHostNotificationEnum": {
+      "type": "enum",
+      "members": {
+        "SEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestHostNotification": {
+      "type": "union",
+      "members": {
+        "CreateRequestHostNotificationEnum": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestHostNotificationEnum"
+        },
+        "AbuseGeneral": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestHostNotificationAbuseGeneral"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestOwnerNotificationAbuseGeneral": {
+      "type": "enum",
+      "members": {
+        "SEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send"
+          }
+        },
+        "SEND_ANON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send-anon"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestOwnerNotificationAbuseChildren": {
+      "type": "enum",
+      "members": {
+        "SEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send"
+          }
+        },
+        "SEND_ANON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send-anon"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestOwnerNotificationEnum": {
+      "type": "enum",
+      "members": {
+        "SEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestOwnerNotification": {
+      "type": "union",
+      "members": {
+        "CreateRequestOwnerNotificationEnum": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestOwnerNotificationEnum"
+        },
+        "AbuseGeneral": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestOwnerNotificationAbuseGeneral"
+        },
+        "AbuseChildren": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestOwnerNotificationAbuseChildren"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestNcmecNotification": {
+      "type": "enum",
+      "members": {
+        "SEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send"
+          }
+        },
+        "SEND_ANON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "send-anon"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestType": {
+      "type": "enum",
+      "members": {
+        "DISCLOSURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disclosure"
+          }
+        },
+        "INVALID_WHOIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invalid_whois"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestedDataElementsItem": {
+      "type": "enum",
+      "members": {
+        "REGISTRANT_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_name"
+          }
+        },
+        "REGISTRANT_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_organization"
+          }
+        },
+        "REGISTRANT_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_email"
+          }
+        },
+        "REGISTRANT_PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_phone"
+          }
+        },
+        "REGISTRANT_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_address"
+          }
+        },
+        "REGISTRANT_ADDRESS_COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_address_country"
+          }
+        },
+        "REGISTRANT_ADDRESS_POSTAL_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrant_address_postal_code"
+          }
+        },
+        "ADMIN_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin_name"
+          }
+        },
+        "ADMIN_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin_organization"
+          }
+        },
+        "ADMIN_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin_email"
+          }
+        },
+        "ADMIN_PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin_phone"
+          }
+        },
+        "ADMIN_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin_address"
+          }
+        },
+        "TECH_NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tech_name"
+          }
+        },
+        "TECH_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tech_organization"
+          }
+        },
+        "TECH_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tech_email"
+          }
+        },
+        "TECH_PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tech_phone"
+          }
+        },
+        "TECH_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tech_address"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestedDataElementsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestedDataElementsItem"
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestorType": {
+      "type": "enum",
+      "members": {
+        "GOVERNMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "government"
+          }
+        },
+        "CORPORATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "corporation"
+          }
+        },
+        "INDIVIDUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "individual"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequestRegWhoRequest": {
+      "type": "structure",
+      "members": {
+        "reg_who_good_faith_affirmation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Affirmation that the request is made in good faith per RDP 10.2.4. Must be true.",
+            "smithy.api#required": {}
+          }
+        },
+        "reg_who_lawful_processing_agreement": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Agreement to process data lawfully per RDP 10.2.5. Must be true.",
+            "smithy.api#required": {}
+          }
+        },
+        "reg_who_legal_basis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legal rights and rationale for the request per RDP 10.2.3. Required for all WHOIS requests.",
+            "smithy.api#required": {}
+          }
+        },
+        "reg_who_request_type": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestType",
+          "traits": {
+            "smithy.api#documentation": "The type of WHOIS data request per RDP procedure.",
+            "smithy.api#required": {}
+          }
+        },
+        "reg_who_requested_data_elements": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestedDataElementsList",
+          "traits": {
+            "smithy.api#documentation": "The specific WHOIS data elements being requested per RDP 10.2.2. Required for all WHOIS requests.",
+            "smithy.api#required": {}
+          }
+        },
+        "reg_who_authorization_statement": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional authorization statement or power of attorney per RDP 10.2.1.3."
+          }
+        },
+        "reg_who_requestor_type": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequestRegWhoRequestorType",
+          "traits": {
+            "smithy.api#documentation": "The nature of the requestor per RDP 10.2.1.2."
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_param": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The report type for submitted reports.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "act": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestAct",
+          "traits": {
+            "smithy.api#documentation": "The report type for submitted reports.",
+            "smithy.api#required": {}
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 100 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "agent_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the copyright holder. Text not exceeding 60 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "agree": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestAgree",
+          "traits": {
+            "smithy.api#documentation": "Can be `0` for false or `1` for true. Must be value: 1 for DMCA reports"
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A valid email of the abuse reporter. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
+            "smithy.api#required": {}
+          }
+        },
+        "email2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Should match the value provided in `email`",
+            "smithy.api#required": {}
+          }
+        },
+        "host_notification": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestHostNotification",
+          "traits": {
+            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
+            "smithy.api#required": {}
+          }
+        },
+        "original_work": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "owner_notification": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestOwnerNotification",
+          "traits": {
+            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.",
+            "smithy.api#required": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for DMCA reports, should be same as Name. An affirmation that all information in the report is true and accurate while agreeing to the policies of Cloudflare's abuse reports"
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "urls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of valid URLs separated by ‘\\n’ (new line character). The list of the URLs should not exceed 250 URLs. All URLs should have the same hostname. Each URL should be unique. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
+            "smithy.api#required": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any additional comments about the infringement not exceeding 2000 characters"
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 100 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "reported_country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text containing 2 characters"
+          }
+        },
+        "reported_user_agent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters"
+          }
+        },
+        "tele": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 20 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters"
+          }
+        },
+        "justification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of the infringement, including any necessary access details and the exact steps needed to view the content, not exceeding 5000 characters."
+          }
+        },
+        "trademark_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 1000 characters"
+          }
+        },
+        "trademark_office": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 1000 characters"
+          }
+        },
+        "trademark_symbol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 1000 characters"
+          }
+        },
+        "destination_ips": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of IP addresses separated by ‘\\n’ (new line character). The list of destination IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be unique."
+          }
+        },
+        "ports_protocols": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma separated list of ports and protocols e.g. 80/TCP, 22/UDP. The total size of the field should not exceed 2000 characters. Each individual port/protocol should not exceed 100 characters. The list should not have more than 30 unique ports and protocols."
+          }
+        },
+        "source_ips": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of IP addresses separated by ‘\\n’ (new line character). The list of source IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be unique."
+          }
+        },
+        "ncmec_notification": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestNcmecNotification",
+          "traits": {
+            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous."
+          }
+        },
+        "reg_who_request": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequest",
+          "traits": {
+            "smithy.api#documentation": "RDP-mandated fields for registrar WHOIS data disclosure requests."
+          }
+        },
+        "ncsei_subject_representation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the submitter is the target of NCSEI in the URLs of the abuse report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_param}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit the Abuse Report of a particular type"
+      }
+    },
+    "com.cloudflare.abuse_reports#GetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_param": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#GetResponseMitigationSummary": {
+      "type": "structure",
+      "members": {
+        "accepted_url_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many of the reported URLs were confirmed as abusive.",
+            "smithy.api#required": {}
+          }
+        },
+        "active_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many mitigations are active.",
+            "smithy.api#required": {}
+          }
+        },
+        "external_host_notified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the report has been forwarded to an external hosting provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "in_review_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many mitigations are under review.",
+            "smithy.api#required": {}
+          }
+        },
+        "pending_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many mitigations are pending their effective date.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#GetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accepted"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#GetResponseType": {
+      "type": "enum",
+      "members": {
+        "PHISH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHISH"
+          }
+        },
+        "GEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEN"
+          }
+        },
+        "THREAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT"
+          }
+        },
+        "DMCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMCA"
+          }
+        },
+        "EMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMER"
+          }
+        },
+        "TM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TM"
+          }
+        },
+        "REG_WHO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REG_WHO"
+          }
+        },
+        "NCSEI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NCSEI"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORK"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#GetResponseSubmitter": {
+      "type": "structure",
+      "members": {
+        "company": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "telephone": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#GetResponseUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.abuse_reports#GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public facing ID of abuse report, aka abuse_rand.",
+            "smithy.api#required": {}
+          }
+        },
+        "cdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of report. Time in RFC 3339 format (https://www.rfc-editor.org/rfc/rfc3339.html)",
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain that relates to the report.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_summary": {
+          "target": "com.cloudflare.abuse_reports#GetResponseMitigationSummary",
+          "traits": {
+            "smithy.api#documentation": "A summary of the mitigations related to this report.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "An enum value that represents the status of an abuse record",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#GetResponseType",
+          "traits": {
+            "smithy.api#documentation": "The abuse report type",
+            "smithy.api#required": {}
+          }
+        },
+        "justification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Justification for the report."
+          }
+        },
+        "original_work": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original work / Targeted brand in the alleged abuse."
+          }
+        },
+        "submitter": {
+          "target": "com.cloudflare.abuse_reports#GetResponseSubmitter",
+          "traits": {
+            "smithy.api#documentation": "Information about the submitter of the report."
+          }
+        },
+        "urls": {
+          "target": "com.cloudflare.abuse_reports#GetResponseUrlsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.abuse_reports#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_param}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the details of an abuse report.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#ListRequestMitigationStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListRequestStatus": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accepted"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListRequestType": {
+      "type": "enum",
+      "members": {
+        "PHISH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHISH"
+          }
+        },
+        "GEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEN"
+          }
+        },
+        "THREAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT"
+          }
+        },
+        "DMCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMCA"
+          }
+        },
+        "EMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMER"
+          }
+        },
+        "TM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TM"
+          }
+        },
+        "REG_WHO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REG_WHO"
+          }
+        },
+        "NCSEI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NCSEI"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORK"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "created_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns reports created after the specified date",
+            "smithy.api#httpQuery": "created_after"
+          }
+        },
+        "created_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns reports created before the specified date",
+            "smithy.api#httpQuery": "created_before"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by domain name related to the abuse report",
+            "smithy.api#httpQuery": "domain"
+          }
+        },
+        "mitigation_status": {
+          "target": "com.cloudflare.abuse_reports#ListRequestMitigationStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter reports that have any mitigations in the given status.",
+            "smithy.api#httpQuery": "mitigation_status"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Where in pagination to start listing abuse reports",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many abuse reports per page to list",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A property to sort by, followed by the order (id, cdate, domain, type, status)",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#ListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter by the status of the report.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#ListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filter by the type of the report.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsItemMitigationSummary": {
+      "type": "structure",
+      "members": {
+        "accepted_url_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many of the reported URLs were confirmed as abusive.",
+            "smithy.api#required": {}
+          }
+        },
+        "active_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many mitigations are active.",
+            "smithy.api#required": {}
+          }
+        },
+        "external_host_notified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the report has been forwarded to an external hosting provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "in_review_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many mitigations are under review.",
+            "smithy.api#required": {}
+          }
+        },
+        "pending_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many mitigations are pending their effective date.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsItemStatus": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "accepted"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsItemType": {
+      "type": "enum",
+      "members": {
+        "PHISH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHISH"
+          }
+        },
+        "GEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GEN"
+          }
+        },
+        "THREAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT"
+          }
+        },
+        "DMCA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DMCA"
+          }
+        },
+        "EMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMER"
+          }
+        },
+        "TM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TM"
+          }
+        },
+        "REG_WHO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REG_WHO"
+          }
+        },
+        "NCSEI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NCSEI"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORK"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsItemSubmitter": {
+      "type": "structure",
+      "members": {
+        "company": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "telephone": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsItemUrlsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public facing ID of abuse report, aka abuse_rand.",
+            "smithy.api#required": {}
+          }
+        },
+        "cdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of report. Time in RFC 3339 format (https://www.rfc-editor.org/rfc/rfc3339.html)",
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain that relates to the report.",
+            "smithy.api#required": {}
+          }
+        },
+        "mitigation_summary": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsItemMitigationSummary",
+          "traits": {
+            "smithy.api#documentation": "A summary of the mitigations related to this report.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "An enum value that represents the status of an abuse record",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsItemType",
+          "traits": {
+            "smithy.api#documentation": "The abuse report type",
+            "smithy.api#required": {}
+          }
+        },
+        "justification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Justification for the report."
+          }
+        },
+        "original_work": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original work / Targeted brand in the alleged abuse."
+          }
+        },
+        "submitter": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsItemSubmitter",
+          "traits": {
+            "smithy.api#documentation": "Information about the submitter of the report."
+          }
+        },
+        "urls": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsItemUrlsList"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponseReportsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.abuse_reports#ListResponseReportsItem"
+      }
+    },
+    "com.cloudflare.abuse_reports#ListResponse": {
+      "type": "structure",
+      "members": {
+        "reports": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.abuse_reports#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/abuse-reports",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the abuse reports for a given account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListRequestEntityType": {
+      "type": "enum",
+      "members": {
+        "URL_PATTERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url_pattern"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account"
+          }
+        },
+        "ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zone"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListRequestSort": {
+      "type": "enum",
+      "members": {
+        "TYPE_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "type,asc"
+          }
+        },
+        "TYPE_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "type,desc"
+          }
+        },
+        "EFFECTIVE_DATE_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "effective_date,asc"
+          }
+        },
+        "EFFECTIVE_DATE_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "effective_date,desc"
+          }
+        },
+        "STATUS_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status,asc"
+          }
+        },
+        "STATUS_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status,desc"
+          }
+        },
+        "ENTITY_TYPE_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "entity_type,asc"
+          }
+        },
+        "ENTITY_TYPE_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "entity_type,desc"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListRequestStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListRequestType": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account_suspend"
+          }
+        },
+        "COPYRIGHT_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright_interstitial"
+          }
+        },
+        "GEO_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "geo_block"
+          }
+        },
+        "LEGAL_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legal_block"
+          }
+        },
+        "MALWARE_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "malware_interstitial"
+          }
+        },
+        "MISLEADING_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "misleading_interstitial"
+          }
+        },
+        "NETWORK_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network_block"
+          }
+        },
+        "PHISHING_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phishing_interstitial"
+          }
+        },
+        "PLAYFAIRITE_ENFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "playfairite_enforce"
+          }
+        },
+        "R2_TAKEDOWN_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_account"
+          }
+        },
+        "R2_TAKEDOWN_BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_bucket"
+          }
+        },
+        "R2_TAKEDOWN_OBJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_object"
+          }
+        },
+        "RATE_LIMIT_CACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rate_limit_cache"
+          }
+        },
+        "REDIRECT_VIDEO_STREAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redirect_video_stream"
+          }
+        },
+        "REGISTRAR_FREEZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar_freeze"
+          }
+        },
+        "REGISTRAR_PARKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar_parking"
+          }
+        },
+        "STREAM_BLOCK_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stream_block_account"
+          }
+        },
+        "USER_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_suspend"
+          }
+        },
+        "WORKERS_TAKEDOWN_BY_ZONE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "workers_takedown_by_zone_id"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "effective_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns mitigation that were dispatched after the given date",
+            "smithy.api#httpQuery": "effective_after"
+          }
+        },
+        "effective_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns mitigations that were dispatched before the given date",
+            "smithy.api#httpQuery": "effective_before"
+          }
+        },
+        "entity_type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestEntityType",
+          "traits": {
+            "smithy.api#documentation": "Filter by the type of entity the mitigation impacts.",
+            "smithy.api#httpQuery": "entity_type"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Where in pagination to start listing abuse reports",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many abuse reports per page to list",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "sort": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestSort",
+          "traits": {
+            "smithy.api#documentation": "A property to sort by, followed by the order",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter by the status of the mitigation.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filter by the type of mitigation. This filter parameter can be specified multiple times to include multiple types of mitigations in the result set, e.g. ?type=rate_limit_cache&type=legal_block.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemEntityType": {
+      "type": "enum",
+      "members": {
+        "URL_PATTERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url_pattern"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account"
+          }
+        },
+        "ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zone"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemType": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account_suspend"
+          }
+        },
+        "COPYRIGHT_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright_interstitial"
+          }
+        },
+        "GEO_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "geo_block"
+          }
+        },
+        "LEGAL_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legal_block"
+          }
+        },
+        "MALWARE_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "malware_interstitial"
+          }
+        },
+        "MISLEADING_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "misleading_interstitial"
+          }
+        },
+        "NETWORK_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network_block"
+          }
+        },
+        "PHISHING_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phishing_interstitial"
+          }
+        },
+        "PLAYFAIRITE_ENFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "playfairite_enforce"
+          }
+        },
+        "R2_TAKEDOWN_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_account"
+          }
+        },
+        "R2_TAKEDOWN_BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_bucket"
+          }
+        },
+        "R2_TAKEDOWN_OBJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_object"
+          }
+        },
+        "RATE_LIMIT_CACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rate_limit_cache"
+          }
+        },
+        "REDIRECT_VIDEO_STREAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redirect_video_stream"
+          }
+        },
+        "REGISTRAR_FREEZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar_freeze"
+          }
+        },
+        "REGISTRAR_PARKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar_parking"
+          }
+        },
+        "STREAM_BLOCK_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stream_block_account"
+          }
+        },
+        "USER_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_suspend"
+          }
+        },
+        "WORKERS_TAKEDOWN_BY_ZONE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "workers_takedown_by_zone_id"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of remediation.",
+            "smithy.api#required": {}
+          }
+        },
+        "effective_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the mitigation will become active. Time in RFC 3339 format (https://www.rfc-editor.org/rfc/rfc3339.html)",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "entity_type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemEntityType",
+          "traits": {
+            "smithy.api#documentation": "The type of entity targeted by a mitigation.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of a mitigation",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation applied to a reported entity.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItem"
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsListResponse": {
+      "type": "structure",
+      "members": {
+        "mitigations": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#MitigationsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#MitigationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List mitigations done to remediate the abuse report.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsItemReason": {
+      "type": "enum",
+      "members": {
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        },
+        "MISCLASSIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "misclassified"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the mitigation to appeal.",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsItemReason",
+          "traits": {
+            "smithy.api#documentation": "Reason why the customer is appealing.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsItem"
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "appeals": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsList",
+          "traits": {
+            "smithy.api#documentation": "List of mitigations to appeal.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewResultItemEntityType": {
+      "type": "enum",
+      "members": {
+        "URL_PATTERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url_pattern"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account"
+          }
+        },
+        "ZONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zone"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewResultItemStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "IN_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_review"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewResultItemType": {
+      "type": "enum",
+      "members": {
+        "ACCOUNT_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account_suspend"
+          }
+        },
+        "COPYRIGHT_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copyright_interstitial"
+          }
+        },
+        "GEO_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "geo_block"
+          }
+        },
+        "LEGAL_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legal_block"
+          }
+        },
+        "MALWARE_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "malware_interstitial"
+          }
+        },
+        "MISLEADING_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "misleading_interstitial"
+          }
+        },
+        "NETWORK_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network_block"
+          }
+        },
+        "PHISHING_INTERSTITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phishing_interstitial"
+          }
+        },
+        "PLAYFAIRITE_ENFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "playfairite_enforce"
+          }
+        },
+        "R2_TAKEDOWN_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_account"
+          }
+        },
+        "R2_TAKEDOWN_BUCKET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_bucket"
+          }
+        },
+        "R2_TAKEDOWN_OBJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "r2_takedown_object"
+          }
+        },
+        "RATE_LIMIT_CACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rate_limit_cache"
+          }
+        },
+        "REDIRECT_VIDEO_STREAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redirect_video_stream"
+          }
+        },
+        "REGISTRAR_FREEZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar_freeze"
+          }
+        },
+        "REGISTRAR_PARKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "registrar_parking"
+          }
+        },
+        "STREAM_BLOCK_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stream_block_account"
+          }
+        },
+        "USER_SUSPEND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_suspend"
+          }
+        },
+        "WORKERS_TAKEDOWN_BY_ZONE_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "workers_takedown_by_zone_id"
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of remediation.",
+            "smithy.api#required": {}
+          }
+        },
+        "effective_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date when the mitigation will become active. Time in RFC 3339 format (https://www.rfc-editor.org/rfc/rfc3339.html)",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "entity_type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewResultItemEntityType",
+          "traits": {
+            "smithy.api#documentation": "The type of entity targeted by a mitigation.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewResultItemStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of a mitigation",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewResultItemType",
+          "traits": {
+            "smithy.api#documentation": "The type of mitigation applied to a reported entity.",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.abuse_reports#MitigationsReviewResultItem"
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReviewResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#MitigationsReview": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#MitigationsReviewRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#MitigationsReviewResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request a review for mitigations on an account."
+      }
+    },
+    "com.cloudflare.abuse_reports#AbuseReports": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.abuse_reports#Create"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#Get"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#List"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#MitigationsList"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#MitigationsReview"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare AbuseReports",
+        "smithy.api#documentation": "Cloudflare API — abuse_reports resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align ssl#CertificatePacksEdit with distilled cloudflare/ssl patchCertificatePack",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksEdit",
+      "path": "/shapes/com.cloudflare.ssl#PatchCertificatePack"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksEditRequest",
+      "path": "/shapes/com.cloudflare.ssl#PatchCertificatePackRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchCertificatePack/input/target",
+      "value": "com.cloudflare.ssl#PatchCertificatePackRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ssl#CertificatePacksEditResponse",
+      "path": "/shapes/com.cloudflare.ssl#PatchCertificatePackResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ssl#PatchCertificatePack/output/target",
+      "value": "com.cloudflare.ssl#PatchCertificatePackResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ssl#PatchCertificatePack/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ssl#CertificatePackNotFound"
+        },
+        {
+          "target": "com.cloudflare.ssl#Forbidden"
+        }
+      ]
+    }
+  ]
+}

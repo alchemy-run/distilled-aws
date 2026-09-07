@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#GatewayProxyEndpointsDelete with distilled cloudflare/zero-trust deleteGatewayProxyEndpoint",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayProxyEndpoint"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayProxyEndpointRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayProxyEndpoint/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayProxyEndpointRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayProxyEndpointResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayProxyEndpoint/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteGatewayProxyEndpointResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteGatewayProxyEndpoint/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#ProxyEndpointNotFound"
+        }
+      ]
+    }
+  ]
+}

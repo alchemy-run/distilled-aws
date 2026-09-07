@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexFleetStatusOverTime with distilled cloudflare/zero-trust overTimeDexFleetStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusOverTime",
+      "path": "/shapes/com.cloudflare.zero_trust#OverTimeDexFleetStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusOverTimeRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#OverTimeDexFleetStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#OverTimeDexFleetStatus/input/target",
+      "value": "com.cloudflare.zero_trust#OverTimeDexFleetStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusOverTimeResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#OverTimeDexFleetStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#OverTimeDexFleetStatus/output/target",
+      "value": "com.cloudflare.zero_trust#OverTimeDexFleetStatusResponse"
+    }
+  ]
+}

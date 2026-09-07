@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessApplicationsPolicyTestsGet with distilled cloudflare/zero-trust getAccessApplicationPolicyTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsPolicyTestsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationPolicyTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsPolicyTestsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationPolicyTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationPolicyTest/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessApplicationPolicyTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsPolicyTestsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationPolicyTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessApplicationPolicyTest/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessApplicationPolicyTestResponse"
+    }
+  ]
+}

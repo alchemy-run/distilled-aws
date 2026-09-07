@@ -1,0 +1,519 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#DataWarehouseSavedQueryFolder": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the folder used to organize saved queries in the SQL editor sidebar."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.warehouse_saved_query_folders#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "view_count": {
+          "target": "smithy.api#Integer"
+        },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective access level the user has for this object",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mixin for serializers to add user access control fields"
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.warehouse_saved_query_folders#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.warehouse_saved_query_folders#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_query_folders#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_query_folders#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_query_folders#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.warehouse_saved_query_folders#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.warehouse_saved_query_folders#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.warehouse_saved_query_folders#DataWarehouseSavedQueryFolder"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersListRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_query_folders/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the folder used to organize saved queries in the SQL editor sidebar."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_query_folders#DataWarehouseSavedQueryFolder"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/warehouse_saved_query_folders/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query folder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_query_folders#DataWarehouseSavedQueryFolder"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_saved_query_folders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query folder."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name for the folder used to organize saved queries in the SQL editor sidebar."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_saved_query_folders#DataWarehouseSavedQueryFolder"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#BadRequest"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/warehouse_saved_query_folders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this data warehouse saved query folder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#Forbidden"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/warehouse_saved_query_folders/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFolders": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersList"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersRetrieve"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersPartialUpdate"
+        },
+        {
+          "target": "com.posthog.warehouse_saved_query_folders#WarehouseSavedQueryFoldersDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

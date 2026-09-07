@@ -1,0 +1,85 @@
+{
+  "description": "Fix PostgresRole and PaginatedPostgresRole schema: many fields can be null (ttl, deleted_at, expires_at, dropped_at, disabled_at, drop_failed)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/password/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/ttl/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/expires_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/dropped_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/disabled_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/drop_failed/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PostgresRole/properties/branch/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/password/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/ttl/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/expires_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/dropped_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/disabled_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/drop_failed/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedPostgresRole/properties/data/items/properties/branch/properties/deleted_at/x-nullable",
+      "value": true
+    }
+  ]
+}

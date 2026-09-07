@@ -1,0 +1,14 @@
+{
+  "description": "Key dictionary / op aliases for ips (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "ipv4Cidrs": "ipv4_cidrs",
+        "ipv6Cidrs": "ipv6_cidrs",
+        "jdcloudCidrs": "jdcloud_cidrs"
+      }
+    }
+  ]
+}

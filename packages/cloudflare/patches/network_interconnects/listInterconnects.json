@@ -1,0 +1,30 @@
+{
+  "description": "Align network_interconnects#InterconnectsList with distilled cloudflare/network-interconnects listInterconnects",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsList",
+      "path": "/shapes/com.cloudflare.network_interconnects#ListInterconnects"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsListRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#ListInterconnectsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#ListInterconnects/input/target",
+      "value": "com.cloudflare.network_interconnects#ListInterconnectsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#InterconnectsListResponse",
+      "path": "/shapes/com.cloudflare.network_interconnects#ListInterconnectsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#ListInterconnects/output/target",
+      "value": "com.cloudflare.network_interconnects#ListInterconnectsResponse"
+    }
+  ]
+}

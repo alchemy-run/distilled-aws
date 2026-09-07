@@ -1,0 +1,35 @@
+{
+  "description": "Align addressing#AddressMapsAccountsUpdate with distilled cloudflare/addressing putAddressMapAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsAccountsUpdate",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsAccountsUpdateRequest",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccount/input/target",
+      "value": "com.cloudflare.addressing#PutAddressMapAccountRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.addressing#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

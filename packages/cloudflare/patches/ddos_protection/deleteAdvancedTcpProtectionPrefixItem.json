@@ -1,0 +1,20 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionPrefixesItemsDelete with distilled cloudflare/ddos-protection deleteAdvancedTcpProtectionPrefixItem",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDelete",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionPrefixItem"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionPrefixesItemsDeleteRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionPrefixItemRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionPrefixItem/input/target",
+      "value": "com.cloudflare.ddos_protection#DeleteAdvancedTcpProtectionPrefixItemRequest"
+    }
+  ]
+}

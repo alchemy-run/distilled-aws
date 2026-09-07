@@ -1,0 +1,39 @@
+{
+  "description": "Align intel#IndicatorFeedsPermissionsList with distilled cloudflare/intel listIndicatorFeedPermissions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsList",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedPermissions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsListRequest",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedPermissionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedPermissions/input/target",
+      "value": "com.cloudflare.intel#ListIndicatorFeedPermissionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#IndicatorFeedsPermissionsListResponse",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedPermissionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedPermissions/output/target",
+      "value": "com.cloudflare.intel#ListIndicatorFeedPermissionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#ListIndicatorFeedPermissions/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.intel#Forbidden"
+        }
+      ]
+    }
+  ]
+}

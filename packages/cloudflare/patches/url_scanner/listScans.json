@@ -1,0 +1,30 @@
+{
+  "description": "Align url_scanner#ScansList with distilled cloudflare/url-scanner listScans",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansList",
+      "path": "/shapes/com.cloudflare.url_scanner#ListScans"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansListRequest",
+      "path": "/shapes/com.cloudflare.url_scanner#ListScansRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#ListScans/input/target",
+      "value": "com.cloudflare.url_scanner#ListScansRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_scanner#ScansListResponse",
+      "path": "/shapes/com.cloudflare.url_scanner#ListScansResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_scanner#ListScans/output/target",
+      "value": "com.cloudflare.url_scanner#ListScansResponse"
+    }
+  ]
+}

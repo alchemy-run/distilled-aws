@@ -1,0 +1,30 @@
+{
+  "description": "Align network_interconnects#SlotsGet with distilled cloudflare/network-interconnects getSlot",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SlotsGet",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSlot"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SlotsGetRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSlotRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSlot/input/target",
+      "value": "com.cloudflare.network_interconnects#GetSlotRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#SlotsGetResponse",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSlotResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#GetSlot/output/target",
+      "value": "com.cloudflare.network_interconnects#GetSlotResponse"
+    }
+  ]
+}

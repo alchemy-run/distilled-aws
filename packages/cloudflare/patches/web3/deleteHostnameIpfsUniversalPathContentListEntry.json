@@ -1,0 +1,30 @@
+{
+  "description": "Align web3#HostnamesIpfsUniversalPathsContentListsEntriesDelete with distilled cloudflare/web3 deleteHostnameIpfsUniversalPathContentListEntry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesDelete",
+      "path": "/shapes/com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesDeleteRequest",
+      "path": "/shapes/com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntry/input/target",
+      "value": "com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesDeleteResponse",
+      "path": "/shapes/com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntry/output/target",
+      "value": "com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntryResponse"
+    }
+  ]
+}

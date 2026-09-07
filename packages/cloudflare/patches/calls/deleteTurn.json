@@ -1,0 +1,42 @@
+{
+  "description": "Align calls#TurnDelete with distilled cloudflare/calls deleteTurn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnDelete",
+      "path": "/shapes/com.cloudflare.calls#DeleteTurn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnDeleteRequest",
+      "path": "/shapes/com.cloudflare.calls#DeleteTurnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#DeleteTurn/input/target",
+      "value": "com.cloudflare.calls#DeleteTurnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#TurnDeleteResponse",
+      "path": "/shapes/com.cloudflare.calls#DeleteTurnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#DeleteTurn/output/target",
+      "value": "com.cloudflare.calls#DeleteTurnResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.calls#DeleteTurn/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.calls#TurnKeyNotFound"
+        },
+        {
+          "target": "com.cloudflare.calls#Forbidden"
+        }
+      ]
+    }
+  ]
+}

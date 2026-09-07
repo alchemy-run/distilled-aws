@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#DynamicRoutingListVersions with distilled cloudflare/ai-gateway listVersionsDynamicRouting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListVersions",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListVersionsDynamicRouting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListVersionsRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListVersionsDynamicRoutingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListVersionsDynamicRouting/input/target",
+      "value": "com.cloudflare.ai_gateway#ListVersionsDynamicRoutingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListVersionsResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListVersionsDynamicRoutingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListVersionsDynamicRouting/output/target",
+      "value": "com.cloudflare.ai_gateway#ListVersionsDynamicRoutingResponse"
+    }
+  ]
+}

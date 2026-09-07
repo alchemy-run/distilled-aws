@@ -1,0 +1,5799 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.scim#GetScimConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponsePatch": {
+      "type": "structure",
+      "members": {
+        "supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseBulk": {
+      "type": "structure",
+      "members": {
+        "supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maxOperations": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maxPayloadSize": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseFilter": {
+      "type": "structure",
+      "members": {
+        "supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseChangePassword": {
+      "type": "structure",
+      "members": {
+        "supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseSort": {
+      "type": "structure",
+      "members": {
+        "supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseEtag": {
+      "type": "structure",
+      "members": {
+        "supported": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseAuthenticationSchemesItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "specUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "documentationUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseAuthenticationSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimConfigurationResponseAuthenticationSchemesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "documentationUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "patch": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponsePatch",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "bulk": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseBulk",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseFilter",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "changePassword": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseChangePassword",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sort": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseSort",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseEtag",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authenticationSchemes": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseAuthenticationSchemesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimConfigurationResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimConfigurationRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimConfigurationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/ServiceProviderConfig",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get SCIM Configuration\n\nReturns the SCIM 2.0 Service Provider configuration, describing the server's capabilities and supported authentication schemes."
+      }
+    },
+    "com.huggingface.scim#GetScimResourceTypesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimResourceTypesResponseBodyItemSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimResourceTypesResponseBodyItemMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimResourceTypesResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimResourceTypesResponseBodyItemSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "schema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimResourceTypesResponseBodyItemMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimResourceTypesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimResourceTypesResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimResourceTypesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.scim#GetScimResourceTypesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimResourceTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimResourceTypesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimResourceTypesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/ResourceTypes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get SCIM Resource Types\n\nReturns the list of SCIM 2.0 resource types supported by this server (User and Group)."
+      }
+    },
+    "com.huggingface.scim#GetScimSchemasRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimSchemasResponseBodyItemSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemasResponseBodyItemAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemasResponseBodyItemMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemasResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimSchemasResponseBodyItemSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attributes": {
+          "target": "com.huggingface.scim#GetScimSchemasResponseBodyItemAttributesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimSchemasResponseBodyItemMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemasResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimSchemasResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemasResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.scim#GetScimSchemasResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimSchemas": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimSchemasRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimSchemasResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/Schemas",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get SCIM Schemas\n\nReturns the SCIM 2.0 schema definitions for User and Group resources."
+      }
+    },
+    "com.huggingface.scim#GetScimSchemaByIdRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemaId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimSchemaByIdResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemaByIdResponseAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemaByIdResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimSchemaByIdResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimSchemaByIdResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "attributes": {
+          "target": "com.huggingface.scim#GetScimSchemaByIdResponseAttributesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimSchemaByIdResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimSchemaById": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimSchemaByIdRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimSchemaByIdResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/Schemas/{schemaId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get SCIM Schema by ID\n\nReturns a single SCIM 2.0 schema definition by its schema URI."
+      }
+    },
+    "com.huggingface.scim#ListScimUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "startIndex"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ListScimUsersResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_API_MESSAGES_2_0_LISTRESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimUsersResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItemMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesItem": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesItemMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimUsersResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimUsersResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimUsersResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "totalResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "itemsPerPage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Resources": {
+          "target": "com.huggingface.scim#ListScimUsersResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ListScimUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ListScimUsersRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ListScimUsersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/Users",
+          "code": 200
+        },
+        "smithy.api#documentation": "List SCIM users\n\nRetrieves a paginated list of all organization members who have been set up, including disabled users. If you provide the filter parameter, the resources for all matching members are returned."
+      }
+    },
+    "com.huggingface.scim#CreateScimUserRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserRequestEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserRequestEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimUserRequestEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserRequestName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#CreateScimUserRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username for the user, it should respect the hub rules: No consecutive dashes, No digit-only, Does not start or end with a dash, Only dashes, letters or numbers, Not 24 chars hex string",
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#CreateScimUserRequestEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External ID for the user, it must be unique within the organization and is required for managed users",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#CreateScimUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#CreateScimUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#CreateScimUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#CreateScimUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#CreateScimUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#CreateScimUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#CreateScimUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#CreateScimUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#CreateScimUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/scim/v2/Users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a SCIM user\n\nCreates a new user in the organization. If the user already exists, only `active` field will be updated to provision the user."
+      }
+    },
+    "com.huggingface.scim#GetScimUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#GetScimUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#GetScimUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#GetScimUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#GetScimUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#GetScimUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a SCIM user\n\nRetrieves a SCIM user by their ID."
+      }
+    },
+    "com.huggingface.scim#ReplaceScimUserRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserRequestEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserRequestEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimUserRequestEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserRequestName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimUserRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username for the user, it should respect the hub rules: No consecutive dashes, No digit-only, Does not start or end with a dash, Only dashes, letters or numbers, Not 24 chars hex string",
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#ReplaceScimUserRequestEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#ReplaceScimUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ReplaceScimUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#ReplaceScimUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#ReplaceScimUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ReplaceScimUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ReplaceScimUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ReplaceScimUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/organizations/{name}/scim/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a SCIM user\n\nUpdates a provisioned user, you'll need to provide all their information fresh - just like setting them up for the first time. Any details you don't include will be automatically removed, so make sure to include everything they need to keep their account running smoothly. Setting `active` to `false` will deprovision the user from the organization."
+      }
+    },
+    "com.huggingface.scim#UpdateScimUserRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserRequestOperationsItemPath": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "EXTERNALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "externalId"
+          }
+        },
+        "USERNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "userName"
+          }
+        },
+        "EMAILS_TYPE_EQ_WORK_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "emails[type eq \"work\"].value"
+          }
+        },
+        "NAME_GIVENNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name.givenName"
+          }
+        },
+        "NAME_FAMILYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name.familyName"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserRequestOperationsItem": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "com.huggingface.scim#UpdateScimUserRequestOperationsItemPath"
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserRequestOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimUserRequestOperationsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimUserRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Operations": {
+          "target": "com.huggingface.scim#UpdateScimUserRequestOperationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#UpdateScimUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#UpdateScimUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#UpdateScimUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#UpdateScimUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#UpdateScimUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#UpdateScimUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#UpdateScimUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#UpdateScimUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/scim/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update SCIM user\n\nUpdate an attribute of a SCIM user. Modify individual attributes using Operations format. Just provide the changes you want to make using add, remove (only `externalId` is supported), or replace operations.\n If you set `active` to `false`, the user will be deprovisioned from the organization. \nComplicated SCIM `path` values are not supported like `emails[type eq 'work'].value`."
+      }
+    },
+    "com.huggingface.scim#DeleteScimUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#DeleteScimUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#DeleteScimUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{name}/scim/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a SCIM user"
+      }
+    },
+    "com.huggingface.scim#ListScimGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "startIndex"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "excludedAttributes": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "excludedAttributes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ListScimGroupsResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_API_MESSAGES_2_0_LISTRESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimGroupsResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItemSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItemSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItemSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItemMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItemMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItemMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItemMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItemMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItemMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesItem": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItemSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItemMembersList"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItemMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimGroupsResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimGroupsResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "totalResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "itemsPerPage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Resources": {
+          "target": "com.huggingface.scim#ListScimGroupsResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ListScimGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ListScimGroupsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ListScimGroupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/Groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List SCIM groups\n\nGet a list of SCIM groups. Retrieves a paginated list of all organization groups. If you provide the filter parameter, the resources for all matching groups are returned."
+      }
+    },
+    "com.huggingface.scim#CreateScimGroupRequestMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupRequestMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimGroupRequestMembersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of SCIM user ids"
+      }
+    },
+    "com.huggingface.scim#CreateScimGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String"
+        },
+        "members": {
+          "target": "com.huggingface.scim#CreateScimGroupRequestMembersList",
+          "traits": {
+            "smithy.api#documentation": "Array of SCIM user ids",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#CreateScimGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#CreateScimGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#CreateScimGroupResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#CreateScimGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#CreateScimGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#CreateScimGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/scim/v2/Groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a SCIM group\n\nCreates a new group in the organization. The group name must be unique within the organization."
+      }
+    },
+    "com.huggingface.scim#GetScimGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "excludedAttributes": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "excludedAttributes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#GetScimGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#GetScimGroupResponseMembersList"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a SCIM group\n\nRetrieves a group by its ID. If you provide the `excludedAttributes` parameter, the `members` attribute is not returned."
+      }
+    },
+    "com.huggingface.scim#ReplaceScimGroupRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupRequestMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupRequestMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimGroupRequestMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimGroupRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String"
+        },
+        "members": {
+          "target": "com.huggingface.scim#ReplaceScimGroupRequestMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ReplaceScimGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#ReplaceScimGroupResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ReplaceScimGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ReplaceScimGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ReplaceScimGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/organizations/{name}/scim/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a SCIM group\n\nUpdates a group by its ID. The group name must be unique within the organization."
+      }
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase0ValueItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase0ValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase0ValueItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase0": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase0ValueList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase1": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestOperationsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.scim#UpdateScimGroupRequestOperationsItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequestOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimGroupRequestOperationsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimGroupRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Operations": {
+          "target": "com.huggingface.scim#UpdateScimGroupRequestOperationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#UpdateScimGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#UpdateScimGroupResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#UpdateScimGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#UpdateScimGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#UpdateScimGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/scim/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update SCIM group\n\nUpdate attributes of a SCIM group. Updates individual attributes using Operations format. Just provide the changes you want to make using add, remove (only `members` is supported), or replace operations."
+      }
+    },
+    "com.huggingface.scim#DeleteScimGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimGroupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#DeleteScimGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#DeleteScimGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{name}/scim/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a SCIM group"
+      }
+    },
+    "com.huggingface.scim#ListScimManagedUsersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "startIndex"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_API_MESSAGES_2_0_LISTRESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimManagedUsersResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesItem": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItemMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimManagedUsersResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "totalResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "itemsPerPage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Resources": {
+          "target": "com.huggingface.scim#ListScimManagedUsersResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ListScimManagedUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ListScimManagedUsersRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ListScimManagedUsersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Users",
+          "code": 200
+        },
+        "smithy.api#documentation": "List SCIM-managed users\n\nRetrieves a paginated list of organization members and pending invitations managed by SCIM for non-managed organizations."
+      }
+    },
+    "com.huggingface.scim#CreateScimInvitationRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationRequestEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationRequestEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimInvitationRequestEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#CreateScimInvitationRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Username of the existing Hugging Face user",
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#CreateScimInvitationRequestEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SSO unique identifier (SAML nameid or OIDC sub claim) - required for SSO login",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimInvitationResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#CreateScimInvitationResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimInvitationResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#CreateScimInvitationResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimInvitationResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#CreateScimInvitationResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#CreateScimInvitationResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#CreateScimInvitationResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#CreateScimInvitationResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimInvitation": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#CreateScimInvitationRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#CreateScimInvitationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create SCIM invitation\n\nCreates an invitation for a user to join the organization. The user must have an existing Hugging Face account."
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimProvisioningUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#GetScimProvisioningUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimProvisioningUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#GetScimProvisioningUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimProvisioningUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#GetScimProvisioningUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#GetScimProvisioningUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimProvisioningUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimProvisioningUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimProvisioningUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a SCIM provisioning user\n\nRetrieves a SCIM user by their ID for non-managed organizations."
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a SCIM user\n\nUpdates a provisioned user's invitation for non-managed organizations. User profile fields are not editable via SCIM for non-managed organizations."
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsItemOp": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove"
+          }
+        },
+        "REPLACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "`remove` operation is not supported for non-managed organizations"
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsItemPath": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "EXTERNALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "externalId"
+          }
+        },
+        "USERNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "userName"
+          }
+        },
+        "EMAILS_TYPE_EQ_WORK_VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "emails[type eq \"work\"].value"
+          }
+        },
+        "NAME_GIVENNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name.givenName"
+          }
+        },
+        "NAME_FAMILYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name.familyName"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsItem": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsItemOp",
+          "traits": {
+            "smithy.api#documentation": "`remove` operation is not supported for non-managed organizations",
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsItemPath"
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Operations": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserRequestOperationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseName": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "formatted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseEmailsItemType": {
+      "type": "enum",
+      "members": {
+        "WORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "work"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "We only support work emails, other types are converted to work"
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseEmailsItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "primary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseEmailsItemType",
+          "traits": {
+            "smithy.api#documentation": "We only support work emails, other types are converted to work"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseEmailsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUserResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "userName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseName",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "emails": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseEmailsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUserResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update SCIM user\n\nModify individual attributes for non-managed organizations. Only the `active` field can be modified. User profile fields are not editable via SCIM."
+      }
+    },
+    "com.huggingface.scim#DeleteScimProvisioningUserRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimProvisioningUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimProvisioningUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#DeleteScimProvisioningUserRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#DeleteScimProvisioningUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Users/{userId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete SCIM user\n\nRemoves a user from the organization and deletes any pending invitations for non-managed organizations."
+      }
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "startIndex"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "excludedAttributes": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "excludedAttributes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_API_MESSAGES_2_0_LISTRESPONSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItem": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMembersList"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItemMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ListScimProvisioningGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "totalResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "itemsPerPage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Resources": {
+          "target": "com.huggingface.scim#ListScimProvisioningGroupsResponseResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ListScimProvisioningGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ListScimProvisioningGroupsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ListScimProvisioningGroupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List SCIM groups\n\nGet a list of SCIM groups. Retrieves a paginated list of all organization groups. If you provide the filter parameter, the resources for all matching groups are returned."
+      }
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupRequestMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupRequestMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimProvisioningGroupRequestMembersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of SCIM user ids"
+      }
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String"
+        },
+        "members": {
+          "target": "com.huggingface.scim#CreateScimProvisioningGroupRequestMembersList",
+          "traits": {
+            "smithy.api#documentation": "Array of SCIM user ids",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimProvisioningGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#CreateScimProvisioningGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#CreateScimProvisioningGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#CreateScimProvisioningGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#CreateScimProvisioningGroupResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#CreateScimProvisioningGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#CreateScimProvisioningGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#CreateScimProvisioningGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#CreateScimProvisioningGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.scim#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a SCIM group\n\nCreates a new group in the organization. The group name must be unique within the organization."
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "excludedAttributes": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#httpQuery": "excludedAttributes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimProvisioningGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#GetScimProvisioningGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#GetScimProvisioningGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#GetScimProvisioningGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#GetScimProvisioningGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#GetScimProvisioningGroupResponseMembersList"
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#GetScimProvisioningGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#GetScimProvisioningGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#GetScimProvisioningGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#GetScimProvisioningGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a SCIM group\n\nRetrieves a group by its ID. If you provide the `excludedAttributes` parameter, the `members` attribute is not returned."
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupRequestMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupRequestMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningGroupRequestMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroupRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String"
+        },
+        "members": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroupRequestMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#ReplaceScimProvisioningGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#ReplaceScimProvisioningGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a SCIM group\n\nUpdates a group by its ID. The group name must be unique within the organization."
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase0ValueItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase0ValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase0ValueItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase0": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase0ValueList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase1": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Operations": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequestOperationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponseSchemasItem": {
+      "type": "enum",
+      "members": {
+        "URN_IETF_PARAMS_SCIM_SCHEMAS_CORE_2_0_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "urn:ietf:params:scim:schemas:core:2.0:Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponseSchemasList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponseSchemasItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponseMembersItem": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponseMembersItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponseMetaResourceType": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponseMeta": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponseMetaResourceType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroupResponse": {
+      "type": "structure",
+      "members": {
+        "schemas": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponseSchemasList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "externalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "meta": {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#UpdateScimProvisioningGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#UpdateScimProvisioningGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update SCIM group\n\nUpdate attributes of a SCIM group. Updates individual attributes using Operations format. Just provide the changes you want to make using add, remove (only `members` is supported), or replace operations."
+      }
+    },
+    "com.huggingface.scim#DeleteScimProvisioningGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimProvisioningGroupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.scim#DeleteScimProvisioningGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.scim#DeleteScimProvisioningGroupRequest"
+      },
+      "output": {
+        "target": "com.huggingface.scim#DeleteScimProvisioningGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/organizations/{name}/scim-provisioning/v2/Groups/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a SCIM group"
+      }
+    },
+    "com.huggingface.scim#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.huggingface.scim#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.huggingface.scim#Scim": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.scim#GetScimConfiguration"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimResourceTypes"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimSchemas"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimSchemaById"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimUsers"
+        },
+        {
+          "target": "com.huggingface.scim#CreateScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#UpdateScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#DeleteScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimGroups"
+        },
+        {
+          "target": "com.huggingface.scim#CreateScimGroup"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimGroup"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimGroup"
+        },
+        {
+          "target": "com.huggingface.scim#UpdateScimGroup"
+        },
+        {
+          "target": "com.huggingface.scim#DeleteScimGroup"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimManagedUsers"
+        },
+        {
+          "target": "com.huggingface.scim#CreateScimInvitation"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#UpdateScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#DeleteScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimProvisioningGroups"
+        },
+        {
+          "target": "com.huggingface.scim#CreateScimProvisioningGroup"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimProvisioningGroup"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningGroup"
+        },
+        {
+          "target": "com.huggingface.scim#UpdateScimProvisioningGroup"
+        },
+        {
+          "target": "com.huggingface.scim#DeleteScimProvisioningGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

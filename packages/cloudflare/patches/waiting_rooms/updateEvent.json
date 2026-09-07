@@ -1,0 +1,30 @@
+{
+  "description": "Align waiting_rooms#EventsUpdate with distilled cloudflare/waiting-rooms updateEvent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsUpdate",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateEvent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsUpdateRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateEventRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateEvent/input/target",
+      "value": "com.cloudflare.waiting_rooms#UpdateEventRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#EventsUpdateResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateEventResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#UpdateEvent/output/target",
+      "value": "com.cloudflare.waiting_rooms#UpdateEventResponse"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align rulesets#CreateForZone with distilled cloudflare/rulesets createRulesetForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#CreateForZone",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRulesetForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#CreateForZoneRequest",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRulesetForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRulesetForZone/input/target",
+      "value": "com.cloudflare.rulesets#CreateRulesetForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#CreateForZoneResponse",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRulesetForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRulesetForZone/output/target",
+      "value": "com.cloudflare.rulesets#CreateRulesetForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#CreateRulesetForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rulesets#PhaseNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.rulesets#Forbidden"
+        }
+      ]
+    }
+  ]
+}

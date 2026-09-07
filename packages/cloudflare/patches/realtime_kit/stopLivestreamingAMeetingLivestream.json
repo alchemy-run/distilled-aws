@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#LivestreamsStopLivestreamingAMeeting with distilled cloudflare/realtime-kit stopLivestreamingAMeetingLivestream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsStopLivestreamingAMeeting",
+      "path": "/shapes/com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsStopLivestreamingAMeetingRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestream/input/target",
+      "value": "com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#LivestreamsStopLivestreamingAMeetingResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestream/output/target",
+      "value": "com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestreamResponse"
+    }
+  ]
+}

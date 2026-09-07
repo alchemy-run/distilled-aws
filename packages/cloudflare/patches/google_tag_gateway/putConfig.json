@@ -1,0 +1,39 @@
+{
+  "description": "Align google_tag_gateway#ConfigUpdate with distilled cloudflare/google-tag-gateway putConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.google_tag_gateway#ConfigUpdate",
+      "path": "/shapes/com.cloudflare.google_tag_gateway#PutConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.google_tag_gateway#ConfigUpdateRequest",
+      "path": "/shapes/com.cloudflare.google_tag_gateway#PutConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.google_tag_gateway#PutConfig/input/target",
+      "value": "com.cloudflare.google_tag_gateway#PutConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.google_tag_gateway#ConfigUpdateResponse",
+      "path": "/shapes/com.cloudflare.google_tag_gateway#PutConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.google_tag_gateway#PutConfig/output/target",
+      "value": "com.cloudflare.google_tag_gateway#PutConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.google_tag_gateway#PutConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.google_tag_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

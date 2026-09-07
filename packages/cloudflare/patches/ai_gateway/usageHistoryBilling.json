@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingUsageHistory with distilled cloudflare/ai-gateway usageHistoryBilling",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingUsageHistory",
+      "path": "/shapes/com.cloudflare.ai_gateway#UsageHistoryBilling"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingUsageHistoryRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#UsageHistoryBillingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UsageHistoryBilling/input/target",
+      "value": "com.cloudflare.ai_gateway#UsageHistoryBillingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingUsageHistoryResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#UsageHistoryBillingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#UsageHistoryBilling/output/target",
+      "value": "com.cloudflare.ai_gateway#UsageHistoryBillingResponse"
+    }
+  ]
+}

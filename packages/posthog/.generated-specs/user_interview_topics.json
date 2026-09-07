@@ -1,0 +1,1913 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.user_interview_topics#UserInterviewTopicsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "A search term."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#PaginatedUserInterviewTopicList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.user_interview_topics#PaginatedUserInterviewTopicListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.user_interview_topics#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicIntervieweeEmailsList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+          }
+        },
+        "interviewee_distinct_ids": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicIntervieweeDistinctIdsList",
+          "traits": {
+            "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product, feature, or idea you want to ask interviewees about.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional additional system prompt for the voice agent — extra background, tone, or constraints."
+          }
+        },
+        "questions": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicQuestionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+          }
+        },
+        "invite_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders."
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.user_interview_topics#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.user_interview_topics#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.user_interview_topics#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.user_interview_topics#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.user_interview_topics#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicIntervieweeDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicQuestionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+      }
+    },
+    "com.posthog.user_interview_topics#PaginatedUserInterviewTopicListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#PaginatedUserInterviewTopicList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interview_topics/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestQuestionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeEmailsList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+          }
+        },
+        "interviewee_distinct_ids": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList",
+          "traits": {
+            "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product, feature, or idea you want to ask interviewees about.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional additional system prompt for the voice agent — extra background, tone, or constraints."
+          }
+        },
+        "questions": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestQuestionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+          }
+        },
+        "invite_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders."
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestQuestionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeEmailsList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+          }
+        },
+        "interviewee_distinct_ids": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList",
+          "traits": {
+            "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product, feature, or idea you want to ask interviewees about.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional additional system prompt for the voice agent — extra background, tone, or constraints."
+          }
+        },
+        "questions": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestQuestionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+          }
+        },
+        "invite_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders."
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestQuestionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        },
+        "interviewee_emails": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList",
+          "traits": {
+            "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
+          }
+        },
+        "interviewee_distinct_ids": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList",
+          "traits": {
+            "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product, feature, or idea you want to ask interviewees about."
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional additional system prompt for the voice agent — extra background, tone, or constraints."
+          }
+        },
+        "questions": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestQuestionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
+          }
+        },
+        "invite_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders."
+          }
+        },
+        "invite_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsAddIntervieweeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address or PostHog distinct ID for the interviewee. Email-shaped values (including the `Display Name <email@host>` form) are routed to `interviewee_emails`; everything else lands in `interviewee_distinct_ids`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsAddIntervieweeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsAddIntervieweeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/add_interviewee/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a single interviewee to this topic. Email-shaped identifiers (including the `Display Name <email@host>` form) are appended to `interviewee_emails`; everything else is appended to `interviewee_distinct_ids`. Idempotent — adding an identifier that's already present leaves the topic unchanged. Returns the updated topic."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#PaginatedInterviewLinkList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.user_interview_topics#PaginatedInterviewLinkListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#InterviewLink": {
+      "type": "structure",
+      "members": {
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original identifier (email or distinct ID) from the topic targeting.",
+            "smithy.api#required": {}
+          }
+        },
+        "user_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Best-effort display name derived from the identifier, used to greet the interviewee.",
+            "smithy.api#required": {}
+          }
+        },
+        "interview_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public, unauthenticated URL the interviewee opens to start the call. Backed by a SharingConfiguration access token.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The merged topic + per-interviewee context the voice agent will see during the call.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#PaginatedInterviewLinkListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interview_topics#InterviewLink"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#PaginatedInterviewLinkList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/generate_links/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate one public interview link per targeted interviewee. Materializes an IntervieweeContext row for every identifier on the topic (without overwriting existing per-person context), and an enabled SharingConfiguration with a unique access token. The URL resolves to the public interview viewer with no PostHog auth required."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/links_csv/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Same materialization as generate_links, returned as a downloadable CSV. Intended for users who want to mail-merge the per-person interview links into their own email tooling."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Which targeted interviewee to render the preview for (an email or PostHog distinct ID already on the topic). Leave blank to preview for the first targeted interviewee."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#PreviewInviteResult": {
+      "type": "structure",
+      "members": {
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier (email or distinct ID) the preview was rendered for.",
+            "smithy.api#required": {}
+          }
+        },
+        "user_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name used in the email greeting, derived from the identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address the invite would be sent to. Null for distinct-ID-only interviewees.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rendered subject line (saved topic subject, sanitized, or the default).",
+            "smithy.api#required": {}
+          }
+        },
+        "html": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully rendered, CSS-inlined HTML body of the invite email. Safe to display in a sandboxed iframe.",
+            "smithy.api#required": {}
+          }
+        },
+        "interview_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An illustrative placeholder interview link shown in the previewed email body. The preview never exposes a real per-recipient share token — that link is minted only when invites are sent.",
+            "smithy.api#required": {}
+          }
+        },
+        "emailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this interviewee has an email address and could actually receive the invite.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_preview_link": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always true — the previewed interview_url is an illustrative placeholder, never a live link.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#PreviewInviteResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/preview_invite/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Render the invite email exactly as a specific targeted interviewee would receive it — personalized subject and body — without sending anything and without creating or reading any share links. Pass `interviewee_identifier` to preview for a particular person, or omit it to preview for the first targeted interviewee. The body always shows an illustrative placeholder link (`is_preview_link: true`), never a live interview URL."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address or PostHog distinct ID for the interviewee. Email-shaped values (including the `Display Name <email@host>` form) are routed to `interviewee_emails`; everything else lands in `interviewee_distinct_ids`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopic"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/remove_interviewee/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove an interviewee from this topic. Drops the identifier from both `interviewee_emails` and `interviewee_distinct_ids`, and disables any active SharingConfiguration linked to an IntervieweeContext for that identifier on this topic so the removed person can no longer open their interview link. Idempotent — removing an identifier that isn't present is a no-op. Returns the updated topic."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Override the email subject line for this send. Plain text only — URLs, angle brackets, and control characters are rejected. Falls back to the topic's saved subject, then a default."
+          }
+        },
+        "reply_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address replies should go to. Defaults to the topic creator's email if blank."
+          }
+        },
+        "send_async": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true (default), queue delivery via Celery. If false, send synchronously and surface errors immediately."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#PaginatedInterviewInviteResultList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.user_interview_topics#PaginatedInterviewInviteResultListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#InterviewInviteResult": {
+      "type": "structure",
+      "members": {
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original identifier (email or distinct ID) from the topic targeting.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email used for delivery. Null when the identifier was not an email (e.g., a distinct ID).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "interview_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The personalized public interview URL embedded in the email body.",
+            "smithy.api#required": {}
+          }
+        },
+        "sent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if an email was queued for delivery. False when the recipient was skipped — see `reason`.",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why the email was skipped (e.g., `not_an_email`, `duplicate_recipient`, `already_sent`). Empty when sent=true."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#PaginatedInterviewInviteResultListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interview_topics#InterviewInviteResult"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#PaginatedInterviewInviteResultList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/send_invites/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate (if needed) and email a personalized public interview link to every targeted interviewee on this topic whose identifier is an email address. Distinct-ID-only interviewees are skipped and surfaced in the response. Each invite is keyed on the underlying SharingConfiguration so re-runs after token rotation produce a fresh send."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this user interview topic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#TestInterviewLink": {
+      "type": "structure",
+      "members": {
+        "interview_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public, unauthenticated URL the topic author opens to dogfood the voice interview themselves — does not count against the targeted interviewees.",
+            "smithy.api#required": {}
+          }
+        },
+        "latest_test_interview": {
+          "target": "com.posthog.user_interview_topics#LatestTestInterview",
+          "traits": {
+            "smithy.api#documentation": "Most recent test interview completed by the topic author, or null if none yet.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#LatestTestInterview": {
+      "type": "structure",
+      "members": {
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the test interview was completed.",
+            "smithy.api#required": {}
+          }
+        },
+        "transcript": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full transcript of the test call, if Vapi delivered one. May be empty.",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AI-generated summary of the test call, if Vapi delivered one. May be empty.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#TestInterviewLink"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{id}/test_link/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the calling user's personal dogfood interview link for this topic, plus the latest test interview they have recorded against it. Lazily get-or-creates a per-caller IntervieweeContext + enabled SharingConfiguration the first time it's called, then returns the same stable URL on subsequent calls. The caller's identifier is intentionally not added to the topic's targeting arrays — each user dogfoods under their own row, so test calls never mint a public share token on someone else's behalf."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#PaginatedIntervieweeContextList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.user_interview_topics#PaginatedIntervieweeContextListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#IntervieweeContext": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.user_interview_topics#UserBasic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#PaginatedIntervieweeContextListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interview_topics#IntervieweeContext"
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#PaginatedIntervieweeContextList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#IntervieweeContext"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this interviewee context."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#IntervieweeContext"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this interviewee context."
+          }
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#IntervieweeContext"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this interviewee context."
+          }
+        },
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids."
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#IntervieweeContext"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this interviewee context."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
+      }
+    },
+    "com.posthog.user_interview_topics#BulkIntervieweeContextItem": {
+      "type": "structure",
+      "members": {
+        "interviewee_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids.",
+            "smithy.api#required": {}
+          }
+        },
+        "agent_context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreateRequestItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.user_interview_topics#BulkIntervieweeContextItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of interviewee context rows to create. Each item has an `interviewee_identifier` and an `agent_context`. At most 500 items per request."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "topic_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreateRequestItemsList",
+          "traits": {
+            "smithy.api#documentation": "List of interviewee context rows to create. Each item has an `interviewee_identifier` and an `agent_context`. At most 500 items per request.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.user_interview_topics#BulkIntervieweeContextResponse": {
+      "type": "structure",
+      "members": {
+        "inserted_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of rows inserted by this request.",
+            "smithy.api#required": {}
+          }
+        },
+        "skipped_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of items skipped because a row for that (topic, interviewee_identifier) already existed.",
+            "smithy.api#required": {}
+          }
+        },
+        "skipped_identifiers": {
+          "target": "com.posthog.user_interview_topics#BulkIntervieweeContextResponseSkippedIdentifiersList",
+          "traits": {
+            "smithy.api#documentation": "Identifiers from the request whose rows were skipped because a row for that (topic, interviewee_identifier) already existed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.user_interview_topics#BulkIntervieweeContextResponseSkippedIdentifiersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifiers from the request whose rows were skipped because a row for that (topic, interviewee_identifier) already existed."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.user_interview_topics#BulkIntervieweeContextResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/bulk/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create up to 500 interviewee context rows for a topic in a single request. Rows whose (topic, interviewee_identifier) already exists are skipped — the response surfaces an `inserted_count`, a `skipped_count`, and the `skipped_identifiers` so the caller can reconcile. Items must have unique `interviewee_identifier` values within the batch."
+      }
+    },
+    "com.posthog.user_interview_topics#UserInterviewTopics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsList"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsRetrieve"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsDestroy"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsAddIntervieweeCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieve"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesList"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieve"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesDestroy"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

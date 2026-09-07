@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#ObservabilityDestinationsDelete with distilled cloudflare/workers deleteObservabilityDestination",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityDestinationsDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteObservabilityDestination"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityDestinationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteObservabilityDestinationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteObservabilityDestination/input/target",
+      "value": "com.cloudflare.workers#DeleteObservabilityDestinationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityDestinationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.workers#DeleteObservabilityDestinationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteObservabilityDestination/output/target",
+      "value": "com.cloudflare.workers#DeleteObservabilityDestinationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteObservabilityDestination/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#ObservabilityDestinationNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

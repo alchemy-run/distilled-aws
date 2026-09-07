@@ -1,0 +1,11 @@
+{
+  "structures": {
+    "GetTableResponse": {
+      "members": {
+        "modifiedBy": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

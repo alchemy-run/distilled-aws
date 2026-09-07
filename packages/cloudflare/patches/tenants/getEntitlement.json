@@ -1,0 +1,30 @@
+{
+  "description": "Align tenants#EntitlementsGet with distilled cloudflare/tenants getEntitlement",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#EntitlementsGet",
+      "path": "/shapes/com.cloudflare.tenants#GetEntitlement"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#EntitlementsGetRequest",
+      "path": "/shapes/com.cloudflare.tenants#GetEntitlementRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#GetEntitlement/input/target",
+      "value": "com.cloudflare.tenants#GetEntitlementRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.tenants#EntitlementsGetResponse",
+      "path": "/shapes/com.cloudflare.tenants#GetEntitlementResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.tenants#GetEntitlement/output/target",
+      "value": "com.cloudflare.tenants#GetEntitlementResponse"
+    }
+  ]
+}

@@ -1,0 +1,1896 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.network_interconnects#CnisCreateRequestMagic": {
+      "type": "structure",
+      "members": {
+        "conduit_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mtu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateRequestBgpExtraPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateRequestBgp": {
+      "type": "structure",
+      "members": {
+        "customer_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ASN used on the customer end of the BGP session",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_prefixes": {
+          "target": "com.cloudflare.network_interconnects#CnisCreateRequestBgpExtraPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "Extra set of static prefixes to advertise to the customer's end of the session",
+            "smithy.api#required": {}
+          }
+        },
+        "md5_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 key to use for session authentication."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#required": {}
+          }
+        },
+        "interconnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "magic": {
+          "target": "com.cloudflare.network_interconnects#CnisCreateRequestMagic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "bgp": {
+          "target": "com.cloudflare.network_interconnects#CnisCreateRequestBgp"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateResponseMagic": {
+      "type": "structure",
+      "members": {
+        "conduit_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mtu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateResponseBgpExtraPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateResponseBgp": {
+      "type": "structure",
+      "members": {
+        "customer_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ASN used on the customer end of the BGP session",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_prefixes": {
+          "target": "com.cloudflare.network_interconnects#CnisCreateResponseBgpExtraPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "Extra set of static prefixes to advertise to the customer's end of the session",
+            "smithy.api#required": {}
+          }
+        },
+        "md5_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 key to use for session authentication."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#required": {}
+          }
+        },
+        "cust_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "interconnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interconnect identifier hosting this CNI",
+            "smithy.api#required": {}
+          }
+        },
+        "magic": {
+          "target": "com.cloudflare.network_interconnects#CnisCreateResponseMagic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "p2p_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "bgp": {
+          "target": "com.cloudflare.network_interconnects#CnisCreateResponseBgp"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#CnisCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#CnisCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/cni/cnis",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new CNI object"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#CnisDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/cni/cnis/{cni}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a specified CNI object",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisGetResponseMagic": {
+      "type": "structure",
+      "members": {
+        "conduit_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mtu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisGetResponseBgpExtraPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisGetResponseBgp": {
+      "type": "structure",
+      "members": {
+        "customer_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ASN used on the customer end of the BGP session",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_prefixes": {
+          "target": "com.cloudflare.network_interconnects#CnisGetResponseBgpExtraPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "Extra set of static prefixes to advertise to the customer's end of the session",
+            "smithy.api#required": {}
+          }
+        },
+        "md5_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 key to use for session authentication."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#required": {}
+          }
+        },
+        "cust_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "interconnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interconnect identifier hosting this CNI",
+            "smithy.api#required": {}
+          }
+        },
+        "magic": {
+          "target": "com.cloudflare.network_interconnects#CnisGetResponseMagic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "p2p_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "bgp": {
+          "target": "com.cloudflare.network_interconnects#CnisGetResponseBgp"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#CnisGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#CnisGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/cnis/{cni}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about a CNI object",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "slot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show CNIs associated with the specified slot",
+            "smithy.api#httpQuery": "slot"
+          }
+        },
+        "tunnel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show cnis associated with the specified tunnel id",
+            "smithy.api#httpQuery": "tunnel_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListResponseItemsItemMagic": {
+      "type": "structure",
+      "members": {
+        "conduit_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mtu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListResponseItemsItemBgpExtraPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListResponseItemsItemBgp": {
+      "type": "structure",
+      "members": {
+        "customer_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ASN used on the customer end of the BGP session",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_prefixes": {
+          "target": "com.cloudflare.network_interconnects#CnisListResponseItemsItemBgpExtraPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "Extra set of static prefixes to advertise to the customer's end of the session",
+            "smithy.api#required": {}
+          }
+        },
+        "md5_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 key to use for session authentication."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListResponseItemsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#required": {}
+          }
+        },
+        "cust_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "interconnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interconnect identifier hosting this CNI",
+            "smithy.api#required": {}
+          }
+        },
+        "magic": {
+          "target": "com.cloudflare.network_interconnects#CnisListResponseItemsItemMagic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "p2p_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "bgp": {
+          "target": "com.cloudflare.network_interconnects#CnisListResponseItemsItemBgp"
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.network_interconnects#CnisListResponseItemsItem"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisListResponse": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.cloudflare.network_interconnects#CnisListResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#CnisListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#CnisListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/cnis",
+          "code": 200
+        },
+        "smithy.api#documentation": "List existing CNI objects",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateRequestMagic": {
+      "type": "structure",
+      "members": {
+        "conduit_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mtu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateRequestBgpExtraPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateRequestBgp": {
+      "type": "structure",
+      "members": {
+        "customer_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ASN used on the customer end of the BGP session",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_prefixes": {
+          "target": "com.cloudflare.network_interconnects#CnisUpdateRequestBgpExtraPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "Extra set of static prefixes to advertise to the customer's end of the session",
+            "smithy.api#required": {}
+          }
+        },
+        "md5_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 key to use for session authentication."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#required": {}
+          }
+        },
+        "cust_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "interconnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interconnect identifier hosting this CNI",
+            "smithy.api#required": {}
+          }
+        },
+        "magic": {
+          "target": "com.cloudflare.network_interconnects#CnisUpdateRequestMagic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "p2p_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "bgp": {
+          "target": "com.cloudflare.network_interconnects#CnisUpdateRequestBgp"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateResponseMagic": {
+      "type": "structure",
+      "members": {
+        "conduit_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mtu": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateResponseBgpExtraPrefixesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateResponseBgp": {
+      "type": "structure",
+      "members": {
+        "customer_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ASN used on the customer end of the BGP session",
+            "smithy.api#required": {}
+          }
+        },
+        "extra_prefixes": {
+          "target": "com.cloudflare.network_interconnects#CnisUpdateResponseBgpExtraPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "Extra set of static prefixes to advertise to the customer's end of the session",
+            "smithy.api#required": {}
+          }
+        },
+        "md5_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MD5 key to use for session authentication."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#required": {}
+          }
+        },
+        "cust_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "interconnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interconnect identifier hosting this CNI",
+            "smithy.api#required": {}
+          }
+        },
+        "magic": {
+          "target": "com.cloudflare.network_interconnects#CnisUpdateResponseMagic",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "p2p_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare end of the point-to-point link",
+            "smithy.api#required": {}
+          }
+        },
+        "bgp": {
+          "target": "com.cloudflare.network_interconnects#CnisUpdateResponseBgp"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#CnisUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#CnisUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#CnisUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/cni/cnis/{cni}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Modify stored information about a CNI object",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsCreateRequestBandwidth": {
+      "type": "enum",
+      "members": {
+        "_50M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "50M"
+          }
+        },
+        "_100M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "100M"
+          }
+        },
+        "_200M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "200M"
+          }
+        },
+        "_300M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "300M"
+          }
+        },
+        "_400M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "400M"
+          }
+        },
+        "_500M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "500M"
+          }
+        },
+        "_1G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1G"
+          }
+        },
+        "_2G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2G"
+          }
+        },
+        "_5G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5G"
+          }
+        },
+        "_10G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10G"
+          }
+        },
+        "_20G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20G"
+          }
+        },
+        "_50G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "50G"
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slot_id": {
+          "target": "smithy.api#String"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "speed": {
+          "target": "smithy.api#String"
+        },
+        "bandwidth": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsCreateRequestBandwidth",
+          "traits": {
+            "smithy.api#documentation": "Bandwidth structure as visible through the customer-facing API."
+          }
+        },
+        "pairing_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pairing key provided by GCP"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsCreateResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsCreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/cni/interconnects",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new interconnect"
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "icon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/cni/interconnects/{icon}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an interconnect object",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "icon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsGetResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/interconnects/{icon}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about an interconnect object",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show interconnects located at the given site",
+            "smithy.api#httpQuery": "site"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show interconnects of the given type",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectPhysicalBodyFacilityAddressList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectPhysicalBodyFacility": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectPhysicalBodyFacilityAddressList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectPhysicalBody": {
+      "type": "structure",
+      "members": {
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "facility": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectPhysicalBodyFacility",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Cloudflare site name.",
+            "smithy.api#required": {}
+          }
+        },
+        "slot_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "speed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBodySpeed": {
+      "type": "enum",
+      "members": {
+        "_50M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "50M"
+          }
+        },
+        "_100M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "100M"
+          }
+        },
+        "_200M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "200M"
+          }
+        },
+        "_300M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "300M"
+          }
+        },
+        "_400M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "400M"
+          }
+        },
+        "_500M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "500M"
+          }
+        },
+        "_1G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1G"
+          }
+        },
+        "_2G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2G"
+          }
+        },
+        "_5G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5G"
+          }
+        },
+        "_10G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10G"
+          }
+        },
+        "_20G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "20G"
+          }
+        },
+        "_50G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "50G"
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBody": {
+      "type": "structure",
+      "members": {
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String"
+        },
+        "speed": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBodySpeed",
+          "traits": {
+            "smithy.api#documentation": "Bandwidth structure as visible through the customer-facing API."
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItem": {
+      "type": "union",
+      "members": {
+        "NscInterconnectPhysicalBody": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectPhysicalBody"
+        },
+        "NscInterconnectGcpPartnerBody": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBody"
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsItem"
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsListResponse": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.cloudflare.network_interconnects#InterconnectsListResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/interconnects",
+          "code": 200
+        },
+        "smithy.api#documentation": "List existing interconnects",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsLoaRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "icon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsLoa": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsLoaRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/interconnects/{icon}/loa",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate the Letter of Authorization (LOA) for a given interconnect",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsStatusRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "icon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsStatusResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#InterconnectsStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsStatusRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#InterconnectsStatusResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/interconnects/{icon}/status",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the current status of an interconnect object",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SettingsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SettingsGetResponse": {
+      "type": "structure",
+      "members": {
+        "default_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#SettingsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#SettingsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#SettingsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the current settings for the active account",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SettingsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "default_asn": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SettingsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "default_asn": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#SettingsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#SettingsUpdateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#SettingsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/cni/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the current settings for the active account",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsGetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "slot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsGetResponseFacilityAddressList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsGetResponseFacility": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "com.cloudflare.network_interconnects#SlotsGetResponseFacilityAddressList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slot ID",
+            "smithy.api#required": {}
+          }
+        },
+        "facility": {
+          "target": "com.cloudflare.network_interconnects#SlotsGetResponseFacility",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "occupied": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the slot is occupied or not",
+            "smithy.api#required": {}
+          }
+        },
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "speed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#SlotsGetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#SlotsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/slots/{slot}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about the specified slot",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsListRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "address_contains": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show slots with the given text in their address field",
+            "smithy.api#httpQuery": "address_contains"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "occupied": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show slots with a specific occupied/unoccupied state",
+            "smithy.api#httpQuery": "occupied"
+          }
+        },
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show slots located at the given site",
+            "smithy.api#httpQuery": "site"
+          }
+        },
+        "speed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only show slots that support the given speed",
+            "smithy.api#httpQuery": "speed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsListResponseItemsItemFacilityAddressList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsListResponseItemsItemFacility": {
+      "type": "structure",
+      "members": {
+        "address": {
+          "target": "com.cloudflare.network_interconnects#SlotsListResponseItemsItemFacilityAddressList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsListResponseItemsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slot ID",
+            "smithy.api#required": {}
+          }
+        },
+        "facility": {
+          "target": "com.cloudflare.network_interconnects#SlotsListResponseItemsItemFacility",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "occupied": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the slot is occupied or not",
+            "smithy.api#required": {}
+          }
+        },
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "speed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account tag"
+          }
+        }
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsListResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.network_interconnects#SlotsListResponseItemsItem"
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsListResponse": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.cloudflare.network_interconnects#SlotsListResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.network_interconnects#SlotsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.network_interconnects#SlotsListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.network_interconnects#SlotsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/cni/slots",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a list of all slots matching the specified parameters",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.network_interconnects#NetworkInterconnects": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.network_interconnects#CnisCreate"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#CnisDelete"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#CnisGet"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#CnisList"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#CnisUpdate"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#InterconnectsCreate"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#InterconnectsDelete"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#InterconnectsGet"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#InterconnectsList"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#InterconnectsLoa"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#InterconnectsStatus"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#SettingsGet"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#SettingsUpdate"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#SlotsGet"
+        },
+        {
+          "target": "com.cloudflare.network_interconnects#SlotsList"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare NetworkInterconnects",
+        "smithy.api#documentation": "Cloudflare API — network_interconnects resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

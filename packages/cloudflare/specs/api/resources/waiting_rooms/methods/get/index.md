@@ -1,0 +1,414 @@
+## Waiting room details
+
+**get** `/zones/{zone_id}/waiting_rooms/{waiting_room_id}`
+
+Fetches a single configured waiting room.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+- `waiting_room_id: string`
+
+### Returns
+
+- `result: WaitingRoom`
+
+  - `id: optional string`
+
+  - `additional_routes: optional array of AdditionalRoutes`
+
+    Only available for the Waiting Room Advanced subscription. Additional hostname and path combinations to which this waiting room will be applied. There is an implied wildcard at the end of the path. The hostname and path combination must be unique to this and all other waiting rooms.
+
+    - `host: optional string`
+
+      The hostname to which this waiting room will be applied (no wildcards). The hostname must be the primary domain, subdomain, or custom hostname (if using SSL for SaaS) of this zone. Please do not include the scheme (http:// or https://).
+
+    - `path: optional string`
+
+      Sets the path within the host to enable the waiting room on. The waiting room will be enabled for all subpaths as well. If there are two waiting rooms on the same subpath, the waiting room for the most specific path will be chosen. Wildcards and query parameters are not supported.
+
+  - `cookie_attributes: optional CookieAttributes`
+
+    Configures cookie attributes for the waiting room cookie. This encrypted cookie stores a user's status in the waiting room, such as queue position.
+
+    - `samesite: optional "auto" or "lax" or "none" or "strict"`
+
+      Configures the SameSite attribute on the waiting room cookie. Value `auto` will be translated to `lax` or `none` depending if **Always Use HTTPS** is enabled. Note that when using value `none`, the secure attribute cannot be set to `never`.
+
+      - `"auto"`
+
+      - `"lax"`
+
+      - `"none"`
+
+      - `"strict"`
+
+    - `secure: optional "auto" or "always" or "never"`
+
+      Configures the Secure attribute on the waiting room cookie. Value `always` indicates that the Secure attribute will be set in the Set-Cookie header, `never` indicates that the Secure attribute will not be set, and `auto` will set the Secure attribute depending if **Always Use HTTPS** is enabled.
+
+      - `"auto"`
+
+      - `"always"`
+
+      - `"never"`
+
+  - `cookie_suffix: optional string`
+
+    Appends a '_' + a custom suffix to the end of Cloudflare Waiting Room's cookie name(__cf_waitingroom). If `cookie_suffix` is "abcd", the cookie name will be `__cf_waitingroom_abcd`. This field is required if using `additional_routes`.
+
+  - `created_on: optional string`
+
+  - `custom_page_html: optional string`
+
+    Only available for the Waiting Room Advanced subscription. This is a template html file that will be rendered at the edge. If no custom_page_html is provided, the default waiting room will be used. The template is based on mustache ( https://mustache.github.io/ ). There are several variables that are evaluated by the Cloudflare edge:
+
+    1. {{`waitTimeKnown`}} Acts like a boolean value that indicates the behavior to take when wait time is not available, for instance when queue_all is **true**.
+    1. {{`waitTimeFormatted`}} Estimated wait time for the user. For example, five minutes. Alternatively, you can use:
+    1. {{`waitTime`}} Number of minutes of estimated wait for a user.
+    1. {{`waitTimeHours`}} Number of hours of estimated wait for a user (`Math.floor(waitTime/60)`).
+    1. {{`waitTimeHourMinutes`}} Number of minutes above the `waitTimeHours` value (`waitTime%60`).
+    1. {{`queueIsFull`}} Changes to **true** when no more people can be added to the queue.
+
+    To view the full list of variables, look at the `cfWaitingRoom` object described under the `json_response_enabled` property in other Waiting Room API calls.
+
+  - `default_template_language: optional "en-US" or "es-ES" or "de-DE" or 35 more`
+
+    The language of the default page template. If no default_template_language is provided, then `en-US` (English) will be used.
+
+    - `"en-US"`
+
+    - `"es-ES"`
+
+    - `"de-DE"`
+
+    - `"fr-FR"`
+
+    - `"it-IT"`
+
+    - `"ja-JP"`
+
+    - `"ko-KR"`
+
+    - `"pt-BR"`
+
+    - `"zh-CN"`
+
+    - `"zh-TW"`
+
+    - `"nl-NL"`
+
+    - `"pl-PL"`
+
+    - `"id-ID"`
+
+    - `"tr-TR"`
+
+    - `"ar-EG"`
+
+    - `"ru-RU"`
+
+    - `"fa-IR"`
+
+    - `"bg-BG"`
+
+    - `"hr-HR"`
+
+    - `"cs-CZ"`
+
+    - `"da-DK"`
+
+    - `"fi-FI"`
+
+    - `"lt-LT"`
+
+    - `"ms-MY"`
+
+    - `"nb-NO"`
+
+    - `"ro-RO"`
+
+    - `"el-GR"`
+
+    - `"he-IL"`
+
+    - `"hi-IN"`
+
+    - `"hu-HU"`
+
+    - `"sr-BA"`
+
+    - `"sk-SK"`
+
+    - `"sl-SI"`
+
+    - `"sv-SE"`
+
+    - `"tl-PH"`
+
+    - `"th-TH"`
+
+    - `"uk-UA"`
+
+    - `"vi-VN"`
+
+  - `description: optional string`
+
+    A note that you can use to add more details about the waiting room.
+
+  - `disable_session_renewal: optional boolean`
+
+    Only available for the Waiting Room Advanced subscription. Disables automatic renewal of session cookies. If `true`, an accepted user will have session_duration minutes to browse the site. After that, they will have to go through the waiting room again. If `false`, a user's session cookie will be automatically renewed on every request.
+
+  - `enabled_origin_commands: optional array of "revoke"`
+
+    A list of enabled origin commands.
+
+    - `"revoke"`
+
+  - `host: optional string`
+
+    The host name to which the waiting room will be applied (no wildcards). Please do not include the scheme (http:// or https://). The host and path combination must be unique.
+
+  - `json_response_enabled: optional boolean`
+
+    Only available for the Waiting Room Advanced subscription. If `true`, requests to the waiting room with the header `Accept: application/json` will receive a JSON response object with information on the user's status in the waiting room as opposed to the configured static HTML page. This JSON response object has one property `cfWaitingRoom` which is an object containing the following fields:
+
+    1. `inWaitingRoom`: Boolean indicating if the user is in the waiting room (always **true**).
+    1. `waitTimeKnown`: Boolean indicating if the current estimated wait times are accurate. If **false**, they are not available.
+    1. `waitTime`: Valid only when `waitTimeKnown` is **true**. Integer indicating the current estimated time in minutes the user will wait in the waiting room. When `queueingMethod` is **random**, this is set to `waitTime50Percentile`.
+    1. `waitTime25Percentile`: Valid only when `queueingMethod` is **random** and `waitTimeKnown` is **true**. Integer indicating the current estimated maximum wait time for the 25% of users that gain entry the fastest (25th percentile).
+    1. `waitTime50Percentile`: Valid only when `queueingMethod` is **random** and `waitTimeKnown` is **true**. Integer indicating the current estimated maximum wait time for the 50% of users that gain entry the fastest (50th percentile). In other words, half of the queued users are expected to let into the origin website before `waitTime50Percentile` and half are expected to be let in after it.
+    1. `waitTime75Percentile`: Valid only when `queueingMethod` is **random** and `waitTimeKnown` is **true**. Integer indicating the current estimated maximum wait time for the 75% of users that gain entry the fastest (75th percentile).
+    1. `waitTimeFormatted`: String displaying the `waitTime` formatted in English for users. If `waitTimeKnown` is **false**, `waitTimeFormatted` will display **unavailable**.
+    1. `queueIsFull`: Boolean indicating if the waiting room's queue is currently full and not accepting new users at the moment.
+    1. `queueAll`: Boolean indicating if all users will be queued in the waiting room and no one will be let into the origin website.
+    1. `lastUpdated`: String displaying the timestamp as an ISO 8601 string of the user's last attempt to leave the waiting room and be let into the origin website. The user is able to make another attempt after `refreshIntervalSeconds` past this time. If the user makes a request too soon, it will be ignored and `lastUpdated` will not change.
+    1. `refreshIntervalSeconds`: Integer indicating the number of seconds after `lastUpdated` until the user is able to make another attempt to leave the waiting room and be let into the origin website. When the `queueingMethod` is `reject`, there is no specified refresh time —_it will always be **zero**.
+    1. `queueingMethod`: The queueing method currently used by the waiting room. It is either **fifo**, **random**, **passthrough**, or **reject**.
+    1. `isFIFOQueue`: Boolean indicating if the waiting room uses a FIFO (First-In-First-Out) queue.
+    1. `isRandomQueue`: Boolean indicating if the waiting room uses a Random queue where users gain access randomly.
+    1. `isPassthroughQueue`: Boolean indicating if the waiting room uses a passthrough queue. Keep in mind that when passthrough is enabled, this JSON response will only exist when `queueAll` is **true** or `isEventPrequeueing` is **true** because in all other cases requests will go directly to the origin.
+    1. `isRejectQueue`: Boolean indicating if the waiting room uses a reject queue.
+    1. `isEventActive`: Boolean indicating if an event is currently occurring. Events are able to change a waiting room's behavior during a specified period of time. For additional information, look at the event properties `prequeue_start_time`, `event_start_time`, and `event_end_time` in the documentation for creating waiting room events. Events are considered active between these start and end times, as well as during the prequeueing period if it exists.
+    1. `isEventPrequeueing`: Valid only when `isEventActive` is **true**. Boolean indicating if an event is currently prequeueing users before it starts.
+    1. `timeUntilEventStart`: Valid only when `isEventPrequeueing` is **true**. Integer indicating the number of minutes until the event starts.
+    1. `timeUntilEventStartFormatted`: String displaying the `timeUntilEventStart` formatted in English for users. If `isEventPrequeueing` is **false**, `timeUntilEventStartFormatted` will display **unavailable**.
+    1. `timeUntilEventEnd`: Valid only when `isEventActive` is **true**. Integer indicating the number of minutes until the event ends.
+    1. `timeUntilEventEndFormatted`: String displaying the `timeUntilEventEnd` formatted in English for users. If `isEventActive` is **false**, `timeUntilEventEndFormatted` will display **unavailable**.
+    1. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean indicating if the users in the prequeue are shuffled randomly when the event starts.
+    1. `turnstile`: Empty when turnstile isn't enabled. String displaying an html tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to the `custom_html` template to ensure the Turnstile widget appears.
+    1. `infiniteQueue`: Boolean indicating whether the response is for a user in the infinite queue.
+
+    An example cURL to a waiting room could be:
+
+    curl -X GET "https://example.com/waitingroom" \
+    -H "Accept: application/json"
+
+    If `json_response_enabled` is **true** and the request hits the waiting room, an example JSON response when `queueingMethod` is **fifo** and no event is active could be:
+
+    {
+    "cfWaitingRoom": {
+    "inWaitingRoom": true,
+    "waitTimeKnown": true,
+    "waitTime": 10,
+    "waitTime25Percentile": 0,
+    "waitTime50Percentile": 0,
+    "waitTime75Percentile": 0,
+    "waitTimeFormatted": "10 minutes",
+    "queueIsFull": false,
+    "queueAll": false,
+    "lastUpdated": "2020-08-03T23:46:00.000Z",
+    "refreshIntervalSeconds": 20,
+    "queueingMethod": "fifo",
+    "isFIFOQueue": true,
+    "isRandomQueue": false,
+    "isPassthroughQueue": false,
+    "isRejectQueue": false,
+    "isEventActive": false,
+    "isEventPrequeueing": false,
+    "timeUntilEventStart": 0,
+    "timeUntilEventStartFormatted": "unavailable",
+    "timeUntilEventEnd": 0,
+    "timeUntilEventEndFormatted": "unavailable",
+    "shuffleAtEventStart": false
+    }
+    }
+
+    If `json_response_enabled` is **true** and the request hits the waiting room, an example JSON response when `queueingMethod` is **random** and an event is active could be:
+
+    {
+    "cfWaitingRoom": {
+    "inWaitingRoom": true,
+    "waitTimeKnown": true,
+    "waitTime": 10,
+    "waitTime25Percentile": 5,
+    "waitTime50Percentile": 10,
+    "waitTime75Percentile": 15,
+    "waitTimeFormatted": "5 minutes to 15 minutes",
+    "queueIsFull": false,
+    "queueAll": false,
+    "lastUpdated": "2020-08-03T23:46:00.000Z",
+    "refreshIntervalSeconds": 20,
+    "queueingMethod": "random",
+    "isFIFOQueue": false,
+    "isRandomQueue": true,
+    "isPassthroughQueue": false,
+    "isRejectQueue": false,
+    "isEventActive": true,
+    "isEventPrequeueing": false,
+    "timeUntilEventStart": 0,
+    "timeUntilEventStartFormatted": "unavailable",
+    "timeUntilEventEnd": 15,
+    "timeUntilEventEndFormatted": "15 minutes",
+    "shuffleAtEventStart": true
+    }
+    }
+
+  - `modified_on: optional string`
+
+  - `name: optional string`
+
+    A unique name to identify the waiting room. Only alphanumeric characters, hyphens and underscores are allowed.
+
+  - `new_users_per_minute: optional number`
+
+    Sets the number of new users that will be let into the route every minute. This value is used as baseline for the number of users that are let in per minute. So it is possible that there is a little more or little less traffic coming to the route based on the traffic patterns at that time around the world.
+
+  - `next_event_prequeue_start_time: optional string`
+
+    An ISO 8601 timestamp that marks when the next event will begin queueing.
+
+  - `next_event_start_time: optional string`
+
+    An ISO 8601 timestamp that marks when the next event will start.
+
+  - `path: optional string`
+
+    Sets the path within the host to enable the waiting room on. The waiting room will be enabled for all subpaths as well. If there are two waiting rooms on the same subpath, the waiting room for the most specific path will be chosen. Wildcards and query parameters are not supported.
+
+  - `queue_all: optional boolean`
+
+    If queue_all is `true`, all the traffic that is coming to a route will be sent to the waiting room. No new traffic can get to the route once this field is set and estimated time will become unavailable.
+
+  - `queueing_method: optional "fifo" or "random" or "passthrough" or "reject"`
+
+    Sets the queueing method used by the waiting room. Changing this parameter from the **default** queueing method is only available for the Waiting Room Advanced subscription. Regardless of the queueing method, if `queue_all` is enabled or an event is prequeueing, users in the waiting room will not be accepted to the origin. These users will always see a waiting room page that refreshes automatically. The valid queueing methods are:
+
+    1. `fifo` **(default)**: First-In-First-Out queue where customers gain access in the order they arrived.
+    1. `random`: Random queue where customers gain access randomly, regardless of arrival time.
+    1. `passthrough`: Users will pass directly through the waiting room and into the origin website. As a result, any configured limits will not be respected while this is enabled. This method can be used as an alternative to disabling a waiting room (with `suspended`) so that analytics are still reported. This can be used if you wish to allow all traffic normally, but want to restrict traffic during a waiting room event, or vice versa.
+    1. `reject`: Users will be immediately rejected from the waiting room. As a result, no users will reach the origin website while this is enabled. This can be used if you wish to reject all traffic while performing maintenance, block traffic during a specified period of time (an event), or block traffic while events are not occurring. Consider a waiting room used for vaccine distribution that only allows traffic during sign-up events, and otherwise blocks all traffic. For this case, the waiting room uses `reject`, and its events override this with `fifo`, `random`, or `passthrough`. When this queueing method is enabled and neither `queueAll` is enabled nor an event is prequeueing, the waiting room page **will not refresh automatically**.
+
+    - `"fifo"`
+
+    - `"random"`
+
+    - `"passthrough"`
+
+    - `"reject"`
+
+  - `queueing_status_code: optional 200 or 202 or 429`
+
+    HTTP status code returned to a user while in the queue.
+
+    - `200`
+
+    - `202`
+
+    - `429`
+
+  - `session_duration: optional number`
+
+    Lifetime of a cookie (in minutes) set by Cloudflare for users who get access to the route. If a user is not seen by Cloudflare again in that time period, they will be treated as a new user that visits the route.
+
+  - `suspended: optional boolean`
+
+    Suspends or allows traffic going to the waiting room. If set to `true`, the traffic will not go to the waiting room.
+
+  - `total_active_users: optional number`
+
+    Sets the total number of active user sessions on the route at a point in time. A route is a combination of host and path on which a waiting room is available. This value is used as a baseline for the total number of active user sessions on the route. It is possible to have a situation where there are more or less active users sessions on the route based on the traffic patterns at that time around the world.
+
+  - `turnstile_action: optional "log" or "infinite_queue"`
+
+    Which action to take when a bot is detected using Turnstile. `log` will
+    have no impact on queueing behavior, simply keeping track of how many
+    bots are detected in Waiting Room Analytics. `infinite_queue` will send
+    bots to a false queueing state, where they will never reach your
+    origin. `infinite_queue` requires Advanced Waiting Room.
+
+    - `"log"`
+
+    - `"infinite_queue"`
+
+  - `turnstile_mode: optional "off" or "invisible" or "visible_non_interactive" or "visible_managed"`
+
+    Which Turnstile widget type to use for detecting bot traffic. See
+    [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+    for the definitions of these widget types. Set to `off` to disable the
+    Turnstile integration entirely. Setting this to anything other than
+    `off` or `invisible` requires Advanced Waiting Room.
+
+    - `"off"`
+
+    - `"invisible"`
+
+    - `"visible_non_interactive"`
+
+    - `"visible_managed"`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/waiting_rooms/$WAITING_ROOM_ID \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "result": {
+    "id": "699d98642c564d2e855e9661899b7252",
+    "additional_routes": [
+      {
+        "host": "shop2.example.com",
+        "path": "/shop2/checkout"
+      }
+    ],
+    "cookie_attributes": {
+      "samesite": "auto",
+      "secure": "auto"
+    },
+    "cookie_suffix": "abcd",
+    "created_on": "2014-01-01T05:20:00.12345Z",
+    "custom_page_html": "{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
+    "default_template_language": "es-ES",
+    "description": "Production - DO NOT MODIFY",
+    "disable_session_renewal": false,
+    "enabled_origin_commands": [
+      "revoke"
+    ],
+    "host": "shop.example.com",
+    "json_response_enabled": false,
+    "modified_on": "2014-01-01T05:20:00.12345Z",
+    "name": "production_webinar",
+    "new_users_per_minute": 200,
+    "next_event_prequeue_start_time": "2021-09-28T15:00:00.000Z",
+    "next_event_start_time": "2021-09-28T15:00:00.000Z",
+    "path": "/shop/checkout",
+    "queue_all": true,
+    "queueing_method": "fifo",
+    "queueing_status_code": 202,
+    "session_duration": 1,
+    "suspended": true,
+    "total_active_users": 200,
+    "turnstile_action": "log",
+    "turnstile_mode": "off"
+  }
+}
+```

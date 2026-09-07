@@ -1,0 +1,2575 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.dnc#DelegatedNetworkListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedNetworkListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedControllers"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/controllers",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Get all the delegatedController resources in a resource group.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedControllers": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dnc#DelegatedControllersValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of Delegated controller resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of controllers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Delegated controller resources."
+      }
+    },
+    "com.azure.dnc#DelegatedControllersValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dnc#DelegatedController"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Delegated controller resources."
+      }
+    },
+    "com.azure.dnc#DelegatedController": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedControllerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedControllerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an instance of a DNC controller."
+      }
+    },
+    "com.azure.dnc#DelegatedControllerProperties": {
+      "type": "structure",
+      "members": {
+        "resourceGuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource guid."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.dnc#DelegatedControllerPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current state of dnc controller resource."
+          }
+        },
+        "dncAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "dnc application id should be used by customer to authenticate with dnc gateway."
+          }
+        },
+        "dncTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "tenant id of dnc application id"
+          }
+        },
+        "dncEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "dnc endpoint url that customers can use to connect to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of Delegated controller resource."
+      }
+    },
+    "com.azure.dnc#DelegatedControllerPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of dnc controller resource."
+      }
+    },
+    "com.azure.dnc#DelegatedControllerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedNetworkListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedNetworkListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedNetworkListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedControllers"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DelegatedNetwork/controllers",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Get all the delegatedController resources in a subscription.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedNetworkListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#ControllerDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#ControllerDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/controller/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Deletes the DNC controller",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#ControllerDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#ControllerPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#ControllerPatchRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#ControllerPatchResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/controller/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Update dnc controller",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#ControllerPatchResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#ControllerPatchResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedControllerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#ControllerPatchResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#ControllerPatchRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#ControllerPatchRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#ControllerPatchRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#ControllerCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#ControllerCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#ControllerCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/controller/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Create a dnc controller",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#ControllerCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#ControllerCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedControllerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#ControllerCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#ControllerCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#ControllerCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#ControllerCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#ControllerGetDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#ControllerGetDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#ControllerGetDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/controller/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Gets details about the specified dnc controller.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#ControllerGetDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#ControllerGetDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedControllerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#ControllerGetDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#ControllerGetDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedSubnetServiceListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedSubnets"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/delegatedSubnets",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Get all the DelegatedSubnets resources in a resource group.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnets": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dnc#DelegatedSubnetsValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of DelegatedSubnet resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of DelegatedSubnet resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of DelegatedSubnet resources."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dnc#DelegatedSubnet"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of DelegatedSubnet resources."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnet": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedSubnetTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedSubnetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an instance of a orchestrator."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetProperties": {
+      "type": "structure",
+      "members": {
+        "resourceGuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource guid."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.dnc#DelegatedSubnetPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current state of dnc delegated subnet resource."
+          }
+        },
+        "subnetDetails": {
+          "target": "com.azure.dnc#SubnetDetails",
+          "traits": {
+            "smithy.api#documentation": "subnet details"
+          }
+        },
+        "controllerDetails": {
+          "target": "com.azure.dnc#DelegatedSubnetPropertiesControllerDetails",
+          "traits": {
+            "smithy.api#documentation": "controller details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of delegated subnet"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetPropertiesControllerDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "controller arm resource id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "controller details"
+      }
+    },
+    "com.azure.dnc#SubnetDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "subnet arm resource id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of orchestrator"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of dnc delegated subnet resource."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedSubnetServiceListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedSubnets"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DelegatedNetwork/delegatedSubnets",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Get all the DelegatedSubnets resources in a subscription.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceDeleteDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedSubnetServiceDeleteDetailsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/delegatedSubnets/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Delete dnc DelegatedSubnet.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceDeleteDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "forceDelete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "forceDelete",
+            "smithy.api#documentation": "Force delete resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePatchDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/delegatedSubnets/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Patch delegated subnet resource",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedSubnetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePutDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/delegatedSubnets/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Put delegated subnet resource",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePutDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedSubnetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePutDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePutDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedSubnetPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "subnetDetails": {
+          "target": "com.azure.dnc#SubnetDetails",
+          "traits": {
+            "smithy.api#documentation": "subnet details"
+          }
+        },
+        "controllerDetails": {
+          "target": "com.azure.dnc#DelegatedSubnetPropertiesInputControllerDetails",
+          "traits": {
+            "smithy.api#documentation": "controller details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of delegated subnet"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetPropertiesInputControllerDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "controller arm resource id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "controller details"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServicePutDetailsRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceGetDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#DelegatedSubnetServiceGetDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/delegatedSubnets/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Gets details about the specified dnc DelegatedSubnet Link.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#DelegatedSubnetProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#DelegatedSubnetServiceGetDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.dnc#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DelegatedNetwork/operations",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Lists all of the available DelegatedNetwork service REST API operations.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dnc#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dnc#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.dnc#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.dnc#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.dnc#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.dnc#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.dnc#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.dnc#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.dnc#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#Orchestrators"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/orchestrators",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Get all the OrchestratorInstances resources in a resource group.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#Orchestrators": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.dnc#OrchestratorsValueList",
+          "traits": {
+            "smithy.api#documentation": "An array of OrchestratorInstance resources.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of orchestrators."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of OrchestratorInstance resources."
+      }
+    },
+    "com.azure.dnc#OrchestratorsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.dnc#Orchestrator"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of OrchestratorInstance resources."
+      }
+    },
+    "com.azure.dnc#Orchestrator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.dnc#OrchestratorKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.dnc#OrchestratorIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the orchestrator"
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#OrchestratorTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#OrchestratorResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an instance of a orchestrator."
+      }
+    },
+    "com.azure.dnc#OrchestratorResourceProperties": {
+      "type": "structure",
+      "members": {
+        "resourceGuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource guid."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.dnc#OrchestratorResourcePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The current state of orchestratorInstance resource."
+          }
+        },
+        "orchestratorAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AAD ID used with apiserver"
+          }
+        },
+        "orchestratorTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "TenantID of server App ID"
+          }
+        },
+        "clusterRootCA": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RootCA certificate of kubernetes cluster base64 encoded"
+          }
+        },
+        "apiServerEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "K8s APIServer url. Either one of apiServerEndpoint or privateLinkResourceId can be specified"
+          }
+        },
+        "privateLinkResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "private link arm resource id. Either one of apiServerEndpoint or privateLinkResourceId can be specified"
+          }
+        },
+        "controllerDetails": {
+          "target": "com.azure.dnc#OrchestratorResourcePropertiesControllerDetails",
+          "traits": {
+            "smithy.api#documentation": "controller details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of orchestrator"
+      }
+    },
+    "com.azure.dnc#OrchestratorResourcePropertiesControllerDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "controller arm resource id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "controller details"
+      }
+    },
+    "com.azure.dnc#OrchestratorResourcePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of orchestratorInstance resource."
+      }
+    },
+    "com.azure.dnc#OrchestratorTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#OrchestratorIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal id of the system assigned identity which is used by orchestrator."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant id of the system assigned identity which is used by orchestrator."
+          }
+        },
+        "type": {
+          "target": "com.azure.dnc#OrchestratorIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dnc#OrchestratorIdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"
+      }
+    },
+    "com.azure.dnc#OrchestratorKind": {
+      "type": "enum",
+      "members": {
+        "KUBERNETES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Kubernetes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#Orchestrators"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DelegatedNetwork/orchestrators",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Get all the orchestratorInstance resources in a subscription.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/orchestrators/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Deletes the Orchestrator Instance",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "forceDelete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "forceDelete",
+            "smithy.api#documentation": "Force delete resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServicePatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#OrchestratorInstanceServicePatchRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#OrchestratorInstanceServicePatchResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/orchestrators/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Update Orchestrator Instance",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServicePatchResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.dnc#OrchestratorInstanceServicePatchResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.dnc#OrchestratorIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the orchestrator"
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#OrchestratorInstanceServicePatchResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#OrchestratorResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServicePatchResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServicePatchResponseKind": {
+      "type": "enum",
+      "members": {
+        "KUBERNETES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Kubernetes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServicePatchRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#OrchestratorInstanceServicePatchRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServicePatchRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/orchestrators/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Create a orchestrator instance",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.dnc#OrchestratorIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the orchestrator"
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#OrchestratorResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreateResponseKind": {
+      "type": "enum",
+      "members": {
+        "KUBERNETES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Kubernetes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateRequestKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.dnc#OrchestratorIdentityInput",
+          "traits": {
+            "smithy.api#documentation": "The identity of the orchestrator"
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#OrchestratorResourcePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorResourcePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "orchestratorAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AAD ID used with apiserver"
+          }
+        },
+        "orchestratorTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "TenantID of server App ID"
+          }
+        },
+        "clusterRootCA": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RootCA certificate of kubernetes cluster base64 encoded"
+          }
+        },
+        "apiServerEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "K8s APIServer url. Either one of apiServerEndpoint or privateLinkResourceId can be specified"
+          }
+        },
+        "privateLinkResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "private link arm resource id. Either one of apiServerEndpoint or privateLinkResourceId can be specified"
+          }
+        },
+        "controllerDetails": {
+          "target": "com.azure.dnc#OrchestratorResourcePropertiesInputControllerDetails",
+          "traits": {
+            "smithy.api#documentation": "controller details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of orchestrator"
+      }
+    },
+    "com.azure.dnc#OrchestratorResourcePropertiesInputControllerDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "controller arm resource id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "controller details"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#OrchestratorIdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.dnc#OrchestratorIdentityInputType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.dnc#OrchestratorIdentityInputType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceCreateRequestKind": {
+      "type": "enum",
+      "members": {
+        "KUBERNETES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Kubernetes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceGetDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsRequest"
+      },
+      "output": {
+        "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DelegatedNetwork/orchestrators/{resourceName}",
+          "code": 200,
+          "apiVersion": "2021-03-15"
+        },
+        "smithy.api#documentation": "Gets details about the orchestrator instance.",
+        "com.distilled.openapi#apiVersion": "2021-03-15"
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier that represents the resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the resource."
+          }
+        },
+        "kind": {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.dnc#OrchestratorIdentity",
+          "traits": {
+            "smithy.api#documentation": "The identity of the orchestrator"
+          }
+        },
+        "tags": {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.dnc#OrchestratorResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the provision operation request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource tags."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseKind": {
+      "type": "enum",
+      "members": {
+        "KUBERNETES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Kubernetes"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
+      }
+    },
+    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource. It must be a minimum of 3 characters, and a maximum of 63."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.dnc#Dnc": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.dnc#DelegatedNetworkListByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedNetworkListBySubscription"
+        },
+        {
+          "target": "com.azure.dnc#ControllerDelete"
+        },
+        {
+          "target": "com.azure.dnc#ControllerPatch"
+        },
+        {
+          "target": "com.azure.dnc#ControllerCreate"
+        },
+        {
+          "target": "com.azure.dnc#ControllerGetDetails"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedSubnetServiceListByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedSubnetServiceListBySubscription"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedSubnetServiceDeleteDetails"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedSubnetServicePatchDetails"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedSubnetServicePutDetails"
+        },
+        {
+          "target": "com.azure.dnc#DelegatedSubnetServiceGetDetails"
+        },
+        {
+          "target": "com.azure.dnc#OperationsList"
+        },
+        {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceListBySubscription"
+        },
+        {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceDelete"
+        },
+        {
+          "target": "com.azure.dnc#OrchestratorInstanceServicePatch"
+        },
+        {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceCreate"
+        },
+        {
+          "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetails"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Dnc",
+        "smithy.api#documentation": "Azure Dnc API — merged from the dnc resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

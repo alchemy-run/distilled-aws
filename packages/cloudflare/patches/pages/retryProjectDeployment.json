@@ -1,0 +1,30 @@
+{
+  "description": "Align pages#ProjectsDeploymentsRetry with distilled cloudflare/pages retryProjectDeployment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsRetry",
+      "path": "/shapes/com.cloudflare.pages#RetryProjectDeployment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsRetryRequest",
+      "path": "/shapes/com.cloudflare.pages#RetryProjectDeploymentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#RetryProjectDeployment/input/target",
+      "value": "com.cloudflare.pages#RetryProjectDeploymentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsDeploymentsRetryResponse",
+      "path": "/shapes/com.cloudflare.pages#RetryProjectDeploymentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#RetryProjectDeployment/output/target",
+      "value": "com.cloudflare.pages#RetryProjectDeploymentResponse"
+    }
+  ]
+}

@@ -1,0 +1,4144 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "datastream",
+    "version": "v1alpha1",
+    "title": "Datastream API",
+    "baseUrl": "https://datastream.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.datastream_v1alpha1#BackfillAllStrategy": {
+      "type": "structure",
+      "members": {
+        "mysqlExcludedObjects": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlRdbms",
+          "traits": {
+            "smithy.api#documentation": "MySQL data source objects to avoid backfilling."
+          }
+        },
+        "oracleExcludedObjects": {
+          "target": "com.gcp.datastream_v1alpha1#OracleRdbms",
+          "traits": {
+            "smithy.api#documentation": "Oracle data source objects to avoid backfilling."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backfill strategy to automatically backfill the Stream's objects. Specific objects can be excluded."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListConnectionProfilesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "connectionProfiles": {
+          "target": "com.gcp.datastream_v1alpha1#ConnectionProfileList",
+          "traits": {
+            "smithy.api#documentation": "List of connection profiles."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ConnectionProfileList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#ConnectionProfile"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GcsProfile": {
+      "type": "structure",
+      "members": {
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full project and resource path for Cloud Storage bucket including the name."
+          }
+        },
+        "rootPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The root path inside the Cloud Storage bucket."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud Storage bucket profile."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#RetryInfo": {
+      "type": "structure",
+      "members": {
+        "retryDelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Clients should wait at least this long between retrying the same request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes when the clients can retry a failed request. Clients could ignore the recommendation here or retry when this information is missing from error responses. It's always recommended that clients should use exponential backoff when retrying. Clients should wait until `retry_delay` amount of time has passed since receiving the error response before retrying. If retrying requests also fail, clients should use an exponential backoff scheme to gradually increase the delay between retries based on `retry_delay`, until either a maximum number of retries have been reached or a maximum retry delay cap has been reached."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.datastream_v1alpha1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#DocumentMap"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#SourceObjectIdentifier": {
+      "type": "structure",
+      "members": {
+        "mysqlIdentifier": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlObjectIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Mysql data source object identifier."
+          }
+        },
+        "oracleIdentifier": {
+          "target": "com.gcp.datastream_v1alpha1#OracleObjectIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Oracle data source object identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an identifier of an object in the data source."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StartBackfillJobResponse": {
+      "type": "structure",
+      "members": {
+        "object": {
+          "target": "com.gcp.datastream_v1alpha1#StreamObject",
+          "traits": {
+            "smithy.api#documentation": "The stream object resource a backfill job was started for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for manually initiating a backfill job for a specific stream object."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlColumn": {
+      "type": "structure",
+      "members": {
+        "primaryKey": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the column represents a primary key."
+          }
+        },
+        "length": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Column length."
+          }
+        },
+        "nullable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the column can accept a null value."
+          }
+        },
+        "columnName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Column name."
+          }
+        },
+        "ordinalPosition": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ordinal position of the column in the table."
+          }
+        },
+        "dataType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The MySQL data type. Full data types list can be found here: https://dev.mysql.com/doc/refman/8.0/en/data-types.html"
+          }
+        },
+        "collation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Column collation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL Column."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Stream": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.datastream_v1alpha1#StreamStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the stream."
+          }
+        },
+        "backfillAll": {
+          "target": "com.gcp.datastream_v1alpha1#BackfillAllStrategy",
+          "traits": {
+            "smithy.api#documentation": "Automatically backfill objects included in the stream source configuration. Specific objects can be excluded."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The stream's name."
+          }
+        },
+        "backfillNone": {
+          "target": "com.gcp.datastream_v1alpha1#BackfillNoneStrategy",
+          "traits": {
+            "smithy.api#documentation": "Do not automatically backfill any objects."
+          }
+        },
+        "customerManagedEncryptionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. A reference to a KMS encryption key. If provided, it will be used to encrypt the data. If left blank, data will be encrypted using an internal Stream-specific encryption key provisioned through KMS."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last update time of the stream."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.datastream_v1alpha1#Datastream_ErrorList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Errors on the Stream."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation time of the stream."
+          }
+        },
+        "destinationConfig": {
+          "target": "com.gcp.datastream_v1alpha1#DestinationConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Destination connection profile configuration."
+          }
+        },
+        "sourceConfig": {
+          "target": "com.gcp.datastream_v1alpha1#SourceConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Source connection profile configuration."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StreamStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "MAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAINTENANCE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "FAILED_PERMANENTLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_PERMANENTLY"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTING"
+          }
+        },
+        "DRAINING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAINING"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Datastream_ErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Datastream_Error"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StreamObject": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation time of the object."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last update time of the object."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.datastream_v1alpha1#Datastream_ErrorList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Active errors on the object."
+          }
+        },
+        "backfillJob": {
+          "target": "com.gcp.datastream_v1alpha1#BackfillJob",
+          "traits": {
+            "smithy.api#documentation": "The latest backfill job that was initiated for the stream object."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The object's name."
+          }
+        },
+        "sourceObject": {
+          "target": "com.gcp.datastream_v1alpha1#SourceObjectIdentifier",
+          "traits": {
+            "smithy.api#documentation": "The object identifier in the data source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A specific stream object (e.g a specific DB table)."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StopBackfillJobResponse": {
+      "type": "structure",
+      "members": {
+        "object": {
+          "target": "com.gcp.datastream_v1alpha1#StreamObject",
+          "traits": {
+            "smithy.api#documentation": "The stream object resource the backfill job was stopped for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for manually stop a backfill job for a specific stream object."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Link": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes what the link offers."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a URL link."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "validationResult": {
+          "target": "com.gcp.datastream_v1alpha1#ValidationResult",
+          "traits": {
+            "smithy.api#documentation": "Output only. Results of executed validations if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleTable": {
+      "type": "structure",
+      "members": {
+        "oracleColumns": {
+          "target": "com.gcp.datastream_v1alpha1#OracleColumnList",
+          "traits": {
+            "smithy.api#documentation": "Oracle columns in the schema. When unspecified as part of inclue/exclude lists, includes/excludes everything."
+          }
+        },
+        "tableName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Table name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle table."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleColumnList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#OracleColumn"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlObjectIdentifier": {
+      "type": "structure",
+      "members": {
+        "database": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The database name."
+          }
+        },
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The table name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mysql data source object identifier."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PreconditionFailure": {
+      "type": "structure",
+      "members": {
+        "violations": {
+          "target": "com.gcp.datastream_v1alpha1#PreconditionFailureViolationList",
+          "traits": {
+            "smithy.api#documentation": "Describes all precondition violations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes what preconditions have failed. For example, if an RPC failed because it required the Terms of Service to be acknowledged, it could list the terms of service violation in the PreconditionFailure message."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PreconditionFailureViolationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#PreconditionFailureViolation"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ForwardSshTunnelConnectivity": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Username for the SSH tunnel."
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. SSH password."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Hostname for the SSH tunnel."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port for the SSH tunnel, default value is 22."
+          }
+        },
+        "privateKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. SSH private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Forward SSH Tunnel connectivity."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DestinationConfig": {
+      "type": "structure",
+      "members": {
+        "destinationConnectionProfileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Destination connection profile identifier."
+          }
+        },
+        "gcsDestinationConfig": {
+          "target": "com.gcp.datastream_v1alpha1#GcsDestinationConfig",
+          "traits": {
+            "smithy.api#documentation": "GCS destination configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration of the stream destination."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlSourceConfig": {
+      "type": "structure",
+      "members": {
+        "allowlist": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlRdbms",
+          "traits": {
+            "smithy.api#documentation": "MySQL objects to retrieve from the source."
+          }
+        },
+        "rejectlist": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlRdbms",
+          "traits": {
+            "smithy.api#documentation": "MySQL objects to exclude from the stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL source configuration"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#RequestInfo": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An opaque string that should only be interpreted by the service generating it. For example, it can be used to identify requests in the service's logs."
+          }
+        },
+        "servingData": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any data that was used to serve this request. For example, an encrypted stack trace that can be sent back to the service provider for debugging."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains metadata about the request that clients can attach when filing a bug or providing other forms of feedback."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "response": {
+          "target": "com.gcp.datastream_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.datastream_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.datastream_v1alpha1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchErrorsResponse": {
+      "type": "structure",
+      "members": {
+        "errors": {
+          "target": "com.gcp.datastream_v1alpha1#Datastream_ErrorList",
+          "traits": {
+            "smithy.api#documentation": "The list of errors on the Stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for a 'FetchErrors' response."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ConnectionProfile": {
+      "type": "structure",
+      "members": {
+        "forwardSshConnectivity": {
+          "target": "com.gcp.datastream_v1alpha1#ForwardSshTunnelConnectivity",
+          "traits": {
+            "smithy.api#documentation": "Forward SSH tunnel connectivity."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name."
+          }
+        },
+        "mysqlProfile": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlProfile",
+          "traits": {
+            "smithy.api#documentation": "MySQL ConnectionProfile configuration."
+          }
+        },
+        "privateConnectivity": {
+          "target": "com.gcp.datastream_v1alpha1#PrivateConnectivity",
+          "traits": {
+            "smithy.api#documentation": "Private connectivity."
+          }
+        },
+        "staticServiceIpConnectivity": {
+          "target": "com.gcp.datastream_v1alpha1#StaticServiceIpConnectivity",
+          "traits": {
+            "smithy.api#documentation": "Static Service IP connectivity."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource's name."
+          }
+        },
+        "noConnectivity": {
+          "target": "com.gcp.datastream_v1alpha1#NoConnectivitySettings",
+          "traits": {
+            "smithy.api#documentation": "No connectivity option chosen."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The update time of the resource."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The create time of the resource."
+          }
+        },
+        "oracleProfile": {
+          "target": "com.gcp.datastream_v1alpha1#OracleProfile",
+          "traits": {
+            "smithy.api#documentation": "Oracle ConnectionProfile configuration."
+          }
+        },
+        "gcsProfile": {
+          "target": "com.gcp.datastream_v1alpha1#GcsProfile",
+          "traits": {
+            "smithy.api#documentation": "Cloud Storage ConnectionProfile configuration."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleSourceConfig": {
+      "type": "structure",
+      "members": {
+        "dropLargeObjects": {
+          "target": "com.gcp.datastream_v1alpha1#DropLargeObjects",
+          "traits": {
+            "smithy.api#documentation": "Drop large object values."
+          }
+        },
+        "rejectlist": {
+          "target": "com.gcp.datastream_v1alpha1#OracleRdbms",
+          "traits": {
+            "smithy.api#documentation": "Oracle objects to exclude from the stream."
+          }
+        },
+        "allowlist": {
+          "target": "com.gcp.datastream_v1alpha1#OracleRdbms",
+          "traits": {
+            "smithy.api#documentation": "Oracle objects to include in the stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle data source configuration"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#SourceConfig": {
+      "type": "structure",
+      "members": {
+        "sourceConnectionProfileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Source connection profile identifier."
+          }
+        },
+        "oracleSourceConfig": {
+          "target": "com.gcp.datastream_v1alpha1#OracleSourceConfig",
+          "traits": {
+            "smithy.api#documentation": "Oracle data source configuration"
+          }
+        },
+        "mysqlSourceConfig": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlSourceConfig",
+          "traits": {
+            "smithy.api#documentation": "MySQL data source configuration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The configuration of the stream source."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Validation": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the validation."
+          }
+        },
+        "message": {
+          "target": "com.gcp.datastream_v1alpha1#ValidationMessageList",
+          "traits": {
+            "smithy.api#documentation": "Messages reflecting the validation results."
+          }
+        },
+        "status": {
+          "target": "com.gcp.datastream_v1alpha1#ValidationStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Validation execution status."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A custom code identifying this validation."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ValidationMessageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#ValidationMessage"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ValidationStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_UNSPECIFIED"
+          }
+        },
+        "NOT_EXECUTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_EXECUTED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Route": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource's name."
+          }
+        },
+        "destinationAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Destination address for connection"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The create time of the resource."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The update time of the resource."
+          }
+        },
+        "destinationPort": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Destination port for connection"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Route resource is the child of the PrivateConnection resource. It used to define a route for a PrivateConnection setup."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ResourceInfo": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name for the type of resource being accessed, e.g. \"sql table\", \"cloud storage bucket\", \"file\", \"Google calendar\"; or the type URL of the resource: e.g. \"type.googleapis.com/google.pubsub.v1.Topic\"."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource being accessed. For example, a shared calendar name: \"example.com_4fghdhgsrgh@group.calendar.google.com\", if the current error is google.rpc.Code.PERMISSION_DENIED."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes what error is encountered when accessing this resource. For example, updating a cloud project may require the `writer` permission on the developer console project."
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The owner of the resource (optional). For example, \"user:\" or \"project:\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the resource that is being accessed."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DiscoverConnectionProfileRequest": {
+      "type": "structure",
+      "members": {
+        "mysqlRdbms": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlRdbms",
+          "traits": {
+            "smithy.api#documentation": "MySQL RDBMS to enrich with child data objects and metadata."
+          }
+        },
+        "oracleRdbms": {
+          "target": "com.gcp.datastream_v1alpha1#OracleRdbms",
+          "traits": {
+            "smithy.api#documentation": "Oracle RDBMS to enrich with child data objects and metadata."
+          }
+        },
+        "connectionProfileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A reference to an existing ConnectionProfile."
+          }
+        },
+        "recursive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE)."
+          }
+        },
+        "recursionDepth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of hierarchy levels below the current level to be retrieved."
+          }
+        },
+        "connectionProfile": {
+          "target": "com.gcp.datastream_v1alpha1#ConnectionProfile",
+          "traits": {
+            "smithy.api#documentation": "An ad-hoc ConnectionProfile configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for 'discover' ConnectionProfile request."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchErrorsRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for 'FetchErrors' request."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleColumn": {
+      "type": "structure",
+      "members": {
+        "scale": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Column scale."
+          }
+        },
+        "dataType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Oracle data type."
+          }
+        },
+        "precision": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Column precision."
+          }
+        },
+        "encoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Column encoding."
+          }
+        },
+        "nullable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the column can accept a null value."
+          }
+        },
+        "columnName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Column name."
+          }
+        },
+        "ordinalPosition": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ordinal position of the column in the table."
+          }
+        },
+        "length": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Column length."
+          }
+        },
+        "primaryKey": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the column represents a primary key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle Column."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StaticServiceIpConnectivity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Static IP address connectivity."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#LocalizedMessage": {
+      "type": "structure",
+      "members": {
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: \"en-US\", \"fr-CH\", \"es-MX\""
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized error message in the above locale."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides a localized error message that is safe to return to the user which can be attached to an RPC error."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DebugInfo": {
+      "type": "structure",
+      "members": {
+        "stackEntries": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The stack trace entries indicating where the error occurred."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional debugging information provided by the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes additional debugging info."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlProfile": {
+      "type": "structure",
+      "members": {
+        "sslConfig": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlSslConfig",
+          "traits": {
+            "smithy.api#documentation": "SSL configuration for the MySQL connection."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Hostname for the MySQL connection."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port for the MySQL connection, default value is 3306."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Username for the MySQL connection."
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. Password for the MySQL connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL database profile."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlRdbms": {
+      "type": "structure",
+      "members": {
+        "mysqlDatabases": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlDatabaseList",
+          "traits": {
+            "smithy.api#documentation": "Mysql databases on the server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL database structure"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlDatabaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#MysqlDatabase"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.datastream_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#BackfillNoneStrategy": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Backfill strategy to disable automatic backfill for the Stream's objects."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ValidationResult": {
+      "type": "structure",
+      "members": {
+        "validations": {
+          "target": "com.gcp.datastream_v1alpha1#ValidationList",
+          "traits": {
+            "smithy.api#documentation": "A list of validations (includes both executed as well as not executed validations)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the current validation results."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ValidationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Validation"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#BackfillJob": {
+      "type": "structure",
+      "members": {
+        "trigger": {
+          "target": "com.gcp.datastream_v1alpha1#BackfillJobTriggerEnum",
+          "traits": {
+            "smithy.api#documentation": "Backfill job's triggering reason."
+          }
+        },
+        "lastEndTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Backfill job's end time."
+          }
+        },
+        "state": {
+          "target": "com.gcp.datastream_v1alpha1#BackfillJobStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Backfill job state."
+          }
+        },
+        "lastStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Backfill job's start time."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.datastream_v1alpha1#Datastream_ErrorList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Errors which caused the backfill job to fail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a backfill job on a specific stream object."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#BackfillJobTriggerEnum": {
+      "type": "enum",
+      "members": {
+        "TRIGGER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIGGER_UNSPECIFIED"
+          }
+        },
+        "AUTOMATIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMATIC"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANUAL"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#BackfillJobStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "NOT_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_STARTED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        },
+        "UNSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSUPPORTED"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlDatabase": {
+      "type": "structure",
+      "members": {
+        "databaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Database name."
+          }
+        },
+        "mysqlTables": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlTableList",
+          "traits": {
+            "smithy.api#documentation": "Tables in the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL database."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlTableList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#MysqlTable"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Datastream_Error": {
+      "type": "structure",
+      "members": {
+        "errorUuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier for this specific error, allowing it to be traced throughout the system in logs and API responses."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message containing more information about the error that occurred."
+          }
+        },
+        "details": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the error."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A title that explains the reason for the error."
+          }
+        },
+        "errorTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time when the error occurred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent a user-facing Error."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchStaticIpsResponse": {
+      "type": "structure",
+      "members": {
+        "staticIps": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "list of static ips by account"
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for a 'FetchStaticIps' response."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ValidationMessage": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The result of the validation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Additional metadata related to the result."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A custom code identifying this specific message."
+          }
+        },
+        "level": {
+          "target": "com.gcp.datastream_v1alpha1#ValidationMessageLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Message severity level (warning or error)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represent user-facing validation result message."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ValidationMessageLevelEnum": {
+      "type": "enum",
+      "members": {
+        "LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_UNSPECIFIED"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.datastream_v1alpha1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleProfile": {
+      "type": "structure",
+      "members": {
+        "databaseService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Database for the Oracle connection."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Username for the Oracle connection."
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Password for the Oracle connection."
+          }
+        },
+        "connectionAttributes": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Connection string attributes"
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Hostname for the Oracle connection."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port for the Oracle connection, default value is 1521."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle database profile."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListStreamObjectsResponse": {
+      "type": "structure",
+      "members": {
+        "streamObjects": {
+          "target": "com.gcp.datastream_v1alpha1#StreamObjectList",
+          "traits": {
+            "smithy.api#documentation": "List of stream objects."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response containing the objects for a stream."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StreamObjectList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#StreamObject"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ErrorInfo": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Additional structured details about this error. Keys must match a regular expression of `a-z+` but should ideally be lowerCamelCase. Also, they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than `{\"instanceLimit\": \"100/request\"}`, should be returned as, `{\"instanceLimitPerRequest\": \"100\"}`, if the client exceeds the number of instances that can be created in a single (batch) request."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The logical grouping to which the \"reason\" belongs. The error domain is typically the registered service name of the tool or product that generates the error. Example: \"pubsub.googleapis.com\". If the error is generated by some common infrastructure, the error domain must be a globally unique value that identifies the infrastructure. For Google API infrastructure, the error domain is \"googleapis.com\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the cause of the error with structured details. Example of an error when contacting the \"pubsub.googleapis.com\" API when it is not enabled: { \"reason\": \"API_DISABLED\" \"domain\": \"googleapis.com\" \"metadata\": { \"resource\": \"projects/123\", \"service\": \"pubsub.googleapis.com\" } } This response indicates that the pubsub.googleapis.com API is not enabled. Example of an error that is returned when attempting to create a Spanner instance in a region that is out of stock: { \"reason\": \"STOCKOUT\" \"domain\": \"spanner.googleapis.com\", \"metadata\": { \"availableRegions\": \"us-central1,us-east2\" } }"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleRdbms": {
+      "type": "structure",
+      "members": {
+        "oracleSchemas": {
+          "target": "com.gcp.datastream_v1alpha1#OracleSchemaList",
+          "traits": {
+            "smithy.api#documentation": "Oracle schemas/databases in the database server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle database structure."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleSchemaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#OracleSchema"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleSchema": {
+      "type": "structure",
+      "members": {
+        "schemaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Schema name."
+          }
+        },
+        "oracleTables": {
+          "target": "com.gcp.datastream_v1alpha1#OracleTableList",
+          "traits": {
+            "smithy.api#documentation": "Tables in the schema."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle schema."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleTableList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#OracleTable"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#VpcPeeringConfig": {
+      "type": "structure",
+      "members": {
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A free subnet for peering. (CIDR of /29)"
+          }
+        },
+        "vpcName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. fully qualified name of the VPC Datastream will peer to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The VPC Peering configuration is used to create VPC peering between Datastream and the consumer's VPC."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListRoutesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "routes": {
+          "target": "com.gcp.datastream_v1alpha1#RouteList",
+          "traits": {
+            "smithy.api#documentation": "List of Routes."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "route list response"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#RouteList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Route"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DropLargeObjects": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Configuration to drop large object values."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#QuotaFailureViolation": {
+      "type": "structure",
+      "members": {
+        "apiService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API Service from which the `QuotaFailure.Violation` originates. In some cases, Quota issues originate from an API Service other than the one that was called. In other words, a dependency of the called API Service could be the cause of the `QuotaFailure`, and this field would have the dependency API service name. For example, if the called API is Kubernetes Engine API (container.googleapis.com), and a quota violation occurs in the Kubernetes Engine API itself, this field would be \"container.googleapis.com\". On the other hand, if the quota violation occurs when the Kubernetes Engine API creates VMs in the Compute Engine API (compute.googleapis.com), this field would be \"compute.googleapis.com\"."
+          }
+        },
+        "quotaValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The enforced quota value at the time of the `QuotaFailure`. For example, if the enforced quota value at the time of the `QuotaFailure` on the number of CPUs is \"10\", then the value of this field would reflect this quantity."
+          }
+        },
+        "quotaDimensions": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The dimensions of the violated quota. Every non-global quota is enforced on a set of dimensions. While quota metric defines what to count, the dimensions specify for what aspects the counter should be increased. For example, the quota \"CPUs per region per VM family\" enforces a limit on the metric \"compute.googleapis.com/cpus_per_vm_family\" on dimensions \"region\" and \"vm_family\". And if the violation occurred in region \"us-central1\" and for VM family \"n1\", the quota_dimensions would be, { \"region\": \"us-central1\", \"vm_family\": \"n1\", } When a quota is enforced globally, the quota_dimensions would always be empty."
+          }
+        },
+        "quotaMetric": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The metric of the violated quota. A quota metric is a named counter to measure usage, such as API requests or CPUs. When an activity occurs in a service, such as Virtual Machine allocation, one or more quota metrics may be affected. For example, \"compute.googleapis.com/cpus_per_vm_family\", \"storage.googleapis.com/internet_egress_bandwidth\"."
+          }
+        },
+        "quotaId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the violated quota. Also know as \"limit name\", this is the unique identifier of a quota in the context of an API service. For example, \"CPUS-PER-VM-FAMILY-per-project-region\"."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject on which the quota check failed. For example, \"clientip:\" or \"project:\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of how the quota check failed. Clients can use this description to find more about the quota configuration in the service's public documentation, or find the relevant quota limit to adjust through developer console. For example: \"Service disabled\" or \"Daily Limit for read operations exceeded\"."
+          }
+        },
+        "futureQuotaValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new quota value being rolled out at the time of the violation. At the completion of the rollout, this value will be enforced in place of quota_value. If no rollout is in progress at the time of the violation, this field is not set. For example, if at the time of the violation a rollout is in progress changing the number of CPUs quota from 10 to 20, 20 would be the value of this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message type used to describe a single quota violation. For example, a daily quota or a custom quota that was exceeded."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlSslConfig": {
+      "type": "structure",
+      "members": {
+        "clientKeySet": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether the client_key field is set."
+          }
+        },
+        "clientCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory."
+          }
+        },
+        "caCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. PEM-encoded certificate of the CA that signed the source database server's certificate."
+          }
+        },
+        "clientCertificateSet": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether the client_certificate field is set."
+          }
+        },
+        "caCertificateSet": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether the ca_certificate field is set."
+          }
+        },
+        "clientKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL SSL configuration information."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#NoConnectivitySettings": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "No connectivity settings."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FieldViolation": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason of the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of why the request element is bad."
+          }
+        },
+        "localizedMessage": {
+          "target": "com.gcp.datastream_v1alpha1#LocalizedMessage",
+          "traits": {
+            "smithy.api#documentation": "Provides a localized error message for field-level errors that is safe to return to the API consumer."
+          }
+        },
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A path that leads to a field in the request body. The value will be a sequence of dot-separated identifiers that identify a protocol buffer field. Consider the following: message CreateContactRequest { message EmailAddress { enum Type { TYPE_UNSPECIFIED = 0; HOME = 1; WORK = 2; } optional string email = 1; repeated EmailType type = 2; } string full_name = 1; repeated EmailAddress email_addresses = 2; } In this example, in proto `field` could take one of the following values: * `full_name` for a violation in the `full_name` value * `email_addresses[0].email` for a violation in the `email` field of the first `email_addresses` message * `email_addresses[2].type[1]` for a violation in the second `type` value in the third `email_addresses` message. In JSON, the same values are represented as: * `fullName` for a violation in the `fullName` value * `emailAddresses[0].email` for a violation in the `email` field of the first `emailAddresses` message * `emailAddresses[2].type[1]` for a violation in the second `type` value in the third `emailAddresses` message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message type used to describe a single bad request field."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlTable": {
+      "type": "structure",
+      "members": {
+        "tableName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Table name."
+          }
+        },
+        "mysqlColumns": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlColumnList",
+          "traits": {
+            "smithy.api#documentation": "MySQL columns in the database. When unspecified as part of include/exclude lists, includes/excludes everything."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MySQL table."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#MysqlColumnList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#MysqlColumn"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#AvroFileFormat": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "AVRO file format configuration."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PrivateConnection": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The create time of the resource."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datastream_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The update time of the resource."
+          }
+        },
+        "error": {
+          "target": "com.gcp.datastream_v1alpha1#Datastream_Error",
+          "traits": {
+            "smithy.api#documentation": "Output only. In case of error, the details of the error in a user-friendly format."
+          }
+        },
+        "state": {
+          "target": "com.gcp.datastream_v1alpha1#PrivateConnectionStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the Private Connection."
+          }
+        },
+        "vpcPeeringConfig": {
+          "target": "com.gcp.datastream_v1alpha1#VpcPeeringConfig",
+          "traits": {
+            "smithy.api#documentation": "VPC Peering Config"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource's name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateConnection resource is used to establish private connectivity between Datastream and a customer's network."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PrivateConnectionStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "FAILED_TO_DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_TO_DELETE"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Datastream_BadRequest": {
+      "type": "structure",
+      "members": {
+        "fieldViolations": {
+          "target": "com.gcp.datastream_v1alpha1#FieldViolationList",
+          "traits": {
+            "smithy.api#documentation": "Describes all violations in a client request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes violations in a client request. This error type focuses on the syntactic aspects of the request."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FieldViolationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#FieldViolation"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListStreamsResponse": {
+      "type": "structure",
+      "members": {
+        "streams": {
+          "target": "com.gcp.datastream_v1alpha1#StreamList",
+          "traits": {
+            "smithy.api#documentation": "List of streams"
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StreamList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Stream"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#JsonFileFormat": {
+      "type": "structure",
+      "members": {
+        "schemaFileFormat": {
+          "target": "com.gcp.datastream_v1alpha1#JsonFileFormatSchemaFileFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "The schema file format along JSON data files."
+          }
+        },
+        "compression": {
+          "target": "com.gcp.datastream_v1alpha1#JsonFileFormatCompressionEnum",
+          "traits": {
+            "smithy.api#documentation": "Compression of the loaded JSON file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "JSON file format configuration."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#JsonFileFormatSchemaFileFormatEnum": {
+      "type": "enum",
+      "members": {
+        "SCHEMA_FILE_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEMA_FILE_FORMAT_UNSPECIFIED"
+          }
+        },
+        "NO_SCHEMA_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SCHEMA_FILE"
+          }
+        },
+        "AVRO_SCHEMA_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVRO_SCHEMA_FILE"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#JsonFileFormatCompressionEnum": {
+      "type": "enum",
+      "members": {
+        "JSON_COMPRESSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON_COMPRESSION_UNSPECIFIED"
+          }
+        },
+        "NO_COMPRESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_COMPRESSION"
+          }
+        },
+        "GZIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GZIP"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListPrivateConnectionsResponse": {
+      "type": "structure",
+      "members": {
+        "privateConnections": {
+          "target": "com.gcp.datastream_v1alpha1#PrivateConnectionList",
+          "traits": {
+            "smithy.api#documentation": "List of private connectivity configurations."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PrivateConnectionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#PrivateConnection"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DiscoverConnectionProfileResponse": {
+      "type": "structure",
+      "members": {
+        "mysqlRdbms": {
+          "target": "com.gcp.datastream_v1alpha1#MysqlRdbms",
+          "traits": {
+            "smithy.api#documentation": "Enriched MySQL RDBMS object."
+          }
+        },
+        "oracleRdbms": {
+          "target": "com.gcp.datastream_v1alpha1#OracleRdbms",
+          "traits": {
+            "smithy.api#documentation": "Enriched Oracle RDBMS object."
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.datastream_v1alpha1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Location"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PrivateConnectivity": {
+      "type": "structure",
+      "members": {
+        "privateConnectionName": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private Connectivity"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PreconditionFailureViolation": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of PreconditionFailure. We recommend using a service-specific enum type to define the supported precondition violation subjects. For example, \"TOS\" for \"Terms of Service violation\"."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject, relative to the type, that failed. For example, \"google.com/cloud\" relative to the \"TOS\" type would indicate which terms of service is being referenced."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of how the precondition failed. Developers can use this description to understand how to fix the failure. For example: \"Terms of service not accepted\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message type used to describe a single precondition failure."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#QuotaFailure": {
+      "type": "structure",
+      "members": {
+        "violations": {
+          "target": "com.gcp.datastream_v1alpha1#QuotaFailureViolationList",
+          "traits": {
+            "smithy.api#documentation": "Describes all quota violations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes how a quota check failed. For example if a daily limit was exceeded for the calling project, a service could respond with a QuotaFailure detail containing the project id and the description of the quota limit that was exceeded. If the calling project hasn't enabled the service in the developer console, then a service could respond with the project id and set `service_disabled` to true. Also see RetryInfo and Help types for other details about handling a quota failure."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#QuotaFailureViolationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#QuotaFailureViolation"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GcsDestinationConfig": {
+      "type": "structure",
+      "members": {
+        "gcsFileFormat": {
+          "target": "com.gcp.datastream_v1alpha1#GcsDestinationConfigGcsFileFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "File format that data should be written in. Deprecated field (b/169501737) - use file_format instead."
+          }
+        },
+        "fileRotationInterval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum duration for which new events are added before a file is closed and a new file is created."
+          }
+        },
+        "avroFileFormat": {
+          "target": "com.gcp.datastream_v1alpha1#AvroFileFormat",
+          "traits": {
+            "smithy.api#documentation": "AVRO file format configuration."
+          }
+        },
+        "jsonFileFormat": {
+          "target": "com.gcp.datastream_v1alpha1#JsonFileFormat",
+          "traits": {
+            "smithy.api#documentation": "JSON file format configuration."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path inside the Cloud Storage bucket to write data to."
+          }
+        },
+        "fileRotationMb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum file size to be saved in the bucket."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Google Cloud Storage destination configuration"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GcsDestinationConfigGcsFileFormatEnum": {
+      "type": "enum",
+      "members": {
+        "GCS_FILE_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GCS_FILE_FORMAT_UNSPECIFIED"
+          }
+        },
+        "AVRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVRO"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#OracleObjectIdentifier": {
+      "type": "structure",
+      "members": {
+        "schema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The schema name."
+          }
+        },
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The table name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Oracle data source object identifier."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Help": {
+      "type": "structure",
+      "members": {
+        "links": {
+          "target": "com.gcp.datastream_v1alpha1#LinkList",
+          "traits": {
+            "smithy.api#documentation": "URL(s) pointing to additional information on handling the current error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides links to documentation or for performing an out of band action. For example, if a quota check failed with an error indicating the calling project hasn't enabled the accessed service, this can contain a URL pointing directly to the right place in the developer console to flip the bit."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#LinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datastream_v1alpha1#Link"
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.datastream_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchStaticIpsProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name resource of the Response type. Must be in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of Ips to return, will likely not be specified.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListStaticIps` call. will likely not be specified.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchStaticIpsProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#FetchStaticIpsProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#FetchStaticIpsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}:fetchStaticIps"
+        },
+        "smithy.api#documentation": "The FetchStaticIps API call exposes the static IP addresses used by Datastream.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.datastream_v1alpha1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsStreamsRequest": {
+      "type": "structure",
+      "members": {
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Only validate the stream, but do not create any resources. The default is false.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of streams.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "streamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The stream identifier.",
+            "smithy.api#httpQuery": "streamId"
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Create the stream without validating it.",
+            "smithy.api#httpQuery": "force"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#Stream",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsStreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#CreateProjectsLocationsStreamsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/streams"
+        },
+        "smithy.api#documentation": "Use this method to create a stream."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsStreamsRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by fields for the result.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous `ListStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreams` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter request.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of streams to return. If unspecified, at most 50 streams will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of streams.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsStreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsStreamsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListStreamsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/streams"
+        },
+        "smithy.api#documentation": "Use this method to list streams in a project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchErrorsProjectsLocationsStreamsRequest": {
+      "type": "structure",
+      "members": {
+        "stream": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Stream resource for which to fetch any errors.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#FetchErrorsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#FetchErrorsProjectsLocationsStreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#FetchErrorsProjectsLocationsStreamsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+stream}:fetchErrors"
+        },
+        "smithy.api#documentation": "Use this method to fetch any errors associated with a stream."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsStreamsRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the stream resource to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsStreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsStreamsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to delete a stream."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsStreamsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the stream resource to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsStreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsStreamsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Stream"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to get details about a stream."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PatchProjectsLocationsStreamsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The stream's name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Execute the update without validating it.",
+            "smithy.api#httpQuery": "force"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Only validate the stream with the changes, without actually updating it. The default is false.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the stream resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#Stream",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PatchProjectsLocationsStreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#PatchProjectsLocationsStreamsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to update the configuration of a stream."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StopBackfillJobProjectsLocationsStreamsObjectsRequest": {
+      "type": "structure",
+      "members": {
+        "object": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the stream object resource to stop the backfill job for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StopBackfillJobProjectsLocationsStreamsObjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#StopBackfillJobProjectsLocationsStreamsObjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#StopBackfillJobResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+object}:stopBackfillJob"
+        },
+        "smithy.api#documentation": "Stops the backfill job for the specified stream object."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsStreamsObjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the stream object resource to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsStreamsObjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsStreamsObjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#StreamObject"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to get details about a stream object."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsStreamsObjectsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent stream that owns the collection of objects.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous `ListStreamObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreamObjectsRequest` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsStreamsObjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsStreamsObjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListStreamObjectsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/objects"
+        },
+        "smithy.api#documentation": "Use this method to list the objects of a specific stream.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StartBackfillJobProjectsLocationsStreamsObjectsRequest": {
+      "type": "structure",
+      "members": {
+        "object": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the stream object resource to start a backfill job for.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#StartBackfillJobProjectsLocationsStreamsObjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#StartBackfillJobProjectsLocationsStreamsObjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#StartBackfillJobResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+object}:startBackfillJob"
+        },
+        "smithy.api#documentation": "Starts backfill job for the specified stream object."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsPrivateConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of PrivateConnections.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "privateConnectionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The private connectivity identifier.",
+            "smithy.api#httpQuery": "privateConnectionId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#PrivateConnection",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsPrivateConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#CreateProjectsLocationsPrivateConnectionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/privateConnections"
+        },
+        "smithy.api#documentation": "Use this method to create a private connectivity configuration."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsPrivateConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the private connectivity configuration to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, any child routes that belong to this PrivateConnection will also be deleted.",
+            "smithy.api#httpQuery": "force"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsPrivateConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsPrivateConnectionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to delete a private connectivity configuration."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsPrivateConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the private connectivity configuration to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsPrivateConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsPrivateConnectionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#PrivateConnection"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to get details about a private connectivity configuration."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsPrivateConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of private connectivity configurations.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of private connectivity configurations to return. If unspecified, at most 50 private connectivity configurations that will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by fields for the result.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter request.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsPrivateConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsPrivateConnectionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListPrivateConnectionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/privateConnections"
+        },
+        "smithy.api#documentation": "Use this method to list private connectivity configurations in a project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsPrivateConnectionsRoutesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of Routes.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "routeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Route identifier.",
+            "smithy.api#httpQuery": "routeId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#Route",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsPrivateConnectionsRoutes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#CreateProjectsLocationsPrivateConnectionsRoutesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/routes"
+        },
+        "smithy.api#documentation": "Use this method to create a route for a private connectivity in a project and location."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsPrivateConnectionsRoutesRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Route resource to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsPrivateConnectionsRoutes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsPrivateConnectionsRoutesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to delete a route."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsPrivateConnectionsRoutesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Route resource to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsPrivateConnectionsRoutes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsPrivateConnectionsRoutesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Route"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to get details about a route."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsPrivateConnectionsRoutesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous `ListRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRoutes` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter request.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by fields for the result.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of Routes to return. The service may return fewer than this value. If unspecified, at most 50 Routes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of Routess.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsPrivateConnectionsRoutes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsPrivateConnectionsRoutesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListRoutesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/routes"
+        },
+        "smithy.api#documentation": "Use this method to list routes created for a private connectivity in a project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsConnectionProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "connectionProfileId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The connection profile identifier.",
+            "smithy.api#httpQuery": "connectionProfileId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of ConnectionProfiles.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#ConnectionProfile",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#CreateProjectsLocationsConnectionProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#CreateProjectsLocationsConnectionProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/connectionProfiles"
+        },
+        "smithy.api#documentation": "Use this method to create a connection profile in a project and location."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsConnectionProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent that owns the collection of connection profiles.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of connection profiles to return. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by fields for the result.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter request.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#ListProjectsLocationsConnectionProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#ListProjectsLocationsConnectionProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ListConnectionProfilesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/connectionProfiles"
+        },
+        "smithy.api#documentation": "Use this method to list connection profiles created in a project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsConnectionProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the connection profile resource to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsConnectionProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#DeleteProjectsLocationsConnectionProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to delete a connection profile.."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsConnectionProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the connection profile resource to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#GetProjectsLocationsConnectionProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#GetProjectsLocationsConnectionProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#ConnectionProfile"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to get details about a connection profile."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PatchProjectsLocationsConnectionProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource's name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Only validate the connection profile, but do not update any resources. The default is false.",
+            "smithy.api#httpQuery": "validateOnly"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the ConnectionProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#ConnectionProfile",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#PatchProjectsLocationsConnectionProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#PatchProjectsLocationsConnectionProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Use this method to update the parameters of a connection profile."
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DiscoverProjectsLocationsConnectionProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource of the ConnectionProfile type. Must be in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datastream_v1alpha1#DiscoverConnectionProfileRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datastream_v1alpha1#DiscoverProjectsLocationsConnectionProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datastream_v1alpha1#DiscoverProjectsLocationsConnectionProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datastream_v1alpha1#DiscoverConnectionProfileResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datastream_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datastream_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/connectionProfiles:discover"
+        },
+        "smithy.api#documentation": "Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request."
+      }
+    }
+  }
+}

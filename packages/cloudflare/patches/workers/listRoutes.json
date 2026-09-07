@@ -1,0 +1,50 @@
+{
+  "description": "Align workers#RoutesList with distilled cloudflare/workers listRoutes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesList",
+      "path": "/shapes/com.cloudflare.workers#ListRoutes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesListRequest",
+      "path": "/shapes/com.cloudflare.workers#ListRoutesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListRoutes/input/target",
+      "value": "com.cloudflare.workers#ListRoutesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesListResponse",
+      "path": "/shapes/com.cloudflare.workers#ListRoutesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListRoutes/output/target",
+      "value": "com.cloudflare.workers#ListRoutesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListRoutes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListRoutes/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

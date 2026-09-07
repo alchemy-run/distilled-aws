@@ -1,0 +1,273 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "acceleratedmobilepageurl",
+    "version": "v1",
+    "title": "Accelerated Mobile Pages (AMP) URL API",
+    "baseUrl": "https://acceleratedmobilepageurl.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.acceleratedmobilepageurl_v1#AmpUrl": {
+      "type": "structure",
+      "members": {
+        "ampUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AMP URL pointing to the publisher's web server."
+          }
+        },
+        "cdnAmpUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache."
+          }
+        },
+        "originalUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original non-AMP URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AMP URL response for a requested URL."
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsRequest": {
+      "type": "structure",
+      "members": {
+        "lookupStrategy": {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsRequestLookupStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "The lookup_strategy being requested."
+          }
+        },
+        "urls": {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of URLs to look up for the paired AMP URLs. The URLs are case-sensitive. Up to 50 URLs per lookup (see [Usage Limits](/amp/cache/reference/limits))."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AMP URL request for a batch of URLs."
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsRequestLookupStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "FETCH_LIVE_DOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FETCH_LIVE_DOC"
+          }
+        },
+        "IN_INDEX_DOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_INDEX_DOC"
+          }
+        }
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#AmpUrlError": {
+      "type": "structure",
+      "members": {
+        "originalUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original non-AMP URL."
+          }
+        },
+        "errorCode": {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#AmpUrlErrorErrorCodeEnum",
+          "traits": {
+            "smithy.api#documentation": "The error code of an API call."
+          }
+        },
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional descriptive error message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AMP URL Error resource for a requested URL that couldn't be found."
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#AmpUrlErrorErrorCodeEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR_CODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR_CODE_UNSPECIFIED"
+          }
+        },
+        "INPUT_URL_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INPUT_URL_NOT_FOUND"
+          }
+        },
+        "NO_AMP_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_AMP_URL"
+          }
+        },
+        "APPLICATION_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLICATION_ERROR"
+          }
+        },
+        "URL_IS_VALID_AMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_IS_VALID_AMP"
+          }
+        },
+        "URL_IS_INVALID_AMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL_IS_INVALID_AMP"
+          }
+        }
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsResponse": {
+      "type": "structure",
+      "members": {
+        "ampUrls": {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#AmpUrlList",
+          "traits": {
+            "smithy.api#documentation": "For each URL in BatchAmpUrlsRequest, the URL response. The response might not be in the same order as URLs in the batch request. If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once."
+          }
+        },
+        "urlErrors": {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#AmpUrlErrorList",
+          "traits": {
+            "smithy.api#documentation": "The errors for requested URLs that have no AMP URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Batch AMP URL response."
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#AmpUrlList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.acceleratedmobilepageurl_v1#AmpUrl"
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#AmpUrlErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.acceleratedmobilepageurl_v1#AmpUrlError"
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrls": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsRequest_"
+      },
+      "output": {
+        "target": "com.gcp.acceleratedmobilepageurl_v1#BatchGetAmpUrlsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.acceleratedmobilepageurl_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/ampUrls:batchGet"
+        },
+        "smithy.api#documentation": "Returns AMP URL(s) and equivalent [AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format)."
+      }
+    }
+  }
+}

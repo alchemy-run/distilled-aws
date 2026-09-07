@@ -1,0 +1,47 @@
+{
+  "description": "Align web3#HostnamesList with distilled cloudflare/web3 listHostnames",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesList",
+      "path": "/shapes/com.cloudflare.web3#ListHostnames"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesListRequest",
+      "path": "/shapes/com.cloudflare.web3#ListHostnamesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#ListHostnames/input/target",
+      "value": "com.cloudflare.web3#ListHostnamesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesListResponse",
+      "path": "/shapes/com.cloudflare.web3#ListHostnamesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#ListHostnames/output/target",
+      "value": "com.cloudflare.web3#ListHostnamesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.web3#ListHostnames/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.web3#ListHostnames/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.web3#Forbidden"
+        }
+      ]
+    }
+  ]
+}

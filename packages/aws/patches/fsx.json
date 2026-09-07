@@ -1,0 +1,48 @@
+{
+  "operations": {
+    "copySnapshotAndUpdateVolume": {
+      "syntheticErrors": [
+        {
+          "name": "SourceSnapshotNotFound",
+          "from": "BadRequest",
+          "message": {
+            "includes": "SourceSnapshotARN provided is not a valid ARN"
+          }
+        }
+      ]
+    },
+    "createSnapshot": {
+      "syntheticErrors": [
+        {
+          "name": "SnapshotVolumeNotFound",
+          "from": "BadRequest",
+          "message": { "includes": "volume was not found" }
+        }
+      ]
+    },
+    "restoreVolumeFromSnapshot": {
+      "syntheticErrors": [
+        {
+          "name": "RestoreSnapshotNotFound",
+          "from": "BadRequest",
+          "message": { "includes": "snapshot cannot be found" }
+        }
+      ]
+    },
+    "updateSnapshot": {
+      "syntheticErrors": [
+        {
+          "name": "UpdateSnapshotNotFound",
+          "from": "BadRequest",
+          "message": { "includes": "the snapshot is not found" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "SourceSnapshotNotFound": ["NotFoundError"],
+    "SnapshotVolumeNotFound": ["NotFoundError"],
+    "RestoreSnapshotNotFound": ["NotFoundError"],
+    "UpdateSnapshotNotFound": ["NotFoundError"]
+  }
+}

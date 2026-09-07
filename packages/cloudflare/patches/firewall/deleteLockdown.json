@@ -1,0 +1,42 @@
+{
+  "description": "Align firewall#LockdownsDelete with distilled cloudflare/firewall deleteLockdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsDelete",
+      "path": "/shapes/com.cloudflare.firewall#DeleteLockdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsDeleteRequest",
+      "path": "/shapes/com.cloudflare.firewall#DeleteLockdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteLockdown/input/target",
+      "value": "com.cloudflare.firewall#DeleteLockdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsDeleteResponse",
+      "path": "/shapes/com.cloudflare.firewall#DeleteLockdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteLockdown/output/target",
+      "value": "com.cloudflare.firewall#DeleteLockdownResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#DeleteLockdown/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#LockdownNotFound"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

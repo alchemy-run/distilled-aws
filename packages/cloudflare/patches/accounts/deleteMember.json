@@ -1,0 +1,42 @@
+{
+  "description": "Align accounts#MembersDelete with distilled cloudflare/accounts deleteMember",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersDelete",
+      "path": "/shapes/com.cloudflare.accounts#DeleteMember"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersDeleteRequest",
+      "path": "/shapes/com.cloudflare.accounts#DeleteMemberRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#DeleteMember/input/target",
+      "value": "com.cloudflare.accounts#DeleteMemberRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersDeleteResponse",
+      "path": "/shapes/com.cloudflare.accounts#DeleteMemberResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#DeleteMember/output/target",
+      "value": "com.cloudflare.accounts#DeleteMemberResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#DeleteMember/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#MemberNotFound"
+        },
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

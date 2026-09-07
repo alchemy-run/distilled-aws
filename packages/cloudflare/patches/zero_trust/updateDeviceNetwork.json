@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DevicesNetworksUpdate with distilled cloudflare/zero-trust updateDeviceNetwork",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceNetwork"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceNetworkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceNetwork/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateDeviceNetworkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceNetworkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceNetwork/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateDeviceNetworkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDeviceNetwork/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DeviceNetworkNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

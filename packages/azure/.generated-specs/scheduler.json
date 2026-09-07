@@ -1,0 +1,2501 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.scheduler#JobsListJobHistory": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsListJobHistoryRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobHistoryListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}/history",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Lists job history.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobHistoryListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.scheduler#JobHistoryListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job histories under job."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the URL to get the next set of job histories."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobHistoryListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.scheduler#JobHistoryDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the job histories under job."
+      }
+    },
+    "com.azure.scheduler#JobHistoryDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job history identifier."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job history resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job history name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobHistoryDefinitionProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job history properties."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobHistoryDefinitionProperties": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the start time for this job."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the end time for this job."
+          }
+        },
+        "expectedExecutionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the expected execution time for this job."
+          }
+        },
+        "actionName": {
+          "target": "com.azure.scheduler#JobHistoryDefinitionPropertiesActionName",
+          "traits": {
+            "smithy.api#documentation": "Gets the job history action name."
+          }
+        },
+        "status": {
+          "target": "com.azure.scheduler#JobExecutionStatus",
+          "traits": {
+            "smithy.api#documentation": "Gets the job history status."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the message for the job history."
+          }
+        },
+        "retryCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets the retry count for job."
+          }
+        },
+        "repeatCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets the repeat count for the job."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobExecutionStatus": {
+      "type": "enum",
+      "members": {
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "POSTPONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Postponed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets the job execution status."
+      }
+    },
+    "com.azure.scheduler#JobHistoryDefinitionPropertiesActionName": {
+      "type": "enum",
+      "members": {
+        "MAINACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MainAction"
+          }
+        },
+        "ERRORACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ErrorAction"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets the job history action name."
+      }
+    },
+    "com.azure.scheduler#JobsListJobHistoryRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job name."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "the number of job history to request, in the of range of [1..100]."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The (0-based) index of the job history list from which to begin requesting entries."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the job state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsListRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Lists all jobs under the specified job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.scheduler#JobListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets all jobs under job collection."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the URL to get the next set of jobs."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.scheduler#JobDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets all jobs under job collection."
+      }
+    },
+    "com.azure.scheduler#JobDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job resource identifier."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job resource name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job properties."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobProperties": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job start time."
+          }
+        },
+        "action": {
+          "target": "com.azure.scheduler#JobAction",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job action."
+          }
+        },
+        "recurrence": {
+          "target": "com.azure.scheduler#JobRecurrence",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job recurrence."
+          }
+        },
+        "state": {
+          "target": "com.azure.scheduler#JobState",
+          "traits": {
+            "smithy.api#documentation": "Gets or set the job state."
+          }
+        },
+        "status": {
+          "target": "com.azure.scheduler#JobStatus",
+          "traits": {
+            "smithy.api#documentation": "Gets the job status."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobStatus": {
+      "type": "structure",
+      "members": {
+        "executionCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets the number of times this job has executed."
+          }
+        },
+        "failureCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets the number of times this job has failed."
+          }
+        },
+        "faultedCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets the number of faulted occurrences (occurrences that were retried and failed as many times as the retry policy states)."
+          }
+        },
+        "lastExecutionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the time the last occurrence executed in ISO-8601 format.  Could be empty if job has not run yet."
+          }
+        },
+        "nextExecutionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the time of the next occurrence in ISO-8601 format. Could be empty if the job is completed."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "FAULTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Faulted"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or set the job state."
+      }
+    },
+    "com.azure.scheduler#JobRecurrence": {
+      "type": "structure",
+      "members": {
+        "frequency": {
+          "target": "com.azure.scheduler#JobRecurrenceFrequency",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the frequency of recurrence (second, minute, hour, day, week, month)."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the interval between retries."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the maximum number of times that the job should run."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the time at which the job will complete."
+          }
+        },
+        "schedule": {
+          "target": "com.azure.scheduler#JobRecurrenceSchedule"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobRecurrenceSchedule": {
+      "type": "structure",
+      "members": {
+        "weekDays": {
+          "target": "com.azure.scheduler#JobRecurrenceScheduleWeekDaysList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the days of the week that the job should execute on."
+          }
+        },
+        "hours": {
+          "target": "com.azure.scheduler#JobRecurrenceScheduleHoursList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the hours of the day that the job should execute at."
+          }
+        },
+        "minutes": {
+          "target": "com.azure.scheduler#JobRecurrenceScheduleMinutesList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the minutes of the hour that the job should execute at."
+          }
+        },
+        "monthDays": {
+          "target": "com.azure.scheduler#JobRecurrenceScheduleMonthDaysList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the days of the month that the job should execute on. Must be between 1 and 31."
+          }
+        },
+        "monthlyOccurrences": {
+          "target": "com.azure.scheduler#JobRecurrenceScheduleMonthlyOccurrencesList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the occurrences of days within a month."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleMonthlyOccurrencesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.scheduler#JobRecurrenceScheduleMonthlyOccurrence"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the occurrences of days within a month."
+      }
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleMonthlyOccurrence": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "com.azure.scheduler#JobRecurrenceScheduleMonthlyOccurrenceDay",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the day. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday."
+          }
+        },
+        "Occurrence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the occurrence. Must be between -5 and 5."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleMonthlyOccurrenceDay": {
+      "type": "enum",
+      "members": {
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Monday"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Tuesday"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Wednesday"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Thursday"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Friday"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Saturday"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sunday"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the day. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday."
+      }
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleMonthDaysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the days of the month that the job should execute on. Must be between 1 and 31."
+      }
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleMinutesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the minutes of the hour that the job should execute at."
+      }
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleHoursList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the hours of the day that the job should execute at."
+      }
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleWeekDaysList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.scheduler#JobRecurrenceScheduleWeekDaysItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the days of the week that the job should execute on."
+      }
+    },
+    "com.azure.scheduler#JobRecurrenceScheduleWeekDaysItem": {
+      "type": "enum",
+      "members": {
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Sunday"
+          }
+        },
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Monday"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Tuesday"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Wednesday"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Thursday"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Friday"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Saturday"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobRecurrenceFrequency": {
+      "type": "enum",
+      "members": {
+        "MINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Minute"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hour"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Day"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Week"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Month"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the frequency of recurrence (second, minute, hour, day, week, month)."
+      }
+    },
+    "com.azure.scheduler#JobAction": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.scheduler#JobActionType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job action type."
+          }
+        },
+        "request": {
+          "target": "com.azure.scheduler#HttpRequest",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the http requests."
+          }
+        },
+        "queueMessage": {
+          "target": "com.azure.scheduler#StorageQueueMessage",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the storage queue message."
+          }
+        },
+        "serviceBusQueueMessage": {
+          "target": "com.azure.scheduler#ServiceBusQueueMessage",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the service bus queue message."
+          }
+        },
+        "serviceBusTopicMessage": {
+          "target": "com.azure.scheduler#ServiceBusTopicMessage",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the service bus topic message."
+          }
+        },
+        "retryPolicy": {
+          "target": "com.azure.scheduler#RetryPolicy",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the retry policy."
+          }
+        },
+        "errorAction": {
+          "target": "com.azure.scheduler#JobErrorAction",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the error action."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobErrorAction": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.scheduler#JobErrorActionType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job error action type."
+          }
+        },
+        "request": {
+          "target": "com.azure.scheduler#HttpRequest",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the http requests."
+          }
+        },
+        "queueMessage": {
+          "target": "com.azure.scheduler#StorageQueueMessage",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the storage queue message."
+          }
+        },
+        "serviceBusQueueMessage": {
+          "target": "com.azure.scheduler#ServiceBusQueueMessage",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the service bus queue message."
+          }
+        },
+        "serviceBusTopicMessage": {
+          "target": "com.azure.scheduler#ServiceBusTopicMessage",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the service bus topic message."
+          }
+        },
+        "retryPolicy": {
+          "target": "com.azure.scheduler#RetryPolicy",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the retry policy."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#RetryPolicy": {
+      "type": "structure",
+      "members": {
+        "retryType": {
+          "target": "com.azure.scheduler#RetryPolicyRetryType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the retry strategy to be used."
+          }
+        },
+        "retryInterval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the retry interval between retries, specify duration in ISO 8601 format."
+          }
+        },
+        "retryCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the number of times a retry should be attempted."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#RetryPolicyRetryType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "FIXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fixed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the retry strategy to be used."
+      }
+    },
+    "com.azure.scheduler#ServiceBusTopicMessage": {
+      "type": "structure",
+      "members": {
+        "authentication": {
+          "target": "com.azure.scheduler#ServiceBusAuthentication",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the Service Bus authentication."
+          }
+        },
+        "brokeredMessageProperties": {
+          "target": "com.azure.scheduler#ServiceBusBrokeredMessageProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the brokered message properties."
+          }
+        },
+        "customMessageProperties": {
+          "target": "com.azure.scheduler#ServiceBusTopicMessageCustomMessagePropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the custom message properties."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the message."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the namespace."
+          }
+        },
+        "transportType": {
+          "target": "com.azure.scheduler#ServiceBusTopicMessageTransportType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the transport type."
+          }
+        },
+        "topicPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the topic path."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#ServiceBusTopicMessageTransportType": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "NETMESSAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NetMessaging"
+          }
+        },
+        "AMQP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMQP"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the transport type."
+      }
+    },
+    "com.azure.scheduler#ServiceBusTopicMessageCustomMessagePropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the custom message properties."
+      }
+    },
+    "com.azure.scheduler#ServiceBusBrokeredMessageProperties": {
+      "type": "structure",
+      "members": {
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the content type."
+          }
+        },
+        "correlationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the correlation ID."
+          }
+        },
+        "forcePersistence": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the force persistence."
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the label."
+          }
+        },
+        "messageId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the message ID."
+          }
+        },
+        "partitionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the partition key."
+          }
+        },
+        "replyTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the reply to."
+          }
+        },
+        "replyToSessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the reply to session ID."
+          }
+        },
+        "scheduledEnqueueTimeUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the scheduled enqueue time UTC."
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the session ID."
+          }
+        },
+        "timeToLive": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the time to live."
+          }
+        },
+        "to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the to."
+          }
+        },
+        "viaPartitionKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the via partition key."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#ServiceBusAuthentication": {
+      "type": "structure",
+      "members": {
+        "sasKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the SAS key."
+          }
+        },
+        "sasKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the SAS key name."
+          }
+        },
+        "type": {
+          "target": "com.azure.scheduler#ServiceBusAuthenticationType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the authentication type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#ServiceBusAuthenticationType": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "SHAREDACCESSKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SharedAccessKey"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the authentication type."
+      }
+    },
+    "com.azure.scheduler#ServiceBusQueueMessage": {
+      "type": "structure",
+      "members": {
+        "authentication": {
+          "target": "com.azure.scheduler#ServiceBusAuthentication",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the Service Bus authentication."
+          }
+        },
+        "brokeredMessageProperties": {
+          "target": "com.azure.scheduler#ServiceBusBrokeredMessageProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the brokered message properties."
+          }
+        },
+        "customMessageProperties": {
+          "target": "com.azure.scheduler#ServiceBusQueueMessageCustomMessagePropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the custom message properties."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the message."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the namespace."
+          }
+        },
+        "transportType": {
+          "target": "com.azure.scheduler#ServiceBusQueueMessageTransportType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the transport type."
+          }
+        },
+        "queueName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the queue name."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#ServiceBusQueueMessageTransportType": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "NETMESSAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NetMessaging"
+          }
+        },
+        "AMQP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMQP"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the transport type."
+      }
+    },
+    "com.azure.scheduler#ServiceBusQueueMessageCustomMessagePropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the custom message properties."
+      }
+    },
+    "com.azure.scheduler#StorageQueueMessage": {
+      "type": "structure",
+      "members": {
+        "storageAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the storage account name."
+          }
+        },
+        "queueName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the queue name."
+          }
+        },
+        "sasToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the SAS key."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the message."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#HttpRequest": {
+      "type": "structure",
+      "members": {
+        "authentication": {
+          "target": "com.azure.scheduler#HttpAuthentication",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the authentication method of the request."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the URI of the request."
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the method of the request."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the request body."
+          }
+        },
+        "headers": {
+          "target": "com.azure.scheduler#HttpRequestHeadersMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the headers."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#HttpRequestHeadersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the headers."
+      }
+    },
+    "com.azure.scheduler#HttpAuthentication": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.scheduler#HttpAuthenticationType",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the HTTP authentication type.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#HttpAuthenticationType": {
+      "type": "enum",
+      "members": {
+        "NOTSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSpecified"
+          }
+        },
+        "CLIENTCERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ClientCertificate"
+          }
+        },
+        "ACTIVEDIRECTORYOAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActiveDirectoryOAuth"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the HTTP authentication type."
+      }
+    },
+    "com.azure.scheduler#JobErrorActionType": {
+      "type": "enum",
+      "members": {
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Https"
+          }
+        },
+        "STORAGEQUEUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StorageQueue"
+          }
+        },
+        "SERVICEBUSQUEUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceBusQueue"
+          }
+        },
+        "SERVICEBUSTOPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceBusTopic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the job error action type."
+      }
+    },
+    "com.azure.scheduler#JobActionType": {
+      "type": "enum",
+      "members": {
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Https"
+          }
+        },
+        "STORAGEQUEUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StorageQueue"
+          }
+        },
+        "SERVICEBUSQUEUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceBusQueue"
+          }
+        },
+        "SERVICEBUSTOPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ServiceBusTopic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the job action type."
+      }
+    },
+    "com.azure.scheduler#JobsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "The number of jobs to request, in the of range of [1..100]."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "The (0-based) index of the job history list from which to begin requesting entries."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the job state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobsRun": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsRunRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}/run",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Runs a job.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobsRunRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Deletes a job.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobsPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsPatchRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Patches an existing job.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobsPatchRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job start time."
+          }
+        },
+        "action": {
+          "target": "com.azure.scheduler#JobAction",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job action."
+          }
+        },
+        "recurrence": {
+          "target": "com.azure.scheduler#JobRecurrence",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job recurrence."
+          }
+        },
+        "state": {
+          "target": "com.azure.scheduler#JobState",
+          "traits": {
+            "smithy.api#documentation": "Gets or set the job state."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Provisions a new job or updates an existing job.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Gets a job.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsDisable": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsDisableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/disable",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Disables all of the jobs in the job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionsDisableRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsEnable": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsEnableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/enable",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Enables all of the jobs in the job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionsEnableRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Deletes a job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsPatch": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsPatchRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobCollectionDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Patches an existing job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job collection resource identifier."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the job collection resource type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the storage account location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.scheduler#JobCollectionDefinitionTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobCollectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection properties."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobCollectionProperties": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.scheduler#Sku",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the SKU."
+          }
+        },
+        "state": {
+          "target": "com.azure.scheduler#JobCollectionPropertiesState",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the state."
+          }
+        },
+        "quota": {
+          "target": "com.azure.scheduler#JobCollectionQuota",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection quota."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobCollectionQuota": {
+      "type": "structure",
+      "members": {
+        "maxJobCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or set the maximum job count."
+          }
+        },
+        "maxJobOccurrence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the maximum job occurrence."
+          }
+        },
+        "maxRecurrence": {
+          "target": "com.azure.scheduler#JobMaxRecurrence",
+          "traits": {
+            "smithy.api#documentation": "Gets or set the maximum recurrence."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobMaxRecurrence": {
+      "type": "structure",
+      "members": {
+        "frequency": {
+          "target": "com.azure.scheduler#JobMaxRecurrenceFrequency",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the frequency of recurrence (second, minute, hour, day, week, month)."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the interval between retries."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobMaxRecurrenceFrequency": {
+      "type": "enum",
+      "members": {
+        "MINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Minute"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Hour"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Day"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Week"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Month"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the frequency of recurrence (second, minute, hour, day, week, month)."
+      }
+    },
+    "com.azure.scheduler#JobCollectionPropertiesState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the state."
+      }
+    },
+    "com.azure.scheduler#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.scheduler#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Gets or set the SKU."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#SkuName": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "P10PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P10Premium"
+          }
+        },
+        "P20PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P20Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or set the SKU."
+      }
+    },
+    "com.azure.scheduler#JobCollectionDefinitionTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the tags."
+      }
+    },
+    "com.azure.scheduler#JobCollectionsPatchRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the storage account location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.scheduler#JobCollectionsPatchRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobCollectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsPatchRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the tags."
+      }
+    },
+    "com.azure.scheduler#JobCollectionsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobCollectionDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Provisions a new job collection or updates an existing job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection resource name."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the storage account location."
+          }
+        },
+        "tags": {
+          "target": "com.azure.scheduler#JobCollectionsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.scheduler#JobCollectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the job collection properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets the tags."
+      }
+    },
+    "com.azure.scheduler#JobCollectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobCollectionDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Gets a job collection.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "jobCollectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The job collection name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobCollectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Gets all job collections under specified resource group.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.scheduler#JobCollectionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "Gets the job collections."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the URL to get the next set of job collections."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.scheduler#JobCollectionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.scheduler#JobCollectionDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets the job collections."
+      }
+    },
+    "com.azure.scheduler#JobCollectionsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#JobCollectionsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.scheduler#JobCollectionsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.scheduler#JobCollectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Scheduler/jobCollections",
+          "code": 200,
+          "apiVersion": "2016-03-01"
+        },
+        "smithy.api#documentation": "Gets all job collections under specified subscription.",
+        "com.distilled.openapi#apiVersion": "2016-03-01"
+      }
+    },
+    "com.azure.scheduler#JobCollectionsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.scheduler#Scheduler": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.scheduler#JobsListJobHistory"
+        },
+        {
+          "target": "com.azure.scheduler#JobsList"
+        },
+        {
+          "target": "com.azure.scheduler#JobsRun"
+        },
+        {
+          "target": "com.azure.scheduler#JobsDelete"
+        },
+        {
+          "target": "com.azure.scheduler#JobsPatch"
+        },
+        {
+          "target": "com.azure.scheduler#JobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scheduler#JobsGet"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsDisable"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsEnable"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsDelete"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsPatch"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsGet"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.scheduler#JobCollectionsListBySubscription"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Scheduler",
+        "smithy.api#documentation": "Azure Scheduler API — merged from the scheduler resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

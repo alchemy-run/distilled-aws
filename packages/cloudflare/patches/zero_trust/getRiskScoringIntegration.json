@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#RiskScoringIntegrationsGet with distilled cloudflare/zero-trust getRiskScoringIntegration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringIntegrationsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringIntegrationsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegration/input/target",
+      "value": "com.cloudflare.zero_trust#GetRiskScoringIntegrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#RiskScoringIntegrationsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegration/output/target",
+      "value": "com.cloudflare.zero_trust#GetRiskScoringIntegrationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetRiskScoringIntegration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#RiskScoringIntegrationNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

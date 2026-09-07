@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#NetworksVirtualNetworksCreate with distilled cloudflare/zero-trust createNetworkVirtualNetwork",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkVirtualNetwork"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkVirtualNetworkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkVirtualNetwork/input/target",
+      "value": "com.cloudflare.zero_trust#CreateNetworkVirtualNetworkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksVirtualNetworksCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkVirtualNetworkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkVirtualNetwork/output/target",
+      "value": "com.cloudflare.zero_trust#CreateNetworkVirtualNetworkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateNetworkVirtualNetwork/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#VirtualNetworkConflict"
+        }
+      ]
+    }
+  ]
+}

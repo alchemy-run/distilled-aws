@@ -1,0 +1,747 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.schema_property_groups#PaginatedSchemaPropertyGroupList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.schema_property_groups#PaginatedSchemaPropertyGroupListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "properties": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertiesList"
+        },
+        "events": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupEventsList"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.schema_property_groups#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupProperty": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "property_type": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyPropertyTypeEnum"
+        },
+        "is_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_optional_in_types": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyPropertyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DateTime"
+          }
+        },
+        "STRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "String"
+          }
+        },
+        "NUMERIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Numeric"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Boolean"
+          }
+        },
+        "OBJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Object"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `DateTime` - DateTime\n* `String` - String\n* `Numeric` - Numeric\n* `Boolean` - Boolean\n* `Object` - Object"
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupProperty"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#EventDefinitionBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.schema_property_groups#EventDefinitionBasic"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.schema_property_groups#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.schema_property_groups#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.schema_property_groups#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.schema_property_groups#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.schema_property_groups#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#PaginatedSchemaPropertyGroupListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.schema_property_groups#PaginatedSchemaPropertyGroupList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.schema_property_groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/schema_property_groups/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "property_type": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyPropertyTypeEnum"
+        },
+        "is_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "is_optional_in_types": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsCreateRequestPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "properties": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsCreateRequestPropertiesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.schema_property_groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/schema_property_groups/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this schema property group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.schema_property_groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/schema_property_groups/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdateRequestPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this schema property group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "properties": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdateRequestPropertiesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.schema_property_groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/schema_property_groups/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdateRequestPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupPropertyInput"
+      },
+      "traits": {}
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this schema property group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "properties": {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdateRequestPropertiesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroup"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.schema_property_groups#BadRequest"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/schema_property_groups/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this schema property group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.schema_property_groups#Forbidden"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/schema_property_groups/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.schema_property_groups#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.schema_property_groups#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.schema_property_groups#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.schema_property_groups#SchemaPropertyGroups": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsList"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsCreate"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsRetrieve"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsUpdate"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

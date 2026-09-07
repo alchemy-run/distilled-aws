@@ -1,0 +1,53 @@
+{
+  "description": "Align zones#CustomNameserversUpdate with distilled cloudflare/zones putCustomNameserver",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CustomNameserversUpdate",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserver"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CustomNameserversUpdateRequest",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserverRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserver/input/target",
+      "value": "com.cloudflare.zones#PutCustomNameserverRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CustomNameserversUpdateResponse",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserverResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserver/output/target",
+      "value": "com.cloudflare.zones#PutCustomNameserverResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserver/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#PutCustomNameserver/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.zones#CustomNameserverSetNotFound"
+        },
+        {
+          "target": "com.cloudflare.zones#Forbidden"
+        }
+      ]
+    }
+  ]
+}

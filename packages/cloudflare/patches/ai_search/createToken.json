@@ -1,0 +1,51 @@
+{
+  "description": "Align ai_search#TokensCreate with distilled cloudflare/aisearch createToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#TokensCreate",
+      "path": "/shapes/com.cloudflare.ai_search#CreateToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#TokensCreateRequest",
+      "path": "/shapes/com.cloudflare.ai_search#CreateTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#CreateToken/input/target",
+      "value": "com.cloudflare.ai_search#CreateTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#TokensCreateResponse",
+      "path": "/shapes/com.cloudflare.ai_search#CreateTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#CreateToken/output/target",
+      "value": "com.cloudflare.ai_search#CreateTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#CreateToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_search#ValidationError"
+        },
+        {
+          "target": "com.cloudflare.ai_search#NotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_search#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.ai_search#InvalidTokenCredentials"
+        },
+        {
+          "target": "com.cloudflare.ai_search#Forbidden"
+        }
+      ]
+    }
+  ]
+}

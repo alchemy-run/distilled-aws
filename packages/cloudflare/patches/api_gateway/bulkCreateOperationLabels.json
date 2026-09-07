@@ -1,0 +1,38 @@
+{
+  "description": "Align api_gateway#OperationsLabelsBulkCreate with distilled cloudflare/api-gateway bulkCreateOperationLabels",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsBulkCreate",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationLabels"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsBulkCreateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationLabelsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationLabels/input/target",
+      "value": "com.cloudflare.api_gateway#BulkCreateOperationLabelsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#OperationsLabelsBulkCreateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationLabelsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationLabels/output/target",
+      "value": "com.cloudflare.api_gateway#BulkCreateOperationLabelsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#BulkCreateOperationLabels/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

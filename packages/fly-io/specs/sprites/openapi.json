@@ -1,0 +1,778 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Fly Sprites API",
+    "version": "v1",
+    "description": "REST API at https://api.sprites.dev/v1. Auth is FLY_API_TOKEN only: mint POST /v1/organizations/{org}/tokens with Authorization: FlyV1 {token}, cache, then Bearer the minted token on sprite ops. Never SPRITES_TOKEN. No published OpenAPI — hand-authored from https://sprites.dev/api and github.com/superfly/sprites-js."
+  },
+  "servers": [{ "url": "https://api.sprites.dev/v1" }],
+  "paths": {
+    "/organizations/{org}/tokens": {
+      "post": {
+        "operationId": "createOrganizationToken",
+        "summary": "Mint a Sprites bearer token from a Fly.io macaroon",
+        "description": "POST with Authorization: FlyV1 {FLY_API_TOKEN}. Sprite CRUD rejects Bearer FLY_API_TOKEN (401); callers mint once, cache, then Bearer the returned token. 401 with 'sprites not enabled' means the org has not enabled Sprites.",
+        "parameters": [
+          {
+            "name": "org",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Fly organization slug"
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrganizationTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Minted Sprites bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrganizationTokenResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Minted Sprites bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrganizationTokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sprites is not enabled for this organization, or the Fly macaroon is invalid"
+          }
+        }
+      }
+    },
+    "/sprites": {
+      "post": {
+        "operationId": "createSprite",
+        "summary": "Create a sprite",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateSpriteRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sprite" }
+              }
+            }
+          },
+          "200": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sprite" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request parameters" },
+          "409": { "description": "Sprite name already exists" }
+        }
+      },
+      "get": {
+        "operationId": "listSprites",
+        "summary": "List sprites for the authenticated organization",
+        "parameters": [
+          {
+            "name": "prefix",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "Filter sprites by name prefix"
+          },
+          {
+            "name": "max_results",
+            "in": "query",
+            "schema": { "type": "integer", "minimum": 1, "maximum": 50 },
+            "description": "Maximum number of results (1-50, default 50)"
+          },
+          {
+            "name": "continuation_token",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "Token from the previous response"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListSpritesResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprites/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" },
+          "description": "Unique sprite name"
+        }
+      ],
+      "get": {
+        "operationId": "getSprite",
+        "summary": "Get a sprite",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sprite" }
+              }
+            }
+          },
+          "404": { "description": "Sprite not found" }
+        }
+      },
+      "put": {
+        "operationId": "updateSprite",
+        "summary": "Update sprite URL auth settings",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateSpriteRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Sprite" }
+              }
+            }
+          },
+          "404": { "description": "Sprite not found" }
+        }
+      },
+      "delete": {
+        "operationId": "deleteSprite",
+        "summary": "Delete a sprite",
+        "responses": {
+          "204": { "description": "No content" },
+          "200": { "description": "Deleted" },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    },
+    "/sprites/{name}/exec": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "listExecSessions",
+        "summary": "List active exec sessions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ExecSession" }
+                }
+              }
+            }
+          },
+          "404": { "description": "Sprite not found" }
+        }
+      },
+      "post": {
+        "operationId": "execCommand",
+        "summary": "Execute a command via HTTP POST (non-TTY). Simpler than the WebSocket exec API.",
+        "parameters": [
+          {
+            "name": "cmd",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "array", "items": { "type": "string" } },
+            "style": "form",
+            "explode": true,
+            "description": "Command and args (repeatable)"
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "Explicit path to the executable"
+          },
+          {
+            "name": "stdin",
+            "in": "query",
+            "schema": { "type": "boolean" },
+            "description": "Read stdin from the request body"
+          },
+          {
+            "name": "env",
+            "in": "query",
+            "schema": { "type": "array", "items": { "type": "string" } },
+            "style": "form",
+            "explode": true,
+            "description": "Environment variables as KEY=VALUE (repeatable)"
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "Working directory"
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/octet-stream": {
+              "schema": { "type": "string", "format": "binary" }
+            },
+            "text/plain": {
+              "schema": { "type": "string" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ExecResult" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request" },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    },
+    "/sprites/{name}/checkpoint": {
+      "post": {
+        "operationId": "createCheckpoint",
+        "summary": "Create a checkpoint (NDJSON progress stream)",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateCheckpointRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "NDJSON progress events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StreamEvent" }
+                }
+              }
+            }
+          },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    },
+    "/sprites/{name}/checkpoints": {
+      "get": {
+        "operationId": "listCheckpoints",
+        "summary": "List checkpoints",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Checkpoint" }
+                }
+              }
+            }
+          },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    },
+    "/sprites/{name}/checkpoints/{checkpoint_id}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "checkpoint_id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" },
+          "description": "Checkpoint identifier (e.g. v7)"
+        }
+      ],
+      "get": {
+        "operationId": "getCheckpoint",
+        "summary": "Get a checkpoint",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Checkpoint" }
+              }
+            }
+          },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/sprites/{name}/checkpoints/{checkpoint_id}/restore": {
+      "post": {
+        "operationId": "restoreCheckpoint",
+        "summary": "Restore a checkpoint (NDJSON progress stream). Destructive.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "checkpoint_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NDJSON progress events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StreamEvent" }
+                }
+              }
+            }
+          },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/sprites/{name}/fs/write": {
+      "put": {
+        "operationId": "writeFile",
+        "summary": "Write file contents to the sprite filesystem. Request body is raw file bytes.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Path to the file to write"
+          },
+          {
+            "name": "workingDir",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Working directory for resolving relative paths"
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "File permissions in octal (e.g. 0644)"
+          },
+          {
+            "name": "mkdir",
+            "in": "query",
+            "schema": { "type": "boolean" },
+            "description": "Create parent directories if they do not exist"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/octet-stream": {
+              "schema": { "type": "string", "format": "binary" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Written",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/WriteFileResponse" }
+              }
+            }
+          },
+          "400": { "description": "Invalid request" },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    },
+    "/sprites/{name}/services": {
+      "get": {
+        "operationId": "listServices",
+        "summary": "List configured sprite services",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/SpriteService" }
+                }
+              }
+            }
+          },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    },
+    "/sprites/{name}/services/{service_name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        },
+        {
+          "name": "service_name",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "operationId": "getService",
+        "summary": "Get a sprite service",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SpriteService" }
+              }
+            }
+          },
+          "404": { "description": "Not found" }
+        }
+      },
+      "put": {
+        "operationId": "putService",
+        "summary": "Create or update a sprite service. Returns NDJSON start progress.",
+        "parameters": [
+          {
+            "name": "duration",
+            "in": "query",
+            "schema": { "type": "string" },
+            "description": "Time to monitor logs after starting (default 5s)"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SpriteServiceSpec" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "NDJSON progress events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/StreamEvent" }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid request body" },
+          "404": { "description": "Sprite not found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UrlAuth": {
+        "type": "string",
+        "enum": ["sprite", "public"]
+      },
+      "UrlSettings": {
+        "type": "object",
+        "properties": {
+          "auth": { "$ref": "#/components/schemas/UrlAuth" },
+          "private_access": { "type": "string" }
+        }
+      },
+      "SpriteStatus": {
+        "type": "string",
+        "enum": ["cold", "warm", "running"]
+      },
+      "CreateSpriteRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Unique name for the sprite within the organization"
+          },
+          "url_settings": { "$ref": "#/components/schemas/UrlSettings" },
+          "labels": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Labels stamped on the sprite (used for ownership / nuke)"
+          }
+        }
+      },
+      "UpdateSpriteRequest": {
+        "type": "object",
+        "required": ["url_settings"],
+        "properties": {
+          "url_settings": { "$ref": "#/components/schemas/UrlSettings" }
+        }
+      },
+      "Sprite": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "organization": { "type": "string" },
+          "org_slug": { "type": "string" },
+          "url": { "type": "string" },
+          "url_settings": { "$ref": "#/components/schemas/UrlSettings" },
+          "status": { "$ref": "#/components/schemas/SpriteStatus" },
+          "labels": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" },
+          "last_started_at": { "type": "string", "nullable": true },
+          "last_active_at": { "type": "string", "nullable": true },
+          "last_running_at": { "type": "string", "nullable": true },
+          "version": { "type": "string", "nullable": true }
+        }
+      },
+      "ListSpritesResponse": {
+        "type": "object",
+        "properties": {
+          "sprites": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Sprite" }
+          },
+          "has_more": { "type": "boolean" },
+          "next_continuation_token": { "type": "string", "nullable": true },
+          "name": { "type": "string" },
+          "running": { "type": "integer" },
+          "warm": { "type": "integer" },
+          "cold": { "type": "integer" },
+          "running_limit": { "type": "integer" },
+          "warm_limit": { "type": "integer" }
+        }
+      },
+      "ExecSession": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "command": { "type": "string" },
+          "is_active": { "type": "boolean" },
+          "tty": { "type": "boolean" },
+          "created": { "type": "string" },
+          "last_activity": { "type": "string" },
+          "workdir": { "type": "string" },
+          "bytes_per_second": { "type": "number" }
+        }
+      },
+      "ExecResult": {
+        "type": "object",
+        "properties": {
+          "exit_code": { "type": "integer" },
+          "stdout": { "type": "string" },
+          "stderr": { "type": "string" }
+        }
+      },
+      "CreateOrganizationTokenRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human-readable label for the minted token"
+          },
+          "invite_code": {
+            "type": "string",
+            "description": "Optional Sprites invite code"
+          }
+        }
+      },
+      "CreateOrganizationTokenResponse": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "x-sensitive": true,
+            "description": "Sprites bearer token. Send as Authorization: Bearer on subsequent sprite ops."
+          }
+        }
+      },
+      "CreateCheckpointRequest": {
+        "type": "object",
+        "properties": {
+          "comment": { "type": "string" }
+        }
+      },
+      "Checkpoint": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "create_time": { "type": "string" },
+          "source_id": { "type": "string" },
+          "comment": { "type": "string" },
+          "health": { "type": "string" }
+        }
+      },
+      "StreamEvent": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "data": { "type": "string" },
+          "error": { "type": "string" },
+          "time": { "type": "string" }
+        }
+      },
+      "WriteFileResponse": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "size": { "type": "number" },
+          "mode": { "type": "string" }
+        }
+      },
+      "SpriteServiceState": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "status": { "type": "string" },
+          "pid": { "type": "integer" },
+          "started_at": { "type": "string" },
+          "error": { "type": "string" }
+        }
+      },
+      "SpriteService": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "cmd": { "type": "string" },
+          "args": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "needs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "http_port": { "type": "integer" },
+          "state": { "$ref": "#/components/schemas/SpriteServiceState" }
+        }
+      },
+      "SpriteServiceSpec": {
+        "type": "object",
+        "required": ["cmd"],
+        "properties": {
+          "cmd": {
+            "type": "string",
+            "description": "Command to execute"
+          },
+          "args": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Command arguments"
+          },
+          "dir": {
+            "type": "string",
+            "description": "Working directory for the service"
+          },
+          "needs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Service dependencies (started first)"
+          },
+          "http_port": {
+            "type": "integer",
+            "description": "HTTP port for proxy routing"
+          }
+        }
+      }
+    }
+  }
+}

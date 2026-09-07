@@ -1,0 +1,48 @@
+{
+  "description": "Align accounts#MembersUpdate with distilled cloudflare/accounts updateMember",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersUpdate",
+      "path": "/shapes/com.cloudflare.accounts#UpdateMember"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersUpdateRequest",
+      "path": "/shapes/com.cloudflare.accounts#UpdateMemberRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateMember/input/target",
+      "value": "com.cloudflare.accounts#UpdateMemberRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#MembersUpdateResponse",
+      "path": "/shapes/com.cloudflare.accounts#UpdateMemberResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateMember/output/target",
+      "value": "com.cloudflare.accounts#UpdateMemberResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#UpdateMember/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#MemberNotFound"
+        },
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#BadRequest"
+        },
+        {
+          "target": "com.cloudflare.accounts#MethodNotAllowed"
+        }
+      ]
+    }
+  ]
+}

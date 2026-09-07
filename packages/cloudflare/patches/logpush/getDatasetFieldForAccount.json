@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#DatasetsFieldsGetForAccount with distilled cloudflare/logpush getDatasetFieldForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsFieldsGetForAccount",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsFieldsGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForAccount/input/target",
+      "value": "com.cloudflare.logpush#GetDatasetFieldForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsFieldsGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetFieldForAccount/output/target",
+      "value": "com.cloudflare.logpush#GetDatasetFieldForAccountResponse"
+    }
+  ]
+}

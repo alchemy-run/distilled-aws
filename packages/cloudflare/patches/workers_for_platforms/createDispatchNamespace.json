@@ -1,0 +1,42 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesCreate with distilled cloudflare/workers-for-platforms createDispatchNamespace",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesCreate",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#CreateDispatchNamespace"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesCreateRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#CreateDispatchNamespaceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#CreateDispatchNamespace/input/target",
+      "value": "com.cloudflare.workers_for_platforms#CreateDispatchNamespaceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesCreateResponse",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#CreateDispatchNamespaceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#CreateDispatchNamespace/output/target",
+      "value": "com.cloudflare.workers_for_platforms#CreateDispatchNamespaceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#CreateDispatchNamespace/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers_for_platforms#DispatchNamespaceAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.workers_for_platforms#Forbidden"
+        }
+      ]
+    }
+  ]
+}

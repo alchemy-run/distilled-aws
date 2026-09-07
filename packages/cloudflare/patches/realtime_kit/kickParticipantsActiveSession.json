@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#ActiveSessionKickParticipants with distilled cloudflare/realtime-kit kickParticipantsActiveSession",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionKickParticipants",
+      "path": "/shapes/com.cloudflare.realtime_kit#KickParticipantsActiveSession"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionKickParticipantsRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#KickParticipantsActiveSessionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#KickParticipantsActiveSession/input/target",
+      "value": "com.cloudflare.realtime_kit#KickParticipantsActiveSessionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionKickParticipantsResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#KickParticipantsActiveSessionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#KickParticipantsActiveSession/output/target",
+      "value": "com.cloudflare.realtime_kit#KickParticipantsActiveSessionResponse"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "description": "Docs gap: DLP profile `description` is nullable on the wire — sending null clears it, and cleared profiles come back with description: null (v0 typed string | null on both sides). Mark the profile-level description nullable on the custom create/update write bodies and every profile result variant that carries it.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpProfileCustomRequest/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpProfileCustomRequest/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomCreateResultCustomProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomCreateResultIntegrationProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomGetResultCustomProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomGetResultIntegrationProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdateResultCustomProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesCustomUpdateResultIntegrationProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesGetResultCustomProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesGetResultIntegrationProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesListResultItemCustomProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DlpProfilesListResultItemIntegrationProfile/members/description/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    }
+  ]
+}

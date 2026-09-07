@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#AccessCertificatesSettingsUpdateForAccount with distilled cloudflare/zero-trust putAccessCertificateSettingForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesSettingsUpdateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessCertificateSettingForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesSettingsUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessCertificateSettingForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessCertificateSettingForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#PutAccessCertificateSettingForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesSettingsUpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessCertificateSettingForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessCertificateSettingForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#PutAccessCertificateSettingForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PutAccessCertificateSettingForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

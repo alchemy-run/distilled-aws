@@ -1,0 +1,20 @@
+{
+  "description": "Align cloudforce_one#RequestsPriorityDelete with distilled cloudflare/cloudforce-one deleteRequestPriority",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsPriorityDelete",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestPriority"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsPriorityDeleteRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestPriorityRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#DeleteRequestPriority/input/target",
+      "value": "com.cloudflare.cloudforce_one#DeleteRequestPriorityRequest"
+    }
+  ]
+}

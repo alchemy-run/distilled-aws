@@ -1,0 +1,10 @@
+{
+  "description": "customDomainUpdate returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#CustomDomainUpdateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation customDomainUpdate($environmentId: String!, $id: String!, $targetPort: Int) {\n  customDomainUpdate(environmentId: $environmentId, id: $id, targetPort: $targetPort)\n}"
+    }
+  ]
+}

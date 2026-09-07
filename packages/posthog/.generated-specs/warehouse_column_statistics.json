@@ -1,0 +1,277 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "table_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "table_id",
+            "smithy.api#documentation": "Only return statistics for this data warehouse table."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_column_statistics#PaginatedWarehouseColumnStatisticsList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.warehouse_column_statistics#PaginatedWarehouseColumnStatisticsListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_column_statistics#WarehouseColumnStatistics2": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "table": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the data warehouse table this column belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "column_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the column these statistics describe.",
+            "smithy.api#required": {}
+          }
+        },
+        "column_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ClickHouse type the statistics were computed against (e.g. Int64, DateTime64).",
+            "smithy.api#required": {}
+          }
+        },
+        "row_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of rows in the table when these statistics were computed.",
+            "smithy.api#required": {}
+          }
+        },
+        "null_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of NULL values in this column, or null if the Delta log carried no count.",
+            "smithy.api#required": {}
+          }
+        },
+        "null_fraction": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fraction of values that are NULL (null_count / row_count), between 0 and 1.",
+            "smithy.api#required": {}
+          }
+        },
+        "min_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum value in the column, as a string. Null when unavailable. For string columns this may be truncated by the underlying Delta statistics, so treat string bounds as approximate.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum value in the column, as a string. Null when unavailable (see min_value).",
+            "smithy.api#required": {}
+          }
+        },
+        "has_min_max": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Delta log carried min/max statistics for this column (false for some nested/binary types).",
+            "smithy.api#required": {}
+          }
+        },
+        "computed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When these statistics were last computed.",
+            "smithy.api#required": {}
+          }
+        },
+        "computed_for_delta_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Delta table version the statistics were computed against.",
+            "smithy.api#required": {}
+          }
+        },
+        "stats_basis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How the statistics were produced. Currently always 'delta_log'.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_column_statistics#PaginatedWarehouseColumnStatisticsListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatistics2"
+      },
+      "traits": {}
+    },
+    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_column_statistics#PaginatedWarehouseColumnStatisticsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_column_statistics/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read per-column data statistics (null fraction, min/max, row count) for warehouse tables.\n\nStatistics are computed automatically after a sync and surfaced to the AI agent so it can write\nbetter queries. They are system-owned and read-only here. List can be filtered to one table with\n`?table_id=<uuid>`."
+      }
+    },
+    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this warehouse column statistics."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatistics2"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/warehouse_column_statistics/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read per-column data statistics (null fraction, min/max, row count) for warehouse tables.\n\nStatistics are computed automatically after a sync and surfaced to the AI agent so it can write\nbetter queries. They are system-owned and read-only here. List can be filtered to one table with\n`?table_id=<uuid>`."
+      }
+    },
+    "com.posthog.warehouse_column_statistics#WarehouseColumnStatistics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsList"
+        },
+        {
+          "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

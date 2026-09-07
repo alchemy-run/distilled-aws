@@ -1,0 +1,31 @@
+{
+  "errorCategories": {
+    "LimitExceededException": ["QuotaError", "RetryableError"],
+    "ResourceInUseException": ["ConflictError", "RetryableError"],
+    "ProvisionedThroughputExceededException": [
+      "ThrottlingError",
+      "RetryableError"
+    ],
+    "KMSThrottlingException": ["ThrottlingError", "RetryableError"],
+    "InternalFailureException": ["ServerError", "RetryableError"],
+    "ResourceNotFoundException": ["NotFoundError"],
+    "InvalidArgumentException": ["BadRequestError"],
+    "ValidationException": ["BadRequestError"],
+    "ExpiredIteratorException": ["BadRequestError"],
+    "ExpiredNextTokenException": ["BadRequestError"],
+    "KMSDisabledException": ["BadRequestError"],
+    "KMSInvalidStateException": ["BadRequestError"],
+    "KMSNotFoundException": ["BadRequestError"],
+    "KMSOptInRequired": ["BadRequestError"]
+  },
+  "operations": {},
+  "structures": {
+    "StreamDescriptionSummary": {
+      "members": {
+        "OpenShardCount": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

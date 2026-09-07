@@ -1,0 +1,2859 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.integrations#IntegrationsListRequestKind": {
+      "type": "enum",
+      "members": {
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "APNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "apns"
+          }
+        },
+        "AWS_S3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aws-s3"
+          }
+        },
+        "AZURE_BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure-blob"
+          }
+        },
+        "BING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bing-ads"
+          }
+        },
+        "CLICKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clickup"
+          }
+        },
+        "CUSTOMERIO_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerio-app"
+          }
+        },
+        "CUSTOMERIO_TRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerio-track"
+          }
+        },
+        "CUSTOMERIO_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerio-webhook"
+          }
+        },
+        "DATABRICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "databricks"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "FIREBASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firebase"
+          }
+        },
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GOOGLE_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-ads"
+          }
+        },
+        "GOOGLE_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-analytics"
+          }
+        },
+        "GOOGLE_CLOUD_SERVICE_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-cloud-service-account"
+          }
+        },
+        "GOOGLE_CLOUD_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-cloud-storage"
+          }
+        },
+        "GOOGLE_PUBSUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-pubsub"
+          }
+        },
+        "GOOGLE_SEARCH_CONSOLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-search-console"
+          }
+        },
+        "GOOGLE_SHEETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-sheets"
+          }
+        },
+        "HUBSPOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hubspot"
+          }
+        },
+        "INTERCOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "intercom"
+          }
+        },
+        "JIRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jira"
+          }
+        },
+        "LINEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linear"
+          }
+        },
+        "LINKEDIN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linkedin-ads"
+          }
+        },
+        "META_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "meta-ads"
+          }
+        },
+        "PINTEREST_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pinterest-ads"
+          }
+        },
+        "POSTGRESQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "postgresql"
+          }
+        },
+        "REDDIT_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reddit-ads"
+          }
+        },
+        "S3_COMPATIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "s3-compatible"
+          }
+        },
+        "SALESFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "salesforce"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        },
+        "SLACK_POSTHOG_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack-posthog-code"
+          }
+        },
+        "SNAPCHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "snapchat"
+          }
+        },
+        "STRIPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stripe"
+          }
+        },
+        "TIKTOK_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tiktok-ads"
+          }
+        },
+        "TWILIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "twilio"
+          }
+        },
+        "VERCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vercel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationsListRequestKind",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "* `anthropic` - Anthropic\n* `apns` - Apple Push\n* `aws-s3` - Aws S3\n* `azure-blob` - Azure Blob\n* `bing-ads` - Bing Ads\n* `clickup` - Clickup\n* `customerio-app` - Customerio App\n* `customerio-track` - Customerio Track\n* `customerio-webhook` - Customerio Webhook\n* `databricks` - Databricks\n* `email` - Email\n* `firebase` - Firebase\n* `github` - Github\n* `gitlab` - Gitlab\n* `google-ads` - Google Ads\n* `google-analytics` - Google Analytics\n* `google-cloud-service-account` - Google Cloud Service Account\n* `google-cloud-storage` - Google Cloud Storage\n* `google-pubsub` - Google Pubsub\n* `google-search-console` - Google Search Console\n* `google-sheets` - Google Sheets\n* `hubspot` - Hubspot\n* `intercom` - Intercom\n* `jira` - Jira\n* `linear` - Linear\n* `linkedin-ads` - Linkedin Ads\n* `meta-ads` - Meta Ads\n* `pinterest-ads` - Pinterest Ads\n* `postgresql` - Postgresql\n* `reddit-ads` - Reddit Ads\n* `s3-compatible` - S3 Compatible\n* `salesforce` - Salesforce\n* `slack` - Slack\n* `slack-posthog-code` - Slack Posthog Code\n* `snapchat` - Snapchat\n* `stripe` - Stripe\n* `tiktok-ads` - Tiktok Ads\n* `twilio` - Twilio\n* `vercel` - Vercel"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#PaginatedIntegrationConfigList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.integrations#PaginatedIntegrationConfigListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationConfig": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationKindEnum"
+        },
+        "config": {
+          "target": "smithy.api#Document"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.integrations#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "errors": {
+          "target": "smithy.api#String"
+        },
+        "display_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Standard Integration serializer."
+      }
+    },
+    "com.posthog.integrations#IntegrationKindEnum": {
+      "type": "enum",
+      "members": {
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "APNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "apns"
+          }
+        },
+        "AWS_S3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aws-s3"
+          }
+        },
+        "AZURE_BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure-blob"
+          }
+        },
+        "BING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bing-ads"
+          }
+        },
+        "CLICKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clickup"
+          }
+        },
+        "CUSTOMERIO_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerio-app"
+          }
+        },
+        "CUSTOMERIO_TRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerio-track"
+          }
+        },
+        "CUSTOMERIO_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerio-webhook"
+          }
+        },
+        "DATABRICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "databricks"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "FIREBASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firebase"
+          }
+        },
+        "GITHUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github"
+          }
+        },
+        "GITLAB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitlab"
+          }
+        },
+        "GOOGLE_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-ads"
+          }
+        },
+        "GOOGLE_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-analytics"
+          }
+        },
+        "GOOGLE_CLOUD_SERVICE_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-cloud-service-account"
+          }
+        },
+        "GOOGLE_CLOUD_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-cloud-storage"
+          }
+        },
+        "GOOGLE_PUBSUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-pubsub"
+          }
+        },
+        "GOOGLE_SEARCH_CONSOLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-search-console"
+          }
+        },
+        "GOOGLE_SHEETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google-sheets"
+          }
+        },
+        "HUBSPOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hubspot"
+          }
+        },
+        "INTERCOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "intercom"
+          }
+        },
+        "JIRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jira"
+          }
+        },
+        "LINEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linear"
+          }
+        },
+        "LINKEDIN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linkedin-ads"
+          }
+        },
+        "META_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "meta-ads"
+          }
+        },
+        "PINTEREST_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pinterest-ads"
+          }
+        },
+        "POSTGRESQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "postgresql"
+          }
+        },
+        "REDDIT_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reddit-ads"
+          }
+        },
+        "S3_COMPATIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "s3-compatible"
+          }
+        },
+        "SALESFORCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "salesforce"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        },
+        "SLACK_POSTHOG_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack-posthog-code"
+          }
+        },
+        "SNAPCHAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "snapchat"
+          }
+        },
+        "STRIPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stripe"
+          }
+        },
+        "TIKTOK_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tiktok-ads"
+          }
+        },
+        "TWILIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "twilio"
+          }
+        },
+        "VERCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vercel"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `anthropic` - Anthropic\n* `apns` - Apple Push\n* `aws-s3` - Aws S3\n* `azure-blob` - Azure Blob\n* `bing-ads` - Bing Ads\n* `clickup` - Clickup\n* `customerio-app` - Customerio App\n* `customerio-track` - Customerio Track\n* `customerio-webhook` - Customerio Webhook\n* `databricks` - Databricks\n* `email` - Email\n* `firebase` - Firebase\n* `github` - Github\n* `gitlab` - Gitlab\n* `google-ads` - Google Ads\n* `google-analytics` - Google Analytics\n* `google-cloud-service-account` - Google Cloud Service Account\n* `google-cloud-storage` - Google Cloud Storage\n* `google-pubsub` - Google Pubsub\n* `google-search-console` - Google Search Console\n* `google-sheets` - Google Sheets\n* `hubspot` - Hubspot\n* `intercom` - Intercom\n* `jira` - Jira\n* `linear` - Linear\n* `linkedin-ads` - Linkedin Ads\n* `meta-ads` - Meta Ads\n* `pinterest-ads` - Pinterest Ads\n* `postgresql` - Postgresql\n* `reddit-ads` - Reddit Ads\n* `s3-compatible` - S3 Compatible\n* `salesforce` - Salesforce\n* `slack` - Slack\n* `slack-posthog-code` - Slack Posthog Code\n* `snapchat` - Snapchat\n* `stripe` - Stripe\n* `tiktok-ads` - Tiktok Ads\n* `twilio` - Twilio\n* `vercel` - Vercel"
+      }
+    },
+    "com.posthog.integrations#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.integrations#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.integrations#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.integrations#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.integrations#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.integrations#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#PaginatedIntegrationConfigListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#IntegrationConfig"
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#PaginatedIntegrationConfigList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationKindEnum"
+        },
+        "config": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#IntegrationConfig"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#IntegrationConfig"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/integrations/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/anthropic_managed_agent_environments/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/anthropic_managed_agent_vaults/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/anthropic_managed_agents/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsChannelsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of channels to return per request (max 200)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of channels to skip before returning results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Optional case-insensitive channel name or ID search query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#SlackChannelsResponse": {
+      "type": "structure",
+      "members": {
+        "channels": {
+          "target": "com.posthog.integrations#SlackChannelsResponseChannelsList",
+          "traits": {
+            "smithy.api#documentation": "Slack channels visible to the PostHog Slack app.",
+            "smithy.api#required": {}
+          }
+        },
+        "lastRefreshedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of the last full Slack API refresh (only set on full lists, not single-channel lookups).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more channels match the current search beyond this page."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#SlackChannel": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack channel ID (e.g. C0123ABC) — pass to cdp-functions inputs.channel.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack channel name without the leading '#'.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the channel is private.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_member": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the PostHog Slack app is a member of the channel and can post to it.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_ext_shared": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the channel is shared with another Slack workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_private_without_access": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the channel is private and the PostHog Slack app cannot access it.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#SlackChannelsResponseChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#SlackChannel"
+      },
+      "traits": {
+        "smithy.api#documentation": "Slack channels visible to the PostHog Slack app."
+      }
+    },
+    "com.posthog.integrations#IntegrationsChannelsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsChannelsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#SlackChannelsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/channels/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsClickupListsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsClickupListsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsClickupListsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/clickup_lists/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsClickupSpacesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsClickupSpacesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsClickupSpacesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/clickup_spaces/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/clickup_workspaces/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsEmailPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationKindEnum"
+        },
+        "config": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsEmailPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsEmailPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#IntegrationConfig"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/integrations/{id}/email/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsEmailVerifyCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationKindEnum"
+        },
+        "config": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsEmailVerifyCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsEmailVerifyCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/{id}/email/verify/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubBranchesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of branches to return"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of branches to skip"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Repository in owner/repo format"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Optional case-insensitive branch name search query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#GitHubBranchesResponse": {
+      "type": "structure",
+      "members": {
+        "branches": {
+          "target": "com.posthog.integrations#GitHubBranchesResponseBranchesList",
+          "traits": {
+            "smithy.api#documentation": "List of branch names"
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default branch of the repository",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more branches exist beyond the returned page"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GitHubBranchesResponseBranchesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of branch names"
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubBranchesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubBranchesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#GitHubBranchesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/github_branches/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubReposRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of repositories to return per request (max 500)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of repositories to skip before returning results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Optional case-insensitive repository name search query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#GitHubReposResponse": {
+      "type": "structure",
+      "members": {
+        "repositories": {
+          "target": "com.posthog.integrations#GitHubReposResponseRepositoriesList"
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more repositories are available beyond this page."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GitHubRepo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GitHubReposResponseRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#GitHubRepo"
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationsGithubReposRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubReposRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#GitHubReposResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/github_repos/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubReposRefreshCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#GitHubReposRefreshResponse": {
+      "type": "structure",
+      "members": {
+        "repositories": {
+          "target": "com.posthog.integrations#GitHubReposRefreshResponseRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "The refreshed repository cache."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GitHubReposRefreshResponseRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#GitHubRepo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The refreshed repository cache."
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubReposRefreshCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubReposRefreshCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#GitHubReposRefreshResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/{id}/github_repos/refresh/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubTeamsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of teams to return per request (max 500)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of teams to skip before returning results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Optional case-insensitive team name or slug search query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#GitHubTeamsResponse": {
+      "type": "structure",
+      "members": {
+        "teams": {
+          "target": "com.posthog.integrations#GitHubTeamsResponseTeamsList",
+          "traits": {
+            "smithy.api#documentation": "List of GitHub teams available to the installation organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more teams are available beyond this page.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GitHubTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub team numeric identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub team slug.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub team display name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GitHubTeamsResponseTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#GitHubTeam"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of GitHub teams available to the installation organization."
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubTeamsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubTeamsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#GitHubTeamsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/github_teams/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/google_accessible_accounts/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/google_conversion_actions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGoogleSearchConsoleSitesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#GoogleSearchConsoleSitesResponse": {
+      "type": "structure",
+      "members": {
+        "sites": {
+          "target": "com.posthog.integrations#GoogleSearchConsoleSitesResponseSitesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GoogleSearchConsoleSite": {
+      "type": "structure",
+      "members": {
+        "siteUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Site URL in canonical Google format — `https://example.com/` for URL-prefix properties (trailing slash mandatory) or `sc-domain:example.com` for Domain properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "permissionLevel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The connected user's permission level for this site. One of `siteOwner`, `siteFullUser`, `siteRestrictedUser`, `siteUnverifiedUser`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#GoogleSearchConsoleSitesResponseSitesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#GoogleSearchConsoleSite"
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationsGoogleSearchConsoleSitesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGoogleSearchConsoleSitesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#GoogleSearchConsoleSitesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/google_search_console_sites/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the Search Console properties the connected Google account has access to."
+      }
+    },
+    "com.posthog.integrations#IntegrationsJiraProjectsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#JiraProjectsResponse": {
+      "type": "structure",
+      "members": {
+        "projects": {
+          "target": "com.posthog.integrations#JiraProjectsResponseProjectsList",
+          "traits": {
+            "smithy.api#documentation": "Jira projects available to this integration.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#JiraProject": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Jira project ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Jira project key to pass as error tracking config.project_key.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Jira project display name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#JiraProjectsResponseProjectsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#JiraProject"
+      },
+      "traits": {
+        "smithy.api#documentation": "Jira projects available to this integration."
+      }
+    },
+    "com.posthog.integrations#IntegrationsJiraProjectsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsJiraProjectsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#JiraProjectsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/jira_projects/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsLinearTeamsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#LinearTeamsResponse": {
+      "type": "structure",
+      "members": {
+        "teams": {
+          "target": "com.posthog.integrations#LinearTeamsResponseTeamsList",
+          "traits": {
+            "smithy.api#documentation": "Linear teams available to this integration.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#LinearTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Linear team ID to pass as error tracking config.team_id.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Linear team display name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#LinearTeamsResponseTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#LinearTeam"
+      },
+      "traits": {
+        "smithy.api#documentation": "Linear teams available to this integration."
+      }
+    },
+    "com.posthog.integrations#IntegrationsLinearTeamsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsLinearTeamsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#LinearTeamsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/linear_teams/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/linkedin_ads_accounts/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/linkedin_ads_conversion_rules/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/twilio_phone_numbers/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsAuthorizeRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsAuthorizeRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsAuthorizeRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/authorize/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsDomainConnectApplyUrlCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationKindEnum"
+        },
+        "config": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsDomainConnectApplyUrlCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsDomainConnectApplyUrlCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#BadRequest"
+        },
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/domain-connect/apply-url/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unified endpoint for generating Domain Connect apply URLs.\n\nAccepts a context (\"email\" or \"proxy\") and the relevant resource ID.\nThe backend resolves the domain, template variables, and service ID\nbased on context, then builds the signed apply URL."
+      }
+    },
+    "com.posthog.integrations#IntegrationsDomainConnectCheckRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsDomainConnectCheckRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsDomainConnectCheckRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.integrations#Forbidden"
+        },
+        {
+          "target": "com.posthog.integrations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/domain-connect/check/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubLinkExistingCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "source_team_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sibling team in the same organization whose GitHub installation should be reused.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "installation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub installation ID to link; resolved within the organization when source_team_id is omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubLinkExistingCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubLinkExistingCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#IntegrationConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/github/link_existing/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reuse a GitHub installation already linked to a sibling team in the same organization."
+      }
+    },
+    "com.posthog.integrations#ConnectFromEnum": {
+      "type": "enum",
+      "members": {
+        "POSTHOG_CODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "posthog_code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `posthog_code` - posthog_code"
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubOauthAuthorizeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "installation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub installation ID to carry through the User OAuth flow."
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative URL to redirect to after the OAuth flow completes."
+          }
+        },
+        "connect_from": {
+          "target": "com.posthog.integrations#ConnectFromEnum",
+          "traits": {
+            "smithy.api#documentation": "Originating surface for the connect flow; only 'posthog_code' is recognized.\n\n* `posthog_code` - posthog_code"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#GitHubOAuthAuthorizeResponse": {
+      "type": "structure",
+      "members": {
+        "oauth_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub User OAuth URL the client should redirect to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationsGithubOauthAuthorizeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubOauthAuthorizeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#GitHubOAuthAuthorizeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/github/oauth_authorize/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mint a User OAuth URL to bootstrap a fresh `code` when the install flow returns without one."
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative URL to redirect to after GitHub setup completes (e.g. account-connected for PostHog Code)."
+          }
+        },
+        "installation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub installation ID being managed; binds the seeded update state so a callback can't swap in a different installation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/github/prepare_callback/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Seed GitHub setup callback state without redirecting to GitHub.\n\nUsed when the user opens an existing installation's settings on github.com (e.g. PostHog\nCode \"Update in GitHub\") so the subsequent Setup URL redirect can be validated."
+      }
+    },
+    "com.posthog.integrations#IntegrationsRequestAccessCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "kind": {
+          "target": "com.posthog.integrations#IntegrationKindEnum",
+          "traits": {
+            "smithy.api#documentation": "The kind of integration the member is requesting be connected (e.g. 'slack', 'github').\n\n* `anthropic` - Anthropic\n* `apns` - Apple Push\n* `aws-s3` - Aws S3\n* `azure-blob` - Azure Blob\n* `bing-ads` - Bing Ads\n* `clickup` - Clickup\n* `customerio-app` - Customerio App\n* `customerio-track` - Customerio Track\n* `customerio-webhook` - Customerio Webhook\n* `databricks` - Databricks\n* `email` - Email\n* `firebase` - Firebase\n* `github` - Github\n* `gitlab` - Gitlab\n* `google-ads` - Google Ads\n* `google-analytics` - Google Analytics\n* `google-cloud-service-account` - Google Cloud Service Account\n* `google-cloud-storage` - Google Cloud Storage\n* `google-pubsub` - Google Pubsub\n* `google-search-console` - Google Search Console\n* `google-sheets` - Google Sheets\n* `hubspot` - Hubspot\n* `intercom` - Intercom\n* `jira` - Jira\n* `linear` - Linear\n* `linkedin-ads` - Linkedin Ads\n* `meta-ads` - Meta Ads\n* `pinterest-ads` - Pinterest Ads\n* `postgresql` - Postgresql\n* `reddit-ads` - Reddit Ads\n* `s3-compatible` - S3 Compatible\n* `salesforce` - Salesforce\n* `slack` - Slack\n* `slack-posthog-code` - Slack Posthog Code\n* `snapchat` - Snapchat\n* `stripe` - Stripe\n* `tiktok-ads` - Tiktok Ads\n* `twilio` - Twilio\n* `vercel` - Vercel",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Explanation from the requester of why this integration is needed. Shown to admins in the notification email.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#IntegrationAccessRequestResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the access request was accepted and the project admins were notified.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#IntegrationsRequestAccessCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#IntegrationsRequestAccessCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#IntegrationAccessRequestResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/integrations/request_access/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Notify project admins that a member is requesting an integration be connected."
+      }
+    },
+    "com.posthog.integrations#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.integrations#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.integrations#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.integrations#Integrations": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.integrations#IntegrationsList"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsDestroy"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsChannelsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsClickupListsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsClickupSpacesRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsEmailPartialUpdate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsEmailVerifyCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubBranchesRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubReposRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubReposRefreshCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubTeamsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGoogleSearchConsoleSitesRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsJiraProjectsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsLinearTeamsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsAuthorizeRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsDomainConnectApplyUrlCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsDomainConnectCheckRetrieve"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubLinkExistingCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubOauthAuthorizeCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreate"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsRequestAccessCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

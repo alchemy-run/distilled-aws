@@ -1,0 +1,15 @@
+{
+  "description": "Widen `POST /servers`'s `ssh_keys` items to `integer | string`. The member's own description says \"SSH key IDs (`integer`) or names (`string`)\" and the API accepts both, but the schema declares `items: { type: string }` — so the generated input types the list as `Array<string>` and a caller holding the numeric ids the SSH Keys endpoints hand back cannot pass them without a cast. Every other id-or-name field in this spec (`POST /floating_ips`'s `home_location`, `POST /primary_ips`'s `location`) is spelled as the `oneOf` used here, which is what makes this one an authoring slip rather than a deliberate narrowing. Should upstream fix it, this patch goes stale and is reported (and can then be deleted) rather than silently corrupting the schema.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/paths/~1servers/post/requestBody/content/application~1json/schema/properties/ssh_keys/items",
+      "value": {
+        "oneOf": [
+          { "type": "integer", "format": "int64" },
+          { "type": "string" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Align rate_limits#List with distilled cloudflare/rate-limits listRateLimits",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#List",
+      "path": "/shapes/com.cloudflare.rate_limits#ListRateLimits"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#ListRequest",
+      "path": "/shapes/com.cloudflare.rate_limits#ListRateLimitsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#ListRateLimits/input/target",
+      "value": "com.cloudflare.rate_limits#ListRateLimitsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#ListResponse",
+      "path": "/shapes/com.cloudflare.rate_limits#ListRateLimitsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#ListRateLimits/output/target",
+      "value": "com.cloudflare.rate_limits#ListRateLimitsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rate_limits#ListRateLimits/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

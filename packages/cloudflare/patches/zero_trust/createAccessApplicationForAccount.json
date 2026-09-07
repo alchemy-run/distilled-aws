@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#AccessApplicationsCreateForAccount with distilled cloudflare/zero-trust createAccessApplicationForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCreateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessReferenceNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#AccessDestinationConflict"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#ActivationCheckTrigger with distilled cloudflare/zones triggerActivationCheck",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#ActivationCheckTrigger",
+      "path": "/shapes/com.cloudflare.zones#TriggerActivationCheck"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#ActivationCheckTriggerRequest",
+      "path": "/shapes/com.cloudflare.zones#TriggerActivationCheckRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#TriggerActivationCheck/input/target",
+      "value": "com.cloudflare.zones#TriggerActivationCheckRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#ActivationCheckTriggerResponse",
+      "path": "/shapes/com.cloudflare.zones#TriggerActivationCheckResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#TriggerActivationCheck/output/target",
+      "value": "com.cloudflare.zones#TriggerActivationCheckResponse"
+    }
+  ]
+}

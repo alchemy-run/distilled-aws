@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#RecordsDelete with distilled cloudflare/dns deleteRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsDelete",
+      "path": "/shapes/com.cloudflare.dns#DeleteRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsDeleteRequest",
+      "path": "/shapes/com.cloudflare.dns#DeleteRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteRecord/input/target",
+      "value": "com.cloudflare.dns#DeleteRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsDeleteResponse",
+      "path": "/shapes/com.cloudflare.dns#DeleteRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#DeleteRecord/output/target",
+      "value": "com.cloudflare.dns#DeleteRecordResponse"
+    }
+  ]
+}

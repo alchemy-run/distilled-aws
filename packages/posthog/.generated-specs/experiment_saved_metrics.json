@@ -1,0 +1,704 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "A search term."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.experiment_saved_metrics#PaginatedExperimentSavedMetricList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.experiment_saved_metrics#PaginatedExperimentSavedMetricListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetric": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the shared metric. Must be unique within the project (case-insensitive)."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of what the metric measures.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "ExperimentMetric JSON. Must have kind='ExperimentMetric' and a metric_type: 'mean' (set source to an EventsNode with an event name), 'funnel' (set series to an array of EventsNode steps), 'ratio' (set numerator and denominator EventsNode entries), or 'retention' (set start_event and completion_event). Legacy kinds (ExperimentTrendsQuery, ExperimentFunnelsQuery) are rejected for new shared metrics."
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.experiment_saved_metrics#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "tags": {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricTagsList"
+        },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The effective access level the user has for this object",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mixin for serializers to add user access control fields"
+      }
+    },
+    "com.posthog.experiment_saved_metrics#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.experiment_saved_metrics#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.experiment_saved_metrics#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.experiment_saved_metrics#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.experiment_saved_metrics#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.experiment_saved_metrics#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#PaginatedExperimentSavedMetricListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetric"
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.experiment_saved_metrics#PaginatedExperimentSavedMetricList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#BadRequest"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#Forbidden"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/experiment_saved_metrics/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsCreateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the shared metric. Must be unique within the project (case-insensitive)."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of what the metric measures.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "ExperimentMetric JSON. Must have kind='ExperimentMetric' and a metric_type: 'mean' (set source to an EventsNode with an event name), 'funnel' (set series to an array of EventsNode steps), 'ratio' (set numerator and denominator EventsNode entries), or 'retention' (set start_event and completion_event). Legacy kinds (ExperimentTrendsQuery, ExperimentFunnelsQuery) are rejected for new shared metrics."
+          }
+        },
+        "tags": {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsCreateRequestTagsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#BadRequest"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#Forbidden"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/experiment_saved_metrics/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this experiment saved metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#Forbidden"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/experiment_saved_metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsUpdateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this experiment saved metric."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the shared metric. Must be unique within the project (case-insensitive)."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of what the metric measures.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "ExperimentMetric JSON. Must have kind='ExperimentMetric' and a metric_type: 'mean' (set source to an EventsNode with an event name), 'funnel' (set series to an array of EventsNode steps), 'ratio' (set numerator and denominator EventsNode entries), or 'retention' (set start_event and completion_event). Legacy kinds (ExperimentTrendsQuery, ExperimentFunnelsQuery) are rejected for new shared metrics."
+          }
+        },
+        "tags": {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsUpdateRequestTagsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#BadRequest"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#Forbidden"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/experiment_saved_metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsPartialUpdateRequestTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this experiment saved metric."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the shared metric. Must be unique within the project (case-insensitive)."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short description of what the metric measures.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "ExperimentMetric JSON. Must have kind='ExperimentMetric' and a metric_type: 'mean' (set source to an EventsNode with an event name), 'funnel' (set series to an array of EventsNode steps), 'ratio' (set numerator and denominator EventsNode entries), or 'retention' (set start_event and completion_event). Legacy kinds (ExperimentTrendsQuery, ExperimentFunnelsQuery) are rejected for new shared metrics."
+          }
+        },
+        "tags": {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsPartialUpdateRequestTagsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetric"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#BadRequest"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#Forbidden"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/experiment_saved_metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this experiment saved metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#Forbidden"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/experiment_saved_metrics/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.experiment_saved_metrics#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.experiment_saved_metrics#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.experiment_saved_metrics#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.experiment_saved_metrics#ExperimentSavedMetrics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsList"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsCreate"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsRetrieve"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsUpdate"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}
